@@ -33,6 +33,11 @@ export type ReplyingMessage = {
   message: Message;
 };
 
+interface TypedChannel {
+  type: 'Channel';
+  object: Channel;
+}
+
 interface TypedRole {
   type: 'Role';
   object: {
@@ -58,7 +63,7 @@ interface TypedUser {
 
 export type ReportedObject = TypedMessage | TypedServer | TypedUser;
 
-export type DeletableObject = TypedRole | TypedMessage | TypedServer;
+export type DeletableObject = TypedChannel | TypedRole | TypedMessage | TypedServer;
 
 export type TextEditingModalProps = {
   initialString: string;

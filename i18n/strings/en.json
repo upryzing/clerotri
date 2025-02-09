@@ -76,9 +76,11 @@
         },
         "modals": {
             "confirm_deletion": {
+                "header_channel": "Delete channel?",
                 "header_role": "Delete role?",
                 "header_message": "Delete message?",
                 "header_server": "Delete server?",
+                "body_channel": "Are you sure you want to delete <2>this channel</2>?",
                 "body_role": "Are you sure you want to delete <2>this role</2>?",
                 "body_message": "Are you sure you want to delete <2>this message</2>?",
                 "body_server": "Are you sure you want to delete <2>{{name}}</2>?",
