@@ -87,195 +87,199 @@ export const ServerSettingsSheet = observer(
         section.section !== 'roles' && section.section !== 'channels' ? (
           <BackButton callback={() => setSection(null)} margin />
         ) : null}
-        <ScrollView
-          style={{flex: 1}}
-          showsVerticalScrollIndicator={false}
-          showsHorizontalScrollIndicator={false}>
-          {section == null ? (
-            <>
-              <View
-                style={{
-                  alignSelf: 'center',
-                  alignItems: 'center',
-                  marginVertical: 10,
-                }}>
-                {iconURL ? (
-                  <Image
-                    key={`server-settings-${server._id}-icon`}
-                    source={{uri: `${iconURL}?max_side=${MAX_SIDE_HQ}`}}
-                    style={{
-                      width: 80,
-                      height: 80,
-                      borderRadius: 5000,
-                    }}
-                  />
-                ) : (
-                  <View style={localStyles.serverNameInitials}>
-                    <Text
-                      key={`server-settings-${server._id}-initials`}
-                      style={{fontWeight: 'bold', fontSize: 20}}>
-                      {initials}
-                    </Text>
-                  </View>
-                )}
-                <GapView size={5} />
-                <Text type={'h1'}>{server.name}</Text>
-              </View>
-              <Text type={'h1'}>{t('app.servers.settings.general')}</Text>
-              <ContextButton
-                style={{flex: 1, marginBottom: 10}}
-                backgroundColor={currentTheme.backgroundSecondary}
-                onPress={() => {
-                  setSection({section: 'overview'});
-                }}>
-                <View style={styles.iconContainer}>
-                  <MaterialIcon
-                    name={'info'}
-                    color={currentTheme.foregroundPrimary}
-                    size={24}
-                  />
+        {section?.section === 'members' ? (
+          <MemberSettingsSection server={server} />
+        ) : (
+          <ScrollView
+            style={{flex: 1}}
+            showsVerticalScrollIndicator={false}
+            showsHorizontalScrollIndicator={false}>
+            {section == null ? (
+              <>
+                <View
+                  style={{
+                    alignSelf: 'center',
+                    alignItems: 'center',
+                    marginVertical: 10,
+                  }}>
+                  {iconURL ? (
+                    <Image
+                      key={`server-settings-${server._id}-icon`}
+                      source={{uri: `${iconURL}?max_side=${MAX_SIDE_HQ}`}}
+                      style={{
+                        width: 80,
+                        height: 80,
+                        borderRadius: 5000,
+                      }}
+                    />
+                  ) : (
+                    <View style={localStyles.serverNameInitials}>
+                      <Text
+                        key={`server-settings-${server._id}-initials`}
+                        style={{fontWeight: 'bold', fontSize: 20}}>
+                        {initials}
+                      </Text>
+                    </View>
+                  )}
+                  <GapView size={5} />
+                  <Text type={'h1'}>{server.name}</Text>
                 </View>
-                <Text>{t('app.servers.settings.overview.title')}</Text>
-              </ContextButton>
-              <ContextButton
-                style={{flex: 1, marginBottom: 10}}
-                backgroundColor={currentTheme.backgroundSecondary}
-                onPress={() => {
-                  setSection({section: 'channels'});
-                }}>
-                <View style={styles.iconContainer}>
-                  <MaterialIcon
-                    name={'tag'}
-                    color={currentTheme.foregroundPrimary}
-                    size={24}
-                  />
-                </View>
-                <Text>{t('app.servers.settings.channels.title')}</Text>
-              </ContextButton>
-              <Text type={'h1'}>{t('app.servers.settings.customisation')}</Text>
-              <ContextButton
-                style={{flex: 1, marginBottom: 10}}
-                backgroundColor={currentTheme.backgroundSecondary}
-                onPress={() => {
-                  setSection({section: 'roles'});
-                }}>
-                <View style={styles.iconContainer}>
-                  <MaterialIcon
-                    name={'flag'}
-                    color={currentTheme.foregroundPrimary}
-                    size={24}
-                  />
-                </View>
-                <Text>{t('app.servers.settings.roles.title')}</Text>
-              </ContextButton>
-              <ContextButton
-                style={{flex: 1, marginBottom: 10}}
-                backgroundColor={currentTheme.backgroundSecondary}
-                onPress={() => {
-                  setSection({section: 'emoji'});
-                }}>
-                <View style={styles.iconContainer}>
-                  <MaterialIcon
-                    name={'emoji-emotions'}
-                    color={currentTheme.foregroundPrimary}
-                    size={24}
-                  />
-                </View>
-                <Text>{t('app.servers.settings.emoji.title')}</Text>
-              </ContextButton>
-              <Text type={'h1'}>
-                {t('app.servers.settings.user_management')}
-              </Text>
-              <ContextButton
-                style={{flex: 1, marginBottom: 10}}
-                backgroundColor={currentTheme.backgroundSecondary}
-                onPress={() => {
-                  setSection({section: 'members'});
-                }}>
-                <View style={styles.iconContainer}>
-                  <MaterialIcon
-                    name={'group'}
-                    color={currentTheme.foregroundPrimary}
-                    size={24}
-                  />
-                </View>
-                <Text>{t('app.servers.settings.members.title')}</Text>
-              </ContextButton>
-              <ContextButton
-                style={{flex: 1, marginBottom: 10}}
-                backgroundColor={currentTheme.backgroundSecondary}
-                onPress={() => {
-                  setSection({section: 'invites'});
-                }}>
-                <View style={styles.iconContainer}>
-                  <MaterialIcon
-                    name={'mail'}
-                    color={currentTheme.foregroundPrimary}
-                    size={24}
-                  />
-                </View>
-                <Text>{t('app.servers.settings.invites.title')}</Text>
-              </ContextButton>
-              <ContextButton
-                style={{flex: 1, marginBottom: 10}}
-                backgroundColor={currentTheme.backgroundSecondary}
-                onPress={() => {
-                  setSection({section: 'bans'});
-                }}>
-                <View style={styles.iconContainer}>
-                  <MaterialCommunityIcon
-                    name={'hammer'}
-                    color={currentTheme.foregroundPrimary}
-                    size={24}
-                  />
-                </View>
-                <Text>{t('app.servers.settings.bans.title')}</Text>
-              </ContextButton>
-              {server.owner === client.user?._id ? (
+                <Text type={'h1'}>{t('app.servers.settings.general')}</Text>
                 <ContextButton
                   style={{flex: 1, marginBottom: 10}}
-                  backgroundColor={currentTheme.error}
+                  backgroundColor={currentTheme.backgroundSecondary}
                   onPress={() => {
-                    app.openDeletionConfirmationModal({
-                      type: 'Server',
-                      object: server,
-                    });
+                    setSection({section: 'overview'});
                   }}>
                   <View style={styles.iconContainer}>
                     <MaterialIcon
-                      name={'delete'}
+                      name={'info'}
                       color={currentTheme.foregroundPrimary}
                       size={24}
                     />
                   </View>
-                  <Text>{t('app.servers.settings.delete_server')}</Text>
+                  <Text>{t('app.servers.settings.overview.title')}</Text>
                 </ContextButton>
-              ) : null}
-            </>
-          ) : section.section === 'overview' ? (
-            <OverviewSettingsSection server={server} />
-          ) : section.section === 'channels' ? (
-            <ChannelSettingsSection
-              server={server}
-              section={section}
-              setSection={setSection}
-            />
-          ) : section.section === 'roles' ? (
-            <RoleSettingsSection
-              server={server}
-              section={section}
-              setSection={setSection}
-            />
-          ) : section.section === 'emoji' ? (
-            <EmojiSettingsSection server={server} />
-          ) : section.section === 'members' ? (
-            <MemberSettingsSection server={server} />
-          ) : section.section === 'invites' ? (
-            <InviteSettingsSection server={server} />
-          ) : section.section === 'bans' ? (
-            <BanSettingsSection server={server} />
-          ) : null}
-        </ScrollView>
+                <ContextButton
+                  style={{flex: 1, marginBottom: 10}}
+                  backgroundColor={currentTheme.backgroundSecondary}
+                  onPress={() => {
+                    setSection({section: 'channels'});
+                  }}>
+                  <View style={styles.iconContainer}>
+                    <MaterialIcon
+                      name={'tag'}
+                      color={currentTheme.foregroundPrimary}
+                      size={24}
+                    />
+                  </View>
+                  <Text>{t('app.servers.settings.channels.title')}</Text>
+                </ContextButton>
+                <Text type={'h1'}>
+                  {t('app.servers.settings.customisation')}
+                </Text>
+                <ContextButton
+                  style={{flex: 1, marginBottom: 10}}
+                  backgroundColor={currentTheme.backgroundSecondary}
+                  onPress={() => {
+                    setSection({section: 'roles'});
+                  }}>
+                  <View style={styles.iconContainer}>
+                    <MaterialIcon
+                      name={'flag'}
+                      color={currentTheme.foregroundPrimary}
+                      size={24}
+                    />
+                  </View>
+                  <Text>{t('app.servers.settings.roles.title')}</Text>
+                </ContextButton>
+                <ContextButton
+                  style={{flex: 1, marginBottom: 10}}
+                  backgroundColor={currentTheme.backgroundSecondary}
+                  onPress={() => {
+                    setSection({section: 'emoji'});
+                  }}>
+                  <View style={styles.iconContainer}>
+                    <MaterialIcon
+                      name={'emoji-emotions'}
+                      color={currentTheme.foregroundPrimary}
+                      size={24}
+                    />
+                  </View>
+                  <Text>{t('app.servers.settings.emoji.title')}</Text>
+                </ContextButton>
+                <Text type={'h1'}>
+                  {t('app.servers.settings.user_management')}
+                </Text>
+                <ContextButton
+                  style={{flex: 1, marginBottom: 10}}
+                  backgroundColor={currentTheme.backgroundSecondary}
+                  onPress={() => {
+                    setSection({section: 'members'});
+                  }}>
+                  <View style={styles.iconContainer}>
+                    <MaterialIcon
+                      name={'group'}
+                      color={currentTheme.foregroundPrimary}
+                      size={24}
+                    />
+                  </View>
+                  <Text>{t('app.servers.settings.members.title')}</Text>
+                </ContextButton>
+                <ContextButton
+                  style={{flex: 1, marginBottom: 10}}
+                  backgroundColor={currentTheme.backgroundSecondary}
+                  onPress={() => {
+                    setSection({section: 'invites'});
+                  }}>
+                  <View style={styles.iconContainer}>
+                    <MaterialIcon
+                      name={'mail'}
+                      color={currentTheme.foregroundPrimary}
+                      size={24}
+                    />
+                  </View>
+                  <Text>{t('app.servers.settings.invites.title')}</Text>
+                </ContextButton>
+                <ContextButton
+                  style={{flex: 1, marginBottom: 10}}
+                  backgroundColor={currentTheme.backgroundSecondary}
+                  onPress={() => {
+                    setSection({section: 'bans'});
+                  }}>
+                  <View style={styles.iconContainer}>
+                    <MaterialCommunityIcon
+                      name={'hammer'}
+                      color={currentTheme.foregroundPrimary}
+                      size={24}
+                    />
+                  </View>
+                  <Text>{t('app.servers.settings.bans.title')}</Text>
+                </ContextButton>
+                {server.owner === client.user?._id ? (
+                  <ContextButton
+                    style={{flex: 1, marginBottom: 10}}
+                    backgroundColor={currentTheme.error}
+                    onPress={() => {
+                      app.openDeletionConfirmationModal({
+                        type: 'Server',
+                        object: server,
+                      });
+                    }}>
+                    <View style={styles.iconContainer}>
+                      <MaterialIcon
+                        name={'delete'}
+                        color={currentTheme.foregroundPrimary}
+                        size={24}
+                      />
+                    </View>
+                    <Text>{t('app.servers.settings.delete_server')}</Text>
+                  </ContextButton>
+                ) : null}
+              </>
+            ) : section.section === 'overview' ? (
+              <OverviewSettingsSection server={server} />
+            ) : section.section === 'channels' ? (
+              <ChannelSettingsSection
+                server={server}
+                section={section}
+                setSection={setSection}
+              />
+            ) : section.section === 'roles' ? (
+              <RoleSettingsSection
+                server={server}
+                section={section}
+                setSection={setSection}
+              />
+            ) : section.section === 'emoji' ? (
+              <EmojiSettingsSection server={server} />
+            ) : section.section === 'invites' ? (
+              <InviteSettingsSection server={server} />
+            ) : section.section === 'bans' ? (
+              <BanSettingsSection server={server} />
+            ) : null}
+          </ScrollView>
+        )}
       </View>
     );
   },

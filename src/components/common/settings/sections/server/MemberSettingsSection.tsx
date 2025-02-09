@@ -1,5 +1,5 @@
 import {useContext, useEffect, useState} from 'react';
-import {Pressable, View} from 'react-native';
+import {FlatList, Platform, Pressable, View} from 'react-native';
 import {useTranslation} from 'react-i18next';
 import {observer} from 'mobx-react-lite';
 
@@ -12,6 +12,7 @@ import {app} from '@clerotri/Generic';
 import {styles} from '@clerotri/Theme';
 import {Text} from '@clerotri/components/common/atoms';
 import {SettingsEntry} from '@clerotri/components/common/settings/atoms';
+import {client} from '@clerotri/lib/client';
 import {commonValues, ThemeContext} from '@clerotri/lib/themes';
 
 export const MemberSettingsSection = observer(({server}: {server: Server}) => {
@@ -32,29 +33,57 @@ export const MemberSettingsSection = observer(({server}: {server: Server}) => {
     fetchMembers();
   }, [server, reload]);
 
-  return (
-    <>
-      <Text type={'h1'}>{t('app.servers.settings.members.title')}</Text>
-      {members ? (
-        members.map(m => (
-          <SettingsEntry
-            style={{flexDirection: 'column'}}
-            key={`member-settings-entry-${m._id.user}`}>
-            <View style={{flexDirection: 'row', alignItems: 'center'}}>
-              <View style={{flex: 1, flexDirection: 'column'}}>
-                <Text
-                  key={`member-settings-entry-${m._id.user}-id`}
-                  colour={m.roleColour ?? undefined}
-                  style={{fontWeight: 'bold'}}>
-                  {m.nickname ?? m.user?.display_name ?? m.user?.username}
-                </Text>
-                <Text colour={currentTheme.foregroundSecondary}>
-                  @{m.user?.username}#{m.user?.discriminator}
-                </Text>
-                <Text colour={currentTheme.foregroundSecondary}>
-                  {m._id.user}
-                </Text>
-              </View>
+  const renderItem = ({item}: {item: Member}) => {
+    return (
+      <SettingsEntry
+        style={{flexDirection: 'column'}}
+        key={`member-settings-entry-${item._id.user}`}>
+        <View style={{flexDirection: 'row', alignItems: 'center'}}>
+          <View style={{flex: 1, flexDirection: 'column'}}>
+            <Text
+              key={`member-settings-entry-${item._id.user}-id`}
+              colour={item.roleColour ?? undefined}
+              style={{fontWeight: 'bold'}}>
+              {item.nickname ?? item.user?.display_name ?? item.user?.username}
+            </Text>
+            <Text colour={currentTheme.foregroundSecondary}>
+              @{item.user?.username}#{item.user?.discriminator}
+            </Text>
+            <Text colour={currentTheme.foregroundSecondary}>
+              {item._id.user}
+            </Text>
+          </View>
+          <Pressable
+            style={{
+              width: 30,
+              height: 20,
+              alignItems: 'center',
+              justifyContent: 'center',
+            }}
+            onPress={() => {
+              activeMember !== item._id.user
+                ? setActiveMember(item._id.user)
+                : setActiveMember('');
+            }}>
+            <View style={styles.iconContainer}>
+              <MaterialIcon
+                name={
+                  activeMember !== item._id.user ? 'expand-more' : 'expand-less'
+                }
+                size={24}
+                color={currentTheme.foregroundPrimary}
+              />
+            </View>
+          </Pressable>
+        </View>
+        {activeMember === item._id.user ? (
+          <View
+            style={{
+              flex: 1,
+              paddingVertical: commonValues.sizes.xl,
+              flexDirection: 'row',
+            }}>
+            {item._id.user === client.user?._id || server.havePermission('ManageNicknames') && item.inferior ? (
               <Pressable
                 style={{
                   width: 30,
@@ -63,106 +92,93 @@ export const MemberSettingsSection = observer(({server}: {server: Server}) => {
                   justifyContent: 'center',
                 }}
                 onPress={() => {
-                  activeMember !== m._id.user
-                    ? setActiveMember(m._id.user)
-                    : setActiveMember('');
+                  app.openTextEditModal({
+                    initialString: item.nickname ?? '',
+                    id: 'nickname_other',
+                    callback: nick => {
+                      item.edit(
+                        nick === '' ? {remove: ['Nickname']} : {nickname: nick},
+                      );
+                    },
+                  });
                 }}>
                 <View style={styles.iconContainer}>
                   <MaterialIcon
-                    name={
-                      activeMember !== m._id.user
-                        ? 'expand-more'
-                        : 'expand-less'
-                    }
+                    name={'edit'}
                     size={24}
                     color={currentTheme.foregroundPrimary}
                   />
                 </View>
               </Pressable>
-            </View>
-            {activeMember === m._id.user ? (
-              <View
-                style={{
-                  flex: 1,
-                  paddingVertical: commonValues.sizes.xl,
-                  flexDirection: 'row',
-                }}>
-                {server.havePermission('ManageNicknames') && m.inferior ? (
-                  <Pressable
-                    style={{
-                      width: 30,
-                      height: 20,
-                      alignItems: 'center',
-                      justifyContent: 'center',
-                    }}
-                    onPress={() => {
-                      app.openTextEditModal({
-                        initialString: m.nickname ?? '',
-                        id: 'nickname_other',
-                        callback: nick => {
-                          m.edit(
-                            nick === ''
-                              ? {remove: ['Nickname']}
-                              : {nickname: nick},
-                          );
-                        },
-                      });
-                    }}>
-                    <View style={styles.iconContainer}>
-                      <MaterialIcon
-                        name={'edit'}
-                        size={24}
-                        color={currentTheme.foregroundPrimary}
-                      />
-                    </View>
-                  </Pressable>
-                ) : null}
-                {m.kickable ? (
-                  <Pressable
-                    style={{
-                      width: 30,
-                      height: 20,
-                      alignItems: 'center',
-                      justifyContent: 'center',
-                    }}
-                    onPress={() => {
-                      m.kick();
-                      triggerReload(reload + 1);
-                    }}>
-                    <View style={styles.iconContainer}>
-                      <MaterialIcon
-                        name={'person-remove'}
-                        size={24}
-                        color={currentTheme.error}
-                      />
-                    </View>
-                  </Pressable>
-                ) : null}
-                {m.bannable ? (
-                  <Pressable
-                    style={{
-                      width: 30,
-                      height: 20,
-                      alignItems: 'center',
-                      justifyContent: 'center',
-                    }}
-                    onPress={() => {
-                      server.banUser(m._id.user, {reason: 'sus'});
-                      triggerReload(reload + 1);
-                    }}>
-                    <View style={styles.iconContainer}>
-                      <MaterialCommunityIcon
-                        name={'hammer'}
-                        size={24}
-                        color={currentTheme.error}
-                      />
-                    </View>
-                  </Pressable>
-                ) : null}
-              </View>
             ) : null}
-          </SettingsEntry>
-        ))
+            {item.kickable ? (
+              <Pressable
+                style={{
+                  width: 30,
+                  height: 20,
+                  alignItems: 'center',
+                  justifyContent: 'center',
+                }}
+                onPress={() => {
+                  item.kick();
+                  triggerReload(reload + 1);
+                }}>
+                <View style={styles.iconContainer}>
+                  <MaterialIcon
+                    name={'person-remove'}
+                    size={24}
+                    color={currentTheme.error}
+                  />
+                </View>
+              </Pressable>
+            ) : null}
+            {item.bannable ? (
+              <Pressable
+                style={{
+                  width: 30,
+                  height: 20,
+                  alignItems: 'center',
+                  justifyContent: 'center',
+                }}
+                onPress={() => {
+                  server.banUser(item._id.user, {reason: 'sus'});
+                  triggerReload(reload + 1);
+                }}>
+                <View style={styles.iconContainer}>
+                  <MaterialCommunityIcon
+                    name={'hammer'}
+                    size={24}
+                    color={currentTheme.error}
+                  />
+                </View>
+              </Pressable>
+            ) : null}
+          </View>
+        ) : null}
+      </SettingsEntry>
+    );
+  };
+
+  const keyExtractor = (item: Member) => {
+    return `member-${item._id.user}`;
+  };
+
+  return (
+    <>
+      <Text type={'h1'}>{t('app.servers.settings.members.title')}</Text>
+      {members ? (
+        <FlatList
+          key={'server-settings-members-list'}
+          keyExtractor={keyExtractor}
+          data={members}
+          contentContainerStyle={{
+            paddingBottom:
+              Platform.OS === 'web' ? 0 : commonValues.sizes.medium,
+          }}
+          renderItem={renderItem}
+          showsVerticalScrollIndicator={false}
+          showsHorizontalScrollIndicator={false}
+        />
       ) : (
         <Text>{t('app.servers.settings.members.loading')}</Text>
       )}
