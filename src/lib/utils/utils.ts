@@ -1,4 +1,4 @@
-import {Linking, Platform, ToastAndroid} from 'react-native';
+import {Linking} from 'react-native';
 
 import {differenceInMinutes} from 'date-fns/differenceInMinutes';
 import {isSameDay} from 'date-fns/isSameDay';

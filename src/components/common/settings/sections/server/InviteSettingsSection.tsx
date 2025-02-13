@@ -7,10 +7,11 @@ import MaterialIcon from 'react-native-vector-icons/MaterialIcons';
 
 import type {API, Server} from 'revolt.js';
 
+// import {app} from '@clerotri/Generic';
 import {styles} from '@clerotri/Theme';
 import {Text} from '@clerotri/components/common/atoms';
 import {SettingsEntry} from '@clerotri/components/common/settings/atoms';
-import {ThemeContext} from '@clerotri/lib/themes';
+import {commonValues, ThemeContext} from '@clerotri/lib/themes';
 
 export const InviteSettingsSection = observer(({server}: {server: Server}) => {
   const {currentTheme} = useContext(ThemeContext);
@@ -30,7 +31,40 @@ export const InviteSettingsSection = observer(({server}: {server: Server}) => {
 
   return (
     <>
-      <Text type={'h1'}>{t('app.servers.settings.invites.title')}</Text>
+      <View
+        style={{
+          flexDirection: 'row',
+          alignItems: 'center',
+          marginVertical: commonValues.sizes.medium,
+        }}>
+        <View style={{flex: 1}}>
+          <Text type={'h1'}>{t('app.servers.settings.invites.title')}</Text>
+        </View>
+        {/* TODO: add channel selector
+        {server.havePermission('InviteOthers') ? (
+          <Pressable
+            onPress={() => {
+              app.openCreateChannelModal({
+                server,
+                callback: () => {},
+              });
+            }}
+            style={{
+              width: 30,
+              height: 20,
+              alignItems: 'center',
+              justifyContent: 'center',
+            }}>
+            <View style={styles.iconContainer}>
+              <MaterialIcon
+                name={'add'}
+                size={20}
+                color={currentTheme.foregroundPrimary}
+              />
+            </View>
+          </Pressable>
+        ) : null} */}
+      </View>
       {invites ? (
         invites.length ? (
           invites.map(i => (
