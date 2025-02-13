@@ -337,22 +337,20 @@ export const MessageView = observer(({channel}: {channel: Channel}) => {
     }
 
     function setUpListeners() {
-      client.addListener('message', msg => onNewMessage(msg));
-      client.addListener('message/delete', (id, msg) =>
-        onMessageDeletion(id, msg),
-      );
+      client.addListener('message', onNewMessage);
+      client.addListener('message/delete', onMessageDeletion);
     }
 
     function cleanupListeners() {
-      client.removeListener('message');
-      client.removeListener('message/delete');
+      client.removeListener('message', onNewMessage);
+      client.removeListener('message/delete', onMessageDeletion);
     }
 
     try {
       setUpListeners();
     } catch (err) {
       console.log(
-        `[NEWMESSAGEVIEW] Error seting up listeners for ${channel._id}: ${err}`,
+        `[NEWMESSAGEVIEW] Error setting up listeners for ${channel._id}: ${err}`,
       );
       setError(err);
     }

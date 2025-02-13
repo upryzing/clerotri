@@ -133,17 +133,17 @@ function LoggedInViews({
     }
 
     function setUpPacketListener() {
-      client.on('packet', async p => await onNewPacket(p));
+      client.on('packet', onNewPacket);
     }
 
     function cleanupPacketListener() {
-      client.removeListener('packet');
+      client.removeListener('packet', onNewPacket);
     }
 
     try {
       setUpPacketListener();
     } catch (err) {
-      console.log(`[NEWMESSAGEVIEW] Error seting up global listeners: ${err}`);
+      console.log(`[LOGGEDINVIEWS] Error setting up global listeners: ${err}`);
     }
 
     return () => cleanupPacketListener();
@@ -198,74 +198,79 @@ export function MainView() {
   useEffect(() => {
     console.log('[APP] Setting up global listeners...');
 
-    function setUpListeners() {
-      client.on('connecting', () => {
-        app.setLoadingStage('connecting');
-        console.log(
-          `[APP] Connecting to instance... (${new Date().getTime()})`,
-        );
-      });
+    function handleConnectingEvent() {
+      app.setLoadingStage('connecting');
+      console.log(
+        `[APP] Connecting to instance... (${new Date().getTime()})`,
+      );
+    }
 
-      client.on('connected', () => {
-        app.setLoadingStage('connected');
-        console.log(`[APP] Connected to instance (${new Date().getTime()})`);
-      });
+    function handleConnectedEvent() {
+      app.setLoadingStage('connected');
+      console.log(`[APP] Connected to instance (${new Date().getTime()})`);
+    }
 
-      client.on('ready', async () => {
-        let fetchedOrderedServers = [];
-        let fetchedChannelNotificationSettings = {};
-        let fetchedServerNotificationSettings = {};
+    async function handleReadyEvent() {
+      let fetchedOrderedServers = [];
+      let fetchedChannelNotificationSettings = {};
+      let fetchedServerNotificationSettings = {};
 
+      try {
+        const rawSettings = await client.syncFetchSettings([
+          'ordering',
+          'notifications',
+        ]);
         try {
-          const rawSettings = await client.syncFetchSettings([
-            'ordering',
-            'notifications',
-          ]);
-          try {
-            fetchedOrderedServers = JSON.parse(rawSettings.ordering[1]).servers;
-            const notificationSettings = JSON.parse(
-              rawSettings.notifications[1],
-            );
-            fetchedChannelNotificationSettings = notificationSettings.channel;
-            fetchedServerNotificationSettings = notificationSettings.server;
-          } catch (err) {
-            console.log(`[APP] Error parsing fetched settings: ${err}`);
-          }
+          fetchedOrderedServers = JSON.parse(rawSettings.ordering[1]).servers;
+          const notificationSettings = JSON.parse(
+            rawSettings.notifications[1],
+          );
+          fetchedChannelNotificationSettings = notificationSettings.channel;
+          fetchedServerNotificationSettings = notificationSettings.server;
         } catch (err) {
-          console.log(`[APP] Error fetching settings: ${err}`);
+          console.log(`[APP] Error parsing fetched settings: ${err}`);
         }
+      } catch (err) {
+        console.log(`[APP] Error fetching settings: ${err}`);
+      }
 
-        setOrderedServers(fetchedOrderedServers);
-        channelNotificationSettings.current =
-          fetchedChannelNotificationSettings;
-        serverNotificationSettings.current = fetchedServerNotificationSettings;
-        setStatus('loggedIn');
+      setOrderedServers(fetchedOrderedServers);
+      channelNotificationSettings.current =
+        fetchedChannelNotificationSettings;
+      serverNotificationSettings.current = fetchedServerNotificationSettings;
+      setStatus('loggedIn');
 
-        console.log(`[APP] Client is ready (${new Date().getTime()})`);
+      console.log(`[APP] Client is ready (${new Date().getTime()})`);
 
-        setUpNotifeeListener(client);
-      });
+      setUpNotifeeListener(client);
+    }
 
-      client.on('server/delete', async s => {
-        const currentServer = app.getCurrentServer();
-        if (currentServer === s) {
-          app.openServer(undefined);
-          app.openChannel(null);
-        }
-      });
+    function handleServerDeletion(server: string) {
+      const currentServer = app.getCurrentServer();
+      if (currentServer === server) {
+        app.openServer(undefined);
+        app.openChannel(null);
+      }
+    }
+
+    function setUpListeners() {
+      client.on('connecting', handleConnectingEvent);
+      client.on('connected', handleConnectedEvent);
+      client.on('ready', handleReadyEvent);
+      client.on('server/delete', handleServerDeletion);
     }
 
     function cleanupListeners() {
-      client.removeListener('connecting');
-      client.removeListener('connected');
-      client.removeListener('ready');
-      client.removeListener('server/delete');
+      client.removeListener('connecting', handleConnectingEvent);
+      client.removeListener('connected', handleConnectedEvent);
+      client.removeListener('ready', handleReadyEvent);
+      client.removeListener('server/delete', handleServerDeletion);
     }
 
     try {
       setUpListeners();
     } catch (err) {
-      console.log(`[NEWMESSAGEVIEW] Error seting up global listeners: ${err}`);
+      console.log(`[MAINVIEW] Error setting up global listeners: ${err}`);
     }
 
     return () => cleanupListeners();
