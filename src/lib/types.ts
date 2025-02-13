@@ -63,7 +63,11 @@ interface TypedUser {
 
 export type ReportedObject = TypedMessage | TypedServer | TypedUser;
 
-export type DeletableObject = TypedChannel | TypedRole | TypedMessage | TypedServer;
+export type DeletableObject =
+  | TypedChannel
+  | TypedRole
+  | TypedMessage
+  | TypedServer;
 
 export type TextEditingModalProps = {
   initialString: string;

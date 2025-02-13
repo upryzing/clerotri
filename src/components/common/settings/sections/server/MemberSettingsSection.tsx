@@ -83,7 +83,8 @@ export const MemberSettingsSection = observer(({server}: {server: Server}) => {
               paddingVertical: commonValues.sizes.xl,
               flexDirection: 'row',
             }}>
-            {item._id.user === client.user?._id || server.havePermission('ManageNicknames') && item.inferior ? (
+            {item._id.user === client.user?._id ||
+            (server.havePermission('ManageNicknames') && item.inferior) ? (
               <Pressable
                 style={{
                   width: 30,
