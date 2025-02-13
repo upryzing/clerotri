@@ -178,10 +178,6 @@ export function MainView() {
   useEffect(() => {
     console.log('[APP] Setting up global functions...');
 
-    setFunction('joinInvite', async (i: string) => {
-      await client.joinInvite(i);
-    });
-
     setFunction('logOut', async () => {
       console.log(
         `[AUTH] Logging out of current session... (user: ${client.user?._id})`,

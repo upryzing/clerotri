@@ -1,4 +1,4 @@
-import type {API, Channel, Message, Server, User} from 'revolt.js';
+import type {Channel, Message, Server, User} from 'revolt.js';
 
 import {setLanguage} from '@clerotri-i18n/i18n';
 import {languages} from '@clerotri-i18n/languages';
@@ -383,7 +383,6 @@ export const app = {
    * @deprecated Message queuing will be removed/reworked due to the switch of message views
    */
   pushToQueue: m => {},
-  joinInvite: async (i: API.InviteResponse) => {},
   logOut: () => {},
   openMemberList: (data: Channel | Server | null) => {},
   openChannelInfoMenu: (c: Channel | null) => {},
