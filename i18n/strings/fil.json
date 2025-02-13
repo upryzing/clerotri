@@ -17,7 +17,11 @@
             },
             "instance_notice": "Kumokonekta ka sa {{url}}.",
             "subheader": "Mayroon ka bang account?",
-            "token_info_label": "Paano ko makukuha ang aking token?"
+            "token_info_label": "Paano ko makukuha ang aking token?",
+            "settings": {
+                "saved_body": "Sa ngayon, kailangan mong isara at bukan muli ang app para mag-apply ang iyong mga setting. Alam namin na hindi ito ideyal - aayusin namin ito sa lalong madaling panahon.",
+                "saved": "Na-save!"
+            }
         },
         "modals": {
             "confirm_deletion": {
@@ -135,10 +139,11 @@
                 "refetchOnReconnect": "Kunin ulit ang mga mensahe kapag kumokonekta ulit",
                 "notifications": {
                     "notifyOnSelfPing": "Magkaroon ng abiso kapag i-ping ang iyong sarili",
-                    "enabled": "Paganahin ang mga push notification"
+                    "enabled": "Paganahin ang mga push notification",
+                    "enabledInApp": "I-enable ang in-app na mga abiso"
                 },
                 "language": "Piliin ang iyong wika",
-                "showChangelogs": "Ipakita ang mga pagbabago pagkatapos i-update ang RVMob",
+                "showChangelogs": "Ipakita ang mga pagbabago pagkatapos i-update ang Clerotri",
                 "reopenLastChannel": "Buksan ang huling channel kung saan ka kapag bubuksan ang app"
             },
             "ui": {
@@ -183,14 +188,16 @@
         },
         "loading": {
             "generic": "Naglo-load…",
-            "connecting": "Naglo-log in…"
+            "connecting": "Naglo-log in…",
+            "unknown_state": "Ay, naku…",
+            "unknown_state_body": "Mangyaring ipaalam sa mga developer na nakita mo ito (value: {{state}})"
         },
         "home": {
             "description": "Mag-swipe sa kaliwa ng screen o i-tap ang tatlong linyang icon para makita ang iyong mga server at mensahe!",
             "join_lounge": "Sumali sa Revolt Lounge",
             "open_lounge": "Buksan ang Revolt Lounge",
-            "join_rvmob": "Sumali sa RVMob server",
-            "open_rvmob": "Buksan ang RVMob server",
+            "join_rvmob": "Sumali sa Clerotri server",
+            "open_rvmob": "Buksan ang Clerotri server",
             "open_settings": "Buksan ang mga setting"
         },
         "settings_menu": {
@@ -213,7 +220,7 @@
                 "title": "Wika"
             },
             "info": {
-                "title": "Tungkol sa RVMob"
+                "title": "Tungkol sa Clerotri"
             },
             "other": {
                 "debug_info": "Kopyahin ang Debug Info",
@@ -222,6 +229,10 @@
             },
             "profile": {
                 "title": "Profile"
+            },
+            "licenses": {
+                "loading": "Nilo-load ang data ng lisensya…",
+                "title": "Mga Open Source na Lisensya"
             }
         },
         "misc": {
@@ -230,7 +241,7 @@
                 "hide": "(itago)"
             },
             "voice": {
-                "header": "Hindi pa sinusuportahan ang mga voice channel sa RVMob!",
+                "header": "Hindi pa sinusuportahan ang mga voice channel sa Clerotri!",
                 "body": "Sa ngayon, maari mong silang i-join sa web app o Revolt Desktop."
             },
             "generic_errors": {
@@ -246,10 +257,24 @@
                 "bots": "Mga Bot",
                 "servers": "Mga Server"
             },
-            "count_bots_one": "{{count}} server",
-            "count_bots_other": "{{count}} mga server",
+            "count_bots_one": "{{count}} bot",
+            "count_bots_other": "{{count}} mga bot",
             "fetching_servers": "Nilo-load ang mga server…",
             "header_servers": "Tuklasin ang Mga Server"
+        },
+        "profile": {
+            "roles": {
+                "copied_role_id_toast": "Kinopya ang role ID"
+            }
+        },
+        "messaging": {
+            "no_messages": "Walang mga mensahe",
+            "no_messages_body": "Simulan ang pag-uusap.",
+            "reply_not_loaded": "Hindi na-load ang mensahe",
+            "message_box_channel": "Magmensahe sa #{{name}}",
+            "message_box_group": "Magmensahe sa {{name}}",
+            "message_box_dm": "I-mensahe si @{{name}}",
+            "message_box_saved_notes": "I-save sa iyong mga tala"
         }
     }
 }
