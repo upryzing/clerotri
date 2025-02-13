@@ -335,6 +335,11 @@ export const app = {
       `[FUNCTIONS] Tried to run uninitialised function openMessage (args: ${m})`,
     );
   },
+  openChannelContextMenu: (c: Channel | null) => {
+    console.log(
+      `[FUNCTIONS] Tried to run uninitialised function openChannelContextMenu (args: ${c})`,
+    );
+  },
   openServerContextMenu: (s: Server | null) => {
     console.log(
       `[FUNCTIONS] Tried to run uninitialised function openServerContextMenu (args: ${s})`,
@@ -381,13 +386,14 @@ export const app = {
   joinInvite: async (i: API.InviteResponse) => {},
   logOut: () => {},
   openMemberList: (data: Channel | Server | null) => {},
-  openChannelContextMenu: (c: Channel | null) => {},
+  openChannelInfoMenu: (c: Channel | null) => {},
   openPinnedMessagesMenu: (c: Channel | null) => {},
   openStatusMenu: (state: boolean) => {},
   openReportMenu: (object: ReportedObject | null) => {},
   openDeletionConfirmationModal: (object: DeletableObject | null) => {},
   openTextEditModal: (object: TextEditingModalProps | null) => {},
   openCreateChannelModal: (object: CreateChannelModalProps | null) => {},
+  openNewInviteModal: (code: string | null) => {},
   handleSettingsVisibility: (stateFunction: (state: boolean) => void) => {
     console.log(
       `[FUNCTIONS] Tried to run uninitialised function handleSettingsVisibility(args: ${stateFunction})`,

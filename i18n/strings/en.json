@@ -6,6 +6,7 @@
             "close": "Close",
             "confirm": "Confirm",
             "create_channel": "Create channel",
+            "copy_invite": "Copy invite",
             "delete": "Delete",
             "save": "Save"
         },
@@ -107,6 +108,10 @@
                 "role_colour_placeholder": "Role colour",
                 "session_name_header": "Set session name",
                 "session_name_placeholder": "Session name"
+            },
+            "new_invite": {
+                "header": "Invite created",
+                "body": "Here's your new invite link:"
             }
         },
         "servers": {
@@ -263,6 +268,14 @@
             },
             "profile": {
                 "title": "Profile"
+            }
+        },
+        "sheets": {
+            "channel": {
+                "create_invite": "Create invite",
+                "mark_as_read": "Mark as read",
+                "copy_link": "Copy channel link",
+                "delete": "Delete channel"
             }
         },
         "misc": {

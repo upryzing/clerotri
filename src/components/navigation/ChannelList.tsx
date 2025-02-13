@@ -71,6 +71,7 @@ const ServerChannelListCategory = observer(
                     setCurrentChannel(c);
                     setSideMenuOpen(false);
                   }}
+                  onLongPress={() => app.openChannelContextMenu(c)}
                   selected={
                     typeof currentChannel !== 'string' &&
                     currentChannel?._id === c._id
@@ -181,6 +182,7 @@ const ServerChannelList = observer((props: ServerChannelListProps) => {
                   setCurrentChannel(c);
                   setSideMenuOpen(false);
                 }}
+                onLongPress={() => app.openChannelContextMenu(c)}
                 selected={
                   typeof currentChannel !== 'string' &&
                   currentChannel?._id === c._id

@@ -15,11 +15,13 @@ import {ImageViewer} from '@clerotri/components/ImageViewer';
 import {
   ConfirmDeletionModal,
   CreateChannelModal,
+  NewInviteModal,
   TextEditModal,
 } from '@clerotri/components/modals';
 import {
   BotInviteSheet,
   ChannelInfoSheet,
+  ChannelMenuSheet,
   MemberListSheet,
   MessageMenuSheet,
   PinnedMessagesSheet,
@@ -66,38 +68,36 @@ export const Modals = observer(() => {
   const [createChannelObject, setCreateChannelObject] = useState(
     null as CreateChannelModalProps | null,
   );
+  const [newInviteCode, setNewInviteCode] = useState(null as string | null);
 
-  setFunction('openDirectMessage', async (dm: Channel) => {
+  setFunction('openDirectMessage', (dm: Channel) => {
     app.openProfile(null);
     app.openChannel(dm);
   });
-  setFunction('openImage', async (a: any) => {
+  setFunction('openImage', (a: any) => {
     setImageViewerState({i: a});
   });
-  setFunction('openSettings', async (o: boolean) => {
+  setFunction('openSettings', (o: boolean) => {
     setSettingsVisibility(o);
   });
-  setFunction('openServerSettings', async (s: Server | null) => {
+  setFunction('openServerSettings', (s: Server | null) => {
     setServerSettingsServer(s);
   });
-  setFunction(
-    'openDeletionConfirmationModal',
-    async (o: DeletableObject | null) => {
-      setDeletableObject(o);
-    },
-  );
-  setFunction(
-    'openTextEditModal',
-    async (object: TextEditingModalProps | null) => {
-      setEditingText(object);
-    },
-  );
+  setFunction('openDeletionConfirmationModal', (o: DeletableObject | null) => {
+    setDeletableObject(o);
+  });
+  setFunction('openTextEditModal', (object: TextEditingModalProps | null) => {
+    setEditingText(object);
+  });
   setFunction(
     'openCreateChannelModal',
-    async (object: CreateChannelModalProps | null) => {
+    (object: CreateChannelModalProps | null) => {
       setCreateChannelObject(object);
     },
   );
+  setFunction('openNewInviteModal', (code: string | null) => {
+    setNewInviteCode(code);
+  });
   setFunction('openInvite', async (i: string) => {
     try {
       let community = await client.fetchInvite(i);
@@ -118,6 +118,7 @@ export const Modals = observer(() => {
   return (
     <>
       <MessageMenuSheet />
+      <ChannelMenuSheet />
       <StatusSheet />
       <ProfileSheet />
       <ReportSheet />
@@ -205,9 +206,18 @@ export const Modals = observer(() => {
         visible={!!createChannelObject}
         transparent={true}
         animationType="fade"
-        onRequestClose={() => setEditingText(null)}>
+        onRequestClose={() => setCreateChannelObject(null)}>
         <View style={localStyles.modalContainer}>
           <CreateChannelModal object={createChannelObject!} />
+        </View>
+      </FixedModal>
+      <FixedModal
+        visible={!!newInviteCode}
+        transparent={true}
+        animationType="fade"
+        onRequestClose={() => setNewInviteCode(null)}>
+        <View style={localStyles.modalContainer}>
+          <NewInviteModal code={newInviteCode!} />
         </View>
       </FixedModal>
     </>

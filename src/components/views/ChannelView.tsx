@@ -106,8 +106,7 @@ const RegularChannelView = observer(({channel}: {channel: Channel}) => {
         ) : null}
         {channel.channel_type === 'Group' || channel.server ? (
           <View style={{marginEnd: 16}}>
-            <TouchableOpacity
-              onPress={() => app.openChannelContextMenu(channel)}>
+            <TouchableOpacity onPress={() => app.openChannelInfoMenu(channel)}>
               <MaterialIcon
                 name="info"
                 size={24}

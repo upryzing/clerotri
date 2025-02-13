@@ -30,7 +30,7 @@ export const ChannelInfoSheet = observer(() => {
     return false;
   });
 
-  setFunction('openChannelContextMenu', (c: Channel | null) => {
+  setFunction('openChannelInfoMenu', (c: Channel | null) => {
     setChannel(c);
     c ? sheetRef.current?.expand() : sheetRef.current?.close();
   });
