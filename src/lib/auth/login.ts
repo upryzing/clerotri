@@ -154,7 +154,7 @@ export async function loginWithSavedToken(status: string) {
       await client.useExistingSession({token: res});
     } catch (e: any) {
       console.log(e);
-      !(e.message?.startsWith('Read error') || e.message === 'Network Error') &&
+      !e.message?.startsWith('Read error') && e.message !== 'Network Error' &&
       client.user
         ? app.setLoggedOutScreen('loginPage')
         : status === 'loggedIn'

@@ -6051,6 +6051,15 @@ __metadata:
   languageName: node
   linkType: hard
 
+"eslint-plugin-de-morgan@npm:^1.0.0":
+  version: 1.0.0
+  resolution: "eslint-plugin-de-morgan@npm:1.0.0"
+  peerDependencies:
+    eslint: ">=8.0.0"
+  checksum: 10c0/bde5c30ae0f827992102699d49330a6ef1d1b7660f0f038ba8dca6683622e074e9b18400387286e3df55eb252b429178e2eee303ed25ca070fd83d91afb1aa52
+  languageName: node
+  linkType: hard
+
 "eslint-plugin-eslint-comments@npm:^3.2.0":
   version: 3.2.0
   resolution: "eslint-plugin-eslint-comments@npm:3.2.0"
@@ -10702,6 +10711,7 @@ __metadata:
     babel-plugin-transform-remove-console: "npm:^6.9.4"
     date-fns: "npm:^4.1.0"
     eslint: "npm:^8.57.1"
+    eslint-plugin-de-morgan: "npm:^1.0.0"
     i18next: "npm:^24.2.2"
     intl-pluralrules: "npm:^2.0.1"
     jest: "npm:^29.7.0"

@@ -126,7 +126,7 @@ export function calculateGrouped(msg1: Message, msg2: Message) {
   return (
     // a message is grouped with the previous message if all of the following statements are true:
     msg1.author._id === msg2.author._id && // the author is the same
-    !(msg1.reply_ids && msg1.reply_ids.length > 0) && // the message is not a reply
+    (!msg1.reply_ids || msg1.reply_ids.length <= 0) && // the message is not a reply
     differenceInMinutes(time1, time2) < 7 && // the time difference is less than 7 minutes
     isSameDay(time1, time2) && // the messages were sent on the same day and
     (msg2.masquerade // the masquerade is the same
