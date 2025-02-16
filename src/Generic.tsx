@@ -279,14 +279,6 @@ export const app = {
         default: false,
         type: 'boolean',
       },
-
-      // instance URL
-      {
-        key: 'app.instance',
-        category: 'donotshow',
-        default: DEFAULT_API_URL,
-        type: 'string',
-      },
     ] as Setting[],
   },
   setTheme: (themeName: string) => {

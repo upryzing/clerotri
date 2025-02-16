@@ -15,6 +15,7 @@ import {
 } from '@clerotri/components/common/atoms';
 import {loginRegular, loginWithToken} from '@clerotri/lib/auth';
 import {OFFICIAL_INSTANCE_SIGNUP_URL} from '@clerotri/lib/consts';
+import {getInstanceURL} from '@clerotri/lib/storage/utils';
 import {commonValues, ThemeContext} from '@clerotri/lib/themes';
 import {useBackHandler} from '@clerotri/lib/ui';
 import {openUrl} from '@clerotri/lib/utils';
@@ -93,7 +94,7 @@ function LoginTypeSelector({
       </Button>
       <Text font={'Inter'} colour={currentTheme.foregroundSecondary}>
         {t('app.login.instance_notice', {
-          url: app.settings.get('app.instance'),
+          url: getInstanceURL(),
         })}
       </Text>
     </>

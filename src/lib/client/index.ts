@@ -1,23 +1,21 @@
 import {Client} from 'revolt.js';
 
-import {app} from '@clerotri/Generic';
 import {DEFAULT_API_URL} from '@clerotri/lib/consts';
+import {storage} from '@clerotri/lib/storage';
 
 function getAPIURL() {
-  console.log(`[APP] Initialised settings (${new Date().getTime()})`);
   let url: string = '';
   console.log('[AUTH] Getting API URL...');
-  const instance = app.settings.get('app.instance') as
-    | string
-    | null
-    | undefined;
+
+  const instance = storage.getString('instanceURL');
+
   if (!instance) {
     console.log(
-      '[AUTH] Unable to fetch app.instance; setting apiURL to default',
+      '[AUTH] Unable to fetch instanceURL; setting apiURL to default',
     );
     url = DEFAULT_API_URL;
   } else {
-    console.log(`[AUTH] Fetched app.instance; setting apiURL to ${instance}`);
+    console.log(`[AUTH] Fetched instanceURL; setting apiURL to ${instance}`);
     url = instance;
   }
   return url;

@@ -1,7 +1,6 @@
 import {useContext, useState} from 'react';
 import {View} from 'react-native';
 
-import {app} from '@clerotri/Generic';
 import {
   BackButton,
   Button,
@@ -9,15 +8,15 @@ import {
   Text,
 } from '@clerotri/components/common/atoms';
 import {LoadingScreen} from '@clerotri/components/views/LoadingScreen';
+import {storage} from '@clerotri/lib/storage';
+import {getInstanceURL} from '@clerotri/lib/storage/utils';
 import {commonValues, ThemeContext} from '@clerotri/lib/themes';
 import {useBackHandler} from '@clerotri/lib/ui';
 
 export const LoginSettingsPage = ({callback}: {callback: () => void}) => {
   const {currentTheme} = useContext(ThemeContext);
 
-  const [instanceURL, setInstanceURL] = useState(
-    (app.settings.get('app.instance') as string) ?? '',
-  );
+  const [instanceURL, setInstanceURL] = useState(getInstanceURL());
   const [testResponse, setTestResponse] = useState(null as string | null);
 
   const [saved, setSaved] = useState(false);
@@ -112,7 +111,7 @@ export const LoginSettingsPage = ({callback}: {callback: () => void}) => {
                 const isValid = await testURL(instanceURL, true);
                 if (isValid) {
                   console.log(`[AUTH] Setting instance URL to ${instanceURL}`);
-                  app.settings.set('app.instance', instanceURL);
+                  storage.set('instanceURL', instanceURL);
                   setSaved(true);
                 }
               }}>

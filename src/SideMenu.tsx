@@ -23,6 +23,7 @@ import {client} from '@clerotri/lib/client';
 import {DEFAULT_API_URL} from '@clerotri/lib/consts';
 import {ChannelContext, SideMenuContext} from '@clerotri/lib/state';
 import {storage} from '@clerotri/lib/storage';
+import {getInstanceURL} from '@clerotri/lib/storage/utils';
 import {commonValues, Theme, ThemeContext} from '@clerotri/lib/themes';
 import {useBackHandler} from '@clerotri/lib/ui';
 
@@ -73,7 +74,7 @@ const SideMenu = () => {
           <ServerList
             onServerPress={(s: Server) => setCurrentServer(s)}
             onServerLongPress={(s: Server) => app.openServerContextMenu(s)}
-            showDiscover={app.settings.get('app.instance') === DEFAULT_API_URL}
+            showDiscover={getInstanceURL() === DEFAULT_API_URL}
           />
         </ScrollView>
         <ChannelList currentServer={currentServer} />
