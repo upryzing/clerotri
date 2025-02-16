@@ -7,7 +7,8 @@
             "confirm": "确认",
             "create_channel": "创建频道",
             "delete": "删除",
-            "save": "保存"
+            "save": "保存",
+            "copy_invite": "复制邀请"
         },
         "discover": {
             "count_bots_other": "{{count}} 个机器人",
