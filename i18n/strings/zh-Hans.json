@@ -68,7 +68,9 @@
                 "body_server": "您确定要删除 <2>{{name}}</2> 吗？",
                 "warning": "这无法被撤销。",
                 "header_role": "删除角色？",
-                "header_message": "删除消息？"
+                "header_message": "删除消息？",
+                "body_channel": "您确定要删除<2>这个频道</2>吗？",
+                "header_channel": "删除频道？"
             },
             "create_channel": {
                 "header": "创建新频道",
@@ -91,6 +93,10 @@
                 "nickname_other_placeholder": "昵称（留空以重置）",
                 "role_colour_header": "设置角色颜色",
                 "role_colour_placeholder": "角色颜色"
+            },
+            "new_invite": {
+                "header": "邀请已创建",
+                "body": "这是您的新邀请链接："
             }
         },
         "servers": {
@@ -186,7 +192,8 @@
                 "reopenLastChannel": "打开应用时重新打开您上次访问的频道",
                 "notifications": {
                     "enabled": "启用推送通知",
-                    "notifyOnSelfPing": "当提及自己时接收一条通知"
+                    "notifyOnSelfPing": "当提及自己时接收一条通知",
+                    "enabledInApp": "启用应用内通知"
                 },
                 "showChangelogs": "更新 Clerotri 后显示更新记录"
             },
@@ -272,6 +279,14 @@
         "profile": {
             "roles": {
                 "copied_role_id_toast": "已复制角色 ID"
+            }
+        },
+        "sheets": {
+            "channel": {
+                "create_invite": "创建邀请",
+                "mark_as_read": "标记为已读",
+                "copy_link": "复制频道链接",
+                "delete": "删除频道"
             }
         }
     }
