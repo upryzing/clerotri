@@ -2,7 +2,7 @@ import type {Channel, Message, Server, User} from 'revolt.js';
 
 import {setLanguage} from '@clerotri-i18n/i18n';
 import {languages} from '@clerotri-i18n/languages';
-import {DEFAULT_API_URL, LOADING_SCREEN_REMARKS} from '@clerotri/lib/consts';
+import {LOADING_SCREEN_REMARKS} from '@clerotri/lib/consts';
 import {checkNotificationPerms} from '@clerotri/lib/notifications/permissions';
 import {storage} from '@clerotri/lib/storage';
 import {themes} from '@clerotri/lib/themes';
