@@ -34,6 +34,9 @@ _This version was released on 27/01/2025._
 - Switching between themes will no longer cause the app to crash.
 - Messages should no longer duplicate/appear in the wrong channels.
 
+[accrescent]: https://accrescent.app
+[accrescent_direct]: https://accrescent.app/app/app.upryzing.clerotri
+
 ## v0.7.0
 
 _This version was released on 25/01/2025._
