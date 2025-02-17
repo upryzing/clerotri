@@ -1,5 +1,9 @@
 # Clerotri
 
+<a href="https://accrescent.app/app/app.upryzing.clerotri">
+  <img alt="Get it on Accrescent" src="https://accrescent.app/badges/get-it-on.png" height="80">
+</a>
+
 <div style="flex-direction: row;">
   <a href="https://translate.revolt.chat/engage/rvmorb/">
     <img src="https://translate.revolt.chat/widgets/rvmorb/-/app/svg-badge.svg" alt="Translation status on Weblate" />
@@ -11,13 +15,18 @@
 
 **Clerotri** is a Revolt client made with React Native. It is currently available for Android and will be available for web in the future.
 
-**Please note that Clerotri is currently in beta.** It contains several bugs and incomplete features - use at your own discretion.
+**Please note that Clerotri is currently in beta.** It may contain bugs and incomplete features - use at your own discretion.
 
 For development updates and other news, join [Clerotri's support server][support-server].
 
 ## Installing
 
-If you want to install Clerotri for Android, simply go to [the releases tab](https://github.com/upryzing/clerotri/releases) and download the latest version. We plan on publishing Clerotri to app stores in the future.
+If you want to install Clerotri for Android, you can either:
+
+- download the app via [Accrescent](https://accrescent.app/app/app.upryzing.clerotri) (recommended), or
+- go to [the releases tab](https://github.com/upryzing/clerotri/releases) and download the latest version. 
+
+We plan on publishing Clerotri to F-Droid in the future.
 
 <!-- You can try Clerotri for web [here](). Note that, as the web version is still under development, some features are only available on Android or may not work as smoothly. You may also see some layout issues. -->
 
