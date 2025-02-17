@@ -1,14 +1,35 @@
 # Clerotri's changelog
 
+## v0.8.0
+
+_This version was released on 17/02/2025._
+
+​### Important notes
+
+- Clerotri is **now available via [Accrescent][accrescent]!** Once you've installed the Accrescent app, you can get Clerotri [here][accrescent_direct]. Note that Accrescent requires Android 10 or later. This is the recommended way to get the app, as it provides quick, automatic updates.
+  - We plan on bringing Clerotri to F-Droid in some capacity in the future.
+
+​### What's new
+
+- Introducing a new **channel context menu**! You can now create invites, mark channels as read and delete them by long-pressing the channel in the channel list.
+- In-app notifications are now enabled by default, and can now be enabled or disabled separately from push notifications.
+- The server member list in the server settings menu should now be much faster.
+- Various colours have been updated to follow your selected theme.
+- Clerotri now uses React Native 0.77.
+
+​### Bug fixes
+
+- Custom instances should now work properly again.
+
 ## v0.7.1
 
 _This version was released on 27/01/2025._
 
-​￼### What's new
+​### What's new
 
 - In-app notifications now look better, with proper alignment and shadows.
 
-​￼### Bug fixes
+​### Bug fixes
 
 - Switching between themes will no longer cause the app to crash.
 - Messages should no longer duplicate/appear in the wrong channels.
