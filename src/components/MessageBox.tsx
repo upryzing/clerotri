@@ -3,7 +3,7 @@ import {Platform, Pressable, StyleSheet, View} from 'react-native';
 import {useTranslation} from 'react-i18next';
 import {observer} from 'mobx-react-lite';
 
-import {type DocumentPickerResponse} from 'react-native-document-picker';
+import {type DocumentPickerResponse, types as fileTypes} from '@react-native-documents/picker';
 import MaterialIcon from 'react-native-vector-icons/MaterialIcons';
 import MaterialCommunityIcon from 'react-native-vector-icons/MaterialCommunityIcons';
 
@@ -13,7 +13,8 @@ import {ulid} from 'ulid';
 import {app, setFunction} from '@clerotri/Generic';
 import {client} from '@clerotri/lib/client';
 import {styles} from '@clerotri/Theme';
-import {DocumentPicker} from '@clerotri/crossplat/DocumentPicker';
+
+import {pickDocument} from '@clerotri/crossplat/DocumentPicker';
 import {Avatar, Input, Text, Username} from '@clerotri/components/common/atoms';
 import {USER_IDS} from '@clerotri/lib/consts';
 import {storage} from '@clerotri/lib/storage';
@@ -187,8 +188,8 @@ export const MessageBox = observer((props: MessageBoxProps) => {
             }}
             onPress={async () => {
               try {
-                let res = await DocumentPicker.pickSingle({
-                  type: [DocumentPicker.types.allFiles],
+                let [res] = await pickDocument({
+                  type: [fileTypes.allFiles],
                 });
                 let tooBig = false;
                 if (res.size && res.size > 20000000) {

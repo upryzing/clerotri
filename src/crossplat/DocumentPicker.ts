@@ -1,3 +1,3 @@
-import CoreDocumentPicker from 'react-native-document-picker';
+import {pick} from '@react-native-documents/picker';
 
-export const DocumentPicker = CoreDocumentPicker;
+export const pickDocument = pick;

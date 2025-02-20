@@ -2697,6 +2697,16 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@react-native-documents/picker@npm:^10.1.0":
+  version: 10.1.0
+  resolution: "@react-native-documents/picker@npm:10.1.0"
+  peerDependencies:
+    react: "*"
+    react-native: "*"
+  checksum: 10c0/dd3eb88fe8b4c174b58d36407175302b6102fe79856a8b7359d8aafa2e4fe0f14b84c95afc333f8769029ae725b6d65a2257d6dc4c5082c72f08c26edf30a83e
+  languageName: node
+  linkType: hard
+
 "@react-native/assets-registry@npm:0.77.1":
   version: 0.77.1
   resolution: "@react-native/assets-registry@npm:0.77.1"
@@ -9970,22 +9980,6 @@ __metadata:
   languageName: node
   linkType: hard
 
-"react-native-document-picker@npm:^9.3.1":
-  version: 9.3.1
-  resolution: "react-native-document-picker@npm:9.3.1"
-  dependencies:
-    invariant: "npm:^2.2.4"
-  peerDependencies:
-    react: "*"
-    react-native: "*"
-    react-native-windows: "*"
-  peerDependenciesMeta:
-    react-native-windows:
-      optional: true
-  checksum: 10c0/62ac1c1567fb4aabd791c03768e51b0898de727e37bb695cca9fc72c31eb3f2d75faf5bc7fb4be86a3e2b96b77cf948558b496412ecf17687ca006eb52ef6dd8
-  languageName: node
-  linkType: hard
-
 "react-native-drawer-layout@npm:^4.1.1":
   version: 4.1.1
   resolution: "react-native-drawer-layout@npm:4.1.1"
@@ -10665,6 +10659,7 @@ __metadata:
     "@react-native-community/cli-platform-android": "npm:^15.1.3"
     "@react-native-community/cli-platform-ios": "npm:^15.1.3"
     "@react-native-community/hooks": "patch:@react-native-community/hooks@npm%3A3.0.0#~/.yarn/patches/@react-native-community-hooks-npm-3.0.0-b22393eef2.patch"
+    "@react-native-documents/picker": "npm:^10.1.0"
     "@react-native/babel-preset": "npm:^0.77.1"
     "@react-native/eslint-config": "npm:^0.77.1"
     "@react-native/metro-config": "npm:^0.77.1"
@@ -10709,7 +10704,6 @@ __metadata:
     react-i18next: "npm:^15.4.1"
     react-native: "npm:^0.77.1"
     react-native-device-info: "npm:^14.0.4"
-    react-native-document-picker: "npm:^9.3.1"
     react-native-drawer-layout: "npm:^4.1.1"
     react-native-gesture-handler: "npm:^2.23.1"
     react-native-get-random-values: "npm:^1.11.0"
