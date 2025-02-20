@@ -1,5 +1,5 @@
 import {useContext, useMemo} from 'react';
-import {Platform, Pressable, View} from 'react-native';
+import {type GradientValue, Platform, Pressable, View} from 'react-native';
 
 import {getBundleId} from 'react-native-device-info';
 import MaterialCommunityIcon from 'react-native-vector-icons/MaterialCommunityIcons';
@@ -11,14 +11,25 @@ import {
   FEDI_PROFILE,
   GITHUB_REPO,
 } from '@clerotri/lib/consts';
-import {ThemeContext} from '@clerotri/lib/themes';
+import {commonValues, ThemeContext} from '@clerotri/lib/themes';
 import {openUrl} from '@clerotri/lib/utils';
 import {ContextButton, Link, Text} from '@clerotri/components/common/atoms';
 
 import ReleaseIcon from '../../../../../../assets/images/icon_release.svg';
 import DebugIcon from '../../../../../../assets/images/icon_debug.svg';
 
-const AppIcon = getBundleId().match('debug') ? DebugIcon : ReleaseIcon;
+const isDebug = getBundleId().match('debug');
+
+const AppIcon = isDebug ? DebugIcon : ReleaseIcon;
+
+const versionGradient: GradientValue = {
+  type: 'linearGradient',
+  direction: '90deg',
+  colorStops: [
+    {color: isDebug ? '#d3bc5f80' : '#0ad3c1a0'},
+    {color: isDebug ? '#a4801f80' : '#f30f77a0'},
+  ],
+};
 
 export const AppInfoSection = () => {
   const {currentTheme} = useContext(ThemeContext);
@@ -49,10 +60,21 @@ export const AppInfoSection = () => {
         </View>
       )}
       <View style={{alignItems: 'center', marginVertical: 16}}>
-        <Text type={'h1'}>
-          Clerotri{' '}
-          <Text colour={currentTheme.foregroundSecondary}>v{app.version}</Text>
-        </Text>
+        <View
+          style={{
+            experimental_backgroundImage: [versionGradient],
+            borderRadius: commonValues.sizes.medium,
+            paddingInline: commonValues.sizes.medium,
+            paddingBlockStart: commonValues.sizes.small,
+            marginBlockEnd: commonValues.sizes.small,
+          }}>
+          <Text type={'h1'}>
+            Clerotri{' '}
+            <Text colour={currentTheme.foregroundSecondary}>
+              {isDebug ? 'Debug ' : ''}v{app.version}
+            </Text>
+          </Text>
+        </View>
         <Text>
           Powered by{' '}
           <Link link={'https://reactnative.dev'} label={'React Native'} /> v
