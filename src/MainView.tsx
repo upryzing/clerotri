@@ -5,7 +5,7 @@ import {
   useRef,
   useState,
 } from 'react';
-import {StatusBar, View} from 'react-native';
+import {StatusBar} from 'react-native';
 
 import type {API, ClientboundNotification} from 'revolt.js';
 
@@ -118,12 +118,12 @@ function LoggedInViews({
       <SideMenuHandler />
       <Modals />
       <NetworkIndicator client={client} />
-      <View style={{position: 'absolute', top: 20, left: 0, width: '100%'}}>
+      {notificationMessage && (
         <Notification
           message={notificationMessage}
           dismiss={() => setNotificationMessage(null)}
         />
-      </View>
+      )}
     </ChannelContext.Provider>
   );
 }

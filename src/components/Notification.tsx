@@ -15,7 +15,7 @@ import {commonValues, ThemeContext} from '@clerotri/lib/themes';
 import {parseRevoltNodes} from '@clerotri/lib/utils';
 
 export const Notification = observer(
-  ({message, dismiss}: {message: API.Message | null; dismiss: Function}) => {
+  ({message, dismiss}: {message: API.Message; dismiss: Function}) => {
     const {currentTheme} = useContext(ThemeContext);
     const {setCurrentChannel} = useContext(ChannelContext);
 
@@ -24,11 +24,11 @@ export const Notification = observer(
       setCurrentChannel(channel ?? null);
     };
 
-    if (message) {
-      const author = client.users.get(message.author);
-      const channel = client.channels.get(message.channel);
+    const author = client.users.get(message.author);
+    const channel = client.channels.get(message.channel);
 
-      return (
+    return (
+      <View style={{position: 'absolute', top: 20, left: 0, width: '100%'}}>
         <TouchableOpacity
           style={{
             flexDirection: 'row',
@@ -44,6 +44,8 @@ export const Notification = observer(
               {
                 color: '#00000060',
                 blurRadius: commonValues.sizes.large,
+                offsetX: 0,
+                offsetY: 0,
               },
             ],
           }}
@@ -103,8 +105,7 @@ export const Notification = observer(
             </View>
           </Pressable>
         </TouchableOpacity>
-      );
-    }
-    return <></>;
+      </View>
+    );
   },
 );
