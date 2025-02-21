@@ -93,7 +93,7 @@ export const app = {
     },
     clear: () => {
       try {
-        storage.set('settings', '{}');
+        storage.set('settings', '[]');
         for (const s of app.settings.list) {
           delete s.value;
           s.onChange && s.onChange(s.default);
