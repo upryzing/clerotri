@@ -9,7 +9,12 @@ export const languageDetectorPlugin = {
   init: () => {},
   detect: function () {
     try {
-      const settings = JSON.parse(storage.getString('settings') ?? '[]');
+      const rawSettings = storage.getString('settings');
+      if (!rawSettings) {
+        return 'en';
+      }
+
+      const settings = JSON.parse(rawSettings);
       for (const setting of settings) {
         if (setting.key === STORE_LANGUAGE_KEY) {
           return setting.value;
