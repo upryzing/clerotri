@@ -31,7 +31,9 @@
                 "body_message": "Sigurado kang gusto mong burahin <2>ang mensahe na ito</2>?",
                 "warning": "Hindi ito maaring bawiin.",
                 "header_role": "Burahin ang role?",
-                "body_role": "Sigurado ka bang gusto mong burahin <2>ang role na ito</2>?"
+                "body_role": "Sigurado ka bang gusto mong burahin <2>ang role na ito</2>?",
+                "header_channel": "Burahin ang channel?",
+                "body_channel": "Sigurado ka ba gusto mong burahin ang <2>channel na ito</2>?"
             },
             "edit_text": {
                 "nickname_placeholder": "Palayaw (iwanang walang laman para i-reset)",
@@ -54,6 +56,10 @@
                 "type_text": "Channel na panteksto",
                 "nsfw_header": "NSFW",
                 "nsfw_label": "I-mark ang channel bilang NSFW"
+            },
+            "new_invite": {
+                "header": "Ginawa ang imbitasyon",
+                "body": "Narito ang iyong bagong invite link:"
             }
         },
         "servers": {
@@ -183,8 +189,9 @@
             "close": "Isara",
             "confirm": "Kumpirmahin",
             "create_channel": "Gumawa ng channel",
-            "delete": "I-delete",
-            "save": "I-save"
+            "delete": "Burahin",
+            "save": "I-save",
+            "copy_invite": "Kopyahin ang imbitasyon"
         },
         "loading": {
             "generic": "Naglo-load…",
@@ -275,6 +282,14 @@
             "message_box_group": "Magmensahe sa {{name}}",
             "message_box_dm": "I-mensahe si @{{name}}",
             "message_box_saved_notes": "I-save sa iyong mga tala"
+        },
+        "sheets": {
+            "channel": {
+                "mark_as_read": "Markahan bilang binasa",
+                "copy_link": "Kopyahin ang channel link",
+                "delete": "Burahin ang channel",
+                "create_invite": "Gumawa ng imbitasyon"
+            }
         }
     }
 }
