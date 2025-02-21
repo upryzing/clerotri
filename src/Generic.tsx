@@ -128,7 +128,6 @@ export const app = {
         onInitialize: (v: any) => {
           app.setTheme(v);
         },
-        remark: true,
       },
       {
         key: 'ui.messaging.showSelfInTypingIndicator',
