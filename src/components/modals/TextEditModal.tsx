@@ -45,7 +45,10 @@ export const TextEditModal = observer(
               app.openTextEditModal(null);
               object.callback(string);
             }}
-            style={{marginHorizontal: 0}}>
+            style={{
+              marginBlockStart: commonValues.sizes.xl,
+              marginHorizontal: 0,
+            }}>
             <Text>{t('app.actions.confirm')}</Text>
           </Button>
           <Button
