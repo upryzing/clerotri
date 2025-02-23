@@ -1,5 +1,5 @@
-import {useContext} from 'react';
-import {StyleSheet, TouchableOpacity, View, ViewStyle} from 'react-native';
+import {useContext, useState} from 'react';
+import {Pressable, StyleSheet, View} from 'react-native';
 import {observer} from 'mobx-react-lite';
 
 import type {Channel} from 'revolt.js';
@@ -32,33 +32,32 @@ export const ChannelButton = observer(
     const {currentTheme} = useContext(ThemeContext);
     const localStyles = generateLocalStyles(currentTheme);
 
-    let color =
-      showUnread && typeof channel !== 'string' && channel.unread
+    const [isBeingPressed, setIsBeingPressed] = useState(false);
+
+    const color =
+      selected || (showUnread && typeof channel !== 'string' && channel.unread)
         ? currentTheme.foregroundPrimary
         : currentTheme.foregroundTertiary;
 
-    let pings = typeof channel !== 'string' ? channel.mentions?.length : 0;
-
-    let classes: ViewStyle[] = [localStyles.channelButton];
-
-    if (selected) {
-      classes.push(localStyles.channelButtonSelected);
-    }
+    const pings = typeof channel !== 'string' ? channel.mentions?.length : 0;
 
     return (
-      <TouchableOpacity
-        onPress={() => onPress()}
-        onLongPress={() => onLongPress()}
+      <Pressable
+        onPressIn={() => setIsBeingPressed(true)}
+        onPressOut={() => setIsBeingPressed(false)}
+        onPress={onPress}
+        onLongPress={onLongPress}
         delayLongPress={delayLongPress}
         key={
           typeof channel !== 'string'
             ? channel._id
             : `channel-special-${channel}`
         }
-        style={{
-          ...localStyles.channelButton,
-          ...(selected && localStyles.channelButtonSelected),
-        }}>
+        style={[
+          localStyles.channelButton,
+          selected && localStyles.channelButtonSelected,
+          isBeingPressed && localStyles.channelButtonPressed,
+        ]}>
         {typeof channel !== 'string' &&
         channel.channel_type === 'DirectMessage' ? (
           <View
@@ -96,7 +95,7 @@ export const ChannelButton = observer(
             ) : null}
           </>
         )}
-      </TouchableOpacity>
+      </Pressable>
     );
   },
 );
@@ -109,6 +108,9 @@ const generateLocalStyles = (currentTheme: Theme) => {
       padding: commonValues.sizes.medium,
       flexDirection: 'row',
       alignItems: 'center',
+    },
+    channelButtonPressed: {
+      backgroundColor: currentTheme.hover,
     },
     channelButtonSelected: {
       backgroundColor: currentTheme.hover,
