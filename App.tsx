@@ -30,7 +30,7 @@ export const App = () => {
     <GestureHandlerRootView style={localStyles.outer}>
       <ThemeContext.Provider
         value={{currentTheme: theme, setCurrentTheme: setTheme}}>
-        <ErrorBoundary fallbackRender={ErrorMessage}>
+        <ErrorBoundary FallbackComponent={ErrorMessage}>
           <MainView />
         </ErrorBoundary>
       </ThemeContext.Provider>

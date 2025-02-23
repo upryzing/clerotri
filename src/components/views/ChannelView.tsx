@@ -133,7 +133,7 @@ const RegularChannelView = observer(({channel}: {channel: Channel}) => {
       {channel?.channel_type === 'VoiceChannel' ? (
         <VoiceChannel />
       ) : !channel?.nsfw || app.settings.get('ui.messaging.showNSFWContent') ? (
-        <ErrorBoundary fallbackRender={MessageViewErrorMessage}>
+        <ErrorBoundary FallbackComponent={MessageViewErrorMessage}>
           {app.settings.get('ui.messaging.useNewMessageView') ? (
             <MessageView channel={channel} />
           ) : (

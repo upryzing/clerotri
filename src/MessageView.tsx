@@ -186,7 +186,7 @@ const NewMessageView = observer(
     };
 
     return (
-      <ErrorBoundary fallbackRender={MessageViewErrorMessage}>
+      <ErrorBoundary FallbackComponent={MessageViewErrorMessage}>
         <View key={'messageview-outer-container'} style={{flex: 1}}>
           <FlatList
             key={'messageview-scrollview'}
@@ -360,7 +360,7 @@ export const MessageView = observer(({channel}: {channel: Channel}) => {
   }, [channel]);
 
   return (
-    <ErrorBoundary fallbackRender={MessageViewErrorMessage}>
+    <ErrorBoundary FallbackComponent={MessageViewErrorMessage}>
       {error ? (
         <Text colour={currentTheme.error}>
           Error rendering messages: {error.message ?? error}
