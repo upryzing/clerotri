@@ -3,7 +3,6 @@ import {Linking} from 'react-native';
 import {differenceInMinutes} from 'date-fns/differenceInMinutes';
 import {isSameDay} from 'date-fns/isSameDay';
 import type {Channel, Message} from 'revolt.js';
-import {decodeTime} from 'ulid';
 
 import {app} from '@clerotri/Generic';
 import {client} from '@clerotri/lib/client';
@@ -120,8 +119,8 @@ export function calculateGrouped(msg1: Message, msg2: Message) {
     return false;
   }
 
-  const time1 = decodeTime(msg1._id);
-  const time2 = decodeTime(msg2._id);
+  const time1 = msg1.createdAt;
+  const time2 = msg2.createdAt;
 
   return (
     // a message is grouped with the previous message if all of the following statements are true:

@@ -4,8 +4,6 @@ import {observer} from 'mobx-react-lite';
 
 import MaterialCommunityIcon from 'react-native-vector-icons/MaterialCommunityIcons';
 
-import {decodeTime} from 'ulid';
-
 import {app} from '@clerotri/Generic';
 import {Text} from '@clerotri/components/common/atoms';
 import {Image} from '@clerotri/crossplat/Image';
@@ -62,7 +60,7 @@ export const ServerList = observer(
         }
 
         // if both aren't in the list, convert the server IDs to timestamps then order them by when they were created
-        return decodeTime(server2._id) > decodeTime(server1._id) ? -1 : 1;
+        return server2.createdAt > server1.createdAt ? -1 : 1;
       });
     }
     return (
