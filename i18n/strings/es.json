@@ -18,7 +18,13 @@
             "tabs": {
                 "servers": "Servidores",
                 "bots": "Bots"
-            }
+            },
+            "count_servers_one": "{{count}} servidor",
+            "count_servers_many": "{{count}} servidores",
+            "count_servers_other": "{{count}} servidores",
+            "count_bots_one": "{{count}} bot",
+            "count_bots_many": "{{count}} bots",
+            "count_bots_other": "{{count}} bots"
         },
         "loading": {
             "generic": "Cargando…",
@@ -139,11 +145,151 @@
                 "channels": {
                     "title": "Canales",
                     "name": "Nombre del canal",
-                    "name_placeholder": "Establecer un nombre para el canal…"
+                    "name_placeholder": "Establecer un nombre para el canal…",
+                    "permissions": "Permisos del canal",
+                    "no_perms_set": "No establecido",
+                    "errors": {
+                        "empty_channel_name": "¡Los nombres de los canales no pueden estar vacíos!"
+                    }
                 },
                 "roles": {
-                    "set_colour": "Establecer el color del rol"
+                    "set_colour": "Establecer el color del rol",
+                    "delete": "Borrar Rol",
+                    "title": "Roles",
+                    "name": "Nombre",
+                    "name_placeholder": "Establecer un nombre de rol…",
+                    "options_header": "Opciones",
+                    "options": {
+                        "hoist": "Función de elevación",
+                        "hoist_body": "Mostrar este rol por encima de otros en la lista de miembros."
+                    },
+                    "rank": "Rango",
+                    "permissions": "Permisos",
+                    "colour": "Color",
+                    "open_colour_modal": "Introduzca el colo manualmente",
+                    "errors": {
+                        "empty_role_name": "¡Los nombres de los roles no pueden estar vacíos!"
+                    }
+                },
+                "emoji": {
+                    "title": "Emoji",
+                    "added_by": "Añadido por @ {{name}}",
+                    "empty": "Sin emoji",
+                    "deleted_toast": "{{name}} eliminado"
+                },
+                "members": {
+                    "title": "Miembros",
+                    "loading": "Buscando miembros…"
+                },
+                "invites": {
+                    "title": "Invitaciones",
+                    "loading": "Obteniendo invitaciones…",
+                    "empty": "Sin invitaciones"
+                },
+                "bans": {
+                    "loading": "Obteniendo prohibiciones…",
+                    "empty": "Sin prohibiciones",
+                    "no_reason": "No se proporcionó ninguna razón",
+                    "title": "Prohibiciones"
                 }
+            }
+        },
+        "settings": {
+            "app": {
+                "language": "Seleccione su idioma",
+                "refetchOnReconnect": "Recuperar mensajes al reconectarse",
+                "reopenLastChannel": "Vuelve a abrir el último canal en el que estabas al abrir la aplicación",
+                "notifications": {
+                    "enabled": "Habilitar notificaciones push",
+                    "enabledInApp": "Habilitar notificaciones en la aplicación",
+                    "notifyOnSelfPing": "Recibe una notificación cuando te hagas ping a ti mismo"
+                },
+                "showChangelogs": "Mostrar registros de cambios después de actualizar Clerotri"
+            },
+            "ui": {
+                "home": {
+                    "holidays": "Mostrar días festivos en la página de inicio"
+                },
+                "theme": "Tema",
+                "messaging": {
+                    "doubleTapToReply_remark": "Esto sólo es compatible en la vista de mensaje nuevo.",
+                    "emojiPack": "Paquete de emojis",
+                    "experimentalScrolling_remark": "Sólo puedes desplazarte hacia atrás.",
+                    "fontSize": "Tamaño de fuente",
+                    "fontSize_remark": "Esto se aplicará a los mensajes y a ciertas partes de la aplicación.",
+                    "messageSpacing": "Espacio de mensajes",
+                    "sendAttachments": "Habilitar el envío de archivos adjuntos",
+                    "showNSFWContent": "Consentimiento para contenido para mayores de 18 años",
+                    "showReactions": "Mostrar reacciones debajo de los mensajes",
+                    "showReactions_remark": "Puedes agregar reacciones existentes, pero aún no puedes agregar nuevas.",
+                    "showSelfInTypingIndicator": "Muéstrate en el indicador de escritura",
+                    "use24H": "Utilice marcas de tiempo de 24 horas",
+                    "useNewMessageView": "Usar la vista de mensaje nuevo",
+                    "experimentalScrolling": "Habilitar el desplazamiento por canal para ver mensajes antiguos",
+                    "doubleTapToReply": "Responder a los mensajes tocándolos dos veces",
+                    "showMasqAvatar": "Mostrar avatar enmascarado en la esquina",
+                    "statusInChatAvatars": "Mostrar el estado del usuario en los avatares del chat"
+                },
+                "settings": {
+                    "showExperimental": "Mostrar funciones experimentales"
+                },
+                "showDeveloperFeatures": "Mostrar herramientas para desarrolladores"
+            }
+        },
+        "settings_menu": {
+            "account": {
+                "title": "Cuenta"
+            },
+            "groups": {
+                "user": "Usuario",
+                "app": "Aplicación",
+                "other": "Otros",
+                "advanced": "Avanzado"
+            },
+            "i18n": {
+                "title": "Idioma"
+            },
+            "info": {
+                "title": "Acerca de Clerotri"
+            },
+            "licenses": {
+                "title": "Licencias de código abierto",
+                "loading": "Cargando datos de licencia…"
+            },
+            "other": {
+                "debug_info": "Copiar información de depuración",
+                "view_issues": "Ver problemas abiertos",
+                "logout": "Finalizar la sesión"
+            },
+            "appearance": {
+                "title": "Apariencia"
+            },
+            "functionality": {
+                "title": "Características"
+            },
+            "profile": {
+                "title": "Perfil"
+            }
+        },
+        "sheets": {
+            "channel": {
+                "create_invite": "Crear invitación",
+                "mark_as_read": "Marcar como leído",
+                "copy_link": "Copiar enlace del canal",
+                "delete": "Eliminar canal"
+            }
+        },
+        "misc": {
+            "generic_errors": {
+                "rateLimited_toast": "Disminuya la velocidad y vuelva a intentarlo en un minuto."
+            },
+            "network_indicator": {
+                "body": "Conexión perdida",
+                "hide": "(esconder)"
+            },
+            "voice": {
+                "header": "¡Los canales de voz aún no son compatibles con Clerotri!",
+                "body": "Mientras tanto, puedes unirte a ellos a través de la aplicación web o Revolt Desktop."
             }
         }
     }
