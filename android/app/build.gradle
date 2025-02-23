@@ -160,6 +160,8 @@ dependencies {
     // } else {
     //    implementation jscFlavor
     // }
+
+    implementation('androidx.exifinterface:exifinterface:1.3.7')
 }
 
 // we don't want the React plugin to bundle - this is rnx-kit's job
