@@ -1322,7 +1322,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@babel/preset-env@npm:^7.20.2, @babel/preset-env@npm:^7.26.9":
+"@babel/preset-env@npm:^7.20.2":
   version: 7.26.9
   resolution: "@babel/preset-env@npm:7.26.9"
   dependencies:
@@ -3772,16 +3772,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@types/node@npm:*":
-  version: 22.13.4
-  resolution: "@types/node@npm:22.13.4"
-  dependencies:
-    undici-types: "npm:~6.20.0"
-  checksum: 10c0/3a234fa7766a3efc382cf81f66f474c26cdab2f54f43f757634c81c0444eb2160c2dabbde9741e4983078a318a88515b65416b5f1ab5478548579d7b3ead1d95
-  languageName: node
-  linkType: hard
-
-"@types/node@npm:^22.13.5":
+"@types/node@npm:*, @types/node@npm:^22.13.5":
   version: 22.13.5
   resolution: "@types/node@npm:22.13.5"
   dependencies:
@@ -8330,9 +8321,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"knip@npm:^5.44.4":
-  version: 5.44.4
-  resolution: "knip@npm:5.44.4"
+"knip@npm:^5.44.5":
+  version: 5.44.5
+  resolution: "knip@npm:5.44.5"
   dependencies:
     "@nodelib/fs.walk": "npm:3.0.1"
     "@snyk/github-codeowners": "npm:1.1.0"
@@ -8356,7 +8347,7 @@ __metadata:
   bin:
     knip: bin/knip.js
     knip-bun: bin/knip-bun.js
-  checksum: 10c0/36f2405e21c06b852847cf9c716d53e13adf28383ba8cd89e64751f1210335948367124d168237a82bd17683f41932d3972046dbda8e70fea533f60db8bef950
+  checksum: 10c0/b53a5cbfa428cb0ad78aa4bacc7303481a99787c26228443264970cd3b6055d691a2060b62dadfa97d6f7333c808469a9d37059da74e4f53db2d4569620d7d95
   languageName: node
   linkType: hard
 
@@ -10649,7 +10640,6 @@ __metadata:
   resolution: "rvmob@workspace:."
   dependencies:
     "@babel/core": "npm:^7.26.9"
-    "@babel/preset-env": "npm:^7.26.9"
     "@babel/runtime": "npm:^7.26.9"
     "@gorhom/bottom-sheet": "npm:^5.1.1"
     "@notifee/react-native": "npm:^9.1.8"
@@ -10667,10 +10657,7 @@ __metadata:
     "@rnx-kit/babel-preset-metro-react-native": "npm:^2.0.0"
     "@rnx-kit/cli": "npm:^0.18.5"
     "@rnx-kit/metro-config": "npm:^2.0.1"
-    "@rnx-kit/metro-plugin-cyclic-dependencies-detector": "npm:^2.0.0"
-    "@rnx-kit/metro-plugin-duplicates-checker": "npm:^3.0.0"
     "@rnx-kit/metro-resolver-symlinks": "npm:^0.2.1"
-    "@rnx-kit/metro-serializer": "npm:^2.0.0"
     "@svgr/rollup": "npm:^8.1.0"
     "@traptitech/markdown-it-spoiler": "patch:@traptitech/markdown-it-spoiler@npm%3A1.1.6#~/.yarn/patches/@traptitech-markdown-it-spoiler-npm-1.1.6-ee0dc02626.patch"
     "@types/babel__core": "npm:^7.20.5"
@@ -10693,7 +10680,7 @@ __metadata:
     i18next: "npm:^24.2.2"
     intl-pluralrules: "npm:^2.0.1"
     jest: "npm:^29.7.0"
-    knip: "npm:^5.44.4"
+    knip: "npm:^5.44.5"
     mobx: "npm:^6.13.6"
     mobx-react-lite: "npm:^4.1.0"
     prettier: "npm:^3.5.2"
