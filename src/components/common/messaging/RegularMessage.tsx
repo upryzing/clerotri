@@ -252,7 +252,7 @@ export const RegularMessage = observer((props: MessageProps) => {
                     key={`message-${props.message._id}-timestamp`}
                     style={localStyles.timestamp}>
                     {' '}
-                    {formatRelative(decodeTime(props.message._id), new Date(), {
+                    {formatRelative(props.message.createdAt, new Date(), {
                       locale: locale,
                     })}
                   </Text>
@@ -282,18 +282,22 @@ export const RegularMessage = observer((props: MessageProps) => {
                 if (a.metadata?.type === 'Image') {
                   let width = a.metadata.width;
                   let height = a.metadata.height;
+
                   if (width > Dimensions.get('screen').width - 75) {
                     let sizeFactor =
                       (Dimensions.get('screen').width - 75) / width;
                     width = width * sizeFactor;
                     height = height * sizeFactor;
                   }
+
+                  const imageURL = client.generateFileURL(a);
+
                   return (
                     <Pressable
                       key={`message-${props.message._id}-image-${a._id}`}
                       onPress={() => app.openImage(a)}>
                       <Image
-                        source={{uri: client.generateFileURL(a)}}
+                        source={{uri: imageURL}}
                         resizeMode={'contain'}
                         style={{
                           width: width,
@@ -323,12 +327,12 @@ export const RegularMessage = observer((props: MessageProps) => {
                   );
                 }
               })}
-              {invites?.map(i => {
+              {invites?.map((inv, index) => {
                 return (
                   <InviteEmbed
-                    key={`message-${props.message._id}-invite-${i}`}
+                    key={`message-${props.message._id}-invite-${inv}-${index}`}
                     message={props.message}
-                    invite={i}
+                    invite={inv}
                   />
                 );
               })}
