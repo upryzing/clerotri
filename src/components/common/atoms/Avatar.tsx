@@ -48,28 +48,33 @@ export const Avatar = observer(
       statusColor = currentTheme[`status${s}`];
     }
     let Container = pressable
-      ? ({children}) => (
+      ? ({children}: {children: any}) => (
           <Pressable
             onPress={() => app.openImage(memberObject?.avatar || user?.avatar)}>
             {children}
           </Pressable>
         )
       : View;
+
     if (user) {
+      const imageURL = masquerade
+        ? masquerade
+        : server &&
+            memberObject?.generateAvatarURL &&
+            memberObject?.generateAvatarURL()
+          ? memberObject?.generateAvatarURL()
+          : user?.generateAvatarURL();
+
+      if (!imageURL) {
+        console.log(user._id);
+        return <></>;
+      }
+
       return (
         <Container>
           <Image
             source={{
-              uri:
-                (masquerade
-                  ? masquerade
-                  : server &&
-                      memberObject?.generateAvatarURL &&
-                      memberObject?.generateAvatarURL()
-                    ? memberObject?.generateAvatarURL()
-                    : user?.generateAvatarURL()) +
-                '?max_side=' +
-                DEFAULT_MAX_SIDE,
+              uri: imageURL + '?max_side=' + DEFAULT_MAX_SIDE,
             }}
             style={{width: size || 35, height: size || 35, borderRadius: 10000}}
           />
