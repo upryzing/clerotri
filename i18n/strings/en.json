@@ -160,12 +160,14 @@
                         "hoist_body": "Display this role above others in the member list."
                     },
                     "rank": "Rank",
+                    "rank_placeholder": "Set the role's rank…",
                     "permissions": "Permissions",
                     "colour": "Colour",
                     "delete": "Delete Role",
                     "set_colour": "Set role colour",
                     "open_colour_modal": "Enter colour manually",
                     "errors": {
+                        "empty_rank": "Role ranks cannot be empty!",
                         "empty_role_name": "Role names cannot be empty!"
                     }
                 },
