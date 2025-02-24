@@ -1,7 +1,6 @@
 import {useContext, useState} from 'react';
 import {
   StyleSheet,
-  TextInput,
   type TextStyle,
   View,
   type ViewStyle,
@@ -11,6 +10,7 @@ import MaterialIcon from 'react-native-vector-icons/MaterialIcons';
 import MaterialCommunityIcon from 'react-native-vector-icons/MaterialCommunityIcons';
 
 import {Button} from '@clerotri/components/common/atoms/Button';
+import {Input} from '@clerotri/components/common/atoms/Input';
 import {Text} from '@clerotri/components/common/atoms/Text';
 import {commonValues, Theme, ThemeContext} from '@clerotri/lib/themes';
 import {showToast} from '@clerotri/lib/utils';
@@ -44,7 +44,7 @@ export function InputWithButton({
   return (
     // style.input and style.button are applied to the input and button respectively
     <View style={[localStyles.iwbContainer, extraStyles?.container]}>
-      <TextInput
+      <Input
         value={value}
         onChangeText={v => {
           setValue(v);
@@ -53,6 +53,7 @@ export function InputWithButton({
         selectionHandleColor={currentTheme.accentColor}
         selectionColor={`${currentTheme.accentColor}60`}
         placeholder={placeholder}
+        skipRegularStyles
         style={[localStyles.iwbInput, extraStyles?.input]}
         {...props}
       />
@@ -98,12 +99,8 @@ const generateLocalStyles = (currentTheme: Theme) => {
       minWidth: '100%',
     },
     iwbInput: {
-      fontFamily: 'Open Sans',
       flex: 1,
-      borderRadius: commonValues.sizes.medium,
-      backgroundColor: currentTheme.backgroundSecondary,
       padding: commonValues.sizes.large,
-      color: currentTheme.foregroundPrimary,
     },
     iwbButton: {
       marginRight: 0,
