@@ -27,7 +27,7 @@ export const LoginViews = ({markAsLoggedIn}: {markAsLoggedIn: any}) => {
   });
 
   return (
-    <View style={{backgroundColor: currentTheme.backgroundPrimary}}>
+    <View style={{flex: 1, backgroundColor: currentTheme.backgroundPrimary}}>
       {currentPage === 'loginSettings' ? (
         <LoginSettingsPage callback={() => setCurrentPage('loginPage')} />
       ) : currentPage === 'loginPage' ? (
