@@ -3,7 +3,7 @@ import {Platform, Pressable, StyleSheet, View} from 'react-native';
 import {useTranslation} from 'react-i18next';
 import {observer} from 'mobx-react-lite';
 
-import {type DocumentPickerResponse, types as fileTypes} from '@react-native-documents/picker';
+import {type DocumentPickerResponse} from '@react-native-documents/picker';
 import MaterialIcon from 'react-native-vector-icons/MaterialIcons';
 import MaterialCommunityIcon from 'react-native-vector-icons/MaterialCommunityIcons';
 
@@ -14,13 +14,13 @@ import {app, setFunction} from '@clerotri/Generic';
 import {client} from '@clerotri/lib/client';
 import {styles} from '@clerotri/Theme';
 
-import {pickDocument} from '@clerotri/crossplat/DocumentPicker';
+import {AttachmentPickerButton} from '@clerotri/components/AttachmentPickerButton';
 import {Avatar, Input, Text, Username} from '@clerotri/components/common/atoms';
 import {USER_IDS} from '@clerotri/lib/consts';
 import {storage} from '@clerotri/lib/storage';
 import {commonValues, Theme, ThemeContext} from '@clerotri/lib/themes';
 import {ReplyingMessage} from '@clerotri/lib/types';
-import {getReadableFileSize, showToast} from '@clerotri/lib/utils';
+import {getReadableFileSize} from '@clerotri/lib/utils';
 
 let typing = false;
 
@@ -179,55 +179,11 @@ export const MessageBox = observer((props: MessageBoxProps) => {
       ) : null}
       <View style={localStyles.messageBoxInner}>
         {Platform.OS !== 'web' &&
-        app.settings.get('ui.messaging.sendAttachments') &&
-        attachments.length < 5 ? (
-          <Pressable
-            style={{
-              ...localStyles.sendButton,
-              ...localStyles.attachmentsButton,
-            }}
-            onPress={async () => {
-              try {
-                let [res] = await pickDocument({
-                  type: [fileTypes.allFiles],
-                });
-                let tooBig = false;
-                if (res.size && res.size > 20000000) {
-                  showToast('Attachments must be less than 20MB!');
-                  tooBig = true;
-                }
-                if (!tooBig) {
-                  let isDuplicate = false;
-                  for (const a of attachments) {
-                    if (a.uri === res.uri) {
-                      console.log(
-                        `[MESSAGEBOX] Not pushing duplicate attachment ${res.name} (${res.uri})`,
-                      );
-                      isDuplicate = true;
-                    }
-                  }
-
-                  if (res.uri && !isDuplicate) {
-                    console.log(
-                      `[MESSAGEBOX] Pushing attachment ${res.name} (${res.uri})`,
-                    );
-                    setAttachments(existingAttachments => [
-                      ...existingAttachments,
-                      res,
-                    ]);
-                    console.log(attachments);
-                  }
-                }
-              } catch (error) {
-                console.log(`[MESSAGEBOX] Error: ${error}`);
-              }
-            }}>
-            <MaterialIcon
-              name="add-circle"
-              size={24}
-              color={currentTheme.foregroundPrimary}
-            />
-          </Pressable>
+        app.settings.get('ui.messaging.sendAttachments') ? (
+          <AttachmentPickerButton
+            attachments={attachments}
+            setAttachments={setAttachments}
+          />
         ) : null}
         <Input
           multiline
@@ -523,11 +479,6 @@ const generateLocalStyles = (currentTheme: Theme) => {
       padding: 5,
       borderRadius: commonValues.sizes.medium,
       backgroundColor: currentTheme.accentColor,
-    },
-    attachmentsButton: {
-      marginStart: 0,
-      marginEnd: commonValues.sizes.medium,
-      backgroundColor: currentTheme.messageBox,
     },
     noPermissionBox: {
       backgroundColor: currentTheme.backgroundSecondary,
