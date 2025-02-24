@@ -91,7 +91,6 @@ export const RoleSettingsSection = observer(
                 name: 'save',
                 pack: 'regular',
               }}
-              backgroundColor={currentTheme.backgroundSecondary}
               skipIfSame
               cannotBeEmpty
               emptyError={t(

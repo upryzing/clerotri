@@ -20,7 +20,6 @@ export function InputWithButton({
   placeholder,
   buttonContents,
   extraStyles,
-  backgroundColor,
   onPress,
   skipIfSame,
   cannotBeEmpty,
@@ -32,9 +31,7 @@ export function InputWithButton({
   buttonContents:
     | {type: 'string'; content: string}
     | {type: 'icon'; name: string; pack: 'regular' | 'community'};
-
   extraStyles?: {container?: ViewStyle; input?: TextStyle; button?: ViewStyle};
-  backgroundColor?: ViewStyle['backgroundColor'];
   onPress: any;
   skipIfSame?: boolean;
   cannotBeEmpty?: boolean;
@@ -56,11 +53,7 @@ export function InputWithButton({
         selectionHandleColor={currentTheme.accentColor}
         selectionColor={`${currentTheme.accentColor}60`}
         placeholder={placeholder}
-        style={[
-          localStyles.iwbInput,
-          backgroundColor ? {backgroundColor} : undefined,
-          extraStyles?.input,
-        ]}
+        style={[localStyles.iwbInput, extraStyles?.input]}
         {...props}
       />
       <Button
@@ -73,11 +66,7 @@ export function InputWithButton({
             }
           }
         }}
-        style={[
-          {marginRight: 0},
-          backgroundColor ? {backgroundColor} : {},
-          extraStyles?.button,
-        ]}>
+        style={[localStyles.iwbButton, extraStyles?.button]}>
         {buttonContents.type === 'string' ? (
           <Text style={{color: currentTheme.foregroundPrimary}}>
             {buttonContents.content}
@@ -114,8 +103,11 @@ const generateLocalStyles = (currentTheme: Theme) => {
       borderRadius: commonValues.sizes.medium,
       backgroundColor: currentTheme.backgroundSecondary,
       padding: commonValues.sizes.large,
-      paddingHorizontal: 10,
       color: currentTheme.foregroundPrimary,
+    },
+    iwbButton: {
+      marginRight: 0,
+      backgroundColor: currentTheme.backgroundSecondary,
     },
   });
 };

@@ -77,7 +77,14 @@ export const StatusSheet = observer(() => {
             });
           }}
           buttonContents={{type: 'string', content: 'Set text'}}
-          backgroundColor={currentTheme.backgroundPrimary}
+          extraStyles={{
+            input: {
+              backgroundColor: currentTheme.backgroundPrimary,
+            },
+            button: {
+              backgroundColor: currentTheme.backgroundPrimary,
+            },
+          }}
         />
       </View>
     </BottomSheet>
