@@ -21,7 +21,7 @@ import {FriendsPage} from '@clerotri/components/pages/FriendsPage';
 import {HomePage} from '@clerotri/components/pages/HomePage';
 import {VoiceChannel} from '@clerotri/components/pages/VoiceChannel';
 import {ChannelContext} from '@clerotri/lib/state';
-import {ThemeContext} from '@clerotri/lib/themes';
+import {type Theme, ThemeContext} from '@clerotri/lib/themes';
 import {SpecialChannel} from '@clerotri/lib/types';
 import {DiscoverPage} from '@clerotri/pages/discover/DiscoverPage';
 
@@ -190,6 +190,9 @@ const RegularChannelView = observer(({channel}: {channel: Channel}) => {
 });
 
 export const ChannelView = observer(() => {
+  const {currentTheme} = useContext(ThemeContext);
+  const localStyles = generateLocalStyles(currentTheme);
+
   const {currentChannel} = useContext(ChannelContext);
   console.log(
     `[CHANNELVIEW] Rendering channel view for ${
@@ -212,8 +215,11 @@ export const ChannelView = observer(() => {
   );
 });
 
-const localStyles = StyleSheet.create({
-  mainView: {
-    flex: 1,
-  },
-});
+const generateLocalStyles = (currentTheme: Theme) => {
+  return StyleSheet.create({
+    mainView: {
+      flex: 1,
+      backgroundColor: currentTheme.backgroundPrimary,
+    },
+  });
+};

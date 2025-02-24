@@ -300,6 +300,11 @@ export function MainView() {
           header={'app.loading.unknown_state'}
           body={'app.loading.unknown_state_body'}
           bodyParams={{state: status}}
+          styles={{
+            loadingScreen: {
+              backgroundColor: currentTheme.backgroundPrimary,
+            },
+          }}
         />
       )}
     </OrderedServersContext.Provider>

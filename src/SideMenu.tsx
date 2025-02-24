@@ -162,7 +162,7 @@ export const SideMenuHandler = () => {
           renderDrawerContent={() => <SideMenu />}
           style={localStyles.drawer}
           drawerStyle={{
-            backgroundColor: currentTheme.backgroundPrimary,
+            backgroundColor: '#00000000',
             width: width - 50,
           }}>
           <ChannelView />
@@ -176,11 +176,10 @@ const generateLocalStyles = (currentTheme: Theme) => {
   return StyleSheet.create({
     drawer: {
       flex: 1,
-      backgroundColor: currentTheme.backgroundPrimary,
     },
     sideView: {
       flex: 1,
-      backgroundColor: currentTheme.backgroundSecondary,
+      backgroundColor: currentTheme.background,
       flexDirection: 'row',
       justifyContent: 'flex-start',
     },

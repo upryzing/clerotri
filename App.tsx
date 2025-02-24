@@ -10,7 +10,7 @@ import {setFunction} from '@clerotri/Generic';
 import {MainView} from '@clerotri/MainView';
 import {ErrorMessage} from '@clerotri/components/ErrorMessage';
 import {initialiseSettings} from '@clerotri/lib/storage/utils';
-import {themes, Theme, ThemeContext} from '@clerotri/lib/themes';
+import {themes, type Theme, ThemeContext} from '@clerotri/lib/themes';
 
 export const App = () => {
   const [theme, setTheme] = useState<Theme>(themes.Dark);
@@ -42,7 +42,7 @@ const generateLocalStyles = (currentTheme: Theme) => {
   return StyleSheet.create({
     outer: {
       flex: 1,
-      backgroundColor: currentTheme.backgroundPrimary,
+      backgroundColor: currentTheme.background,
     },
   });
 };
