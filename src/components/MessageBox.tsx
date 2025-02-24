@@ -186,6 +186,7 @@ export const MessageBox = observer((props: MessageBoxProps) => {
           />
         ) : null}
         <Input
+          skipRegularStyles
           multiline
           placeholderTextColor={currentTheme.foregroundSecondary}
           style={{
@@ -454,12 +455,9 @@ const generateLocalStyles = (currentTheme: Theme) => {
     },
     messageBox: {
       backgroundColor: currentTheme.messageBoxInput,
-      color: currentTheme.foregroundPrimary,
-      paddingLeft: commonValues.sizes.large,
+      paddingInline: commonValues.sizes.large,
       padding: commonValues.sizes.medium,
       flex: 1,
-      fontFamily: 'Open Sans',
-      borderRadius: commonValues.sizes.medium,
     },
     messageBoxInner: {
       flexDirection: 'row',
