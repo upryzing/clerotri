@@ -24,6 +24,18 @@
                 "servers": "Servers"
             }
         },
+        "friends_list": {
+            "blocked": "Blocked - {{count}}",
+            "blocked_empty": "No blocked users",
+            "incoming": "Incoming requests - {{count}}",
+            "incoming_empty": "No incoming requests",
+            "onlineFriends": "Online friends - {{count}}",
+            "onlineFriends_empty": "No online friends",
+            "offlineFriends": "Offline friends - {{count}}",
+            "offlineFriends_empty": "No offline friends",
+            "outgoing": "Outgoing requests - {{count}}",
+            "outgoing_empty": "No outgoing requests"
+        },
         "loading": {
             "generic": "Loading…",
             "connecting": "Logging in…",
