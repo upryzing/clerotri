@@ -36,7 +36,7 @@ const generateLocalStyles = (currentTheme: Theme) => {
       color: currentTheme.foregroundPrimary,
     },
     loginInput: {
-      fontFamily: 'Inter',
+      fontFamily: 'Open Sans',
       borderRadius: commonValues.sizes.medium,
       padding: commonValues.sizes.medium,
       paddingHorizontal: commonValues.sizes.large,
