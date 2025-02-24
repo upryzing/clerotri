@@ -45,8 +45,7 @@ function LoginTypeSelector({
         }}
         style={{alignItems: 'flex-start', width: '80%'}}>
         <View style={{alignItems: 'center'}}>
-          <Text
-            style={{textAlign: 'center', fontSize: 16, fontWeight: 'bold'}}>
+          <Text style={{textAlign: 'center', fontSize: 16, fontWeight: 'bold'}}>
             {t('app.login.options.login_regular')}
           </Text>
           <Text style={{textAlign: 'center'}}>
@@ -60,8 +59,7 @@ function LoginTypeSelector({
         }}
         style={{width: '80%'}}>
         <View style={{alignItems: 'center'}}>
-          <Text
-            style={{textAlign: 'center', fontSize: 16, fontWeight: 'bold'}}>
+          <Text style={{textAlign: 'center', fontSize: 16, fontWeight: 'bold'}}>
             {t('app.login.options.login_session_token')}
           </Text>
           <Text style={{textAlign: 'center'}}>
@@ -79,8 +77,7 @@ function LoginTypeSelector({
         }}
         style={{width: '80%'}}>
         <View style={{alignItems: 'center'}}>
-          <Text
-            style={{textAlign: 'center', fontSize: 16, fontWeight: 'bold'}}>
+          <Text style={{textAlign: 'center', fontSize: 16, fontWeight: 'bold'}}>
             {t('app.login.options.signup')}
           </Text>
           <Text style={{textAlign: 'center'}}>
