@@ -7,7 +7,7 @@ import Markdown, {
   MarkdownIt,
 } from '@rexovolt/react-native-markdown-display';
 
-import {app} from '@clerotri/Generic';
+import {settings} from '@clerotri/Generic';
 import {Text} from './atoms';
 import {Spoiler, SpoilerContext, SpoilerWrapper} from './markdown/Spoiler';
 import {renderEmoji} from './messaging/Emoji';
@@ -31,7 +31,7 @@ const generateDefaultStyles = (currentTheme: Theme) => {
       justifyContent: 'flex-start',
       marginTop: -3,
       marginBottom: commonValues.sizes.xs,
-      fontSize: app.settings.get('ui.messaging.fontSize') as number,
+      fontSize: settings.get('ui.messaging.fontSize') as number,
       backgroundColor: 'transparent',
     },
     hardbreak: {

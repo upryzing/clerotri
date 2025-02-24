@@ -2,7 +2,7 @@ import {useContext, useState} from 'react';
 import {View} from 'react-native';
 import {useTranslation} from 'react-i18next';
 
-import {app} from '@clerotri/Generic';
+import {settings} from '@clerotri/Generic';
 import {ThemeContext} from '@clerotri/lib/themes';
 import {Setting} from '@clerotri/lib/types';
 import {Input, Text} from '../../atoms';
@@ -13,7 +13,7 @@ export const StringNumberSetting = ({sRaw}: {sRaw: Setting}) => {
 
   const {t} = useTranslation();
 
-  const [value, setValue] = useState(app.settings.getRaw(sRaw.key));
+  const [value, setValue] = useState(settings.getRaw(sRaw.key));
   return (
     <View
       key={`settings_${sRaw.key}`}
@@ -39,7 +39,7 @@ export const StringNumberSetting = ({sRaw}: {sRaw: Setting}) => {
           keyboardType={sRaw.type === 'number' ? 'decimal-pad' : 'default'}
           onChangeText={v => {
             setValue(v);
-            app.settings.set(sRaw.key, v);
+            settings.set(sRaw.key, v);
           }}
         />
       </View>

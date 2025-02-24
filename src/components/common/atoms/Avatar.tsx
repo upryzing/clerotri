@@ -5,7 +5,7 @@ import {observer} from 'mobx-react-lite';
 import type {Server, User, Channel} from 'revolt.js';
 
 import {Image} from '@clerotri/crossplat/Image';
-import {app} from '@clerotri/Generic';
+import {app, settings} from '@clerotri/Generic';
 import {client} from '@clerotri/lib/client';
 import {DEFAULT_MAX_SIDE} from '@clerotri/lib/consts';
 import {ThemeContext} from '@clerotri/lib/themes';
@@ -92,7 +92,7 @@ export const Avatar = observer(
               }}
             />
           ) : null}
-          {masquerade && app.settings.get('ui.messaging.showMasqAvatar') ? (
+          {masquerade && settings.get('ui.messaging.showMasqAvatar') ? (
             <Image
               style={{
                 width: Math.round(size / statusScale),

@@ -8,7 +8,7 @@ import MaterialIcon from 'react-native-vector-icons/MaterialIcons';
 
 import type {Channel, Message} from 'revolt.js';
 
-import {app} from '@clerotri/Generic';
+import {app, settings} from '@clerotri/Generic';
 import {Messages} from '@clerotri/LegacyMessageView';
 import {MessageView} from '@clerotri/MessageView';
 import {MessageBox} from '@clerotri/components/MessageBox';
@@ -132,9 +132,9 @@ const RegularChannelView = observer(({channel}: {channel: Channel}) => {
       </ChannelHeader>
       {channel?.channel_type === 'VoiceChannel' ? (
         <VoiceChannel />
-      ) : !channel?.nsfw || app.settings.get('ui.messaging.showNSFWContent') ? (
+      ) : !channel?.nsfw || settings.get('ui.messaging.showNSFWContent') ? (
         <ErrorBoundary FallbackComponent={MessageViewErrorMessage}>
-          {app.settings.get('ui.messaging.useNewMessageView') ? (
+          {settings.get('ui.messaging.useNewMessageView') ? (
             <MessageView channel={channel} />
           ) : (
             <>
@@ -175,8 +175,8 @@ const RegularChannelView = observer(({channel}: {channel: Channel}) => {
             (This can be reversed in Settings.)
           </Text>
           <Button
-            onPress={async () => {
-              app.settings.set('ui.messaging.showNSFWContent', true);
+            onPress={() => {
+              settings.set('ui.messaging.showNSFWContent', true);
               rerender(renderCount + 1);
             }}>
             <Text style={styles.buttonText}>

@@ -4,7 +4,7 @@ import {observer} from 'mobx-react-lite';
 
 import type {Server, User} from 'revolt.js';
 
-import {app} from '@clerotri/Generic';
+import {settings} from '@clerotri/Generic';
 import {client} from '@clerotri/lib/client';
 import {Text} from './Text';
 import {USER_IDS} from '@clerotri/lib/consts';
@@ -137,7 +137,7 @@ export const Username = observer(
     }
 
     const usernameSize =
-      size || (app.settings.get('ui.messaging.fontSize') as number) || 14;
+      size || (settings.get('ui.messaging.fontSize') as number) || 14;
 
     return (
       <View style={{flexDirection: 'row'}}>

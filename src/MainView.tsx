@@ -9,7 +9,7 @@ import {StatusBar} from 'react-native';
 
 import type {API, ClientboundNotification} from 'revolt.js';
 
-import {app, randomizeRemark, setFunction} from '@clerotri/Generic';
+import {app, randomizeRemark, setFunction, settings} from '@clerotri/Generic';
 import {client} from '@clerotri/lib/client';
 import {Modals} from '@clerotri/Modals';
 import {SideMenuHandler} from '@clerotri/SideMenu';
@@ -50,7 +50,7 @@ function LoggedInViews({
     useState<API.Message | null>(null);
 
   useEffect(() => {
-    if (app.settings.get('app.reopenLastChannel')) {
+    if (settings.get('app.reopenLastChannel')) {
       openLastChannel();
     }
   }, []);

@@ -1,6 +1,6 @@
 import type {API} from 'revolt.js';
 
-import {app} from '@clerotri/Generic';
+import {app, settings} from '@clerotri/Generic';
 import {client} from '@clerotri/lib/client';
 import {sendNotifeeNotification} from '@clerotri/lib/notifications/notifee';
 import {sleep} from '@clerotri/lib/utils';
@@ -14,8 +14,8 @@ export async function handleMessageNotification(
 ) {
   console.log(`[APP] Handling message ${msg._id}`);
 
-  const pushNotifsEnabled = app.settings.get('app.notifications.enabled');
-  const inAppNotifsEnabled = app.settings.get('app.notifications.enabledInApp');
+  const pushNotifsEnabled = settings.get('app.notifications.enabled');
+  const inAppNotifsEnabled = settings.get('app.notifications.enabledInApp');
 
   if (!pushNotifsEnabled && !inAppNotifsEnabled) {
     return;
@@ -43,13 +43,13 @@ export async function handleMessageNotification(
 
   const mentionsUser =
     (msg.mentions?.includes(client.user?._id!) &&
-      (app.settings.get('app.notifications.notifyOnSelfPing') ||
+      (settings.get('app.notifications.notifyOnSelfPing') ||
         msg.author !== client.user?._id)) ||
     channel?.channel_type === 'DirectMessage';
 
   const shouldNotif =
     (alwaysNotif &&
-      (app.settings.get('app.notifications.notifyOnSelfPing') ||
+      (settings.get('app.notifications.notifyOnSelfPing') ||
         msg.author !== client.user?._id)) ||
     (!isMuted && mentionsUser);
 

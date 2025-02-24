@@ -3,7 +3,7 @@ import {StyleSheet} from 'react-native';
 
 import {SVGEmoji} from './SVGEmoji';
 import {Image} from '@clerotri/crossplat/Image';
-import {app} from '@clerotri/Generic';
+import {settings} from '@clerotri/Generic';
 import {client} from '@clerotri/lib/client';
 import {Text} from '../atoms';
 import {
@@ -34,7 +34,7 @@ export function renderEmoji(content: string) {
   const tokens = content.split(RE_CUSTOM_EMOJI);
 
   // get the emoji pack; default to system
-  const rawEmojiPack = app.settings.get('ui.messaging.emojiPack');
+  const rawEmojiPack = settings.get('ui.messaging.emojiPack');
   const emojiPack = (rawEmojiPack?.toString().toLowerCase() || 'system') as
     | EmojiPacks
     | 'system';

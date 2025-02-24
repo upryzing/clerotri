@@ -5,7 +5,7 @@ import {observer} from 'mobx-react-lite';
 import type {API} from 'revolt.js';
 
 import {Image} from '@clerotri/crossplat/Image';
-import {app} from '@clerotri/Generic';
+import {app, settings} from '@clerotri/Generic';
 import {client} from '@clerotri/lib/client';
 import {MarkdownView} from '../MarkdownView';
 import {Link, Text} from '../atoms';
@@ -109,7 +109,7 @@ export const MessageEmbed = observer((eRaw: API.Embed) => {
     case 'None':
     default:
       console.log(`[MESSAGEEMBED] Unknown embed type: ${JSON.stringify(e)}`);
-      return (app.settings.get('ui.showDeveloperFeatures') as boolean) ? (
+      return (settings.get('ui.showDeveloperFeatures') as boolean) ? (
         <Text>
           embed - type: {e.type === 'None' ? 'none' : (e.type ?? 'how')}, other
           info:

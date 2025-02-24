@@ -13,7 +13,7 @@ import {
 import MaterialCommunityIcon from 'react-native-vector-icons/MaterialCommunityIcons';
 import MaterialIcon from 'react-native-vector-icons/MaterialIcons';
 
-import {app, setFunction} from '@clerotri/Generic';
+import {app, appVersion, setFunction} from '@clerotri/Generic';
 import {client} from '@clerotri/lib/client';
 import {OPEN_ISSUES} from '@clerotri/lib/consts';
 import {storage} from '@clerotri/lib/storage';
@@ -52,7 +52,7 @@ async function copyDebugInfo() {
       instance: getInstanceURL(),
       userID: client.user?._id ?? 'ERR_ID_UNDEFINED',
       settings: storage.getString('settings'),
-      version: app.version,
+      version: appVersion,
     },
   };
 

@@ -16,7 +16,7 @@ import {ErrorBoundary} from 'react-error-boundary';
 
 import {Channel, Message as RevoltMessage} from 'revolt.js';
 
-import {app} from './Generic';
+import {app, settings} from './Generic';
 import {client} from './lib/client';
 import {MessageBox} from './components/MessageBox';
 import {styles} from './Theme';
@@ -77,7 +77,7 @@ let doubleTapStatus: DoubleTapState = {
 function handleTap(message: RevoltMessage) {
   if (message._id === doubleTapStatus.message) {
     if (doubleTapStatus.count === 1) {
-      if (app.settings.get('ui.messaging.doubleTapToReply')) {
+      if (settings.get('ui.messaging.doubleTapToReply')) {
         const existingReplies = [...app.getReplyingMessages()];
         if (
           existingReplies.filter(m => m.message._id === message._id).length > 0

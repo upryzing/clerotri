@@ -10,7 +10,7 @@ import MaterialCommunityIcon from 'react-native-vector-icons/MaterialCommunityIc
 import type {Channel, Message} from 'revolt.js';
 import {ulid} from 'ulid';
 
-import {app, setFunction} from '@clerotri/Generic';
+import {app, setFunction, settings} from '@clerotri/Generic';
 import {client} from '@clerotri/lib/client';
 import {styles} from '@clerotri/Theme';
 
@@ -179,7 +179,7 @@ export const MessageBox = observer((props: MessageBoxProps) => {
       ) : null}
       <View style={localStyles.messageBoxInner}>
         {Platform.OS !== 'web' &&
-        app.settings.get('ui.messaging.sendAttachments') ? (
+        settings.get('ui.messaging.sendAttachments') ? (
           <AttachmentPickerButton
             attachments={attachments}
             setAttachments={setAttachments}
@@ -190,7 +190,7 @@ export const MessageBox = observer((props: MessageBoxProps) => {
           placeholderTextColor={currentTheme.foregroundSecondary}
           style={{
             ...localStyles.messageBox,
-            fontSize: app.settings.get('ui.messaging.fontSize') as number,
+            fontSize: settings.get('ui.messaging.fontSize') as number,
           }}
           placeholder={t(`app.messaging.${placeholderText(props.channel)}`, {
             name:
@@ -384,7 +384,7 @@ const TypingIndicator = observer(({channel}: {channel: Channel}) => {
 
   if (channel) {
     let users = channel.typing?.filter(entry => !!entry) || undefined;
-    !app.settings.get('ui.messaging.showSelfInTypingIndicator') &&
+    !settings.get('ui.messaging.showSelfInTypingIndicator') &&
       (users = users?.filter(entry => entry?._id !== client.user?._id));
     let out = <></>;
     const server = channel.server ?? undefined;

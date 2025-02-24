@@ -8,7 +8,7 @@ import MaterialIcon from 'react-native-vector-icons/MaterialIcons';
 import type {Message as RevoltMessage} from 'revolt.js';
 
 import {Text, Username} from '@clerotri/components/common/atoms';
-import {app} from '@clerotri/Generic';
+import {settings} from '@clerotri/Generic';
 import {client} from '@clerotri/lib/client';
 import {ThemeContext} from '@clerotri/lib/themes';
 
@@ -77,7 +77,7 @@ const SystemMessageIcon = observer(
       <IconComponent
         name={icon.name}
         color={currentTheme.foregroundSecondary}
-        size={(app.settings.get('ui.messaging.fontSize') as number) ?? 14}
+        size={(settings.get('ui.messaging.fontSize') as number) ?? 14}
         style={{alignSelf: 'center', paddingEnd: 4}}
       />
     );
@@ -180,8 +180,6 @@ const localStyles = StyleSheet.create({
   },
   containerPadding: {
     paddingInlineStart: 10,
-    paddingBlockStart: app.settings.get(
-      'ui.messaging.messageSpacing',
-    ) as number,
+    paddingBlockStart: settings.get('ui.messaging.messageSpacing') as number,
   },
 });

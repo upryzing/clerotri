@@ -10,7 +10,7 @@ import {autorun} from 'mobx';
 
 import type {Message as RevoltMessage} from 'revolt.js';
 
-import {app, setFunction, randomizeRemark} from './Generic';
+import {app, settings, setFunction, randomizeRemark} from './Generic';
 import {client} from './lib/client';
 import {styles} from './Theme';
 import {Text} from './components/common/atoms';
@@ -186,7 +186,7 @@ export class Messages extends ReactComponent {
       if (
         client.user?.online &&
         this.props.channel &&
-        app.settings.get('app.refetchOnReconnect')
+        settings.get('app.refetchOnReconnect')
       ) {
         this.setState({loading: true, messages: []});
         await this.fetchMessages();
@@ -318,7 +318,7 @@ export class Messages extends ReactComponent {
             //   e.nativeEvent.contentSize.height,
             //   e.nativeEvent.layoutMeasurement.height,
             // );
-            if (app.settings.get('ui.messaging.experimentalScrolling')) {
+            if (settings.get('ui.messaging.experimentalScrolling')) {
               if (e.nativeEvent.contentOffset.y === 0) {
                 this.fetchMessages({
                   type: 'before',

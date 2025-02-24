@@ -12,7 +12,7 @@ import {formatRelative} from 'date-fns/formatRelative';
 import {enGB, enUS} from 'date-fns/locale';
 import {decodeTime} from 'ulid';
 
-import {app} from '@clerotri/Generic';
+import {app, settings} from '@clerotri/Generic';
 import {client} from '@clerotri/lib/client';
 import {Avatar, Text, Username} from '@clerotri/components/common/atoms';
 import {MarkdownView} from '@clerotri/components/common/MarkdownView';
@@ -39,7 +39,7 @@ export const RegularMessage = observer((props: MessageProps) => {
   const {currentTheme} = useContext(ThemeContext);
   const localStyles = generateLocalStyles(currentTheme);
 
-  const locale = app.settings.get('ui.messaging.use24H') ? enGB : enUS;
+  const locale = settings.get('ui.messaging.use24H') ? enGB : enUS;
   const mentionsUser = props.message.mention_ids?.includes(client.user?._id!);
 
   // check for invite links, then take the code from each
@@ -67,9 +67,7 @@ export const RegularMessage = observer((props: MessageProps) => {
         onLongPress={props.onLongPress}>
         <View
           style={{
-            marginTop: app.settings.get(
-              'ui.messaging.messageSpacing',
-            ) as number,
+            marginTop: settings.get('ui.messaging.messageSpacing') as number,
           }}
         />
         {props.message.reply_ids !== null ? (
@@ -95,7 +93,7 @@ export const RegularMessage = observer((props: MessageProps) => {
               masquerade={props.message.masquerade?.avatar ?? undefined}
               server={props.message.channel?.server}
               size={35}
-              {...(app.settings.get('ui.messaging.statusInChatAvatars')
+              {...(settings.get('ui.messaging.statusInChatAvatars')
                 ? {status: true}
                 : {})}
             />
@@ -142,7 +140,7 @@ export const RegularMessage = observer((props: MessageProps) => {
           marginTop:
             props.grouped || props.noTopMargin
               ? 0
-              : (app.settings.get('ui.messaging.messageSpacing') as number),
+              : (settings.get('ui.messaging.messageSpacing') as number),
         }}
       />
       {props.message.author?.relationship === 'Blocked' ? (
@@ -211,7 +209,7 @@ export const RegularMessage = observer((props: MessageProps) => {
                   masquerade={props.message.generateMasqAvatarURL()}
                   server={props.message.channel?.server}
                   size={35}
-                  {...(app.settings.get('ui.messaging.statusInChatAvatars')
+                  {...(settings.get('ui.messaging.statusInChatAvatars')
                     ? {status: true}
                     : {})}
                 />
@@ -345,7 +343,7 @@ export const RegularMessage = observer((props: MessageProps) => {
                     />
                   );
                 })}
-              {app.settings.get('ui.messaging.showReactions') ? (
+              {settings.get('ui.messaging.showReactions') ? (
                 <MessageReactions msg={props.message} reactions={reactions} />
               ) : null}
             </View>

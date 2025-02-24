@@ -2,7 +2,7 @@ import {useContext, useState} from 'react';
 import {TouchableOpacity, View} from 'react-native';
 import {observer} from 'mobx-react-lite';
 
-import {app} from '@clerotri/Generic';
+import {settings} from '@clerotri/Generic';
 import {Text} from '@clerotri/components/common/atoms';
 import {PlatformModerationMessage} from '@clerotri/components/common/messaging/PlatformModerationMessage';
 import {RegularMessage} from '@clerotri/components/common/messaging/RegularMessage';
@@ -46,9 +46,7 @@ export const Message = observer((props: MessageProps) => {
           onLongPress={props.onLongPress}>
           <View
             style={{
-              marginTop: app.settings.get(
-                'ui.messaging.messageSpacing',
-              ) as number,
+              marginTop: settings.get('ui.messaging.messageSpacing') as number,
             }}
           />
           <PlatformModerationMessage message={props.message} />

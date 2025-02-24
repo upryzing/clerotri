@@ -5,7 +5,7 @@ import {getBundleId} from 'react-native-device-info';
 import MaterialCommunityIcon from 'react-native-vector-icons/MaterialCommunityIcons';
 
 import {dependencies} from '../../../../../../package.json';
-import {app} from '@clerotri/Generic';
+import {appVersion, settings} from '@clerotri/Generic';
 import {
   CONTRIBUTORS_LIST,
   FEDI_PROFILE,
@@ -71,7 +71,7 @@ export const AppInfoSection = () => {
           <Text type={'h1'}>
             Clerotri{' '}
             <Text colour={currentTheme.foregroundSecondary}>
-              {isDebug ? 'Debug ' : ''}v{app.version}
+              {isDebug ? 'Debug ' : ''}v{appVersion}
             </Text>
           </Text>
         </View>
@@ -124,7 +124,7 @@ export const AppInfoSection = () => {
           justifyContent: 'center',
         }}
         onPress={() => {
-          app.settings.clear();
+          settings.clear();
         }}>
         <Text>Reset Settings</Text>
       </ContextButton>

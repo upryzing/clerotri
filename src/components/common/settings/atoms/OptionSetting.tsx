@@ -5,7 +5,7 @@ import {useTranslation} from 'react-i18next';
 import MaterialIcon from 'react-native-vector-icons/MaterialIcons';
 
 import {languages} from '@clerotri-i18n/languages';
-import {app} from '@clerotri/Generic';
+import {settings} from '@clerotri/Generic';
 import {styles} from '@clerotri/Theme';
 import {commonValues, Theme, ThemeContext} from '@clerotri/lib/themes';
 import {Setting} from '@clerotri/lib/types';
@@ -18,7 +18,7 @@ export const OptionSetting = ({sRaw}: {sRaw: Setting}) => {
 
   const {t} = useTranslation();
 
-  const [value, setValue] = useState(app.settings.getRaw(sRaw.key));
+  const [value, setValue] = useState(settings.getRaw(sRaw.key));
   return (
     <View style={{marginTop: 10}}>
       <IndicatorIcons s={sRaw} />
@@ -42,7 +42,7 @@ export const OptionSetting = ({sRaw}: {sRaw: Setting}) => {
             key={o}
             style={localStyles.option}
             onPress={() => {
-              app.settings.set(sRaw.key, o);
+              settings.set(sRaw.key, o);
               setValue(o);
             }}>
             {sRaw.key === 'app.language' ? (
