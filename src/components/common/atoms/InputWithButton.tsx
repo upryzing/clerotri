@@ -1,10 +1,5 @@
 import {useContext, useState} from 'react';
-import {
-  StyleSheet,
-  type TextStyle,
-  View,
-  type ViewStyle,
-} from 'react-native';
+import {StyleSheet, type TextStyle, View, type ViewStyle} from 'react-native';
 
 import MaterialIcon from 'react-native-vector-icons/MaterialIcons';
 import MaterialCommunityIcon from 'react-native-vector-icons/MaterialCommunityIcons';
