@@ -119,8 +119,7 @@ const generateLocalStyles = (currentTheme: Theme) => {
       flexDirection: 'row',
       backgroundColor: currentTheme.backgroundPrimary,
       borderRadius: commonValues.sizes.medium,
-      paddingLeft: 10,
-      paddingRight: 10,
+      paddingInline: 10,
       marginVertical: commonValues.sizes.small,
     },
     checkboxRow: {

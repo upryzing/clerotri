@@ -92,8 +92,7 @@ const generateDefaultStyles = (currentTheme: Theme) => {
       backgroundColor: 'transparent',
       padding: 0,
       borderWidth: 0,
-      marginTop: 0,
-      marginBottom: 0,
+      marginBlock: 0,
     },
     code_inline_container: {
       // align it properly (see also https://github.com/facebook/react-native/issues/31955)
@@ -125,8 +124,7 @@ const generateDefaultStyles = (currentTheme: Theme) => {
       paddingVertical: 4,
     },
     spoiler: {
-      marginTop: 0,
-      marginBottom: 0,
+      marginBlock: 0,
     },
     list_item: {
       flexDirection: 'row',
