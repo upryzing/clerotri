@@ -80,10 +80,8 @@ const BotEntry = ({bot}: {bot: any}) => {
       )}
       <Button
         style={{margin: 0}}
-        onPress={async () => {
-          !client.servers.get(bot._id) && (await client.joinInvite(bot._id));
-          app.openServer(client.servers.get(bot._id));
-          app.openLeftMenu(true);
+        onPress={() => {
+          app.openBotInvite(bot._id);
         }}>
         <Text>Invite Bot</Text>
       </Button>
@@ -158,11 +156,13 @@ const ServerEntry = ({server}: {server: any}) => {
       )}
       <Button
         style={{margin: 0}}
-        onPress={async () => {
-          !client.servers.get(server._id) &&
-            (await client.joinInvite(server._id));
-          app.openServer(client.servers.get(server._id));
-          app.openLeftMenu(true);
+        onPress={() => {
+          if (client.servers.get(server._id)) {
+            app.openServer(client.servers.get(server._id));
+            app.openLeftMenu(true);
+          } else {
+            app.openInvite(server._id);
+          }
         }}>
         <Text>
           {client.servers.get(server._id) ? 'Go to Server' : 'Join Server'}
