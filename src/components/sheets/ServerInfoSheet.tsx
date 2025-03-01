@@ -8,7 +8,7 @@ import MaterialCommunityIcon from 'react-native-vector-icons/MaterialCommunityIc
 
 import type {Member, Server} from 'revolt.js';
 
-import {app, setFunction} from '@clerotri/Generic';
+import {app, setFunction, settings} from '@clerotri/Generic';
 import {client} from '@clerotri/lib/client';
 import {styles} from '@clerotri/Theme';
 import {SERVER_FLAGS, SPECIAL_SERVERS} from '@clerotri/lib/consts';
@@ -183,7 +183,7 @@ export const ServerInfoSheet = observer(() => {
                   <Text>Server Settings</Text>
                 </ContextButton>
               ) : null}
-              {app.settings.get('ui.showDeveloperFeatures') ? (
+              {settings.get('ui.showDeveloperFeatures') ? (
                 <CopyIDButton id={server._id} />
               ) : null}
               {server.owner !== client.user?._id ? (

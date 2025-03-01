@@ -121,7 +121,7 @@ export const LicenseListSection = () => {
     <View style={{flex: 1}}>
       {data ? (
         <SectionList
-          key={'messageview-scrollview'}
+          key={'license-list-sectionlist'}
           keyExtractor={keyExtractor}
           sections={data}
           style={{flex: 1}}

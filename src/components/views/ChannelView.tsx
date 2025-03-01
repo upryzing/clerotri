@@ -8,7 +8,7 @@ import MaterialIcon from 'react-native-vector-icons/MaterialIcons';
 
 import type {Channel, Message} from 'revolt.js';
 
-import {app} from '@clerotri/Generic';
+import {app, settings} from '@clerotri/Generic';
 import {Messages} from '@clerotri/LegacyMessageView';
 import {MessageView} from '@clerotri/MessageView';
 import {MessageBox} from '@clerotri/components/MessageBox';
@@ -21,7 +21,7 @@ import {FriendsPage} from '@clerotri/components/pages/FriendsPage';
 import {HomePage} from '@clerotri/components/pages/HomePage';
 import {VoiceChannel} from '@clerotri/components/pages/VoiceChannel';
 import {ChannelContext} from '@clerotri/lib/state';
-import {ThemeContext} from '@clerotri/lib/themes';
+import {type Theme, ThemeContext} from '@clerotri/lib/themes';
 import {SpecialChannel} from '@clerotri/lib/types';
 import {DiscoverPage} from '@clerotri/pages/discover/DiscoverPage';
 
@@ -132,9 +132,9 @@ const RegularChannelView = observer(({channel}: {channel: Channel}) => {
       </ChannelHeader>
       {channel?.channel_type === 'VoiceChannel' ? (
         <VoiceChannel />
-      ) : !channel?.nsfw || app.settings.get('ui.messaging.showNSFWContent') ? (
-        <ErrorBoundary fallbackRender={MessageViewErrorMessage}>
-          {app.settings.get('ui.messaging.useNewMessageView') ? (
+      ) : !channel?.nsfw || settings.get('ui.messaging.showNSFWContent') ? (
+        <ErrorBoundary FallbackComponent={MessageViewErrorMessage}>
+          {settings.get('ui.messaging.useNewMessageView') ? (
             <MessageView channel={channel} />
           ) : (
             <>
@@ -175,8 +175,8 @@ const RegularChannelView = observer(({channel}: {channel: Channel}) => {
             (This can be reversed in Settings.)
           </Text>
           <Button
-            onPress={async () => {
-              app.settings.set('ui.messaging.showNSFWContent', true);
+            onPress={() => {
+              settings.set('ui.messaging.showNSFWContent', true);
               rerender(renderCount + 1);
             }}>
             <Text style={styles.buttonText}>
@@ -190,6 +190,9 @@ const RegularChannelView = observer(({channel}: {channel: Channel}) => {
 });
 
 export const ChannelView = observer(() => {
+  const {currentTheme} = useContext(ThemeContext);
+  const localStyles = generateLocalStyles(currentTheme);
+
   const {currentChannel} = useContext(ChannelContext);
   console.log(
     `[CHANNELVIEW] Rendering channel view for ${
@@ -212,8 +215,11 @@ export const ChannelView = observer(() => {
   );
 });
 
-const localStyles = StyleSheet.create({
-  mainView: {
-    flex: 1,
-  },
-});
+const generateLocalStyles = (currentTheme: Theme) => {
+  return StyleSheet.create({
+    mainView: {
+      flex: 1,
+      backgroundColor: currentTheme.backgroundPrimary,
+    },
+  });
+};

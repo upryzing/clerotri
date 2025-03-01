@@ -1,0 +1,15 @@
+{
+  "$schema": "https://unpkg.com/knip@5/schema.json",
+  "babel": {
+    "config": [
+      "config/babel-shared.js",
+      "babel.config.{json,js,cjs,mjs,cts}",
+      ".babelrc.{json,js,cjs,mjs,cts}",
+      ".babelrc",
+      "package.json"
+    ]
+  },
+  "vite": {
+    "config": ["config/vite.config.ts"]
+  }
+}

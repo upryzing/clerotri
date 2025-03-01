@@ -8,7 +8,7 @@ import MaterialIcon from 'react-native-vector-icons/MaterialIcons';
 
 import type {Channel} from 'revolt.js';
 
-import {app, setFunction} from '@clerotri/Generic';
+import {app, setFunction, settings} from '@clerotri/Generic';
 import {styles} from '@clerotri/Theme';
 import {
   ContextButton,
@@ -84,7 +84,7 @@ export const ChannelMenuSheet = observer(() => {
               </View>
               <Text>Mark as read</Text>
             </ContextButton>
-            {app.settings.get('ui.showDeveloperFeatures') ? (
+            {settings.get('ui.showDeveloperFeatures') ? (
               <CopyIDButton id={channel._id} />
             ) : null}
             <ContextButton

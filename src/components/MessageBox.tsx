@@ -3,23 +3,24 @@ import {Platform, Pressable, StyleSheet, View} from 'react-native';
 import {useTranslation} from 'react-i18next';
 import {observer} from 'mobx-react-lite';
 
-import {type DocumentPickerResponse} from 'react-native-document-picker';
+import {type DocumentPickerResponse} from '@react-native-documents/picker';
 import MaterialIcon from 'react-native-vector-icons/MaterialIcons';
 import MaterialCommunityIcon from 'react-native-vector-icons/MaterialCommunityIcons';
 
 import type {Channel, Message} from 'revolt.js';
 import {ulid} from 'ulid';
 
-import {app, setFunction} from '@clerotri/Generic';
+import {app, setFunction, settings} from '@clerotri/Generic';
 import {client} from '@clerotri/lib/client';
 import {styles} from '@clerotri/Theme';
-import {DocumentPicker} from '@clerotri/crossplat/DocumentPicker';
+
+import {AttachmentPickerButton} from '@clerotri/components/AttachmentPickerButton';
 import {Avatar, Input, Text, Username} from '@clerotri/components/common/atoms';
 import {USER_IDS} from '@clerotri/lib/consts';
 import {storage} from '@clerotri/lib/storage';
 import {commonValues, Theme, ThemeContext} from '@clerotri/lib/themes';
 import {ReplyingMessage} from '@clerotri/lib/types';
-import {getReadableFileSize, showToast} from '@clerotri/lib/utils';
+import {getReadableFileSize} from '@clerotri/lib/utils';
 
 let typing = false;
 
@@ -178,62 +179,19 @@ export const MessageBox = observer((props: MessageBoxProps) => {
       ) : null}
       <View style={localStyles.messageBoxInner}>
         {Platform.OS !== 'web' &&
-        app.settings.get('ui.messaging.sendAttachments') &&
-        attachments.length < 5 ? (
-          <Pressable
-            style={{
-              ...localStyles.sendButton,
-              ...localStyles.attachmentsButton,
-            }}
-            onPress={async () => {
-              try {
-                let res = await DocumentPicker.pickSingle({
-                  type: [DocumentPicker.types.allFiles],
-                });
-                let tooBig = false;
-                if (res.size && res.size > 20000000) {
-                  showToast('Attachments must be less than 20MB!');
-                  tooBig = true;
-                }
-                if (!tooBig) {
-                  let isDuplicate = false;
-                  for (const a of attachments) {
-                    if (a.uri === res.uri) {
-                      console.log(
-                        `[MESSAGEBOX] Not pushing duplicate attachment ${res.name} (${res.uri})`,
-                      );
-                      isDuplicate = true;
-                    }
-                  }
-
-                  if (res.uri && !isDuplicate) {
-                    console.log(
-                      `[MESSAGEBOX] Pushing attachment ${res.name} (${res.uri})`,
-                    );
-                    setAttachments(existingAttachments => [
-                      ...existingAttachments,
-                      res,
-                    ]);
-                    console.log(attachments);
-                  }
-                }
-              } catch (error) {
-                console.log(`[MESSAGEBOX] Error: ${error}`);
-              }
-            }}>
-            <MaterialIcon
-              name="add-circle"
-              size={24}
-              color={currentTheme.foregroundPrimary}
-            />
-          </Pressable>
+        settings.get('ui.messaging.sendAttachments') ? (
+          <AttachmentPickerButton
+            attachments={attachments}
+            setAttachments={setAttachments}
+          />
         ) : null}
         <Input
+          skipRegularStyles
           multiline
           placeholderTextColor={currentTheme.foregroundSecondary}
           style={{
             ...localStyles.messageBox,
-            fontSize: app.settings.get('ui.messaging.fontSize') as number,
+            fontSize: settings.get('ui.messaging.fontSize') as number,
           }}
           placeholder={t(`app.messaging.${placeholderText(props.channel)}`, {
             name:
@@ -427,7 +385,7 @@ const TypingIndicator = observer(({channel}: {channel: Channel}) => {
 
   if (channel) {
     let users = channel.typing?.filter(entry => !!entry) || undefined;
-    !app.settings.get('ui.messaging.showSelfInTypingIndicator') &&
+    !settings.get('ui.messaging.showSelfInTypingIndicator') &&
       (users = users?.filter(entry => entry?._id !== client.user?._id));
     let out = <></>;
     const server = channel.server ?? undefined;
@@ -497,12 +455,9 @@ const generateLocalStyles = (currentTheme: Theme) => {
     },
     messageBox: {
       backgroundColor: currentTheme.messageBoxInput,
-      color: currentTheme.foregroundPrimary,
-      paddingLeft: commonValues.sizes.large,
+      paddingInline: commonValues.sizes.large,
       padding: commonValues.sizes.medium,
       flex: 1,
-      fontFamily: 'Open Sans',
-      borderRadius: commonValues.sizes.medium,
     },
     messageBoxInner: {
       flexDirection: 'row',
@@ -522,11 +477,6 @@ const generateLocalStyles = (currentTheme: Theme) => {
       padding: 5,
       borderRadius: commonValues.sizes.medium,
       backgroundColor: currentTheme.accentColor,
-    },
-    attachmentsButton: {
-      marginStart: 0,
-      marginEnd: commonValues.sizes.medium,
-      backgroundColor: currentTheme.messageBox,
     },
     noPermissionBox: {
       backgroundColor: currentTheme.backgroundSecondary,

@@ -61,13 +61,9 @@ async function sendReport(
 const generateLocalStyles = (currentTheme: Theme) => {
   return StyleSheet.create({
     input: {
-      fontFamily: 'Open Sans',
-      borderRadius: commonValues.sizes.medium,
       backgroundColor: currentTheme.buttonBackground,
       margin: commonValues.sizes.small,
       padding: commonValues.sizes.large,
-      paddingHorizontal: commonValues.sizes.large,
-      color: currentTheme.foregroundPrimary,
     },
   });
 };
@@ -347,6 +343,7 @@ export const ReportSheet = observer(() => {
               <>
                 <Text>You can add more context to your report here.</Text>
                 <Input
+                  skipRegularStyles
                   style={localStyles.input}
                   value={additionalContext}
                   onChangeText={(c: string) => {
@@ -389,6 +386,7 @@ export const ReportSheet = observer(() => {
               <>
                 <Text>You can add more context to your report here.</Text>
                 <Input
+                  skipRegularStyles
                   style={localStyles.input}
                   value={additionalContext}
                   onChangeText={(c: string) => {
@@ -427,6 +425,7 @@ export const ReportSheet = observer(() => {
               <>
                 <Text>You can add more context to your report here.</Text>
                 <Input
+                  skipRegularStyles
                   style={localStyles.input}
                   value={additionalContext}
                   onChangeText={(c: string) => {

@@ -9,7 +9,7 @@ import MaterialIcon from 'react-native-vector-icons/MaterialIcons';
 
 import type {Message} from 'revolt.js';
 
-import {app, setFunction} from '@clerotri/Generic';
+import {app, setFunction, settings} from '@clerotri/Generic';
 import {styles} from '@clerotri/Theme';
 import {
   ContextButton,
@@ -104,7 +104,7 @@ export const MessageMenuSheet = observer(() => {
                 <Text>Copy content</Text>
               </ContextButton>
             ) : null}
-            {app.settings.get('ui.showDeveloperFeatures') ? (
+            {settings.get('ui.showDeveloperFeatures') ? (
               <CopyIDButton id={message._id} />
             ) : null}
             <ContextButton

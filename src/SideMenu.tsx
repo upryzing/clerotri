@@ -23,6 +23,7 @@ import {client} from '@clerotri/lib/client';
 import {DEFAULT_API_URL} from '@clerotri/lib/consts';
 import {ChannelContext, SideMenuContext} from '@clerotri/lib/state';
 import {storage} from '@clerotri/lib/storage';
+import {getInstanceURL} from '@clerotri/lib/storage/utils';
 import {commonValues, Theme, ThemeContext} from '@clerotri/lib/themes';
 import {useBackHandler} from '@clerotri/lib/ui';
 
@@ -73,7 +74,7 @@ const SideMenu = () => {
           <ServerList
             onServerPress={(s: Server) => setCurrentServer(s)}
             onServerLongPress={(s: Server) => app.openServerContextMenu(s)}
-            showDiscover={app.settings.get('app.instance') === DEFAULT_API_URL}
+            showDiscover={getInstanceURL() === DEFAULT_API_URL}
           />
         </ScrollView>
         <ChannelList currentServer={currentServer} />
@@ -161,7 +162,7 @@ export const SideMenuHandler = () => {
           renderDrawerContent={() => <SideMenu />}
           style={localStyles.drawer}
           drawerStyle={{
-            backgroundColor: currentTheme.backgroundPrimary,
+            backgroundColor: '#00000000',
             width: width - 50,
           }}>
           <ChannelView />
@@ -175,11 +176,10 @@ const generateLocalStyles = (currentTheme: Theme) => {
   return StyleSheet.create({
     drawer: {
       flex: 1,
-      backgroundColor: currentTheme.backgroundPrimary,
     },
     sideView: {
       flex: 1,
-      backgroundColor: currentTheme.backgroundSecondary,
+      backgroundColor: currentTheme.background,
       flexDirection: 'row',
       justifyContent: 'flex-start',
     },

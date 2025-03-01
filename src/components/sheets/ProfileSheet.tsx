@@ -8,7 +8,7 @@ import MaterialCommunityIcon from 'react-native-vector-icons/MaterialCommunityIc
 
 import type {User, Server} from 'revolt.js';
 
-import {app, setFunction} from '@clerotri/Generic';
+import {app, setFunction, settings} from '@clerotri/Generic';
 import {client} from '@clerotri/lib/client';
 import {styles} from '@clerotri/Theme';
 import {
@@ -139,7 +139,7 @@ export const ProfileSheet = observer(() => {
                 Return to Profile
               </Text>
             </Pressable>
-            {app.settings.get('ui.showDeveloperFeatures') ? (
+            {settings.get('ui.showDeveloperFeatures') ? (
               <CopyIDButton id={user._id} />
             ) : null}
             {user.relationship !== 'User' ? (

@@ -2,21 +2,21 @@ import {useState} from 'react';
 import {View} from 'react-native';
 import {observer} from 'mobx-react-lite';
 
-import {app} from '@clerotri/Generic';
+import {settings} from '@clerotri/Generic';
 import {BoolSetting, OptionSetting, StringNumberSetting} from './atoms';
 
 export const SettingsCategory = observer(({category}: {category: string}) => {
   const [showExperimental, setShowExperimental] = useState(
-    app.settings.get('ui.settings.showExperimental') as boolean,
+    settings.get('ui.settings.showExperimental') as boolean,
   );
 
   const [showDev, setShowDev] = useState(
-    app.settings.get('ui.showDeveloperFeatures') as boolean,
+    settings.get('ui.showDeveloperFeatures') as boolean,
   );
 
   return (
     <View key={`settings-category-${category}`}>
-      {app.settings.list.map(sRaw => {
+      {settings.list.map(sRaw => {
         try {
           if (
             (sRaw.experimental && !showExperimental) ||

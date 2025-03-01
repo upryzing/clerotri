@@ -2,7 +2,7 @@ import {useContext, useState} from 'react';
 import {View} from 'react-native';
 import {useTranslation} from 'react-i18next';
 
-import {app} from '@clerotri/Generic';
+import {settings} from '@clerotri/Generic';
 import {Setting} from '@clerotri/lib/types';
 import {Checkbox, Text} from '../../atoms';
 import {IndicatorIcons} from './IndicatorIcons';
@@ -21,7 +21,7 @@ export const BoolSetting = ({
 
   const {t} = useTranslation();
 
-  const [value, setValue] = useState(app.settings.get(sRaw.key) as boolean);
+  const [value, setValue] = useState(settings.get(sRaw.key) as boolean);
   return (
     <View
       key={`settings_${sRaw.key}`}
@@ -46,7 +46,7 @@ export const BoolSetting = ({
         value={value}
         callback={() => {
           const newValue = !value;
-          app.settings.set(sRaw.key, newValue);
+          settings.set(sRaw.key, newValue);
           setValue(newValue);
           sRaw.key === 'ui.settings.showExperimental'
             ? experimentalFunction(newValue)

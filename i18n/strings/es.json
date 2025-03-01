@@ -1,0 +1,296 @@
+{
+    "app": {
+        "actions": {
+            "back": "Atrás",
+            "cancel": "Cancelar",
+            "close": "Cerrar",
+            "confirm": "Confirmar",
+            "create_channel": "Crear canal",
+            "copy_invite": "Copiar invitación",
+            "delete": "Borrar",
+            "save": "Guardar"
+        },
+        "discover": {
+            "fetching_bots": "Cargando bots…",
+            "fetching_servers": "Cargando servidores…",
+            "header_servers": "Descubrir servidores",
+            "header_bots": "Descubrir los bots",
+            "tabs": {
+                "servers": "Servidores",
+                "bots": "Bots"
+            },
+            "count_servers_one": "{{count}} servidor",
+            "count_servers_many": "{{count}} servidores",
+            "count_servers_other": "{{count}} servidores",
+            "count_bots_one": "{{count}} bot",
+            "count_bots_many": "{{count}} bots",
+            "count_bots_other": "{{count}} bots"
+        },
+        "loading": {
+            "generic": "Cargando…",
+            "connecting": "Iniciando sesión…",
+            "unknown_state": "Oh oh…",
+            "unknown_state_body": "Por favor, avísale a los desarrolladores que viste esto (valor: {{state}})"
+        },
+        "login": {
+            "forms": {
+                "email_placeholder": "Correo electrónico",
+                "password_placeholder": "Contraseña",
+                "mfa_placeholder": "Código de un solo uso",
+                "session_token_placeholder": "Token"
+            },
+            "instance_notice": "Te estás conectando a {{url}}.",
+            "options": {
+                "login_regular": "Si, iniciar sesión con mi email y contraseña",
+                "login_regular_body": "Recomendado para la mayoría de los usuarios.",
+                "login_session_token": "Sí, inicie sesión con un token de sesión",
+                "signup": "No, regístrate",
+                "signup_body": "Serás redirigido a la aplicación web. Una vez que te hayas registrado, vuelve e inicia sesión.",
+                "login_session_token_body": "Utilice esta opción si tiene problemas con el sistema de inicio de sesión habitual. Es posible que algunas funciones no estén disponibles."
+            },
+            "settings": {
+                "saved": "¡Guardado!",
+                "saved_body": "Por ahora, tendrás que cerrar y volver a abrir la aplicación para que se apliquen los cambios. Sabemos que esto no es lo ideal, lo solucionaremos más adelante."
+            },
+            "subheader": "¿Tienes una cuenta?",
+            "token_info_label": "¿Cómo obtengo mi token?"
+        },
+        "home": {
+            "join_lounge": "Únase al Revolt Lounge",
+            "open_lounge": "Abre el Revolt Lounge",
+            "join_rvmob": "Únase al servidor Clerotri",
+            "open_rvmob": "Abra el servidor Clerotri",
+            "description": "¡Desliza el dedo desde la izquierda de la pantalla o toca el ícono de tres líneas para ver tus servidores y mensajes!",
+            "open_settings": "Abrir configuración"
+        },
+        "profile": {
+            "roles": {
+                "copied_role_id_toast": "ID de rol copiado"
+            }
+        },
+        "messaging": {
+            "message_box_group": "Mensaje {{name}}",
+            "message_box_dm": "Mensaje @{{name}}",
+            "message_box_saved_notes": "Guardar en tus notas",
+            "no_messages": "No hay mensajes",
+            "reply_not_loaded": "Mensaje no cargado",
+            "message_box_channel": "Mensaje #{{name}}",
+            "no_messages_body": "Iniciar la conversación."
+        },
+        "modals": {
+            "confirm_deletion": {
+                "header_channel": "¿Borrar canal?",
+                "header_role": "¿Eliminar rol?",
+                "header_message": "¿Borrar mensaje?",
+                "header_server": "¿Borrar servidor?",
+                "body_role": "¿Estás seguro de que quieres eliminar <2> este rol </2>?",
+                "body_message": "¿Estás seguro de que quieres eliminar <2> este mensaje </2>?",
+                "body_server": "¿Estás seguro de que deseas eliminar <2>{{name}}</2>?",
+                "warning": "Esto no se puede deshacer.",
+                "body_channel": "¿Estás seguro de que quieres eliminar <2> este canal </2>?"
+            },
+            "create_channel": {
+                "header": "Crear un nuevo canal",
+                "name_header": "Nombre",
+                "type_header": "Tipo",
+                "type_text": "Canal de texto",
+                "type_voice": "Canal de voz",
+                "nsfw_header": "NSFW",
+                "nsfw_label": "Marcar el canal como NSFW",
+                "name_placeholder": "Nombre del Canal"
+            },
+            "edit_text": {
+                "display_name_header": "Establecer nombre para mostrar",
+                "display_name_placeholder": "Mostrar nombre",
+                "nickname_header": "Establecer apodo",
+                "nickname_placeholder": "Apodo (déjelo en blanco para restablecerlo)",
+                "nickname_other_placeholder": "Apodo (déjelo en blanco para restablecerlo)",
+                "role_colour_header": "Establecer el color del rol",
+                "role_colour_placeholder": "Color del Role",
+                "session_name_header": "Establecer el nombre de la sesión",
+                "session_name_placeholder": "Nombre de la sesión",
+                "nickname_other_header": "Establecer apodo de miembro"
+            },
+            "new_invite": {
+                "header": "Invitación creada",
+                "body": "Aquí está tu nuevo enlace de invitación:"
+            }
+        },
+        "servers": {
+            "settings": {
+                "general": "General",
+                "customisation": "Personalización",
+                "user_management": "Gestión de usuarios",
+                "delete_server": "Eliminar servidor",
+                "overview": {
+                    "title": "Descripción general",
+                    "name": "Nombre del servidor",
+                    "description": "Descripción del servidor",
+                    "markdown_tip_link": "Más información.",
+                    "set_description": "Descripción del conjunto",
+                    "system_messages": "Mensajes del sistema",
+                    "system_message_channel_types": {
+                        "user_joined": "Usuario unido",
+                        "user_left": "El usuario se fue",
+                        "user_kicked": "Usuario expulsado",
+                        "user_banned": "Usuario baneado"
+                    },
+                    "errors": {
+                        "empty_server_name": "¡Los nombres de servidores no pueden estar vacíos!"
+                    },
+                    "system_messages_description": "Cuando los miembros se unen, se van, son expulsados o baneados, puedes recibir mensajes.",
+                    "markdown_tip": "Las descripciones de servidores admiten el formato Markdown",
+                    "description_placeholder": "Añadir una descripción…"
+                },
+                "channels": {
+                    "title": "Canales",
+                    "name": "Nombre del canal",
+                    "name_placeholder": "Establecer un nombre para el canal…",
+                    "permissions": "Permisos del canal",
+                    "no_perms_set": "No establecido",
+                    "errors": {
+                        "empty_channel_name": "¡Los nombres de los canales no pueden estar vacíos!"
+                    }
+                },
+                "roles": {
+                    "set_colour": "Establecer el color del rol",
+                    "delete": "Borrar Rol",
+                    "title": "Roles",
+                    "name": "Nombre",
+                    "name_placeholder": "Establecer un nombre de rol…",
+                    "options_header": "Opciones",
+                    "options": {
+                        "hoist": "Función de elevación",
+                        "hoist_body": "Mostrar este rol por encima de otros en la lista de miembros."
+                    },
+                    "rank": "Rango",
+                    "permissions": "Permisos",
+                    "colour": "Color",
+                    "open_colour_modal": "Introduzca el colo manualmente",
+                    "errors": {
+                        "empty_role_name": "¡Los nombres de los roles no pueden estar vacíos!"
+                    }
+                },
+                "emoji": {
+                    "title": "Emoji",
+                    "added_by": "Añadido por @ {{name}}",
+                    "empty": "Sin emoji",
+                    "deleted_toast": "{{name}} eliminado"
+                },
+                "members": {
+                    "title": "Miembros",
+                    "loading": "Buscando miembros…"
+                },
+                "invites": {
+                    "title": "Invitaciones",
+                    "loading": "Obteniendo invitaciones…",
+                    "empty": "Sin invitaciones"
+                },
+                "bans": {
+                    "loading": "Obteniendo prohibiciones…",
+                    "empty": "Sin prohibiciones",
+                    "no_reason": "No se proporcionó ninguna razón",
+                    "title": "Prohibiciones"
+                }
+            }
+        },
+        "settings": {
+            "app": {
+                "language": "Seleccione su idioma",
+                "refetchOnReconnect": "Recuperar mensajes al reconectarse",
+                "reopenLastChannel": "Vuelve a abrir el último canal en el que estabas al abrir la aplicación",
+                "notifications": {
+                    "enabled": "Habilitar notificaciones push",
+                    "enabledInApp": "Habilitar notificaciones en la aplicación",
+                    "notifyOnSelfPing": "Recibe una notificación cuando te hagas ping a ti mismo"
+                },
+                "showChangelogs": "Mostrar registros de cambios después de actualizar Clerotri"
+            },
+            "ui": {
+                "home": {
+                    "holidays": "Mostrar días festivos en la página de inicio"
+                },
+                "theme": "Tema",
+                "messaging": {
+                    "doubleTapToReply_remark": "Esto sólo es compatible en la vista de mensaje nuevo.",
+                    "emojiPack": "Paquete de emojis",
+                    "experimentalScrolling_remark": "Sólo puedes desplazarte hacia atrás.",
+                    "fontSize": "Tamaño de fuente",
+                    "fontSize_remark": "Esto se aplicará a los mensajes y a ciertas partes de la aplicación.",
+                    "messageSpacing": "Espacio de mensajes",
+                    "sendAttachments": "Habilitar el envío de archivos adjuntos",
+                    "showNSFWContent": "Consentimiento para contenido para mayores de 18 años",
+                    "showReactions": "Mostrar reacciones debajo de los mensajes",
+                    "showReactions_remark": "Puedes agregar reacciones existentes, pero aún no puedes agregar nuevas.",
+                    "showSelfInTypingIndicator": "Muéstrate en el indicador de escritura",
+                    "use24H": "Utilice marcas de tiempo de 24 horas",
+                    "useNewMessageView": "Usar la vista de mensaje nuevo",
+                    "experimentalScrolling": "Habilitar el desplazamiento por canal para ver mensajes antiguos",
+                    "doubleTapToReply": "Responder a los mensajes tocándolos dos veces",
+                    "showMasqAvatar": "Mostrar avatar enmascarado en la esquina",
+                    "statusInChatAvatars": "Mostrar el estado del usuario en los avatares del chat"
+                },
+                "settings": {
+                    "showExperimental": "Mostrar funciones experimentales"
+                },
+                "showDeveloperFeatures": "Mostrar herramientas para desarrolladores"
+            }
+        },
+        "settings_menu": {
+            "account": {
+                "title": "Cuenta"
+            },
+            "groups": {
+                "user": "Usuario",
+                "app": "Aplicación",
+                "other": "Otros",
+                "advanced": "Avanzado"
+            },
+            "i18n": {
+                "title": "Idioma"
+            },
+            "info": {
+                "title": "Acerca de Clerotri"
+            },
+            "licenses": {
+                "title": "Licencias de código abierto",
+                "loading": "Cargando datos de licencia…"
+            },
+            "other": {
+                "debug_info": "Copiar información de depuración",
+                "view_issues": "Ver problemas abiertos",
+                "logout": "Finalizar la sesión"
+            },
+            "appearance": {
+                "title": "Apariencia"
+            },
+            "functionality": {
+                "title": "Características"
+            },
+            "profile": {
+                "title": "Perfil"
+            }
+        },
+        "sheets": {
+            "channel": {
+                "create_invite": "Crear invitación",
+                "mark_as_read": "Marcar como leído",
+                "copy_link": "Copiar enlace del canal",
+                "delete": "Eliminar canal"
+            }
+        },
+        "misc": {
+            "generic_errors": {
+                "rateLimited_toast": "Disminuya la velocidad y vuelva a intentarlo en un minuto."
+            },
+            "network_indicator": {
+                "body": "Conexión perdida",
+                "hide": "(esconder)"
+            },
+            "voice": {
+                "header": "¡Los canales de voz aún no son compatibles con Clerotri!",
+                "body": "Mientras tanto, puedes unirte a ellos a través de la aplicación web o Revolt Desktop."
+            }
+        }
+    }
+}

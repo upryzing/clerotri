@@ -5,11 +5,11 @@ import {
   useRef,
   useState,
 } from 'react';
-import {StatusBar, View} from 'react-native';
+import {StatusBar} from 'react-native';
 
-import type {API} from 'revolt.js';
+import type {API, ClientboundNotification} from 'revolt.js';
 
-import {app, randomizeRemark, setFunction} from '@clerotri/Generic';
+import {app, randomizeRemark, setFunction, settings} from '@clerotri/Generic';
 import {client} from '@clerotri/lib/client';
 import {Modals} from '@clerotri/Modals';
 import {SideMenuHandler} from '@clerotri/SideMenu';
@@ -29,29 +29,6 @@ import {CVChannel} from '@clerotri/lib/types';
 import {checkLastVersion, openLastChannel} from '@clerotri/lib/utils';
 import {LoginViews} from '@clerotri/pages/LoginViews';
 
-function handleUserSettingsPacket(
-  packet: any,
-  setOrderedServers: (servers: any) => void,
-  channelNotificationSettings: any,
-  serverNotificationSettings: any,
-) {
-  console.log('[WEBSOCKET] Synced settings updated');
-  const newSettings = packet.update;
-  try {
-    if ('ordering' in newSettings) {
-      const newOrderedServers = JSON.parse(newSettings.ordering[1]).servers;
-      setOrderedServers(newOrderedServers);
-    }
-    if ('notifications' in newSettings) {
-      const {server, channel} = JSON.parse(newSettings.notifications[1]);
-      channelNotificationSettings.current = channel;
-      serverNotificationSettings.current = server;
-    }
-  } catch (err) {
-    console.log(`[APP] Error fetching settings: ${err}`);
-  }
-}
-
 function LoggedInViews({
   channelNotificationSettings,
   serverNotificationSettings,
@@ -69,13 +46,11 @@ function LoggedInViews({
     return currentChannel;
   });
 
-  const {setOrderedServers} = useContext(OrderedServersContext);
-
   const [notificationMessage, setNotificationMessage] =
     useState<API.Message | null>(null);
 
   useEffect(() => {
-    if (app.settings.get('app.reopenLastChannel')) {
+    if (settings.get('app.reopenLastChannel')) {
       openLastChannel();
     }
   }, []);
@@ -114,21 +89,9 @@ function LoggedInViews({
       );
     }
 
-    function onUserSettingsPacket(p: any) {
-      handleUserSettingsPacket(
-        p,
-        setOrderedServers,
-        channelNotificationSettings,
-        serverNotificationSettings,
-      );
-    }
-
-    async function onNewPacket(p: any) {
+    async function onNewPacket(p: ClientboundNotification) {
       if (p.type === 'Message') {
         await onMessagePacket(p);
-      }
-      if (p.type === 'UserSettingsUpdate') {
-        onUserSettingsPacket(p);
       }
     }
 
@@ -155,12 +118,12 @@ function LoggedInViews({
       <SideMenuHandler />
       <Modals />
       <NetworkIndicator client={client} />
-      <View style={{position: 'absolute', top: 20, left: 0, width: '100%'}}>
+      {notificationMessage && (
         <Notification
           message={notificationMessage}
           dismiss={() => setNotificationMessage(null)}
         />
-      </View>
+      )}
     </ChannelContext.Provider>
   );
 }
@@ -196,9 +159,7 @@ export function MainView() {
 
     function handleConnectingEvent() {
       app.setLoadingStage('connecting');
-      console.log(
-        `[APP] Connecting to instance... (${new Date().getTime()})`,
-      );
+      console.log(`[APP] Connecting to instance... (${new Date().getTime()})`);
     }
 
     function handleConnectedEvent() {
@@ -218,9 +179,7 @@ export function MainView() {
         ]);
         try {
           fetchedOrderedServers = JSON.parse(rawSettings.ordering[1]).servers;
-          const notificationSettings = JSON.parse(
-            rawSettings.notifications[1],
-          );
+          const notificationSettings = JSON.parse(rawSettings.notifications[1]);
           fetchedChannelNotificationSettings = notificationSettings.channel;
           fetchedServerNotificationSettings = notificationSettings.server;
         } catch (err) {
@@ -231,8 +190,7 @@ export function MainView() {
       }
 
       setOrderedServers(fetchedOrderedServers);
-      channelNotificationSettings.current =
-        fetchedChannelNotificationSettings;
+      channelNotificationSettings.current = fetchedChannelNotificationSettings;
       serverNotificationSettings.current = fetchedServerNotificationSettings;
       setStatus('loggedIn');
 
@@ -241,6 +199,25 @@ export function MainView() {
       setUpNotifeeListener(client);
     }
 
+    function handleUserSettingsPacket(
+      packet: any, // ClientboundNotification where packet.type === 'UserSettingsUpdate'
+    ) {
+      console.log('[WEBSOCKET] Synced settings updated');
+      const newSettings = packet.update;
+      try {
+        if ('ordering' in newSettings) {
+          const newOrderedServers = JSON.parse(newSettings.ordering[1]).servers;
+          setOrderedServers(newOrderedServers);
+        }
+        if ('notifications' in newSettings) {
+          const {server, channel} = JSON.parse(newSettings.notifications[1]);
+          channelNotificationSettings.current = channel;
+          serverNotificationSettings.current = server;
+        }
+      } catch (err) {
+        console.log(`[APP] Error fetching settings: ${err}`);
+      }
+    }
     function handleServerDeletion(server: string) {
       const currentServer = app.getCurrentServer();
       if (currentServer === server) {
@@ -249,10 +226,17 @@ export function MainView() {
       }
     }
 
+    function onNewPacket(p: ClientboundNotification) {
+      if (p.type === 'UserSettingsUpdate') {
+        handleUserSettingsPacket(p);
+      }
+    }
+
     function setUpListeners() {
       client.on('connecting', handleConnectingEvent);
       client.on('connected', handleConnectedEvent);
       client.on('ready', handleReadyEvent);
+      client.on('packet', onNewPacket);
       client.on('server/delete', handleServerDeletion);
     }
 
@@ -260,6 +244,7 @@ export function MainView() {
       client.removeListener('connecting', handleConnectingEvent);
       client.removeListener('connected', handleConnectedEvent);
       client.removeListener('ready', handleReadyEvent);
+      client.removeListener('packet', onNewPacket);
       client.removeListener('server/delete', handleServerDeletion);
     }
 
@@ -315,6 +300,11 @@ export function MainView() {
           header={'app.loading.unknown_state'}
           body={'app.loading.unknown_state_body'}
           bodyParams={{state: status}}
+          styles={{
+            loadingScreen: {
+              backgroundColor: currentTheme.backgroundPrimary,
+            },
+          }}
         />
       )}
     </OrderedServersContext.Provider>

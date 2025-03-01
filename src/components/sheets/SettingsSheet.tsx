@@ -13,10 +13,11 @@ import {
 import MaterialCommunityIcon from 'react-native-vector-icons/MaterialCommunityIcons';
 import MaterialIcon from 'react-native-vector-icons/MaterialIcons';
 
-import {app, setFunction} from '@clerotri/Generic';
+import {app, appVersion, setFunction} from '@clerotri/Generic';
 import {client} from '@clerotri/lib/client';
 import {OPEN_ISSUES} from '@clerotri/lib/consts';
 import {storage} from '@clerotri/lib/storage';
+import {getInstanceURL} from '@clerotri/lib/storage/utils';
 import {ThemeContext} from '@clerotri/lib/themes';
 import {SettingsSection} from '@clerotri/lib/types';
 import {openUrl} from '@clerotri/lib/utils';
@@ -48,9 +49,10 @@ async function copyDebugInfo() {
     },
 
     appInfo: {
+      instance: getInstanceURL(),
       userID: client.user?._id ?? 'ERR_ID_UNDEFINED',
       settings: storage.getString('settings'),
-      version: app.version,
+      version: appVersion,
     },
   };
 

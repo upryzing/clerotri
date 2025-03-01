@@ -18,7 +18,7 @@ import {app} from '@clerotri/Generic';
 import {client} from '@clerotri/lib/client';
 import {ChannelButton, Text} from '../common/atoms';
 import {ChannelContext, SideMenuContext} from '@clerotri/lib/state';
-import {commonValues, ThemeContext} from '@clerotri/lib/themes';
+import {commonValues, type Theme, ThemeContext} from '@clerotri/lib/themes';
 
 type UserChannelListChannel =
   | Channel
@@ -87,6 +87,7 @@ const ServerChannelListCategory = observer(
 
 const ServerChannelList = observer((props: ServerChannelListProps) => {
   const {currentTheme} = useContext(ThemeContext);
+  const localStyles = generateLocalStyles(currentTheme);
 
   const {currentChannel, setCurrentChannel} = useContext(ChannelContext);
   const {setSideMenuOpen} = useContext(SideMenuContext);
@@ -198,6 +199,9 @@ const ServerChannelList = observer((props: ServerChannelListProps) => {
 });
 
 const UserChannelList = observer(() => {
+  const {currentTheme} = useContext(ThemeContext);
+  const localStyles = generateLocalStyles(currentTheme);
+
   const {currentChannel, setCurrentChannel} = useContext(ChannelContext);
   const {setSideMenuOpen} = useContext(SideMenuContext);
 
@@ -303,6 +307,9 @@ const UserChannelList = observer(() => {
 });
 
 export const ChannelList = observer((props: ChannelListProps) => {
+  const {currentTheme} = useContext(ThemeContext);
+  const localStyles = generateLocalStyles(currentTheme);
+
   return props.currentServer ? (
     <ScrollView
       key={'channel-list'}
@@ -318,21 +325,24 @@ export const ChannelList = observer((props: ChannelListProps) => {
   );
 });
 
-const localStyles = StyleSheet.create({
-  channelList: {
-    flexGrow: 1000,
-    flex: 1000,
-  },
-  userChannelListHeader: {
-    marginLeft: commonValues.sizes.large,
-    margin: commonValues.sizes.xl,
-    fontSize: 18,
-    fontWeight: 'bold',
-  },
-  serverName: {
-    marginVertical: 10,
-    maxWidth: '90%',
-    fontSize: 18,
-    fontWeight: 'bold',
-  },
-});
+const generateLocalStyles = (currentTheme: Theme) => {
+  return StyleSheet.create({
+    channelList: {
+      backgroundColor: currentTheme.backgroundSecondary,
+      flexGrow: 1000,
+      flex: 1000,
+    },
+    userChannelListHeader: {
+      marginLeft: commonValues.sizes.large,
+      margin: commonValues.sizes.xl,
+      fontSize: 18,
+      fontWeight: 'bold',
+    },
+    serverName: {
+      marginVertical: 10,
+      maxWidth: '90%',
+      fontSize: 18,
+      fontWeight: 'bold',
+    },
+  });
+};

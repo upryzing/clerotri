@@ -53,6 +53,7 @@ const generateLocalStyles = (currentTheme: Theme) => {
   return StyleSheet.create({
     container: {
       flex: 1,
+      backgroundColor: currentTheme.backgroundPrimary,
       padding: commonValues.sizes.xl,
       justifyContent: 'center',
     },

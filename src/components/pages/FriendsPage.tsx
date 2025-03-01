@@ -1,11 +1,19 @@
-import {useMemo, useState} from 'react';
-import {ScrollView, StyleSheet, TouchableOpacity, View} from 'react-native';
+import {useContext, useMemo, useState} from 'react';
+import {
+  Platform,
+  SectionList,
+  StyleSheet,
+  TouchableOpacity,
+  View,
+} from 'react-native';
+import {useTranslation} from 'react-i18next';
 import {observer} from 'mobx-react-lite';
 
 import type {User} from 'revolt.js';
 
 import {app} from '@clerotri/Generic';
 import {client} from '@clerotri/lib/client';
+import {commonValues, ThemeContext} from '@clerotri/lib/themes';
 import {styles} from '@clerotri/Theme';
 import {MiniProfile} from '@clerotri/components/common/profile';
 import {ChannelHeader} from '@clerotri/components/navigation/ChannelHeader';
@@ -20,73 +28,78 @@ type DisplayStates = {
   blocked: boolean;
 };
 
-type RelationshipGroups = {
-  onlineFriends: React.JSX.Element[]; // online friends
-  offlineFriends: React.JSX.Element[]; // offline friends
-  incoming: React.JSX.Element[]; // incoming friend requests
-  outgoing: React.JSX.Element[]; // outgoing friend requests
-  blocked: React.JSX.Element[]; // users blocked by the current user
-};
-
 function sortUsers(unsortedUsers: User[]) {
   console.log('sus');
 
-  const users = unsortedUsers.sort((user1, user2) =>
-    user1.username.localeCompare(user2.username),
-  );
+  const users = unsortedUsers
+    .sort((user1, user2) => user1.username.localeCompare(user2.username))
+    .filter(
+      user =>
+        user.relationship === 'Incoming' ||
+        user.relationship === 'Outgoing' ||
+        user.relationship === 'Friend' ||
+        user.relationship === 'Blocked',
+    );
+
   return users;
 }
 
 /*
- * Sorts the users into each category and returns an array of buttons
+ * Sorts the users into each category and returns a data object for the SectionList
  */
 function finalSort(users: User[]) {
-  const onlineButtons = [] as React.JSX.Element[];
-  const offlineButtons = [] as React.JSX.Element[];
-  const incomingButtons = [] as React.JSX.Element[];
-  const outgoingButtons = [] as React.JSX.Element[];
-  const blockedButtons = [] as React.JSX.Element[];
+  const onlineFriends = [] as User[];
+  const offlineFriends = [] as User[];
+  const incoming = [] as User[];
+  const outgoing = [] as User[];
+  const blocked = [] as User[];
 
   for (const user of users) {
-    const button = (
-      <Button
-        style={{justifyContent: 'flex-start'}}
-        key={user._id}
-        onPress={() => app.openProfile(user)}>
-        <View style={{maxWidth: '90%'}}>
-          <MiniProfile user={user} scale={1.15} />
-        </View>
-      </Button>
-    );
-
     switch (user.relationship) {
       case 'Friend':
-        (user.online ? onlineButtons : offlineButtons).push(button);
+        (user.online ? onlineFriends : offlineFriends).push(user);
         break;
       case 'Incoming':
-        incomingButtons.push(button);
+        incoming.push(user);
         break;
       case 'Outgoing':
-        outgoingButtons.push(button);
+        outgoing.push(user);
         break;
       case 'Blocked':
-        blockedButtons.push(button);
+        blocked.push(user);
         break;
       default:
         break;
     }
   }
-  return {
-    onlineButtons,
-    offlineButtons,
-    incomingButtons,
-    outgoingButtons,
-    blockedButtons,
-  };
+  return [
+    {title: 'incoming', data: incoming},
+    {title: 'outgoing', data: outgoing},
+    {title: 'onlineFriends', data: onlineFriends},
+    {title: 'offlineFriends', data: offlineFriends},
+    {title: 'blocked', data: blocked},
+  ];
 }
+
+const UserButton = observer(({user}: {user: User}) => {
+  return (
+    <Button
+      style={{justifyContent: 'flex-start'}}
+      key={user._id}
+      onPress={() => app.openProfile(user)}>
+      <View style={{maxWidth: '90%'}}>
+        <MiniProfile user={user} scale={1.15} />
+      </View>
+    </Button>
+  );
+});
 
 // TODO: refresh when relationships update
 export const FriendsPage = observer(() => {
+  const {currentTheme} = useContext(ThemeContext);
+
+  const {t} = useTranslation();
+
   const [displayState, setDisplayState] = useState({
     onlineFriends: true,
     offlineFriends: true,
@@ -95,21 +108,69 @@ export const FriendsPage = observer(() => {
     blocked: true,
   } as DisplayStates);
 
-  // sort the user list...
+  // sort the user list and filter for friends/blocked users/outgoing/incoming friend requests...
   const sortedUsers = useMemo(() => sortUsers([...client.users.values()]), []);
 
-  // ...then filter for friends/blocked users/outgoing/incoming friend requests and render the buttons
-  const groups: RelationshipGroups = useMemo(() => {
-    const sortedGroups = finalSort(sortedUsers);
-
-    return {
-      onlineFriends: sortedGroups.onlineButtons,
-      offlineFriends: sortedGroups.offlineButtons,
-      incoming: sortedGroups.incomingButtons,
-      outgoing: sortedGroups.outgoingButtons,
-      blocked: sortedGroups.blockedButtons,
-    };
+  // ...then group the filtered users and prepare the data object for the SectionList
+  const groups = useMemo(() => {
+    return finalSort(sortedUsers);
   }, [sortedUsers]);
+
+  const renderItem = ({
+    section,
+    item,
+  }: {
+    section: {title: string};
+    item: User;
+  }) => {
+    // @ts-expect-error this will always be one of the section types specified above, but SectionList just says "here's a string :3"
+    if (displayState[section.title]) {
+      return <UserButton user={item} />;
+    }
+    return null;
+  };
+
+  const renderHeader = ({
+    section: {title, data},
+  }: {
+    section: {title: string; data: User[]};
+  }) => {
+    return (
+      <View style={{backgroundColor: currentTheme.backgroundPrimary}}>
+        <TouchableOpacity
+          onPress={() =>
+            setDisplayState({
+              ...displayState,
+              // @ts-expect-error per above
+              [title]: !displayState[title],
+            })
+          }>
+          <Text style={localStyles.friendsListHeader}>
+            {t(`app.friends_list.${title}`, {count: data.length})}
+          </Text>
+        </TouchableOpacity>
+      </View>
+    );
+  };
+
+  const renderFooter = ({
+    section: {title, data},
+  }: {
+    section: {title: string; data: User[]};
+  }) => {
+    if (data.length > 0) {
+      return <></>;
+    }
+    return (
+      <Text style={{marginInline: 10}}>
+        {t(`app.friends_list.${title}_empty`)}
+      </Text>
+    );
+  };
+
+  const keyExtractor = (item: User) => {
+    return `friends-list-${item._id}`;
+  };
 
   return (
     <View style={styles.flex}>
@@ -117,118 +178,19 @@ export const FriendsPage = observer(() => {
         icon={<SpecialChannelIcon channel={'Friends'} />}
         name={'Friends'}
       />
-      <ScrollView style={{flex: 1}}>
-        {/* incoming requests */}
-        <TouchableOpacity
-          onPress={() =>
-            setDisplayState({
-              ...displayState,
-              incoming: !displayState.incoming,
-            })
-          }>
-          <Text style={localStyles.friendsListHeader}>
-            INCOMING REQUESTS - {groups.incoming.length}
-          </Text>
-        </TouchableOpacity>
-        {displayState.incoming && (
-          <View>
-            {groups.incoming.length > 0 ? (
-              groups.incoming
-            ) : (
-              <Text style={{marginHorizontal: 10}}>No incoming requests</Text>
-            )}
-          </View>
-        )}
-
-        {/* outgoing requests */}
-        <TouchableOpacity
-          onPress={() =>
-            setDisplayState({
-              ...displayState,
-              outgoing: !displayState.outgoing,
-            })
-          }>
-          <Text style={localStyles.friendsListHeader}>
-            OUTGOING REQUESTS - {groups.outgoing.length}
-          </Text>
-        </TouchableOpacity>
-        {displayState.outgoing && (
-          <View>
-            {groups.outgoing.length > 0 ? (
-              groups.outgoing
-            ) : (
-              <Text style={{marginHorizontal: 10}}>No outgoing requests</Text>
-            )}
-          </View>
-        )}
-
-        {/* online friends */}
-        <TouchableOpacity
-          onPress={() => {
-            console.log('online');
-            setDisplayState({
-              ...displayState,
-              onlineFriends: !displayState.onlineFriends,
-            });
-          }}>
-          <Text style={localStyles.friendsListHeader}>
-            ONLINE FRIENDS - {groups.onlineFriends.length}
-          </Text>
-        </TouchableOpacity>
-        {displayState.onlineFriends && (
-          <View>
-            {groups.onlineFriends.length > 0 ? (
-              groups.onlineFriends
-            ) : (
-              <Text style={{marginHorizontal: 10}}>No online friends</Text>
-            )}
-          </View>
-        )}
-
-        {/* offline friends */}
-        <TouchableOpacity
-          onPress={() =>
-            setDisplayState({
-              ...displayState,
-              offlineFriends: !displayState.offlineFriends,
-            })
-          }>
-          <Text style={localStyles.friendsListHeader}>
-            OFFLINE FRIENDS - {groups.offlineFriends.length}
-          </Text>
-        </TouchableOpacity>
-        {displayState.offlineFriends && (
-          <View>
-            {groups.offlineFriends.length > 0 ? (
-              groups.offlineFriends
-            ) : (
-              <Text style={{marginHorizontal: 10}}>No offline friends</Text>
-            )}
-          </View>
-        )}
-
-        {/* blocked users */}
-        <TouchableOpacity
-          onPress={() =>
-            setDisplayState({
-              ...displayState,
-              blocked: !displayState.blocked,
-            })
-          }>
-          <Text style={localStyles.friendsListHeader}>
-            BLOCKED - {groups.blocked.length}
-          </Text>
-        </TouchableOpacity>
-        {displayState.blocked && (
-          <View>
-            {groups.blocked.length > 0 ? (
-              groups.blocked
-            ) : (
-              <Text style={{marginHorizontal: 10}}>No blocked users</Text>
-            )}
-          </View>
-        )}
-      </ScrollView>
+      <SectionList
+        key={'friends-list-sectionlist'}
+        keyExtractor={keyExtractor}
+        sections={groups}
+        style={{flex: 1}}
+        contentContainerStyle={{
+          paddingBottom: Platform.OS === 'web' ? 0 : commonValues.sizes.medium,
+        }}
+        renderSectionHeader={renderHeader}
+        renderSectionFooter={renderFooter}
+        renderItem={renderItem}
+        stickySectionHeadersEnabled
+      />
     </View>
   );
 });
@@ -239,5 +201,6 @@ const localStyles = StyleSheet.create({
     margin: 5,
     marginLeft: 10,
     marginTop: 10,
+    textTransform: 'uppercase',
   },
 });

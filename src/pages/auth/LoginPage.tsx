@@ -15,6 +15,7 @@ import {
 } from '@clerotri/components/common/atoms';
 import {loginRegular, loginWithToken} from '@clerotri/lib/auth';
 import {OFFICIAL_INSTANCE_SIGNUP_URL} from '@clerotri/lib/consts';
+import {getInstanceURL} from '@clerotri/lib/storage/utils';
 import {commonValues, ThemeContext} from '@clerotri/lib/themes';
 import {useBackHandler} from '@clerotri/lib/ui';
 import {openUrl} from '@clerotri/lib/utils';
@@ -31,7 +32,6 @@ function LoginTypeSelector({
   return (
     <>
       <Text
-        font={'Inter'}
         style={{
           marginVertical: commonValues.sizes.medium,
           fontSize: 18,
@@ -45,12 +45,10 @@ function LoginTypeSelector({
         }}
         style={{alignItems: 'flex-start', width: '80%'}}>
         <View style={{alignItems: 'center'}}>
-          <Text
-            font={'Inter'}
-            style={{textAlign: 'center', fontSize: 16, fontWeight: 'bold'}}>
+          <Text style={{textAlign: 'center', fontSize: 16, fontWeight: 'bold'}}>
             {t('app.login.options.login_regular')}
           </Text>
-          <Text font={'Inter'} style={{textAlign: 'center'}}>
+          <Text style={{textAlign: 'center'}}>
             {t('app.login.options.login_regular_body')}
           </Text>
         </View>
@@ -61,12 +59,10 @@ function LoginTypeSelector({
         }}
         style={{width: '80%'}}>
         <View style={{alignItems: 'center'}}>
-          <Text
-            font={'Inter'}
-            style={{textAlign: 'center', fontSize: 16, fontWeight: 'bold'}}>
+          <Text style={{textAlign: 'center', fontSize: 16, fontWeight: 'bold'}}>
             {t('app.login.options.login_session_token')}
           </Text>
-          <Text font={'Inter'} style={{textAlign: 'center'}}>
+          <Text style={{textAlign: 'center'}}>
             {t('app.login.options.login_session_token_body')}
           </Text>
         </View>
@@ -81,19 +77,17 @@ function LoginTypeSelector({
         }}
         style={{width: '80%'}}>
         <View style={{alignItems: 'center'}}>
-          <Text
-            font={'Inter'}
-            style={{textAlign: 'center', fontSize: 16, fontWeight: 'bold'}}>
+          <Text style={{textAlign: 'center', fontSize: 16, fontWeight: 'bold'}}>
             {t('app.login.options.signup')}
           </Text>
-          <Text font={'Inter'} style={{textAlign: 'center'}}>
+          <Text style={{textAlign: 'center'}}>
             {t('app.login.options.signup_body')}
           </Text>
         </View>
       </Button>
-      <Text font={'Inter'} colour={currentTheme.foregroundSecondary}>
+      <Text colour={currentTheme.foregroundSecondary}>
         {t('app.login.instance_notice', {
-          url: app.settings.get('app.instance'),
+          url: getInstanceURL(),
         })}
       </Text>
     </>
@@ -218,7 +212,6 @@ export const LoginPage = ({
         }}>
         <Text
           style={{
-            fontFamily: 'Inter',
             fontWeight: 'bold',
             fontSize: 48,
           }}>
@@ -282,7 +275,7 @@ export const LoginPage = ({
                     setLoginError,
                   )
                 }>
-                <Text font={'Inter'}>Log in</Text>
+                <Text>Log in</Text>
               </Button>
             ) : (
               <></>
@@ -307,13 +300,13 @@ export const LoginPage = ({
                 'https://web.archive.org/web/20231204052541/https://infi.sh/posts/revolt-tokens'
               }
               label={t('app.login.token_info_label')}
-              style={{fontFamily: 'Inter', fontWeight: 'bold'}}
+              style={{fontWeight: 'bold'}}
             />
             <Button
               onPress={async () =>
                 await loginWithToken(tokenInput, setStatus, setLoginError)
               }>
-              <Text font={'Inter'}>Log in</Text>
+              <Text>Log in</Text>
             </Button>
             {loginError ? (
               <Text>{loginError.message ?? loginError}</Text>

@@ -2,7 +2,7 @@ import {TouchableOpacity, View} from 'react-native';
 import {useTranslation} from 'react-i18next';
 import {observer} from 'mobx-react-lite';
 
-import {app} from '@clerotri/Generic';
+import {app, settings} from '@clerotri/Generic';
 import {client} from '@clerotri/lib/client';
 import {
   SPECIAL_DATES,
@@ -114,7 +114,7 @@ export const HomePage = observer(() => {
           onPress={() => app.openSettings(true)}>
           <Text style={styles.buttonText}>{t('app.home.open_settings')}</Text>
         </Button>
-        {app.settings.get('ui.home.holidays') ? holidayEmoji : null}
+        {settings.get('ui.home.holidays') ? holidayEmoji : null}
       </View>
     </>
   );

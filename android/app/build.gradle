@@ -86,8 +86,8 @@ android {
         applicationId "app.upryzing.clerotri"
         minSdkVersion rootProject.ext.minSdkVersion
         targetSdkVersion rootProject.ext.targetSdkVersion
-        versionCode 12
-        versionName "0.7.1"
+        versionCode 13
+        versionName "0.8.0"
     }
 
     splits {
@@ -160,6 +160,8 @@ dependencies {
     // } else {
     //    implementation jscFlavor
     // }
+
+    implementation('androidx.exifinterface:exifinterface:1.3.7')
 }
 
 // we don't want the React plugin to bundle - this is rnx-kit's job

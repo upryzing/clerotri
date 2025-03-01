@@ -5,7 +5,7 @@ import {observer} from 'mobx-react-lite';
 import type {Server, User, Channel} from 'revolt.js';
 
 import {Image} from '@clerotri/crossplat/Image';
-import {app} from '@clerotri/Generic';
+import {app, settings} from '@clerotri/Generic';
 import {client} from '@clerotri/lib/client';
 import {DEFAULT_MAX_SIDE} from '@clerotri/lib/consts';
 import {ThemeContext} from '@clerotri/lib/themes';
@@ -48,28 +48,33 @@ export const Avatar = observer(
       statusColor = currentTheme[`status${s}`];
     }
     let Container = pressable
-      ? ({children}) => (
+      ? ({children}: {children: any}) => (
           <Pressable
             onPress={() => app.openImage(memberObject?.avatar || user?.avatar)}>
             {children}
           </Pressable>
         )
       : View;
+
     if (user) {
+      const imageURL = masquerade
+        ? masquerade
+        : server &&
+            memberObject?.generateAvatarURL &&
+            memberObject?.generateAvatarURL()
+          ? memberObject?.generateAvatarURL()
+          : user?.generateAvatarURL();
+
+      if (!imageURL) {
+        console.log(user._id);
+        return <></>;
+      }
+
       return (
         <Container>
           <Image
             source={{
-              uri:
-                (masquerade
-                  ? masquerade
-                  : server &&
-                      memberObject?.generateAvatarURL &&
-                      memberObject?.generateAvatarURL()
-                    ? memberObject?.generateAvatarURL()
-                    : user?.generateAvatarURL()) +
-                '?max_side=' +
-                DEFAULT_MAX_SIDE,
+              uri: imageURL + '?max_side=' + DEFAULT_MAX_SIDE,
             }}
             style={{width: size || 35, height: size || 35, borderRadius: 10000}}
           />
@@ -87,7 +92,7 @@ export const Avatar = observer(
               }}
             />
           ) : null}
-          {masquerade && app.settings.get('ui.messaging.showMasqAvatar') ? (
+          {masquerade && settings.get('ui.messaging.showMasqAvatar') ? (
             <Image
               style={{
                 width: Math.round(size / statusScale),

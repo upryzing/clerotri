@@ -1,4 +1,5 @@
-import {app} from '@clerotri/Generic';
+import {settings} from '@clerotri/Generic';
+import {DEFAULT_API_URL} from '@clerotri/lib/consts';
 import {storage} from '@clerotri/lib/storage';
 import {Setting} from '@clerotri/lib/types';
 
@@ -6,10 +7,13 @@ export function initialiseSettings() {
   const s = storage.getString('settings');
   if (s) {
     try {
-      const settings = JSON.parse(s) as {key: string; value: any}[];
-      settings.forEach(key => {
+      const storedSettings = JSON.parse(s) as {key: string; value: any}[];
+      storedSettings.forEach(key => {
+        if (key.key === 'app.instance') {
+          storage.set('instanceURL', key.value);
+        }
         let st: Setting | undefined;
-        for (const setting of app.settings.list) {
+        for (const setting of settings.list) {
           if (setting.key === key.key) {
             st = setting;
           }
@@ -25,4 +29,8 @@ export function initialiseSettings() {
       console.error(e);
     }
   }
+}
+
+export function getInstanceURL() {
+  return storage.getString('instanceURL') ?? DEFAULT_API_URL;
 }

@@ -24,6 +24,18 @@
                 "servers": "Servers"
             }
         },
+        "friends_list": {
+            "blocked": "Blocked - {{count}}",
+            "blocked_empty": "No blocked users",
+            "incoming": "Incoming requests - {{count}}",
+            "incoming_empty": "No incoming requests",
+            "onlineFriends": "Online friends - {{count}}",
+            "onlineFriends_empty": "No online friends",
+            "offlineFriends": "Offline friends - {{count}}",
+            "offlineFriends_empty": "No offline friends",
+            "outgoing": "Outgoing requests - {{count}}",
+            "outgoing_empty": "No outgoing requests"
+        },
         "loading": {
             "generic": "Loading…",
             "connecting": "Logging in…",
@@ -160,12 +172,14 @@
                         "hoist_body": "Display this role above others in the member list."
                     },
                     "rank": "Rank",
+                    "rank_placeholder": "Set the role's rank…",
                     "permissions": "Permissions",
                     "colour": "Colour",
                     "delete": "Delete Role",
                     "set_colour": "Set role colour",
                     "open_colour_modal": "Enter colour manually",
                     "errors": {
+                        "empty_rank": "Role ranks cannot be empty!",
                         "empty_role_name": "Role names cannot be empty!"
                     }
                 },
@@ -209,7 +223,6 @@
                     "holidays": "Show holidays on the home page"
                 },
                 "theme": "Theme",
-                "theme_remark": "You'll have to open or close the side menu for your changes to appear everywhere.",
                 "messaging": {
                     "doubleTapToReply": "Reply to messages by double-tapping them",
                     "doubleTapToReply_remark": "This is only supported in the new message view.",

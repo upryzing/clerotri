@@ -5,45 +5,48 @@ import {commonValues, Theme, ThemeContext} from '@clerotri/lib/themes';
 
 type InputProps = TextInputProps & {
   isLoginInput?: boolean;
+  skipRegularStyles?: boolean;
 };
 
 export function Input(props: InputProps) {
   const {currentTheme} = useContext(ThemeContext);
   const localStyles = generateLocalStyles(currentTheme);
 
+  const {style, ...cleanProps} = props;
+
   return (
     <TextInput
       style={[
-        props.isLoginInput ? localStyles.loginInput : localStyles.input,
-        props.style,
+        localStyles.coreInput,
+        !props.skipRegularStyles && localStyles.regularInput,
+        props.isLoginInput && localStyles.loginInput,
+        style,
       ]}
       cursorColor={currentTheme.accentColor}
       selectionHandleColor={currentTheme.accentColor}
       selectionColor={`${currentTheme.accentColor}60`}
-      {...props}
+      {...cleanProps}
     />
   );
 }
 
 const generateLocalStyles = (currentTheme: Theme) => {
   return StyleSheet.create({
-    input: {
+    coreInput: {
       fontFamily: 'Open Sans',
-      minWidth: '100%',
       borderRadius: commonValues.sizes.medium,
       backgroundColor: currentTheme.backgroundSecondary,
-      padding: commonValues.sizes.large,
       color: currentTheme.foregroundPrimary,
     },
+    regularInput: {
+      minWidth: '100%',
+      padding: commonValues.sizes.large,
+    },
     loginInput: {
-      fontFamily: 'Inter',
-      borderRadius: commonValues.sizes.medium,
       padding: commonValues.sizes.medium,
       paddingHorizontal: commonValues.sizes.large,
       margin: commonValues.sizes.medium,
       width: '80%',
-      backgroundColor: currentTheme.backgroundSecondary,
-      color: currentTheme.foregroundPrimary,
     },
   });
 };

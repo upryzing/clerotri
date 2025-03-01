@@ -3,9 +3,8 @@ import {Linking} from 'react-native';
 import {differenceInMinutes} from 'date-fns/differenceInMinutes';
 import {isSameDay} from 'date-fns/isSameDay';
 import type {Channel, Message} from 'revolt.js';
-import {decodeTime} from 'ulid';
 
-import {app} from '@clerotri/Generic';
+import {app, appVersion} from '@clerotri/Generic';
 import {client} from '@clerotri/lib/client';
 import {
   DEFAULT_MESSAGE_LOAD_COUNT,
@@ -87,19 +86,19 @@ export function openLastChannel() {
 
 export function checkLastVersion() {
   const lastVersion = storage.getString('lastVersion');
-  console.log(app.version, lastVersion);
+  console.log(appVersion, lastVersion);
   if (!lastVersion || lastVersion === '') {
     console.log(
-      `[APP] lastVersion is null (${lastVersion}), setting to app.version (${app.version})`,
+      `[APP] lastVersion is null (${lastVersion}), setting to appVersion (${appVersion})`,
     );
-    storage.set('lastVersion', app.version);
-  } else if (app.version !== lastVersion) {
+    storage.set('lastVersion', appVersion);
+  } else if (appVersion !== lastVersion) {
     console.log(
-      `[APP] lastVersion (${lastVersion}) is different from app.version (${app.version})`,
+      `[APP] lastVersion (${lastVersion}) is different from appVersion (${appVersion})`,
     );
   } else {
     console.log(
-      `[APP] lastVersion (${lastVersion}) is equal to app.version (${app.version})`,
+      `[APP] lastVersion (${lastVersion}) is equal to appVersion (${appVersion})`,
     );
   }
 }
@@ -120,8 +119,8 @@ export function calculateGrouped(msg1: Message, msg2: Message) {
     return false;
   }
 
-  const time1 = decodeTime(msg1._id);
-  const time2 = decodeTime(msg2._id);
+  const time1 = msg1.createdAt;
+  const time2 = msg2.createdAt;
 
   return (
     // a message is grouped with the previous message if all of the following statements are true:

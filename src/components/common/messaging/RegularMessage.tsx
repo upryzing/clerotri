@@ -12,7 +12,7 @@ import {formatRelative} from 'date-fns/formatRelative';
 import {enGB, enUS} from 'date-fns/locale';
 import {decodeTime} from 'ulid';
 
-import {app} from '@clerotri/Generic';
+import {app, settings} from '@clerotri/Generic';
 import {client} from '@clerotri/lib/client';
 import {Avatar, Text, Username} from '@clerotri/components/common/atoms';
 import {MarkdownView} from '@clerotri/components/common/MarkdownView';
@@ -39,7 +39,7 @@ export const RegularMessage = observer((props: MessageProps) => {
   const {currentTheme} = useContext(ThemeContext);
   const localStyles = generateLocalStyles(currentTheme);
 
-  const locale = app.settings.get('ui.messaging.use24H') ? enGB : enUS;
+  const locale = settings.get('ui.messaging.use24H') ? enGB : enUS;
   const mentionsUser = props.message.mention_ids?.includes(client.user?._id!);
 
   // check for invite links, then take the code from each
@@ -67,9 +67,7 @@ export const RegularMessage = observer((props: MessageProps) => {
         onLongPress={props.onLongPress}>
         <View
           style={{
-            marginTop: app.settings.get(
-              'ui.messaging.messageSpacing',
-            ) as number,
+            marginTop: settings.get('ui.messaging.messageSpacing') as number,
           }}
         />
         {props.message.reply_ids !== null ? (
@@ -95,7 +93,7 @@ export const RegularMessage = observer((props: MessageProps) => {
               masquerade={props.message.masquerade?.avatar ?? undefined}
               server={props.message.channel?.server}
               size={35}
-              {...(app.settings.get('ui.messaging.statusInChatAvatars')
+              {...(settings.get('ui.messaging.statusInChatAvatars')
                 ? {status: true}
                 : {})}
             />
@@ -142,7 +140,7 @@ export const RegularMessage = observer((props: MessageProps) => {
           marginTop:
             props.grouped || props.noTopMargin
               ? 0
-              : (app.settings.get('ui.messaging.messageSpacing') as number),
+              : (settings.get('ui.messaging.messageSpacing') as number),
         }}
       />
       {props.message.author?.relationship === 'Blocked' ? (
@@ -211,7 +209,7 @@ export const RegularMessage = observer((props: MessageProps) => {
                   masquerade={props.message.generateMasqAvatarURL()}
                   server={props.message.channel?.server}
                   size={35}
-                  {...(app.settings.get('ui.messaging.statusInChatAvatars')
+                  {...(settings.get('ui.messaging.statusInChatAvatars')
                     ? {status: true}
                     : {})}
                 />
@@ -252,7 +250,7 @@ export const RegularMessage = observer((props: MessageProps) => {
                     key={`message-${props.message._id}-timestamp`}
                     style={localStyles.timestamp}>
                     {' '}
-                    {formatRelative(decodeTime(props.message._id), new Date(), {
+                    {formatRelative(props.message.createdAt, new Date(), {
                       locale: locale,
                     })}
                   </Text>
@@ -282,18 +280,22 @@ export const RegularMessage = observer((props: MessageProps) => {
                 if (a.metadata?.type === 'Image') {
                   let width = a.metadata.width;
                   let height = a.metadata.height;
+
                   if (width > Dimensions.get('screen').width - 75) {
                     let sizeFactor =
                       (Dimensions.get('screen').width - 75) / width;
                     width = width * sizeFactor;
                     height = height * sizeFactor;
                   }
+
+                  const imageURL = client.generateFileURL(a);
+
                   return (
                     <Pressable
                       key={`message-${props.message._id}-image-${a._id}`}
                       onPress={() => app.openImage(a)}>
                       <Image
-                        source={{uri: client.generateFileURL(a)}}
+                        source={{uri: imageURL}}
                         resizeMode={'contain'}
                         style={{
                           width: width,
@@ -323,12 +325,12 @@ export const RegularMessage = observer((props: MessageProps) => {
                   );
                 }
               })}
-              {invites?.map(i => {
+              {invites?.map((inv, index) => {
                 return (
                   <InviteEmbed
-                    key={`message-${props.message._id}-invite-${i}`}
+                    key={`message-${props.message._id}-invite-${inv}-${index}`}
                     message={props.message}
-                    invite={i}
+                    invite={inv}
                   />
                 );
               })}
@@ -341,7 +343,7 @@ export const RegularMessage = observer((props: MessageProps) => {
                     />
                   );
                 })}
-              {app.settings.get('ui.messaging.showReactions') ? (
+              {settings.get('ui.messaging.showReactions') ? (
                 <MessageReactions msg={props.message} reactions={reactions} />
               ) : null}
             </View>

@@ -38,7 +38,6 @@ export const OverviewSettingsSection = observer(
             name: 'save',
             pack: 'regular',
           }}
-          backgroundColor={currentTheme.backgroundSecondary}
           skipIfSame
           cannotBeEmpty
           emptyError={t(
@@ -77,7 +76,6 @@ export const OverviewSettingsSection = observer(
             type: 'string',
             content: t('app.servers.settings.overview.set_description'),
           }}
-          backgroundColor={currentTheme.backgroundSecondary}
           skipIfSame
           // @ts-expect-error this is passed down to the TextInput
           multiline
@@ -86,8 +84,12 @@ export const OverviewSettingsSection = observer(
               flexDirection: 'column',
               alignItems: 'flex-start',
             },
-            input: {width: '100%'},
-            button: {marginHorizontal: 0},
+            input: {
+              width: '100%',
+            },
+            button: {
+              marginHorizontal: 0,
+            },
           }}
         />
         <GapView size={2} />
