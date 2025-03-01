@@ -24,7 +24,7 @@
   resolved "https://registry.yarnpkg.com/@babel/compat-data/-/compat-data-7.26.8.tgz#821c1d35641c355284d4a870b8a4a7b0c141e367"
   integrity sha512-oH5UPLMWR3L2wEFLnFJ1TZXqHufiTKAiLfqw5zkhS4dKXLJ10yVztfil/twG8EDTA4F/tvVNw9nOl4ZMslB8rQ==
 
-"@babel/core@^7.11.6", "@babel/core@^7.12.3", "@babel/core@^7.21.3", "@babel/core@^7.23.9", "@babel/core@^7.24.7", "@babel/core@^7.25.2", "@babel/core@^7.26.0", "@babel/core@^7.26.8":
+"@babel/core@^7.11.6", "@babel/core@^7.12.3", "@babel/core@^7.21.3", "@babel/core@^7.23.9", "@babel/core@^7.24.7", "@babel/core@^7.25.2", "@babel/core@^7.26.0", "@babel/core@^7.26.9":
   version "7.26.9"
   resolved "https://registry.yarnpkg.com/@babel/core/-/core-7.26.9.tgz#71838542a4b1e49dfed353d7acbc6eb89f4a76f2"
   integrity sha512-lWBYIrF7qK5+GjY5Uy+/hEgp8OJWOD/rpy74GplYRhEauvbHDeFB8t5hPOZxCZ0Oxf4Cc36tK51/l3ymJysrKw==
@@ -896,7 +896,7 @@
     "@babel/helper-create-regexp-features-plugin" "^7.25.9"
     "@babel/helper-plugin-utils" "^7.25.9"
 
-"@babel/preset-env@^7.20.2", "@babel/preset-env@^7.26.8":
+"@babel/preset-env@^7.20.2":
   version "7.26.9"
   resolved "https://registry.yarnpkg.com/@babel/preset-env/-/preset-env-7.26.9.tgz#2ec64e903d0efe743699f77a10bdf7955c2123c3"
   integrity sha512-vX3qPGE8sEKEAZCWk05k3cpTAE3/nOYca++JA+Rd0z2NCNzabmYvEiSShKzm10zdquOIAVXsy2Ei/DTW34KlKQ==
@@ -1023,7 +1023,7 @@
     pirates "^4.0.6"
     source-map-support "^0.5.16"
 
-"@babel/runtime@^7.12.5", "@babel/runtime@^7.18.6", "@babel/runtime@^7.23.2", "@babel/runtime@^7.25.0", "@babel/runtime@^7.26.7", "@babel/runtime@^7.8.4":
+"@babel/runtime@^7.12.5", "@babel/runtime@^7.18.6", "@babel/runtime@^7.23.2", "@babel/runtime@^7.25.0", "@babel/runtime@^7.26.9", "@babel/runtime@^7.8.4":
   version "7.26.9"
   resolved "https://registry.yarnpkg.com/@babel/runtime/-/runtime-7.26.9.tgz#aa4c6facc65b9cb3f87d75125ffd47781b475433"
   integrity sha512-aA63XwOkcl4xxQa3HjPMqOP6LiK0ZDv3mUPYEFXkpHbaFjtGggE1A61FjFzJnB+p7/oy2gA8E+rcBNl/zC1tMg==
@@ -1776,10 +1776,15 @@
     prompts "^2.4.2"
     semver "^7.5.2"
 
-"@react-native-community/hooks@patch:@react-native-community/hooks@npm%3A3.0.0#~/.yarn/patches/@react-native-community-hooks-npm-3.0.0-b22393eef2.patch":
-  version "3.1.0"
-  resolved "https://registry.yarnpkg.com/@react-native-community/hooks/-/hooks-3.1.0.tgz#02663dfe5e34932f09fda90c3448137c34537e2e"
-  integrity sha512-4TqJGeUHUq65tSVQB2zAm0/kMueD9lpzUREZGSGCaIwAxdFTauRS0TN6RM5dtzwR7uWcQj3LOJpDpNB7ulSCfA==
+"@react-native-community/hooks@^100.1.0":
+  version "100.1.0"
+  resolved "https://registry.yarnpkg.com/@react-native-community/hooks/-/hooks-100.1.0.tgz#34cfa9e986b84a8babfe667dc3ec497954aef8f1"
+  integrity sha512-aXESGr6WcnwyeIl+SiCLNFpbApzTmupyYzm2OkGjMuwHr42+a3G65xxTxN/xHuNdTVWO0dXbOwyLgEkQ0i/qZg==
+
+"@react-native-documents/picker@^10.1.0":
+  version "10.1.1"
+  resolved "https://registry.yarnpkg.com/@react-native-documents/picker/-/picker-10.1.1.tgz#3060d9387771ce74c58d212b9e7be876f076b7bc"
+  integrity sha512-RijOCQmesOPe4ahtwOag6k6GLhLHf34sMQtAJ4KjLk7ab0kG5Chvcsvd5zixWC4d0tuBnVAtMUOzvn0bp+UtAg==
 
 "@react-native/assets-registry@0.77.1":
   version "0.77.1"
@@ -1807,7 +1812,7 @@
     "@babel/traverse" "^7.25.3"
     "@react-native/codegen" "0.78.0"
 
-"@react-native/babel-preset@0.77.1", "@react-native/babel-preset@^0.77.0":
+"@react-native/babel-preset@0.77.1", "@react-native/babel-preset@^0.77.1":
   version "0.77.1"
   resolved "https://registry.yarnpkg.com/@react-native/babel-preset/-/babel-preset-0.77.1.tgz#f9add5c1846fa8e4d61782e6c73c1280c6806afe"
   integrity sha512-7eTOcMaZwvPllzZhT5fjcDNysjP54GtEbdXVxO2u5sPXWYriPL3UKuDIzIdhjxil8GtZs6+UvLNoKTateFt19Q==
@@ -2013,7 +2018,7 @@
     serve-static "^1.16.2"
     ws "^6.2.3"
 
-"@react-native/eslint-config@^0.77.0":
+"@react-native/eslint-config@^0.77.1":
   version "0.77.1"
   resolved "https://registry.yarnpkg.com/@react-native/eslint-config/-/eslint-config-0.77.1.tgz#290d3b9b73182298c3555eb3295a2784d43fa7da"
   integrity sha512-umcr+tpWJ8t1+BgaMafl7Q/fujKBOFjP6rrRxdhaEYV6QReFS/itY5qQHjMdZIugP4piE6MSA7FsS0Fbwe/w9A==
@@ -2076,7 +2081,7 @@
     hermes-parser "0.25.1"
     nullthrows "^1.1.1"
 
-"@react-native/metro-config@^0.77.0":
+"@react-native/metro-config@^0.77.1":
   version "0.77.1"
   resolved "https://registry.yarnpkg.com/@react-native/metro-config/-/metro-config-0.77.1.tgz#dc1ab37735921d266bed7d96a0ef67dcd2e4aeac"
   integrity sha512-hUtUPyTpAejRCwJAhAJ+WJctTkpzfzc4pBwxt0ax5JbR1UZkK7mME/8gHoO8BaT8+ETaCdUlk12/Njf0MQhZow==
@@ -2101,7 +2106,7 @@
   resolved "https://registry.yarnpkg.com/@react-native/normalize-colors/-/normalize-colors-0.74.89.tgz#b8ac17d1bbccd3ef9a1f921665d04d42cff85976"
   integrity sha512-qoMMXddVKVhZ8PA1AbUCk83trpd6N+1nF2A6k1i6LsQObyS92fELuk8kU/lQs6M7BsMHwqyLCpQJ1uFgNvIQXg==
 
-"@react-native/typescript-config@^0.77.0":
+"@react-native/typescript-config@^0.77.1":
   version "0.77.1"
   resolved "https://registry.yarnpkg.com/@react-native/typescript-config/-/typescript-config-0.77.1.tgz#9ffc95c7d7be57c4d9d9a072fb54c93ef2182bb9"
   integrity sha512-9lnVDImU7SsBix349NpFeHCVaP3BvRwc2nmRRESjX2YNgtCpdw3c4hGI5vHEAUJqCQB2233b0Tw5g2ddcuIm6A==
@@ -2134,7 +2139,7 @@
     punycode.js "^2.3.1"
     uc.micro "^2.1.0"
 
-"@rexovolt/react-native-markdown-display@^9.0.5":
+"@rexovolt/react-native-markdown-display@^9.1.1":
   version "9.1.1"
   resolved "https://registry.yarnpkg.com/@rexovolt/react-native-markdown-display/-/react-native-markdown-display-9.1.1.tgz#0efc176ad47381f80e0237f1ced6261714f9b4d7"
   integrity sha512-wYC0pNsnRxR3VdHWzd1ZBNzOupU4YhTRhSqJbnL+Pj+UbYf8+KGyLGEsyp+tmtJVRcZSDQ7AUrN6sBnBAP4r8Q==
@@ -2708,7 +2713,7 @@
   dependencies:
     "@types/node" "*"
 
-"@types/node@*", "@types/node@^22.13.1":
+"@types/node@*", "@types/node@^22.13.5":
   version "22.13.8"
   resolved "https://registry.yarnpkg.com/@types/node/-/node-22.13.8.tgz#57e2450295b33a6518d6fd4f65f47236d3e41d8d"
   integrity sha512-G3EfaZS+iOGYWLLRCEAXdWK9my08oHNZ+FHluRiggIYJPOXzhOiDgpVCUHaUvyIC5/fj7C/p637jdzC666AOKQ==
@@ -4311,7 +4316,7 @@ eslint-config-prettier@^8.5.0:
   resolved "https://registry.yarnpkg.com/eslint-config-prettier/-/eslint-config-prettier-8.10.0.tgz#3a06a662130807e2502fc3ff8b4143d8a0658e11"
   integrity sha512-SM8AMJdeQqRYT9O9zguiruQZaN7+z+E4eAP9oiLNGKMtomwaB1E9dcgUD6ZAn/eQAb52USbvezbiljfZUhbJcg==
 
-eslint-plugin-de-morgan@^1.0.0:
+eslint-plugin-de-morgan@^1.1.0:
   version "1.2.0"
   resolved "https://registry.yarnpkg.com/eslint-plugin-de-morgan/-/eslint-plugin-de-morgan-1.2.0.tgz#bf3aaa68e82835beee6010179fbf7019bca9ff1d"
   integrity sha512-XOZxiOMHchXn425a1DS/NOXVkGqKiTOCvVGIPru/l/bfF4Ant7u8d4+rXOqVFEN5Z8K+I/AO19U074gqnnBsJw==
@@ -5940,7 +5945,7 @@ kleur@^3.0.3:
   resolved "https://registry.yarnpkg.com/kleur/-/kleur-3.0.3.tgz#a79c9ecc86ee1ce3fa6206d1216c501f147fc07e"
   integrity sha512-eTIzlVOSUR+JxdDFepEYcBMtZ9Qqdef+rnzWdRZuMbOywu5tO2w2N7rqjoANZ5k9vywhL6Br1VRjUIgTQx4E8w==
 
-knip@^5.44.1:
+knip@^5.44.5:
   version "5.45.0"
   resolved "https://registry.yarnpkg.com/knip/-/knip-5.45.0.tgz#18eda62ffca7ec9cbee7732470b8415ae29e2d8f"
   integrity sha512-OUyO9FUEVCM6/j0gl+PP/LDeJEs4hIdE8n4vK4xrtjN1g3Qu4Ws1oexbWTCJ+8xt8Tgse4Yvhx96OqF/UVl3Ug==
@@ -6910,7 +6915,7 @@ prelude-ls@^1.2.1:
   resolved "https://registry.yarnpkg.com/prelude-ls/-/prelude-ls-1.2.1.tgz#debc6489d7a6e6b0e7611888cec880337d316396"
   integrity sha512-vkcDPrRZo1QZLbn5RLGPpg/WmIQ65qoWWhcGKf/b5eplkkarX0m9z8ppCat4mlOqUsWpyNuYgO3VRyrYHSzX5g==
 
-prettier@^3.5.0:
+prettier@^3.5.2:
   version "3.5.2"
   resolved "https://registry.yarnpkg.com/prettier/-/prettier-3.5.2.tgz#d066c6053200da0234bf8fa1ef45168abed8b914"
   integrity sha512-lc6npv5PH7hVqozBR7lkBNOGXV9vMwROAPlumdBkX0wTbbzPu/U1hk5yL8p2pt4Xoc+2mkT8t/sow2YrV/M5qg==
@@ -7036,7 +7041,7 @@ react-error-boundary@^5.0.0:
   dependencies:
     "@babel/runtime" "^7.12.5"
 
-react-i18next@^15.4.0:
+react-i18next@^15.4.1:
   version "15.4.1"
   resolved "https://registry.yarnpkg.com/react-i18next/-/react-i18next-15.4.1.tgz#33f3e89c2f6c68e2bfcbf9aa59986ad42fe78758"
   integrity sha512-ahGab+IaSgZmNPYXdV1n+OYky95TGpFwnKRflX/16dY04DsYYKHtVLjeny7sBSCREEcoMbAgSkFiGLF5g5Oofw==
@@ -7064,13 +7069,6 @@ react-native-device-info@^14.0.4:
   resolved "https://registry.yarnpkg.com/react-native-device-info/-/react-native-device-info-14.0.4.tgz#56b24ace9ff29a66bdfc667209086421ed6cfdce"
   integrity sha512-NX0wMAknSDBeFnEnSFQ8kkAcQrFHrG4Cl0mVjoD+0++iaKrOupiGpBXqs8xR0SeJyPC5zpdPl4h/SaBGly6UxA==
 
-react-native-document-picker@^9.3.1:
-  version "9.3.1"
-  resolved "https://registry.yarnpkg.com/react-native-document-picker/-/react-native-document-picker-9.3.1.tgz#f2c33237a906fd0893130e0605c8f18a3aef1605"
-  integrity sha512-Vcofv9wfB0j67zawFjfq9WQPMMzXxOZL9kBmvWDpjVuEcVK73ndRmlXHlkeFl5ZHVsv4Zb6oZYhqm9u5omJOPA==
-  dependencies:
-    invariant "^2.2.4"
-
 react-native-drawer-layout@^4.1.1:
   version "4.1.1"
   resolved "https://registry.yarnpkg.com/react-native-drawer-layout/-/react-native-drawer-layout-4.1.1.tgz#7fce1b3d3ddd9fc5d781c73d13b814d022b90114"
@@ -7078,7 +7076,7 @@ react-native-drawer-layout@^4.1.1:
   dependencies:
     use-latest-callback "^0.2.1"
 
-react-native-gesture-handler@^2.23.1:
+react-native-gesture-handler@^2.24.0:
   version "2.24.0"
   resolved "https://registry.yarnpkg.com/react-native-gesture-handler/-/react-native-gesture-handler-2.24.0.tgz#b6e1f13ec9bf8dfa5f4911854b6e0d73d882a81a"
   integrity sha512-ZdWyOd1C8axKJHIfYxjJKCcxjWEpUtUWgTOVY2wynbiveSQDm8X/PDyAKXSer/GOtIpjudUbACOndZXCN3vHsw==
@@ -7203,7 +7201,7 @@ react-native@*:
     ws "^6.2.3"
     yargs "^17.6.2"
 
-react-native@^0.77.0:
+react-native@^0.77.1:
   version "0.77.1"
   resolved "https://registry.yarnpkg.com/react-native/-/react-native-0.77.1.tgz#c4caa5edb7cc58cd4b74f3ec30932363e6a5f955"
   integrity sha512-g2OMtsQqhgOuC4BqFyrcv0UsmbFcLOwfVRl/XAEHZK0p8paJubGIF3rAHN4Qh0GqGLWZGt7gJ7ha2yOmCFORoA==
@@ -8338,7 +8336,7 @@ vite-plugin-react-native-web@^2.1.1:
   dependencies:
     flow-remove-types "^2.259.1"
 
-vite@^6.1.0:
+vite@^6.1.1:
   version "6.2.0"
   resolved "https://registry.yarnpkg.com/vite/-/vite-6.2.0.tgz#9dcb543380dab18d8384eb840a76bf30d78633f0"
   integrity sha512-7dPxoo+WsT/64rDcwoOjk76XHj+TqNTIvHKcuMQ1k4/SeHDaQt5GFAeLYzrimZrMpn/O6DtdI03WUjdxuPM0oQ==
