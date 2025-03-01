@@ -15,57 +15,44 @@ const dir = fileURLToPath(import.meta.url);
 const currentDir = path.dirname(dir);
 const parentDir = path.dirname(currentDir);
 
-const rawData = await readFile(`${parentDir}/assets/data/licenses.json`);
+const rawData = await readFile(`${parentDir}/assets/data/licenses.json`, 'utf-8');
 const data = rawData.toString();
 
 log('[LICENSELISTPROCESSOR] Cleaning up licenses list...');
 
-const dataAsJSON = `[${data}]`.replaceAll('\n', ', ').replace(', ]', ']');
+// Parse the JSON stream
+const jsonObjects = data
+  .split('\n')
+  .filter((line) => line.trim()) // Remove empty lines
+  .map((line) => JSON.parse(line)); // Parse each JSON object
 
-const object = JSON.parse(dataAsJSON);
+// Find the final "table" object containing the license data
+const tableData = jsonObjects.find((obj) => obj.type === 'table')?.data;
+
+if (!tableData) {
+  console.error('No license data found in the output.');
+  process.exit(1);
+}
 
 const newArray = [];
 
-object.forEach(license => {
-  log(license.value);
+// Process the license data
+tableData.body.forEach((row) => {
+  const [name, version, license, url, vendorUrl, vendorName] = row;
 
-  const packageArray = Object.keys(license.children).map(key => {
-    // ignore workspace (the project itself)
-    if (key !== 'rvmob@workspace:.') {
-      log(key);
+  // Clean up the package name (remove workspace prefix if present)
+  const cleanedName = name.replace('@workspace:.', '');
 
-      // first pass covers most packages; second covers patched packagess
-      const cleanedKey = key
-        .replace(/(.)@(virtual:.*#)?npm:/, '$1@')
-        .replace(/(.)@(patch|virtual:.*#)?patch:.*::version=(.*)&.*/, '$1@$3');
-      log(cleanedKey);
+  // Create a new package info object
+  const packageInfo = {
+    name: cleanedName,
+    version,
+    license,
+    url: url || vendorUrl || '',
+    vendorName: vendorName || '',
+  };
 
-      // split the package name by the @ symbol; the last entry will be the package version (e.g. @rexovolt/foo@1.2.3 -> ['', 'rexovolt/foo', '1.2.3'])
-      const nameArray = cleanedKey.split('@');
-      const version = nameArray[nameArray.length - 1];
-      nameArray.pop();
-
-      // rejoin the array of strings after removing the version
-      const newKey = nameArray.join('@');
-
-      const extraInfo = license.children[key].children;
-
-      // remove "git+" and "git://" at the start of URLs - they usually link to GitHub repos, so in most cases this should be safe
-      // also replace "git@github.com:" with "https://github.com"
-      const newURL = extraInfo.url
-        ?.replace(/^git\+/, '')
-        .replace('git://', 'https://')
-        .replace('git@github.com:', 'https//github.com/');
-      const newPackageInfo = {name: newKey, version, ...extraInfo, url: newURL};
-
-      return newPackageInfo;
-    }
-  });
-
-  // otherwise we get an array with null as its only entry
-  if (packageArray[0]) {
-    newArray.push({license: license.value, packages: packageArray});
-  }
+  newArray.push(packageInfo);
 });
 
 const newData = JSON.stringify(newArray, null, prettyPrint ? 2 : 0);
