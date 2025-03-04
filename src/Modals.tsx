@@ -43,6 +43,84 @@ const FixedModal = observer((props: ModalProps) => {
   );
 });
 
+const FloatingModals = observer(() => {
+  const [deletableObject, setDeletableObject] = useState(
+    null as DeletableObject | null,
+  );
+  const [editingText, setEditingText] = useState(
+    null as TextEditingModalProps | null,
+  );
+  const [createChannelObject, setCreateChannelObject] = useState(
+    null as CreateChannelModalProps | null,
+  );
+  const [newInviteCode, setNewInviteCode] = useState(null as string | null);
+
+  setFunction('openDeletionConfirmationModal', (o: DeletableObject | null) => {
+    setDeletableObject(o);
+  });
+  setFunction('openTextEditModal', (object: TextEditingModalProps | null) => {
+    setEditingText(object);
+  });
+  setFunction(
+    'openCreateChannelModal',
+    (object: CreateChannelModalProps | null) => {
+      setCreateChannelObject(object);
+    },
+  );
+  setFunction('openNewInviteModal', (code: string | null) => {
+    setNewInviteCode(code);
+  });
+
+  return (
+    <>
+      <FixedModal
+        visible={!!deletableObject}
+        animationType="fade"
+        statusBarTranslucent
+        navigationBarTranslucent
+        backdropColor={'#00000020'}
+        onRequestClose={() => setDeletableObject(null)}>
+        <View style={localStyles.modalContainer}>
+          <ConfirmDeletionModal target={deletableObject!} />
+        </View>
+      </FixedModal>
+      <FixedModal
+        visible={!!editingText}
+        animationType="fade"
+        statusBarTranslucent
+        navigationBarTranslucent
+        backdropColor={'#00000020'}
+        onRequestClose={() => setEditingText(null)}>
+        <View style={localStyles.modalContainer}>
+          <TextEditModal object={editingText!} />
+        </View>
+      </FixedModal>
+      <FixedModal
+        visible={!!createChannelObject}
+        animationType="fade"
+        statusBarTranslucent
+        navigationBarTranslucent
+        backdropColor={'#00000020'}
+        onRequestClose={() => setCreateChannelObject(null)}>
+        <View style={localStyles.modalContainer}>
+          <CreateChannelModal object={createChannelObject!} />
+        </View>
+      </FixedModal>
+      <FixedModal
+        visible={!!newInviteCode}
+        animationType="fade"
+        statusBarTranslucent
+        navigationBarTranslucent
+        backdropColor={'#00000020'}
+        onRequestClose={() => setNewInviteCode(null)}>
+        <View style={localStyles.modalContainer}>
+          <NewInviteModal code={newInviteCode!} />
+        </View>
+      </FixedModal>
+    </>
+  );
+});
+
 export const Modals = observer(() => {
   const [imageViewerState, setImageViewerState] = useState({
     i: null as any,
@@ -59,16 +137,6 @@ export const Modals = observer(() => {
     inviteServerCode: string;
   });
   const [inviteBot, setInviteBot] = useState(null as User | null);
-  const [deletableObject, setDeletableObject] = useState(
-    null as DeletableObject | null,
-  );
-  const [editingText, setEditingText] = useState(
-    null as TextEditingModalProps | null,
-  );
-  const [createChannelObject, setCreateChannelObject] = useState(
-    null as CreateChannelModalProps | null,
-  );
-  const [newInviteCode, setNewInviteCode] = useState(null as string | null);
 
   setFunction('openDirectMessage', (dm: Channel) => {
     app.openProfile(null);
@@ -82,21 +150,6 @@ export const Modals = observer(() => {
   });
   setFunction('openServerSettings', (s: Server | null) => {
     setServerSettingsServer(s);
-  });
-  setFunction('openDeletionConfirmationModal', (o: DeletableObject | null) => {
-    setDeletableObject(o);
-  });
-  setFunction('openTextEditModal', (object: TextEditingModalProps | null) => {
-    setEditingText(object);
-  });
-  setFunction(
-    'openCreateChannelModal',
-    (object: CreateChannelModalProps | null) => {
-      setCreateChannelObject(object);
-    },
-  );
-  setFunction('openNewInviteModal', (code: string | null) => {
-    setNewInviteCode(code);
   });
   setFunction('openInvite', async (i: string) => {
     try {
@@ -130,6 +183,8 @@ export const Modals = observer(() => {
         visible={!!imageViewerState.i}
         transparent={true}
         animationType="fade"
+        statusBarTranslucent
+        navigationBarTranslucent
         onRequestClose={() => setImageViewerState({i: null})}>
         <ImageViewer
           state={imageViewerState}
@@ -140,6 +195,8 @@ export const Modals = observer(() => {
         visible={settingsVisibility}
         transparent={true}
         animationType="slide"
+        statusBarTranslucent
+        navigationBarTranslucent
         onRequestClose={() =>
           app.handleSettingsVisibility(setSettingsVisibility)
         }>
@@ -149,6 +206,8 @@ export const Modals = observer(() => {
         visible={!!inviteServer.inviteServer}
         transparent={true}
         animationType="fade"
+        statusBarTranslucent
+        navigationBarTranslucent
         onRequestClose={() =>
           setInviteServer({inviteServer: null, inviteServerCode: ''})
         }>
@@ -164,7 +223,13 @@ export const Modals = observer(() => {
           inviteCode={inviteServer.inviteServerCode}
         />
       </FixedModal>
-      <FixedModal visible={!!inviteBot} transparent={true} animationType="fade">
+      <FixedModal
+        visible={!!inviteBot}
+        transparent={true}
+        animationType="fade"
+        statusBarTranslucent
+        navigationBarTranslucent
+        onRequestClose={() => setInviteBot(null)}>
         <BotInviteSheet
           setState={() => {
             setInviteBot(null);
@@ -176,6 +241,8 @@ export const Modals = observer(() => {
         visible={!!serverSettingsServer}
         transparent={true}
         animationType="slide"
+        statusBarTranslucent
+        navigationBarTranslucent
         onRequestClose={() =>
           app.handleServerSettingsVisibility(setServerSettingsServer)
         }>
@@ -184,42 +251,7 @@ export const Modals = observer(() => {
           setState={() => setServerSettingsServer(null)}
         />
       </FixedModal>
-      <FixedModal
-        visible={!!deletableObject}
-        transparent={true}
-        animationType="fade"
-        onRequestClose={() => setDeletableObject(null)}>
-        <View style={localStyles.modalContainer}>
-          <ConfirmDeletionModal target={deletableObject!} />
-        </View>
-      </FixedModal>
-      <FixedModal
-        visible={!!editingText}
-        transparent={true}
-        animationType="fade"
-        onRequestClose={() => setEditingText(null)}>
-        <View style={localStyles.modalContainer}>
-          <TextEditModal object={editingText!} />
-        </View>
-      </FixedModal>
-      <FixedModal
-        visible={!!createChannelObject}
-        transparent={true}
-        animationType="fade"
-        onRequestClose={() => setCreateChannelObject(null)}>
-        <View style={localStyles.modalContainer}>
-          <CreateChannelModal object={createChannelObject!} />
-        </View>
-      </FixedModal>
-      <FixedModal
-        visible={!!newInviteCode}
-        transparent={true}
-        animationType="fade"
-        onRequestClose={() => setNewInviteCode(null)}>
-        <View style={localStyles.modalContainer}>
-          <NewInviteModal code={newInviteCode!} />
-        </View>
-      </FixedModal>
+      <FloatingModals />
     </>
   );
 });
@@ -229,6 +261,6 @@ const localStyles = StyleSheet.create({
     flex: 1,
     alignContent: 'center',
     justifyContent: 'center',
-    backgroundColor: '#00000080',
+    // backgroundColor: '#00000080',
   },
 });

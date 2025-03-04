@@ -2,6 +2,7 @@ import {useContext} from 'react';
 import {Pressable, View} from 'react-native';
 import {observer} from 'mobx-react-lite';
 
+import {useSafeAreaInsets} from 'react-native-safe-area-context';
 import MaterialCommunityIcon from 'react-native-vector-icons/MaterialCommunityIcons';
 
 import type {API} from 'revolt.js';
@@ -22,10 +23,17 @@ export const ServerInviteSheet = observer(
     server: API.InviteResponse;
     inviteCode: string;
   }) => {
+    const insets = useSafeAreaInsets();
+
     const {currentTheme} = useContext(ThemeContext);
 
     return (
-      <View style={{flex: 1, backgroundColor: currentTheme.backgroundPrimary}}>
+      <View
+        style={{
+          flex: 1,
+          paddingTop: insets.top,
+          backgroundColor: currentTheme.backgroundPrimary,
+        }}>
         <Pressable
           style={{
             flexDirection: 'row',

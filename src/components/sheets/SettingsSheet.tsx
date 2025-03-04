@@ -10,6 +10,7 @@ import {
   getDevice,
   getUserAgent,
 } from 'react-native-device-info';
+import {useSafeAreaInsets} from 'react-native-safe-area-context';
 import MaterialCommunityIcon from 'react-native-vector-icons/MaterialCommunityIcons';
 import MaterialIcon from 'react-native-vector-icons/MaterialIcons';
 
@@ -18,7 +19,7 @@ import {client} from '@clerotri/lib/client';
 import {OPEN_ISSUES} from '@clerotri/lib/consts';
 import {storage} from '@clerotri/lib/storage';
 import {getInstanceURL} from '@clerotri/lib/storage/utils';
-import {ThemeContext} from '@clerotri/lib/themes';
+import {commonValues, ThemeContext} from '@clerotri/lib/themes';
 import {SettingsSection} from '@clerotri/lib/types';
 import {openUrl} from '@clerotri/lib/utils';
 import {styles} from '@clerotri/Theme';
@@ -66,6 +67,8 @@ function copyDebugInfoWrapper() {
 }
 
 export const SettingsSheet = observer(({setState}: {setState: Function}) => {
+  const insets = useSafeAreaInsets();
+
   const {currentTheme} = useContext(ThemeContext);
 
   const {t} = useTranslation();
@@ -87,10 +90,12 @@ export const SettingsSheet = observer(({setState}: {setState: Function}) => {
     <View
       style={{
         flex: 1,
+        marginTop: insets.top,
         backgroundColor: currentTheme.backgroundPrimary,
-        padding: 15,
-        borderTopLeftRadius: 15,
-        borderTopRightRadius: 15,
+        paddingTop: commonValues.sizes.xl,
+        paddingInline: commonValues.sizes.xl,
+        borderTopLeftRadius: commonValues.sizes.xl,
+        borderTopRightRadius: commonValues.sizes.xl,
       }}>
       <BackButton
         callback={() => (section === null ? setState() : setSection(null))}
@@ -109,13 +114,14 @@ export const SettingsSheet = observer(({setState}: {setState: Function}) => {
               style={{
                 flex: 1,
               }}
-              contentContainerStyle={
-                section.section === 'info'
-                  ? {
-                      flex: 1,
-                    }
-                  : null
-              }
+              contentContainerStyle={[
+                {
+                  paddingBottom: insets.bottom,
+                },
+                section.section === 'info' && {
+                  flex: 1,
+                },
+              ]}
               showsVerticalScrollIndicator={false}
               showsHorizontalScrollIndicator={false}>
               {section.section === 'appearance' ? (

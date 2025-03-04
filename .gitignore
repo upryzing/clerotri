@@ -38,6 +38,7 @@ local.properties
 link-assets-manifest.json
 drawable-mdpi
 android/app/src/main/assets/fonts
+.kotlin/
 
 # node.js
 #

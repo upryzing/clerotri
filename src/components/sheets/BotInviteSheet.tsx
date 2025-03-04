@@ -2,6 +2,8 @@ import {useContext, useState} from 'react';
 import {Pressable, ScrollView, View} from 'react-native';
 import {observer} from 'mobx-react-lite';
 
+import {useSafeAreaInsets} from 'react-native-safe-area-context';
+
 import type {Server, User} from 'revolt.js';
 
 import {client} from '@clerotri/lib/client';
@@ -11,6 +13,8 @@ import {ThemeContext} from '@clerotri/lib/themes';
 
 export const BotInviteSheet = observer(
   ({setState, bot}: {setState: Function; bot: User}) => {
+    const insets = useSafeAreaInsets();
+
     const {currentTheme} = useContext(ThemeContext);
 
     const [destination, setDestination] = useState(null as Server | null);
@@ -19,6 +23,7 @@ export const BotInviteSheet = observer(
       <View
         style={{
           flex: 1,
+          paddingTop: insets.top,
           backgroundColor: currentTheme.backgroundPrimary,
         }}>
         <Pressable

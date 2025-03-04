@@ -140,7 +140,7 @@ const NewMessageView = observer(
     messages: RevoltMessage[];
     atEndOfPage: {current: boolean};
     fetchMoreMessages: (before: string) => void;
-    scrollViewRef: RefObject<FlatList>;
+    scrollViewRef: RefObject<FlatList<RevoltMessage> | null>;
   }) => {
     console.log(`[NEWMESSAGEVIEW] Creating message view for ${channel._id}...`);
 
@@ -221,7 +221,7 @@ function handleNewMessage(
   handledMessages: string[],
   atEndOfPage: boolean,
   setMessages: Dispatch<SetStateAction<RevoltMessage[]>>,
-  scrollViewRef: RefObject<FlatList>,
+  scrollViewRef: RefObject<FlatList | null>,
   setError: (error: any) => void,
   msg: RevoltMessage,
 ) {

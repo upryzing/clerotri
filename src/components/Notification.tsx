@@ -2,6 +2,7 @@ import {useContext} from 'react';
 import {Pressable, TouchableOpacity, View} from 'react-native';
 import {observer} from 'mobx-react-lite';
 
+import {useSafeAreaInsets} from 'react-native-safe-area-context';
 import MaterialCommunityIcon from 'react-native-vector-icons/MaterialCommunityIcons';
 
 import type {API, Channel} from 'revolt.js';
@@ -16,6 +17,8 @@ import {parseRevoltNodes} from '@clerotri/lib/utils';
 
 export const Notification = observer(
   ({message, dismiss}: {message: API.Message; dismiss: Function}) => {
+    const insets = useSafeAreaInsets();
+
     const {currentTheme} = useContext(ThemeContext);
     const {setCurrentChannel} = useContext(ChannelContext);
 
@@ -28,7 +31,13 @@ export const Notification = observer(
     const channel = client.channels.get(message.channel);
 
     return (
-      <View style={{position: 'absolute', top: 20, left: 0, width: '100%'}}>
+      <View
+        style={{
+          position: 'absolute',
+          top: insets.top + 20,
+          left: 0,
+          width: '100%',
+        }}>
         <TouchableOpacity
           style={{
             flexDirection: 'row',

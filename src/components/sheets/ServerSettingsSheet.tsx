@@ -3,6 +3,7 @@ import {Pressable, ScrollView, StyleSheet, View} from 'react-native';
 import {useTranslation} from 'react-i18next';
 import {observer} from 'mobx-react-lite';
 
+import {useSafeAreaInsets} from 'react-native-safe-area-context';
 import MaterialCommunityIcon from 'react-native-vector-icons/MaterialCommunityIcons';
 import MaterialIcon from 'react-native-vector-icons/MaterialIcons';
 
@@ -12,7 +13,7 @@ import {app, setFunction} from '@clerotri/Generic';
 import {client} from '@clerotri/lib/client';
 import {Image} from '@clerotri/crossplat/Image';
 import {MAX_SIDE_HQ} from '@clerotri/lib/consts';
-import {Theme, ThemeContext} from '@clerotri/lib/themes';
+import {commonValues, Theme, ThemeContext} from '@clerotri/lib/themes';
 import {SettingsSection} from '@clerotri/lib/types';
 import {styles} from '@clerotri/Theme';
 import {BackButton, ContextButton, Text} from '../common/atoms';
@@ -29,8 +30,10 @@ import {GapView} from '../layout';
 
 export const ServerSettingsSheet = observer(
   ({server, setState}: {server: Server; setState: Function}) => {
+    const insets = useSafeAreaInsets();
+
     const {currentTheme} = useContext(ThemeContext);
-    const localStyles = generateLocalStyles(currentTheme);
+    const localStyles = generateLocalStyles(currentTheme, insets.top);
 
     const {t} = useTranslation();
 
@@ -92,6 +95,9 @@ export const ServerSettingsSheet = observer(
         ) : (
           <ScrollView
             style={{flex: 1}}
+            contentContainerStyle={{
+              paddingBottom: insets.bottom,
+            }}
             showsVerticalScrollIndicator={false}
             showsHorizontalScrollIndicator={false}>
             {section == null ? (
@@ -285,14 +291,16 @@ export const ServerSettingsSheet = observer(
   },
 );
 
-const generateLocalStyles = (currentTheme: Theme) => {
+const generateLocalStyles = (currentTheme: Theme, inset: number) => {
   return StyleSheet.create({
     background: {
       flex: 1,
+      marginTop: inset,
       backgroundColor: currentTheme.backgroundPrimary,
-      padding: 15,
-      borderTopLeftRadius: 15,
-      borderTopRightRadius: 15,
+      paddingTop: commonValues.sizes.xl,
+      paddingInline: commonValues.sizes.xl,
+      borderTopLeftRadius: commonValues.sizes.xl,
+      borderTopRightRadius: commonValues.sizes.xl,
     },
     serverNameInitials: {
       borderRadius: 5000,

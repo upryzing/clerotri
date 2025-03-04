@@ -2,6 +2,7 @@ import {useContext, useEffect, useState} from 'react';
 import {Platform, Pressable, SectionList, View} from 'react-native';
 import {useTranslation} from 'react-i18next';
 
+import {useSafeAreaInsets} from 'react-native-safe-area-context';
 import MaterialCommunityIcon from 'react-native-vector-icons/MaterialCommunityIcons';
 
 import {styles} from '@clerotri/Theme';
@@ -81,6 +82,8 @@ const PackageEntry = ({packageInfo}: {packageInfo: Package}) => {
 };
 
 export const LicenseListSection = () => {
+  const insets = useSafeAreaInsets();
+
   const {currentTheme} = useContext(ThemeContext);
 
   const {t} = useTranslation();
@@ -126,8 +129,7 @@ export const LicenseListSection = () => {
           sections={data}
           style={{flex: 1}}
           contentContainerStyle={{
-            paddingBottom:
-              Platform.OS === 'web' ? 0 : commonValues.sizes.medium,
+            paddingBottom: Platform.OS === 'web' ? 0 : insets.bottom,
           }}
           renderSectionHeader={renderHeader}
           renderItem={renderItem}

@@ -3,13 +3,13 @@ import {
   Platform,
   Pressable,
   ScrollView,
-  StatusBar,
   StyleSheet,
   useWindowDimensions,
   View,
 } from 'react-native';
 
 import {Drawer} from 'react-native-drawer-layout';
+import {useSafeAreaInsets} from 'react-native-safe-area-context';
 import MaterialIcon from 'react-native-vector-icons/MaterialIcons';
 
 import type {Server} from 'revolt.js';
@@ -24,12 +24,14 @@ import {DEFAULT_API_URL} from '@clerotri/lib/consts';
 import {ChannelContext, SideMenuContext} from '@clerotri/lib/state';
 import {storage} from '@clerotri/lib/storage';
 import {getInstanceURL} from '@clerotri/lib/storage/utils';
-import {commonValues, Theme, ThemeContext} from '@clerotri/lib/themes';
+import {Theme, ThemeContext} from '@clerotri/lib/themes';
 import {useBackHandler} from '@clerotri/lib/ui';
 
 const SideMenu = () => {
+  const insets = useSafeAreaInsets();
+
   const {currentTheme} = useContext(ThemeContext);
-  const localStyles = generateLocalStyles(currentTheme);
+  const localStyles = generateLocalStyles(currentTheme, insets.bottom);
 
   const {setCurrentChannel} = useContext(ChannelContext);
 
@@ -51,7 +53,10 @@ const SideMenu = () => {
   return (
     <>
       <View style={localStyles.sideView}>
-        <ScrollView key={'server-list'} style={localStyles.serverList}>
+        <ScrollView
+          key={'server-list'}
+          style={localStyles.serverList}
+          contentContainerStyle={{paddingTop: insets.top}}>
           <Pressable
             onPress={() => {
               currentServer ? setCurrentServer(null) : app.openStatusMenu(true);
@@ -108,8 +113,9 @@ const SideMenu = () => {
 };
 
 export const SideMenuHandler = () => {
-  const {currentTheme} = useContext(ThemeContext);
-  const localStyles = generateLocalStyles(currentTheme);
+  const {height, width} = useWindowDimensions();
+
+  const localStyles = generateDrawerStyles(width);
 
   const [sideMenuOpen, setSideMenuOpen] = useState(false);
 
@@ -117,8 +123,6 @@ export const SideMenuHandler = () => {
     console.log(`[APP] Setting left menu open state to ${o}`);
     setSideMenuOpen(o);
   });
-
-  const {height, width} = useWindowDimensions();
 
   useBackHandler(() => {
     if (height > width && !sideMenuOpen) {
@@ -131,22 +135,9 @@ export const SideMenuHandler = () => {
 
   return (
     <SideMenuContext.Provider value={{sideMenuOpen, setSideMenuOpen}}>
-      <StatusBar
-        animated={true}
-        backgroundColor={
-          sideMenuOpen
-            ? currentTheme.backgroundSecondary
-            : currentTheme.headerBackground
-        }
-        barStyle={`${currentTheme.contentType}-content`}
-      />
       {height < width ? (
-        <View style={{flex: 1, flexDirection: 'row'}}>
-          <View
-            style={{
-              width: '20%',
-              flexDirection: 'column',
-            }}>
+        <View style={localStyles.wide}>
+          <View style={localStyles.wideInner}>
             <SideMenu />
           </View>
           <ChannelView />
@@ -161,10 +152,7 @@ export const SideMenuHandler = () => {
           onClose={() => setSideMenuOpen(false)}
           renderDrawerContent={() => <SideMenu />}
           style={localStyles.drawer}
-          drawerStyle={{
-            backgroundColor: '#00000000',
-            width: width - 50,
-          }}>
+          drawerStyle={localStyles.drawerInner}>
           <ChannelView />
         </Drawer>
       )}
@@ -172,11 +160,28 @@ export const SideMenuHandler = () => {
   );
 };
 
-const generateLocalStyles = (currentTheme: Theme) => {
+const generateDrawerStyles = (width: number) => {
   return StyleSheet.create({
     drawer: {
       flex: 1,
     },
+    drawerInner: {
+      backgroundColor: '#00000000',
+      width: width - 50,
+    },
+    wide: {
+      flex: 1,
+      flexDirection: 'row',
+    },
+    wideInner: {
+      width: '20%',
+      flexDirection: 'column',
+    },
+  });
+};
+
+const generateLocalStyles = (currentTheme: Theme, inset: number) => {
+  return StyleSheet.create({
     sideView: {
       flex: 1,
       backgroundColor: currentTheme.background,
@@ -187,7 +192,6 @@ const generateLocalStyles = (currentTheme: Theme) => {
       width: 60,
       flexShrink: 1,
       backgroundColor: currentTheme.background,
-      paddingVertical: commonValues.sizes.small,
       ...(Platform.OS === 'web' && {scrollbarWidth: 'none'}),
     },
     separator: {
@@ -204,6 +208,7 @@ const generateLocalStyles = (currentTheme: Theme) => {
       borderColor: currentTheme.generalBorderColor,
       flexDirection: 'row',
       justifyContent: 'space-evenly',
+      marginBottom: inset - 5,
     },
   });
 };

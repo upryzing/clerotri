@@ -4,6 +4,8 @@ import {useTranslation} from 'react-i18next';
 import {observer} from 'mobx-react-lite';
 
 import {type DocumentPickerResponse} from '@react-native-documents/picker';
+import {KeyboardAvoidingView} from 'react-native-keyboard-controller';
+import {useSafeAreaInsets} from 'react-native-safe-area-context';
 import MaterialIcon from 'react-native-vector-icons/MaterialIcons';
 import MaterialCommunityIcon from 'react-native-vector-icons/MaterialCommunityIcons';
 
@@ -44,8 +46,10 @@ function placeholderText(channel: Channel) {
 }
 
 export const MessageBox = observer((props: MessageBoxProps) => {
+  const insets = useSafeAreaInsets();
+
   const {currentTheme} = useContext(ThemeContext);
-  const localStyles = generateLocalStyles(currentTheme);
+  const localStyles = generateLocalStyles(currentTheme, insets.bottom);
 
   const {t} = useTranslation();
 
@@ -87,7 +91,10 @@ export const MessageBox = observer((props: MessageBoxProps) => {
     );
   }
   return (
-    <View style={localStyles.messageBoxOuter}>
+    <KeyboardAvoidingView
+      behavior={'padding'}
+      keyboardVerticalOffset={-24}
+      style={localStyles.messageBoxOuter}>
       <TypingIndicator channel={props.channel} />
       {replyingMessages
         ? replyingMessages.map((m, i) => (
@@ -296,7 +303,7 @@ export const MessageBox = observer((props: MessageBoxProps) => {
           </Pressable>
         ) : null}
       </View>
-    </View>
+    </KeyboardAvoidingView>
   );
 });
 
@@ -309,7 +316,7 @@ const AttachmentsBar = observer(
     setAttachments: Function;
   }) => {
     const {currentTheme} = useContext(ThemeContext);
-    const localStyles = generateLocalStyles(currentTheme);
+    const localStyles = generateAttachmentsBarStyles(currentTheme);
 
     // TODO: add file previews?
     if (attachments?.length > 0) {
@@ -381,7 +388,7 @@ const AttachmentsBar = observer(
 
 const TypingIndicator = observer(({channel}: {channel: Channel}) => {
   const {currentTheme} = useContext(ThemeContext);
-  const localStyles = generateLocalStyles(currentTheme);
+  const localStyles = generateTypingBarStyles(currentTheme);
 
   if (channel) {
     let users = channel.typing?.filter(entry => !!entry) || undefined;
@@ -444,7 +451,7 @@ const TypingIndicator = observer(({channel}: {channel: Channel}) => {
   return <View />;
 });
 
-const generateLocalStyles = (currentTheme: Theme) => {
+const generateLocalStyles = (currentTheme: Theme, inset: number) => {
   return StyleSheet.create({
     messageBoxBar: {
       padding: commonValues.sizes.small,
@@ -465,6 +472,7 @@ const generateLocalStyles = (currentTheme: Theme) => {
       minHeight: 50,
       paddingHorizontal: 10,
       paddingVertical: 5,
+      paddingBottom: inset + 5,
     },
     messageBoxOuter: {
       backgroundColor: currentTheme.messageBox,
@@ -482,24 +490,10 @@ const generateLocalStyles = (currentTheme: Theme) => {
       backgroundColor: currentTheme.backgroundSecondary,
       minHeight: 50,
       paddingVertical: 20,
+      paddingBottom: inset + 20,
       paddingHorizontal: commonValues.sizes.medium,
       alignItems: 'center',
       justifyContent: 'center',
-    },
-    typingBar: {
-      height: 26,
-      paddingLeft: 6,
-      padding: 3,
-      backgroundColor: currentTheme.backgroundSecondary,
-      borderBottomColor: currentTheme.backgroundPrimary,
-      borderBottomWidth: 1,
-      flexDirection: 'row',
-    },
-    attachmentsBar: {
-      padding: commonValues.sizes.medium,
-      borderBottomColor: currentTheme.backgroundPrimary,
-      borderBottomWidth: 1,
-      flexDirection: 'column',
     },
     attachment: {
       flexDirection: 'row',
@@ -508,6 +502,31 @@ const generateLocalStyles = (currentTheme: Theme) => {
       backgroundColor: currentTheme.backgroundPrimary,
       borderRadius: commonValues.sizes.small,
       alignItems: 'center',
+    },
+  });
+};
+
+const generateAttachmentsBarStyles = (currentTheme: Theme) => {
+  return StyleSheet.create({
+    attachmentsBar: {
+      padding: commonValues.sizes.medium,
+      borderBottomColor: currentTheme.backgroundPrimary,
+      borderBottomWidth: 1,
+      flexDirection: 'column',
+    },
+  });
+};
+
+const generateTypingBarStyles = (currentTheme: Theme) => {
+  return StyleSheet.create({
+    typingBar: {
+      height: 26,
+      paddingLeft: 6,
+      padding: 3,
+      backgroundColor: currentTheme.backgroundSecondary,
+      borderBottomColor: currentTheme.backgroundPrimary,
+      borderBottomWidth: 1,
+      flexDirection: 'row',
     },
   });
 };

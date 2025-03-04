@@ -6,6 +6,7 @@ import {
   View,
 } from 'react-native';
 
+import {useSafeAreaInsets} from 'react-native-safe-area-context';
 import MaterialIcon from 'react-native-vector-icons/MaterialIcons';
 
 import {app} from '@clerotri/Generic';
@@ -22,8 +23,10 @@ export const ChannelHeader = ({
   icon?: React.JSX.Element;
   name?: string;
 }) => {
+  const insets = useSafeAreaInsets();
+
   const {currentTheme} = useContext(ThemeContext);
-  const localStyles = generateLocalStyles(currentTheme);
+  const localStyles = generateLocalStyles(currentTheme, insets.top);
 
   const {height, width} = useWindowDimensions();
 
@@ -51,14 +54,14 @@ export const ChannelHeader = ({
   );
 };
 
-const generateLocalStyles = (currentTheme: Theme) => {
+const generateLocalStyles = (currentTheme: Theme, inset: number) => {
   return StyleSheet.create({
     channelHeader: {
-      height: 50,
       backgroundColor: currentTheme.headerBackground,
       alignItems: 'center',
       paddingLeft: commonValues.sizes.xl,
       padding: 10,
+      paddingTop: inset,
       flexDirection: 'row',
     },
     headerIcon: {

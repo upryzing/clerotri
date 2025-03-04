@@ -1,10 +1,12 @@
 import 'react-native-get-random-values'; // react native moment
 
 import {useEffect, useState} from 'react';
-import {StyleSheet} from 'react-native';
+import {StatusBar, StyleSheet} from 'react-native';
 import {ErrorBoundary} from 'react-error-boundary';
 
 import {GestureHandlerRootView} from 'react-native-gesture-handler';
+import {KeyboardProvider} from 'react-native-keyboard-controller';
+import {SafeAreaProvider} from 'react-native-safe-area-context';
 
 import {setFunction} from '@clerotri/Generic';
 import {MainView} from '@clerotri/MainView';
@@ -20,6 +22,7 @@ export const App = () => {
   setFunction('setTheme', (themeName: string) => {
     const newTheme = themes[themeName] ?? themes.Dark;
     setTheme(newTheme);
+    StatusBar.setBarStyle(`${newTheme.contentType}-content`);
   });
 
   useEffect(() => {
@@ -27,21 +30,24 @@ export const App = () => {
   }, []);
 
   return (
-    <GestureHandlerRootView style={localStyles.outer}>
-      <ThemeContext.Provider
-        value={{currentTheme: theme, setCurrentTheme: setTheme}}>
-        <ErrorBoundary FallbackComponent={ErrorMessage}>
-          <MainView />
-        </ErrorBoundary>
-      </ThemeContext.Provider>
-    </GestureHandlerRootView>
+    <SafeAreaProvider style={localStyles.outer}>
+      <KeyboardProvider statusBarTranslucent navigationBarTranslucent>
+        <GestureHandlerRootView>
+          <ThemeContext.Provider
+            value={{currentTheme: theme, setCurrentTheme: setTheme}}>
+            <ErrorBoundary FallbackComponent={ErrorMessage}>
+              <MainView />
+            </ErrorBoundary>
+          </ThemeContext.Provider>
+        </GestureHandlerRootView>
+      </KeyboardProvider>
+    </SafeAreaProvider>
   );
 };
 
 const generateLocalStyles = (currentTheme: Theme) => {
   return StyleSheet.create({
     outer: {
-      flex: 1,
       backgroundColor: currentTheme.background,
     },
   });

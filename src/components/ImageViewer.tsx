@@ -3,6 +3,10 @@ import {Pressable, StyleSheet, View} from 'react-native';
 
 import {gestureHandlerRootHOC} from 'react-native-gesture-handler';
 import ImageViewerCore from 'react-native-reanimated-image-viewer';
+import {
+  type EdgeInsets,
+  useSafeAreaInsets,
+} from 'react-native-safe-area-context';
 import MaterialCommunityIcon from 'react-native-vector-icons/MaterialCommunityIcons';
 
 import {client} from '@clerotri/lib/client';
@@ -13,8 +17,10 @@ import {getReadableFileSize, openUrl} from '@clerotri/lib/utils';
 
 export const ImageViewer = gestureHandlerRootHOC(
   ({state, setState}: {state: any; setState: any}) => {
+    const insets = useSafeAreaInsets();
+
     const {currentTheme} = useContext(ThemeContext);
-    const localStyles = generateLocalStyles(currentTheme);
+    const localStyles = generateLocalStyles(currentTheme, insets);
 
     const imageUrl = state.i?.metadata
       ? client.generateFileURL(state.i)!
@@ -67,15 +73,16 @@ export const ImageViewer = gestureHandlerRootHOC(
   {backgroundColor: 'red'},
 );
 
-const generateLocalStyles = (currentTheme: Theme) => {
+const generateLocalStyles = (currentTheme: Theme, insets: EdgeInsets) => {
   return StyleSheet.create({
     container: {
       flex: 1,
       justifyContent: 'space-between',
     },
     topBar: {
-      height: '7%',
       backgroundColor: currentTheme.background,
+      paddingTop: insets.top,
+      paddingBottom: commonValues.sizes.large,
       paddingHorizontal: commonValues.sizes.large,
       alignItems: 'center',
       justifyContent: 'space-between',
@@ -83,10 +90,11 @@ const generateLocalStyles = (currentTheme: Theme) => {
       zIndex: 10,
     },
     image: {
-      height: '86%',
+      flex: 1,
     },
     fileInfo: {
-      height: '7%',
+      paddingTop: commonValues.sizes.large,
+      paddingBottom: insets.bottom,
       backgroundColor: currentTheme.background,
       paddingHorizontal: commonValues.sizes.large,
       justifyContent: 'center',

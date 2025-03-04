@@ -3,6 +3,7 @@ import {FlatList, Platform, Pressable, View} from 'react-native';
 import {useTranslation} from 'react-i18next';
 import {observer} from 'mobx-react-lite';
 
+import {useSafeAreaInsets} from 'react-native-safe-area-context';
 import MaterialCommunityIcon from 'react-native-vector-icons/MaterialCommunityIcons';
 import MaterialIcon from 'react-native-vector-icons/MaterialIcons';
 
@@ -16,6 +17,8 @@ import {client} from '@clerotri/lib/client';
 import {commonValues, ThemeContext} from '@clerotri/lib/themes';
 
 export const MemberSettingsSection = observer(({server}: {server: Server}) => {
+  const insets = useSafeAreaInsets();
+
   const {currentTheme} = useContext(ThemeContext);
 
   const {t} = useTranslation();
@@ -173,8 +176,7 @@ export const MemberSettingsSection = observer(({server}: {server: Server}) => {
           keyExtractor={keyExtractor}
           data={members}
           contentContainerStyle={{
-            paddingBottom:
-              Platform.OS === 'web' ? 0 : commonValues.sizes.medium,
+            paddingBottom: Platform.OS === 'web' ? 0 : insets.bottom,
           }}
           renderItem={renderItem}
           showsVerticalScrollIndicator={false}

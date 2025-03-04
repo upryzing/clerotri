@@ -1,11 +1,4 @@
-import {
-  type MutableRefObject,
-  useContext,
-  useEffect,
-  useRef,
-  useState,
-} from 'react';
-import {StatusBar} from 'react-native';
+import {type RefObject, useContext, useEffect, useRef, useState} from 'react';
 
 import type {API, ClientboundNotification} from 'revolt.js';
 
@@ -33,8 +26,8 @@ function LoggedInViews({
   channelNotificationSettings,
   serverNotificationSettings,
 }: {
-  channelNotificationSettings: MutableRefObject<any>;
-  serverNotificationSettings: MutableRefObject<any>;
+  channelNotificationSettings: RefObject<any>;
+  serverNotificationSettings: RefObject<any>;
 }) {
   const [currentChannel, setCurrentChannel] = useState<CVChannel>(null);
 
@@ -135,8 +128,8 @@ export function MainView() {
 
   const [orderedServers, setOrderedServers] = useState<string[]>([]);
 
-  const channelNotificationSettings = useRef<any>();
-  const serverNotificationSettings = useRef<any>();
+  const channelNotificationSettings = useRef<any>(undefined);
+  const serverNotificationSettings = useRef<any>(undefined);
 
   useEffect(() => {
     console.log('[APP] Setting up global functions...');
@@ -279,15 +272,6 @@ export function MainView() {
 
   return (
     <OrderedServersContext.Provider value={{orderedServers, setOrderedServers}}>
-      <StatusBar
-        animated={true}
-        backgroundColor={
-          status !== 'loggedIn'
-            ? currentTheme.backgroundPrimary
-            : currentTheme.backgroundSecondary
-        }
-        barStyle={`${currentTheme.contentType}-content`}
-      />
       {status === 'loggedIn' ? (
         <LoggedInViews
           channelNotificationSettings={channelNotificationSettings}

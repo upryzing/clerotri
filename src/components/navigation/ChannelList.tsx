@@ -10,6 +10,7 @@ import {
 } from 'react-native';
 import {observer} from 'mobx-react-lite';
 
+import {useSafeAreaInsets} from 'react-native-safe-area-context';
 import MaterialCommunityIcon from 'react-native-vector-icons/MaterialCommunityIcons';
 
 import {API, Channel, Server} from 'revolt.js';
@@ -87,7 +88,6 @@ const ServerChannelListCategory = observer(
 
 const ServerChannelList = observer((props: ServerChannelListProps) => {
   const {currentTheme} = useContext(ThemeContext);
-  const localStyles = generateLocalStyles(currentTheme);
 
   const {currentChannel, setCurrentChannel} = useContext(ChannelContext);
   const {setSideMenuOpen} = useContext(SideMenuContext);
@@ -132,7 +132,7 @@ const ServerChannelList = observer((props: ServerChannelListProps) => {
             }}>
             <View
               style={{flexDirection: 'row', justifyContent: 'space-between'}}>
-              <Text style={localStyles.serverName} numberOfLines={1}>
+              <Text style={subListStyles.serverName} numberOfLines={1}>
                 {props.currentServer.name}
               </Text>
               <View
@@ -154,7 +154,7 @@ const ServerChannelList = observer((props: ServerChannelListProps) => {
           onPress={() => app.openServerContextMenu(props.currentServer)}
           style={{width: '100%', paddingHorizontal: 10}}>
           <View style={{flexDirection: 'row', justifyContent: 'space-between'}}>
-            <Text style={localStyles.serverName} numberOfLines={1}>
+            <Text style={subListStyles.serverName} numberOfLines={1}>
               {props.currentServer.name}
             </Text>
             <View
@@ -199,9 +199,6 @@ const ServerChannelList = observer((props: ServerChannelListProps) => {
 });
 
 const UserChannelList = observer(() => {
-  const {currentTheme} = useContext(ThemeContext);
-  const localStyles = generateLocalStyles(currentTheme);
-
   const {currentChannel, setCurrentChannel} = useContext(ChannelContext);
   const {setSideMenuOpen} = useContext(SideMenuContext);
 
@@ -290,7 +287,7 @@ const UserChannelList = observer(() => {
 
   return (
     <>
-      <Text style={localStyles.userChannelListHeader}>Direct Messages</Text>
+      <Text style={subListStyles.userChannelListHeader}>Direct Messages</Text>
       <FlatList
         key={'user-channel-list-conversations'}
         keyExtractor={keyExtractor}
@@ -307,8 +304,10 @@ const UserChannelList = observer(() => {
 });
 
 export const ChannelList = observer((props: ChannelListProps) => {
+  const insets = useSafeAreaInsets();
+
   const {currentTheme} = useContext(ThemeContext);
-  const localStyles = generateLocalStyles(currentTheme);
+  const localStyles = generateLocalStyles(currentTheme, insets.top);
 
   return props.currentServer ? (
     <ScrollView
@@ -325,24 +324,28 @@ export const ChannelList = observer((props: ChannelListProps) => {
   );
 });
 
-const generateLocalStyles = (currentTheme: Theme) => {
+const generateLocalStyles = (currentTheme: Theme, inset: number) => {
   return StyleSheet.create({
     channelList: {
       backgroundColor: currentTheme.backgroundSecondary,
       flexGrow: 1000,
       flex: 1000,
-    },
-    userChannelListHeader: {
-      marginLeft: commonValues.sizes.large,
-      margin: commonValues.sizes.xl,
-      fontSize: 18,
-      fontWeight: 'bold',
-    },
-    serverName: {
-      marginVertical: 10,
-      maxWidth: '90%',
-      fontSize: 18,
-      fontWeight: 'bold',
+      marginTop: inset,
     },
   });
 };
+
+const subListStyles = StyleSheet.create({
+  userChannelListHeader: {
+    marginLeft: commonValues.sizes.large,
+    margin: commonValues.sizes.xl,
+    fontSize: 18,
+    fontWeight: 'bold',
+  },
+  serverName: {
+    marginVertical: 10,
+    maxWidth: '90%',
+    fontSize: 18,
+    fontWeight: 'bold',
+  },
+});
