@@ -5,8 +5,8 @@
 </a>
 
 <div style="flex-direction: row;">
-  <a href="https://translate.revolt.chat/engage/rvmorb/">
-    <img src="https://translate.revolt.chat/widgets/rvmorb/-/app/svg-badge.svg" alt="Translation status on Weblate" />
+  <a href="https://translate.upryzing.app/engage/clerotri/">
+    <img src="https://translate.upryzing.app/widgets/clerotri/-/app/svg-badge.svg" alt="Translation status on Weblate" />
   </a>
   <a href="https://lea.pet/@clerotri">
     <img src="https://img.shields.io/badge/fedi-@clerotri@lea.pet-teal" alt="Fediverse badge from shields.io"/>
