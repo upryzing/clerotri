@@ -388,7 +388,7 @@ export const app = {
   openNewInviteModal: (code: string | null) => {},
   handleSettingsVisibility: (stateFunction: (state: boolean) => void) => {
     console.log(
-      `[FUNCTIONS] Tried to run uninitialised function handleSettingsVisibility(args: ${stateFunction})`,
+      `[FUNCTIONS] Tried to run uninitialised function handleSettingsVisibility (args: ${stateFunction})`,
     );
   },
   handleServerSettingsVisibility: (stateFunction: (state: null) => void) => {
