@@ -35,8 +35,8 @@
         "home": {
             "join_lounge": "Participe do Revolt Lounge",
             "open_lounge": "Abrir o Revolt Lounge",
-            "join_rvmob": "Junte-se ao servidor RVMob",
-            "open_rvmob": "Abrir o servidor RVMob",
+            "join_clerotri": "Junte-se ao servidor RVMob",
+            "open_clerotri": "Abrir o servidor RVMob",
             "open_settings": "Abrir as configurações",
             "description": "Deslize o dedo a partir da borda esquerda da tela ou toque nas três linhas para ver seus servidores e mensagens!"
         },

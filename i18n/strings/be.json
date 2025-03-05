@@ -19,10 +19,10 @@
         "home": {
             "join_lounge": "Далучыцца да Revolt Lounge",
             "open_lounge": "Адкрыць Revolt Lounge",
-            "open_rvmob": "Адкрыць сервер Clerotri",
+            "open_clerotri": "Адкрыць сервер Clerotri",
             "open_settings": "Адкрыць налады",
             "description": "Правядзіце пальцам ад левага краю экрана або націсніце на значок з трыма лініямі, каб убачыць свае серверы і паведамленні!",
-            "join_rvmob": "Далучыцца да сервера Clerotri"
+            "join_clerotri": "Далучыцца да сервера Clerotri"
         },
         "modals": {
             "confirm_deletion": {

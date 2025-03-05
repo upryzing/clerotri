@@ -203,8 +203,8 @@
             "description": "Mag-swipe sa kaliwa ng screen o i-tap ang tatlong linyang icon para makita ang iyong mga server at mensahe!",
             "join_lounge": "Sumali sa Revolt Lounge",
             "open_lounge": "Buksan ang Revolt Lounge",
-            "join_rvmob": "Sumali sa Clerotri server",
-            "open_rvmob": "Buksan ang Clerotri server",
+            "join_clerotri": "Sumali sa Clerotri server",
+            "open_clerotri": "Buksan ang Clerotri server",
             "open_settings": "Buksan ang mga setting"
         },
         "settings_menu": {

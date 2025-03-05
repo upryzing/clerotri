@@ -4,8 +4,8 @@
             "description": "Проведите пальцем от левого края экрана или нажмите на значок с тремя линиями, чтобы увидеть свои серверы и сообщения!",
             "join_lounge": "Присоединиться к Revolt Lounge",
             "open_lounge": "Открыть Revolt Lounge",
-            "join_rvmob": "Присоединиться к серверу Clerotri",
-            "open_rvmob": "Открыть сервер Clerotri",
+            "join_clerotri": "Присоединиться к серверу Clerotri",
+            "open_clerotri": "Открыть сервер Clerotri",
             "open_settings": "Открыть настройки"
         },
         "actions": {

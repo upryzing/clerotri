@@ -104,8 +104,8 @@ export const HomePage = observer(() => {
           onPress={() => app.openInvite(SPECIAL_SERVERS.supportServer.invite)}>
           <Text style={styles.buttonText}>
             {client.servers.get(SPECIAL_SERVERS.supportServer.id)
-              ? t('app.home.open_rvmob')
-              : t('app.home.join_rvmob')}
+              ? t('app.home.open_clerotri')
+              : t('app.home.join_clerotri')}
           </Text>
         </Button>
         <Button

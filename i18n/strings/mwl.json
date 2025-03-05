@@ -35,10 +35,10 @@
         "home": {
             "join_lounge": "Oune-te a la Lounge de l Revolt",
             "open_lounge": "Abrir la Lounge de l Revolt",
-            "open_rvmob": "Abre l serbidor RVMob",
+            "open_clerotri": "Abre l serbidor RVMob",
             "open_settings": "Abrir definiçones",
             "description": "Arrastra pula izquierda de l’ecran ó clica l’ícone cun trés lhinhas pa ber ls tous serbidores i mensaiges!",
-            "join_rvmob": "Oune-te al serbidor RVMob"
+            "join_clerotri": "Oune-te al serbidor RVMob"
         },
         "modals": {
             "confirm_deletion": {

@@ -49,8 +49,8 @@
         "home": {
             "join_lounge": "به سالن ریولت بپیوندید",
             "open_lounge": "Revolt Lounge را باز کنید",
-            "join_rvmob": "به سرور RVMob بپیوندید",
-            "open_rvmob": "سرور RVMob را باز کنید",
+            "join_clerotri": "به سرور RVMob بپیوندید",
+            "open_clerotri": "سرور RVMob را باز کنید",
             "open_settings": "تنظیمات را باز کنید",
             "description": "از سمت چپ صفحه بکشید یا روی نماد سه خط ضربه بزنید تا سرورها و پیام‌های خود را ببینید!"
         },

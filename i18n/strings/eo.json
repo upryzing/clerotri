@@ -18,8 +18,8 @@
             "join_lounge": "Aliĝi al la Revolto Loŭnĝeo",
             "open_settings": "Malfermi agordojn",
             "description": "Ŝovumu de maldekstre de la ekrano aŭ tuŝetu la trilinian ikonon por vidi viajn servilojn kaj mesaĝojn!",
-            "open_rvmob": "Malfermi la servilon de RVMobo",
-            "join_rvmob": "Aliĝi al la servilo de RVMobo"
+            "open_clerotri": "Malfermi la servilon de RVMobo",
+            "join_clerotri": "Aliĝi al la servilo de RVMobo"
         },
         "modals": {
             "confirm_deletion": {

@@ -57,10 +57,10 @@
         "home": {
             "join_lounge": "Juntar-se ao Revolt Lounge",
             "open_lounge": "Abrir o Revolt Lounge",
-            "open_rvmob": "Abrir o servidor Clerotri",
+            "open_clerotri": "Abrir o servidor Clerotri",
             "open_settings": "Abrir configurações",
             "description": "Deslize a partir da esquerda da tela ou clique no ícone de três linhas para ver os seus servidores e mensagens!",
-            "join_rvmob": "Juntar-se ao servidor Clerotri"
+            "join_clerotri": "Juntar-se ao servidor Clerotri"
         },
         "messaging": {
             "message_box_channel": "Conversar em #{{name}}",

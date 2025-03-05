@@ -36,8 +36,8 @@
             "description": "¡Desliza desde la parte izquierda de la pantalla o, presione el icono de tres líneas para mirar tus servidores y mensajes!",
             "open_lounge": "Abrir Revolt Lounge",
             "join_lounge": "Únete al servidor de Revolt Lounge",
-            "join_rvmob": "Únete al servidor de RVMob",
-            "open_rvmob": "Abrir el servidor de RVMob",
+            "join_clerotri": "Únete al servidor de RVMob",
+            "open_clerotri": "Abrir el servidor de RVMob",
             "open_settings": "Abrir configuración"
         },
         "modals": {

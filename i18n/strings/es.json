@@ -58,8 +58,8 @@
         "home": {
             "join_lounge": "Únase al Revolt Lounge",
             "open_lounge": "Abre el Revolt Lounge",
-            "join_rvmob": "Únase al servidor Clerotri",
-            "open_rvmob": "Abra el servidor Clerotri",
+            "join_clerotri": "Únase al servidor Clerotri",
+            "open_clerotri": "Abra el servidor Clerotri",
             "description": "¡Desliza el dedo desde la izquierda de la pantalla o toca el ícono de tres líneas para ver tus servidores y mensajes!",
             "open_settings": "Abrir configuración"
         },

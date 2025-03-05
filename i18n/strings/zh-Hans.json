@@ -181,8 +181,8 @@
             "description": "从屏幕左侧滑动或者点击三条横线图标，来查看服务器和消息！",
             "join_lounge": "加入 Revolt Lounge",
             "open_lounge": "打开 Revolt Lounge",
-            "join_rvmob": "加入 Clerotri 服务器",
-            "open_rvmob": "打开 Clerotri 服务器",
+            "join_clerotri": "加入 Clerotri 服务器",
+            "open_clerotri": "打开 Clerotri 服务器",
             "open_settings": "打开设置"
         },
         "settings": {

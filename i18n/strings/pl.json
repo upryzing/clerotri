@@ -54,11 +54,11 @@
             }
         },
         "home": {
-            "open_rvmob": "Otwórz serwer RVMob",
+            "open_clerotri": "Otwórz serwer RVMob",
             "join_lounge": "Dołącz do Revolt Lounge",
             "open_lounge": "Otwórz Revolt Lounge",
             "open_settings": "Otwórz ustawienia",
-            "join_rvmob": "Dołącz do serwera RVMob"
+            "join_clerotri": "Dołącz do serwera RVMob"
         },
         "messaging": {
             "message_box_group": "Wyślij wiadomość do {{name}}",

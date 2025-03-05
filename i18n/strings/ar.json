@@ -37,8 +37,8 @@
             "open_lounge": "افتح ردهة Revolt",
             "description": "اسحب من يسار الشاشة أو اضغط على أيقونة الخطوط الثلاثة لترى السيرفرات والرسائل!",
             "open_settings": "فتح الإعدادات",
-            "open_rvmob": "فتح سيرفر RVMob",
-            "join_rvmob": "انضم إلى سيرفر RVMob"
+            "open_clerotri": "فتح سيرفر RVMob",
+            "join_clerotri": "انضم إلى سيرفر RVMob"
         },
         "modals": {
             "confirm_deletion": {

@@ -17,8 +17,8 @@
             "description": "A szervereidhez és üzeneteidhez balról húzz egyet a képernyőn, vagy koppints a háromvonalas ikonra!",
             "join_lounge": "Csatlakozás a Revolt Lounge-hoz",
             "open_lounge": "Revolt Lounge megnyitása",
-            "join_rvmob": "Csatlakozás az RVMob-szerverhez",
-            "open_rvmob": "RVMob-szerver megnyitása",
+            "join_clerotri": "Csatlakozás az RVMob-szerverhez",
+            "open_clerotri": "RVMob-szerver megnyitása",
             "open_settings": "Beállítások megnyitása"
         },
         "modals": {

@@ -18,10 +18,10 @@
         "home": {
             "join_lounge": "Revolt Lounge'a katılın",
             "open_lounge": "Revolt Lounge'ı açın",
-            "join_rvmob": "Clerotri sunucusuna katılın",
+            "join_clerotri": "Clerotri sunucusuna katılın",
             "open_settings": "Ayarları aç",
             "description": "Sunucularınızı ve mesajlarınızı görmek için ekranın solundan kaydırın veya üç çizgi simgesine tıklayın!",
-            "open_rvmob": "Clerotri sunucusunu açın"
+            "open_clerotri": "Clerotri sunucusunu açın"
         },
         "modals": {
             "confirm_deletion": {
