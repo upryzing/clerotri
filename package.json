@@ -6,8 +6,8 @@
   "private": true,
   "scripts": {
     "clean": "react-native clean",
-    "android": "yarn license-list -prod && rnx-cli run-android --active-arch-only --appIdSuffix=debug --mode=debug",
-    "android-release": "yarn license-list -prod && yarn android-release:bundle && rnx-cli build-android --tasks assembleRelease",
+    "android": "yarn prebuild && rnx-cli run-android --active-arch-only --appIdSuffix=debug --mode=debug",
+    "android-release": "yarn prebuild && yarn android-release:bundle && rnx-cli build-android --tasks assembleRelease",
     "android-release:bundle": "rnx-cli bundle --dev false && yarn android-release:copy-assets",
     "android-release:copy-assets": "mkdir -p android/app/build/generated/assets/createBundleReleaseJsAndAssets && mkdir -p android/app/build/generated/res/createBundleReleaseJsAndAssets && cp dist/android/index.android.bundle.hbc android/app/build/generated/assets/createBundleReleaseJsAndAssets/index.android.bundle && cp -r dist/android/res android/app/build/generated/res/createBundleReleaseJsAndAssets",
     "android-release:full": "yarn android-release && rm android/app/build/outputs/apkset/release/app-release.apks -f && rnx-cli build-android --tasks buildApksRelease",
@@ -16,9 +16,11 @@
     "test": "jest",
     "lint": "eslint .",
     "license-list": "yarn licenses list --production --json --recursive > assets/data/licenses.json && node scripts/licenseListProcessor.mjs -silent",
-    "web": "yarn license-list -prod && vite -c config/vite.config.ts",
-    "web-release": "yarn license-list -prod && vite build -c config/vite.config.ts",
-    "web-preview": "yarn license-list -prod && vite preview -c config/vite.config.ts",
+    "metadata": "node scripts/metadataGenerator.mjs",
+    "prebuild": "yarn metadata && yarn license-list -prod",
+    "web": "yarn prebuild && vite -c config/vite.config.ts",
+    "web-release": "yarn prebuild && vite build -c config/vite.config.ts",
+    "web-preview": "yarn prebuild && vite preview -c config/vite.config.ts",
     "knip": "knip"
   },
   "dependencies": {

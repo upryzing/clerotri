@@ -1,16 +1,20 @@
-import {useContext, useMemo} from 'react';
+import {useContext} from 'react';
 import {type GradientValue, Platform, Pressable, View} from 'react-native';
 
 import {getBundleId} from 'react-native-device-info';
 import MaterialCommunityIcon from 'react-native-vector-icons/MaterialCommunityIcons';
 
-import {dependencies} from '../../../../../../package.json';
 import {appVersion, settings} from '@clerotri/Generic';
 import {
   CONTRIBUTORS_LIST,
   FEDI_PROFILE,
   GITHUB_REPO,
 } from '@clerotri/lib/consts';
+import {
+  BUILD_COMMIT,
+  REACT_NATIVE_VERSION,
+  REVOLT_JS_VERSION,
+} from '@clerotri/lib/metadata';
 import {commonValues, ThemeContext} from '@clerotri/lib/themes';
 import {openUrl} from '@clerotri/lib/utils';
 import {ContextButton, Link, Text} from '@clerotri/components/common/atoms';
@@ -33,19 +37,6 @@ const versionGradient: GradientValue = {
 
 export const AppInfoSection = () => {
   const {currentTheme} = useContext(ThemeContext);
-  const reactNativeVersion = useMemo(
-    () =>
-      Platform.OS === 'web'
-        ? dependencies['react-native'].replace('^', '')
-        : `${Platform.constants.reactNativeVersion.major}.${
-            Platform.constants.reactNativeVersion.minor
-          }.${Platform.constants.reactNativeVersion.patch}${
-            Platform.constants.reactNativeVersion.prerelease
-              ? `-${Platform.constants.reactNativeVersion.prerelease}`
-              : ''
-          }`,
-    [],
-  );
 
   return (
     <View
@@ -75,16 +66,24 @@ export const AppInfoSection = () => {
             </Text>
           </Text>
         </View>
+        <Text colour={currentTheme.foregroundSecondary}>
+          commit{' '}
+          <Link
+            link={`${GITHUB_REPO}/commit/${BUILD_COMMIT}`}
+            label={BUILD_COMMIT.slice(0, 9)}
+            style={{fontFamily: 'JetBrains Mono'}}
+          />
+        </Text>
         <Text>
           Powered by{' '}
           <Link link={'https://reactnative.dev'} label={'React Native'} /> v
-          {reactNativeVersion}
+          {REACT_NATIVE_VERSION}
           {' and '}
           <Link
             link={'https://github.com/rexogamer/revolt.js'}
             label={'revolt.js'}
           />{' '}
-          v{dependencies['revolt.js'].replace('npm:@rexovolt/revolt.js@^', '')}
+          v{REVOLT_JS_VERSION}
         </Text>
         <Text>
           Made by{' '}
