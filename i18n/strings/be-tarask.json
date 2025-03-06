@@ -1,1 +1,310 @@
-{}
+{
+    "app": {
+        "actions": {
+            "back": "Назад",
+            "cancel": "Скасаваць",
+            "close": "Закрыць",
+            "confirm": "Сьцьвердзіць",
+            "create_channel": "Стварыць канал",
+            "copy_invite": "Скапіяваць запрашэньне",
+            "delete": "Выдаліць",
+            "save": "Захаваць"
+        },
+        "discover": {
+            "fetching_bots": "Загрузка ботаў…",
+            "header_bots": "Знайсьці ботаў",
+            "header_servers": "Знайсьці сэрвэры",
+            "tabs": {
+                "bots": "Боты",
+                "servers": "Сэрвэры"
+            },
+            "count_bots_one": "{{count}} бот",
+            "count_bots_few": "{{count}} бота",
+            "count_bots_many": "{{count}} ботаў",
+            "count_servers_one": "{{count}} сэрвэр",
+            "count_servers_few": "{{count}} сэрвэра",
+            "count_servers_many": "{{count}} сэрвэраў",
+            "fetching_servers": "Загрузка сэрвэраў…"
+        },
+        "friends_list": {
+            "blocked": "Заблякаваныя - {{count}}",
+            "incoming": "Уваходныя запыты - {{count}}",
+            "incoming_empty": "Няма ўваходных запытаў",
+            "onlineFriends": "Сябры ў сетцы - {{count}}",
+            "onlineFriends_empty": "Няма сяброў у сетцы",
+            "offlineFriends_empty": "Няма сяброў па-за сеткай",
+            "outgoing": "Выходныя запыты - {{count}}",
+            "outgoing_empty": "Няма выходных запытаў",
+            "offlineFriends": "Сябры па-за сеткай - {{count}}",
+            "blocked_empty": "Няма заблякаваных карыстачоў"
+        },
+        "loading": {
+            "generic": "Загрузка…",
+            "connecting": "Ідзе аўтарызацыя…",
+            "unknown_state": "Ой-ёй…",
+            "unknown_state_body": "Калі ласка, паведаміце распрацоўшчыкам аб тым, што бы гэта ўбачылі (значэньне: {{state}})"
+        },
+        "login": {
+            "forms": {
+                "email_placeholder": "Электроны адрас",
+                "password_placeholder": "Пароль",
+                "mfa_placeholder": "Аднаразовы код",
+                "session_token_placeholder": "Токэн"
+            },
+            "instance_notice": "Вы далучайцеся да {{url}}.",
+            "options": {
+                "login_session_token": "Так, увайсьці з токэнам сэанса",
+                "login_regular_body": "Рэкамэндавана большай колькасьці карыстачоў.",
+                "signup": "Не, зарэгістравацца",
+                "login_regular": "Так, увайсьці з маім электроным адрасам ды паролем",
+                "login_session_token_body": "Выкарыстоўвайце, калі ў вас праблемы са звычайным уваходам. Некаторыя функцыйі могуць быць недаступныя.",
+                "signup_body": "Вы будзеце перанакіраваныя да вэб-сайта. Калі вы зарэгіструйцеся, вяртайцеся сюды й увайдзіце."
+            },
+            "settings": {
+                "saved": "Захаванае!",
+                "saved_body": "Пакуль што вы мусіце закрыць і нанова адкрыць праґраму, каб ужыць зьмены. Мы ведаем, што гэта не ідэальна - мы выправім гэта пазней."
+            },
+            "subheader": "Ёсьць уліковы запіс?",
+            "token_info_label": "Як атрымаць токэн?"
+        },
+        "home": {
+            "description": "Правядзіце пальцам ад левага краю экрана альбо націсніце на значок з трыма лініямі, каб убачыць свае сэрвэры й паведамленьні!",
+            "join_lounge": "Далучыцца да Revolt Lounge",
+            "open_lounge": "Адкрыць Revolt Lounge",
+            "open_settings": "Адкрыць налады",
+            "join_clerotri": "Далучыцца да сэрвэра Clerotri",
+            "open_clerotri": "Адкрыць сэрвэр Clerotri"
+        },
+        "profile": {
+            "roles": {
+                "copied_role_id_toast": "Ідэнтыфікатар ролі скапіяваны"
+            }
+        },
+        "messaging": {
+            "message_box_channel": "Напісаць у #{{name}}",
+            "message_box_saved_notes": "Захаваць у нататкі",
+            "no_messages": "Няма паведамленьняў",
+            "no_messages_body": "Пачніце гутарку.",
+            "reply_not_loaded": "Паведамленьне не загружана",
+            "message_box_dm": "Напісаць @{{name}}",
+            "message_box_group": "Напісаць у {{name}}"
+        },
+        "modals": {
+            "confirm_deletion": {
+                "header_role": "Выдаліць ролю?",
+                "header_message": "Выдаліць паведамленьне?",
+                "header_server": "Выдаліць сэрвэр?",
+                "body_role": "Вы ўпэўненыя, што хочаце выдаліць <2>гэтую ролю</2>?",
+                "body_message": "Вы ўпэўненыя, што хочаце выдаліць <2>гэтае паведамленьне</2>?",
+                "warning": "Гэта ня можа быць скасавана.",
+                "header_channel": "Выдаліць канал?",
+                "body_channel": "Вы ўпэўненыя, што хочаце выдаліць <2>гэты канал</2>?",
+                "body_server": "Вы ўпэўненыя, што хочаце выдаліць <2>{{name}}</2>?"
+            },
+            "create_channel": {
+                "header": "Стварыць новы канал",
+                "name_header": "Назва",
+                "name_placeholder": "Назва канала",
+                "type_header": "Тып",
+                "type_text": "Тэкставы канал",
+                "type_voice": "Галасавы канал",
+                "nsfw_header": "NSFW",
+                "nsfw_label": "Пазначыць канал як NSFW"
+            },
+            "edit_text": {
+                "display_name_header": "Задаць бачнае ймя",
+                "nickname_header": "Задаць нікнэйм",
+                "nickname_placeholder": "Нікнэйм (пакіньце пустым каб скінуць)",
+                "nickname_other_header": "Задаць нікнэйм удзельніка",
+                "session_name_header": "Задаць назву сэанса",
+                "session_name_placeholder": "Назва сэанса",
+                "display_name_placeholder": "Бачнае ймя",
+                "nickname_other_placeholder": "Нікнэйм (пакіньце пустым каб скінуць)",
+                "role_colour_header": "Задаць колер ролі",
+                "role_colour_placeholder": "Колер ролі"
+            },
+            "new_invite": {
+                "header": "Запрашэньне створана",
+                "body": "Вось ваша новая спасылка:"
+            }
+        },
+        "servers": {
+            "settings": {
+                "general": "Асноўныя",
+                "delete_server": "Выдаліць сэрвэр",
+                "overview": {
+                    "title": "Агляд",
+                    "name": "Назва сэрвэра",
+                    "description": "Апісаньне сэрвэра",
+                    "markdown_tip_link": "Падрабязней.",
+                    "description_placeholder": "Дадаць апісаньне…",
+                    "set_description": "Задаць апісаньне",
+                    "system_messages": "Сістэмныя паведамленьні",
+                    "errors": {
+                        "empty_server_name": "Назва сэрвэра ня можа быць пустой!"
+                    },
+                    "system_message_channel_types": {
+                        "user_joined": "Карыстач далучыўся",
+                        "user_left": "Карыстач выйшаў",
+                        "user_kicked": "Карыстача выгналі",
+                        "user_banned": "Карыстача заблякавалі"
+                    },
+                    "markdown_tip": "Апісаньне сэрвэра падтрымлівае Markdown.",
+                    "system_messages_description": "Вы можаце атрымліваць паведамленьні, калі карыстачы далучаюцца альбо выходзяць, калі йх выганяюць альбо блякуюць."
+                },
+                "channels": {
+                    "title": "Каналы",
+                    "name": "Назва канала",
+                    "permissions": "Дазволы канала",
+                    "no_perms_set": "Не задана",
+                    "errors": {
+                        "empty_channel_name": "Назвы каналаў ня могуць быць пустымі!"
+                    },
+                    "name_placeholder": "Задаць назву канала…"
+                },
+                "roles": {
+                    "title": "Ролі",
+                    "name": "Назва",
+                    "name_placeholder": "Задаць назву ролі…",
+                    "options_header": "Налады",
+                    "options": {
+                        "hoist_body": "Адлюстроўваць ролю вышэй іншых у сьпісе ўдзельнікаў.",
+                        "hoist": "Узвысіць ролю"
+                    },
+                    "rank": "Узровень",
+                    "rank_placeholder": "Задаць узровень ролі…",
+                    "colour": "Колер",
+                    "delete": "Выдаліць ролю",
+                    "set_colour": "Задаць колер ролі",
+                    "open_colour_modal": "Увесьці колер уручнуйю",
+                    "errors": {
+                        "empty_rank": "Узровень ролі ня можа быць пустым!",
+                        "empty_role_name": "Назва ролі ня можа быць пустой!"
+                    },
+                    "permissions": "Дазволы"
+                },
+                "user_management": "Кіраваньне карыстачом",
+                "emoji": {
+                    "title": "Эмодзі",
+                    "added_by": "Даданае @{{name}}",
+                    "empty": "Без эмодзі",
+                    "deleted_toast": "{{name}} выдалена"
+                },
+                "members": {
+                    "title": "Удзельнікі",
+                    "loading": "Загрузка ўдзельнікаў…"
+                },
+                "invites": {
+                    "title": "Запрашэньні",
+                    "loading": "Загрузка запрашэньняў…",
+                    "empty": "Запрашэньняў няма"
+                },
+                "bans": {
+                    "title": "Блякаваньні",
+                    "loading": "Загрузка блякаваньняў…",
+                    "empty": "Блякаваньняў няма",
+                    "no_reason": "Прычына не пазначаная"
+                },
+                "customisation": "Дапасаваньне"
+            }
+        },
+        "settings_menu": {
+            "functionality": {
+                "title": "Асаблівасьці"
+            },
+            "account": {
+                "title": "Уліковы запіс"
+            },
+            "appearance": {
+                "title": "Зьнешні выгляд"
+            },
+            "groups": {
+                "advanced": "Пашыраныя налады",
+                "other": "Іншыя",
+                "user": "Карыстач",
+                "app": "Праґрама"
+            },
+            "i18n": {
+                "title": "Мова"
+            },
+            "info": {
+                "title": "Пра Clerotri"
+            },
+            "licenses": {
+                "loading": "Загрузкп дадзеных ліцэнзійі…",
+                "title": "Ліцэнзійі ПЗ з адкрытым зыходным кодам"
+            },
+            "other": {
+                "debug_info": "Скапіяваць інфармацыю з адладкі",
+                "logout": "Выйсьці",
+                "view_issues": "Праглядзець вядомыя(адкрытыя) праблемы"
+            },
+            "profile": {
+                "title": "Профіль"
+            }
+        },
+        "settings": {
+            "app": {
+                "language": "Абярыце мову",
+                "notifications": {
+                    "enabled": "Уключыць push-апавяшчэньні",
+                    "notifyOnSelfPing": "Атрымліваць апавяшчэньне пры згадваньні саміх сябе",
+                    "enabledInApp": "Уключыць апавяшчэньні ў праґраме"
+                },
+                "showChangelogs": "Паказваць сьпіс зьменаў пасьля абнаўленьня Clerotri",
+                "reopenLastChannel": "Адкрываць апошні канал, у якім вы былі, пры адкрыцці праґрамы",
+                "refetchOnReconnect": "Атрымліваць паведамленьні пасьля перападлучэньня"
+            },
+            "ui": {
+                "theme": "Тэма",
+                "messaging": {
+                    "doubleTapToReply": "Адказваць на паведамленьні двайным націскам",
+                    "emojiPack": "Камплет эмодзі",
+                    "experimentalScrolling": "Уключыць гартаньне канала для старога выгляду паведамленьняў",
+                    "experimentalScrolling_remark": "Прагортваць можна толькі назад.",
+                    "fontSize": "Памер шрыфта",
+                    "messageSpacing": "Адлегласьць паміж паведамленьнямі",
+                    "sendAttachments": "Уключыць адсыланьне далучэньняў",
+                    "showMasqAvatar": "Паказваць маскарадны аватар у вуглу",
+                    "showNSFWContent": "Згоднасьць да 18+ кантэнту",
+                    "showReactions_remark": "Зараз вы можаце паставіць існуючыя рэакцыйі, але ня можаце дадаць новыя.",
+                    "use24H": "Выкарыстоўваць 24-гадзінныя пазнакі часу",
+                    "useNewMessageView": "Выкарыстоўваць новы рэжым адлюстраваньня паведамленьняў",
+                    "showSelfInTypingIndicator": "Паказваць сябе ў індыкатары набору тэксту",
+                    "statusInChatAvatars": "Паказваць статус карыстача побач з аватарам у чаце",
+                    "fontSize_remark": "Гэта будзе ўжывацца да паведамленьняў і некаторых частак праґрамы.",
+                    "showReactions": "Паказваць рэакцыйі пад паведамленьнямі",
+                    "doubleTapToReply_remark": "Падтрымліваецца толькі ў новым інтэрфэйсе паведамленьняў."
+                },
+                "showDeveloperFeatures": "Паказваць начыньні распрацоўшчыка",
+                "settings": {
+                    "showExperimental": "Паказваць экспэрымэнтальныя функцыйі"
+                },
+                "home": {
+                    "holidays": "Паказваць сьвятковае афармленьне на дамашняй старонцы"
+                }
+            }
+        },
+        "sheets": {
+            "channel": {
+                "create_invite": "Стварыць запрашэньне",
+                "mark_as_read": "Пазначыць прачытаным",
+                "copy_link": "Скапіяваць спасылку на канал",
+                "delete": "Выдаліць канал"
+            }
+        },
+        "misc": {
+            "network_indicator": {
+                "body": "Злучэньне страчана",
+                "hide": "(схаваць)"
+            },
+            "voice": {
+                "header": "Галасавыя каналы пакуль што не падтрымліваюцца ў Clerotri!",
+                "body": "Але вы можаце далучыцца да йх празь вэбсайт альбо Revolt на ПК."
+            },
+            "generic_errors": {
+                "rateLimited_toast": "Замарудзьце тэмп і паспрабуйце яшчэ раз празь хвіліну."
+            }
+        }
+    }
+}
