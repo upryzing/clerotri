@@ -328,6 +328,11 @@ export const app = {
       `[FUNCTIONS] Tried to run uninitialised function openMessage (args: ${m})`,
     );
   },
+  openAddReaction: (m: Message | null) => {
+    console.log(
+      `[FUNCTIONS] Tried to run uninitialised function openAddReaction (args: ${m})`
+    );
+  },
   openChannelContextMenu: (c: Channel | null) => {
     console.log(
       `[FUNCTIONS] Tried to run uninitialised function openChannelContextMenu (args: ${c})`,
