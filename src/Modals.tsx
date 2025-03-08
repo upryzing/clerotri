@@ -168,7 +168,7 @@ const BottomSheets = observer(() => {
 
   setFunction('openViewReactions', (m: Message | null, emoji: string) => {
     setViewReactionsMessage(m);
-    setViewReactionsEmoji(emoji);
+    setViewReactionsEmoji(emoji || (m?.reactions.keys().next().value ?? null));
     openOrCloseSheet(!!m, 'viewReactions');
   });
 
