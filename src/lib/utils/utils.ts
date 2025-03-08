@@ -10,11 +10,14 @@ import {
   DEFAULT_MESSAGE_LOAD_COUNT,
   DISCOVER_URL,
   RE_BOT_INVITE,
+  RE_CUSTOM_EMOJI,
   RE_INVITE,
+  RE_UNICODE_EMOJI,
   WIKI_URL,
 } from '@clerotri/lib/consts';
 import {storage} from '@clerotri/lib/storage';
 import {EmojiPacks} from '@clerotri/lib/types';
+import { RevoltEmojiDictionary } from '@clerotri/lib/consts';
 
 /**
  * Sleep for the specified amount of milliseconds before continuing.
@@ -259,3 +262,12 @@ export function unicodeEmojiURL(emoji: string, pack: EmojiPacks = 'mutant') {
   )}.svg?rev=${REVISION}`;
 }
 // </from>
+
+export function findEmojiName(emoji: string) {
+  // 'emoji' can either be an emoji character, or the id of the custom emoji
+  if (emoji.match(RE_UNICODE_EMOJI))
+    return Object.keys(RevoltEmojiDictionary).find(key => RevoltEmojiDictionary[key] === emoji);
+  else if ((':'+emoji+':').match(RE_CUSTOM_EMOJI))
+    return client.emojis.get(emoji)?.name;
+  return null;
+}
