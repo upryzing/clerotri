@@ -257,7 +257,10 @@ const RoleSettings = observer(
           }}>
           <Text>{t('app.servers.settings.roles.delete')}</Text>
         </Button>
-        <Modal visible={showColourPicker} animationType="slide">
+        <Modal
+          visible={showColourPicker}
+          animationType="slide"
+          onRequestClose={() => setShowColourPicker(false)}>
           <View
             style={{
               flex: 1,
