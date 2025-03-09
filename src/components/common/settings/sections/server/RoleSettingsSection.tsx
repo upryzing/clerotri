@@ -293,7 +293,7 @@ const RoleSettings = observer(
                 value={
                   server.roles![section!.subsection!].colour ?? '#00000000'
                 }
-                onComplete={onSelectColour}>
+                onCompleteJS={onSelectColour}>
                 <HueCircular
                   containerStyle={{
                     backgroundColor: currentTheme.backgroundPrimary,
