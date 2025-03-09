@@ -69,30 +69,28 @@ export const MessageReactions = observer(
             );
           })}
           
-          <Pressable
-                key={`message-${msg._id}-add-reaction}`}
-                onPress={action(() => {
-                  msg.channel?.havePermission('React')
-                    ? app.openAddReaction(msg)
-                    : showToast('You cannot react to this message.');
-                })}
-                style={{
-                  padding: commonValues.sizes.small,
-                  borderRadius: commonValues.sizes.small,
-                  borderColor: currentTheme.backgroundTertiary,
-                  backgroundColor: currentTheme.backgroundSecondary,
-                  borderWidth: commonValues.sizes.xs,
-                  marginEnd: commonValues.sizes.small,
-                  marginVertical: commonValues.sizes.xs,
-                }}>
-                <View style={{flexDirection: 'row'}}>
-                  <MaterialIcon
-                    name="add-reaction"
-                    size={20}
-                    color={currentTheme.foregroundPrimary}
-                  />
-                </View>
-              </Pressable>
+          {msg.channel?.havePermission('React') ? (
+            <Pressable
+                  key={`message-${msg._id}-add-reaction}`}
+                  onPress={action(() => app.openAddReaction(msg))}
+                  style={{
+                    padding: commonValues.sizes.small,
+                    borderRadius: commonValues.sizes.small,
+                    borderColor: currentTheme.backgroundTertiary,
+                    backgroundColor: currentTheme.backgroundSecondary,
+                    borderWidth: commonValues.sizes.xs,
+                    marginEnd: commonValues.sizes.small,
+                    marginVertical: commonValues.sizes.xs,
+                  }}>
+                  <View style={{flexDirection: 'row'}}>
+                    <MaterialIcon
+                      name="add-reaction"
+                      size={20}
+                      color={currentTheme.foregroundPrimary}
+                    />
+                  </View>
+                </Pressable>
+          ) : null}
         </View>
       );
     }
