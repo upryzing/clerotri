@@ -4,13 +4,14 @@ import {StyleSheet} from 'react-native';
 import BottomSheetCore, {
   BottomSheetBackdrop,
   BottomSheetScrollView,
+  BottomSheetView
 } from '@gorhom/bottom-sheet';
 import {observer} from 'mobx-react-lite';
 
 import {commonValues, Theme, ThemeContext} from '@clerotri/lib/themes';
 
 export const BottomSheet = observer(
-  ({sheetRef, children}: {sheetRef: any; children: any}) => {
+  ({sheetRef, innerScroll, children}: {sheetRef: any; innerScroll?: boolean; children: any}) => {
     const {currentTheme} = useContext(ThemeContext);
     const localStyles = useMemo(
       () => generateLocalStyles(currentTheme),
@@ -28,8 +29,13 @@ export const BottomSheet = observer(
         backdropComponent={BottomSheetBackdrop}
         style={localStyles.sheet}
         backgroundStyle={localStyles.sheetBackground}
-        handleIndicatorStyle={localStyles.handleIndicator}>
-        <BottomSheetScrollView>{children}</BottomSheetScrollView>
+        handleIndicatorStyle={localStyles.handleIndicator}
+        enableContentPanningGesture={!innerScroll}>
+        {innerScroll ? (
+          <BottomSheetView style={{ flexDirection: 'column', flex: 1 }}>{children}</BottomSheetView>
+        ) : (
+          <BottomSheetScrollView>{children}</BottomSheetScrollView>
+        )}
       </BottomSheetCore>
     );
   },

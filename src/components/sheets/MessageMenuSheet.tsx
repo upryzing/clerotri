@@ -56,7 +56,23 @@ export const MessageMenuSheet = observer(() => {
               }}>
               <ReplyMessage message={message} showSymbol={false} />
             </View>
-            {message.channel?.havePermission('SendMessage') ? (
+            {message.channel?.havePermission('React') ? (
+              <ContextButton
+              onPress={() => {
+                app.openAddReaction(message);
+                app.openMessage(null);
+              }}>
+              <View style={styles.iconContainer}>
+                <MaterialIcon
+                  name="add-reaction"
+                  size={20}
+                  color={currentTheme.foregroundPrimary}
+                />
+              </View>
+              <Text>Add Reaction</Text>
+            </ContextButton>
+            ) : null}
+            {message.channel?.havePermission('SendMessage') && settings.get('ui.messaging.showReactions') ? (
               <ContextButton
                 onPress={() => {
                   let replyingMessages = [...app.getReplyingMessages()];
