@@ -5,6 +5,7 @@ import {observer} from 'mobx-react-lite';
 
 import type {Message} from 'revolt.js';
 
+import {app} from '@clerotri/Generic';
 import {client} from '@clerotri/lib/client';
 import {Text} from '@clerotri/components/common/atoms';
 import {Image} from '@clerotri/crossplat/Image';
@@ -38,6 +39,9 @@ export const MessageReactions = observer(
                       ? msg.react(r.emoji)
                       : msg.unreact(r.emoji)
                     : showToast('You cannot react to this message.');
+                })}
+                onLongPress={action(() => {
+                  app.openViewReactions(msg, r.emoji);
                 })}
                 style={{
                   padding: commonValues.sizes.small,
