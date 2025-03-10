@@ -24,7 +24,7 @@ For development updates and other news, join [Clerotri's support server][support
 If you want to install Clerotri for Android, you can either:
 
 - download the app via [Accrescent](https://accrescent.app/app/app.upryzing.clerotri) (recommended), or
-- go to [the releases tab](https://github.com/upryzing/clerotri/releases) and download the latest version. 
+- go to [the releases tab](https://github.com/upryzing/clerotri/releases) and download the latest version.
 
 We plan on publishing Clerotri to F-Droid in the future.
 

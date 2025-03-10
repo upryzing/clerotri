@@ -257,7 +257,10 @@ const RoleSettings = observer(
           }}>
           <Text>{t('app.servers.settings.roles.delete')}</Text>
         </Button>
-        <Modal visible={showColourPicker} animationType="slide">
+        <Modal
+          visible={showColourPicker}
+          animationType="slide"
+          onRequestClose={() => setShowColourPicker(false)}>
           <View
             style={{
               flex: 1,
@@ -290,7 +293,7 @@ const RoleSettings = observer(
                 value={
                   server.roles![section!.subsection!].colour ?? '#00000000'
                 }
-                onComplete={onSelectColour}>
+                onCompleteJS={onSelectColour}>
                 <HueCircular
                   containerStyle={{
                     backgroundColor: currentTheme.backgroundPrimary,

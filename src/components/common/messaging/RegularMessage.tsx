@@ -30,11 +30,6 @@ import {
   parseRevoltNodes,
 } from '@clerotri/lib/utils';
 
-type ReactionPile = {
-  emoji: string;
-  reactors: string[];
-};
-
 export const RegularMessage = observer((props: MessageProps) => {
   const {currentTheme} = useContext(ThemeContext);
   const localStyles = generateLocalStyles(currentTheme);
@@ -49,13 +44,6 @@ export const RegularMessage = observer((props: MessageProps) => {
   let invites: string[] = [];
   for (const i of rawInvites) {
     invites.push(i[1]);
-  }
-
-  // then do the same with reactions
-  const rawReactions = Array.from(props.message.reactions ?? []);
-  let reactions: ReactionPile[] = [];
-  for (const r of rawReactions) {
-    reactions.push({emoji: r[0], reactors: Array.from(r[1])});
   }
 
   if (props.queued) {
@@ -344,7 +332,7 @@ export const RegularMessage = observer((props: MessageProps) => {
                   );
                 })}
               {settings.get('ui.messaging.showReactions') ? (
-                <MessageReactions msg={props.message} reactions={reactions} />
+                <MessageReactions msg={props.message} />
               ) : null}
             </View>
           </View>
