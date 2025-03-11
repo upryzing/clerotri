@@ -161,7 +161,8 @@
                     "colour": "Цвет",
                     "set_colour": "Установите цвет роли",
                     "errors": {
-                        "empty_role_name": "Название роли не может быть пустым!"
+                        "empty_role_name": "Название роли не может быть пустым!",
+                        "empty_rank": "Уровень роли не может быть пустым!"
                     },
                     "name": "Название",
                     "name_placeholder": "Установите название для роли…",
@@ -171,7 +172,8 @@
                         "hoist_body": "Отображать эту роль над остальными в списке участников."
                     },
                     "delete": "Удалить роль",
-                    "options_header": "Настройки"
+                    "options_header": "Настройки",
+                    "rank_placeholder": "Задайте уровень роли…"
                 },
                 "emoji": {
                     "title": "Эмодзи",
@@ -292,6 +294,18 @@
                 "create_invite": "Создать приглашение",
                 "delete": "Удалить канал"
             }
+        },
+        "friends_list": {
+            "blocked_empty": "Нет заблокированых пользователей",
+            "incoming_empty": "Нет входящих запросов",
+            "onlineFriends": "Друзья в сети - {{count}}",
+            "onlineFriends_empty": "Нет друзей в сети",
+            "offlineFriends_empty": "Нет друзей не в сети",
+            "outgoing": "Исходящие запросы - {{count}}",
+            "outgoing_empty": "Нет исходящих запросов",
+            "blocked": "Заблокировано - {{count}}",
+            "incoming": "Входящие запросы - {{count}}",
+            "offlineFriends": "Друзья не в сети - {{count}}"
         }
     }
 }
