@@ -4,6 +4,7 @@ import {observer} from 'mobx-react-lite';
 
 import type {Message} from 'revolt.js';
 
+import {app} from '@clerotri/Generic';
 import {client} from '@clerotri/lib/client';
 import {Text} from '@clerotri/components/common/atoms';
 import {Image} from '@clerotri/crossplat/Image';
@@ -38,6 +39,9 @@ export const Reaction = observer(
     return (
       <Pressable
         onPress={onPress ?? defaultOnPress}
+        onLongPress={() => {
+          app.openViewReactions(message, reaction);
+        }}
         style={[localStyles.reaction, active && localStyles.activeReaction]}>
         {reaction.length > 6 && (
           <Image
