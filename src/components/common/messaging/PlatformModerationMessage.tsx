@@ -2,7 +2,7 @@ import {useContext} from 'react';
 import {View} from 'react-native';
 import {observer} from 'mobx-react-lite';
 
-import MaterialIcon from 'react-native-vector-icons/MaterialIcons';
+import MaterialIcon from '@react-native-vector-icons/material-icons';
 
 import type {Message} from 'revolt.js';
 

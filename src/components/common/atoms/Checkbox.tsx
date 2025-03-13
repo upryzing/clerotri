@@ -2,7 +2,7 @@ import {useContext} from 'react';
 import {TouchableOpacity} from 'react-native';
 import {observer} from 'mobx-react-lite';
 
-import MaterialIcon from 'react-native-vector-icons/MaterialIcons';
+import MaterialIcon from '@react-native-vector-icons/material-icons';
 
 import {Text} from './Text';
 import {commonValues, ThemeContext} from '@clerotri/lib/themes';

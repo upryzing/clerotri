@@ -11,8 +11,8 @@ import {
   getUserAgent,
 } from 'react-native-device-info';
 import {useSafeAreaInsets} from 'react-native-safe-area-context';
-import MaterialCommunityIcon from 'react-native-vector-icons/MaterialCommunityIcons';
-import MaterialIcon from 'react-native-vector-icons/MaterialIcons';
+import MaterialCommunityIcon from '@react-native-vector-icons/material-design-icons';
+import MaterialIcon from '@react-native-vector-icons/material-icons';
 
 import {app, appVersion, setFunction} from '@clerotri/Generic';
 import {client} from '@clerotri/lib/client';

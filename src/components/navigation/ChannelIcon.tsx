@@ -1,7 +1,7 @@
 import {useContext} from 'react';
 
-import MaterialIcon from 'react-native-vector-icons/MaterialIcons';
-import MaterialCommunityIcon from 'react-native-vector-icons/MaterialCommunityIcons';
+import MaterialIcon from '@react-native-vector-icons/material-icons';
+import MaterialCommunityIcon from '@react-native-vector-icons/material-design-icons';
 
 import type {Channel} from 'revolt.js';
 

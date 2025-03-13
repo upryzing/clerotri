@@ -3,7 +3,7 @@ import {Platform, Pressable, SectionList, View} from 'react-native';
 import {useTranslation} from 'react-i18next';
 
 import {useSafeAreaInsets} from 'react-native-safe-area-context';
-import MaterialCommunityIcon from 'react-native-vector-icons/MaterialCommunityIcons';
+import MaterialCommunityIcon from '@react-native-vector-icons/material-design-icons';
 
 import {styles} from '@clerotri/Theme';
 import {Link, Text} from '@clerotri/components/common/atoms';

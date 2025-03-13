@@ -4,8 +4,8 @@ import {observer} from 'mobx-react-lite';
 
 import type BottomSheetCore from '@gorhom/bottom-sheet';
 import Clipboard from '@react-native-clipboard/clipboard';
-import MaterialCommunityIcon from 'react-native-vector-icons/MaterialCommunityIcons';
-import MaterialIcon from 'react-native-vector-icons/MaterialIcons';
+import MaterialCommunityIcon from '@react-native-vector-icons/material-design-icons';
+import MaterialIcon from '@react-native-vector-icons/material-icons';
 
 import type {Message} from 'revolt.js';
 

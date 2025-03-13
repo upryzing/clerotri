@@ -2,7 +2,7 @@ import {useContext, useState} from 'react';
 import {TouchableOpacity, View} from 'react-native';
 import {useTranslation} from 'react-i18next';
 
-import MaterialIcon from 'react-native-vector-icons/MaterialIcons';
+import MaterialIcon from '@react-native-vector-icons/material-icons';
 
 import {app} from '@clerotri/Generic';
 import {client} from '@clerotri/lib/client';

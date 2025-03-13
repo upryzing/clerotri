@@ -7,7 +7,7 @@ import {
   type EdgeInsets,
   useSafeAreaInsets,
 } from 'react-native-safe-area-context';
-import MaterialCommunityIcon from 'react-native-vector-icons/MaterialCommunityIcons';
+import MaterialCommunityIcon from '@react-native-vector-icons/material-design-icons';
 
 import {client} from '@clerotri/lib/client';
 import {Text} from '@clerotri/components/common/atoms';

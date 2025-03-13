@@ -2,7 +2,7 @@ import {useContext} from 'react';
 import {type GradientValue, Platform, Pressable, View} from 'react-native';
 
 import {getBundleId} from 'react-native-device-info';
-import MaterialCommunityIcon from 'react-native-vector-icons/MaterialCommunityIcons';
+import MaterialCommunityIcon from '@react-native-vector-icons/material-design-icons';
 
 import {appVersion, settings} from '@clerotri/Generic';
 import {

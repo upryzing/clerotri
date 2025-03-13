@@ -29,6 +29,9 @@
     "@react-native-clipboard/clipboard": "1.16.2",
     "@react-native-community/hooks": "^100.1.0",
     "@react-native-documents/picker": "^10.1.1",
+    "@react-native-vector-icons/common": "^11.0.0",
+    "@react-native-vector-icons/material-design-icons": "^7.4.47",
+    "@react-native-vector-icons/material-icons": "^0.0.1",
     "@rexovolt/react-native-markdown-display": "^9.1.1",
     "@traptitech/markdown-it-spoiler": "patch:@traptitech/markdown-it-spoiler@npm%3A1.1.6#~/.yarn/patches/@traptitech-markdown-it-spoiler-npm-1.1.6-ee0dc02626.patch",
     "@xmldom/xmldom": "^0.9.8",
@@ -52,7 +55,6 @@
     "react-native-reanimated-image-viewer": "^1.0.2",
     "react-native-safe-area-context": "^5.3.0",
     "react-native-svg": "^15.11.2",
-    "react-native-vector-icons": "^10.2.0",
     "react-native-web": "^0.19.13",
     "reanimated-color-picker": "^4.0.0",
     "revolt.js": "npm:@rexovolt/revolt.js@^6.6.1"

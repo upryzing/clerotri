@@ -3,8 +3,8 @@ import {TouchableOpacity, View} from 'react-native';
 import {observer} from 'mobx-react-lite';
 
 import type BottomSheetCore from '@gorhom/bottom-sheet';
-import MaterialIcon from 'react-native-vector-icons/MaterialIcons';
-import MaterialCommunityIcon from 'react-native-vector-icons/MaterialCommunityIcons';
+import MaterialIcon from '@react-native-vector-icons/material-icons';
+import MaterialCommunityIcon from '@react-native-vector-icons/material-design-icons';
 
 import type {Member, Server} from 'revolt.js';
 

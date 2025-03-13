@@ -4,7 +4,7 @@ import {useTranslation} from 'react-i18next';
 import {observer} from 'mobx-react-lite';
 
 import Clipboard from '@react-native-clipboard/clipboard';
-import MaterialIcon from 'react-native-vector-icons/MaterialIcons';
+import MaterialIcon from '@react-native-vector-icons/material-icons';
 import ColourPicker, {
   HueCircular,
   OpacitySlider,

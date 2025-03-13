@@ -4,7 +4,7 @@ import {observer} from 'mobx-react-lite';
 
 import type BottomSheetCore from '@gorhom/bottom-sheet';
 import Clipboard from '@react-native-clipboard/clipboard';
-import MaterialIcon from 'react-native-vector-icons/MaterialIcons';
+import MaterialIcon from '@react-native-vector-icons/material-icons';
 
 import type {Channel} from 'revolt.js';
 

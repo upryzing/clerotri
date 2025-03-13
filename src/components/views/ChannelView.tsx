@@ -3,8 +3,8 @@ import {StyleSheet, TouchableOpacity, View} from 'react-native';
 import {ErrorBoundary} from 'react-error-boundary';
 import {observer} from 'mobx-react-lite';
 
-import MaterialCommunityIcon from 'react-native-vector-icons/MaterialCommunityIcons';
-import MaterialIcon from 'react-native-vector-icons/MaterialIcons';
+import MaterialCommunityIcon from '@react-native-vector-icons/material-design-icons';
+import MaterialIcon from '@react-native-vector-icons/material-icons';
 
 import type {Channel, Message} from 'revolt.js';
 

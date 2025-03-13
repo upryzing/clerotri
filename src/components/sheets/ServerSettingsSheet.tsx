@@ -4,8 +4,8 @@ import {useTranslation} from 'react-i18next';
 import {observer} from 'mobx-react-lite';
 
 import {useSafeAreaInsets} from 'react-native-safe-area-context';
-import MaterialCommunityIcon from 'react-native-vector-icons/MaterialCommunityIcons';
-import MaterialIcon from 'react-native-vector-icons/MaterialIcons';
+import MaterialCommunityIcon from '@react-native-vector-icons/material-design-icons';
+import MaterialIcon from '@react-native-vector-icons/material-icons';
 
 import type {Server} from 'revolt.js';
 
