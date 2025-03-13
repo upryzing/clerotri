@@ -1,9 +1,11 @@
 import {useContext} from 'react';
 import {Pressable, StyleSheet, View} from 'react-native';
 import {observer} from 'mobx-react-lite';
+import MaterialIcon from 'react-native-vector-icons/MaterialIcons';
 
 import type {Message} from 'revolt.js';
 
+import {app} from '@clerotri/Generic';
 import {client} from '@clerotri/lib/client';
 import {Text} from '@clerotri/components/common/atoms';
 import {Image} from '@clerotri/crossplat/Image';
@@ -58,6 +60,9 @@ export const Reaction = observer(
 export const MessageReactions = observer(({msg}: {msg: Message}) => {
   const reactions = [];
 
+  const {currentTheme} = useContext(ThemeContext);
+  const localStyles = generateLocalStyles(currentTheme);
+
   for (const key of msg.reactions.keys()) {
     reactions.push(key);
   }
@@ -79,6 +84,20 @@ export const MessageReactions = observer(({msg}: {msg: Message}) => {
             />
           );
         })}
+        {msg.channel?.havePermission('React') ? (
+          <Pressable
+                key={`message-${msg._id}-add-reaction}`}
+                onPress={() => app.openAddReaction(msg)}
+                style={localStyles.reaction}>
+                <View style={{flexDirection: 'row'}}>
+                  <MaterialIcon
+                    name="add-reaction"
+                    size={20}
+                    color={currentTheme.foregroundPrimary}
+                  />
+                </View>
+              </Pressable>
+        ) : null}
       </View>
     );
   }
