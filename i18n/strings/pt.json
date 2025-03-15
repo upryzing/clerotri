@@ -7,11 +7,14 @@
             "delete": "Deletar",
             "save": "Salvar",
             "back": "Voltar",
-            "confirm": "Confirmar"
+            "confirm": "Confirmar",
+            "copy_invite": "Copiar convite"
         },
         "loading": {
             "generic": "Carregando…",
-            "connecting": "Iniciando sessão…"
+            "connecting": "Iniciando sessão…",
+            "unknown_state": "Ah, não…",
+            "unknown_state_body": "Por favor, informe aos desenvolvedores que você viu isso (valor: {{state}})"
         },
         "login": {
             "forms": {
@@ -30,7 +33,11 @@
                 "login_session_token_body": "Use isso se você estiver tendo problemas com o método de login regular. Algumas funcionalidades podem não estar disponíveis."
             },
             "subheader": "Você tem uma conta?",
-            "token_info_label": "Como eu consigo meu token?"
+            "token_info_label": "Como eu consigo meu token?",
+            "settings": {
+                "saved": "Salvo!",
+                "saved_body": "Por enquanto, você terá que fechar e reabrir o aplicativo para que suas alterações sejam aplicadas. Sabemos que isso não é o ideal - consertaremos isso mais tarde."
+            }
         },
         "home": {
             "join_lounge": "Participe do Revolt Lounge",
@@ -46,7 +53,11 @@
                 "header_server": "Deletar servidor?",
                 "body_message": "Você tem certeza que quer deletar <2>essa mensagem</2>?",
                 "warning": "Isso não pode ser desfeito.",
-                "body_server": "Você tem certeza que quer deletar <2>{{name}}</2>?"
+                "body_server": "Você tem certeza que quer deletar <2>{{name}}</2>?",
+                "header_channel": "Excluir canal?",
+                "header_role": "Excluir função?",
+                "body_role": "Tem certeza de que deseja excluir <2>esta função</2>?",
+                "body_channel": "Tem certeza de que deseja excluir <2>este canal</2>?"
             },
             "create_channel": {
                 "header": "Criar um novo canal",
@@ -69,6 +80,10 @@
                 "session_name_header": "Definir nome da sessão",
                 "session_name_placeholder": "Nome da sessão",
                 "nickname_other_placeholder": "Apelido (deixe em branco para redefinir)"
+            },
+            "new_invite": {
+                "header": "Convite criado",
+                "body": "Aqui está seu novo link de convite:"
             }
         },
         "servers": {
@@ -88,7 +103,14 @@
                     "system_messages": "Mensagens do sistema",
                     "errors": {
                         "empty_server_name": "Nome do servidor não pode estar vazio!"
-                    }
+                    },
+                    "system_message_channel_types": {
+                        "user_joined": "Usuário ingressou",
+                        "user_kicked": "Usuário expulso",
+                        "user_banned": "Usuário banido",
+                        "user_left": "Usuário saiu"
+                    },
+                    "system_messages_description": "Quando membros entram, saem, são expulsos ou banidos, você pode receber mensagens."
                 },
                 "channels": {
                     "title": "Canais",
@@ -110,8 +132,16 @@
                     "set_colour": "Definir cor do cargo",
                     "open_colour_modal": "Inserir cor manualmente",
                     "errors": {
-                        "empty_role_name": "Nome dos cargos não podem estar vazios!"
-                    }
+                        "empty_role_name": "Nome dos cargos não podem estar vazios!",
+                        "empty_rank": "As classificações de função não podem estar vazias!"
+                    },
+                    "options_header": "Opções",
+                    "options": {
+                        "hoist": "Função de elevação",
+                        "hoist_body": "Exibir esta função acima de outras na lista de membros."
+                    },
+                    "rank_placeholder": "Defina a classificação da função…",
+                    "delete": "Excluir função"
                 },
                 "emoji": {
                     "title": "Emoji",
@@ -142,9 +172,11 @@
                 "refetchOnReconnect": "Recuperar mensagens ao se reconectar",
                 "notifications": {
                     "enabled": "Ativar notificações push",
-                    "notifyOnSelfPing": "Receber uma notificação quando você se marcar"
+                    "notifyOnSelfPing": "Receber uma notificação quando você se marcar",
+                    "enabledInApp": "Habilitar notificações no aplicativo"
                 },
-                "showChangelogs": "Mostrar registro de alterações após atualizar RVMob"
+                "showChangelogs": "Mostrar registro de alterações após atualizar RVMob",
+                "reopenLastChannel": "Reabra o último canal em que você estava ao abrir o aplicativo"
             },
             "ui": {
                 "home": {
@@ -206,6 +238,10 @@
             },
             "i18n": {
                 "title": "Linguagem"
+            },
+            "licenses": {
+                "title": "Licenças de código aberto",
+                "loading": "Carregando dados de licença…"
             }
         },
         "misc": {
@@ -216,7 +252,60 @@
             "voice": {
                 "body": "Entretanto, pode juntar-se a eles através da aplicação Web ou do Revolt Desktop.",
                 "header": "Os canais de voz ainda não são suportados no RVMob!"
+            },
+            "generic_errors": {
+                "rateLimited_toast": "Vá mais devagar e tente novamente em um minuto."
             }
+        },
+        "sheets": {
+            "channel": {
+                "create_invite": "Criar convite",
+                "mark_as_read": "Marcar como lido",
+                "copy_link": "Copiar link do canal",
+                "delete": "Excluir canal"
+            }
+        },
+        "discover": {
+            "fetching_bots": "Carregando bots…",
+            "fetching_servers": "Carregando servidores…",
+            "header_bots": "Descubra bots",
+            "header_servers": "Descubra servidores",
+            "tabs": {
+                "bots": "Robôs",
+                "servers": "Servidores"
+            },
+            "count_servers_one": "{{count}} servidor",
+            "count_servers_many": "{{count}} servidores",
+            "count_servers_other": "{{count}} Other servers",
+            "count_bots_one": "{{count}} robô",
+            "count_bots_many": "{{count}} robôs",
+            "count_bots_other": "{{count}} Outros robôs"
+        },
+        "friends_list": {
+            "blocked": "Bloqueado - {{count}}",
+            "blocked_empty": "Nenhum usuário bloqueado",
+            "incoming_empty": "Nenhuma solicitação recebida",
+            "onlineFriends": "Amigos online - {{count}}",
+            "onlineFriends_empty": "Nenhum amigo online",
+            "offlineFriends": "Amigos offline - {{count}}",
+            "offlineFriends_empty": "Nenhum amigo offline",
+            "outgoing": "Solicitações de saída - {{count}}",
+            "outgoing_empty": "Nenhuma solicitação de saída",
+            "incoming": "Solicitações recebidas - {{count}}"
+        },
+        "profile": {
+            "roles": {
+                "copied_role_id_toast": "ID da função copiado"
+            }
+        },
+        "messaging": {
+            "message_box_channel": "Mensagem #{{name}}",
+            "message_box_group": "Mensagem {{name}}",
+            "message_box_dm": "Mensagem @{{name}}",
+            "message_box_saved_notes": "Salve em suas anotações",
+            "no_messages": "Nenhuma mensagem",
+            "no_messages_body": "Comece a conversa.",
+            "reply_not_loaded": "Mensagem não carregada"
         }
     }
 }
