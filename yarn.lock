@@ -2016,15 +2016,6 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@insertish/isomorphic-ws@npm:^4.0.1":
-  version: 4.0.1
-  resolution: "@insertish/isomorphic-ws@npm:4.0.1"
-  peerDependencies:
-    ws: "*"
-  checksum: 10c0/232f6340658275c1f590bb35d7e1300ddc7a7ce60a3cb97ceac899714afad3979588668de380d1be2be63cc70fb99c7c1a923afabf6638b4b851ee7e22251100
-  languageName: node
-  linkType: hard
-
 "@isaacs/cliui@npm:^8.0.2":
   version: 8.0.2
   resolution: "@isaacs/cliui@npm:8.0.2"
@@ -3166,7 +3157,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@rnx-kit/metro-serializer-esbuild@npm:^0.2.1":
+"@rnx-kit/metro-serializer-esbuild@npm:0.2.1":
   version: 0.2.1
   resolution: "@rnx-kit/metro-serializer-esbuild@npm:0.2.1"
   dependencies:
@@ -3177,6 +3168,20 @@ __metadata:
     esbuild-plugin-lodash: "npm:^1.2.0"
     fast-glob: "npm:^3.2.7"
   checksum: 10c0/a25bd6e4263f946ecc4e8f163f3208ea35b08395fc51b2956f753f98f3d6b0165b16025ab1375bcb1db3cb2a4eb32f99d7812e31e28b8fb6e8b59c0e42722dec
+  languageName: node
+  linkType: hard
+
+"@rnx-kit/metro-serializer-esbuild@patch:@rnx-kit/metro-serializer-esbuild@npm%3A0.2.1#~/.yarn/patches/@rnx-kit-metro-serializer-esbuild-npm-0.2.1-1e72c4b48a.patch":
+  version: 0.2.1
+  resolution: "@rnx-kit/metro-serializer-esbuild@patch:@rnx-kit/metro-serializer-esbuild@npm%3A0.2.1#~/.yarn/patches/@rnx-kit-metro-serializer-esbuild-npm-0.2.1-1e72c4b48a.patch::version=0.2.1&hash=c48f4a"
+  dependencies:
+    "@rnx-kit/console": "npm:^2.0.0"
+    "@rnx-kit/tools-node": "npm:^3.0.0"
+    "@rnx-kit/tools-react-native": "npm:^2.0.0"
+    esbuild: "npm:^0.23.0"
+    esbuild-plugin-lodash: "npm:^1.2.0"
+    fast-glob: "npm:^3.2.7"
+  checksum: 10c0/c6c2f8d205bfb418e914c5ab45338523973d1f236941841245350268a9e330a58499d97404cfd50bd80672a2c7a80753cb24dd77f9e348c1c69f770cc59c9f9e
   languageName: node
   linkType: hard
 
@@ -8519,13 +8524,6 @@ __metadata:
   languageName: node
   linkType: hard
 
-"long@npm:^5.2.3":
-  version: 5.2.3
-  resolution: "long@npm:5.2.3"
-  checksum: 10c0/6a0da658f5ef683b90330b1af76f06790c623e148222da9d75b60e266bbf88f803232dd21464575681638894a84091616e7f89557aa087fd14116c0f4e0e43d9
-  languageName: node
-  linkType: hard
-
 "loose-envify@npm:^1.0.0, loose-envify@npm:^1.4.0":
   version: 1.4.0
   resolution: "loose-envify@npm:1.4.0"
@@ -9115,7 +9113,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"mobx@npm:^6.13.5, mobx@npm:^6.13.6":
+"mobx@npm:^6.13.6":
   version: 6.13.6
   resolution: "mobx@npm:6.13.6"
   checksum: 10c0/4419003efdcc7ce964c5a20d5630987b936c60202d782ffe6b34f57848418a2b7f33ea2a5038d4e004c25758c4cf474c20a894c52d4234dd7cfda76887a3e4fd
@@ -10567,31 +10565,28 @@ __metadata:
   languageName: node
   linkType: hard
 
-"revolt-api@npm:0.7.16":
-  version: 0.7.16
-  resolution: "revolt-api@npm:0.7.16"
+"revolt-api@npm:0.8.3":
+  version: 0.8.3
+  resolution: "revolt-api@npm:0.8.3"
   dependencies:
     axios: "npm:^0.26.1"
     lodash.defaultsdeep: "npm:^4.6.1"
-  checksum: 10c0/e719a95bd9e2b29939ca11dabb1d493e5e408fc515423483938f14e84d596408a2936a4a0a322178104066fc26ab8e761f808e02050021c9600f727a0326c29e
+  checksum: 10c0/c1476ddf66818e39cd0909981a5ae367348d25c146c6404beff69d61ef461b18276785c161b4e06b8c9cdcf4eb9b3190a9005286001e66b54658b71c36537f20
   languageName: node
   linkType: hard
 
-"revolt.js@npm:@rexovolt/revolt.js@^6.6.1":
-  version: 6.6.1
-  resolution: "@rexovolt/revolt.js@npm:6.6.1"
+"revolt.js@npm:@rexovolt/revolt.js@^6.7.0":
+  version: 6.7.0
+  resolution: "@rexovolt/revolt.js@npm:6.7.0"
   dependencies:
     "@insertish/exponential-backoff": "npm:3.1.0-patch.2"
-    "@insertish/isomorphic-ws": "npm:^4.0.1"
     eventemitter3: "npm:^5.0.1"
     lodash.defaultsdeep: "npm:^4.6.1"
     lodash.isequal: "npm:^4.5.0"
-    long: "npm:^5.2.3"
-    mobx: "npm:^6.13.5"
-    revolt-api: "npm:0.7.16"
+    mobx: "npm:^6.13.6"
+    revolt-api: "npm:0.8.3"
     ulid: "npm:^2.3.0"
-    ws: "npm:^8.18.0"
-  checksum: 10c0/0c121f1299255b2e9355c14f0c933f934d7a24e2a397b14f185c868a9f5c7be84ffe3089777a6a4bf73383fbb246b17861670c2a110c688fa1e60289c18a84f9
+  checksum: 10c0/960a272c2fc83b551d3172e32799aef251a431b255419605fa5bdac22ebf4d643259634007fb21746da2404eec6cd578785f3418409039fac8ef30419aa5aa81
   languageName: node
   linkType: hard
 
@@ -10758,7 +10753,7 @@ __metadata:
     react-native-web: "npm:^0.19.13"
     react-test-renderer: "npm:^19.0.0"
     reanimated-color-picker: "npm:^4.0.0"
-    revolt.js: "npm:@rexovolt/revolt.js@^6.6.1"
+    revolt.js: "npm:@rexovolt/revolt.js@^6.7.0"
     typescript: "npm:^5.8.2"
     vite: "npm:^6.2.1"
     vite-plugin-react-native-web: "npm:^2.1.1"
@@ -12191,21 +12186,6 @@ __metadata:
     utf-8-validate:
       optional: true
   checksum: 10c0/bd7d5f4aaf04fae7960c23dcb6c6375d525e00f795dd20b9385902bd008c40a94d3db3ce97d878acc7573df852056ca546328b27b39f47609f80fb22a0a9b61d
-  languageName: node
-  linkType: hard
-
-"ws@npm:^8.18.0":
-  version: 8.18.0
-  resolution: "ws@npm:8.18.0"
-  peerDependencies:
-    bufferutil: ^4.0.1
-    utf-8-validate: ">=5.0.2"
-  peerDependenciesMeta:
-    bufferutil:
-      optional: true
-    utf-8-validate:
-      optional: true
-  checksum: 10c0/25eb33aff17edcb90721ed6b0eb250976328533ad3cd1a28a274bd263682e7296a6591ff1436d6cbc50fa67463158b062f9d1122013b361cec99a05f84680e06
   languageName: node
   linkType: hard
 

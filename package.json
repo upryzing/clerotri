@@ -57,7 +57,7 @@
     "react-native-svg": "^15.11.2",
     "react-native-web": "^0.19.13",
     "reanimated-color-picker": "^4.0.0",
-    "revolt.js": "npm:@rexovolt/revolt.js@^6.6.1"
+    "revolt.js": "npm:@rexovolt/revolt.js@^6.7.0"
   },
   "devDependencies": {
     "@babel/core": "^7.26.10",
@@ -136,5 +136,8 @@
         ]
       ]
     }
+  },
+  "resolutions": {
+    "@rnx-kit/metro-serializer-esbuild@npm:^0.2.1": "patch:@rnx-kit/metro-serializer-esbuild@npm%3A0.2.1#~/.yarn/patches/@rnx-kit-metro-serializer-esbuild-npm-0.2.1-1e72c4b48a.patch"
   }
 }
