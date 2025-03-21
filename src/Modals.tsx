@@ -1,5 +1,5 @@
 import {useState} from 'react';
-import {Modal, type ModalProps, StyleSheet, View} from 'react-native';
+import {Modal, type ModalProps, Platform, StyleSheet, View} from 'react-native';
 import {observer} from 'mobx-react-lite';
 
 import type {API, Channel, Server, User} from 'revolt.js';
@@ -265,7 +265,7 @@ const OtherModals = observer(() => {
 export const Modals = observer(() => {
   return (
     <>
-      <BottomSheets />
+      {Platform.OS !== 'web' && <BottomSheets />}
       <FloatingModals />
       <OtherModals />
     </>
