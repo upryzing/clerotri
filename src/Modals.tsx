@@ -43,6 +43,22 @@ const FixedModal = observer((props: ModalProps) => {
   );
 });
 
+const BottomSheets = observer(() => {
+  return (
+    <>
+      <MessageMenuSheet />
+      <ChannelMenuSheet />
+      <StatusSheet />
+      <ProfileSheet />
+      <ReportSheet />
+      <ChannelInfoSheet />
+      <MemberListSheet />
+      <PinnedMessagesSheet />
+      <ServerInfoSheet />
+    </>
+  );
+});
+
 const FloatingModals = observer(() => {
   const [deletableObject, setDeletableObject] = useState(
     null as DeletableObject | null,
@@ -121,7 +137,7 @@ const FloatingModals = observer(() => {
   );
 });
 
-export const Modals = observer(() => {
+const OtherModals = observer(() => {
   const [imageViewerState, setImageViewerState] = useState({
     i: null as any,
   });
@@ -170,15 +186,6 @@ export const Modals = observer(() => {
 
   return (
     <>
-      <MessageMenuSheet />
-      <ChannelMenuSheet />
-      <StatusSheet />
-      <ProfileSheet />
-      <ReportSheet />
-      <ChannelInfoSheet />
-      <MemberListSheet />
-      <PinnedMessagesSheet />
-      <ServerInfoSheet />
       <FixedModal
         visible={!!imageViewerState.i}
         transparent={true}
@@ -251,7 +258,16 @@ export const Modals = observer(() => {
           setState={() => setServerSettingsServer(null)}
         />
       </FixedModal>
+    </>
+  );
+});
+
+export const Modals = observer(() => {
+  return (
+    <>
+      <BottomSheets />
       <FloatingModals />
+      <OtherModals />
     </>
   );
 });
@@ -261,6 +277,5 @@ const localStyles = StyleSheet.create({
     flex: 1,
     alignContent: 'center',
     justifyContent: 'center',
-    // backgroundColor: '#00000080',
   },
 });
