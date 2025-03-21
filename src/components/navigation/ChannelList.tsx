@@ -330,7 +330,7 @@ const generateLocalStyles = (currentTheme: Theme, inset: number) => {
       backgroundColor: currentTheme.backgroundSecondary,
       flexGrow: 1000,
       flex: 1000,
-      marginTop: inset,
+      ...(Platform.OS !== 'web' && {paddingTop: inset}),
     },
   });
 };

@@ -56,7 +56,7 @@ const SideMenu = () => {
         <ScrollView
           key={'server-list'}
           style={localStyles.serverList}
-          contentContainerStyle={{paddingTop: insets.top}}>
+          contentContainerStyle={Platform.OS !== 'web' && {paddingTop: insets.top}}>
           <Pressable
             onPress={() => {
               currentServer ? setCurrentServer(null) : app.openStatusMenu(true);
@@ -208,7 +208,7 @@ const generateLocalStyles = (currentTheme: Theme, inset: number) => {
       borderColor: currentTheme.generalBorderColor,
       flexDirection: 'row',
       justifyContent: 'space-evenly',
-      marginBottom: inset - 5,
+      ...(Platform.OS !== 'web' && {marginBottom: inset - 5}),
     },
   });
 };
