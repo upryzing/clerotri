@@ -175,6 +175,7 @@ const generateDrawerStyles = (width: number) => {
     },
     wideInner: {
       width: '20%',
+      maxWidth: 350,
       flexDirection: 'column',
     },
   });
