@@ -53,7 +53,18 @@ export const ServerSettingsSheet = observer(
       'handleServerSettingsVisibility',
       (setVisibility: (state: null) => void) => {
         if (section) {
-          setSection(section.subsection ? {section: section.section} : null);
+          if (section.subsection) {
+            setSection(
+              section?.subsection.match('-permissions')
+                ? {
+                    section: section.section,
+                    subsection: section.subsection.replace('-permissions', ''),
+                  }
+                : {section: section.section},
+            );
+          } else {
+            setSection(null);
+          }
         } else {
           setVisibility(null);
         }
