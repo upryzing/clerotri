@@ -186,6 +186,7 @@ export const MessageBox = observer((props: MessageBoxProps) => {
       ) : null}
       <View style={localStyles.messageBoxInner}>
         {Platform.OS !== 'web' &&
+        props.channel.havePermission('UploadFiles') &&
         settings.get('ui.messaging.sendAttachments') ? (
           <AttachmentPickerButton
             attachments={attachments}
