@@ -21,6 +21,7 @@ export function ErrorMessage({
   console.error(`[APP] Uncaught error: ${errorMessage}`);
   return (
     <View style={localStyles.container}>
+      <View style={localStyles.innerContainer}>
       <Text style={localStyles.textContainer}>
         <Text style={localStyles.header}>OOPSIE WOOPSIE!! {'UwU\n'}</Text>
         We made a fucky wucky!! A wittle fucko boingo! The code monkeys at our
@@ -45,6 +46,7 @@ export function ErrorMessage({
         }}>
         <Text>Reload app</Text>
       </Button>
+      </View>
     </View>
   );
 }
@@ -56,6 +58,10 @@ const generateLocalStyles = (currentTheme: Theme) => {
       backgroundColor: currentTheme.backgroundPrimary,
       padding: commonValues.sizes.xl,
       justifyContent: 'center',
+      alignItems: 'center',
+    },
+    innerContainer: {
+      maxWidth: 800,
     },
     textContainer: {
       alignItems: 'center',
