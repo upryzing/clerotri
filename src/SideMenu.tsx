@@ -56,7 +56,9 @@ const SideMenu = () => {
         <ScrollView
           key={'server-list'}
           style={localStyles.serverList}
-          contentContainerStyle={Platform.OS !== 'web' && {paddingTop: insets.top}}>
+          contentContainerStyle={
+            Platform.OS !== 'web' && {paddingTop: insets.top}
+          }>
           <Pressable
             onPress={() => {
               currentServer ? setCurrentServer(null) : app.openStatusMenu(true);
