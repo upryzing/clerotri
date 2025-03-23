@@ -200,14 +200,22 @@ export const openUrl = (url: string) => {
   let isDiscover = url.match(DISCOVER_URL);
   let isWiki = url.match(WIKI_URL);
   if (match && !isWiki && !isDiscover) {
-    console.log(`[FUNCTIONS] Opening server invite from URL: ${url}`);
-    app.openInvite(match[0].split('/').pop());
+    console.log(`[FUNCTIONS] Checking for server invite from URL: ${url}`);
+    const invite = match[0].split('/').pop();
+    if (invite) {
+      console.log(`[FUNCTIONS] Opening server invite from URL: ${url}`);
+      app.openInvite(invite);
+    }
     return;
   }
   let botmatch = url.match(RE_BOT_INVITE);
   if (botmatch) {
-    console.log(`[FUNCTIONS] Opening bot invite from URL: ${url}`);
-    app.openBotInvite(botmatch[0].split('/').pop());
+    console.log(`[FUNCTIONS] Checking for bot invite from URL: ${url}`);
+    const invite = botmatch[0].split('/').pop();
+    if (invite) {
+      console.log(`[FUNCTIONS] Opening bot invite from URL: ${url}`);
+      app.openBotInvite(invite);
+    }
     return;
   }
   if (url.startsWith('/bot/')) {
