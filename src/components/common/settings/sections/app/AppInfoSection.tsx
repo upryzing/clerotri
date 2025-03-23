@@ -1,7 +1,6 @@
 import {useContext} from 'react';
 import {Pressable, View} from 'react-native';
 
-import {getBundleId} from 'react-native-device-info';
 import MaterialCommunityIcon from '@react-native-vector-icons/material-design-icons';
 
 import {appVersion, settings} from '@clerotri/Generic';
@@ -21,9 +20,8 @@ import {ContextButton, Link, Text} from '@clerotri/components/common/atoms';
 import {
   AppIcon,
   GradientStyle,
+  isDebug,
 } from '@clerotri/components/common/settings/sections/app/AppInfoDecorations';
-
-const isDebug = getBundleId().match('debug');
 
 export const AppInfoSection = () => {
   const {currentTheme} = useContext(ThemeContext);

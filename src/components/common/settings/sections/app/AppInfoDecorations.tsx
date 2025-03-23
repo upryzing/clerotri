@@ -5,7 +5,7 @@ import {getBundleId} from 'react-native-device-info';
 import ReleaseIcon from '../../../../../../assets/images/icon_release.svg';
 import DebugIcon from '../../../../../../assets/images/icon_debug.svg';
 
-const isDebug = getBundleId().match('debug');
+export const isDebug = getBundleId().match('debug');
 
 export const AppIcon = isDebug ? DebugIcon : ReleaseIcon;
 

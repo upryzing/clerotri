@@ -6,7 +6,7 @@ const DebugIcon = () => {
   return <img src="./public/icon_debug.svg" height={250} width={250} />;
 };
 
-const isDebug = __DEV__;
+export const isDebug = __DEV__;
 
 export const AppIcon = isDebug ? DebugIcon : ReleaseIcon;
 
