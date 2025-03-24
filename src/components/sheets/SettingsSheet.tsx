@@ -1,5 +1,5 @@
-import {useContext, useState} from 'react';
-import {Platform, ScrollView, View} from 'react-native';
+import {useContext, useMemo, useState} from 'react';
+import {type GradientValue, Platform, ScrollView, View} from 'react-native';
 import {useTranslation} from 'react-i18next';
 import {observer} from 'mobx-react-lite';
 
@@ -16,7 +16,7 @@ import MaterialIcon from '@react-native-vector-icons/material-icons';
 
 import {app, appVersion, setFunction} from '@clerotri/Generic';
 import {client} from '@clerotri/lib/client';
-import {OPEN_ISSUES} from '@clerotri/lib/consts';
+import {DONATIONS_INFO, OPEN_ISSUES} from '@clerotri/lib/consts';
 import {storage} from '@clerotri/lib/storage';
 import {getInstanceURL} from '@clerotri/lib/storage/utils';
 import {commonValues, ThemeContext} from '@clerotri/lib/themes';
@@ -85,6 +85,17 @@ export const SettingsSheet = observer(({setState}: {setState: Function}) => {
       }
     },
   );
+
+  const donateGradient: GradientValue = useMemo(() => {
+    return {
+      type: 'linearGradient',
+      direction: '120deg',
+      colorStops: [
+        {color: '#00000000'},
+        {color: `${currentTheme.accentColor}80`},
+      ],
+    };
+  }, [currentTheme]);
 
   return (
     <View
@@ -269,6 +280,40 @@ export const SettingsSheet = observer(({setState}: {setState: Function}) => {
                 />
               </View>
               <Text>{t('app.settings_menu.licenses.title')}</Text>
+            </ContextButton>
+            <ContextButton
+              style={{
+                flex: 1,
+                marginBottom: 10,
+                experimental_backgroundImage: [donateGradient],
+              }}
+              backgroundColor={currentTheme.backgroundSecondary}
+              onPress={() => {
+                openUrl(DONATIONS_INFO);
+              }}>
+              <View style={styles.iconContainer}>
+                <MaterialCommunityIcon
+                  name={'heart'}
+                  color={currentTheme.accentColor}
+                  size={24}
+                />
+              </View>
+              <Text>{t('app.settings_menu.other.donate')}</Text>
+            </ContextButton>
+            <ContextButton
+              style={{flex: 1, marginBottom: 10}}
+              backgroundColor={currentTheme.backgroundSecondary}
+              onPress={() => {
+                openUrl(OPEN_ISSUES);
+              }}>
+              <View style={styles.iconContainer}>
+                <MaterialCommunityIcon
+                  name={'translate-variant'}
+                  color={currentTheme.foregroundPrimary}
+                  size={24}
+                />
+              </View>
+              <Text>{t('app.settings_menu.other.translate')}</Text>
             </ContextButton>
             <ContextButton
               style={{flex: 1, marginBottom: 10}}
