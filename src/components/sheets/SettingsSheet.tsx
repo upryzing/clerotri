@@ -16,7 +16,7 @@ import MaterialIcon from '@react-native-vector-icons/material-icons';
 
 import {app, appVersion, setFunction} from '@clerotri/Generic';
 import {client} from '@clerotri/lib/client';
-import {DONATIONS_INFO, OPEN_ISSUES} from '@clerotri/lib/consts';
+import {DONATIONS_INFO, OPEN_ISSUES, WEBLATE} from '@clerotri/lib/consts';
 import {storage} from '@clerotri/lib/storage';
 import {getInstanceURL} from '@clerotri/lib/storage/utils';
 import {commonValues, ThemeContext} from '@clerotri/lib/themes';
@@ -304,7 +304,7 @@ export const SettingsSheet = observer(({setState}: {setState: Function}) => {
               style={{flex: 1, marginBottom: 10}}
               backgroundColor={currentTheme.backgroundSecondary}
               onPress={() => {
-                openUrl(OPEN_ISSUES);
+                openUrl(WEBLATE);
               }}>
               <View style={styles.iconContainer}>
                 <MaterialCommunityIcon
