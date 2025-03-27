@@ -154,6 +154,11 @@ export const SettingsSheet = observer(({setState}: {setState: Function}) => {
       ) : (
         <ScrollView
           style={{flex: 1}}
+          contentContainerStyle={[
+            {
+              paddingBottom: insets.bottom,
+            },
+          ]}
           showsVerticalScrollIndicator={false}
           showsHorizontalScrollIndicator={false}>
           <>
