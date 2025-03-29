@@ -37,8 +37,8 @@
             "open_lounge": "افتح ردهة Revolt",
             "description": "اسحب من يسار الشاشة أو اضغط على أيقونة الخطوط الثلاثة لترى السيرفرات والرسائل!",
             "open_settings": "فتح الإعدادات",
-            "open_clerotri": "فتح سيرفر RVMob",
-            "join_clerotri": "انضم إلى سيرفر RVMob"
+            "open_clerotri": "فتح سيرفر Clerotri",
+            "join_clerotri": "انضم إلى سيرفر Clerotri"
         },
         "modals": {
             "confirm_deletion": {
@@ -173,7 +173,7 @@
                 "title": "اللغة"
             },
             "info": {
-                "title": "حول RVMob"
+                "title": "حول Clerotri"
             },
             "profile": {
                 "title": "الملف الشخصي"
@@ -188,7 +188,7 @@
                 "hide": "(إخفاء)"
             },
             "voice": {
-                "header": "القنوات الصوتية غير مدعومة في RVMob حتى الآن!",
+                "header": "القنوات الصوتية غير مدعومة في Clerotri حتى الآن!",
                 "body": "في الوقت الحالي، يمكنك الانضمام إليهم عبر تطبيق الويب أو تطبيق Revolt."
             }
         },
