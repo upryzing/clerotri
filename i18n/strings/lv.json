@@ -51,8 +51,8 @@
         "home": {
             "join_lounge": "Pievienojieties Revolt Lounge",
             "open_lounge": "Atveriet Revolt Lounge",
-            "join_clerotri": "Pievienojieties RVMob serverim",
-            "open_clerotri": "Atveriet RVMob serveri",
+            "join_clerotri": "Pievienojieties Clerotri serverim",
+            "open_clerotri": "Atveriet Clerotri serveri",
             "open_settings": "Atveriet iestatījumus",
             "description": "Velciet no ekrāna kreisās puses vai pieskarieties trīs līniju ikonai, lai skatītu savus serverus un ziņojumus!"
         },
@@ -174,7 +174,7 @@
                     "enabled": "Iespējot push paziņojumus",
                     "notifyOnSelfPing": "Saņemiet paziņojumu, kad jus ietagojat sevi"
                 },
-                "showChangelogs": "Rādīt izmaiņu žurnālus pēc RVMob atjaunināšanas",
+                "showChangelogs": "Rādīt izmaiņu žurnālus pēc Clerotri atjaunināšanas",
                 "language": "Izvēlieties savu valodu",
                 "reopenLastChannel": "Atkārtoti atveriet pēdējo kanālu, kurā bijāt, atverot lietotni"
             },
@@ -229,7 +229,7 @@
                 "title": "Valoda"
             },
             "info": {
-                "title": "Par RVMob"
+                "title": "Par Clerotri"
             },
             "other": {
                 "logout": "Iziet",
@@ -246,7 +246,7 @@
                 "hide": "(slēpt)"
             },
             "voice": {
-                "header": "Balss kanāli vēl netiek atbalstīti pakalpojumā RVMob!",
+                "header": "Balss kanāli vēl netiek atbalstīti pakalpojumā Clerotri!",
                 "body": "Tikmēr varat tiem pievienoties, izmantojot tīmekļa lietotni vai Revolt Desktop."
             },
             "generic_errors": {
