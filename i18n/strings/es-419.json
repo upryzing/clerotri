@@ -36,8 +36,8 @@
             "description": "¡Desliza desde la parte izquierda de la pantalla o, presione el icono de tres líneas para mirar tus servidores y mensajes!",
             "open_lounge": "Abrir Revolt Lounge",
             "join_lounge": "Únete al servidor de Revolt Lounge",
-            "join_clerotri": "Únete al servidor de RVMob",
-            "open_clerotri": "Abrir el servidor de RVMob",
+            "join_clerotri": "Únete al servidor de Clerotri",
+            "open_clerotri": "Abrir el servidor de Clerotri",
             "open_settings": "Abrir configuración"
         },
         "modals": {
@@ -144,7 +144,7 @@
                     "enabled": "Habilitar notificaciones “push”",
                     "notifyOnSelfPing": "Recibir una notificación al mencionarse a sí mismo"
                 },
-                "showChangelogs": "Mostrar cambios al actualizar RVMob"
+                "showChangelogs": "Mostrar cambios al actualizar Clerotri"
             },
             "ui": {
                 "home": {
@@ -197,7 +197,7 @@
                 "title": "Lenguaje"
             },
             "info": {
-                "title": "Acerca de RVMob"
+                "title": "Acerca de Clerotri"
             },
             "other": {
                 "view_issues": "Ver problemas abiertos",
@@ -214,7 +214,7 @@
                 "hide": "(esconder)"
             },
             "voice": {
-                "header": "¡Los canales de voz todavía no están soportados en RVMob!",
+                "header": "¡Los canales de voz todavía no están soportados en Clerotri!",
                 "body": "Mientras tanto, puedes unirte a través de Revolt para escritorio o la aplicación web."
             }
         }
