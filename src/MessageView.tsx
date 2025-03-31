@@ -36,18 +36,18 @@ function renderMessage(
   onPress: (m: RevoltMessage) => void,
   messages?: RevoltMessage[],
 ) {
-  let grouped: boolean;
-  try {
-    grouped = messages
-      ? messages.indexOf(msg) !== -1
-        ? calculateGrouped(msg, messages[messages.indexOf(msg) - 1])
-        : false
-      : false;
-  } catch (err) {
-    grouped = false;
-    console.log(
-      `[NEWMESSAGEVIEW] Error calculating grouped status for ${msg._id}: ${err}`,
-    );
+  let grouped = false;
+  if (messages) {
+    try {
+      const index = messages.indexOf(msg);
+      if (index > 0) {
+        grouped = calculateGrouped(msg, messages[index - 1]);
+      }
+    } catch (err) {
+      console.log(
+        `[NEWMESSAGEVIEW] Error calculating grouped status for ${msg._id}: ${err}`,
+      );
+    }
   }
   return (
     <Message
