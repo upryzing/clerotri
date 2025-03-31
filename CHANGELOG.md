@@ -1,5 +1,15 @@
 # Clerotri's changelog
 
+## v0.9.1
+
+_This version was released on 31/03/2025._
+
+### Bug fixes
+
+- The "Translate Clerotri" button in the settings menu now correctly links to Weblate.
+- On Android, the settings menu should no longer cut off at the bottom for users of 3-button navigation.
+- Several mentions of RVMob in other languages have been updated to mention Clerotri instead.
+
 ## v0.9.0
 
 _This version was released on 25/03/2025._
