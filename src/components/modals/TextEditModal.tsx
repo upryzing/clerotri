@@ -24,7 +24,6 @@ export const TextEditModal = ({object}: {object: TextEditingModalProps}) => {
         alignSelf: 'center',
       }}>
       <Text type={'h1'}>{t(`app.modals.edit_text.${object.id}_header`)}</Text>
-      {}
       <View
         style={{
           flexDirection: 'column',
