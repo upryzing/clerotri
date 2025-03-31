@@ -42,9 +42,7 @@ function copyDebugInfo() {
       time: new Date().getTime(),
       platform: Platform.OS,
       model:
-        Platform.OS === 'android'
-          ? `${getBrand()}/${getDeviceSync()}`
-          : 'N/A',
+        Platform.OS === 'android' ? `${getBrand()}/${getDeviceSync()}` : 'N/A',
       browser: Platform.OS === 'web' ? `${getUserAgentSync()}` : 'N/A',
       version: Platform.OS === 'android' ? `${getApiLevelSync()}` : 'N/A',
     },
