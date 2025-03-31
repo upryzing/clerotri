@@ -226,6 +226,7 @@ export const LoginPage = ({
               <>
                 <Input
                   isLoginInput
+                  skipRegularStyles
                   placeholderTextColor={currentTheme.foregroundSecondary}
                   placeholder={t('app.login.forms.email_placeholder')}
                   keyboardType={'email-address'}
@@ -238,6 +239,7 @@ export const LoginPage = ({
                 />
                 <Input
                   isLoginInput
+                  skipRegularStyles
                   placeholderTextColor={currentTheme.foregroundSecondary}
                   secureTextEntry={true}
                   autoComplete={'password'}
@@ -253,6 +255,7 @@ export const LoginPage = ({
               <>
                 <Input
                   isLoginInput
+                  skipRegularStyles
                   placeholderTextColor={currentTheme.foregroundSecondary}
                   placeholder={t('app.login.forms.mfa_placeholder')}
                   onChangeText={text => {
@@ -291,6 +294,7 @@ export const LoginPage = ({
           <>
             <Input
               isLoginInput
+              skipRegularStyles
               placeholderTextColor={currentTheme.foregroundSecondary}
               placeholder={t('app.login.forms.session_token_placeholder')}
               onChangeText={text => {

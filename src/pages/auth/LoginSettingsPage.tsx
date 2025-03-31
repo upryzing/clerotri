@@ -87,6 +87,7 @@ export const LoginSettingsPage = ({callback}: {callback: () => void}) => {
             <Text type={'h1'}>Instance</Text>
             <Input
               isLoginInput
+              skipRegularStyles
               placeholderTextColor={currentTheme.foregroundSecondary}
               placeholder={'Instance URL'}
               onChangeText={text => {
