@@ -42,7 +42,7 @@ export const ServerInfoSheet = observer(() => {
     return false;
   });
 
-  setFunction('openServerContextMenu', async (s: Server | null) => {
+  setFunction('openServerContextMenu', (s: Server | null) => {
     if (s !== server) {
       setMembers(null);
     }
@@ -208,7 +208,7 @@ export const ServerInfoSheet = observer(() => {
                     onPress={async () => {
                       app.openServer();
                       app.openServerContextMenu(null);
-                      server.delete();
+                      await server.delete();
                     }}>
                     <View style={styles.iconContainer}>
                       <MaterialIcon

@@ -107,7 +107,7 @@ export const LicenseListSection = () => {
   };
 
   useEffect(() => {
-    async function prepareData() {
+    function prepareData() {
       const newData: SectionListLicenses[] = [];
 
       licenseList.forEach(license => {

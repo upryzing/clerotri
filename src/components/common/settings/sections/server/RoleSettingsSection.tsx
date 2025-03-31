@@ -413,7 +413,7 @@ const RolePermissionSelector = observer(
               if ((role.permissions.d & number) === number) {
                 return;
               }
-              server.setPermissions(roleID, {
+              await server.setPermissions(roleID, {
                 allow:
                   (role.permissions.a & number) === number
                     ? removeFromAllowed()
@@ -513,7 +513,7 @@ const RolePermissionSelector = observer(
               if ((role.permissions.a & number) === number) {
                 return;
               }
-              server.setPermissions(roleID, {
+              await server.setPermissions(roleID, {
                 allow: addToAllowed(),
                 deny:
                   (role.permissions.d & number) === number

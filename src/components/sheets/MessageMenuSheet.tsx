@@ -37,7 +37,7 @@ export const MessageMenuSheet = observer(() => {
     return false;
   });
 
-  setFunction('openMessage', async (m: Message | null) => {
+  setFunction('openMessage', (m: Message | null) => {
     setMessage(m);
     m ? sheetRef.current?.expand() : sheetRef.current?.close();
   });

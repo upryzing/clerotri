@@ -28,7 +28,7 @@ export const StatusSheet = observer(() => {
     return false;
   });
 
-  setFunction('openStatusMenu', async (show: boolean) => {
+  setFunction('openStatusMenu', (show: boolean) => {
     show ? sheetRef.current?.expand() : sheetRef.current?.close();
     setIsOpen(show);
   });

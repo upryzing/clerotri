@@ -64,7 +64,7 @@ function renderMessage(
           }>`,
         );
       }}
-      onLongPress={async () => app.openMessage(msg)}
+      onLongPress={() => app.openMessage(msg)}
     />
   );
 }

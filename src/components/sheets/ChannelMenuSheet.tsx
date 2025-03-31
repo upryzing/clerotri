@@ -35,7 +35,7 @@ export const ChannelMenuSheet = observer(() => {
     return false;
   });
 
-  setFunction('openChannelContextMenu', async (c: Channel | null) => {
+  setFunction('openChannelContextMenu', (c: Channel | null) => {
     setChannel(c);
     c ? sheetRef.current?.expand() : sheetRef.current?.close();
   });

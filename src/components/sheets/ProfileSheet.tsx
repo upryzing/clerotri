@@ -68,7 +68,7 @@ export const ProfileSheet = observer(() => {
     return false;
   });
 
-  setFunction('openProfile', async (u: User | null, s: Server | null) => {
+  setFunction('openProfile', (u: User | null, s: Server | null) => {
     if (u !== user) {
       setProfile({});
       setMutual({users: [], servers: []});
@@ -432,7 +432,7 @@ export const ProfileSheet = observer(() => {
                           alignItems: 'flex-start',
                           backgroundColor: currentTheme.backgroundPrimary,
                         }}
-                        onPress={async () => {
+                        onPress={() => {
                           app.openProfile(client.users.get(user.bot!.owner));
                         }}>
                         <View style={{maxWidth: '90%'}}>

@@ -121,7 +121,7 @@ export const SideMenuHandler = () => {
 
   const [sideMenuOpen, setSideMenuOpen] = useState(false);
 
-  setFunction('openLeftMenu', async (o: boolean) => {
+  setFunction('openLeftMenu', (o: boolean) => {
     console.log(`[APP] Setting left menu open state to ${o}`);
     setSideMenuOpen(o);
   });
