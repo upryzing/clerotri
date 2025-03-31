@@ -5,10 +5,10 @@ import {observer} from 'mobx-react-lite';
 
 import Clipboard from '@react-native-clipboard/clipboard';
 import {
-  getApiLevel,
+  getApiLevelSync,
   getBrand,
-  getDevice,
-  getUserAgent,
+  getDeviceSync,
+  getUserAgentSync,
 } from 'react-native-device-info';
 import {useSafeAreaInsets} from 'react-native-safe-area-context';
 import MaterialCommunityIcon from '@react-native-vector-icons/material-design-icons';
@@ -36,17 +36,17 @@ import {
   ProfileSettingsSection,
 } from '@clerotri/components/common/settings/sections/app';
 
-async function copyDebugInfo() {
+function copyDebugInfo() {
   const obj = {
     deviceInfo: {
       time: new Date().getTime(),
       platform: Platform.OS,
       model:
         Platform.OS === 'android'
-          ? `${getBrand()}/${await getDevice()}`
+          ? `${getBrand()}/${getDeviceSync()}`
           : 'N/A',
-      browser: Platform.OS === 'web' ? `${await getUserAgent()}` : 'N/A',
-      version: Platform.OS === 'android' ? `${await getApiLevel()}` : 'N/A',
+      browser: Platform.OS === 'web' ? `${getUserAgentSync()}` : 'N/A',
+      version: Platform.OS === 'android' ? `${getApiLevelSync()}` : 'N/A',
     },
 
     appInfo: {
@@ -58,12 +58,6 @@ async function copyDebugInfo() {
   };
 
   Clipboard.setString(JSON.stringify(obj));
-}
-
-function copyDebugInfoWrapper() {
-  copyDebugInfo().then(() => {
-    return null;
-  });
 }
 
 export const SettingsSheet = observer(({setState}: {setState: Function}) => {
@@ -244,7 +238,7 @@ export const SettingsSheet = observer(({setState}: {setState: Function}) => {
               style={{flex: 1, marginBottom: 10}}
               backgroundColor={currentTheme.backgroundSecondary}
               onPress={() => {
-                copyDebugInfoWrapper();
+                copyDebugInfo();
               }}>
               <View style={styles.iconContainer}>
                 <MaterialIcon
