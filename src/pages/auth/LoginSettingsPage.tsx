@@ -1,6 +1,8 @@
 import {useContext, useState} from 'react';
 import {View} from 'react-native';
 
+import {useSafeAreaInsets} from 'react-native-safe-area-context';
+
 import {
   BackButton,
   Button,
@@ -14,6 +16,8 @@ import {commonValues, ThemeContext} from '@clerotri/lib/themes';
 import {useBackHandler} from '@clerotri/lib/ui';
 
 export const LoginSettingsPage = ({callback}: {callback: () => void}) => {
+  const insets = useSafeAreaInsets();
+
   const {currentTheme} = useContext(ThemeContext);
 
   const [instanceURL, setInstanceURL] = useState(getInstanceURL());
@@ -66,7 +70,10 @@ export const LoginSettingsPage = ({callback}: {callback: () => void}) => {
       <BackButton
         callback={() => callback()}
         type={'close'}
-        style={{padding: commonValues.sizes.large}}
+        style={{
+          padding: commonValues.sizes.large,
+          paddingTop: insets.top + commonValues.sizes.large,
+        }}
       />
       <View style={{alignItems: 'center', justifyContent: 'center', flex: 1}}>
         {saved ? (
