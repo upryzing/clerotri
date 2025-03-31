@@ -76,14 +76,14 @@ export const languages: Record<string, Language> = {
     englishName: 'Filipino',
     emoji: '🇵🇭',
   },
-  hu: {name: 'Magyar', englishName: 'Hungarian', emoji: '🇱🇻'},
+  hu: {name: 'Magyar', englishName: 'Hungarian', emoji: '🇭🇺'},
   id: {
     name: 'Bahasa Indonesia',
     englishName: 'Indonesian',
     emoji: '🇮🇩',
   },
   // it: {name: 'Italiano', englishName: 'Italian', emoji: '🇮🇹'},
-  lv: {name: 'Latviešu', englishName: 'Latvian', emoji: '🇭🇺'},
+  lv: {name: 'Latviešu', englishName: 'Latvian', emoji: '🇱🇻'},
   pl: {name: 'Polski', englishName: 'Polish', emoji: '🇵🇱'},
   'pt-BR': {
     name: 'Português (Brasil)',
