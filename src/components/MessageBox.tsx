@@ -6,8 +6,8 @@ import {observer} from 'mobx-react-lite';
 import {type DocumentPickerResponse} from '@react-native-documents/picker';
 import {KeyboardAvoidingView} from 'react-native-keyboard-controller';
 import {useSafeAreaInsets} from 'react-native-safe-area-context';
-import MaterialIcon from 'react-native-vector-icons/MaterialIcons';
-import MaterialCommunityIcon from 'react-native-vector-icons/MaterialCommunityIcons';
+import MaterialIcon from '@react-native-vector-icons/material-icons';
+import MaterialCommunityIcon from '@react-native-vector-icons/material-design-icons';
 
 import type {Channel, Message} from 'revolt.js';
 import {ulid} from 'ulid';
@@ -186,6 +186,7 @@ export const MessageBox = observer((props: MessageBoxProps) => {
       ) : null}
       <View style={localStyles.messageBoxInner}>
         {Platform.OS !== 'web' &&
+        props.channel.havePermission('UploadFiles') &&
         settings.get('ui.messaging.sendAttachments') ? (
           <AttachmentPickerButton
             attachments={attachments}

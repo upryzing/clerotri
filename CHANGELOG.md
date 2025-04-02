@@ -1,5 +1,64 @@
 # Clerotri's changelog
 
+## v0.9.1
+
+_This version was released on 31/03/2025._
+
+### Bug fixes
+
+- The "Translate Clerotri" button in the settings menu now correctly links to Weblate.
+- On Android, the settings menu should no longer cut off at the bottom for users of 3-button navigation.
+- Several mentions of RVMob in other languages have been updated to mention Clerotri instead.
+
+## v0.9.0
+
+_This version was released on 25/03/2025._
+
+### Important notes
+
+- For translators, some important news: **we've moved to a new Weblate instance.** You can now translate Clerotri via [Upryzing's instance][weblate_upryzing].
+- I now accept **donations!** You can donate to me via [Ko-fi][kofi] or [Liberapay][liberapay]. This will make it easier for me to spend time working on the app. Thank you so much for your support <3
+
+### What's new
+
+​- Clerotri now lets you **edit server-wide role permissions!** This is a big step towards complete support for server settings, and the work here should make channel permission editing pretty easy to add in the future :3
+
+- You can now also edit role ranks.
+- Clerotri now supports several new languages:
+  - Spanish,
+  - Portuguese,
+  - Simplified Chinese,
+  - Polish,
+  - Filipino,
+  - Latvian, and
+  - Esperanto.
+- You can now **add bots via Discover!** From moderation to music, plenty of bots are available for a variety of needs.
+  - You can now also view server descriptions for servers on Discover.
+- The settings menu now includes links for those who want to translate or donate.
+- The login page now uses Open Sans, matching the rest of the app.
+  - Inter will be re-introduced as a app-wide font option in a future update.
+- The app info page has received some visual improvements.
+  - The app icon now displays properly on web.
+- The app should now adapt slightly better to wider screens.
+- Clerotri now uses React Native 0.79, which includes (among other things) **edge to edge support** on Android! The navigation bar is no longer stuck as a singular shade of grey.
+  - Some areas now use a slightly different background colour, including the status bar.
+
+### Bug fixes
+
+- The app no longer crashes when someone sends a HEIC file.
+- The sign up button on the log in page no longer links to a non-existent page ([PR](https://github.com/upryzing/cleortri/pull/44)). Thanks [zmjohnso][gh_zmjohnso]!
+- The attachment picker button is no longer pressable when you've selected 5 attachments, and should no longer appear if you can't send files in a channel.
+- The role colour picker now closes when you press the global back button or swipe back on Android.
+
+### Known issues
+
+- Due to various crashes, bottom sheets have been disabled on web (again). They will be re-enabled once the cause of these crashes has been located and fixed.
+
+[weblate_upryzing]: https://translate.upryzing.app/projects/clerotri
+[kofi]: https://ko-fi.com/rexogamer
+[liberapay]: https://en.liberapay.com/rexogamer
+[gh_zmjohnso]: https://github.com/zmjohnso
+
 ## v0.8.0
 
 _This version was released on 17/02/2025._

@@ -2,7 +2,7 @@ import {useContext} from 'react';
 import {View} from 'react-native';
 
 import Clipboard from '@react-native-clipboard/clipboard';
-import MaterialIcon from 'react-native-vector-icons/MaterialIcons';
+import MaterialIcon from '@react-native-vector-icons/material-icons';
 
 import {styles} from '@clerotri/Theme';
 import {ContextButton} from './ContextButton';

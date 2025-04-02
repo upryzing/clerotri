@@ -4,8 +4,8 @@
             "description": "Wische vom linken Rand oder tippe auf die drei Linien, um deine Server und Nachrichten zu sehen!",
             "join_lounge": "Revolt Lounge beitreten",
             "open_lounge": "Revolt Lounge öffnen",
-            "join_clerotri": "Dem RVMob-Server beitreten",
-            "open_clerotri": "Den RVMob-Server öffnen",
+            "join_clerotri": "Dem Clerotri-Server beitreten",
+            "open_clerotri": "Den Clerotri-Server öffnen",
             "open_settings": "Einstellungen öffnen"
         },
         "actions": {
@@ -132,7 +132,7 @@
                     "enabled": "Schalte bitte Benachrichtigungen ein",
                     "notifyOnSelfPing": "Erhalte eine Benachrichtigung, wenn du dich selbst anpingst"
                 },
-                "showChangelogs": "Änderungsprotokolle nach der Aktualisierung von RVMob anzeigen",
+                "showChangelogs": "Änderungsprotokolle nach der Aktualisierung von Clerotri anzeigen",
                 "language": "Wähle deine Sprache aus",
                 "reopenLastChannel": "Öffne den letzten Kanal, in dem du dich beim Öffnen der App befunden hast, erneut"
             }
@@ -179,7 +179,7 @@
         "misc": {
             "voice": {
                 "body": "In der Zwischenzeit kannst du über die Web-App oder Revolt Desktop beitreten.",
-                "header": "Sprachkanäle werden in RVMob noch nicht unterstützt!"
+                "header": "Sprachkanäle werden in Clerotri noch nicht unterstützt!"
             },
             "network_indicator": {
                 "body": "Verbindung verloren",
@@ -232,7 +232,7 @@
                 "title": "Sprache"
             },
             "info": {
-                "title": "Über RVMob"
+                "title": "Über Clerotri"
             },
             "other": {
                 "debug_info": "Kopiere Debug-Informationen",

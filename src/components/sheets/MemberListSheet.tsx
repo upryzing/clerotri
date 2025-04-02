@@ -27,7 +27,7 @@ export const MemberListSheet = observer(() => {
     return false;
   });
 
-  setFunction('openMemberList', async (ctx: Channel | Server | null) => {
+  setFunction('openMemberList', (ctx: Channel | Server | null) => {
     if (ctx !== context) {
       setUsers([]);
     }

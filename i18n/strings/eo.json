@@ -18,8 +18,8 @@
             "join_lounge": "Aliĝi al la Revolto Loŭnĝeo",
             "open_settings": "Malfermi agordojn",
             "description": "Ŝovumu de maldekstre de la ekrano aŭ tuŝetu la trilinian ikonon por vidi viajn servilojn kaj mesaĝojn!",
-            "open_clerotri": "Malfermi la servilon de RVMobo",
-            "join_clerotri": "Aliĝi al la servilo de RVMobo"
+            "open_clerotri": "Malfermi la servilon de Clerotri",
+            "join_clerotri": "Aliĝi al la servilo de Clerotri"
         },
         "modals": {
             "confirm_deletion": {
@@ -125,7 +125,7 @@
                     "enabled": "Ebligi puŝo-sciigojn",
                     "notifyOnSelfPing": "Ricevi sciigon kiam vi eĥosondas vin mem"
                 },
-                "showChangelogs": "Montri ŝanĝprotokolojn post ĝisdatigo de RVMob",
+                "showChangelogs": "Montri ŝanĝprotokolojn post ĝisdatigo de Clerotri",
                 "refetchOnReconnect": "Reŝarĝi mesaĝojn dum rekonekto"
             },
             "ui": {
@@ -165,7 +165,7 @@
                 "hide": "(kaŝi)"
             },
             "voice": {
-                "header": "Voĉaj kanaloj ankoraŭ ne estas subtenataj en RVMob!",
+                "header": "Voĉaj kanaloj ankoraŭ ne estas subtenataj en Clerotri!",
                 "body": "Dume, vi povas aliĝi al ĝi per la retejo-aplikaĵo aŭ Revolt Desktop."
             }
         },
@@ -208,7 +208,7 @@
                 "title": "Lingvo"
             },
             "info": {
-                "title": "Pri RVMob"
+                "title": "Pri Clerotri"
             },
             "other": {
                 "debug_info": "Kopii sencimigajn informojn",

@@ -1,8 +1,8 @@
 import {useContext, useState} from 'react';
 import {StyleSheet, type TextStyle, View, type ViewStyle} from 'react-native';
 
-import MaterialIcon from 'react-native-vector-icons/MaterialIcons';
-import MaterialCommunityIcon from 'react-native-vector-icons/MaterialCommunityIcons';
+import MaterialIcon from '@react-native-vector-icons/material-icons';
+import MaterialCommunityIcon from '@react-native-vector-icons/material-design-icons';
 
 import {Button} from '@clerotri/components/common/atoms/Button';
 import {Input} from '@clerotri/components/common/atoms/Input';

@@ -4,6 +4,7 @@ import {Trans, useTranslation} from 'react-i18next';
 import {observer} from 'mobx-react-lite';
 
 import {app} from '@clerotri/Generic';
+import {ChannelContext} from '@clerotri/lib/state';
 import {commonValues, ThemeContext} from '@clerotri/lib/themes';
 import {DeletableObject} from '@clerotri/lib/types';
 import {Button, Text} from '@clerotri/components/common/atoms';
@@ -11,6 +12,8 @@ import {Button, Text} from '@clerotri/components/common/atoms';
 export const ConfirmDeletionModal = observer(
   ({target}: {target: DeletableObject}) => {
     const {currentTheme} = useContext(ThemeContext);
+
+    const {currentChannel, setCurrentChannel} = useContext(ChannelContext);
 
     const {t} = useTranslation();
     const name = target.type === 'Server' ? target.object.name : '';
@@ -70,6 +73,12 @@ export const ConfirmDeletionModal = observer(
                   app.openServerContextMenu(null);
                   app.openServer(undefined);
                   app.openServerSettings(null);
+                  if (
+                    typeof currentChannel !== 'string' &&
+                    currentChannel?.server?._id === target.object._id
+                  ) {
+                    setCurrentChannel(null);
+                  }
                   target.object.delete();
                   app.openDeletionConfirmationModal(null);
                   break;

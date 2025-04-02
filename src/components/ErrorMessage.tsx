@@ -21,30 +21,32 @@ export function ErrorMessage({
   console.error(`[APP] Uncaught error: ${errorMessage}`);
   return (
     <View style={localStyles.container}>
-      <Text style={localStyles.textContainer}>
-        <Text style={localStyles.header}>OOPSIE WOOPSIE!! {'UwU\n'}</Text>
-        We made a fucky wucky!! A wittle fucko boingo! The code monkeys at our
-        headquarters are working VEWY HAWD to fix this! {'>w<\n\n'}
-        On a more serious note, please let us know that you experienced the
-        following error:
-      </Text>
-      <View style={localStyles.errorMessageBox}>
-        <Text font={'JetBrains Mono'} colour={currentTheme.error}>
-          {errorMessage}
+      <View style={localStyles.innerContainer}>
+        <Text style={localStyles.textContainer}>
+          <Text style={localStyles.header}>OOPSIE WOOPSIE!! {'UwU\n'}</Text>
+          We made a fucky wucky!! A wittle fucko boingo! The code monkeys at our
+          headquarters are working VEWY HAWD to fix this! {'>w<\n\n'}
+          On a more serious note, please let us know that you experienced the
+          following error:
         </Text>
+        <View style={localStyles.errorMessageBox}>
+          <Text font={'JetBrains Mono'} colour={currentTheme.error}>
+            {errorMessage}
+          </Text>
+        </View>
+        <Button
+          onPress={() => {
+            Clipboard.setString(errorMessage);
+          }}>
+          <Text>Copy error message</Text>
+        </Button>
+        <Button
+          onPress={() => {
+            resetErrorBoundary();
+          }}>
+          <Text>Reload app</Text>
+        </Button>
       </View>
-      <Button
-        onPress={() => {
-          Clipboard.setString(errorMessage);
-        }}>
-        <Text>Copy error message</Text>
-      </Button>
-      <Button
-        onPress={() => {
-          resetErrorBoundary();
-        }}>
-        <Text>Reload app</Text>
-      </Button>
     </View>
   );
 }
@@ -56,6 +58,10 @@ const generateLocalStyles = (currentTheme: Theme) => {
       backgroundColor: currentTheme.backgroundPrimary,
       padding: commonValues.sizes.xl,
       justifyContent: 'center',
+      alignItems: 'center',
+    },
+    innerContainer: {
+      maxWidth: 800,
     },
     textContainer: {
       alignItems: 'center',

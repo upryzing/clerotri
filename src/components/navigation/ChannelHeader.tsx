@@ -1,5 +1,6 @@
 import {useContext} from 'react';
 import {
+  Platform,
   StyleSheet,
   TouchableOpacity,
   useWindowDimensions,
@@ -7,7 +8,7 @@ import {
 } from 'react-native';
 
 import {useSafeAreaInsets} from 'react-native-safe-area-context';
-import MaterialIcon from 'react-native-vector-icons/MaterialIcons';
+import MaterialIcon from '@react-native-vector-icons/material-icons';
 
 import {app} from '@clerotri/Generic';
 import {styles} from '@clerotri/Theme';
@@ -61,7 +62,7 @@ const generateLocalStyles = (currentTheme: Theme, inset: number) => {
       alignItems: 'center',
       paddingLeft: commonValues.sizes.xl,
       padding: 10,
-      paddingTop: inset,
+      ...(Platform.OS !== 'web' && {paddingTop: inset}),
       flexDirection: 'row',
     },
     headerIcon: {

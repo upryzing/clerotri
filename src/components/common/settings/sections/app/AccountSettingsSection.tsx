@@ -3,7 +3,7 @@ import {Pressable, View} from 'react-native';
 import {observer} from 'mobx-react-lite';
 
 import Clipboard from '@react-native-clipboard/clipboard';
-import MaterialIcon from 'react-native-vector-icons/MaterialIcons';
+import MaterialIcon from '@react-native-vector-icons/material-icons';
 
 import {app} from '@clerotri/Generic';
 import {client} from '@clerotri/lib/client';
@@ -74,21 +74,21 @@ export const AccountSettingsSection = observer(() => {
           </View>
         </Pressable>
         {/* <Pressable
-        style={{
-          width: 30,
-          height: 20,
-          alignItems: 'center',
-          justifyContent: 'center',
-        }}
-        onPress={async () => {}}>
-        <View style={styles.iconContainer}>
-          <MaterialIcon
-            name="edit"
-            size={20}
-            color={currentTheme.foregroundPrimary}
-          />
-        </View>
-      </Pressable> */}
+      style={{
+        width: 30,
+        height: 20,
+        alignItems: 'center',
+        justifyContent: 'center',
+      }}
+      onPress={async () => {}}>
+      <View style={styles.iconContainer}>
+        <MaterialIcon
+          name="edit"
+          size={20}
+          color={currentTheme.foregroundPrimary}
+        />
+      </View>
+    </Pressable> */}
       </SettingsEntry>
       <SettingsEntry key={'email-settings'}>
         <View style={{flex: 1, flexDirection: 'column'}}>
@@ -136,21 +136,21 @@ export const AccountSettingsSection = observer(() => {
           </View>
         </Pressable>
         {/* <Pressable
-        style={{
-          width: 30,
-          height: 20,
-          alignItems: 'center',
-          justifyContent: 'center',
-        }}
-        onPress={async () => {}}>
-        <View style={styles.iconContainer}>
-          <MaterialIcon
-            name="edit"
-            size={20}
-            color={currentTheme.foregroundPrimary}
-          />
-        </View>
-      </Pressable> */}
+      style={{
+        width: 30,
+        height: 20,
+        alignItems: 'center',
+        justifyContent: 'center',
+      }}
+      onPress={async () => {}}>
+      <View style={styles.iconContainer}>
+        <MaterialIcon
+          name="edit"
+          size={20}
+          color={currentTheme.foregroundPrimary}
+        />
+      </View>
+    </Pressable> */}
       </SettingsEntry>
       <GapView size={4} />
       <Text type={'h1'}>Multi-factor authentication</Text>

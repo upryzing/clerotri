@@ -2,7 +2,7 @@ import {type Dispatch, type SetStateAction, useContext} from 'react';
 import {Pressable, StyleSheet} from 'react-native';
 
 import {type DocumentPickerResponse} from '@react-native-documents/picker';
-import MaterialIcon from 'react-native-vector-icons/MaterialIcons';
+import MaterialIcon from '@react-native-vector-icons/material-icons';
 
 import {pickDocument, fileTypes} from '@clerotri/crossplat/DocumentPicker';
 import {commonValues, type Theme, ThemeContext} from '@clerotri/lib/themes';

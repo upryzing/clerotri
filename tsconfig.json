@@ -5,7 +5,7 @@
       "@clerotri/*": ["./src/*"],
       "@clerotri-i18n/*": ["./i18n/*"]
     },
-    "types": ["react-native-web"]
+    "types": ["jest", "react-native-web"]
   },
   "extends": "@react-native/typescript-config/tsconfig.json"
 }

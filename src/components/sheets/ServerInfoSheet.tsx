@@ -3,8 +3,8 @@ import {TouchableOpacity, View} from 'react-native';
 import {observer} from 'mobx-react-lite';
 
 import type BottomSheetCore from '@gorhom/bottom-sheet';
-import MaterialIcon from 'react-native-vector-icons/MaterialIcons';
-import MaterialCommunityIcon from 'react-native-vector-icons/MaterialCommunityIcons';
+import MaterialIcon from '@react-native-vector-icons/material-icons';
+import MaterialCommunityIcon from '@react-native-vector-icons/material-design-icons';
 
 import type {Member, Server} from 'revolt.js';
 
@@ -12,6 +12,7 @@ import {app, setFunction, settings} from '@clerotri/Generic';
 import {client} from '@clerotri/lib/client';
 import {styles} from '@clerotri/Theme';
 import {SERVER_FLAGS, SPECIAL_SERVERS} from '@clerotri/lib/consts';
+import {ChannelContext} from '@clerotri/lib/state';
 import {commonValues, ThemeContext} from '@clerotri/lib/themes';
 import {useBackHandler} from '@clerotri/lib/ui';
 import {showToast} from '@clerotri/lib/utils';
@@ -28,6 +29,8 @@ import {Image} from '@clerotri/crossplat/Image';
 export const ServerInfoSheet = observer(() => {
   const {currentTheme} = useContext(ThemeContext);
 
+  const {currentChannel, setCurrentChannel} = useContext(ChannelContext);
+
   const [server, setServer] = useState(null as Server | null);
   const [members, setMembers] = useState(null as Member[] | null);
 
@@ -42,7 +45,7 @@ export const ServerInfoSheet = observer(() => {
     return false;
   });
 
-  setFunction('openServerContextMenu', async (s: Server | null) => {
+  setFunction('openServerContextMenu', (s: Server | null) => {
     if (s !== server) {
       setMembers(null);
     }
@@ -208,7 +211,13 @@ export const ServerInfoSheet = observer(() => {
                     onPress={async () => {
                       app.openServer();
                       app.openServerContextMenu(null);
-                      server.delete();
+                      if (
+                        typeof currentChannel !== 'string' &&
+                        currentChannel?.server?._id === server?._id
+                      ) {
+                        setCurrentChannel(null);
+                      }
+                      await server.delete();
                     }}>
                     <View style={styles.iconContainer}>
                       <MaterialIcon

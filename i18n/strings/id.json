@@ -3,8 +3,8 @@
         "home": {
             "join_lounge": "Bergabung ke Revolt Lounge",
             "open_lounge": "Buka Revolt Lounge",
-            "join_clerotri": "Bergabung ke server RVMob",
-            "open_clerotri": "Buka server RVMob",
+            "join_clerotri": "Bergabung ke server Clerotri",
+            "open_clerotri": "Buka server Clerotri",
             "open_settings": "Buka pengaturan",
             "description": "Geser dari kiri layar atau ketuk ikon tiga baris untuk melihat server dan pesan kamu!"
         },
@@ -123,7 +123,7 @@
             },
             "voice": {
                 "body": "Kamu bisa bergabung melalui web app atau Revolt Desktop untuk sementara.",
-                "header": "Saluran suara belum didukung RVMob!"
+                "header": "Saluran suara belum didukung Clerotri!"
             }
         }
     }

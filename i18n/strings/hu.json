@@ -17,8 +17,8 @@
             "description": "A szervereidhez és üzeneteidhez balról húzz egyet a képernyőn, vagy koppints a háromvonalas ikonra!",
             "join_lounge": "Csatlakozás a Revolt Lounge-hoz",
             "open_lounge": "Revolt Lounge megnyitása",
-            "join_clerotri": "Csatlakozás az RVMob-szerverhez",
-            "open_clerotri": "RVMob-szerver megnyitása",
+            "join_clerotri": "Csatlakozás az Clerotri-szerverhez",
+            "open_clerotri": "Clerotri-szerver megnyitása",
             "open_settings": "Beállítások megnyitása"
         },
         "modals": {
@@ -59,7 +59,7 @@
                     "enabled": "Leküldéses értesítések engedélyezése",
                     "notifyOnSelfPing": "Értesítést kapsz, amikor megpingeled magad"
                 },
-                "showChangelogs": "Az RVMob frissítése után változások mutatása",
+                "showChangelogs": "Az Clerotri frissítése után változások mutatása",
                 "refetchOnReconnect": "Üzenetek újratöltése újracsatlakozáskor"
             },
             "ui": {
@@ -99,7 +99,7 @@
                 "hide": "(elrejt)"
             },
             "voice": {
-                "header": "Az RVMob még nem támogatja a beszédcsatornákat!",
+                "header": "Az clerotri még nem támogatja a beszédcsatornákat!",
                 "body": "Amíg el nem készül, addig a web app-ban, vagy pedig a Revolt Desktop-ban tudsz hangcsatornához csatlakozni."
             }
         },
@@ -212,7 +212,7 @@
                 "title": "Nyelv"
             },
             "info": {
-                "title": "Az RVMobról"
+                "title": "Az Clerotriról"
             },
             "profile": {
                 "title": "Profil"

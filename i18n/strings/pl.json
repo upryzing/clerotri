@@ -54,11 +54,11 @@
             }
         },
         "home": {
-            "open_clerotri": "Otwórz serwer RVMob",
+            "open_clerotri": "Otwórz serwer Clerotri",
             "join_lounge": "Dołącz do Revolt Lounge",
             "open_lounge": "Otwórz Revolt Lounge",
             "open_settings": "Otwórz ustawienia",
-            "join_clerotri": "Dołącz do serwera RVMob"
+            "join_clerotri": "Dołącz do serwera Clerotri"
         },
         "messaging": {
             "message_box_group": "Wyślij wiadomość do {{name}}",
@@ -179,7 +179,7 @@
         },
         "settings": {
             "app": {
-                "showChangelogs": "Pokaż listę zmian po aktualizacji RVMob",
+                "showChangelogs": "Pokaż listę zmian po aktualizacji Clerotri",
                 "language": "Wybierz język",
                 "refetchOnReconnect": "Przeładuj wiadomości podczas łączenia ponownie",
                 "notifications": {

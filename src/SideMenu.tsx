@@ -10,7 +10,7 @@ import {
 
 import {Drawer} from 'react-native-drawer-layout';
 import {useSafeAreaInsets} from 'react-native-safe-area-context';
-import MaterialIcon from 'react-native-vector-icons/MaterialIcons';
+import MaterialIcon from '@react-native-vector-icons/material-icons';
 
 import type {Server} from 'revolt.js';
 
@@ -56,7 +56,9 @@ const SideMenu = () => {
         <ScrollView
           key={'server-list'}
           style={localStyles.serverList}
-          contentContainerStyle={{paddingTop: insets.top}}>
+          contentContainerStyle={
+            Platform.OS !== 'web' && {paddingTop: insets.top}
+          }>
           <Pressable
             onPress={() => {
               currentServer ? setCurrentServer(null) : app.openStatusMenu(true);
@@ -119,7 +121,7 @@ export const SideMenuHandler = () => {
 
   const [sideMenuOpen, setSideMenuOpen] = useState(false);
 
-  setFunction('openLeftMenu', async (o: boolean) => {
+  setFunction('openLeftMenu', (o: boolean) => {
     console.log(`[APP] Setting left menu open state to ${o}`);
     setSideMenuOpen(o);
   });
@@ -175,6 +177,7 @@ const generateDrawerStyles = (width: number) => {
     },
     wideInner: {
       width: '20%',
+      maxWidth: 350,
       flexDirection: 'column',
     },
   });
@@ -208,7 +211,7 @@ const generateLocalStyles = (currentTheme: Theme, inset: number) => {
       borderColor: currentTheme.generalBorderColor,
       flexDirection: 'row',
       justifyContent: 'space-evenly',
-      marginBottom: inset - 5,
+      ...(Platform.OS !== 'web' && {marginBottom: inset - 5}),
     },
   });
 };

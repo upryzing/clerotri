@@ -3,8 +3,8 @@ import {Pressable, ScrollView, TouchableOpacity, View} from 'react-native';
 import {observer} from 'mobx-react-lite';
 
 import type BottomSheetCore from '@gorhom/bottom-sheet';
-import MaterialIcon from 'react-native-vector-icons/MaterialIcons';
-import MaterialCommunityIcon from 'react-native-vector-icons/MaterialCommunityIcons';
+import MaterialIcon from '@react-native-vector-icons/material-icons';
+import MaterialCommunityIcon from '@react-native-vector-icons/material-design-icons';
 
 import type {User, Server} from 'revolt.js';
 
@@ -68,7 +68,7 @@ export const ProfileSheet = observer(() => {
     return false;
   });
 
-  setFunction('openProfile', async (u: User | null, s: Server | null) => {
+  setFunction('openProfile', (u: User | null, s: Server | null) => {
     if (u !== user) {
       setProfile({});
       setMutual({users: [], servers: []});
@@ -432,7 +432,7 @@ export const ProfileSheet = observer(() => {
                           alignItems: 'flex-start',
                           backgroundColor: currentTheme.backgroundPrimary,
                         }}
-                        onPress={async () => {
+                        onPress={() => {
                           app.openProfile(client.users.get(user.bot!.owner));
                         }}>
                         <View style={{maxWidth: '90%'}}>

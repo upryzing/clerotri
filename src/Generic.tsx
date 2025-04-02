@@ -16,7 +16,7 @@ import {
   TextEditingModalProps,
 } from '@clerotri/lib/types';
 
-export const appVersion = '0.8.0';
+export const appVersion = '0.9.1';
 
 export const settings = {
   _fetch: (k: string) => {
@@ -307,13 +307,29 @@ export const app = {
       `[FUNCTIONS] Tried to run uninitialised function openLeftMenu (args: ${o})`,
     );
   },
-  openInvite: i => {},
-  openBotInvite: i => {},
-  openServer: (s?: Server) => {},
+  openInvite: (i: string) => {
+    console.log(
+      `[FUNCTIONS] Tried to run uninitialised function openInvite (args: ${i})`,
+    );
+  },
+  openBotInvite: (i: string) => {
+    console.log(
+      `[FUNCTIONS] Tried to run uninitialised function openBotInvite (args: ${i})`,
+    );
+  },
+  openServer: (s?: Server) => {
+    console.log(
+      `[FUNCTIONS] Tried to run uninitialised function openServer (args: ${s})`,
+    );
+  },
   getCurrentServer: () => {
     return undefined as string | undefined;
   },
-  openChannel: (c: CVChannel) => {},
+  openChannel: (c: CVChannel) => {
+    console.log(
+      `[FUNCTIONS] Tried to run uninitialised function openChannel (args: ${c})`,
+    );
+  },
   getCurrentChannel: (): CVChannel => {
     return null;
   },
@@ -322,7 +338,11 @@ export const app = {
       `[FUNCTIONS] Tried to run uninitialised function openDirectMessage (args: ${c})`,
     );
   },
-  openImage: a => {},
+  openImage: (a: any) => {
+    console.log(
+      `[FUNCTIONS] Tried to run uninitialised function openImage (args: ${a})`,
+    );
+  },
   openMessage: (m: Message | null) => {
     console.log(
       `[FUNCTIONS] Tried to run uninitialised function openMessage (args: ${m})`,
@@ -380,17 +400,57 @@ export const app = {
   /**
    * @deprecated Message queuing will be removed/reworked due to the switch of message views
    */
-  pushToQueue: m => {},
+  pushToQueue: (m: any) => {
+    console.log(
+      `[FUNCTIONS] Tried to run uninitialised (and deprecated) function pushToQueue (args: ${m})`,
+    );
+  },
   logOut: () => {},
-  openMemberList: (data: Channel | Server | null) => {},
-  openChannelInfoMenu: (c: Channel | null) => {},
-  openPinnedMessagesMenu: (c: Channel | null) => {},
-  openStatusMenu: (state: boolean) => {},
-  openReportMenu: (object: ReportedObject | null) => {},
-  openDeletionConfirmationModal: (object: DeletableObject | null) => {},
-  openTextEditModal: (object: TextEditingModalProps | null) => {},
-  openCreateChannelModal: (object: CreateChannelModalProps | null) => {},
-  openNewInviteModal: (code: string | null) => {},
+  openMemberList: (data: Channel | Server | null) => {
+    console.log(
+      `[FUNCTIONS] Tried to run uninitialised function openMemberList (args: ${data})`,
+    );
+  },
+  openChannelInfoMenu: (c: Channel | null) => {
+    console.log(
+      `[FUNCTIONS] Tried to run uninitialised function openChannelInfoMenu (args: ${c})`,
+    );
+  },
+  openPinnedMessagesMenu: (c: Channel | null) => {
+    console.log(
+      `[FUNCTIONS] Tried to run uninitialised function openPinnedMessagesMenu (args: ${c})`,
+    );
+  },
+  openStatusMenu: (state: boolean) => {
+    console.log(
+      `[FUNCTIONS] Tried to run uninitialised function openStatusMenu (args: ${state})`,
+    );
+  },
+  openReportMenu: (object: ReportedObject | null) => {
+    console.log(
+      `[FUNCTIONS] Tried to run uninitialised function openReportMenu (args: ${object})`,
+    );
+  },
+  openDeletionConfirmationModal: (object: DeletableObject | null) => {
+    console.log(
+      `[FUNCTIONS] Tried to run uninitialised function openDeletionConfirmationModal (args: ${object})`,
+    );
+  },
+  openTextEditModal: (object: TextEditingModalProps | null) => {
+    console.log(
+      `[FUNCTIONS] Tried to run uninitialised function openTextEditModal (args: ${object})`,
+    );
+  },
+  openCreateChannelModal: (object: CreateChannelModalProps | null) => {
+    console.log(
+      `[FUNCTIONS] Tried to run uninitialised function openCreateChannelModal (args: ${object})`,
+    );
+  },
+  openNewInviteModal: (code: string | null) => {
+    console.log(
+      `[FUNCTIONS] Tried to run uninitialised function openNewInviteModal (args: ${code})`,
+    );
+  },
   handleSettingsVisibility: (stateFunction: (state: boolean) => void) => {
     console.log(
       `[FUNCTIONS] Tried to run uninitialised function handleSettingsVisibility (args: ${stateFunction})`,

@@ -5,6 +5,9 @@
 </a>
 
 <div style="flex-direction: row;">
+  <a href="https://rexowo.dev/donate/">
+    <img src="https://img.shields.io/badge/donations-appreciated-mediumvioletred" alt="Donations badge from shields.io" />
+  </a>
   <a href="https://translate.upryzing.app/engage/clerotri/">
     <img src="https://translate.upryzing.app/widgets/clerotri/-/app/svg-badge.svg" alt="Translation status on Weblate" />
   </a>

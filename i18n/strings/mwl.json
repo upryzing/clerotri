@@ -35,10 +35,10 @@
         "home": {
             "join_lounge": "Oune-te a la Lounge de l Revolt",
             "open_lounge": "Abrir la Lounge de l Revolt",
-            "open_clerotri": "Abre l serbidor RVMob",
+            "open_clerotri": "Abre l serbidor Clerotri",
             "open_settings": "Abrir definiçones",
             "description": "Arrastra pula izquierda de l’ecran ó clica l’ícone cun trés lhinhas pa ber ls tous serbidores i mensaiges!",
-            "join_clerotri": "Oune-te al serbidor RVMob"
+            "join_clerotri": "Oune-te al serbidor Clerotri"
         },
         "modals": {
             "confirm_deletion": {
@@ -189,13 +189,13 @@
                     "notifyOnSelfPing": "Recibe ũa notificaçon quando se t'amentas a ti",
                     "enabled": "Atibar notificaçones push"
                 },
-                "showChangelogs": "Amostrar changelogs açpuis de atualizar l RVMob",
+                "showChangelogs": "Amostrar changelogs açpuis de atualizar l Clerotri",
                 "reopenLastChannel": "Reabrir l redadeiro canal an que stábas quando abres esta app"
             }
         },
         "misc": {
             "voice": {
-                "header": "Canales de boç inda nun son suportados an RVMob!",
+                "header": "Canales de boç inda nun son suportados an Clerotri!",
                 "body": "Ne l’antretiempo, puodes ounir-te a eilhes pula app de web ó Revolt pa Desktop."
             },
             "network_indicator": {
@@ -223,7 +223,7 @@
                 "title": "Lhéngua"
             },
             "info": {
-                "title": "Subre RVMob"
+                "title": "Subre Clerotri"
             },
             "other": {
                 "debug_info": "Anformaçon de la Cópia Debug",

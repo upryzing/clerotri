@@ -1,5 +1,5 @@
 import {useContext} from 'react';
-import {Pressable, StyleSheet, View} from 'react-native';
+import {Pressable, type PressableProps, StyleSheet, View} from 'react-native';
 import {observer} from 'mobx-react-lite';
 
 import type {Message} from 'revolt.js';
@@ -11,24 +11,25 @@ import {Image} from '@clerotri/crossplat/Image';
 import {commonValues, type Theme, ThemeContext} from '@clerotri/lib/themes';
 import {showToast} from '@clerotri/lib/utils';
 
-export const Reaction = observer(
-  ({
-    reaction,
-    message,
-    onPress,
-  }: {
-    reaction: string;
-    message: Message;
-    onPress?: () => void;
-  }) => {
-    const {currentTheme} = useContext(ThemeContext);
-    const localStyles = generateLocalStyles(currentTheme);
+export const ReactionBox = (props: PressableProps & {active: boolean}) => {
+  const {currentTheme} = useContext(ThemeContext);
+  const localStyles = generateLocalStyles(currentTheme);
 
+  return (
+    <Pressable
+      style={[localStyles.reaction, props.active && localStyles.activeReaction]}
+      {...props}
+    />
+  );
+};
+
+const Reaction = observer(
+  ({reaction, message}: {reaction: string; message: Message}) => {
     const reactors = message.reactions.get(reaction);
 
     const active = reactors?.has(client.user?._id!) || false;
 
-    const defaultOnPress = () => {
+    const onPress = () => {
       message.channel?.havePermission('React')
         ? !active
           ? message.react(reaction)
@@ -37,12 +38,7 @@ export const Reaction = observer(
     };
 
     return (
-      <Pressable
-        onPress={onPress ?? defaultOnPress}
-        onLongPress={() => {
-          app.openViewReactions(message, reaction);
-        }}
-        style={[localStyles.reaction, active && localStyles.activeReaction]}>
+      <ReactionBox onPress={onPress} onLongPress={() => app.openViewReactions(message, reaction) } active={active}>
         {reaction.length > 6 && (
           <Image
             style={{minHeight: 15, minWidth: 15}}
@@ -54,7 +50,7 @@ export const Reaction = observer(
         <Text>
           {reaction.length <= 6 && reaction} {reactors?.size}
         </Text>
-      </Pressable>
+      </ReactionBox>
     );
   },
 );
