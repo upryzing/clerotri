@@ -32,6 +32,7 @@ import {
   ServerSettingsSheet,
   SettingsSheet,
   StatusSheet,
+  AddReactionSheet
 } from '@clerotri/components/sheets';
 
 // Modals appear to break on the new architecture unless you wrap them in a View. see also https://github.com/react-navigation/react-navigation/issues/12301#issuecomment-2501692557
@@ -55,6 +56,7 @@ const BottomSheets = observer(() => {
       <MemberListSheet />
       <PinnedMessagesSheet />
       <ServerInfoSheet />
+      <AddReactionSheet />
     </>
   );
 });
