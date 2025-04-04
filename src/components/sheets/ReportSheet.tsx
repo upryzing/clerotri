@@ -199,7 +199,7 @@ export const ReportSheet = observer(() => {
     return false;
   });
 
-  setFunction('openReportMenu', async (o: ReportedObject | null) => {
+  setFunction('openReportMenu', (o: ReportedObject | null) => {
     setObj(o);
     o ? sheetRef.current?.expand() : sheetRef.current?.close();
   });

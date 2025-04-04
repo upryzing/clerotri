@@ -31,7 +31,7 @@ function LoggedInViews({
 }) {
   const [currentChannel, setCurrentChannel] = useState<CVChannel>(null);
 
-  setFunction('openChannel', async (c: CVChannel) => {
+  setFunction('openChannel', (c: CVChannel) => {
     setCurrentChannel(c);
   });
 

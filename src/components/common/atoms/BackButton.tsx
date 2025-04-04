@@ -2,8 +2,8 @@ import {useContext} from 'react';
 import {Pressable, type ViewStyle} from 'react-native';
 import {useTranslation} from 'react-i18next';
 
-import MaterialCommunityIcon from 'react-native-vector-icons/MaterialCommunityIcons';
-import MaterialIcon from 'react-native-vector-icons/MaterialIcons';
+import MaterialCommunityIcon from '@react-native-vector-icons/material-design-icons';
+import MaterialIcon from '@react-native-vector-icons/material-icons';
 
 import {Text} from './Text';
 import {ThemeContext} from '@clerotri/lib/themes';

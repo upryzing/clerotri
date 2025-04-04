@@ -2,8 +2,8 @@ import {useContext} from 'react';
 import {StyleSheet, View} from 'react-native';
 import {observer} from 'mobx-react-lite';
 
-import MaterialCommunityIcon from 'react-native-vector-icons/MaterialCommunityIcons';
-import MaterialIcon from 'react-native-vector-icons/MaterialIcons';
+import MaterialCommunityIcon from '@react-native-vector-icons/material-design-icons';
+import MaterialIcon from '@react-native-vector-icons/material-icons';
 
 import type {Message as RevoltMessage} from 'revolt.js';
 
@@ -75,6 +75,7 @@ const SystemMessageIcon = observer(
       icon.iconSet === 'community' ? MaterialCommunityIcon : MaterialIcon;
     return (
       <IconComponent
+        // @ts-expect-error not sure how to type the function param above
         name={icon.name}
         color={currentTheme.foregroundSecondary}
         size={(settings.get('ui.messaging.fontSize') as number) ?? 14}

@@ -1,17 +1,18 @@
+/* eslint-disable no-bitwise */
 import {useContext, useState} from 'react';
 import {Modal, Pressable, View} from 'react-native';
-import {useTranslation} from 'react-i18next';
+import {Trans, useTranslation} from 'react-i18next';
 import {observer} from 'mobx-react-lite';
 
 import Clipboard from '@react-native-clipboard/clipboard';
-import MaterialIcon from 'react-native-vector-icons/MaterialIcons';
+import MaterialIcon from '@react-native-vector-icons/material-icons';
 import ColourPicker, {
   HueCircular,
   OpacitySlider,
   Panel1,
 } from 'reanimated-color-picker';
 
-import type {Server} from 'revolt.js';
+import {Permission, type API, type Server} from 'revolt.js';
 
 import {app, setFunction} from '@clerotri/Generic';
 import {SettingsSection} from '@clerotri/lib/types';
@@ -23,7 +24,10 @@ import {
   InputWithButton,
   Text,
 } from '@clerotri/components/common/atoms';
-import {PressableSettingsEntry} from '@clerotri/components/common/settings/atoms';
+import {
+  PressableSettingsEntry,
+  SettingsEntry,
+} from '@clerotri/components/common/settings/atoms';
 import {GapView} from '@clerotri/components/layout';
 import {commonValues, ThemeContext} from '@clerotri/lib/themes';
 import {showToast} from '@clerotri/lib/utils';
@@ -75,7 +79,17 @@ const RoleSettingsRoleList = observer(
 );
 
 const RoleSettings = observer(
-  ({server, section}: {server: Server; section: SettingsSection}) => {
+  ({
+    server,
+    role,
+    roleID,
+    setSection,
+  }: {
+    server: Server;
+    role: API.Role;
+    roleID: string;
+    setSection: Function;
+  }) => {
     const {currentTheme} = useContext(ThemeContext);
 
     const {t} = useTranslation();
@@ -91,22 +105,17 @@ const RoleSettings = observer(
       <>
         <Text
           type={'h1'}
-          colour={
-            server.roles![section!.subsection!].colour ??
-            currentTheme.foregroundPrimary
-          }>
-          {server.roles![section!.subsection!].name}
+          colour={role.colour ?? currentTheme.foregroundPrimary}>
+          {role.name}
         </Text>
-        <Text colour={currentTheme.foregroundSecondary}>
-          {section!.subsection}
-        </Text>
-        <GapView size={2} />
+        <Text colour={currentTheme.foregroundSecondary}>{roleID}</Text>
+        <GapView size={8} />
         <Text type={'h2'}>{t('app.servers.settings.roles.name')}</Text>
         <InputWithButton
           placeholder={t('app.servers.settings.roles.name_placeholder')}
-          defaultValue={server.roles![section!.subsection!].name}
+          defaultValue={role.name}
           onPress={async (v: string) => {
-            await server.editRole(section!.subsection!, {
+            await server.editRole(roleID, {
               name: v,
             });
           }}
@@ -119,16 +128,16 @@ const RoleSettings = observer(
           cannotBeEmpty
           emptyError={t('app.servers.settings.roles.errors.empty_role_name')}
         />
-        <GapView size={2} />
+        <GapView size={4} />
         <Text type={'h2'}>{t('app.servers.settings.roles.rank')}</Text>
         <InputWithButton
           placeholder={t('app.servers.settings.roles.rank_placeholder')}
-          defaultValue={`${server.roles![section!.subsection!].rank}`}
+          defaultValue={`${role.rank}`}
           // @ts-expect-error this is passed down to the TextInput
           keyboardType={'decimal-pad'}
           onPress={async (v: string) => {
             const int = parseInt(v, 10);
-            await server.editRole(section!.subsection!, {
+            await server.editRole(roleID, {
               rank: int,
             });
           }}
@@ -141,7 +150,7 @@ const RoleSettings = observer(
           cannotBeEmpty
           emptyError={t('app.servers.settings.roles.errors.empty_rank')}
         />
-        <GapView size={2} />
+        <GapView size={4} />
         <Text type={'h2'}>
           {t('app.servers.settings.roles.options_header')}
         </Text>
@@ -159,11 +168,11 @@ const RoleSettings = observer(
             </Text>
           </View>
           <Checkbox
-            value={server.roles![section!.subsection!].hoist ?? false}
+            value={role.hoist ?? false}
             callback={async () => {
               try {
-                await server.editRole(section!.subsection!, {
-                  hoist: !server.roles![section!.subsection!].hoist,
+                await server.editRole(roleID, {
+                  hoist: !role.hoist,
                 });
               } catch (error) {
                 `${error}`.match('429')
@@ -173,10 +182,36 @@ const RoleSettings = observer(
             }}
           />
         </View>
-        <GapView size={2} />
-        <Text type={'h2'}>{t('app.servers.settings.roles.permissions')}</Text>
-        <Text>{server.roles![section!.subsection!].permissions.a}</Text>
-        <GapView size={2} />
+        <GapView size={8} />
+        <PressableSettingsEntry
+          onPress={() => {
+            setSection({section: 'roles', subsection: `${roleID}-permissions`});
+          }}>
+          <View style={{flex: 1, flexDirection: 'column'}}>
+            <Text style={{fontWeight: 'bold'}}>
+              {t('app.servers.settings.roles.permissions')}
+            </Text>
+            <Text colour={currentTheme.foregroundSecondary}>
+              {t('app.servers.settings.roles.permissions_body')}
+            </Text>
+          </View>
+          <View
+            style={{
+              width: 30,
+              height: 20,
+              alignItems: 'center',
+              justifyContent: 'center',
+            }}>
+            <View style={styles.iconContainer}>
+              <MaterialIcon
+                name={'arrow-forward'}
+                size={20}
+                color={currentTheme.foregroundPrimary}
+              />
+            </View>
+          </View>
+        </PressableSettingsEntry>
+        <GapView size={8} />
         <Text type={'h2'}>{t('app.servers.settings.roles.colour')}</Text>
         <View
           style={{
@@ -193,13 +228,10 @@ const RoleSettings = observer(
                 padding: commonValues.sizes.xl,
                 borderRadius: commonValues.sizes.medium,
                 marginEnd: commonValues.sizes.medium,
-                backgroundColor:
-                  server.roles![section!.subsection!].colour ?? '#00000000',
+                backgroundColor: role.colour ?? '#00000000',
               }}
             />
-            <Text>
-              {server.roles![section!.subsection!].colour ?? 'No colour'}
-            </Text>
+            <Text>{role.colour ?? 'No colour'}</Text>
           </View>
           <View style={{alignItems: 'center', flexDirection: 'row'}}>
             <Pressable
@@ -210,9 +242,7 @@ const RoleSettings = observer(
                 justifyContent: 'center',
               }}
               onPress={() => {
-                setColour(
-                  server.roles![section!.subsection!].colour ?? '#00000000',
-                );
+                setColour(role.colour ?? '#00000000');
                 setShowColourPicker(true);
               }}>
               <View style={styles.iconContainer}>
@@ -230,11 +260,7 @@ const RoleSettings = observer(
                 alignItems: 'center',
                 justifyContent: 'center',
               }}
-              onPress={() =>
-                Clipboard.setString(
-                  server.roles![section!.subsection!].colour ?? 'No colour',
-                )
-              }>
+              onPress={() => Clipboard.setString(role.colour ?? 'No colour')}>
               <View style={styles.iconContainer}>
                 <MaterialIcon
                   name={'content-copy'}
@@ -252,7 +278,7 @@ const RoleSettings = observer(
           onPress={() => {
             app.openDeletionConfirmationModal({
               type: 'Role',
-              object: {role: section!.subsection!, server},
+              object: {role: roleID, server},
             });
           }}>
           <Text>{t('app.servers.settings.roles.delete')}</Text>
@@ -285,14 +311,12 @@ const RoleSettings = observer(
                   fontWeight: 'bold',
                   fontSize: 18,
                 }}>
-                {server.roles![section!.subsection!].name}
+                {role.name}
               </Text>
               <GapView size={8} />
               <ColourPicker
                 style={{alignSelf: 'center', width: '70%'}}
-                value={
-                  server.roles![section!.subsection!].colour ?? '#00000000'
-                }
+                value={role.colour ?? '#00000000'}
                 onCompleteJS={onSelectColour}>
                 <HueCircular
                   containerStyle={{
@@ -313,7 +337,7 @@ const RoleSettings = observer(
                     id: 'role_colour',
                     callback: c => {
                       if (c.length < 10) {
-                        server.editRole(section!.subsection!, {colour: c});
+                        server.editRole(roleID, {colour: c});
                       }
                     },
                   });
@@ -324,13 +348,268 @@ const RoleSettings = observer(
               <Button
                 onPress={() => {
                   setShowColourPicker(false);
-                  server.editRole(section!.subsection!, {colour: colour});
+                  server.editRole(roleID, {colour: colour});
                 }}>
                 <Text>{t('app.servers.settings.roles.set_colour')}</Text>
               </Button>
             </View>
           </View>
         </Modal>
+      </>
+    );
+  },
+);
+
+const RolePermissionSelector = observer(
+  ({
+    server,
+    role,
+    roleID,
+    name,
+    number,
+  }: {
+    server: Server;
+    role: API.Role;
+    roleID: string;
+    name: string;
+    number: number;
+  }) => {
+    const {currentTheme} = useContext(ThemeContext);
+
+    const {t} = useTranslation();
+
+    function addToAllowed() {
+      return Number(BigInt(role.permissions.a) | BigInt(number));
+    }
+
+    function removeFromAllowed() {
+      return Number(BigInt(role.permissions.a) ^ BigInt(number));
+    }
+
+    function addToDenied() {
+      return Number(BigInt(role.permissions.d) | BigInt(number));
+    }
+
+    function removeFromDenied() {
+      return Number(BigInt(role.permissions.d) ^ BigInt(number));
+    }
+
+    return (
+      <SettingsEntry key={`role-permission-settings-entry-${name}`}>
+        <View style={{flex: 1, flexDirection: 'column'}}>
+          <Text
+            key={`role-permission-settings-entry-${name}-name`}
+            style={{fontWeight: 'bold'}}>
+            {t(`app.permissions.${name}`)}
+          </Text>
+          <Text colour={currentTheme.foregroundSecondary}>
+            {t(`app.permissions.${name}_body_server`)}
+          </Text>
+        </View>
+        <Pressable
+          key={`role-permission-settings-entry-${name}-deny`}
+          onPress={async () => {
+            try {
+              if ((role.permissions.d & number) === number) {
+                return;
+              }
+              await server.setPermissions(roleID, {
+                allow:
+                  (role.permissions.a & number) === number
+                    ? removeFromAllowed()
+                    : role.permissions.a,
+                deny: addToDenied(),
+              });
+            } catch (error) {
+              `${error}`.match('429')
+                ? showToast(t('app.misc.generic_errors.rateLimited_toast'))
+                : null;
+            }
+          }}
+          style={{
+            marginStart: commonValues.sizes.medium,
+            width: 30,
+            height: 20,
+            alignItems: 'center',
+            justifyContent: 'center',
+          }}>
+          <View
+            style={[
+              styles.iconContainer,
+              (role.permissions.d & number) === number && {
+                borderRadius: commonValues.sizes.medium,
+                backgroundColor: currentTheme.error,
+              },
+            ]}>
+            <MaterialIcon
+              name={'close'}
+              size={20}
+              color={
+                (role.permissions.d & number) === number
+                  ? currentTheme.backgroundSecondary
+                  : currentTheme.error
+              }
+            />
+          </View>
+        </Pressable>
+        <Pressable
+          key={`role-permission-settings-entry-${name}-neutral`}
+          onPress={async () => {
+            try {
+              if (
+                (role.permissions.d & number) !== number &&
+                (role.permissions.a & number) !== number
+              ) {
+                return;
+              }
+              await server.setPermissions(roleID, {
+                allow:
+                  (role.permissions.a & number) === number
+                    ? role.permissions.a - number
+                    : role.permissions.a,
+                deny:
+                  (role.permissions.d & number) === number
+                    ? role.permissions.d - number
+                    : role.permissions.d,
+              });
+            } catch (error) {
+              `${error}`.match('429')
+                ? showToast(t('app.misc.generic_errors.rateLimited_toast'))
+                : null;
+            }
+          }}
+          style={{
+            marginStart: commonValues.sizes.medium,
+            width: 30,
+            height: 20,
+            alignItems: 'center',
+            justifyContent: 'center',
+          }}>
+          <View
+            style={[
+              styles.iconContainer,
+              (role.permissions.d & number) !== number &&
+                (role.permissions.a & number) !== number && {
+                  borderRadius: commonValues.sizes.medium,
+                  backgroundColor: currentTheme.foregroundSecondary,
+                },
+            ]}>
+            <MaterialIcon
+              name={'horizontal-rule'}
+              size={20}
+              color={
+                (role.permissions.d & number) !== number &&
+                (role.permissions.a & number) !== number
+                  ? currentTheme.backgroundSecondary
+                  : currentTheme.foregroundSecondary
+              }
+            />
+          </View>
+        </Pressable>
+        <Pressable
+          key={`role-permission-settings-entry-${name}-allow`}
+          onPress={async () => {
+            try {
+              if ((role.permissions.a & number) === number) {
+                return;
+              }
+              await server.setPermissions(roleID, {
+                allow: addToAllowed(),
+                deny:
+                  (role.permissions.d & number) === number
+                    ? removeFromDenied()
+                    : role.permissions.d,
+              });
+            } catch (error) {
+              `${error}`.match('429')
+                ? showToast(t('app.misc.generic_errors.rateLimited_toast'))
+                : null;
+            }
+          }}
+          style={{
+            marginStart: commonValues.sizes.medium,
+            width: 30,
+            height: 20,
+            alignItems: 'center',
+            justifyContent: 'center',
+          }}>
+          <View
+            style={[
+              styles.iconContainer,
+              (role.permissions.a & number) === number && {
+                borderRadius: commonValues.sizes.medium,
+                backgroundColor: currentTheme.accentColor,
+              },
+            ]}>
+            <MaterialIcon
+              name={'check'}
+              size={20}
+              color={
+                (role.permissions.a & number) === number
+                  ? currentTheme.backgroundSecondary
+                  : currentTheme.accentColor
+              }
+            />
+          </View>
+        </Pressable>
+      </SettingsEntry>
+    );
+  },
+);
+
+// these are either solely for (voice) channels or internal
+const NON_SERVER_PERMISSIONS = [
+  'ReadMessageHistory',
+  'Video',
+  'Speak',
+  'MuteMembers',
+  'DeafenMembers',
+  'MoveMembers',
+  'GrantAllSafe',
+];
+
+const RolePermissionSettings = observer(
+  ({
+    server,
+    role,
+    roleID,
+  }: {
+    server: Server;
+    role: API.Role;
+    roleID: string;
+  }) => {
+    const {currentTheme} = useContext(ThemeContext);
+
+    const {t} = useTranslation();
+
+    return (
+      <>
+        <Text type={'h1'}>
+          <Trans
+            t={t}
+            i18nKey={'app.servers.settings.roles.permissions_list_header'}
+            tOptions={{role: role.name}}>
+            Permissions for{' '}
+            <Text colour={role.colour ?? currentTheme.foregroundPrimary}>
+              {role.name}
+            </Text>
+          </Trans>
+        </Text>
+        <Text>{t('app.servers.settings.roles.permissions_list_body')}</Text>
+        {Object.entries(Permission)
+          .filter(([name]) => {
+            return !NON_SERVER_PERMISSIONS.includes(name);
+          })
+          .map(([name, number]) => (
+            <RolePermissionSelector
+              key={`rps-${roleID}-${name}`}
+              server={server}
+              role={role}
+              roleID={roleID}
+              name={name}
+              number={number}
+            />
+          ))}
       </>
     );
   },
@@ -355,13 +634,33 @@ export const RoleSettingsSection = observer(
         <BackButton
           callback={() => {
             section!.subsection
-              ? setSection({section: 'roles', subsection: undefined})
+              ? section?.subsection.match('-permissions')
+                ? setSection({
+                    section: 'roles',
+                    subsection: section.subsection.replace('-permissions', ''),
+                  })
+                : setSection({section: 'roles', subsection: undefined})
               : setSection(null);
           }}
           margin
         />
         {section!.subsection !== undefined ? (
-          <RoleSettings server={server} section={section} />
+          section!.subsection.match('-permissions') ? (
+            <RolePermissionSettings
+              server={server}
+              role={
+                server.roles![section!.subsection!.replace('-permissions', '')]
+              }
+              roleID={section!.subsection!.replace('-permissions', '')}
+            />
+          ) : (
+            <RoleSettings
+              server={server}
+              role={server.roles![section!.subsection!]}
+              roleID={section!.subsection!}
+              setSection={setSection}
+            />
+          )
         ) : (
           <RoleSettingsRoleList server={server} setSection={setSection} />
         )}

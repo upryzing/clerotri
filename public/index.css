@@ -33,12 +33,12 @@
 }
 
 @font-face {
-  src: url('../node_modules/react-native-vector-icons/Fonts/MaterialCommunityIcons.ttf');
-  font-family: MaterialCommunityIcons;
+  src: url('../node_modules/@react-native-vector-icons/material-design-icons/fonts/MaterialDesignIcons.ttf');
+  font-family: MaterialDesignIcons;
 }
 
 @font-face {
-  src: url('../node_modules/react-native-vector-icons/Fonts/MaterialIcons.ttf');
+  src: url('../node_modules/@react-native-vector-icons/material-icons/fonts/MaterialIcons.ttf');
   font-family: MaterialIcons;
 }
 

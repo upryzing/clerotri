@@ -52,12 +52,6 @@ react {
     autolinkLibrariesWithApp()
 }
 
-project.ext.vectoricons = [
-    iconFontNames: ['MaterialIcons.ttf', 'MaterialCommunityIcons.ttf']
-]
-
-apply from: "../../node_modules/react-native-vector-icons/fonts.gradle"
-
 /**
  * Set this to true to run Proguard on Release builds to minify the Java bytecode.
  */
@@ -86,8 +80,8 @@ android {
         applicationId "app.upryzing.clerotri"
         minSdkVersion rootProject.ext.minSdkVersion
         targetSdkVersion rootProject.ext.targetSdkVersion
-        versionCode 13
-        versionName "0.8.0"
+        versionCode 15
+        versionName "0.9.1"
     }
 
     splits {

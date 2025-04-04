@@ -1,5 +1,5 @@
 import {useState} from 'react';
-import {Modal, type ModalProps, StyleSheet, View} from 'react-native';
+import {Modal, type ModalProps, Platform, StyleSheet, View} from 'react-native';
 import {observer} from 'mobx-react-lite';
 
 import type {API, Channel, Server, User} from 'revolt.js';
@@ -41,6 +41,23 @@ const FixedModal = observer((props: ModalProps) => {
     <View>
       <Modal {...props} />
     </View>
+  );
+});
+
+const BottomSheets = observer(() => {
+  return (
+    <>
+      <MessageMenuSheet />
+      <ChannelMenuSheet />
+      <StatusSheet />
+      <ProfileSheet />
+      <ReportSheet />
+      <ChannelInfoSheet />
+      <MemberListSheet />
+      <PinnedMessagesSheet />
+      <ServerInfoSheet />
+      <AddReactionSheet />
+    </>
   );
 });
 
@@ -122,7 +139,7 @@ const FloatingModals = observer(() => {
   );
 });
 
-export const Modals = observer(() => {
+const OtherModals = observer(() => {
   const [imageViewerState, setImageViewerState] = useState({
     i: null as any,
   });
@@ -171,16 +188,6 @@ export const Modals = observer(() => {
 
   return (
     <>
-      <MessageMenuSheet />
-      <ChannelMenuSheet />
-      <StatusSheet />
-      <ProfileSheet />
-      <ReportSheet />
-      <ChannelInfoSheet />
-      <MemberListSheet />
-      <PinnedMessagesSheet />
-      <ServerInfoSheet />
-      <AddReactionSheet />
       <FixedModal
         visible={!!imageViewerState.i}
         transparent={true}
@@ -253,7 +260,16 @@ export const Modals = observer(() => {
           setState={() => setServerSettingsServer(null)}
         />
       </FixedModal>
+    </>
+  );
+});
+
+export const Modals = observer(() => {
+  return (
+    <>
+      {Platform.OS !== 'web' && <BottomSheets />}
       <FloatingModals />
+      <OtherModals />
     </>
   );
 });
@@ -263,6 +279,5 @@ const localStyles = StyleSheet.create({
     flex: 1,
     alignContent: 'center',
     justifyContent: 'center',
-    // backgroundColor: '#00000080',
   },
 });

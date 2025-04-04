@@ -1,8 +1,7 @@
 import {useContext} from 'react';
-import {type GradientValue, Platform, Pressable, View} from 'react-native';
+import {Pressable, View} from 'react-native';
 
-import {getBundleId} from 'react-native-device-info';
-import MaterialCommunityIcon from 'react-native-vector-icons/MaterialCommunityIcons';
+import MaterialCommunityIcon from '@react-native-vector-icons/material-design-icons';
 
 import {appVersion, settings} from '@clerotri/Generic';
 import {
@@ -18,22 +17,11 @@ import {
 import {commonValues, ThemeContext} from '@clerotri/lib/themes';
 import {openUrl} from '@clerotri/lib/utils';
 import {ContextButton, Link, Text} from '@clerotri/components/common/atoms';
-
-import ReleaseIcon from '../../../../../../assets/images/icon_release.svg';
-import DebugIcon from '../../../../../../assets/images/icon_debug.svg';
-
-const isDebug = getBundleId().match('debug');
-
-const AppIcon = isDebug ? DebugIcon : ReleaseIcon;
-
-const versionGradient: GradientValue = {
-  type: 'linearGradient',
-  direction: '90deg',
-  colorStops: [
-    {color: isDebug ? '#d3bc5f80' : '#0ad3c1a0'},
-    {color: isDebug ? '#a4801f80' : '#f30f77a0'},
-  ],
-};
+import {
+  AppIcon,
+  GradientStyle,
+  isDebug,
+} from '@clerotri/components/common/settings/sections/app/AppInfoDecorations';
 
 export const AppInfoSection = () => {
   const {currentTheme} = useContext(ThemeContext);
@@ -45,20 +33,20 @@ export const AppInfoSection = () => {
         alignItems: 'center',
         justifyContent: 'center',
       }}>
-      {Platform.OS !== 'web' && (
-        <View style={{alignItems: 'center'}}>
-          <AppIcon height={250} width={250} />
-        </View>
-      )}
+      <View style={{alignItems: 'center'}}>
+        <AppIcon height={250} width={250} />
+      </View>
       <View style={{alignItems: 'center', marginVertical: 16}}>
         <View
-          style={{
-            experimental_backgroundImage: [versionGradient],
-            borderRadius: commonValues.sizes.medium,
-            paddingInline: commonValues.sizes.medium,
-            paddingBlockStart: commonValues.sizes.small,
-            marginBlockEnd: commonValues.sizes.small,
-          }}>
+          style={[
+            {
+              borderRadius: commonValues.sizes.medium,
+              paddingInline: commonValues.sizes.medium,
+              paddingBlockStart: commonValues.sizes.small,
+              marginBlockEnd: commonValues.sizes.small,
+            },
+            GradientStyle,
+          ]}>
           <Text type={'h1'}>
             Clerotri{' '}
             <Text colour={currentTheme.foregroundSecondary}>

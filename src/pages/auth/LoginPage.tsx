@@ -2,7 +2,8 @@ import {useContext, useState} from 'react';
 import {TouchableOpacity, View} from 'react-native';
 import {useTranslation} from 'react-i18next';
 
-import MaterialIcon from 'react-native-vector-icons/MaterialIcons';
+import {useSafeAreaInsets} from 'react-native-safe-area-context';
+import MaterialIcon from '@react-native-vector-icons/material-icons';
 
 import {app} from '@clerotri/Generic';
 import {client} from '@clerotri/lib/client';
@@ -101,6 +102,8 @@ export const LoginPage = ({
   openLoginSettings: () => void;
   markAsLoggedIn: () => void;
 }) => {
+  const insets = useSafeAreaInsets();
+
   const {currentTheme} = useContext(ThemeContext);
 
   const {t} = useTranslation();
@@ -176,7 +179,7 @@ export const LoginPage = ({
     <>
       <View
         style={{
-          marginTop: commonValues.sizes.large,
+          marginTop: insets.top + commonValues.sizes.large,
           marginStart: commonValues.sizes.medium,
           marginEnd: commonValues.sizes.small,
           justifyContent: 'space-between',
@@ -223,6 +226,7 @@ export const LoginPage = ({
               <>
                 <Input
                   isLoginInput
+                  skipRegularStyles
                   placeholderTextColor={currentTheme.foregroundSecondary}
                   placeholder={t('app.login.forms.email_placeholder')}
                   keyboardType={'email-address'}
@@ -235,6 +239,7 @@ export const LoginPage = ({
                 />
                 <Input
                   isLoginInput
+                  skipRegularStyles
                   placeholderTextColor={currentTheme.foregroundSecondary}
                   secureTextEntry={true}
                   autoComplete={'password'}
@@ -250,6 +255,7 @@ export const LoginPage = ({
               <>
                 <Input
                   isLoginInput
+                  skipRegularStyles
                   placeholderTextColor={currentTheme.foregroundSecondary}
                   placeholder={t('app.login.forms.mfa_placeholder')}
                   onChangeText={text => {
@@ -288,6 +294,7 @@ export const LoginPage = ({
           <>
             <Input
               isLoginInput
+              skipRegularStyles
               placeholderTextColor={currentTheme.foregroundSecondary}
               placeholder={t('app.login.forms.session_token_placeholder')}
               onChangeText={text => {
