@@ -9136,7 +9136,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"prop-types@npm:^15.8.1":
+"prop-types@npm:^15.7.2, prop-types@npm:^15.8.1":
   version: 15.8.1
   resolution: "prop-types@npm:15.8.1"
   dependencies:
@@ -9326,7 +9326,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"react-native-emoji-selector@npm:^0.2.0":
+"react-native-emoji-selector@npm:0.2.0":
   version: 0.2.0
   resolution: "react-native-emoji-selector@npm:0.2.0"
   dependencies:
@@ -9335,17 +9335,27 @@ __metadata:
   languageName: node
   linkType: hard
 
-"react-native-gesture-handler@npm:^2.25.0":
-  version: 2.25.0
-  resolution: "react-native-gesture-handler@npm:2.25.0"
+"react-native-emoji-selector@patch:react-native-emoji-selector@npm%3A0.2.0#~/.yarn/patches/react-native-emoji-selector-npm-0.2.0-d28c8d59eb.patch":
+  version: 0.2.0
+  resolution: "react-native-emoji-selector@patch:react-native-emoji-selector@npm%3A0.2.0#~/.yarn/patches/react-native-emoji-selector-npm-0.2.0-d28c8d59eb.patch::version=0.2.0&hash=31bf66"
+  dependencies:
+    emoji-datasource: "npm:^6.0.0"
+  checksum: 10c0/51a6ba707ade719e8bcbb4231e760195762d68f95264e5677706f45950b976dc4f6128dc4684faaad4eff670ba1b77ce83a1e9519533fe9c4ce363a0da3eb035
+  languageName: node
+  linkType: hard
+
+"react-native-gesture-handler@npm:2.20.2":
+  version: 2.20.2
+  resolution: "react-native-gesture-handler@npm:2.20.2"
   dependencies:
     "@egjs/hammerjs": "npm:^2.0.17"
     hoist-non-react-statics: "npm:^3.3.0"
     invariant: "npm:^2.2.4"
+    prop-types: "npm:^15.7.2"
   peerDependencies:
     react: "*"
     react-native: "*"
-  checksum: 10c0/95eccc67fb07418ef76b84bcee4b29c16865e78afa367ec82d94b08554cfa7337158ab23937b785bd9a732e62c9c815b294a93d1b2c2cbdc7a8a1e7029f2ba35
+  checksum: 10c0/94c16a40370adfaaff8af6aec5938a8d5c5704afaf7ec569d9e11c66ecc3b5c763314c091a76573885636c04d9e6084de3696d59595c56aac9eb17b2f28e5c6c
   languageName: node
   linkType: hard
 
@@ -10008,8 +10018,8 @@ __metadata:
     react-native: "npm:^0.79.0-rc.4"
     react-native-device-info: "npm:^14.0.4"
     react-native-drawer-layout: "npm:^4.1.2"
-    react-native-emoji-selector: "npm:^0.2.0"
-    react-native-gesture-handler: "npm:^2.25.0"
+    react-native-emoji-selector: "patch:react-native-emoji-selector@npm%3A0.2.0#~/.yarn/patches/react-native-emoji-selector-npm-0.2.0-d28c8d59eb.patch"
+    react-native-gesture-handler: "npm:2.20.2"
     react-native-get-random-values: "npm:^1.11.0"
     react-native-keyboard-controller: "npm:^1.16.8"
     react-native-mmkv: "npm:^3.2.0"

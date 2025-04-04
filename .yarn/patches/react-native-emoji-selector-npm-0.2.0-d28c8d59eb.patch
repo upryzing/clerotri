@@ -1,0 +1,22 @@
+diff --git a/index.js b/index.js
+index 0737acd14b749375ceac4111250d4b9dab6ee3cf..1d6c6d52d46530bb361eef14cf6dc063e435bb0e 100644
+--- a/index.js
++++ b/index.js
+@@ -91,7 +91,7 @@ const TabBar = ({ theme, activeCategory, onPress, width }) => {
+             style={{
+               textAlign: "center",
+               paddingBottom: 8,
+-              fontSize: tabSize - 24
++              fontSize: Math.max(tabSize - 24, 1)
+             }}
+           >
+             {category.symbol}
+@@ -112,7 +112,7 @@ const EmojiCell = ({ emoji, colSize, ...other }) => (
+     }}
+     {...other}
+   >
+-    <Text style={{ color: "#FFFFFF", fontSize: colSize - 12 }}>
++    <Text style={{ color: "#FFFFFF", fontSize: Math.max(colSize - 12, 1) }}>
+       {charFromEmojiObject(emoji)}
+     </Text>
+   </TouchableOpacity>
