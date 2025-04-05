@@ -1,5 +1,5 @@
 import { useRef, useState, useContext, useEffect } from 'react';
-import { View, Text, Image, Pressable, StyleSheet, ViewStyle, StyleProp, TouchableOpacity } from 'react-native';
+import { View, Text, Image, StyleSheet, TouchableOpacity } from 'react-native';
 import { ScrollView } from 'react-native-gesture-handler';
 import { observer } from 'mobx-react-lite';
 
@@ -7,10 +7,11 @@ import type BottomSheetCore from '@gorhom/bottom-sheet';
 import { BottomSheet } from '@clerotri/components/common/BottomSheet';
 import { BottomSheetScrollView } from '@gorhom/bottom-sheet';
 import { app, setFunction } from '@clerotri/Generic';
-import { Member, Message, User } from 'revolt.js';
+import { Message, User } from 'revolt.js';
 import { client } from '@clerotri/lib/client';
 import { commonValues, ThemeContext, Theme } from '@clerotri/lib/themes';
 import { MiniProfile } from '../common/profile';
+import { ReactionBox } from '../common/messaging/MessageReactions';
 
 type ReactionPile = {
   emoji: string;
@@ -82,35 +83,23 @@ export const ViewReactionsSheet = observer(({ message, reaction }: { message: Me
           }}>
             {reactions?.map((r) => {
               return (
-                <Pressable
+                <ReactionBox
                   key={`viewreactions-reaction-${r.emoji}`}
-                  style={{
-                    padding: commonValues.sizes.small,
-                    borderRadius: commonValues.sizes.small,
-                    borderColor: reaction && r.emoji == reaction
-                      ? currentTheme.accentColor
-                      : currentTheme.backgroundTertiary,
-                    backgroundColor: currentTheme.backgroundSecondary,
-                    borderWidth: commonValues.sizes.xs,
-                    marginEnd: commonValues.sizes.small,
-                    marginVertical: commonValues.sizes.xs,
-                  }}
                   onPress={() => setReaction(r.emoji)}
+                  active={!!reaction && r.emoji == reaction}
                 >
-                  <View style={{ flexDirection: 'row' }}>
-                    {r.emoji.length > 6 && (
-                      <Image
-                        style={{ minHeight: 20, minWidth: 20 }}
-                        source={{
-                          uri: `${client.configuration?.features.autumn.url}/emojis/${r.emoji}`,
-                        }}
-                      />
-                    )}
-                    <Text key={`viewreactions-reaction-${r.emoji}-label`} style={{ color: currentTheme.foregroundPrimary }}>
-                      {r.emoji.length <= 6 && r.emoji} {r.reactors.length}
-                    </Text>
-                  </View>
-                </Pressable>
+                  {r.emoji.length > 6 && (
+                    <Image
+                      style={{minHeight: 15, minWidth: 15}}
+                      source={{
+                        uri: `${client.configuration?.features.autumn.url}/emojis/${r.emoji}`,
+                      }}
+                    />
+                  )}
+                  <Text key={`viewreactions-reaction-${r.emoji}-label`} style={{ color: currentTheme.foregroundPrimary }}>
+                    {r.emoji.length <= 6 && r.emoji} {r.reactors.length}
+                  </Text>
+                </ReactionBox>
               );
             })}
           </ScrollView>
