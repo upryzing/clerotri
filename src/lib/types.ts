@@ -18,6 +18,7 @@ export type Setting = (StringSetting | BoolSetting) & {
   experimental?: boolean;
   developer?: boolean;
   options?: string[];
+  checkBeforeChanging?: (value: any) => Promise<boolean>;
   onChange?: any;
   onInitialize?: any;
   remark?: boolean;

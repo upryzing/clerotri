@@ -172,9 +172,12 @@ export const settings = {
       default: false,
       type: 'boolean',
       experimental: true,
-      onChange: (v: boolean) => {
+      checkBeforeChanging: async (v: boolean) => {
         if (v) {
-          checkNotificationPerms();
+          const result = await checkNotificationPerms();
+          return result === 'granted';
+        } else {
+          return true;
         }
       },
     },

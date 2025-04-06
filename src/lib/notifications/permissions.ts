@@ -1,7 +1,7 @@
 import {PermissionsAndroid} from 'react-native';
 
-export function checkNotificationPerms() {
-  PermissionsAndroid.request(
+export async function checkNotificationPerms() {
+  const result = await PermissionsAndroid.request(
     PermissionsAndroid.PERMISSIONS.POST_NOTIFICATIONS,
     {
       title: 'Allow Clerotri Notifications',
@@ -11,7 +11,7 @@ export function checkNotificationPerms() {
       buttonNegative: 'Nuh uh',
       buttonPositive: 'Sure',
     },
-  ).then(result => {
-    console.log(`[SETTINGS] Permission request result: ${result}`);
-  });
+  );
+  console.log(`[SETTINGS] Permission request result: ${result}`);
+  return result;
 }

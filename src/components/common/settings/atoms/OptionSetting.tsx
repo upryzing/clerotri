@@ -41,9 +41,14 @@ export const OptionSetting = ({sRaw}: {sRaw: Setting}) => {
           <TouchableOpacity
             key={o}
             style={localStyles.option}
-            onPress={() => {
-              settings.set(sRaw.key, o);
-              setValue(o);
+            onPress={async () => {
+              const shouldChange = sRaw.checkBeforeChanging
+                ? await sRaw.checkBeforeChanging(o)
+                : true;
+              if (shouldChange) {
+                settings.set(sRaw.key, o);
+                setValue(o);
+              }
             }}>
             {sRaw.key === 'app.language' ? (
               <View style={{flex: 1, flexDirection: 'row'}}>

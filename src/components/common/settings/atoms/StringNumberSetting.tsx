@@ -37,9 +37,14 @@ export const StringNumberSetting = ({sRaw}: {sRaw: Setting}) => {
         <Input
           value={value as string}
           keyboardType={sRaw.type === 'number' ? 'decimal-pad' : 'default'}
-          onChangeText={v => {
-            setValue(v);
-            settings.set(sRaw.key, v);
+          onChangeText={async v => {
+            const shouldChange = sRaw.checkBeforeChanging
+              ? await sRaw.checkBeforeChanging(v)
+              : true;
+            if (shouldChange) {
+              setValue(v);
+              settings.set(sRaw.key, v);
+            }
           }}
         />
       </View>
