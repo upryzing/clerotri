@@ -306,6 +306,10 @@
             "blocked": "Заблокировано - {{count}}",
             "incoming": "Входящие запросы - {{count}}",
             "offlineFriends": "Друзья не в сети - {{count}}"
+        },
+        "permissions": {
+            "AssignRoles_body_server": "Позволяет участникам с этой ролью назначать роли ниже их высшей другим участникам.",
+            "AssignRoles": "Назначать роли"
         }
     }
 }
