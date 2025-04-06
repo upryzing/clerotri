@@ -21,7 +21,6 @@ export function SettingsEntry(props: ViewProps) {
   newProps.style = {
     ...localStyles.settingsEntry,
     // @ts-expect-error the type error seems to be related to the various ways you can specify style props but it works so shhhh
-
     ...newProps.style,
   };
 
