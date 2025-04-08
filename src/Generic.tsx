@@ -255,6 +255,7 @@ export const settings = {
       default: false,
       type: 'boolean',
       experimental: true,
+      deprecated: true,
     },
     {
       key: 'ui.messaging.useNewMessageView',
@@ -262,6 +263,7 @@ export const settings = {
       default: true,
       type: 'boolean',
       experimental: true,
+      deprecated: true,
     },
     {
       key: 'app.showChangelogs',

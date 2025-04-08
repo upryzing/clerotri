@@ -334,6 +334,11 @@
             },
             "profile": {
                 "title": "Profile"
+            },
+            "toasts": {
+                "deprecated": "This setting will be removed in a future version.",
+                "developer": "This setting is intended for developers.",
+                "experimental": "This setting is experimental and may be removed or modified at any time."
             }
         },
         "sheets": {

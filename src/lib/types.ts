@@ -17,6 +17,7 @@ export type Setting = (StringSetting | BoolSetting) & {
   category: string;
   experimental?: boolean;
   developer?: boolean;
+  deprecated?: boolean;
   options?: string[];
   checkBeforeChanging?: (value: any) => Promise<boolean>;
   onChange?: any;
