@@ -26,7 +26,9 @@ export const LoginSettingsPage = ({callback}: {callback: () => void}) => {
   const [saved, setSaved] = useState(false);
 
   useBackHandler(() => {
-    callback();
+    if (!saved) {
+      callback();
+    }
 
     return true;
   });
@@ -67,14 +69,16 @@ export const LoginSettingsPage = ({callback}: {callback: () => void}) => {
 
   return (
     <>
-      <BackButton
-        callback={() => callback()}
-        type={'close'}
-        style={{
-          padding: commonValues.sizes.large,
-          paddingTop: insets.top + commonValues.sizes.large,
-        }}
-      />
+      {!saved && (
+        <BackButton
+          callback={() => callback()}
+          type={'close'}
+          style={{
+            padding: commonValues.sizes.large,
+            paddingTop: insets.top + commonValues.sizes.large,
+          }}
+        />
+      )}
       <View style={{alignItems: 'center', justifyContent: 'center', flex: 1}}>
         {saved ? (
           <LoadingScreen
