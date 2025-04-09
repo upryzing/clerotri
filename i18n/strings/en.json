@@ -333,7 +333,10 @@
                 "logout": "Log Out"
             },
             "profile": {
-                "title": "Profile"
+                "title": "Profile",
+                "loading_bio": "Loading bio…",
+                "expand_bio": "Expand bio",
+                "collapse_bio": "Collapse bio"
             },
             "toasts": {
                 "deprecated": "This setting will be removed in a future version.",
