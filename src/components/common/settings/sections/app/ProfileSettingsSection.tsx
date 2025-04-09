@@ -12,7 +12,10 @@ import {app} from '@clerotri/Generic';
 import {client} from '@clerotri/lib/client';
 import {styles} from '@clerotri/Theme';
 import {Avatar, Text} from '@clerotri/components/common/atoms';
-import {SettingsEntry} from '@clerotri/components/common/settings/atoms';
+import {
+  PressableSettingsEntry,
+  SettingsEntry,
+} from '@clerotri/components/common/settings/atoms';
 import {commonValues, ThemeContext} from '@clerotri/lib/themes';
 import {MarkdownView} from '@clerotri/components/common/MarkdownView';
 
@@ -170,13 +173,15 @@ const ExpandableProfile = observer(({user}: {user: User}) => {
 export const ProfileSettingsSection = observer(() => {
   const {currentTheme} = useContext(ThemeContext);
 
+  const {t} = useTranslation();
+
   return (
     <>
       <ExpandableProfile user={client.user!} />
       <SettingsEntry key={'display-name-settings'}>
-        <View style={{flex: 1, flexDirection: 'column'}}>
+        <View style={{flex: 1}}>
           <Text key={'display-name-label'} style={{fontWeight: 'bold'}}>
-            Display name
+            {t('app.settings_menu.profile.display_name')}
           </Text>
           <Text
             key={'display-name'}
@@ -233,6 +238,38 @@ export const ProfileSettingsSection = observer(() => {
           </View>
         </Pressable>
       </SettingsEntry>
+      <PressableSettingsEntry
+        key={'status-settings-link'}
+        onPress={() => {
+          app.openSettings(false);
+          app.openStatusMenu(true);
+        }}>
+        <View style={{flex: 1}}>
+          <Text key={'status-settings-link-label'} style={{fontWeight: 'bold'}}>
+            {t('app.settings_menu.profile.status')}
+          </Text>
+          <Text
+            key={'status-settings-link-body'}
+            colour={currentTheme.foregroundPrimary}>
+            {t('app.settings_menu.profile.status_body')}
+          </Text>
+        </View>
+        <View
+          style={{
+            width: 30,
+            height: 20,
+            alignItems: 'center',
+            justifyContent: 'center',
+          }}>
+          <View style={styles.iconContainer}>
+            <MaterialIcon
+              name={'arrow-forward'}
+              size={20}
+              color={currentTheme.foregroundPrimary}
+            />
+          </View>
+        </View>
+      </PressableSettingsEntry>
     </>
   );
 });

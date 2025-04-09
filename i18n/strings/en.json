@@ -336,7 +336,10 @@
                 "title": "Profile",
                 "loading_bio": "Loading bio…",
                 "expand_bio": "Expand bio",
-                "collapse_bio": "Collapse bio"
+                "collapse_bio": "Collapse bio",
+                "display_name": "Display name",
+                "status": "Status",
+                "status_body": "Set your status type and text"
             },
             "toasts": {
                 "deprecated": "This setting will be removed in a future version.",
