@@ -1,0 +1,12 @@
+diff --git a/package.json b/package.json
+index f296963ec4ca0b2c3151296e1c6f28588724b063..02104bc2c122fe310cba9b11e00a11f0c38f2b37 100644
+--- a/package.json
++++ b/package.json
+@@ -3,6 +3,7 @@
+   "version": "0.8.4-rc.7",
+   "description": "Revolt API Library",
+   "type": "module",
++  "main": "lib/index.js",
+   "module": "lib/index.js",
+   "types": "lib/index.d.ts",
+   "homepage": "https://developers.revolt.chat",

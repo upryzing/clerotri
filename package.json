@@ -44,20 +44,20 @@
     "react-dom": "19.0.0",
     "react-error-boundary": "^5.0.0",
     "react-i18next": "^15.4.1",
-    "react-native": "^0.79.0-rc.4",
+    "react-native": "^0.79.0",
     "react-native-device-info": "^14.0.4",
-    "react-native-drawer-layout": "^4.1.5",
+    "react-native-drawer-layout": "^4.1.6",
     "react-native-gesture-handler": "^2.25.0",
     "react-native-get-random-values": "^1.11.0",
     "react-native-keyboard-controller": "^1.16.8",
     "react-native-mmkv": "^3.2.0",
-    "react-native-reanimated": "3.17.2",
+    "react-native-reanimated": "3.17.3",
     "react-native-reanimated-image-viewer": "^1.0.2",
     "react-native-safe-area-context": "^5.3.0",
     "react-native-svg": "^15.11.2",
     "react-native-web": "^0.19.13",
     "reanimated-color-picker": "^4.0.1",
-    "revolt.js": "npm:@rexovolt/revolt.js@^6.7.0"
+    "revolt.js": "npm:@rexovolt/revolt.js@^6.7.1"
   },
   "devDependencies": {
     "@babel/core": "^7.26.10",
@@ -65,12 +65,12 @@
     "@react-native-community/cli": "18.0.0",
     "@react-native-community/cli-platform-android": "18.0.0",
     "@react-native-community/cli-platform-ios": "18.0.0",
-    "@react-native/babel-preset": "0.79.0-rc.4",
-    "@react-native/eslint-config": "0.79.0-rc.4",
-    "@react-native/metro-config": "0.79.0-rc.4",
-    "@react-native/typescript-config": "0.79.0-rc.4",
+    "@react-native/babel-preset": "0.79.0",
+    "@react-native/eslint-config": "0.79.0",
+    "@react-native/metro-config": "0.79.0",
+    "@react-native/typescript-config": "0.79.0",
     "@rnx-kit/babel-preset-metro-react-native": "^2.0.0",
-    "@rnx-kit/cli": "^0.18.7",
+    "@rnx-kit/cli": "^0.18.8",
     "@rnx-kit/metro-config": "^2.0.1",
     "@rnx-kit/metro-resolver-symlinks": "^0.2.1",
     "@types/babel__core": "^7.20.5",
@@ -92,7 +92,7 @@
     "prettier": "^3.5.3",
     "react-native-svg-transformer": "^1.5.0",
     "react-test-renderer": "19.0.0",
-    "typescript": "^5.8.2",
+    "typescript": "^5.8.3",
     "vite": "^6.2.5",
     "vite-plugin-react-native-web": "^2.1.1"
   },
@@ -136,6 +136,7 @@
     }
   },
   "resolutions": {
-    "@rnx-kit/metro-serializer-esbuild@npm:^0.2.1": "patch:@rnx-kit/metro-serializer-esbuild@npm%3A0.2.1#~/.yarn/patches/@rnx-kit-metro-serializer-esbuild-npm-0.2.1-1e72c4b48a.patch"
+    "@rnx-kit/metro-serializer-esbuild@npm:^0.2.1": "patch:@rnx-kit/metro-serializer-esbuild@npm%3A0.2.1#~/.yarn/patches/@rnx-kit-metro-serializer-esbuild-npm-0.2.1-1e72c4b48a.patch",
+    "revolt-api@npm:0.8.4-rc.7": "patch:revolt-api@npm%3A0.8.4-rc.7#~/.yarn/patches/revolt-api-npm-0.8.4-rc.7-41a6c937d5.patch"
   }
 }
