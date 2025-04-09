@@ -8,6 +8,7 @@ import {
   TouchableOpacity,
   View,
 } from 'react-native';
+import {useTranslation} from 'react-i18next';
 import {observer} from 'mobx-react-lite';
 
 import {useSafeAreaInsets} from 'react-native-safe-area-context';
@@ -199,6 +200,8 @@ const ServerChannelList = observer((props: ServerChannelListProps) => {
 });
 
 const UserChannelList = observer(() => {
+  const {t} = useTranslation();
+
   const {currentChannel, setCurrentChannel} = useContext(ChannelContext);
   const {setSideMenuOpen} = useContext(SideMenuContext);
 
@@ -287,7 +290,9 @@ const UserChannelList = observer(() => {
 
   return (
     <>
-      <Text style={subListStyles.userChannelListHeader}>Direct Messages</Text>
+      <Text style={subListStyles.userChannelListHeader}>
+        {t('app.channel_list.direct_messages_header')}
+      </Text>
       <FlatList
         key={'user-channel-list-conversations'}
         keyExtractor={keyExtractor}

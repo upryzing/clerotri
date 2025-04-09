@@ -10,6 +10,9 @@
             "delete": "Delete",
             "save": "Save"
         },
+        "channel_list": {
+            "direct_messages_header": "Direct Messages"
+        },
         "discover": {
             "count_bots_one": "{{count}} bot",
             "count_bots_other": "{{count}} bots",
