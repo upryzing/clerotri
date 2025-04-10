@@ -1,3 +1,17 @@
+diff --git a/lib/index.js b/lib/index.js
+index 4850fe6b3c7689defa8bc4a94d5991f21719ecf7..43544cd1d7335d5de82711044bc1d0bfc8a2cf5c 100644
+--- a/lib/index.js
++++ b/lib/index.js
+@@ -114,7 +114,8 @@ export class API {
+         if (fetchpath.startsWith("/")) {
+             fetchpath = (config?.baseURL || this.baseURL) + fetchpath;
+         }
+-        const fetchdata = await fetch(new URL(fetchpath).toString(), {
++        // PATCH: remove extra slash at the end - it doesn't seem to be added when calling the same function on web, and it's breaking URL params
++        const fetchdata = await fetch(new URL(fetchpath).toString().replace(/\/$/, ''), {
+             method: method.toUpperCase(),
+             headers: {
+                 ...(config?.headers || {}),
 diff --git a/package.json b/package.json
 index f296963ec4ca0b2c3151296e1c6f28588724b063..02104bc2c122fe310cba9b11e00a11f0c38f2b37 100644
 --- a/package.json

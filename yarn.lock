@@ -9808,8 +9808,8 @@ __metadata:
 
 "revolt-api@patch:revolt-api@npm%3A0.8.4-rc.7#~/.yarn/patches/revolt-api-npm-0.8.4-rc.7-41a6c937d5.patch":
   version: 0.8.4-rc.7
-  resolution: "revolt-api@patch:revolt-api@npm%3A0.8.4-rc.7#~/.yarn/patches/revolt-api-npm-0.8.4-rc.7-41a6c937d5.patch::version=0.8.4-rc.7&hash=1dfc11"
-  checksum: 10c0/efd4e05faa892445417b0754925628f43ae84191a02911cf2f2d44df1578119b1ccbd3edf4b48fd7aa1a33a24436a5b2f316734b6b6c8bd3dc15af5996c45058
+  resolution: "revolt-api@patch:revolt-api@npm%3A0.8.4-rc.7#~/.yarn/patches/revolt-api-npm-0.8.4-rc.7-41a6c937d5.patch::version=0.8.4-rc.7&hash=d74d0f"
+  checksum: 10c0/5083dea97bdd318707a2d4a461120992996fe93855935ff2149a59a736059549381af3bd630a485b660266dacb4576884a7f4f7a8a776b894b57bacde8d7a28f
   languageName: node
   linkType: hard
 
