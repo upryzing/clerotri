@@ -14,7 +14,11 @@
             "incoming": "অজানা বন্ধুত্বের অনুরোধ - {{count}} জন",
             "blocked": "ব্লক করা - {{count}} জন",
             "blocked_empty": "কোনো ব্লক করা ইউজার নেই",
-            "incoming_empty": "কোনো অজানা বন্ধুত্বের অনুরোধ নেই"
+            "incoming_empty": "কোনো অজানা বন্ধুত্বের অনুরোধ নেই",
+            "onlineFriends": "অনলাইন বন্ধুরা - {{count}} জন",
+            "onlineFriends_empty": "কোনো অনলাইন বন্ধু নেই",
+            "offlineFriends": "অফলাইন বন্ধুরা - {{count}} জন",
+            "offlineFriends_empty": "কোনো অফলাইন বন্ধু নেই"
         },
         "login": {
             "forms": {
@@ -30,7 +34,8 @@
         "loading": {
             "generic": "লোড হচ্ছে…",
             "connecting": "লগ ইন হচ্ছে…",
-            "unknown_state": "ওহ হো…"
+            "unknown_state": "ওহ হো…",
+            "unknown_state_body": "দয়া করে ডেভেলপারদের জানান যে আপনি এটা দেখেছেন (value: {{state}})"
         },
         "actions": {
             "cancel": "বাতিল করুন",
