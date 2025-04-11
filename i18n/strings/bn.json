@@ -28,7 +28,8 @@
                 "session_token_placeholder": "টোকেন"
             },
             "options": {
-                "login_regular": "হ্যাঁ, আমার ইমেইল এবং পাসওয়ার্ড দিয়ে লগ ইন করুন"
+                "login_regular": "হ্যাঁ, আমার ইমেইল এবং পাসওয়ার্ড দিয়ে লগ ইন করুন",
+                "login_session_token": "হ্যাঁ, একটি সেশন টোকেন দিয়ে লগ ইন করুন"
             }
         },
         "loading": {
