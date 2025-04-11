@@ -19,12 +19,14 @@ export const ServerList = observer(
     filter,
     showUnread = true,
     showDiscover = true,
+    horizontal = false,
   }: {
     onServerPress: any;
     onServerLongPress?: any;
     filter?: any;
     showUnread?: boolean;
     showDiscover?: boolean;
+    horizontal?: boolean;
   }) => {
     const {currentTheme} = useContext(ThemeContext);
     const localStyles = generateLocalStyles(currentTheme);
@@ -64,7 +66,9 @@ export const ServerList = observer(
       });
     }
     return (
-      <View key={'server-list-container'}>
+      <View
+        key={'server-list-container'}
+        style={horizontal && {flexDirection: 'row'}}>
         {servers.map(s => {
           let iconURL = s.generateIconURL();
           let pings = s.getMentions().length;

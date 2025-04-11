@@ -51,6 +51,7 @@ export const BotInviteSheet = observer(
                 filter={(s: Server) => s.havePermission('ManageServer')}
                 showUnread={false}
                 showDiscover={false}
+                horizontal
               />
             </ScrollView>
           </View>
