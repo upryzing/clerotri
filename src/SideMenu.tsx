@@ -204,7 +204,7 @@ const generateLocalStyles = (currentTheme: Theme, inset: number) => {
       backgroundColor: currentTheme.backgroundPrimary,
     },
     bottomBar: {
-      height: 50,
+      height: 54,
       width: '100%',
       backgroundColor: currentTheme.background,
       borderTopWidth: currentTheme.generalBorderWidth,
