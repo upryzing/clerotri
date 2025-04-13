@@ -22,6 +22,7 @@ import {
   BotInviteSheet,
   ChannelInfoSheet,
   ChannelMenuSheet,
+  ChannelSwitcherSheet,
   MemberListSheet,
   MessageMenuSheet,
   PinnedMessagesSheet,
@@ -53,6 +54,7 @@ const BottomSheets = observer(() => {
       <ReportSheet />
       <ChannelInfoSheet />
       <MemberListSheet />
+      <ChannelSwitcherSheet />
       <PinnedMessagesSheet />
       <ServerInfoSheet />
     </>

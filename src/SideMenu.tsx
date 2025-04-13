@@ -10,6 +10,7 @@ import {
 
 import {Drawer} from 'react-native-drawer-layout';
 import {useSafeAreaInsets} from 'react-native-safe-area-context';
+import MaterialCommunityIcon from '@react-native-vector-icons/material-design-icons';
 import MaterialIcon from '@react-native-vector-icons/material-icons';
 
 import type {Server} from 'revolt.js';
@@ -94,6 +95,17 @@ const SideMenu = () => {
           style={{paddingVertical: 10}}>
           <MaterialIcon
             name="group"
+            size={20}
+            color={currentTheme.foregroundPrimary}
+          />
+        </Button>
+        <Button
+          key={'bottom-nav-search'}
+          onPress={() => app.openChannelSwitcher(currentServer ?? 'home')}
+          backgroundColor={currentTheme.background}
+          style={{paddingVertical: 10}}>
+          <MaterialCommunityIcon
+            name="text-search"
             size={20}
             color={currentTheme.foregroundPrimary}
           />

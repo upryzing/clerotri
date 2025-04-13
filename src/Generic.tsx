@@ -446,6 +446,11 @@ export const app = {
       `[FUNCTIONS] Tried to run uninitialised function openCreateChannelModal (args: ${object})`,
     );
   },
+  openChannelSwitcher: (context: Server | 'home' | null) => {
+    console.log(
+      `[FUNCTIONS] Tried to run uninitialised function openChannelSwitcher (args: ${context})`,
+    );
+  },
   openNewInviteModal: (code: string | null) => {
     console.log(
       `[FUNCTIONS] Tried to run uninitialised function openNewInviteModal (args: ${code})`,
