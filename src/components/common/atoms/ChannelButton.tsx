@@ -124,7 +124,11 @@ const generateLocalStyles = (currentTheme: Theme) => {
       justifyContent: 'center',
       alignItems: 'center',
     },
-    mentionCount: {color: '#FFFFFF', marginRight: 1, marginBottom: 2},
+    mentionCount: {
+      color: '#FFFFFF',
+      marginRight: 1,
+      marginBottom: 2,
+    },
     unreadIndicator: {
       width: commonValues.sizes.large,
       height: commonValues.sizes.large,
