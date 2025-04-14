@@ -139,14 +139,14 @@ const SwitcherChannelButton = observer(
 );
 
 const checkIfChannelMatchesQuery = (channel: Channel, query: string) => {
-  if (channel.name?.match(query)) {
+  if (channel.name?.toLowerCase().match(query)) {
     return true;
   }
 
   if (channel.recipient) {
     if (
-      channel.recipient.display_name?.match(query) ||
-      channel.recipient.username.match(query)
+      channel.recipient.display_name?.toLowerCase().match(query) ||
+      channel.recipient.username.toLowerCase().match(query)
     ) {
       return true;
     }
