@@ -3,6 +3,7 @@ import {Pressable, View} from 'react-native';
 import {observer} from 'mobx-react-lite';
 
 import type BottomSheetCore from '@gorhom/bottom-sheet';
+import MaterialCommunityIcon from '@react-native-vector-icons/material-design-icons';
 import {ScrollView} from 'react-native-gesture-handler';
 import {useSafeAreaInsets} from 'react-native-safe-area-context';
 
@@ -253,8 +254,6 @@ export const ChannelSwitcherSheet = observer(() => {
                 flexDirection: 'row',
                 alignItems: 'center',
                 justifyContent: 'center',
-                borderStartWidth: commonValues.sizes.xs,
-                borderStartColor: currentTheme.backgroundSecondary,
               }}>
               <MaterialCommunityIcon
                 name={'close-circle'}
