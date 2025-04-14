@@ -2,7 +2,7 @@ import {useState} from 'react';
 import {View} from 'react-native';
 import {observer} from 'mobx-react-lite';
 
-import {settings} from '@clerotri/Generic';
+import {settings, settingsList} from '@clerotri/Generic';
 import {BoolSetting, OptionSetting, StringNumberSetting} from './atoms';
 
 export const SettingsCategory = observer(({category}: {category: string}) => {
@@ -16,7 +16,7 @@ export const SettingsCategory = observer(({category}: {category: string}) => {
 
   return (
     <View key={`settings-category-${category}`}>
-      {settings.list.map(sRaw => {
+      {settingsList.map(sRaw => {
         try {
           if (
             (sRaw.experimental && !showExperimental) ||

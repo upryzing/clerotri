@@ -1,4 +1,4 @@
-import {settings} from '@clerotri/Generic';
+import {settingsList} from '@clerotri/Generic';
 import {DEFAULT_API_URL} from '@clerotri/lib/consts';
 import {storage} from '@clerotri/lib/storage';
 import {Setting} from '@clerotri/lib/types';
@@ -13,7 +13,7 @@ export function initialiseSettings() {
           storage.set('instanceURL', key.value);
         }
         let st: Setting | undefined;
-        for (const setting of settings.list) {
+        for (const setting of settingsList) {
           if (setting.key === key.key) {
             st = setting;
           }
