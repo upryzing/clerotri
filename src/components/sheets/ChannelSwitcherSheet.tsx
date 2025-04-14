@@ -95,7 +95,7 @@ const SwitcherChannelButton = observer(
               </Text>
               <Text colour={currentTheme.foregroundSecondary}>
                 {channelCategory?.title ||
-                  (channel.recipient
+                  (channel.channel_type === 'Group' ? `${channel.recipients?.length} ${channel.recipients?.length === 1 ? 'member' : 'members'}` : channel.recipient
                     ? `@${channel.recipient?.username}#${channel.recipient?.discriminator}`
                     : 'Uncategorised')}
                 {showServerName &&
