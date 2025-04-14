@@ -95,9 +95,11 @@ const SwitcherChannelButton = observer(
               </Text>
               <Text colour={currentTheme.foregroundSecondary}>
                 {channelCategory?.title ||
-                  (channel.channel_type === 'Group' ? `${channel.recipients?.length} ${channel.recipients?.length === 1 ? 'member' : 'members'}` : channel.recipient
-                    ? `@${channel.recipient?.username}#${channel.recipient?.discriminator}`
-                    : 'Uncategorised')}
+                  (channel.channel_type === 'Group'
+                    ? `${channel.recipients?.length} ${channel.recipients?.length === 1 ? 'member' : 'members'}`
+                    : channel.recipient
+                      ? `@${channel.recipient?.username}#${channel.recipient?.discriminator}`
+                      : 'Uncategorised')}
                 {showServerName &&
                   channel.server &&
                   ` (${channel.server.name})`}
@@ -225,16 +227,43 @@ export const ChannelSwitcherSheet = observer(() => {
           paddingHorizontal: commonValues.sizes.xl,
           paddingBottom: insets.bottom,
         }}>
-        <Input
-          value={searchText}
-          onChangeText={v => setSearchText(v)}
-          placeholder={'Search for channels and conversations...'}
-          skipRegularStyles={false}
+        <View
           style={{
+            flexDirection: 'row',
+            borderRadius: commonValues.sizes.medium,
             backgroundColor: currentTheme.background,
             marginBlockEnd: commonValues.sizes.large,
-          }}
-        />
+          }}>
+          <Input
+            value={searchText}
+            onChangeText={v => setSearchText(v)}
+            placeholder={'Search for channels and conversations...'}
+            skipRegularStyles
+            style={{
+              backgroundColor: '#00000000',
+              padding: commonValues.sizes.large,
+              flex: 1,
+            }}
+          />
+          {searchText && (
+            <Pressable
+              onPress={() => setSearchText('')}
+              style={{
+                paddingInline: commonValues.sizes.large,
+                flexDirection: 'row',
+                alignItems: 'center',
+                justifyContent: 'center',
+                borderStartWidth: commonValues.sizes.xs,
+                borderStartColor: currentTheme.backgroundSecondary,
+              }}>
+              <MaterialCommunityIcon
+                name={'close-circle'}
+                size={18}
+                color={currentTheme.foregroundSecondary}
+              />
+            </Pressable>
+          )}
+        </View>
         <View>
           <Text type={'h1'}>
             {searchText
