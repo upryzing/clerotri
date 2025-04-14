@@ -38,10 +38,7 @@ export const settings = {
       console.log(`[SETTINGS] Setting ${k} does not exist; func = getRaw`);
       return null;
     }
-    return typeof setting.value ===
-      (setting.type === 'number' ? 'string' : setting.type)
-      ? setting.value
-      : setting.default;
+    return setting.value !== undefined ? setting.value : setting.default;
   },
   get: (k: string) => {
     const setting = settings._fetch(k);
@@ -50,8 +47,7 @@ export const settings = {
       return null;
     }
     let raw =
-      typeof setting.value ===
-        (setting.type === 'number' ? 'string' : setting.type) &&
+      setting.value !== undefined &&
       (setting.experimental
         ? settings._fetch('ui.settings.showExperimental')?.value
         : true) &&
