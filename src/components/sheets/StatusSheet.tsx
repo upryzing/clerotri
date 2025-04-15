@@ -6,7 +6,7 @@ import type BottomSheetCore from '@gorhom/bottom-sheet';
 
 import {setFunction} from '@clerotri/Generic';
 import {client} from '@clerotri/lib/client';
-import {ContextButton, InputWithButton, Text} from '../common/atoms';
+import {ContextButton, InputWithButtonV2, Text} from '../common/atoms';
 import {BottomSheet} from '../common/BottomSheet';
 import {STATUSES} from '@clerotri/lib/consts';
 import {ThemeContext} from '@clerotri/lib/themes';
@@ -65,25 +65,19 @@ export const StatusSheet = observer(() => {
         <Text key={'custom-status-input-label'} type={'h1'}>
           Status text
         </Text>
-        <InputWithButton
-          placeholder="Custom status"
-          defaultValue={client.user?.status?.text ?? undefined}
-          onPress={(v: string) => {
+        <InputWithButtonV2
+          inputProps={{
+            placeholder: 'Custom status',
+            defaultValue: client.user?.status?.text ?? undefined,
+          }}
+          buttonProps={{children: <Text>Set text</Text>}}
+          callback={v => {
             client.users.edit({
               status: {
                 ...client.user?.status,
                 text: v ? v : undefined,
               },
             });
-          }}
-          buttonContents={{type: 'string', content: 'Set text'}}
-          extraStyles={{
-            input: {
-              backgroundColor: currentTheme.backgroundPrimary,
-            },
-            button: {
-              backgroundColor: currentTheme.backgroundPrimary,
-            },
           }}
         />
       </View>

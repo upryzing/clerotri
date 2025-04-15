@@ -7,7 +7,7 @@ export {ContextButton} from './ContextButton';
 export {CopyIDButton} from './CopyIDButton';
 export {GeneralAvatar} from './GeneralAvatar';
 export {Input} from './Input';
-export {InputWithButton} from './InputWithButton';
+export {InputWithButton, InputWithButtonV2} from './InputWithButton';
 export {Link} from './Link';
 export {Text} from './Text';
 export {Username} from './Username';

@@ -21,7 +21,7 @@ import {
   BackButton,
   Button,
   Checkbox,
-  InputWithButton,
+  InputWithButtonV2,
   Text,
 } from '@clerotri/components/common/atoms';
 import {
@@ -111,18 +111,26 @@ const RoleSettings = observer(
         <Text colour={currentTheme.foregroundSecondary}>{roleID}</Text>
         <GapView size={8} />
         <Text type={'h2'}>{t('app.servers.settings.roles.name')}</Text>
-        <InputWithButton
-          placeholder={t('app.servers.settings.roles.name_placeholder')}
-          defaultValue={role.name}
-          onPress={async (v: string) => {
-            await server.editRole(roleID, {
+        <InputWithButtonV2
+          inputProps={{
+            placeholder: t('app.servers.settings.roles.name_placeholder'),
+            defaultValue: role.name,
+          }}
+          buttonProps={{
+            children: (
+              <MaterialIcon
+                name={'save'}
+                color={currentTheme.foregroundPrimary}
+                size={20}
+              />
+            ),
+          }}
+          containerStyles={{backgroundColor: currentTheme.backgroundSecondary}}
+          buttonStyles={{borderStartColor: currentTheme.backgroundPrimary}}
+          callback={v => {
+            server.editRole(roleID, {
               name: v,
             });
-          }}
-          buttonContents={{
-            type: 'icon',
-            name: 'save',
-            pack: 'regular',
           }}
           skipIfSame
           cannotBeEmpty
@@ -130,21 +138,28 @@ const RoleSettings = observer(
         />
         <GapView size={4} />
         <Text type={'h2'}>{t('app.servers.settings.roles.rank')}</Text>
-        <InputWithButton
-          placeholder={t('app.servers.settings.roles.rank_placeholder')}
-          defaultValue={`${role.rank}`}
-          // @ts-expect-error this is passed down to the TextInput
-          keyboardType={'decimal-pad'}
-          onPress={async (v: string) => {
-            const int = parseInt(v, 10);
-            await server.editRole(roleID, {
+        <InputWithButtonV2
+          inputProps={{
+            placeholder: t('app.servers.settings.roles.rank_placeholder'),
+            defaultValue: `${role.rank}`,
+            keyboardType: 'decimal-pad',
+          }}
+          buttonProps={{
+            children: (
+              <MaterialIcon
+                name={'save'}
+                color={currentTheme.foregroundPrimary}
+                size={20}
+              />
+            ),
+          }}
+          containerStyles={{backgroundColor: currentTheme.backgroundSecondary}}
+          buttonStyles={{borderStartColor: currentTheme.backgroundPrimary}}
+          callback={v => {
+            const int = parseInt(v!, 10);
+            server.editRole(roleID, {
               rank: int,
             });
-          }}
-          buttonContents={{
-            type: 'icon',
-            name: 'save',
-            pack: 'regular',
           }}
           skipIfSame
           cannotBeEmpty

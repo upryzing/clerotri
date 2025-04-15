@@ -1,5 +1,13 @@
 import {useContext, useState} from 'react';
-import {StyleSheet, type TextStyle, View, type ViewStyle} from 'react-native';
+import {
+  Pressable,
+  type PressableProps,
+  StyleSheet,
+  type TextInputProps,
+  type TextStyle,
+  View,
+  type ViewStyle,
+} from 'react-native';
 
 import MaterialIcon from '@react-native-vector-icons/material-icons';
 import MaterialCommunityIcon from '@react-native-vector-icons/material-design-icons';
@@ -44,9 +52,6 @@ export function InputWithButton({
         onChangeText={v => {
           setValue(v);
         }}
-        cursorColor={currentTheme.accentColor}
-        selectionHandleColor={currentTheme.accentColor}
-        selectionColor={`${currentTheme.accentColor}60`}
         placeholder={placeholder}
         skipRegularStyles
         style={[localStyles.iwbInput, extraStyles?.input]}
@@ -85,6 +90,63 @@ export function InputWithButton({
   );
 }
 
+export function InputWithButtonV2({
+  inputProps,
+  buttonProps,
+  callback,
+  containerStyles,
+  inputStyles,
+  buttonStyles,
+  skipIfSame,
+  cannotBeEmpty,
+  emptyError,
+}: {
+  inputProps?: Omit<TextInputProps, 'style'>;
+  buttonProps?: Omit<PressableProps, 'onPress' | 'style'>;
+  callback: (v: string | undefined) => void;
+  containerStyles?: ViewStyle;
+  inputStyles?: TextStyle;
+  buttonStyles?: ViewStyle;
+  skipIfSame?: boolean;
+  cannotBeEmpty?: boolean;
+  emptyError?: string;
+}) {
+  const {currentTheme} = useContext(ThemeContext);
+  const localStyles = generateLocalStyles(currentTheme);
+
+  const [value, setValue] = useState(inputProps?.defaultValue);
+
+  return (
+    <View style={[localStyles.iwbContainerV2, containerStyles]}>
+      <Input
+        value={value}
+        onChangeText={v => {
+          setValue(v);
+        }}
+        skipRegularStyles
+        style={[localStyles.iwbInputV2, inputStyles]}
+        {...inputProps}
+      />
+      <Pressable
+        onPress={() => {
+          if (!value && cannotBeEmpty) {
+            showToast(emptyError!);
+          } else {
+            if (
+              !skipIfSame ||
+              (skipIfSame && value !== inputProps?.defaultValue)
+            ) {
+              callback(value);
+            }
+          }
+        }}
+        style={[localStyles.iwbButtonV2, buttonStyles]}
+        {...buttonProps}
+      />
+    </View>
+  );
+}
+
 const generateLocalStyles = (currentTheme: Theme) => {
   return StyleSheet.create({
     iwbContainer: {
@@ -100,6 +162,24 @@ const generateLocalStyles = (currentTheme: Theme) => {
     iwbButton: {
       marginRight: 0,
       backgroundColor: currentTheme.backgroundSecondary,
+    },
+    iwbContainerV2: {
+      flexDirection: 'row',
+      borderRadius: commonValues.sizes.medium,
+      backgroundColor: currentTheme.backgroundPrimary,
+    },
+    iwbInputV2: {
+      backgroundColor: '#00000000',
+      padding: commonValues.sizes.large,
+      flex: 1,
+    },
+    iwbButtonV2: {
+      paddingInline: commonValues.sizes.large,
+      flexDirection: 'row',
+      alignItems: 'center',
+      justifyContent: 'center',
+      borderStartWidth: commonValues.sizes.xs,
+      borderStartColor: currentTheme.backgroundSecondary,
     },
   });
 };

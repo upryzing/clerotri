@@ -12,7 +12,7 @@ import {styles} from '@clerotri/Theme';
 import {GapView} from '@clerotri/components/layout';
 import {
   BackButton,
-  InputWithButton,
+  InputWithButtonV2,
   Text,
 } from '@clerotri/components/common/atoms';
 import {ChannelIcon} from '@clerotri/components/navigation/ChannelIcon';
@@ -189,16 +189,24 @@ const ChannelSettings = observer(
         <Text colour={currentTheme.foregroundSecondary}>{channel._id}</Text>
         <GapView size={2} />
         <Text type={'h2'}>{t('app.servers.settings.channels.name')}</Text>
-        <InputWithButton
-          placeholder={t('app.servers.settings.channels.name_placeholder')}
-          defaultValue={channel.name ?? ''}
-          onPress={(v: string) => {
-            channel.edit({name: v});
+        <InputWithButtonV2
+          inputProps={{
+            placeholder: t('app.servers.settings.channels.name_placeholder'),
+            defaultValue: channel.name ?? '',
           }}
-          buttonContents={{
-            type: 'icon',
-            name: 'save',
-            pack: 'regular',
+          buttonProps={{
+            children: (
+              <MaterialIcon
+                name={'save'}
+                color={currentTheme.foregroundPrimary}
+                size={20}
+              />
+            ),
+          }}
+          containerStyles={{backgroundColor: currentTheme.backgroundSecondary}}
+          buttonStyles={{borderStartColor: currentTheme.backgroundPrimary}}
+          callback={v => {
+            channel.edit({name: v});
           }}
           skipIfSame
           cannotBeEmpty
