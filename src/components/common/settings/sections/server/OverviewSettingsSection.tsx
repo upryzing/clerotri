@@ -56,7 +56,9 @@ export const OverviewSettingsSection = observer(
             {t('app.servers.settings.overview.markdown_tip')}
           </Text>
           <Link
-            link={'https://support.revolt.chat/kb/account/badges'}
+            link={
+              'https://support.revolt.chat/kb/interface/messages/formatting-your-messages'
+            }
             label={t('app.servers.settings.overview.markdown_tip_link')}
             style={{fontWeight: 'bold'}}
           />
