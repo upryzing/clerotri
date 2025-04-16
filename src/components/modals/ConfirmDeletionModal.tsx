@@ -62,7 +62,7 @@ export const ConfirmDeletionModal = observer(
             marginTop: 10,
           }}>
           <Button
-            onPress={async () => {
+            onPress={() => {
               switch (target.type) {
                 case 'Role':
                   app.closeRoleSubsection();
@@ -83,7 +83,7 @@ export const ConfirmDeletionModal = observer(
                   app.openDeletionConfirmationModal(null);
                   break;
                 case 'Message':
-                  await target.object.delete();
+                  target.object.delete();
                   app.openDeletionConfirmationModal(null);
                   break;
                 default:
