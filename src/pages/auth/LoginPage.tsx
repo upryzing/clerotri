@@ -2,6 +2,7 @@ import {useContext, useState} from 'react';
 import {TouchableOpacity, View} from 'react-native';
 import {useTranslation} from 'react-i18next';
 
+import {KeyboardAvoidingView} from 'react-native-keyboard-controller';
 import {useSafeAreaInsets} from 'react-native-safe-area-context';
 import MaterialIcon from '@react-native-vector-icons/material-icons';
 
@@ -176,7 +177,7 @@ export const LoginPage = ({
   });
 
   return (
-    <>
+    <KeyboardAvoidingView behavior={'padding'} style={{flex: 1}}>
       <View
         style={{
           marginTop: insets.top + commonValues.sizes.large,
@@ -323,6 +324,6 @@ export const LoginPage = ({
           <LoginTypeSelector setLoginType={setLoginType} />
         )}
       </View>
-    </>
+    </KeyboardAvoidingView>
   );
 };
