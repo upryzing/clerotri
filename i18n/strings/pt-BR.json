@@ -280,7 +280,9 @@
                 "status_body": "Coloque seu tipo de status e texto"
             },
             "toasts": {
-                "deprecated": "Essa opção será removida numa versão futura."
+                "deprecated": "Essa opção será removida numa versão futura.",
+                "developer": "Esta opção é somente para desenvolvedores.",
+                "experimental": "Esta opção é experimental e pode ser removida ou modificada a qualquer momento."
             }
         },
         "misc": {
@@ -363,6 +365,14 @@
             "offlineFriends": "Amigos offline - {{count}}",
             "offlineFriends_empty": "Nenhum amigo offline",
             "outgoing": "Chamados pendentes - {{count}}"
+        },
+        "sheets": {
+            "channel": {
+                "create_invite": "Criar convite",
+                "mark_as_read": "Marcar como lido",
+                "copy_link": "Copiar link do canal",
+                "delete": "Apagar canal"
+            }
         }
     }
 }
