@@ -7,7 +7,8 @@
             "confirm": "Confirmar",
             "create_channel": "Criar canal",
             "delete": "Excluir",
-            "save": "Salvar"
+            "save": "Salvar",
+            "copy_invite": "Copiar convite"
         },
         "discover": {
             "count_bots_one": "{{count}} robô",
@@ -79,7 +80,9 @@
                 "body_role": "Tem certeza que quer excluir <2>esse cargo</2>?",
                 "body_server": "Tem certeza que quer excluir <2>{{name}}</2>?",
                 "warning": "Isso não pode ser desfeito.",
-                "body_message": "Tem certeza que quer excluir <2>essa mensagem</2>?"
+                "body_message": "Tem certeza que quer excluir <2>essa mensagem</2>?",
+                "header_channel": "Apagar canal?",
+                "body_channel": "Você tem certeza de que quer apagar <2>esse canal</2>?"
             },
             "create_channel": {
                 "header": "Criar um canal novo",
@@ -102,6 +105,10 @@
                 "session_name_header": "Definir nome da sessão",
                 "session_name_placeholder": "Nome da sessão",
                 "role_colour_header": "Definir cor do cargo"
+            },
+            "new_invite": {
+                "header": "Convite criado",
+                "body": "Aqui está seu novo link de convite:"
             }
         },
         "servers": {
@@ -155,8 +162,13 @@
                     "set_colour": "Definir cor do cargo",
                     "open_colour_modal": "Inserir cor manualmente",
                     "errors": {
-                        "empty_role_name": "Nomes de cargo não podem estar vazios!"
-                    }
+                        "empty_role_name": "Nomes de cargo não podem estar vazios!",
+                        "empty_rank": "Posições de cargo não podem ser vazias!"
+                    },
+                    "permissions_list_body": "Essas permissões se aplicam ao servidor todo. Algumas podem ser sobrescritas para canais específicos.",
+                    "permissions_list_header": "Permissões para <2>{{role}}</2>",
+                    "rank_placeholder": "Defina a posição do cargo…",
+                    "permissions_body": "Editar permissões deste cargo"
                 },
                 "emoji": {
                     "title": "Emoji",
@@ -254,10 +266,21 @@
             "other": {
                 "debug_info": "Copiar Informações de Depuração",
                 "view_issues": "Mostrar Problemas em Aberto",
-                "logout": "Sair"
+                "logout": "Sair",
+                "translate": "Traduzir Clerotri",
+                "donate": "Doar"
             },
             "profile": {
-                "title": "Perfil"
+                "title": "Perfil",
+                "loading_bio": "Carregando biografia…",
+                "expand_bio": "Expandir biografia",
+                "collapse_bio": "Colapsar bio",
+                "display_name": "Nome de exibição",
+                "status": "Status",
+                "status_body": "Coloque seu tipo de status e texto"
+            },
+            "toasts": {
+                "deprecated": "Essa opção será removida numa versão futura."
             }
         },
         "misc": {
@@ -277,6 +300,69 @@
             "roles": {
                 "copied_role_id_toast": "ID do cargo copiado"
             }
+        },
+        "permissions": {
+            "ManageWebhooks": "Gerenciar Webhooks",
+            "UploadFiles_body_server": "Permitir que membros com este cargo enviem arquivos em canais de texto.",
+            "ManageMessages_body_server": "Permite que membros com este cargo fixem mensagens e apaguem mensagens enviadas por outros usuários.",
+            "KickMembers_body_server": "Permite que membros com este cargo a expulsar membros do servidor. Membros expulsos podem entrar novamente com um convite.",
+            "Masquerade_body_server": "Permite que membros com este cargo usem nomes e avatares para mensagens individuais.",
+            "SendMessage_body_server": "Permite que membros com este cargo mandem mensagens em canais de texto.",
+            "ManagePermissions_body_server": "Permite que membros com este cargo editem as permissões dos canais e de cargos abaixo do seu maior cargo.",
+            "TimeoutMembers_body_server": "Permite que membros com este cargo castiguem outros membros, temporariamente impedindo eles de interagir com o servidor.",
+            "Connect": "Conectar",
+            "AssignRoles": "Adicionar cargos",
+            "BanMembers": "Banir Membros",
+            "BanMembers_body_server": "Permite que membros com este cargo possam banir e desbanir outros membros do servidor. Membros banidos não podem entrar novamente até serem desbanidos.",
+            "ChangeAvatar": "Alterar Avatar",
+            "ChangeNickname_body_server": "Permite que membros com este cargo mudem seu apelido.",
+            "ChangeNickname": "Alterar Apelido",
+            "ChangeAvatar_body_server": "Permite que membros com este cargo mudem seu avatar do servidor.",
+            "AssignRoles_body_server": "Permite que membros com este cargo adicionem cargos abaixo do seu cargo mais alto a outros membros.",
+            "Connect_body_server": "Permite que membros com este cargo que conectem a canais de voz.",
+            "KickMembers": "Expulsar Membros",
+            "InviteOthers": "Criar convites",
+            "InviteOthers_body_server": "Permite que membros com este cargo criem convites do servidor.",
+            "ManageChannel": "Gerenciar Canais",
+            "ManageChannel_body_server": "Permite que membros com este cargo criem, editem e apaguem canais.",
+            "ManageCustomisation": "Gerenciar Customização",
+            "ManageCustomisation_body_server": "Permite que membros com este cargo criem e apaguem emojis.",
+            "ManageMessages": "Gerenciar Mensagens",
+            "ManageNicknames": "Gerenciar Apelidos",
+            "ManageNicknames_body_server": "Permite que membros com este cargo a mudar o apelido de outros usuários.",
+            "ManagePermissions": "Gerenciar Permissões",
+            "ManageRole": "Gerenciar Cargos",
+            "ManageRole_body_server": "Permite que membros com este cargo criem, editem e apaguem cargos abaixo do seu maior cargo.",
+            "ManageServer": "Gerenciar Servidor",
+            "ManageServer_body_server": "Permite que membros com este cargo mudem as informações do servidor, como o nome, ícone e descrição.",
+            "ManageWebhooks_body_server": "Permite membros com este cargo a criar, editar e apagar webhooks.",
+            "Masquerade": "Usar Máscaras",
+            "React": "Reagir",
+            "React_body_server": "Permite que membros com este cargo possam reagir a mensagens.",
+            "RemoveAvatars": "Remover Avatares",
+            "RemoveAvatars_body_server": "Permite que membros com este cargo removam o avatar do servidor de outros membros.",
+            "SendEmbeds": "Enviar Prévias",
+            "SendEmbeds_body_server": "Permite que membros com este cargo mandem prévias e prévias com texto customizado.",
+            "SendMessage": "Enviar Mensagens",
+            "TimeoutMembers": "Castigar Membros",
+            "UploadFiles": "Enviar Arquivos",
+            "ViewChannel": "Ver Canais",
+            "ViewChannel_body_server": "Permite que membros com este cargo vejam canais."
+        },
+        "channel_list": {
+            "direct_messages_header": "Mensagens Diretas"
+        },
+        "friends_list": {
+            "outgoing_empty": "Sem chamados pendentes",
+            "incoming": "Pedidos pendentes - {{count}}",
+            "blocked": "Bloqueados - {{count}}",
+            "blocked_empty": "Nenhum usuário bloqueado",
+            "incoming_empty": "Nenhum pedido pendente",
+            "onlineFriends": "Amigos online - {{count}}",
+            "onlineFriends_empty": "Nenhum amigo online",
+            "offlineFriends": "Amigos offline - {{count}}",
+            "offlineFriends_empty": "Nenhum amigo offline",
+            "outgoing": "Chamados pendentes - {{count}}"
         }
     }
 }
