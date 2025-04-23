@@ -93,7 +93,7 @@ export const MessageBox = observer((props: MessageBoxProps) => {
   return (
     <KeyboardAvoidingView
       behavior={'padding'}
-      keyboardVerticalOffset={-20}
+      keyboardVerticalOffset={-insets.bottom + 4}
       style={localStyles.messageBoxOuter}>
       <TypingIndicator channel={props.channel} />
       {replyingMessages
@@ -471,9 +471,9 @@ const generateLocalStyles = (currentTheme: Theme, inset: number) => {
       flexDirection: 'row',
       alignItems: 'center',
       minHeight: 50,
-      paddingHorizontal: 10,
-      paddingVertical: 5,
-      paddingBottom: inset + 5,
+      paddingHorizontal: commonValues.sizes.medium,
+      paddingVertical: commonValues.sizes.small,
+      paddingBottom: inset + commonValues.sizes.small,
     },
     messageBoxOuter: {
       backgroundColor: currentTheme.messageBox,
