@@ -1,5 +1,37 @@
 # Clerotri's changelog
 
+## v0.10.0
+
+_This version was released on 23/04/2025._
+
+### What's new
+
+- Clerotri now includes a **global channel switcher**! Tap the switcher icon in the bottom menu to easily find and switch between channels, groups and DMs.
+  - More options (including filtering and a list of recently opened channels) are planned for the future.
+- The **reporting menu** has been revamped and expanded. It now includes:
+  - various new reporting reasons introduced after it was initially added,
+  - descriptions for each reason,
+  - the ability to see which reason you've selected, and
+  - the ability to go back and select a different reason.
+- You can now see a **preview of your profile** in the profile settings menu! See how your display name, avatar, banner and status look at a glance - and with one tap, you can also check your bio.
+- Text inputs with buttons next to them have been redesigned, featuring a cleaner look and slightly more horizontal space for the input itself.
+- Deprecated settings are now explicitly marked in the settings menu. Note that these settings will be removed in future updates.
+- The message box is now slightly taller, which should make it easier to press.
+
+### Bug fixes
+
+- On Android, the login page now has proper insets at the top and bottom.
+  - In addition, its inputs should have the correct styles and should no longer be covered by the keyboard.
+- If you leave or delete a server and the currently open channel is in that server, it will now be closed automatically.
+- The link to learn more about Revolt's various Markdown formatting options in the server settings menu now links to the correct support article.
+- The setting to enable or disable push notifications now stops toggling if you deny to give Clerotri permission to send notifications.
+  - You can re-enable it by granting the permission in the Settings app.
+- The close button on the instance switcher settings menu now disappears after switching instances.
+- This one's a tentative fix - while I didn't notice this locally (because of the way I had previously implemented the offset), I _think_ it would've been an issue on other devices? Either way, if it _was_ an issue, the message box _should_ no longer be misaligned while the keyboard is open.
+- The flags for Latvian and Hungarian in the language list are no longer mixed up. Apologies for this!
+  - (In my defence, they're both triband flags with a central white stripe and at least one red stripe... though I am slightly surprised I didn't notice this until Lenify let me know 💀)
+  - Thankfully, I'm not aware of any _particular_ disputes between these two... though I guess it's only fitting that I mixed up the Baltics and the Balka-
+
 ## v0.9.1
 
 _This version was released on 31/03/2025._
