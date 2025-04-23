@@ -82,10 +82,14 @@ export const MessageBox = observer((props: MessageBoxProps) => {
     return (
       <View style={localStyles.noPermissionBox}>
         <Text style={{textAlign: 'center'}}>
-          {props.channel.channel_type === 'DirectMessage' &&
-          props.channel.recipient?._id === USER_IDS.platformModeration
-            ? 'You cannot reply to system messages.'
-            : 'You do not have permission to send messages in this channel.'}
+          {t(
+            `app.messaging.message_box_${
+              props.channel.channel_type === 'DirectMessage' &&
+              props.channel.recipient?._id === USER_IDS.platformModeration
+                ? 'system'
+                : 'no_perms'
+            }`,
+          )}
         </Text>
       </View>
     );

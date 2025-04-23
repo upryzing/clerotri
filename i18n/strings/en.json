@@ -86,6 +86,8 @@
             "message_box_group": "Message {{name}}",
             "message_box_dm": "Message @{{name}}",
             "message_box_saved_notes": "Save to your notes",
+            "message_box_system": "You cannot reply to system messages.",
+            "message_box_no_perms": "You do not have permission to send messages in this channel.",
             "no_messages": "No messages",
             "no_messages_body": "Get the conversation started.",
             "reply_not_loaded": "Message not loaded"
