@@ -48,8 +48,8 @@ jobs:
       - name: Upload release APKs
         uses: actions/upload-artifact@v4
         with:
-          path: /home/runner/work/Clerotri/Clerotri/android/app/build/outputs
-            # /home/runner/work/Clerotri/Clerotri/android/app/build/outputs/apk/release/Clerotri-${{ github.sha }}-arm64-v8a.apk 
-            # /home/runner/work/Clerotri/Clerotri/android/app/build/outputs/apk/release/Clerotri-${{ github.sha }}-armeabi-v7a.apk 
-            # /home/runner/work/Clerotri/Clerotri/android/app/build/outputs/apk/release/Clerotri-${{ github.sha }}-x86_64.apk 
-            # /home/runner/work/Clerotri/Clerotri/android/app/build/outputs/apk/release/Clerotri-${{ github.sha }}-x86.apk
+          path: |
+            /home/runner/work/clerotri/clerotri/android/app/build/outputs/apk/release/Clerotri-${{ github.sha }}-arm64-v8a.apk 
+            /home/runner/work/clerotri/clerotri/android/app/build/outputs/apk/release/Clerotri-${{ github.sha }}-armeabi-v7a.apk 
+            /home/runner/work/clerotri/clerotri/android/app/build/outputs/apk/release/Clerotri-${{ github.sha }}-x86_64.apk 
+            /home/runner/work/clerotri/clerotri/android/app/build/outputs/apk/release/Clerotri-${{ github.sha }}-x86.apk
