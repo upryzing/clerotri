@@ -40,12 +40,12 @@ jobs:
         run: yarn android-release:apk
       - name: Rename release APKs
         run: |
-          mv app-arm64-v8a-release.apk Clerotri-Debug-${{ github.sha }}-arm64-v8a.apk 
-          mv app-armeabi-v7a-release.apk Clerotri-Debug-${{ github.sha }}-armeabi-v7a.apk 
-          mv app-x86_64-release.apk Clerotri-Debug-${{ github.sha }}-x86_64.apk
-          mv app-x86-release.apk Clerotri-Debug-${{ github.sha }}-x86.apk
+          mv app-arm64-v8a-release.apk Clerotri-${{ github.sha }}-arm64-v8a.apk 
+          mv app-armeabi-v7a-release.apk Clerotri-${{ github.sha }}-armeabi-v7a.apk 
+          mv app-x86_64-release.apk Clerotri-${{ github.sha }}-x86_64.apk
+          mv app-x86-release.apk Clerotri-${{ github.sha }}-x86.apk
         working-directory: /home/runner/work/clerotri/clerotri/android/app/build/outputs/apk/release/
-      - name: Upload debug APKs
+      - name: Upload release APKs
         uses: actions/upload-artifact@v4
         with:
           path: |
