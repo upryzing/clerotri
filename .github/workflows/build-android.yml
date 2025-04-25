@@ -22,6 +22,10 @@ jobs:
           java-version: '17'
           distribution: 'microsoft'
           cache: gradle
+      - name: Prepare the keystore
+        run: |
+          echo ${{ secrets.KEYSTORE_BASE64 }} > keystore-b64.txt
+          base64 -d keystore-b64.txt > clerotri/clerotri.keystore          
       - name: Install dependencies and prepare assets
         run: yarn install && npx react-native-asset
       - name: Bundle the JS
@@ -29,6 +33,11 @@ jobs:
       - name: Move the assets
         run: yarn android-release:copy-assets
       - name: Build the app
+        env:
+          CLEROTRI_UPLOAD_STORE_FILE: ./clerotri.keystore
+          CLEROTRI_UPLOAD_KEY_ALIAS: ${{ secrets.KEYSTORE_KEY_ALIAS }}
+          CLEROTRI_UPLOAD_STORE_PASSWORD: ${{ secrets.KEYSTORE_PASSWORD }}
+          CLEROTRI_UPLOAD_KEY_PASSWORD: ${{ secrets.KEYSTORE_KEY_PASSWORD }}
         run: yarn android-release:apk
       - name: Rename release APKs
         run: |
