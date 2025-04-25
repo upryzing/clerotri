@@ -1,10 +1,10 @@
-name: Build Clerotri for Android (debug)
+name: Build Clerotri for Android
 
 on:
   push:
 
 jobs:
-  build-android-debug:
+  build-android:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout Repository
@@ -14,7 +14,7 @@ jobs:
       - name: Set up Node
         uses: actions/setup-node@v4
         with:
-          node-version: 18
+          node-version: 20
           cache: 'yarn'
       - name: Set up Java
         uses: actions/setup-java@v4
@@ -23,25 +23,25 @@ jobs:
           distribution: 'microsoft'
           cache: gradle
       - name: Install dependencies and prepare assets
-        run: yarn install && npx react-native-asset && yarn prebuild
+        run: yarn install && npx react-native-asset
       - name: Bundle the JS
-        run: yarn react-native rnx-bundle
+        run: yarn android-release:bundle
       - name: Move the assets
-        run: mkdir -p android/app/build/generated/assets/createBundleDebugJsAndAssets && mkdir -p android/app/build/generated/res/createBundleDebugJsAndAssets && cp dist/android/index.android.bundle.hbc android/app/build/generated/assets/createBundleDebugJsAndAssets/index.android.bundle && cp -r dist/android/res android/app/build/generated/res/createBundleDebugJsAndAssets
+        run: yarn android-release:copy-assets
       - name: Build the app
-        run: yarn react-native build-android --tasks assembleDebug
-      - name: Rename debug APKs
+        run: yarn android-release:apk
+      - name: Rename release APKs
         run: |
-          mv app-arm64-v8a-debug.apk Clerotri-Debug-${{ github.sha }}-arm64-v8a.apk 
-          mv app-armeabi-v7a-debug.apk Clerotri-Debug-${{ github.sha }}-armeabi-v7a.apk 
-          mv app-x86_64-debug.apk Clerotri-Debug-${{ github.sha }}-x86_64.apk
-          mv app-x86-debug.apk Clerotri-Debug-${{ github.sha }}-x86.apk
-        working-directory: /home/runner/work/clerotri/clerotri/android/app/build/outputs/apk/debug/
+          mv app-arm64-v8a-release.apk Clerotri-Debug-${{ github.sha }}-arm64-v8a.apk 
+          mv app-armeabi-v7a-release.apk Clerotri-Debug-${{ github.sha }}-armeabi-v7a.apk 
+          mv app-x86_64-release.apk Clerotri-Debug-${{ github.sha }}-x86_64.apk
+          mv app-x86-release.apk Clerotri-Debug-${{ github.sha }}-x86.apk
+        working-directory: /home/runner/work/clerotri/clerotri/android/app/build/outputs/apk/release/
       - name: Upload debug APKs
         uses: actions/upload-artifact@v4
         with:
           path: |
-            /home/runner/work/Clerotri/Clerotri/android/app/build/outputs/apk/debug/Clerotri-Debug-${{ github.sha }}-arm64-v8a.apk 
-            /home/runner/work/Clerotri/Clerotri/android/app/build/outputs/apk/debug/Clerotri-Debug-${{ github.sha }}-armeabi-v7a.apk 
-            /home/runner/work/Clerotri/Clerotri/android/app/build/outputs/apk/debug/Clerotri-Debug-${{ github.sha }}-x86_64.apk 
-            /home/runner/work/Clerotri/Clerotri/android/app/build/outputs/apk/debug/Clerotri-Debug-${{ github.sha }}-x86.apk
+            /home/runner/work/Clerotri/Clerotri/android/app/build/outputs/apk/release/Clerotri-${{ github.sha }}-arm64-v8a.apk 
+            /home/runner/work/Clerotri/Clerotri/android/app/build/outputs/apk/release/Clerotri-${{ github.sha }}-armeabi-v7a.apk 
+            /home/runner/work/Clerotri/Clerotri/android/app/build/outputs/apk/release/Clerotri-${{ github.sha }}-x86_64.apk 
+            /home/runner/work/Clerotri/Clerotri/android/app/build/outputs/apk/release/Clerotri-${{ github.sha }}-x86.apk
