@@ -1,0 +1,197 @@
+diff --git a/android/build.gradle b/android/build.gradle
+index 81444a4ef009124fbbdfec86e91ed94018c31064..f295b2c1a49ccd8ced73bdb6af031bb822753c31 100644
+--- a/android/build.gradle
++++ b/android/build.gradle
+@@ -56,7 +56,6 @@ repositories {
+ 
+ dependencies {
+   implementation "com.facebook.react:react-native:${safeExtGet('reactNativeVersion', '+')}"
+-  implementation "com.android.installreferrer:installreferrer:${safeExtGet('installReferrerVersion', '1.1.2')}"
+   def firebaseBomVersion = safeExtGet("firebaseBomVersion", null)
+   def firebaseIidVersion = safeExtGet('firebaseIidVersion', null)
+   def googlePlayServicesIidVersion = safeExtGet('googlePlayServicesIidVersion', null)
+diff --git a/android/src/main/java/com/learnium/RNDeviceInfo/RNDeviceModule.java b/android/src/main/java/com/learnium/RNDeviceInfo/RNDeviceModule.java
+index 23e8fb441b516e2d9e2e86afbcc8e0fd9e0fe323..75c535c546963d8a31237d76c28766a5ee61506e 100644
+--- a/android/src/main/java/com/learnium/RNDeviceInfo/RNDeviceModule.java
++++ b/android/src/main/java/com/learnium/RNDeviceInfo/RNDeviceModule.java
+@@ -80,7 +80,6 @@ public class RNDeviceModule extends ReactContextBaseJavaModule {
+   private BroadcastReceiver headphoneConnectionReceiver;
+   private BroadcastReceiver headphoneWiredConnectionReceiver;
+   private BroadcastReceiver headphoneBluetoothConnectionReceiver;
+-  private RNInstallReferrerClient installReferrerClient;
+   private InputMethodManager inputMethodManager;
+ 
+   private double mLastBatteryLevel = -1;
+@@ -95,7 +94,6 @@ public class RNDeviceModule extends ReactContextBaseJavaModule {
+     super(reactContext);
+     this.deviceTypeResolver = new DeviceTypeResolver(reactContext);
+     this.deviceIdResolver = new DeviceIdResolver(reactContext);
+-    this.installReferrerClient = new RNInstallReferrerClient(reactContext.getBaseContext());
+     this.inputMethodManager = (InputMethodManager) reactContext.getSystemService(Context.INPUT_METHOD_SERVICE);
+   }
+ 
+@@ -722,14 +720,6 @@ public class RNDeviceModule extends ReactContextBaseJavaModule {
+   @ReactMethod
+   public void getAvailableLocationProviders(Promise p) { p.resolve(getAvailableLocationProvidersSync()); }
+ 
+-  @ReactMethod(isBlockingSynchronousMethod = true)
+-  public String getInstallReferrerSync() {
+-    SharedPreferences sharedPref = getRNDISharedPreferences(getReactApplicationContext());
+-    return sharedPref.getString("installReferrer", Build.UNKNOWN);
+-  }
+-  @ReactMethod
+-  public void getInstallReferrer(Promise p) { p.resolve(getInstallReferrerSync()); }
+-
+   private PackageInfo getPackageInfo() throws Exception {
+     return getReactApplicationContext().getPackageManager().getPackageInfo(getReactApplicationContext().getPackageName(), 0);
+   }
+diff --git a/android/src/main/java/com/learnium/RNDeviceInfo/RNInstallReferrerClient.java b/android/src/main/java/com/learnium/RNDeviceInfo/RNInstallReferrerClient.java
+deleted file mode 100644
+index d612ac054076cdf6424e727624f320333372f541..0000000000000000000000000000000000000000
+--- a/android/src/main/java/com/learnium/RNDeviceInfo/RNInstallReferrerClient.java
++++ /dev/null
+@@ -1,144 +0,0 @@
+-package com.learnium.RNDeviceInfo;
+-
+-import android.content.SharedPreferences;
+-import android.content.Context;
+-import android.util.Log;
+-import android.os.Handler;
+-import android.os.Looper;
+-
+-import java.lang.reflect.InvocationHandler;
+-import java.lang.reflect.Method;
+-import java.lang.reflect.Proxy;
+-import java.util.concurrent.ExecutorService;
+-import java.util.concurrent.Executors;
+-
+-public class RNInstallReferrerClient {
+-  private static Class<?> InstallReferrerClientClazz;
+-  private static Class<?> InstallReferrerStateListenerClazz;
+-  private static Class<?> ReferrerDetailsClazz;
+-
+-  static {
+-    try {
+-      InstallReferrerClientClazz = Class.forName("com.android.installreferrer.api.InstallReferrerClient");
+-      InstallReferrerStateListenerClazz = Class.forName("com.android.installreferrer.api.InstallReferrerStateListener");
+-      ReferrerDetailsClazz = Class.forName("com.android.installreferrer.api.ReferrerDetails");
+-    } catch (Exception e) {
+-      System.err.println("RNInstallReferrerClient exception. 'installreferrer' APIs are unavailable.");
+-    }
+-  }
+-
+-  private final SharedPreferences sharedPreferences;
+-  private Object mReferrerClient;
+-  private Object installReferrerStateListener;
+-  private final ExecutorService executorService = Executors.newSingleThreadExecutor();
+-  private final Handler mainHandler = new Handler(Looper.getMainLooper());
+-
+-  // From InstallReferrerClient.InstallReferrerResponse
+-  private static final int R_RESPONSE_OK                    = 0;
+-  private static final int R_RESPONSE_SERVICE_UNAVAILABLE   = 1;
+-  private static final int R_RESPONSE_FEATURE_NOT_SUPPORTED = 2;
+-
+-  RNInstallReferrerClient(Context context) {
+-    sharedPreferences = context.getSharedPreferences("react-native-device-info", Context.MODE_PRIVATE);
+-
+-    if (InstallReferrerClientClazz == null || InstallReferrerStateListenerClazz == null || ReferrerDetailsClazz == null) {
+-      return;
+-    }
+-
+-    executorService.execute(() -> {
+-      try {
+-        // Build the InstallReferrerClient instance.
+-        Method newBuilderMethod = InstallReferrerClientClazz.getMethod("newBuilder", Context.class);
+-        Object builder = newBuilderMethod.invoke(null, context);
+-        Method buildMethod = builder.getClass().getMethod("build");
+-        mReferrerClient = buildMethod.invoke(builder);
+-
+-        // Create the InstallReferrerStateListener instance using a Proxy.
+-        installReferrerStateListener = Proxy.newProxyInstance(
+-            InstallReferrerStateListenerClazz.getClassLoader(),
+-            new Class[]{InstallReferrerStateListenerClazz},
+-            new InstallReferrerStateListenerProxy());
+-
+-        // Call startConnection on the client instance.
+-        Method startConnectionMethod = InstallReferrerClientClazz.getMethod("startConnection", InstallReferrerStateListenerClazz);
+-        startConnectionMethod.invoke(mReferrerClient, installReferrerStateListener);
+-      } catch (Exception e) {
+-        System.err.println("RNInstallReferrerClient exception. getInstallReferrer will be unavailable: " + e.getMessage());
+-        e.printStackTrace(System.err);
+-      }
+-    });
+-  }
+-
+-  private class InstallReferrerStateListenerProxy implements InvocationHandler {
+-    @Override
+-    public Object invoke(Object o, Method method, Object[] args) throws Throwable {
+-      String methodName = method.getName();
+-      try {
+-        if (methodName.equals("onInstallReferrerSetupFinished") && args != null && args[0] instanceof Integer) {
+-          int responseCode = (Integer) args[0];
+-          mainHandler.post(new Runnable() {
+-            @Override
+-            public void run() {
+-              onInstallReferrerSetupFinished(responseCode);
+-            }
+-          });
+-        } else if (methodName.equals("onInstallReferrerServiceDisconnected")) {
+-          mainHandler.post(new Runnable() {
+-            @Override
+-            public void run() {
+-              onInstallReferrerServiceDisconnected();
+-            }
+-          });
+-        }
+-      } catch (Exception e) {
+-        throw new RuntimeException("unexpected invocation exception: " + e.getMessage());
+-      }
+-
+-      return null;
+-    }
+-
+-    public void onInstallReferrerSetupFinished(int responseCode) {
+-      switch (responseCode) {
+-        case R_RESPONSE_OK:
+-          // Connection established
+-          executorService.execute(() -> {
+-            try {
+-              //if (BuildConfig.DEBUG)
+-              Log.d("InstallReferrerState", "OK");
+-              Method getInstallReferrerMethod = InstallReferrerClientClazz.getMethod("getInstallReferrer");
+-              Object response = getInstallReferrerMethod.invoke(mReferrerClient);
+-              Method getInstallReferrerMethod2 = ReferrerDetailsClazz.getMethod("getInstallReferrer");
+-              String referrer = (String) getInstallReferrerMethod2.invoke(response);
+-              SharedPreferences.Editor editor = sharedPreferences.edit();
+-              editor.putString("installReferrer", referrer);
+-              editor.apply();
+-
+-              Method endConnectionMethod = InstallReferrerClientClazz.getMethod("endConnection");
+-              endConnectionMethod.invoke(mReferrerClient);
+-            } catch (Exception e) {
+-              System.err.println("RNInstallReferrerClient exception. getInstallReferrer will be unavailable: " + e.getMessage());
+-              e.printStackTrace(System.err);
+-            }
+-          });
+-          break;
+-        case R_RESPONSE_FEATURE_NOT_SUPPORTED:
+-          //if (BuildConfig.DEBUG)
+-          Log.d("InstallReferrerState", "FEATURE_NOT_SUPPORTED");
+-          // API not available on the current Play Store app
+-          break;
+-        case R_RESPONSE_SERVICE_UNAVAILABLE:
+-          //if (BuildConfig.DEBUG)
+-          Log.d("InstallReferrerState", "SERVICE_UNAVAILABLE");
+-          // Connection could not be established
+-          break;
+-      }
+-    }
+-
+-    public void onInstallReferrerServiceDisconnected() {
+-      // Documentation indicates the InstallReferrer connection will be maintained
+-      // So there is really nothing to do here
+-      //if (BuildConfig.DEBUG)
+-      Log.d("RNInstallReferrerClient", "InstallReferrerService disconnected");
+-    }
+-  }
+-}
