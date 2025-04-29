@@ -56,7 +56,7 @@ If it says `Unknown`, please ask for help in [our support server][support-server
 
 If you want to build Clerotri for web, you'll need:
 
-- [Node](https://nodejs.org/en/) (v18+) and
+- [Node](https://nodejs.org/en/) (22+) and
 - [Yarn Berry](https://yarnpkg.com/getting-started/install).
 
 If you want to build Clerotri for Android, you'll also need:
