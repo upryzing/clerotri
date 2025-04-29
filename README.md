@@ -16,7 +16,7 @@
   </a>
 </div>
 
-**Clerotri** is a Revolt client made with React Native. It is currently available for Android and will be available for web in the future.
+**Clerotri** is an Upryzing and Revolt client made with React Native. It is currently available for Android and will be available for web in the future.
 
 **Please note that Clerotri is currently in beta.** It may contain bugs and incomplete features - use at your own discretion.
 
@@ -33,7 +33,7 @@ We plan on publishing Clerotri to F-Droid in the future.
 
 <!-- You can try Clerotri for web [here](). Note that, as the web version is still under development, some features are only available on Android or may not work as smoothly. You may also see some layout issues. -->
 
-Debug builds are also produced for every commit. These are unoptimised - they're much larger and noticeably slower than the release builds, but you can try out new features early.
+Release builds are also produced for every commit. These may contain bugs, but you can try out new features early.
 
 ### Info about split builds
 
