@@ -32,10 +32,8 @@ jobs:
           echo "CLEROTRI_UPLOAD_KEY_PASSWORD=${{ secrets.KEYSTORE_KEY_PASSWORD }}" >> android/gradle.properties
       - name: Install dependencies and prepare assets
         run: yarn install && npx react-native-asset
-      - name: Bundle the JS
+      - name: Prepare the JS bundle
         run: yarn android-release:bundle
-      - name: Move the assets
-        run: yarn android-release:copy-assets
       - name: Build the app
         run: yarn android-release:apk
       - name: Rename release APKs
