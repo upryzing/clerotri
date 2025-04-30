@@ -82,6 +82,11 @@ android {
         targetSdkVersion rootProject.ext.targetSdkVersion
         versionCode 16
         versionName "0.10.0"
+
+        // disable build-time UUIDs (see https://gitlab.com/IzzyOnDroid/repo/-/wikis/Reproducible-Builds/RB-Hints-for-Developers#no-funny-build-time-generated-ids)
+        externalNativeBuild.cmake {
+          cFlags "-DCMAKE_SHARED_LINKER_FLAGS=-Wl,--build-id=none"
+        }
     }
 
     splits {
