@@ -1,0 +1,1 @@
+add_link_options("-WL,--build-id=none")
