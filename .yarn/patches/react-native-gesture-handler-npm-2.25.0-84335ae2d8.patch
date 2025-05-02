@@ -1,0 +1,19 @@
+diff --git a/android/build.gradle b/android/build.gradle
+index 99475ac7567464fc4a95783f3e16918058539654..f3e80c7bcd37a1576e53ecd02f8eeff638597484 100644
+--- a/android/build.gradle
++++ b/android/build.gradle
+@@ -142,9 +142,13 @@ android {
+                     arguments "-DREACT_NATIVE_DIR=${REACT_NATIVE_DIR}",
+                             "-DREACT_NATIVE_MINOR_VERSION=${REACT_NATIVE_MINOR_VERSION}",
+                             "-DANDROID_STL=c++_shared",
+-                            "-DANDROID_SUPPORT_FLEXIBLE_PAGE_SIZES=ON"
++                            "-DANDROID_SUPPORT_FLEXIBLE_PAGE_SIZES=ON",
++                            "-DCMAKE_SHARED_LINKER_FLAGS=-Wl,--build-id=none"
+                     abiFilters(*reactNativeArchitectures())
+                 }
++                ndkBuild {
++                    arguments "APP_LDFLAGS+=-Wl,--build-id=none"
++                }
+             }
+         }
+     }

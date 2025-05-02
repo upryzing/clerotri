@@ -84,8 +84,13 @@ android {
         versionName "0.10.0"
 
         // disable build-time UUIDs (see https://gitlab.com/IzzyOnDroid/repo/-/wikis/Reproducible-Builds/RB-Hints-for-Developers#no-funny-build-time-generated-ids)
-        externalNativeBuild.cmake {
-          cFlags "-DCMAKE_SHARED_LINKER_FLAGS=-Wl,--build-id=none"
+        externalNativeBuild {
+            cmake {
+                arguments "-DCMAKE_SHARED_LINKER_FLAGS=-Wl,--build-id=none"
+            }
+            ndkBuild {
+                arguments "APP_LDFLAGS+=-Wl,--build-id=none"
+            }
         }
     }
 

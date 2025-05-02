@@ -9282,7 +9282,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"react-native-gesture-handler@npm:^2.25.0":
+"react-native-gesture-handler@npm:2.25.0":
   version: 2.25.0
   resolution: "react-native-gesture-handler@npm:2.25.0"
   dependencies:
@@ -9293,6 +9293,20 @@ __metadata:
     react: "*"
     react-native: "*"
   checksum: 10c0/95eccc67fb07418ef76b84bcee4b29c16865e78afa367ec82d94b08554cfa7337158ab23937b785bd9a732e62c9c815b294a93d1b2c2cbdc7a8a1e7029f2ba35
+  languageName: node
+  linkType: hard
+
+"react-native-gesture-handler@patch:react-native-gesture-handler@npm%3A2.25.0#~/.yarn/patches/react-native-gesture-handler-npm-2.25.0-84335ae2d8.patch":
+  version: 2.25.0
+  resolution: "react-native-gesture-handler@patch:react-native-gesture-handler@npm%3A2.25.0#~/.yarn/patches/react-native-gesture-handler-npm-2.25.0-84335ae2d8.patch::version=2.25.0&hash=e52e1d"
+  dependencies:
+    "@egjs/hammerjs": "npm:^2.0.17"
+    hoist-non-react-statics: "npm:^3.3.0"
+    invariant: "npm:^2.2.4"
+  peerDependencies:
+    react: "*"
+    react-native: "*"
+  checksum: 10c0/a677dc0fa4e3e33584226c5d29fede49a19636cb24293956990a042bd721a10c93d35d90d95050f10b0c6eab1299d1e9060969742a42f27ea0efdb0f9c7395df
   languageName: node
   linkType: hard
 
@@ -9352,7 +9366,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"react-native-reanimated@npm:^3.17.5":
+"react-native-reanimated@npm:3.17.5":
   version: 3.17.5
   resolution: "react-native-reanimated@npm:3.17.5"
   dependencies:
@@ -9373,6 +9387,30 @@ __metadata:
     react: "*"
     react-native: "*"
   checksum: 10c0/22788541546cf3e818f0ad9fc9fb1cb53fd7b398d5f49078cd6adf8064957663d97de4e60de9e7894a359d2379685a9dd5d69183c3e13b5e4e78f2d49333921a
+  languageName: node
+  linkType: hard
+
+"react-native-reanimated@patch:react-native-reanimated@npm%3A3.17.5#~/.yarn/patches/react-native-reanimated-npm-3.17.5-134bd4e99e.patch":
+  version: 3.17.5
+  resolution: "react-native-reanimated@patch:react-native-reanimated@npm%3A3.17.5#~/.yarn/patches/react-native-reanimated-npm-3.17.5-134bd4e99e.patch::version=3.17.5&hash=5bdcc6"
+  dependencies:
+    "@babel/plugin-transform-arrow-functions": "npm:^7.0.0-0"
+    "@babel/plugin-transform-class-properties": "npm:^7.0.0-0"
+    "@babel/plugin-transform-classes": "npm:^7.0.0-0"
+    "@babel/plugin-transform-nullish-coalescing-operator": "npm:^7.0.0-0"
+    "@babel/plugin-transform-optional-chaining": "npm:^7.0.0-0"
+    "@babel/plugin-transform-shorthand-properties": "npm:^7.0.0-0"
+    "@babel/plugin-transform-template-literals": "npm:^7.0.0-0"
+    "@babel/plugin-transform-unicode-regex": "npm:^7.0.0-0"
+    "@babel/preset-typescript": "npm:^7.16.7"
+    convert-source-map: "npm:^2.0.0"
+    invariant: "npm:^2.2.4"
+    react-native-is-edge-to-edge: "npm:1.1.7"
+  peerDependencies:
+    "@babel/core": ^7.0.0-0
+    react: "*"
+    react-native: "*"
+  checksum: 10c0/a1e2a3f5929f2bcb0430e4e23742e2f73ef2559bd8c9221230e4579291e77c27698e046e928a6cff9b310c6e337aa4f0892b6e178050b80620b1885ac07bfc8d
   languageName: node
   linkType: hard
 
@@ -9969,11 +10007,11 @@ __metadata:
     react-native: "npm:^0.79.1"
     react-native-device-info: "patch:react-native-device-info@npm%3A14.0.4#~/.yarn/patches/react-native-device-info-npm-14.0.4-9bb10f6c3d.patch"
     react-native-drawer-layout: "npm:^4.1.6"
-    react-native-gesture-handler: "npm:^2.25.0"
+    react-native-gesture-handler: "patch:react-native-gesture-handler@npm%3A2.25.0#~/.yarn/patches/react-native-gesture-handler-npm-2.25.0-84335ae2d8.patch"
     react-native-get-random-values: "npm:^1.11.0"
     react-native-keyboard-controller: "npm:^1.17.1"
     react-native-mmkv: "npm:^3.2.0"
-    react-native-reanimated: "npm:^3.17.5"
+    react-native-reanimated: "patch:react-native-reanimated@npm%3A3.17.5#~/.yarn/patches/react-native-reanimated-npm-3.17.5-134bd4e99e.patch"
     react-native-reanimated-image-viewer: "npm:^1.0.2"
     react-native-safe-area-context: "npm:^5.4.0"
     react-native-svg: "npm:^15.11.2"
