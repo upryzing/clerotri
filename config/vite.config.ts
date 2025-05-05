@@ -21,6 +21,9 @@ export default defineConfig({
         dir: 'dist/web',
       },
     },
+    commonjsOptions: {
+      transformMixedEsModules: true,
+    },
   },
   optimizeDeps: {
     esbuildOptions: {
@@ -28,5 +31,7 @@ export default defineConfig({
       jsx: 'automatic',
     },
   },
-  server: {allowedHosts: ['local.revolt.chat']},
+  server: {
+    allowedHosts: ['local.revolt.chat'],
+  },
 });
