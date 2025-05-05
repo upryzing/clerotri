@@ -54,42 +54,7 @@ If it says `Unknown`, please ask for help in [our support server][support-server
 
 ## Building
 
-If you want to build Clerotri for web, you'll need:
-
-- [Node](https://nodejs.org/en/) (22+) and
-- [Yarn Berry](https://yarnpkg.com/getting-started/install).
-
-If you want to build Clerotri for Android, you'll also need:
-
-- JDK 17 ([Microsoft's build](https://learn.microsoft.com/en-gb/java/openjdk/download) works well) and
-- the latest Android SDK (preferably via [Android Studio](https://developer.android.com/studio)'s SDK Manager).
-
-Then run the following:
-
-```sh
-yarn install
-npx react-native-asset
-
-# for web:
-yarn web
-
-# for android:
-yarn android
-yarn start # if metro doesn't start
-```
-
-CLI commands:
-
-| Command        | Description                               |
-| -------------- | ----------------------------------------- |
-| `yarn start`   | Starts Metro (the dev server).            |
-| `yarn test`    | Tests to see if everything is working.    |
-| `yarn web`     | Runs the web app.                         |
-| `yarn android` | Runs the Android app.                     |
-| `yarn ios`     | Runs the iOS app (broken/requires a Mac). |
-| `yarn lint`    | Checks the code syntax using ESLint.      |
-
-For more information, see a list of `react-native`'s commands [here](https://github.com/react-native-community/cli/blob/master/docs/commands.md). You can access them by running `yarn react-native`.
+See [the building guide][building].
 
 ## Troubleshooting
 
@@ -102,3 +67,4 @@ If you're still experiencing issues, and there aren't any open issues for the bu
 Clerotri is licensed under the [GNU Affero General Public License v3.0](https://github.com/upryzing/clerotri/blob/main/LICENSE).
 
 [support-server]: https://rvlt.gg/clerotri
+[building]: ./docs/dev/building.md
