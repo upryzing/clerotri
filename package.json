@@ -17,6 +17,7 @@
     "start": "react-native rnx-start",
     "test": "jest",
     "lint": "eslint .",
+    "format": "prettier -w src/ docs/ i18n/*.ts scripts/ *.md",
     "license-list": "yarn licenses list --production --json --recursive > assets/data/licenses.json && node scripts/licenseListProcessor.mjs -silent",
     "metadata": "node scripts/metadataGenerator.mjs",
     "prebuild": "yarn metadata && yarn license-list -prod",
