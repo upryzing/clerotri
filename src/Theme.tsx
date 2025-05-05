@@ -2,7 +2,7 @@ import {StyleSheet} from 'react-native';
 
 import {commonValues} from '@clerotri/lib/themes';
 
-export var styles = StyleSheet.create({
+export const styles = StyleSheet.create({
   loadingScreen: {
     flex: 1,
     alignItems: 'center',

@@ -116,12 +116,12 @@ const generateDefaultStyles = (currentTheme: Theme) => {
     blockquote: {
       marginLeft: 0,
       marginBottom: commonValues.sizes.xs,
-      borderLeftWidth: 4,
+      borderLeftWidth: commonValues.sizes.small,
       borderColor: currentTheme.foregroundPrimary,
       borderRadius: commonValues.sizes.small,
       backgroundColor: currentTheme.blockQuoteBackground,
-      paddingHorizontal: 8,
-      paddingVertical: 4,
+      paddingHorizontal: commonValues.sizes.medium,
+      paddingVertical: commonValues.sizes.small,
     },
     spoiler: {
       marginBlock: 0,
