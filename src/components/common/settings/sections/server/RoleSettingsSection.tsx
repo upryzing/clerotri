@@ -11,6 +11,7 @@ import ColourPicker, {
   OpacitySlider,
   Panel1,
 } from 'reanimated-color-picker';
+import {useSafeAreaInsets} from 'react-native-safe-area-context';
 
 import {Permission, type API, type Server} from 'revolt.js';
 
@@ -90,6 +91,8 @@ const RoleSettings = observer(
     roleID: string;
     setSection: Function;
   }) => {
+    const insets = useSafeAreaInsets();
+
     const {currentTheme} = useContext(ThemeContext);
 
     const {t} = useTranslation();
@@ -301,11 +304,14 @@ const RoleSettings = observer(
         <Modal
           visible={showColourPicker}
           animationType="slide"
+          statusBarTranslucent
+          navigationBarTranslucent
           onRequestClose={() => setShowColourPicker(false)}>
           <View
             style={{
               flex: 1,
               padding: commonValues.sizes.large,
+              paddingBlockStart: insets.top + commonValues.sizes.large,
               backgroundColor: currentTheme.backgroundPrimary,
             }}>
             <BackButton

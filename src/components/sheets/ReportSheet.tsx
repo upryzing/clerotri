@@ -89,7 +89,7 @@ async function sendReport(
 const generateLocalStyles = (currentTheme: Theme) => {
   return StyleSheet.create({
     input: {
-      backgroundColor: currentTheme.buttonBackground,
+      backgroundColor: currentTheme.backgroundPrimary,
       marginBlock: commonValues.sizes.small,
       padding: commonValues.sizes.large,
     },
@@ -361,6 +361,7 @@ function ContextProvider({
           setStatus(await sendReport(reportedObject, reason, additionalContext))
         }
         style={{
+          backgroundColor: currentTheme.backgroundPrimary,
           marginInline: 0,
           marginBlock: commonValues.sizes.small,
         }}>
