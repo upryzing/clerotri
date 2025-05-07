@@ -59,7 +59,9 @@ const SideMenu = () => {
           style={localStyles.serverList}
           contentContainerStyle={
             Platform.OS !== 'web' && {paddingTop: insets.top}
-          }>
+          }
+          showsHorizontalScrollIndicator={false}
+          showsVerticalScrollIndicator={false}>
           <Pressable
             onPress={() => {
               currentServer ? setCurrentServer(null) : app.openStatusMenu(true);
