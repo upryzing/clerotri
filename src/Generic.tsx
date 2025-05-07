@@ -30,7 +30,7 @@ export const settings = {
       console.log(`[SETTINGS] Setting ${k} does not exist; func = _fetch`);
       return null;
     }
-    return s as Setting;
+    return s;
   },
   getRaw: (k: string) => {
     const setting = settings._fetch(k);
