@@ -1,125 +1,18 @@
-import {type RefObject, useContext, useEffect, useRef, useState} from 'react';
+import {useContext, useEffect, useRef, useState} from 'react';
 
-import type {API, ClientboundNotification} from 'revolt.js';
+import type {ClientboundNotification} from 'revolt.js';
 
-import {app, randomizeRemark, setFunction, settings} from '@clerotri/Generic';
+import {app, randomizeRemark, setFunction} from '@clerotri/Generic';
+import {LoggedInViews} from '@clerotri/LoggedInViews';
 import {client} from '@clerotri/lib/client';
-import {Modals} from '@clerotri/Modals';
-import {SideMenuHandler} from '@clerotri/SideMenu';
-import {NetworkIndicator} from '@clerotri/components/NetworkIndicator';
-import {Notification} from '@clerotri/components/Notification';
 import {LoadingScreen} from '@clerotri/components/views/LoadingScreen';
 import {loginWithSavedToken} from '@clerotri/lib/auth';
-import {
-  createChannel,
-  handleMessageNotification,
-  setUpNotifeeListener,
-} from '@clerotri/lib/notifications';
-import {ChannelContext, OrderedServersContext} from '@clerotri/lib/state';
+import {createChannel, setUpNotifeeListener} from '@clerotri/lib/notifications';
+import {OrderedServersContext} from '@clerotri/lib/state';
 import {storage} from '@clerotri/lib/storage';
 import {ThemeContext} from '@clerotri/lib/themes';
-import {CVChannel} from '@clerotri/lib/types';
-import {checkLastVersion, openLastChannel} from '@clerotri/lib/utils';
+import {checkLastVersion} from '@clerotri/lib/utils';
 import {LoginViews} from '@clerotri/pages/LoginViews';
-
-function LoggedInViews({
-  channelNotificationSettings,
-  serverNotificationSettings,
-}: {
-  channelNotificationSettings: RefObject<any>;
-  serverNotificationSettings: RefObject<any>;
-}) {
-  const [currentChannel, setCurrentChannel] = useState<CVChannel>(null);
-
-  setFunction('openChannel', (c: CVChannel) => {
-    setCurrentChannel(c);
-  });
-
-  setFunction('getCurrentChannel', () => {
-    return currentChannel;
-  });
-
-  const [notificationMessage, setNotificationMessage] =
-    useState<API.Message | null>(null);
-
-  useEffect(() => {
-    if (settings.get('app.reopenLastChannel')) {
-      openLastChannel();
-    }
-  }, []);
-
-  useEffect(() => {
-    if (currentChannel) {
-      const lastOpenedChannels = storage.getString('lastOpenedChannels');
-      try {
-        let parsedData = JSON.parse(lastOpenedChannels || '{}') || {};
-        parsedData[
-          typeof currentChannel === 'string' || !currentChannel.server
-            ? 'DirectMessage'
-            : currentChannel.server._id
-        ] =
-          typeof currentChannel === 'string'
-            ? currentChannel
-            : currentChannel._id;
-        console.log(parsedData);
-        storage.set('lastOpenedChannels', JSON.stringify(parsedData));
-      } catch (err) {
-        console.log(`[APP] Error getting last channel: ${err}`);
-      }
-    }
-  }, [currentChannel]);
-
-  useEffect(() => {
-    console.log('[APP] Setting up packet listener...');
-
-    async function onMessagePacket(msg: API.Message) {
-      await handleMessageNotification(
-        msg,
-        channelNotificationSettings.current,
-        serverNotificationSettings.current,
-        setNotificationMessage,
-        'clerotri',
-      );
-    }
-
-    async function onNewPacket(p: ClientboundNotification) {
-      if (p.type === 'Message') {
-        await onMessagePacket(p);
-      }
-    }
-
-    function setUpPacketListener() {
-      client.on('packet', onNewPacket);
-    }
-
-    function cleanupPacketListener() {
-      client.removeListener('packet', onNewPacket);
-    }
-
-    try {
-      setUpPacketListener();
-    } catch (err) {
-      console.log(`[LOGGEDINVIEWS] Error setting up global listeners: ${err}`);
-    }
-
-    return () => cleanupPacketListener();
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
-
-  return (
-    <ChannelContext.Provider value={{currentChannel, setCurrentChannel}}>
-      <SideMenuHandler />
-      <Modals />
-      <NetworkIndicator client={client} />
-      {notificationMessage && (
-        <Notification
-          message={notificationMessage}
-          dismiss={() => setNotificationMessage(null)}
-        />
-      )}
-    </ChannelContext.Provider>
-  );
-}
 
 export function MainView() {
   const {currentTheme} = useContext(ThemeContext);
