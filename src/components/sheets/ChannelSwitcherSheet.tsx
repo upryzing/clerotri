@@ -42,8 +42,6 @@ const SwitcherChannelButton = observer(
 
     const channelCategory = getChannelCategory(channel);
 
-    console.log(channelCategory?.title);
-
     return (
       <>
         <Pressable
