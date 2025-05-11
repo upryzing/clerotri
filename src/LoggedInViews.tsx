@@ -2,7 +2,7 @@ import {type RefObject, useEffect, useState} from 'react';
 
 import type {API, ClientboundNotification} from 'revolt.js';
 
-import {setFunction, settings} from '@clerotri/Generic';
+import {app, setFunction, settings} from '@clerotri/Generic';
 import {client} from '@clerotri/lib/client';
 import {Modals} from '@clerotri/Modals';
 import {SideMenuHandler} from '@clerotri/SideMenu';
@@ -62,7 +62,7 @@ export function LoggedInViews({
   }, [currentChannel]);
 
   useEffect(() => {
-    console.log('[APP] Setting up packet listener...');
+    console.log('[APP] Setting up packet listeners...');
 
     async function onMessagePacket(msg: API.Message) {
       await handleMessageNotification(
@@ -80,21 +80,31 @@ export function LoggedInViews({
       }
     }
 
-    function setUpPacketListener() {
-      client.on('packet', onNewPacket);
+    function handleServerDeletion(server: string) {
+      const currentServer = app.getCurrentServer();
+      if (currentServer === server) {
+        app.openServer(undefined);
+        app.openChannel(null);
+      }
     }
 
-    function cleanupPacketListener() {
+    function setUpPacketListeners() {
+      client.on('packet', onNewPacket);
+      client.on('server/delete', handleServerDeletion);
+    }
+
+    function cleanupPacketListeners() {
       client.removeListener('packet', onNewPacket);
+      client.removeListener('server/delete', handleServerDeletion);
     }
 
     try {
-      setUpPacketListener();
+      setUpPacketListeners();
     } catch (err) {
       console.log(`[LOGGEDINVIEWS] Error setting up global listeners: ${err}`);
     }
 
-    return () => cleanupPacketListener();
+    return () => cleanupPacketListeners();
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 

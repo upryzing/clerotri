@@ -104,13 +104,6 @@ export function MainView() {
         console.log(`[APP] Error fetching settings: ${err}`);
       }
     }
-    function handleServerDeletion(server: string) {
-      const currentServer = app.getCurrentServer();
-      if (currentServer === server) {
-        app.openServer(undefined);
-        app.openChannel(null);
-      }
-    }
 
     function onNewPacket(p: ClientboundNotification) {
       if (p.type === 'UserSettingsUpdate') {
@@ -123,7 +116,6 @@ export function MainView() {
       client.on('connected', handleConnectedEvent);
       client.on('ready', handleReadyEvent);
       client.on('packet', onNewPacket);
-      client.on('server/delete', handleServerDeletion);
     }
 
     function cleanupListeners() {
@@ -131,7 +123,6 @@ export function MainView() {
       client.removeListener('connected', handleConnectedEvent);
       client.removeListener('ready', handleReadyEvent);
       client.removeListener('packet', onNewPacket);
-      client.removeListener('server/delete', handleServerDeletion);
     }
 
     try {
