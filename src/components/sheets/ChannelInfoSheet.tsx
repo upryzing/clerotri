@@ -1,53 +1,31 @@
-import {useContext, useEffect, useRef, useState} from 'react';
+import {useContext, useEffect, useState} from 'react';
 import {View} from 'react-native';
 import {observer} from 'mobx-react-lite';
 
-import type BottomSheetCore from '@gorhom/bottom-sheet';
-
 import type {Channel, User} from 'revolt.js';
 
-import {setFunction} from '@clerotri/Generic';
 import {Text} from '@clerotri/components/common/atoms';
-import {BottomSheet} from '@clerotri/components/common/BottomSheet';
 import {MarkdownView} from '@clerotri/components/common/MarkdownView';
 import {commonValues, ThemeContext} from '@clerotri/lib/themes';
-import {useBackHandler} from '@clerotri/lib/ui';
 
-export const ChannelInfoSheet = observer(() => {
-  const {currentTheme} = useContext(ThemeContext);
+export const ChannelInfoSheet = observer(
+  ({channel}: {channel: Channel | null}) => {
+    const {currentTheme} = useContext(ThemeContext);
 
-  const [channel, setChannel] = useState(null as Channel | null);
-  const [groupMembers, setGroupMembers] = useState([] as User[]);
+    const [groupMembers, setGroupMembers] = useState([] as User[]);
 
-  const sheetRef = useRef<BottomSheetCore>(null);
-
-  useBackHandler(() => {
-    if (channel) {
-      sheetRef.current?.close();
-      return true;
-    }
-
-    return false;
-  });
-
-  setFunction('openChannelInfoMenu', (c: Channel | null) => {
-    setChannel(c);
-    c ? sheetRef.current?.expand() : sheetRef.current?.close();
-  });
-
-  useEffect(() => {
-    async function fetchMembers() {
-      if (!channel) {
-        return;
+    useEffect(() => {
+      async function fetchMembers() {
+        if (!channel) {
+          return;
+        }
+        const m =
+          channel.channel_type === 'Group' ? await channel.fetchMembers() : [];
+        setGroupMembers(m);
       }
-      const m =
-        channel.channel_type === 'Group' ? await channel.fetchMembers() : [];
-      setGroupMembers(m);
-    }
-    fetchMembers();
-  }, [channel]);
-  return (
-    <BottomSheet sheetRef={sheetRef}>
+      fetchMembers();
+    }, [channel]);
+    return (
       <View style={{paddingHorizontal: commonValues.sizes.xl}}>
         {!channel ? (
           <></>
@@ -87,6 +65,6 @@ export const ChannelInfoSheet = observer(() => {
           </>
         )}
       </View>
-    </BottomSheet>
-  );
-});
+    );
+  },
+);

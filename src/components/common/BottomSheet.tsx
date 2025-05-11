@@ -10,7 +10,15 @@ import {observer} from 'mobx-react-lite';
 import {commonValues, Theme, ThemeContext} from '@clerotri/lib/themes';
 
 export const BottomSheet = observer(
-  ({sheetRef, children}: {sheetRef: any; children: any}) => {
+  ({
+    sheetRef,
+    children,
+    onChange,
+  }: {
+    sheetRef: any;
+    children: any;
+    onChange?: any;
+  }) => {
     const {currentTheme} = useContext(ThemeContext);
     const localStyles = useMemo(
       () => generateLocalStyles(currentTheme),
@@ -28,7 +36,8 @@ export const BottomSheet = observer(
         backdropComponent={BottomSheetBackdrop}
         style={localStyles.sheet}
         backgroundStyle={localStyles.sheetBackground}
-        handleIndicatorStyle={localStyles.handleIndicator}>
+        handleIndicatorStyle={localStyles.handleIndicator}
+        onChange={onChange}>
         <BottomSheetScrollView>{children}</BottomSheetScrollView>
       </BottomSheetCore>
     );

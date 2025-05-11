@@ -1,16 +1,15 @@
-import {useContext, useMemo, useRef, useState} from 'react';
+import {useContext, useMemo, useState} from 'react';
 import {StyleSheet, useWindowDimensions, View} from 'react-native';
 import {useTranslation} from 'react-i18next';
 import {observer} from 'mobx-react-lite';
 
-import type BottomSheetCore from '@gorhom/bottom-sheet';
 import MaterialIcon from '@react-native-vector-icons/material-icons';
 import {ScrollView} from 'react-native-gesture-handler';
 import {useSafeAreaInsets} from 'react-native-safe-area-context';
 
 import type {Message, User} from 'revolt.js';
 
-import {app, setFunction} from '@clerotri/Generic';
+import {app} from '@clerotri/Generic';
 import {client} from '@clerotri/lib/client';
 import {
   Avatar,
@@ -20,7 +19,6 @@ import {
   Text,
   Username,
 } from '@clerotri/components/common/atoms';
-import {BottomSheet} from '@clerotri/components/common/BottomSheet';
 import {MarkdownView} from '@clerotri/components/common/MarkdownView';
 import {OFFICIAL_INSTANCE_API_URLS, USER_IDS} from '@clerotri/lib/consts';
 import {commonValues, Theme, ThemeContext} from '@clerotri/lib/themes';
@@ -434,40 +432,27 @@ const MessageDetails = observer(({msg}: {msg: Message}) => {
   );
 });
 
-export const ReportSheet = observer(() => {
-  const [obj, setObj] = useState(null as ReportedObject | null);
-  const [reason, setReason] = useState('');
-  const [status, setStatus] = useState({} as Status);
+export const ReportSheet = observer(
+  ({object}: {object: ReportedObject | null}) => {
+    const [reason, setReason] = useState('');
+    const [status, setStatus] = useState({} as Status);
 
-  const sheetRef = useRef<BottomSheetCore>(null);
+    useBackHandler(() => {
+      if (reason) {
+        setReason('');
+        return true;
+      }
 
-  useBackHandler(() => {
-    if (reason) {
-      setReason('');
-      return true;
-    }
+      return false;
+    });
 
-    if (obj) {
-      sheetRef.current?.close();
-      return true;
-    }
+    const insets = useSafeAreaInsets();
 
-    return false;
-  });
+    const {t} = useTranslation();
 
-  setFunction('openReportMenu', (o: ReportedObject | null) => {
-    setObj(o);
-    o ? sheetRef.current?.expand() : sheetRef.current?.close();
-  });
-
-  const insets = useSafeAreaInsets();
-
-  const {t} = useTranslation();
-
-  return (
-    <BottomSheet sheetRef={sheetRef}>
+    return (
       <View style={{paddingHorizontal: 16, paddingBottom: insets.bottom}}>
-        {obj && (
+        {object && (
           <>
             {reason && status.status !== 'success' && (
               <BackButton
@@ -477,26 +462,28 @@ export const ReportSheet = observer(() => {
             )}
             <Text type={'h1'}>
               {t(
-                `app.sheets.report.${status.status !== 'success' ? `report_${obj.type.toLowerCase()}` : 'success_header'}`,
+                `app.sheets.report.${status.status !== 'success' ? `report_${object.type.toLowerCase()}` : 'success_header'}`,
               )}
             </Text>
-            {obj.type === 'Message' && <MessageDetails msg={obj.object} />}
+            {object.type === 'Message' && (
+              <MessageDetails msg={object.object} />
+            )}
             {!reason && (
-              <ReasonsSelector reportedObject={obj} setReason={setReason} />
+              <ReasonsSelector reportedObject={object} setReason={setReason} />
             )}
             {reason && !status.status && (
               <ContextProvider
-                reportedObject={obj}
+                reportedObject={object}
                 reason={reason}
                 setStatus={setStatus}
               />
             )}
             {status.status === 'success' && (
-              <SuccessScreen reportedObject={obj} />
+              <SuccessScreen reportedObject={object} />
             )}
           </>
         )}
       </View>
-    </BottomSheet>
-  );
-});
+    );
+  },
+);

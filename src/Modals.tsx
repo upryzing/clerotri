@@ -1,16 +1,20 @@
-import {useState} from 'react';
+import {useCallback, useRef, useState} from 'react';
 import {Modal, type ModalProps, Platform, StyleSheet, View} from 'react-native';
 import {observer} from 'mobx-react-lite';
 
-import type {API, Channel, Server, User} from 'revolt.js';
+import type BottomSheetCore from '@gorhom/bottom-sheet';
+
+import type {API, Channel, Message, Server, User} from 'revolt.js';
 
 import {app, setFunction} from '@clerotri/Generic';
-import {client} from './lib/client';
+import {client} from '@clerotri/lib/client';
 import {
   CreateChannelModalProps,
   DeletableObject,
+  ReportedObject,
   TextEditingModalProps,
 } from '@clerotri/lib/types';
+import {BottomSheet} from '@clerotri/components/common/BottomSheet';
 import {ImageViewer} from '@clerotri/components/ImageViewer';
 import {
   ConfirmDeletionModal,
@@ -34,6 +38,8 @@ import {
   SettingsSheet,
   StatusSheet,
 } from '@clerotri/components/sheets';
+import {useBackHandler} from '@react-native-community/hooks';
+import {sleep} from './lib/utils';
 
 // Modals appear to break on the new architecture unless you wrap them in a View. see also https://github.com/react-navigation/react-navigation/issues/12301#issuecomment-2501692557
 const FixedModal = observer((props: ModalProps) => {
@@ -45,19 +51,135 @@ const FixedModal = observer((props: ModalProps) => {
 });
 
 const BottomSheets = observer(() => {
+  const sheetRef = useRef<BottomSheetCore>(null);
+
+  const [sheetState, setSheetState] = useState(-1);
+
+  const [currentSheet, setCurrentSheet] = useState<string | null>(null);
+
+  const [profileMenuUser, setProfileMenuUser] = useState<User | null>(null);
+  const [profileMenuServer, setProfileMenuServer] = useState<Server | null>(
+    null,
+  );
+  const [reportMenuObject, setReportMenuObject] =
+    useState<ReportedObject | null>(null);
+  const [channelMenuChannel, setChannelMenuChannel] = useState<Channel | null>(
+    null,
+  );
+  const [channelInfoChannel, setChannelInfoChannel] = useState<Channel | null>(
+    null,
+  );
+  const [serverInfoServer, setServerInfoServer] = useState<Server | null>(null);
+  const [pinnedMessagesChannel, setPinnedMessagesChannel] =
+    useState<Channel | null>(null);
+  const [memberListContext, setMemberListContext] = useState<
+    Channel | Server | null
+  >(null);
+  const [messageMenuMessage, setMessageMenuMessage] = useState<Message | null>(
+    null,
+  );
+
+  const openOrCloseSheet = useCallback(
+    (newState: boolean, sheetName: string) => {
+      if (newState && sheetState !== -1) {
+        sheetRef.current?.close();
+        sleep(250).then(() => {
+          setCurrentSheet(newState ? sheetName : null);
+          sheetRef.current?.expand();
+        });
+        return;
+      }
+
+      setCurrentSheet(newState ? sheetName : null);
+      newState ? sheetRef.current?.expand() : sheetRef.current?.close();
+    },
+    [sheetState],
+  );
+
+  const handleSheetIndexChange = useCallback((index: number) => {
+    setSheetState(index);
+    if (index === -1) {
+      setCurrentSheet(null);
+    }
+  }, []);
+
+  useBackHandler(() => {
+    if (sheetState !== -1) {
+      sheetRef.current?.close();
+      setCurrentSheet(null);
+      return true;
+    }
+
+    return false;
+  });
+
+  setFunction('openStatusMenu', (show: boolean) => {
+    openOrCloseSheet(show, 'statusMenu');
+  });
+
+  setFunction('openProfile', (u?: User | null, s?: Server | null) => {
+    setProfileMenuUser(u === undefined ? null : u);
+    setProfileMenuServer(s === undefined ? null : s);
+    openOrCloseSheet(!!u, 'profileMenu');
+  });
+
+  setFunction('openReportMenu', (o: ReportedObject | null) => {
+    setReportMenuObject(o);
+    openOrCloseSheet(!!o, 'reportMenu');
+  });
+
+  setFunction('openChannelContextMenu', (c: Channel | null) => {
+    setChannelMenuChannel(c);
+    openOrCloseSheet(!!c, 'channelMenu');
+  });
+
+  setFunction('openChannelInfoMenu', (c: Channel | null) => {
+    setChannelInfoChannel(c);
+    openOrCloseSheet(!!c, 'channelInfo');
+  });
+
+  setFunction('openServerContextMenu', (s: Server | null) => {
+    setServerInfoServer(s);
+    openOrCloseSheet(!!s, 'serverInfo');
+  });
+
+  setFunction('openPinnedMessagesMenu', (c: Channel | null) => {
+    setPinnedMessagesChannel(c);
+    openOrCloseSheet(!!c, 'pinnedMessages');
+  });
+
+  setFunction('openMemberList', (ctx: Channel | Server | null) => {
+    setMemberListContext(ctx);
+    openOrCloseSheet(!!ctx, 'memberList');
+  });
+
+  setFunction('openMessage', (m: Message | null) => {
+    setMessageMenuMessage(m);
+    openOrCloseSheet(!!m, 'messageMenu');
+  });
+
   return (
-    <>
-      <MessageMenuSheet />
-      <ChannelMenuSheet />
-      <StatusSheet />
-      <ProfileSheet />
-      <ReportSheet />
-      <ChannelInfoSheet />
-      <MemberListSheet />
-      <ChannelSwitcherSheet />
-      <PinnedMessagesSheet />
-      <ServerInfoSheet />
-    </>
+    <BottomSheet sheetRef={sheetRef} onChange={handleSheetIndexChange}>
+      {currentSheet === 'statusMenu' ? (
+        <StatusSheet />
+      ) : currentSheet === 'profileMenu' ? (
+        <ProfileSheet user={profileMenuUser} server={profileMenuServer} />
+      ) : currentSheet === 'reportMenu' ? (
+        <ReportSheet object={reportMenuObject} />
+      ) : currentSheet === 'channelMenu' ? (
+        <ChannelMenuSheet channel={channelMenuChannel} />
+      ) : currentSheet === 'channelInfo' ? (
+        <ChannelInfoSheet channel={channelInfoChannel} />
+      ) : currentSheet === 'serverInfo' ? (
+        <ServerInfoSheet server={serverInfoServer} />
+      ) : currentSheet === 'pinnedMessages' ? (
+        <PinnedMessagesSheet channel={pinnedMessagesChannel} />
+      ) : currentSheet === 'memberList' ? (
+        <MemberListSheet context={memberListContext} />
+      ) : currentSheet === 'messageMenu' ? (
+        <MessageMenuSheet message={messageMenuMessage} />
+      ) : null}
+    </BottomSheet>
   );
 });
 
@@ -267,7 +389,13 @@ const OtherModals = observer(() => {
 export const Modals = observer(() => {
   return (
     <>
-      {Platform.OS !== 'web' && <BottomSheets />}
+      {Platform.OS !== 'web' && (
+        <>
+          <BottomSheets />
+          {/* this one breaks when trying to move it to the new bottom sheet component (swiping back doesn't work properly unless you select another server or enter text for some reason???) */}
+          <ChannelSwitcherSheet />
+        </>
+      )}
       <FloatingModals />
       <OtherModals />
     </>

@@ -1,47 +1,26 @@
-import {useContext, useRef, useState} from 'react';
+import {useContext} from 'react';
 import {View} from 'react-native';
 import {observer} from 'mobx-react-lite';
 
-import type BottomSheetCore from '@gorhom/bottom-sheet';
 import Clipboard from '@react-native-clipboard/clipboard';
 import MaterialIcon from '@react-native-vector-icons/material-icons';
 
 import type {Channel} from 'revolt.js';
 
-import {app, setFunction, settings} from '@clerotri/Generic';
+import {app, settings} from '@clerotri/Generic';
 import {styles} from '@clerotri/Theme';
 import {
   ContextButton,
   CopyIDButton,
   Text,
 } from '@clerotri/components/common/atoms';
-import {BottomSheet} from '@clerotri/components/common/BottomSheet';
 import {commonValues, ThemeContext} from '@clerotri/lib/themes';
-import {useBackHandler} from '@clerotri/lib/ui';
 
-export const ChannelMenuSheet = observer(() => {
-  const {currentTheme} = useContext(ThemeContext);
+export const ChannelMenuSheet = observer(
+  ({channel}: {channel: Channel | null}) => {
+    const {currentTheme} = useContext(ThemeContext);
 
-  const [channel, setChannel] = useState(null as Channel | null);
-
-  const sheetRef = useRef<BottomSheetCore>(null);
-
-  useBackHandler(() => {
-    if (channel) {
-      sheetRef.current?.close();
-      return true;
-    }
-
-    return false;
-  });
-
-  setFunction('openChannelContextMenu', (c: Channel | null) => {
-    setChannel(c);
-    c ? sheetRef.current?.expand() : sheetRef.current?.close();
-  });
-
-  return (
-    <BottomSheet sheetRef={sheetRef}>
+    return (
       <View style={{paddingHorizontal: 16}}>
         {!channel ? (
           <></>
@@ -123,6 +102,6 @@ export const ChannelMenuSheet = observer(() => {
           </>
         )}
       </View>
-    </BottomSheet>
-  );
-});
+    );
+  },
+);

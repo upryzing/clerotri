@@ -1,54 +1,31 @@
-import {useContext, useEffect, useRef, useState} from 'react';
+import {useContext, useEffect, useState} from 'react';
 import {View} from 'react-native';
 import {observer} from 'mobx-react-lite';
 
-import type BottomSheetCore from '@gorhom/bottom-sheet';
-
 import type {Channel, Message as RevoltMessage} from 'revolt.js';
 
-import {setFunction} from '@clerotri/Generic';
 import {Text} from '@clerotri/components/common/atoms';
-import {BottomSheet} from '@clerotri/components/common/BottomSheet';
 import {Message} from '@clerotri/components/common/messaging';
 import {commonValues, ThemeContext} from '@clerotri/lib/themes';
-import {useBackHandler} from '@clerotri/lib/ui';
 
-export const PinnedMessagesSheet = observer(() => {
-  const {currentTheme} = useContext(ThemeContext);
+export const PinnedMessagesSheet = observer(
+  ({channel}: {channel: Channel | null}) => {
+    const {currentTheme} = useContext(ThemeContext);
 
-  const [channel, setChannel] = useState(null as Channel | null);
-  const [pinnedMessages, setPinnedMessages] = useState([] as RevoltMessage[]);
+    const [pinnedMessages, setPinnedMessages] = useState([] as RevoltMessage[]);
 
-  const sheetRef = useRef<BottomSheetCore>(null);
-
-  useBackHandler(() => {
-    if (channel) {
-      sheetRef.current?.close();
-      setChannel(null);
-      return true;
-    }
-
-    return false;
-  });
-
-  setFunction('openPinnedMessagesMenu', (c: Channel | null) => {
-    setChannel(c);
-    c ? sheetRef.current?.expand() : sheetRef.current?.close();
-  });
-
-  useEffect(() => {
-    async function fetchMessages() {
-      if (!channel) {
-        return;
+    useEffect(() => {
+      async function fetchMessages() {
+        if (!channel) {
+          return;
+        }
+        const m = await channel.search({pinned: true});
+        setPinnedMessages(m);
       }
-      const m = await channel.search({pinned: true});
-      setPinnedMessages(m);
-    }
-    fetchMessages();
-  }, [channel]);
+      fetchMessages();
+    }, [channel]);
 
-  return (
-    <BottomSheet sheetRef={sheetRef}>
+    return (
       <View style={{paddingHorizontal: commonValues.sizes.xl}}>
         {!channel ? (
           <></>
@@ -90,6 +67,6 @@ export const PinnedMessagesSheet = observer(() => {
           </>
         )}
       </View>
-    </BottomSheet>
-  );
-});
+    );
+  },
+);

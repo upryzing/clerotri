@@ -1,14 +1,13 @@
-import {useContext, useEffect, useRef, useState} from 'react';
+import {useContext, useEffect, useState} from 'react';
 import {Pressable, ScrollView, TouchableOpacity, View} from 'react-native';
 import {observer} from 'mobx-react-lite';
 
-import type BottomSheetCore from '@gorhom/bottom-sheet';
 import MaterialIcon from '@react-native-vector-icons/material-icons';
 import MaterialCommunityIcon from '@react-native-vector-icons/material-design-icons';
 
-import type {User, Server} from 'revolt.js';
+import type {API, Server, User} from 'revolt.js';
 
-import {app, setFunction, settings} from '@clerotri/Generic';
+import {app, settings} from '@clerotri/Generic';
 import {client} from '@clerotri/lib/client';
 import {styles} from '@clerotri/Theme';
 import {
@@ -20,7 +19,6 @@ import {
   Text,
   Username,
 } from '@clerotri/components/common/atoms';
-import {BottomSheet} from '@clerotri/components/common/BottomSheet';
 import {MarkdownView} from '@clerotri/components/common/MarkdownView';
 import {
   BadgeView,
@@ -32,85 +30,61 @@ import {commonValues, ThemeContext} from '@clerotri/lib/themes';
 import {useBackHandler} from '@clerotri/lib/ui';
 import {parseRevoltNodes} from '@clerotri/lib/utils';
 
-export const ProfileSheet = observer(() => {
-  const {currentTheme} = useContext(ThemeContext);
+export const ProfileSheet = observer(
+  ({user, server}: {user: User | null; server: Server | null}) => {
+    const {currentTheme} = useContext(ThemeContext);
 
-  const [user, setUser] = useState(null as User | null);
-  const [server, setServer] = useState(null as Server | null);
+    const [section, setSection] = useState('Profile');
+    const [profile, setProfile] = useState<API.UserProfile>({});
+    const [mutual, setMutual] = useState(
+      {} as {users: User[]; servers: Server[]},
+    );
+    const [showMenu, setShowMenu] = useState(false);
 
-  const sheetRef = useRef<BottomSheetCore>(null);
-
-  const [section, setSection] = useState('Profile');
-  const [profile, setProfile] = useState(
-    {} as {content?: string | null | undefined},
-  );
-  const [mutual, setMutual] = useState(
-    {} as {users: User[]; servers: Server[]},
-  );
-  const [showMenu, setShowMenu] = useState(false);
-
-  useBackHandler(() => {
-    if (showMenu) {
-      setShowMenu(false);
-      return true;
-    }
-
-    if (section !== 'Profile') {
-      setSection('Profile');
-      return true;
-    }
-
-    if (user) {
-      sheetRef.current?.close();
-      return true;
-    }
-
-    return false;
-  });
-
-  setFunction('openProfile', (u: User | null, s: Server | null) => {
-    if (u !== user) {
-      setProfile({});
-      setMutual({users: [], servers: []});
-      setSection('Profile');
-      setShowMenu(false);
-      setUser(u);
-    }
-    setServer(s);
-    u ? sheetRef.current?.expand() : sheetRef.current?.close();
-  });
-
-  useEffect(() => {
-    async function getInfo() {
-      if (!user) {
-        return;
-      }
-      const p = await user.fetchProfile();
-      const rawMutuals =
-        user.relationship !== 'User'
-          ? await user.fetchMutual()
-          : {users: [] as string[], servers: [] as string[]};
-
-      const fetchedMutualUsers: User[] = [];
-      for (const u of rawMutuals.users) {
-        fetchedMutualUsers.push(await client.users.fetch(u));
+    useBackHandler(() => {
+      if (showMenu) {
+        setShowMenu(false);
+        return true;
       }
 
-      const fetchedMutualServers: Server[] = [];
-      for (const s of rawMutuals.servers) {
-        fetchedMutualServers.push(await client.servers.fetch(s));
+      if (section !== 'Profile') {
+        setSection('Profile');
+        return true;
       }
 
-      const m = {servers: fetchedMutualServers, users: fetchedMutualUsers};
+      return false;
+    });
 
-      setProfile(p);
-      setMutual(m);
-    }
-    getInfo();
-  }, [user]);
+    useEffect(() => {
+      async function getInfo() {
+        if (!user) {
+          return;
+        }
+        const p = await user.fetchProfile();
+        const rawMutuals =
+          user.relationship !== 'User'
+            ? await user.fetchMutual()
+            : {users: [] as string[], servers: [] as string[]};
 
-  return (
-    <BottomSheet sheetRef={sheetRef}>
+        const fetchedMutualUsers: User[] = [];
+        for (const u of rawMutuals.users) {
+          fetchedMutualUsers.push(await client.users.fetch(u));
+        }
+
+        const fetchedMutualServers: Server[] = [];
+        for (const s of rawMutuals.servers) {
+          fetchedMutualServers.push(await client.servers.fetch(s));
+        }
+
+        const m = {servers: fetchedMutualServers, users: fetchedMutualUsers};
+
+        setProfile(p);
+        setMutual(m);
+      }
+      getInfo();
+    }, [user]);
+
+    return (
       <View style={{paddingHorizontal: 16}}>
         {!user ? (
           <></>
@@ -489,6 +463,6 @@ export const ProfileSheet = observer(() => {
           </>
         )}
       </View>
-    </BottomSheet>
-  );
-});
+    );
+  },
+);

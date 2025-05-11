@@ -1,49 +1,28 @@
-import {useContext, useRef, useState} from 'react';
+import {useContext} from 'react';
 import {View} from 'react-native';
 import {observer} from 'mobx-react-lite';
 
-import type BottomSheetCore from '@gorhom/bottom-sheet';
 import Clipboard from '@react-native-clipboard/clipboard';
 import MaterialCommunityIcon from '@react-native-vector-icons/material-design-icons';
 import MaterialIcon from '@react-native-vector-icons/material-icons';
 
 import type {Message} from 'revolt.js';
 
-import {app, setFunction, settings} from '@clerotri/Generic';
+import {app, settings} from '@clerotri/Generic';
 import {styles} from '@clerotri/Theme';
 import {
   ContextButton,
   CopyIDButton,
   Text,
 } from '@clerotri/components/common/atoms';
-import {BottomSheet} from '@clerotri/components/common/BottomSheet';
 import {ReplyMessage} from '@clerotri/components/common/messaging/ReplyMessage';
 import {commonValues, ThemeContext} from '@clerotri/lib/themes';
-import {useBackHandler} from '@clerotri/lib/ui';
 
-export const MessageMenuSheet = observer(() => {
-  const {currentTheme} = useContext(ThemeContext);
+export const MessageMenuSheet = observer(
+  ({message}: {message: Message | null}) => {
+    const {currentTheme} = useContext(ThemeContext);
 
-  const [message, setMessage] = useState(null as Message | null);
-
-  const sheetRef = useRef<BottomSheetCore>(null);
-
-  useBackHandler(() => {
-    if (message) {
-      sheetRef.current?.close();
-      return true;
-    }
-
-    return false;
-  });
-
-  setFunction('openMessage', (m: Message | null) => {
-    setMessage(m);
-    m ? sheetRef.current?.expand() : sheetRef.current?.close();
-  });
-
-  return (
-    <BottomSheet sheetRef={sheetRef}>
+    return (
       <View style={{paddingHorizontal: 16}}>
         {!message ? (
           <></>
@@ -178,7 +157,6 @@ export const MessageMenuSheet = observer(() => {
               <ContextButton
                 onPress={() => {
                   app.openReportMenu({object: message, type: 'Message'});
-                  app.openMessage(null);
                 }}>
                 <View style={styles.iconContainer}>
                   <MaterialIcon
@@ -194,6 +172,6 @@ export const MessageMenuSheet = observer(() => {
           </>
         )}
       </View>
-    </BottomSheet>
-  );
-});
+    );
+  },
+);
