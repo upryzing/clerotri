@@ -19,7 +19,11 @@ import {API, Channel, Server} from 'revolt.js';
 import {app} from '@clerotri/Generic';
 import {client} from '@clerotri/lib/client';
 import {ChannelButton, Text} from '../common/atoms';
-import {ChannelContext, SideMenuContext} from '@clerotri/lib/state';
+import {
+  ChannelContext,
+  ServerContext,
+  SideMenuContext,
+} from '@clerotri/lib/state';
 import {commonValues, type Theme, ThemeContext} from '@clerotri/lib/themes';
 
 type UserChannelListChannel =
@@ -29,11 +33,7 @@ type UserChannelListChannel =
   | 'Saved Notes'
   | 'Debug';
 
-type ChannelListProps = {
-  currentServer: Server | null;
-};
-
-type ServerChannelListProps = ChannelListProps & {
+type ServerChannelListProps = {
   currentServer: Server;
 };
 
@@ -308,19 +308,21 @@ const UserChannelList = observer(() => {
   );
 });
 
-export const ChannelList = observer((props: ChannelListProps) => {
+export const ChannelList = observer(() => {
   const insets = useSafeAreaInsets();
 
   const {currentTheme} = useContext(ThemeContext);
   const localStyles = generateLocalStyles(currentTheme, insets.top);
 
-  return props.currentServer ? (
+  const {currentServer} = useContext(ServerContext);
+
+  return currentServer ? (
     <ScrollView
       key={'channel-list'}
       style={localStyles.channelList}
       showsVerticalScrollIndicator={false}
       showsHorizontalScrollIndicator={false}>
-      <ServerChannelList currentServer={props.currentServer} />
+      <ServerChannelList currentServer={currentServer} />
     </ScrollView>
   ) : (
     <View key={'channel-list'} style={localStyles.channelList}>

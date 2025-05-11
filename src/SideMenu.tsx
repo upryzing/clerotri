@@ -22,8 +22,11 @@ import {ServerList} from './components/navigation/ServerList';
 import {ChannelView} from './components/views/ChannelView';
 import {client} from '@clerotri/lib/client';
 import {DEFAULT_API_URL} from '@clerotri/lib/consts';
-import {ChannelContext, SideMenuContext} from '@clerotri/lib/state';
-import {storage} from '@clerotri/lib/storage';
+import {
+  ChannelContext,
+  ServerContext,
+  SideMenuContext,
+} from '@clerotri/lib/state';
 import {getInstanceURL} from '@clerotri/lib/storage/utils';
 import {Theme, ThemeContext} from '@clerotri/lib/themes';
 import {useBackHandler} from '@clerotri/lib/ui';
@@ -35,21 +38,7 @@ const SideMenu = () => {
   const localStyles = generateLocalStyles(currentTheme, insets.bottom);
 
   const {setCurrentChannel} = useContext(ChannelContext);
-
-  const [currentServer, setCurrentServerInner] = useState(
-    null as Server | null,
-  );
-  function setCurrentServer(s: Server | null) {
-    setCurrentServerInner(s);
-    storage.set('lastServer', s?._id || 'DirectMessage');
-  }
-
-  setFunction('getCurrentServer', () => {
-    return currentServer?._id ?? undefined;
-  });
-  setFunction('openServer', (s: Server | null) => {
-    setCurrentServer(s);
-  });
+  const {currentServer, setCurrentServer} = useContext(ServerContext);
 
   return (
     <>
@@ -87,7 +76,7 @@ const SideMenu = () => {
             showDiscover={getInstanceURL() === DEFAULT_API_URL}
           />
         </ScrollView>
-        <ChannelList currentServer={currentServer} />
+        <ChannelList />
       </View>
       <View style={localStyles.bottomBar}>
         <Button

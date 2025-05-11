@@ -1,15 +1,15 @@
 import {type RefObject, useEffect, useState} from 'react';
 
-import type {API, ClientboundNotification} from 'revolt.js';
+import type {API, ClientboundNotification, Server} from 'revolt.js';
 
-import {app, setFunction, settings} from '@clerotri/Generic';
+import {setFunction, settings} from '@clerotri/Generic';
 import {client} from '@clerotri/lib/client';
 import {Modals} from '@clerotri/Modals';
 import {SideMenuHandler} from '@clerotri/SideMenu';
 import {NetworkIndicator} from '@clerotri/components/NetworkIndicator';
 import {Notification} from '@clerotri/components/Notification';
 import {handleMessageNotification} from '@clerotri/lib/notifications';
-import {ChannelContext} from '@clerotri/lib/state';
+import {ChannelContext, ServerContext} from '@clerotri/lib/state';
 import {storage} from '@clerotri/lib/storage';
 import {CVChannel} from '@clerotri/lib/types';
 import {openLastChannel} from '@clerotri/lib/utils';
@@ -22,6 +22,7 @@ export function LoggedInViews({
   serverNotificationSettings: RefObject<any>;
 }) {
   const [currentChannel, setCurrentChannel] = useState<CVChannel>(null);
+  const [currentServer, setCurrentServer] = useState<Server | null>(null);
 
   setFunction('openChannel', (c: CVChannel) => {
     setCurrentChannel(c);
@@ -29,6 +30,14 @@ export function LoggedInViews({
 
   setFunction('getCurrentChannel', () => {
     return currentChannel;
+  });
+
+  setFunction('openServer', (s: Server | null) => {
+    setCurrentServer(s);
+  });
+
+  setFunction('getCurrentServer', () => {
+    return currentServer?._id ?? undefined;
   });
 
   const [notificationMessage, setNotificationMessage] =
@@ -62,6 +71,10 @@ export function LoggedInViews({
   }, [currentChannel]);
 
   useEffect(() => {
+    storage.set('lastServer', currentServer?._id || 'DirectMessage');
+  }, [currentServer]);
+
+  useEffect(() => {
     console.log('[APP] Setting up packet listeners...');
 
     async function onMessagePacket(msg: API.Message) {
@@ -81,10 +94,9 @@ export function LoggedInViews({
     }
 
     function handleServerDeletion(server: string) {
-      const currentServer = app.getCurrentServer();
-      if (currentServer === server) {
-        app.openServer(undefined);
-        app.openChannel(null);
+      if (currentServer?._id === server) {
+        setCurrentServer(null);
+        setCurrentChannel(null);
       }
     }
 
@@ -109,16 +121,18 @@ export function LoggedInViews({
   }, []);
 
   return (
-    <ChannelContext.Provider value={{currentChannel, setCurrentChannel}}>
-      <SideMenuHandler />
-      <Modals />
-      <NetworkIndicator client={client} />
-      {notificationMessage && (
-        <Notification
-          message={notificationMessage}
-          dismiss={() => setNotificationMessage(null)}
-        />
-      )}
-    </ChannelContext.Provider>
+    <ServerContext.Provider value={{currentServer, setCurrentServer}}>
+      <ChannelContext.Provider value={{currentChannel, setCurrentChannel}}>
+        <SideMenuHandler />
+        <Modals />
+        <NetworkIndicator client={client} />
+        {notificationMessage && (
+          <Notification
+            message={notificationMessage}
+            dismiss={() => setNotificationMessage(null)}
+          />
+        )}
+      </ChannelContext.Provider>
+    </ServerContext.Provider>
   );
 }
