@@ -92,7 +92,7 @@ const SideMenu = () => {
         </Button>
         <Button
           key={'bottom-nav-search'}
-          onPress={() => app.openChannelSwitcher(currentServer ?? 'home')}
+          onPress={() => app.openChannelSwitcher(true)}
           backgroundColor={currentTheme.background}
           style={{paddingVertical: 10}}>
           <MaterialCommunityIcon

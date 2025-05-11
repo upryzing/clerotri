@@ -15,7 +15,7 @@ import {BottomSheet} from '@clerotri/components/common/BottomSheet';
 import {ChannelIcon} from '@clerotri/components/navigation/ChannelIcon';
 import {ServerList} from '@clerotri/components/navigation/ServerList';
 import {client} from '@clerotri/lib/client';
-import {ChannelContext} from '@clerotri/lib/state';
+import {ChannelContext, ServerContext} from '@clerotri/lib/state';
 import {commonValues, ThemeContext} from '@clerotri/lib/themes';
 import {useBackHandler} from '@clerotri/lib/ui';
 
@@ -51,7 +51,7 @@ const SwitcherChannelButton = observer(
             setCurrentChannel(channel);
             app.openLeftMenu(false);
             app.openServer(channel.server);
-            app.openChannelSwitcher(null);
+            app.openChannelSwitcher(false);
           }}
           style={{
             flexDirection: 'row',
@@ -180,6 +180,8 @@ export const ChannelSwitcherSheet = observer(() => {
 
   const {currentTheme} = useContext(ThemeContext);
 
+  const {currentServer} = useContext(ServerContext);
+
   const [searchText, setSearchText] = useState('');
   const [selectedServer, setSelectedServer] = useState(null as Server | null);
 
@@ -206,11 +208,11 @@ export const ChannelSwitcherSheet = observer(() => {
     return false;
   });
 
-  setFunction('openChannelSwitcher', (ctx: Server | 'home' | null) => {
-    setSelectedServer(ctx === 'home' ? null : ctx);
+  setFunction('openChannelSwitcher', (state: boolean) => {
+    setSelectedServer(currentServer);
     setSearchText('');
-    ctx ? sheetRef.current?.expand() : sheetRef.current?.close();
-    setIsOpen(!!ctx);
+    state ? sheetRef.current?.expand() : sheetRef.current?.close();
+    setIsOpen(!!state);
   });
 
   const handleServerPress = (s: Server) => {
