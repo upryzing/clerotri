@@ -2,8 +2,8 @@ import {useContext, useEffect, useRef, useState} from 'react';
 import type {Dispatch, RefObject, SetStateAction} from 'react';
 import {
   FlatList,
-  NativeSyntheticEvent,
-  NativeScrollEvent,
+  type NativeSyntheticEvent,
+  type NativeScrollEvent,
   Platform,
   View,
   // Dimensions,
