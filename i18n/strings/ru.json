@@ -290,9 +290,9 @@
             "header_servers": "Найти серверы"
         },
         "messaging": {
-            "message_box_channel": "Сообщение #{{name}}",
-            "message_box_group": "Сообщение {{name}}",
-            "message_box_dm": "Сообщение @{{name}}",
+            "message_box_channel": "Написать в #{{name}}",
+            "message_box_group": "Написать в {{name}}",
+            "message_box_dm": "Написать @{{name}}",
             "message_box_saved_notes": "Сохранить в заметках",
             "no_messages": "Нет сообщений",
             "no_messages_body": "Начать конференцию.",
