@@ -1,0 +1,15 @@
+{
+  "tasks": {
+    "dev": "deno run --allow-env --allow-net --allow-read --watch main.ts"
+  },
+  "imports": {
+    "@tinyhttp/app": "npm:@tinyhttp/app@^2.5.2",
+    "@tinyhttp/dotenv": "npm:@tinyhttp/dotenv@^2.1.2",
+    "@tinyhttp/logger": "npm:@tinyhttp/logger@^2.1.0",
+    "pg-promise": "npm:pg-promise@^11.13.0",
+    "ulid": "npm:ulid@^3.0.0"
+  },
+  "fmt": {
+    "singleQuote": true
+  }
+}

@@ -85,3 +85,6 @@ assets/data/licenses.json
 
 # Build metadata
 src/lib/metadata.ts
+
+# Analytics server config
+external/analytics_server/.env
