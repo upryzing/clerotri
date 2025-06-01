@@ -7,5 +7,5 @@
     },
     "types": ["jest", "react-native-web"]
   },
-  "extends": "@react-native/typescript-config/tsconfig.json"
+  "extends": "@react-native/typescript-config"
 }
