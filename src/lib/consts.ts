@@ -2076,7 +2076,7 @@ export const RevoltEmojiDictionary: Record<string, string> = {
 // </from>
 
 // Analytics server URL
-export const ANALYTICS_ENDPOINT = 'http://192.168.1.237:3000/v1/submit';
+export const ANALYTICS_ENDPOINT = 'http://clerotri.upryzing.app/v1/submit';
 
 // Links used in the settings menu
 export const FEDI_PROFILE = 'https://lea.pet/@clerotri';
