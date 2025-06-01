@@ -4,6 +4,7 @@ import type {ClientboundNotification} from 'revolt.js';
 
 import {app, randomizeRemark, setFunction} from '@clerotri/Generic';
 import {LoggedInViews} from '@clerotri/LoggedInViews';
+import {PreLoginModals} from '@clerotri/Modals';
 import {client} from '@clerotri/lib/client';
 import {LoadingScreen} from '@clerotri/components/views/LoadingScreen';
 import {loginWithSavedToken} from '@clerotri/lib/auth';
@@ -13,6 +14,8 @@ import {storage} from '@clerotri/lib/storage';
 import {ThemeContext} from '@clerotri/lib/themes';
 import {checkLastVersion} from '@clerotri/lib/utils';
 import {LoginViews} from '@clerotri/pages/LoginViews';
+import {generateAnalyticsObject} from '@clerotri/lib/analytics';
+import {ANALYTICS_ENDPOINT} from '@clerotri/lib/consts';
 
 export function MainView() {
   const {currentTheme} = useContext(ThemeContext);
@@ -23,6 +26,31 @@ export function MainView() {
 
   const channelNotificationSettings = useRef<any>(undefined);
   const serverNotificationSettings = useRef<any>(undefined);
+
+  useEffect(() => {
+    async function sendAnalytics(analyticsSetting: 'basic' | 'full') {
+      try {
+        const data = generateAnalyticsObject(analyticsSetting);
+        await fetch(ANALYTICS_ENDPOINT, {
+          method: 'POST',
+          body: JSON.stringify(data),
+        });
+      } catch (err) {
+        console.log(`[ANALYTICS] Error sending analytics: ${err}`);
+      }
+    }
+    const analyticsSetting = storage.getString('app.analyticsLevel') as
+      | 'basic'
+      | 'full'
+      | 'none'
+      | undefined;
+
+    if (analyticsSetting) {
+      analyticsSetting !== 'none' && sendAnalytics(analyticsSetting);
+    } else {
+      app.openAnalyticsMenu(true, true);
+    }
+  }, []);
 
   useEffect(() => {
     console.log('[APP] Setting up global functions...');
@@ -175,6 +203,8 @@ export function MainView() {
           }}
         />
       )}
+      {/* these need to be available before the app is logged in */}
+      <PreLoginModals />
     </OrderedServersContext.Provider>
   );
 }

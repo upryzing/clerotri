@@ -463,9 +463,21 @@ export const app = {
       `[FUNCTIONS] Tried to run uninitialised function handleServerSettingsVisibility (args: ${stateFunction})`,
     );
   },
+  handleAnalyticsSettingsVisibility: (
+    stateFunction: (state: boolean) => void,
+  ) => {
+    console.log(
+      `[FUNCTIONS] Tried to run uninitialised function handleAnalyticsSettingsVisibility (args: ${stateFunction})`,
+    );
+  },
   closeRoleSubsection: () => {
     console.log(
       '[FUNCTIONS] Tried to run uninitialised function closeRoleSubsection',
+    );
+  },
+  openAnalyticsMenu: (state: boolean, blockClosing?: boolean) => {
+    console.log(
+      `[FUNCTIONS] Tried to run uninitialised function openAnalyticsMenu (args: ${state}, ${blockClosing})`,
     );
   },
 };

@@ -10,6 +10,35 @@
             "delete": "Delete",
             "save": "Save"
         },
+        "analytics": {
+            "title": "Manage analytics",
+            "body": "By default, Clerotri doesn't collect any data. You can optionally let us collect the following data to help us improve the app.",
+            "tiers": {
+                "basic": "Basic",
+                "full": "Full"
+            },
+            "copied_data_toast": "Copied data example",
+            "enable_basic": "Enable basic analytics",
+            "switch_to_basic": "Switch to Basic",
+            "enable_full": "Enable full analytics",
+            "switch_to_full": "Switch to Full",
+            "active": "Active",
+            "disable_analytics": "Disable analytics",
+            "analytics_disabled": "Analytics disabled",
+            "continue_without_analytics": "Continue without analytics",
+            "values": {
+                "model": "Your device's model",
+                "os": "Your OS and its version",
+                "clerotriVersion": "The version of Clerotri you're using",
+                "inBasic": "Everything in Basic",
+                "inBasic_body": "Model, OS version, Clerotri version",
+                "settings": "Your Clerotri settings",
+                "settings_body_one": "{{count}} entry",
+                "settings_body_other": "{{count}} entries",
+                "instance": "Your instance's URL"
+            },
+            "privacy_info": "Privacy information"
+        },
         "channel_list": {
             "direct_messages_header": "Direct Messages"
         },
@@ -307,6 +336,9 @@
         "settings_menu": {
             "account": {
                 "title": "Account"
+            },
+            "analytics": {
+                "title": "Analytics"
             },
             "appearance": {
                 "title": "Appearance"

@@ -1,3 +1,4 @@
+export {AnalyticsSettingsSheet} from './AnalyticsSettingsSheet';
 export {BotInviteSheet} from './BotInviteSheet';
 export {ChannelInfoSheet} from './ChannelInfoSheet';
 export {ChannelMenuSheet} from './ChannelMenuSheet';

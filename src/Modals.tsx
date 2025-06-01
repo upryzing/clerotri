@@ -23,6 +23,7 @@ import {
   TextEditModal,
 } from '@clerotri/components/modals';
 import {
+  AnalyticsSettingsSheet,
   BotInviteSheet,
   ChannelInfoSheet,
   ChannelMenuSheet,
@@ -383,6 +384,36 @@ const OtherModals = observer(() => {
         />
       </FixedModal>
     </>
+  );
+});
+
+// these need to be available before the app is logged in
+export const PreLoginModals = observer(() => {
+  const [analyticsSettingsVisibility, setAnalyticsSettingsVisibility] =
+    useState(false);
+  const [analyticsSettingsBlockClosing, setAnalyticsSettingsBlockClosing] =
+    useState(false);
+
+  setFunction('openAnalyticsMenu', (o: boolean, blockClosing?: boolean) => {
+    setAnalyticsSettingsBlockClosing(blockClosing || false);
+    setAnalyticsSettingsVisibility(o);
+  });
+
+  return (
+    <FixedModal
+      visible={analyticsSettingsVisibility}
+      transparent={true}
+      animationType="fade"
+      statusBarTranslucent
+      navigationBarTranslucent
+      onRequestClose={() =>
+        app.handleAnalyticsSettingsVisibility(setAnalyticsSettingsVisibility)
+      }>
+      <AnalyticsSettingsSheet
+        blockClosing={analyticsSettingsBlockClosing}
+        setState={() => setAnalyticsSettingsVisibility(false)}
+      />
+    </FixedModal>
   );
 });
 

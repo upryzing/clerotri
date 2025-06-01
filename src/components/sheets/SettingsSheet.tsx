@@ -231,6 +231,21 @@ export const SettingsSheet = observer(({setState}: {setState: Function}) => {
               </View>
               <Text>{t('app.settings_menu.i18n.title')}</Text>
             </ContextButton>
+            <ContextButton
+              style={{flex: 1, marginBottom: 10}}
+              backgroundColor={currentTheme.backgroundSecondary}
+              onPress={() => {
+                app.openAnalyticsMenu(true);
+              }}>
+              <View style={styles.iconContainer}>
+                <MaterialIcon
+                  name={'analytics'}
+                  color={currentTheme.foregroundPrimary}
+                  size={24}
+                />
+              </View>
+              <Text>{t('app.settings_menu.analytics.title')}</Text>
+            </ContextButton>
             <Text type={'h1'}>{t('app.settings_menu.groups.advanced')}</Text>
             <ContextButton
               style={{flex: 1, marginBottom: 10}}

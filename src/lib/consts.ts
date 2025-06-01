@@ -2075,6 +2075,9 @@ export const RevoltEmojiDictionary: Record<string, string> = {
 };
 // </from>
 
+// Analytics server URL
+export const ANALYTICS_ENDPOINT = 'http://192.168.1.237:3000/v1/submit';
+
 // Links used in the settings menu
 export const FEDI_PROFILE = 'https://lea.pet/@clerotri';
 
@@ -2088,3 +2091,6 @@ export const DONATIONS_INFO =
   'https://rexogamer.github.io/donate?utm_source=clerotri';
 
 export const WEBLATE = 'https://translate.upryzing.app/projects/clerotri';
+
+export const PRIVACY_INFO =
+  'https://github.com/upryzing/clerotri/blob/main/docs/user/privacy.md';
