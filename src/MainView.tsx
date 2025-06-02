@@ -45,7 +45,7 @@ export function MainView() {
       | 'none'
       | undefined;
 
-    if (analyticsSetting) {
+    if (analyticsSetting && !__DEV__) {
       analyticsSetting !== 'none' && sendAnalytics(analyticsSetting);
     } else {
       app.openAnalyticsMenu(true, true);
