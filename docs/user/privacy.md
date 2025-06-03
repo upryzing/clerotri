@@ -23,7 +23,7 @@ Clerotri doesn't currently support account deletion, though this is planned for 
 
 Analytics are disabled by default. If you choose to enable them, Clerotri will collect some basic data about your device and your usage of Clerotri.
 
-You will be asked if you wish to enable them upon launching the app for the first time, or (if you're updating for a version before v0.11.0) after updating the app. You can also enable, adjust or disable them at any time by opening the settings menu and selecting "Analytics".
+You will be asked if you wish to enable them upon launching the app for the first time, or (if you're updating from a version before v0.11.0) after updating the app. You can also enable, adjust or disable them at any time by opening the settings menu and selecting "Analytics".
 
 Analytics are sent when you open the app and are split into two tiers.
 
