@@ -1,5 +1,25 @@
 # Clerotri's changelog
 
+## v0.11.0
+
+_This version was released on 03/06/2025._
+
+### What's new
+
+- Clerotri now includes **opt-in analytics**. These are **completely optional** and are **disabled by default**. These will help me to improve the app.
+  - You can find out more about what data is collected and how it's stored in [the privacy information][privacy_info] document.
+
+### Bug fixes
+
+- Some colours in the report menu have been tweaked.
+- The role colour picker no longer has unexpected black bars at the top and bottom.
+- The scrollbar on the server list has been hidden, as it was unnecessary and looked weird.
+- The app should now be [reproducible][rb_info].
+- The app no longer asks for the `BIND_GET_INSTALL_REFERRER_SERVICE` permission.
+
+[privacy_info]: https://github.com/upryzing/clerotri/blob/main/docs/user/privacy.md
+[rb_info]: https://reproducible-builds.org/
+
 ## v0.10.0
 
 _This version was released on 23/04/2025._

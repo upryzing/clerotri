@@ -16,7 +16,7 @@ import {
   TextEditingModalProps,
 } from '@clerotri/lib/types';
 
-export const appVersion = '0.10.0';
+export const appVersion = '0.11.0';
 
 export const settings = {
   _fetch: (k: string) => {
