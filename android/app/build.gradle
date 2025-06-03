@@ -81,7 +81,7 @@ android {
         minSdkVersion rootProject.ext.minSdkVersion
         targetSdkVersion rootProject.ext.targetSdkVersion
         versionCode 17
-        versionName "0.11.0"
+        versionName "0.11.1"
 
         // disable build-time UUIDs (see https://gitlab.com/IzzyOnDroid/repo/-/wikis/Reproducible-Builds/RB-Hints-for-Developers#no-funny-build-time-generated-ids)
         externalNativeBuild {

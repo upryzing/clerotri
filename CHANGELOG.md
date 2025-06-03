@@ -1,5 +1,14 @@
 # Clerotri's changelog
 
+## v0.11.1
+
+_This version was released on 03/06/2025._
+
+### Bug fixes
+
+- The app should now actually send data to the analytics server.
+  - In my defence, it worked in the debug build (because debug builds allow HTTP connections).
+
 ## v0.11.0
 
 _This version was released on 03/06/2025._
