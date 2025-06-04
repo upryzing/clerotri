@@ -1,8 +1,13 @@
 # Clerotri
 
-<a href="https://accrescent.app/app/app.upryzing.clerotri">
-  <img alt="Get it on Accrescent" src="https://accrescent.app/badges/get-it-on.png" height="80">
-</a>
+<div style="display: flex; align-items: center;">
+  <a href="https://accrescent.app/app/app.upryzing.clerotri">
+    <img alt="Get it on Accrescent" src="https://accrescent.app/badges/get-it-on.png" height="80">
+  </a>
+  <a href="https://apt.izzysoft.de/fdroid/index/apk/app.upryzing.clerotri">
+    <img alt="Get it on IzzyOnDroid" src="https://gitlab.com/IzzyOnDroid/repo/-/raw/master/assets/IzzyOnDroidButtonGreyBorder_nofont.png" height="54">
+  </a>
+</div>
 
 <div style="flex-direction: row;">
   <a href="https://rexowo.dev/donate/">
@@ -26,10 +31,8 @@ For development updates and other news, join [Clerotri's support server][support
 
 If you want to install Clerotri for Android, you can either:
 
-- download the app via [Accrescent](https://accrescent.app/app/app.upryzing.clerotri) (recommended), or
+- download the app via [Accrescent](https://accrescent.app/app/app.upryzing.clerotri) or [IzzyOnDroid](https://apt.izzysoft.de/fdroid/index/apk/app.upryzing.clerotri) (using one of these is recommended), or
 - go to [the releases tab](https://github.com/upryzing/clerotri/releases) and download the latest version.
-
-We plan on publishing Clerotri to F-Droid in the future.
 
 <!-- You can try Clerotri for web [here](). Note that, as the web version is still under development, some features are only available on Android or may not work as smoothly. You may also see some layout issues. -->
 
