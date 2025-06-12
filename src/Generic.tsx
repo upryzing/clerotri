@@ -76,10 +76,10 @@ export const settings = {
   },
   save: () => {
     try {
-      let out: object[] = [];
+      const out = {} as any;
       for (const s of settingsList) {
         if (s.value !== undefined) {
-          out.push({key: s.key, value: s.value});
+          out[s.key] = s.value;
         }
       }
       storage.set('settings', JSON.stringify(out));
@@ -89,13 +89,13 @@ export const settings = {
   },
   clear: () => {
     try {
-      storage.set('settings', '[]');
+      storage.delete('settings');
       for (const s of settingsList) {
         delete s.value;
         s.onChange && s.onChange(s.default);
       }
     } catch (err) {
-      console.log(`[SETTINGS] Error saving settings: ${err}`);
+      console.log(`[SETTINGS] Error clearing settings: ${err}`);
     }
   },
 };

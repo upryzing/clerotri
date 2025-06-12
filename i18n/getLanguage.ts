@@ -15,13 +15,9 @@ export const languageDetectorPlugin = {
       }
 
       const settings = JSON.parse(rawSettings);
-      for (const setting of settings) {
-        if (setting.key === STORE_LANGUAGE_KEY) {
-          return setting.value;
-        }
-      }
-      // TODO: use device language
-      return 'en';
+
+      // TODO: use device language if there isn't a stored language
+      return settings[STORE_LANGUAGE_KEY] ?? 'en';
     } catch (error) {
       console.warn(`[APP] Error reading language: ${error}`);
       return 'en';
@@ -29,14 +25,8 @@ export const languageDetectorPlugin = {
   },
   cacheUserLanguage: function (language: string) {
     try {
-      const settings = JSON.parse(storage.getString('settings') ?? '[]');
-      for (const setting of settings) {
-        if (setting.key === STORE_LANGUAGE_KEY) {
-          const index = settings.indexOf(setting);
-          settings.splice(index, 1);
-        }
-      }
-      settings.push({key: STORE_LANGUAGE_KEY, value: language});
+      const settings = JSON.parse(storage.getString('settings') ?? '{}');
+      settings[STORE_LANGUAGE_KEY] =  language;
       const newData = JSON.stringify(settings);
       storage.set('settings', newData);
     } catch (error) {}
