@@ -3,6 +3,7 @@ import {Language} from '../src/lib/types';
 // string files
 import {default as ar} from './strings/ar.json';
 import {default as be} from './strings/be.json';
+import {default as be_tarask} from './strings/be-tarask.json';
 import {default as de} from './strings/de.json';
 import {default as en} from './strings/en.json';
 import {default as eo} from './strings/eo.json';
@@ -24,6 +25,7 @@ import {default as zh_Hans} from './strings/zh-Hans.json';
 export const resources = {
   ar: {translation: ar},
   be: {translation: be},
+  'be-tarask': {translation: be_tarask},
   de: {translation: de},
   en: {translation: en},
   eo: {translation: eo},
@@ -52,6 +54,11 @@ export const languages: Record<string, Language> = {
   be: {
     name: 'беларуская',
     englishName: 'Belarusian',
+    emoji: '🇧🇾',
+  },
+  be_tarask: {
+    name: 'беларуская (тарашкевіца)',
+    englishName: 'Belarusian (Classical)',
     emoji: '🇧🇾',
   },
   de: {
