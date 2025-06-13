@@ -2,7 +2,6 @@ import {View} from 'react-native';
 
 import {Image} from '@clerotri/crossplat/Image';
 import {client} from '@clerotri/lib/client';
-import {DEFAULT_MAX_SIDE} from '@clerotri/lib/consts';
 
 export const GeneralAvatar = ({
   attachment,
@@ -15,7 +14,7 @@ export const GeneralAvatar = ({
 }) => {
   const uri = directory
     ? client.configuration?.features.autumn.url + directory + attachment
-    : client.generateFileURL(attachment) + '?max_side=' + DEFAULT_MAX_SIDE;
+    : client.generateFileURL(attachment);
   return (
     <View>
       {

@@ -8,7 +8,6 @@ import {app} from '@clerotri/Generic';
 import {Text} from '@clerotri/components/common/atoms';
 import {Image} from '@clerotri/crossplat/Image';
 import {client} from '@clerotri/lib/client';
-import {DEFAULT_MAX_SIDE} from '@clerotri/lib/consts';
 import {OrderedServersContext} from '@clerotri/lib/state';
 import {commonValues, Theme, ThemeContext} from '@clerotri/lib/themes';
 
@@ -90,7 +89,7 @@ export const ServerList = observer(
                 {iconURL ? (
                   <Image
                     key={`${s._id}-icon`}
-                    source={{uri: iconURL + '?max_side=' + DEFAULT_MAX_SIDE}}
+                    source={{uri: iconURL}}
                     style={localStyles.serverIcon}
                   />
                 ) : (

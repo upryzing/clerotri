@@ -7,7 +7,6 @@ import type {Server, User, Channel} from 'revolt.js';
 import {Image} from '@clerotri/crossplat/Image';
 import {app, settings} from '@clerotri/Generic';
 import {client} from '@clerotri/lib/client';
-import {DEFAULT_MAX_SIDE} from '@clerotri/lib/consts';
 import {ThemeContext} from '@clerotri/lib/themes';
 
 type AvatarProps = {
@@ -74,7 +73,7 @@ export const Avatar = observer(
         <Container>
           <Image
             source={{
-              uri: imageURL + '?max_side=' + DEFAULT_MAX_SIDE,
+              uri: imageURL
             }}
             style={{width: size || 35, height: size || 35, borderRadius: 10000}}
           />
@@ -123,7 +122,7 @@ export const Avatar = observer(
             <Image
               source={{
                 uri:
-                  channel?.generateIconURL() + '?max_side=' + DEFAULT_MAX_SIDE,
+                  channel?.generateIconURL(),
               }}
               style={{
                 width: size || 35,

@@ -6,7 +6,6 @@ import MaterialCommunityIcon from '@react-native-vector-icons/material-design-ic
 import type {Channel} from 'revolt.js';
 
 import {Image} from '@clerotri/crossplat/Image';
-import {DEFAULT_MAX_SIDE} from '@clerotri/lib/consts';
 import {ThemeContext} from '@clerotri/lib/themes';
 
 export const ChannelIcon = ({
@@ -29,7 +28,7 @@ export const ChannelIcon = ({
   return channel.generateIconURL && channel.generateIconURL() ? (
     <Image
       source={{
-        uri: channel.generateIconURL() + '?max_side=' + DEFAULT_MAX_SIDE,
+        uri: channel.generateIconURL(),
       }}
       style={{
         width: 24,

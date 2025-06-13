@@ -36,12 +36,6 @@ export const OFFICIAL_INSTANCE_API_URLS = {
   upryzing: 'https://web.upryzing.app/api',
 };
 
-// default max side param - used to specify the size of images
-export const DEFAULT_MAX_SIDE = '128';
-
-// higher max side param - used for the server settings menu
-export const MAX_SIDE_HQ = '1024';
-
 // default amount of messages to load
 export const DEFAULT_MESSAGE_LOAD_COUNT = 50;
 

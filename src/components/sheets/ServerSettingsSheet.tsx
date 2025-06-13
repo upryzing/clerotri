@@ -12,7 +12,6 @@ import type {Server} from 'revolt.js';
 import {app, setFunction} from '@clerotri/Generic';
 import {client} from '@clerotri/lib/client';
 import {Image} from '@clerotri/crossplat/Image';
-import {MAX_SIDE_HQ} from '@clerotri/lib/consts';
 import {commonValues, Theme, ThemeContext} from '@clerotri/lib/themes';
 import {SettingsSection} from '@clerotri/lib/types';
 import {styles} from '@clerotri/Theme';
@@ -122,7 +121,7 @@ export const ServerSettingsSheet = observer(
                   {iconURL ? (
                     <Image
                       key={`server-settings-${server._id}-icon`}
-                      source={{uri: `${iconURL}?max_side=${MAX_SIDE_HQ}`}}
+                      source={{uri: iconURL}}
                       style={{
                         width: 80,
                         height: 80,
