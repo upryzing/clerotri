@@ -26,7 +26,7 @@ export const languageDetectorPlugin = {
   cacheUserLanguage: function (language: string) {
     try {
       const settings = JSON.parse(storage.getString('settings') ?? '{}');
-      settings[STORE_LANGUAGE_KEY] =  language;
+      settings[STORE_LANGUAGE_KEY] = language;
       const newData = JSON.stringify(settings);
       storage.set('settings', newData);
     } catch (error) {}

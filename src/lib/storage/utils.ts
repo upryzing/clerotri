@@ -7,22 +7,22 @@ export function initialiseSettings() {
   const settings = storage.getString('settings');
   if (settings) {
     try {
-const storedSettings = JSON.parse(settings);
-    if (!Array.isArray(storedSettings)) {
-      initialiseObjectSettings(storedSettings);
-    } else {
-      const newSettings = {} as any;
-storedSettings.forEach((key: {key: string; value: any}) => {
-        if (key.key === 'app.instance') {
-          storage.set('instanceURL', key.value);
-        } else {
+      const storedSettings = JSON.parse(settings);
+      if (!Array.isArray(storedSettings)) {
+        initialiseObjectSettings(storedSettings);
+      } else {
+        const newSettings = {} as any;
+        storedSettings.forEach((key: {key: string; value: any}) => {
+          if (key.key === 'app.instance') {
+            storage.set('instanceURL', key.value);
+          } else {
             newSettings[key.key] = key.value;
-        }
-      });
-      const newData = JSON.stringify(newSettings);
-      storage.set('settings', newData);
-            initialiseObjectSettings(newSettings);
-    }
+          }
+        });
+        const newData = JSON.stringify(newSettings);
+        storage.set('settings', newData);
+        initialiseObjectSettings(newSettings);
+      }
     } catch (e) {
       console.error(e);
     }

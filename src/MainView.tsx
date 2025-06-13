@@ -31,16 +31,18 @@ export function MainView() {
     async function sendAnalytics(analyticsSetting: 'basic' | 'full') {
       if (!__DEV__) {
         try {
-        const data = generateAnalyticsObject(analyticsSetting);
-        await fetch(ANALYTICS_ENDPOINT, {
-          method: 'POST',
-          body: JSON.stringify(data),
-        });
-      } catch (err) {
-        console.log(`[ANALYTICS] Error sending analytics: ${err}`);
-      }
+          const data = generateAnalyticsObject(analyticsSetting);
+          await fetch(ANALYTICS_ENDPOINT, {
+            method: 'POST',
+            body: JSON.stringify(data),
+          });
+        } catch (err) {
+          console.log(`[ANALYTICS] Error sending analytics: ${err}`);
+        }
       } else {
-        console.log(`[ANALYTICS] Skipping analytics submission in dev mode (tier: ${analyticsSetting})`);
+        console.log(
+          `[ANALYTICS] Skipping analytics submission in dev mode (tier: ${analyticsSetting})`,
+        );
       }
     }
     const analyticsSetting = storage.getString('app.analyticsLevel') as

@@ -73,7 +73,7 @@ export const Avatar = observer(
         <Container>
           <Image
             source={{
-              uri: imageURL
+              uri: imageURL,
             }}
             style={{width: size || 35, height: size || 35, borderRadius: 10000}}
           />
@@ -121,8 +121,7 @@ export const Avatar = observer(
           {channel?.generateIconURL() ? (
             <Image
               source={{
-                uri:
-                  channel?.generateIconURL(),
+                uri: channel?.generateIconURL(),
               }}
               style={{
                 width: size || 35,
