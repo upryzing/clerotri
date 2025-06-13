@@ -29,7 +29,8 @@ export function MainView() {
 
   useEffect(() => {
     async function sendAnalytics(analyticsSetting: 'basic' | 'full') {
-      try {
+      if (!__DEV__) {
+        try {
         const data = generateAnalyticsObject(analyticsSetting);
         await fetch(ANALYTICS_ENDPOINT, {
           method: 'POST',
@@ -38,6 +39,9 @@ export function MainView() {
       } catch (err) {
         console.log(`[ANALYTICS] Error sending analytics: ${err}`);
       }
+      } else {
+        console.log(`[ANALYTICS] Skipping analytics submission in dev mode (tier: ${analyticsSetting})`);
+      }
     }
     const analyticsSetting = storage.getString('app.analyticsLevel') as
       | 'basic'
@@ -45,7 +49,7 @@ export function MainView() {
       | 'none'
       | undefined;
 
-    if (analyticsSetting && !__DEV__) {
+    if (analyticsSetting) {
       analyticsSetting !== 'none' && sendAnalytics(analyticsSetting);
     } else {
       app.openAnalyticsMenu(true, true);
