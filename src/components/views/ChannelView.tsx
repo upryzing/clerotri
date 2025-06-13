@@ -93,7 +93,7 @@ const RegularChannelView = observer(({channel}: {channel: Channel}) => {
               : (channel.name ?? '')
         }>
         {channel.channel_type !== 'VoiceChannel' ? (
-          <View style={{marginEnd: 16}}>
+          <View style={{marginStart: 16}}>
             <TouchableOpacity
               onPress={() => app.openPinnedMessagesMenu(channel)}>
               <MaterialCommunityIcon
@@ -105,7 +105,7 @@ const RegularChannelView = observer(({channel}: {channel: Channel}) => {
           </View>
         ) : null}
         {channel.channel_type === 'Group' || channel.server ? (
-          <View style={{marginEnd: 16}}>
+          <View style={{marginStart: 16}}>
             <TouchableOpacity onPress={() => app.openChannelInfoMenu(channel)}>
               <MaterialIcon
                 name="info"
@@ -116,7 +116,7 @@ const RegularChannelView = observer(({channel}: {channel: Channel}) => {
           </View>
         ) : null}
         {channel.channel_type === 'Group' ? (
-          <View style={{marginEnd: 16}}>
+          <View style={{marginStart: 16}}>
             <TouchableOpacity
               onPress={() => {
                 app.openMemberList(channel);
