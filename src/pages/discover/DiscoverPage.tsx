@@ -1,6 +1,8 @@
 import {useContext, useEffect, useState} from 'react';
-import {FlatList, Platform, View} from 'react-native';
+import {FlatList, View} from 'react-native';
 import {useTranslation} from 'react-i18next';
+
+import {useSafeAreaInsets} from 'react-native-safe-area-context';
 
 import {app} from '@clerotri/Generic';
 import {styles} from '@clerotri/Theme';
@@ -20,7 +22,6 @@ const BotEntry = ({bot}: {bot: any}) => {
     <View
       key={`discover-entry-bot-${bot._id}`}
       style={{
-        marginBottom: commonValues.sizes.medium,
         borderRadius: commonValues.sizes.medium,
         padding: commonValues.sizes.xl,
         backgroundColor: currentTheme.backgroundSecondary,
@@ -96,7 +97,6 @@ const ServerEntry = ({server}: {server: any}) => {
     <View
       key={`discover-entry-server-${server._id}`}
       style={{
-        marginBottom: commonValues.sizes.medium,
         borderRadius: commonValues.sizes.medium,
         padding: commonValues.sizes.xl,
         backgroundColor: currentTheme.backgroundSecondary,
@@ -173,6 +173,8 @@ const ServerEntry = ({server}: {server: any}) => {
 };
 
 export const DiscoverPage = () => {
+  const insets = useSafeAreaInsets();
+
   const {t} = useTranslation();
 
   const [tab, setTab] = useState<'servers' | 'bots'>('servers');
@@ -220,7 +222,7 @@ export const DiscoverPage = () => {
         icon={<SpecialChannelIcon channel={'Discover'} />}
         name={t(`app.discover.header_${tab}`)}
       />
-      <View style={{flexDirection: 'row', margin: 8}}>
+      <View style={{flexDirection: 'row', margin: commonValues.sizes.medium}}>
         <Button
           style={{flex: 1}}
           onPress={() => {
@@ -244,49 +246,28 @@ export const DiscoverPage = () => {
       </View>
       {data ? (
         <>
-          {tab === 'servers' ? (
-            <>
-              <View style={{paddingHorizontal: commonValues.sizes.medium}}>
-                <Text type={'h2'}>
-                  {t('app.discover.count_servers', {
-                    count: data.servers.length,
-                  })}
-                </Text>
-              </View>
-              <FlatList
-                key={'discover-scrollview'}
-                keyExtractor={keyExtractor}
-                data={data.servers}
-                style={{flex: 1, padding: commonValues.sizes.medium}}
-                contentContainerStyle={{
-                  paddingBottom:
-                    Platform.OS === 'web' ? 0 : commonValues.sizes.medium,
-                }}
-                renderItem={renderItem}
-              />
-            </>
-          ) : (
-            <>
-              <View style={{paddingHorizontal: commonValues.sizes.medium}}>
-                <Text type={'h2'}>
-                  {t('app.discover.count_bots', {
-                    count: data.bots.length,
-                  })}
-                </Text>
-              </View>
-              <FlatList
-                key={'discover-scrollview'}
-                keyExtractor={keyExtractor}
-                data={data.bots}
-                style={{flex: 1, padding: commonValues.sizes.medium}}
-                contentContainerStyle={{
-                  paddingBottom:
-                    Platform.OS === 'web' ? 0 : commonValues.sizes.medium,
-                }}
-                renderItem={renderItem}
-              />
-            </>
-          )}
+          <View
+            style={{
+              paddingInline: commonValues.sizes.xl,
+              paddingBlockEnd: commonValues.sizes.large,
+            }}>
+            <Text style={{marginBottom: 0}} type={'h2'}>
+              {t(`app.discover.count_${tab}`, {
+                count: data[tab].length,
+              })}
+            </Text>
+          </View>
+          <FlatList
+            key={'discover-scrollview'}
+            keyExtractor={keyExtractor}
+            data={data[tab]}
+            style={{flex: 1, marginInline: commonValues.sizes.large}}
+            contentContainerStyle={{
+              gap: commonValues.sizes.medium,
+              paddingBottom: insets.bottom + commonValues.sizes.large,
+            }}
+            renderItem={renderItem}
+          />
         </>
       ) : (
         <View style={styles.loadingScreen}>

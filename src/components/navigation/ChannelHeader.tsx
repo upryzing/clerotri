@@ -1,6 +1,5 @@
 import {useContext} from 'react';
 import {
-  Platform,
   StyleSheet,
   TouchableOpacity,
   useWindowDimensions,
@@ -60,9 +59,9 @@ const generateLocalStyles = (currentTheme: Theme, inset: number) => {
     channelHeader: {
       backgroundColor: currentTheme.headerBackground,
       alignItems: 'center',
-      paddingLeft: commonValues.sizes.xl,
-      padding: 10,
-      ...(Platform.OS !== 'web' && {paddingTop: inset}),
+      paddingInline: commonValues.sizes.xl,
+      paddingBlock: commonValues.sizes.large,
+      paddingTop: commonValues.sizes.large + inset,
       flexDirection: 'row',
     },
     headerIcon: {

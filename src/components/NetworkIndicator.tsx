@@ -27,7 +27,7 @@ export const NetworkIndicator = observer(({client}: {client: Client}) => {
           left: 0,
           paddingTop: insets.top,
           width: '100%',
-          height: insets.top + 50,
+          height: insets.top + 54,
           alignItems: 'center',
           justifyContent: 'center',
           backgroundColor: currentTheme.background,
