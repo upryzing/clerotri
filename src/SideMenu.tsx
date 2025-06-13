@@ -41,7 +41,7 @@ const SideMenu = () => {
   const {currentServer, setCurrentServer} = useContext(ServerContext);
 
   return (
-    <>
+    <View style={localStyles.container}>
       <View style={localStyles.sideView}>
         <ScrollView
           key={'server-list'}
@@ -113,7 +113,7 @@ const SideMenu = () => {
           />
         </Button>
       </View>
-    </>
+    </View>
   );
 };
 
@@ -188,16 +188,19 @@ const generateDrawerStyles = (width: number) => {
 
 const generateLocalStyles = (currentTheme: Theme, inset: number) => {
   return StyleSheet.create({
-    sideView: {
+    container: {
       flex: 1,
       backgroundColor: currentTheme.background,
+      paddingBottom: inset - 5,
+    },
+    sideView: {
+      flex: 1,
       flexDirection: 'row',
       justifyContent: 'flex-start',
     },
     serverList: {
       width: 60,
       flexShrink: 1,
-      backgroundColor: currentTheme.background,
       ...(Platform.OS === 'web' && {scrollbarWidth: 'none'}),
     },
     separator: {
@@ -209,12 +212,10 @@ const generateLocalStyles = (currentTheme: Theme, inset: number) => {
     bottomBar: {
       height: 52,
       width: '100%',
-      backgroundColor: currentTheme.background,
       borderTopWidth: currentTheme.generalBorderWidth,
       borderColor: currentTheme.generalBorderColor,
       flexDirection: 'row',
       justifyContent: 'space-evenly',
-      ...(Platform.OS !== 'web' && {marginBottom: inset - 5}),
     },
   });
 };
