@@ -50,6 +50,6 @@ export function getColour(c: string, theme: Theme) {
     return c;
   }
 
-  // at this point, c is probably just a regular HEX code so return it directly
+  // at this point, c is probably just a regular hex code so return it directly
   return c;
 }
