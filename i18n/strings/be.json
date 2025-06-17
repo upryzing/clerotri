@@ -271,6 +271,9 @@
                 "developer": "Гэтая налада прызначана для распрацоўшчыкаў.",
                 "deprecated": "Гэтая налада будзе выдалена ў будучых версіях.",
                 "experimental": "Гэта налада эксперыментальная і можа быць выдалена ці змененая ў любы час."
+            },
+            "analytics": {
+                "title": "Аналітыка"
             }
         },
         "discover": {
@@ -460,6 +463,36 @@
         },
         "channel_list": {
             "direct_messages_header": "Прыватныя паведамленні"
+        },
+        "analytics": {
+            "values": {
+                "settings_body_one": "{{count}} пункт",
+                "settings_body_few": "{{count}} пункта",
+                "settings_body_many": "{{count}} пунктаў",
+                "model": "Мадэль прылады",
+                "os": "АС і яе версія",
+                "clerotriVersion": "Версія Clerotri",
+                "inBasic": "Усё ў базавым",
+                "inBasic_body": "Мадэль, версія АС, версія Clerotri",
+                "settings": "Налады Clerotri",
+                "instance": "Спасылка на інстанцыю"
+            },
+            "continue_without_analytics": "Працягнуць без аналітыкі",
+            "body": "Прадвызначана, Clerotri не збірае аніякіх даных. Калі жадаеце, вы можаце дазволіць нам збіраць наступныя даныя, каб дапамагчы ў паляпшэнні праграмы.",
+            "active": "Актывавана",
+            "title": "Кіраванне аналітыкай",
+            "tiers": {
+                "basic": "Базавы",
+                "full": "Поўны"
+            },
+            "copied_data_toast": "Прыклад даных скапіраваны",
+            "enable_basic": "Актываваць базавы збор",
+            "switch_to_basic": "Пераключыцца на базавы",
+            "enable_full": "Актываваць поўны збор",
+            "switch_to_full": "Пераключыцца на поўны",
+            "disable_analytics": "Адключыць аналітыку",
+            "analytics_disabled": "Аналітыка адключана",
+            "privacy_info": "Інфармацыя аб прыватнасці"
         }
     }
 }
