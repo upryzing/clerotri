@@ -38,6 +38,7 @@ import {
   ServerSettingsSheet,
   SettingsSheet,
   StatusSheet,
+  ViewReactionsSheet
 } from '@clerotri/components/sheets';
 import {useBackHandler} from '@react-native-community/hooks';
 import {sleep} from './lib/utils';
@@ -77,6 +78,12 @@ const BottomSheets = observer(() => {
     Channel | Server | null
   >(null);
   const [messageMenuMessage, setMessageMenuMessage] = useState<Message | null>(
+    null,
+  );
+  const [viewReactionsMessage, setViewReactionsMessage] = useState<Message | null>(
+    null,
+  );
+  const [viewReactionsEmoji, setViewReactionsEmoji] = useState<string | null>(
     null,
   );
 
@@ -159,6 +166,12 @@ const BottomSheets = observer(() => {
     openOrCloseSheet(!!m, 'messageMenu');
   });
 
+  setFunction('openViewReactions', (m: Message | null, emoji: string) => {
+    setViewReactionsMessage(m);
+    setViewReactionsEmoji(emoji || (m?.reactions.keys().next().value ?? null));
+    openOrCloseSheet(!!m, 'viewReactions');
+  });
+
   return (
     <BottomSheet sheetRef={sheetRef} onChange={handleSheetIndexChange}>
       {currentSheet === 'statusMenu' ? (
@@ -179,6 +192,8 @@ const BottomSheets = observer(() => {
         <MemberListSheet context={memberListContext} />
       ) : currentSheet === 'messageMenu' ? (
         <MessageMenuSheet message={messageMenuMessage} />
+      ) : currentSheet === 'viewReactions' ? (
+        <ViewReactionsSheet message={viewReactionsMessage} reaction={viewReactionsEmoji} />
       ) : null}
     </BottomSheet>
   );

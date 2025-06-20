@@ -1,6 +1,7 @@
 import {useContext} from 'react';
 import {Pressable, type PressableProps, StyleSheet, View} from 'react-native';
 import {observer} from 'mobx-react-lite';
+import {app} from '@clerotri/Generic';
 
 import type {Message} from 'revolt.js';
 
@@ -36,8 +37,12 @@ const Reaction = observer(
         : showToast('You cannot react to this message.');
     };
 
+    const onLongPress = () => {
+      app.openViewReactions(message, reaction);
+    };
+
     return (
-      <ReactionBox onPress={onPress} active={active}>
+      <ReactionBox onPress={onPress} onLongPress={onLongPress} active={active}>
         {reaction.length > 6 && (
           <Image
             style={{minHeight: 15, minWidth: 15}}

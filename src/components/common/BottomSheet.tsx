@@ -1,9 +1,10 @@
 import {useContext, useMemo} from 'react';
-import {StyleSheet} from 'react-native';
+import {StyleSheet, Text} from 'react-native';
 
 import BottomSheetCore, {
   BottomSheetBackdrop,
   BottomSheetScrollView,
+  BottomSheetView,
 } from '@gorhom/bottom-sheet';
 import {observer} from 'mobx-react-lite';
 
@@ -14,10 +15,12 @@ export const BottomSheet = observer(
     sheetRef,
     children,
     onChange,
+    outerScroll,
   }: {
     sheetRef: any;
     children: any;
     onChange?: any;
+    outerScroll?: 'auto' | 'none' | 'custom'; 
   }) => {
     const {currentTheme} = useContext(ThemeContext);
     const localStyles = useMemo(
@@ -37,8 +40,15 @@ export const BottomSheet = observer(
         style={localStyles.sheet}
         backgroundStyle={localStyles.sheetBackground}
         handleIndicatorStyle={localStyles.handleIndicator}
-        onChange={onChange}>
-        <BottomSheetScrollView>{children}</BottomSheetScrollView>
+        onChange={onChange}
+        enableContentPanningGesture={outerScroll != 'none'}>
+        {outerScroll == 'none' ? (
+          <BottomSheetView style={{ flexDirection: 'column', flex: 1 }}>{children}</BottomSheetView>
+        ) : outerScroll == 'custom' ? (
+          <>{children}</>
+        ) : (
+          <BottomSheetScrollView>{children}</BottomSheetScrollView>
+        )}
       </BottomSheetCore>
     );
   },

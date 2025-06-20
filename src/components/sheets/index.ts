@@ -13,3 +13,4 @@ export {ServerInviteSheet} from './ServerInviteSheet';
 export {ServerSettingsSheet} from './ServerSettingsSheet';
 export {SettingsSheet} from './SettingsSheet';
 export {StatusSheet} from './StatusSheet';
+export {ViewReactionsSheet} from './ViewReactionsSheet';
