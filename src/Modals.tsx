@@ -193,7 +193,7 @@ const BottomSheets = observer(() => {
       ) : currentSheet === 'messageMenu' ? (
         <MessageMenuSheet message={messageMenuMessage} />
       ) : currentSheet === 'viewReactions' ? (
-        <ViewReactionsSheet message={viewReactionsMessage} emoji={viewReactionsEmoji} />
+        <ViewReactionsSheet message={viewReactionsMessage} reaction={viewReactionsEmoji} />
       ) : null}
     </BottomSheet>
   );

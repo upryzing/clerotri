@@ -4,6 +4,7 @@ import {StyleSheet, Text} from 'react-native';
 import BottomSheetCore, {
   BottomSheetBackdrop,
   BottomSheetScrollView,
+  BottomSheetView,
 } from '@gorhom/bottom-sheet';
 import {observer} from 'mobx-react-lite';
 

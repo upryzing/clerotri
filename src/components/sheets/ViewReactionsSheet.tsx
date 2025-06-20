@@ -1,5 +1,5 @@
 import { useRef, useState, useContext, useEffect } from 'react';
-import { View, Text, Image, StyleSheet, TouchableOpacity } from 'react-native';
+import { View, Text, Image, StyleSheet, TouchableOpacity, StyleProp, ViewStyle } from 'react-native';
 import { ScrollView } from 'react-native-gesture-handler';
 import { observer } from 'mobx-react-lite';
 
@@ -47,16 +47,14 @@ export const ViewReactionsSheet = observer(({ message, reaction }: { message: Me
   const { currentTheme } = useContext(ThemeContext);
   const localStyles = generateLocalStyles(currentTheme);
 
-  const currentReaction = () => message && (reaction && message.reactions.get(reaction) && message.reactions.get(reaction)!.size > 0 && reaction) || message?.reactions.keys().next()?.toString();
-
-  const sheetRef = useRef<BottomSheetCore>(null);
+  const [currentReaction, setCurrentReaction] = useState(reaction);
 
   const [reactors, setReactors] = useState([] as User[]);
 
   useEffect(() => {
-    if (!message || !reaction || !message.reactions.get(reaction)) return;
+    if (!message || !currentReaction || !message.reactions.get(currentReaction)) return;
 
-    const rawReactors = Array.from(message.reactions.get(reaction)!.values());
+    const rawReactors = Array.from(message.reactions.get(currentReaction)!.values());
     setReactors([]);
     const fetchedReactors = [] as User[];
     for (const r of rawReactors) {
@@ -65,7 +63,7 @@ export const ViewReactionsSheet = observer(({ message, reaction }: { message: Me
         setReactors([...fetchedReactors]);
       });
     }
-  }, [message, reaction]);
+  }, [message, currentReaction]);
 
   const rawReactions = Array.from(message?.reactions ?? []);
   let reactions: ReactionPile[] = [];
@@ -74,50 +72,47 @@ export const ViewReactionsSheet = observer(({ message, reaction }: { message: Me
   }
 
   return (
-    <BottomSheet outerScroll={'custom'} sheetRef={sheetRef}>
-      <Text>DSGGSDGSDGSDGSDG</Text>
-        <View style={{ paddingHorizontal: 16, height: 200}}>
-          <ScrollView horizontal style={{
-            marginVertical: commonValues.sizes.small,
-            maxHeight: 36,
-          }}>
-            {reactions?.map((r) => {
-              return (
-                <ReactionBox
-                  key={`viewreactions-reaction-${r.emoji}`}
-                  onPress={() => setReaction(r.emoji)}
-                  active={!!reaction && r.emoji == reaction}
-                >
-                  {r.emoji.length > 6 && (
-                    <Image
-                      style={{minHeight: 15, minWidth: 15}}
-                      source={{
-                        uri: `${client.configuration?.features.autumn.url}/emojis/${r.emoji}`,
-                      }}
-                    />
-                  )}
-                  <Text key={`viewreactions-reaction-${r.emoji}-label`} style={{ color: currentTheme.foregroundPrimary }}>
-                    {r.emoji.length <= 6 && r.emoji} {r.reactors.length}
-                  </Text>
-                </ReactionBox>
-              );
-            })}
-          </ScrollView>
-          <BottomSheetScrollView>
-            {reactors.map((user) => {
-              if (user && user.relationship != 'Blocked')
-                return <TouchableOpacity
-                  style={localStyles.reactorButton}
-                  onPress={() => {
-                    app.openProfile(user);
+    <View style={{ paddingHorizontal: 16, flex: 1}}>
+      <ScrollView horizontal style={{
+        marginVertical: commonValues.sizes.small,
+        maxHeight: 36,
+      }}>
+        {reactions?.map((r) => {
+          return (
+            <ReactionBox
+              key={`viewreactions-reaction-${r.emoji}`}
+              onPress={() => setCurrentReaction(r.emoji)}
+              active={!!currentReaction && r.emoji == currentReaction}
+            >
+              {r.emoji.length > 6 && (
+                <Image
+                  style={{minHeight: 15, minWidth: 15}}
+                  source={{
+                    uri: `${client.configuration?.features.autumn.url}/emojis/${r.emoji}`,
                   }}
-                >
-                  <MiniProfile key={`viewreactions-content-${user._id}`} user={user} />
-                </TouchableOpacity>
-            })}
-          </BottomSheetScrollView>
-        </View>
-    </BottomSheet>
+                />
+              )}
+              <Text key={`viewreactions-reaction-${r.emoji}-label`} style={{ color: currentTheme.foregroundPrimary }}>
+                {r.emoji.length <= 6 && r.emoji} {r.reactors.length}
+              </Text>
+            </ReactionBox>
+          );
+        })}
+      </ScrollView>
+      <BottomSheetScrollView>
+        {reactors.map((user) => {
+          if (user && user.relationship != 'Blocked')
+            return <TouchableOpacity
+              style={localStyles.reactorButton}
+              onPress={() => {
+                app.openProfile(user);
+              }}
+            >
+              <MiniProfile key={`viewreactions-content-${user._id}`} user={user} />
+            </TouchableOpacity>
+        })}
+      </BottomSheetScrollView>
+    </View>
   );
 });
 
