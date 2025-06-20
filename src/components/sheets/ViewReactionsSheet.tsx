@@ -48,8 +48,8 @@ export const ViewReactionsSheet = observer(({ message, reaction }: { message: Me
   const localStyles = generateLocalStyles(currentTheme);
 
   const [currentReaction, setCurrentReaction] = useState(reaction);
-
   const [reactors, setReactors] = useState([] as User[]);
+  const reactionsViewRef = useRef<ScrollView>(null);
 
   useEffect(() => {
     if (!message || !currentReaction || !message.reactions.get(currentReaction)) return;
@@ -71,18 +71,37 @@ export const ViewReactionsSheet = observer(({ message, reaction }: { message: Me
     reactions.push({ emoji: r[0], reactors: Array.from(r[1]) });
   }
 
+  const [reactionPositions, setReactionPositions] = useState<{[id: string]: number}>({})
+  const [reactionScrollViewWidth, setReactionScrollViewWidth] = useState<number>(0)
+
+  const scrollToReaction = (reaction: string) => {
+    const layoutX = reactionPositions[reaction]
+    reactionsViewRef.current?.scrollTo({x: layoutX - reactionScrollViewWidth / 2})
+  }
+
+  useEffect(() => {
+    scrollToReaction(currentReaction!)
+  })
+
   return (
     <View style={{ paddingHorizontal: 16, flex: 1}}>
-      <ScrollView horizontal style={{
+      <ScrollView horizontal ref={reactionsViewRef} style={{
         marginVertical: commonValues.sizes.small,
         maxHeight: 36,
-      }}>
+      }} onLayout={(event) => setReactionScrollViewWidth(event.nativeEvent.layout.width)}>
         {reactions?.map((r) => {
           return (
             <ReactionBox
               key={`viewreactions-reaction-${r.emoji}`}
-              onPress={() => setCurrentReaction(r.emoji)}
+              onPress={() => {
+                setCurrentReaction(r.emoji)
+                scrollToReaction(r.emoji)
+              }}
               active={!!currentReaction && r.emoji == currentReaction}
+              onLayout={(event) => {
+                const layout = event.nativeEvent.layout
+                reactionPositions[r.emoji] = layout.x + layout.width / 2
+              }}
             >
               {r.emoji.length > 6 && (
                 <Image
