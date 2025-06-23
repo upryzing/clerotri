@@ -70,7 +70,9 @@
             "message_box_saved_notes": "Salvar nas suas notas",
             "no_messages": "Nenhuma mensagem",
             "reply_not_loaded": "Mensagem não carregada",
-            "no_messages_body": "Dê início à conversa."
+            "no_messages_body": "Dê início à conversa.",
+            "message_box_system": "Você não pode responder a mensagens do sistema.",
+            "message_box_no_perms": "Você não tem permissões para enviar mensagens neste canal."
         },
         "modals": {
             "confirm_deletion": {
@@ -283,6 +285,9 @@
                 "deprecated": "Essa opção será removida numa versão futura.",
                 "developer": "Esta opção é somente para desenvolvedores.",
                 "experimental": "Esta opção é experimental e pode ser removida ou modificada a qualquer momento."
+            },
+            "analytics": {
+                "title": "Analíticos"
             }
         },
         "misc": {
@@ -372,7 +377,122 @@
                 "mark_as_read": "Marcar como lido",
                 "copy_link": "Copiar link do canal",
                 "delete": "Apagar canal"
+            },
+            "report": {
+                "additional_context_body": "Você pode adicionar mais contexto á sua denúncia aqui.",
+                "additional_context_placeholder": "Adicionar mais contexto (opcional)",
+                "additional_context_placeholder_recommended": "Adicionar mais contexto (recomendado)",
+                "destination_notice_generic": "Esta denúncia será enviada ao time de moderação da plataforma, não a desse servidor.",
+                "destination_notice_upryzing": "Esta denúncia será enviada ao time de moderação do Upryzing, não aos desse espaço.",
+                "destination_notice_revolt": "Esta denúncia será enviada ao time de moderação do Revolt, não a moderação do servidor.",
+                "bridged_message_notice": "Esta mensagem pode ter sido enviada por outra plataforma. Se for o caso, recomendamos denúnciar lá também.",
+                "next_steps": {
+                    "header": "Próximos passos",
+                    "block_message_author_body": "Você também pode bloquear o autor desta mensagem.",
+                    "block_user_body": "Você pode bloquear esse usuário.",
+                    "block_message_author": "Bloquear autor",
+                    "block_user": "Bloquear usuário",
+                    "message_author_blocked": "Autor bloqueado",
+                    "user_blocked": "Usuário bloqueado",
+                    "leave_server_body": "Você também pode sair deste servidor. Outros membros não serão notificados.",
+                    "leave_server": "Sair do servidor",
+                    "done": "Feito"
+                },
+                "reasons": {
+                    "PromotesHarm_body_message": "Esta mensagem promove danos ou abuso",
+                    "PromotesHarm_body_server": "Este servidor promove danos ou abuso",
+                    "ScamsFraud": "Golpes ou fraudes",
+                    "ScamsFraud_body_message": "Esta mensagem promove golpes ou fraude",
+                    "ScamsFraud_body_server": "Este servidor promove golpes ou fraude",
+                    "SpamAbuse": "Spam ou abuso de plataforma",
+                    "SpamAbuse_body_message": "Esta mensagem é spam ou abuso da plataforma",
+                    "SpamAbuse_body_server": "Este servidor está spamando ou abusando a plataforma",
+                    "SpamAbuse_body_user": "Este usuário está spamando ou abusando a plataforma",
+                    "Underage": "Menor de idade",
+                    "Underage_body_user": "Este usuário é muito jovem para usar o Revolt",
+                    "UnsolicitedSpam": "Spam não-solicitado",
+                    "UnsolicitedSpam_body_message": "Esta mensagem contém publicidade ou spam não-solicitados",
+                    "UnsolicitedSpam_body_server": "Este servidor contém publicidade ou spam não-solicitados",
+                    "UnsolicitedSpam_body_user": "Este usuário está enviando publicidade ou spam não-solicitado",
+                    "Malware": "Malware",
+                    "BanEvasion": "Evasão de banimento",
+                    "BanEvasion_body_user": "Este usuário está evadindo um banimento",
+                    "ExtremeViolence": "Violência extrema",
+                    "ExtremeViolence_body_message": "Esta mensagem contém violência extrema, muito sangue ou crueldade com animais",
+                    "Harassment": "Humilhação",
+                    "Harassment_body_message": "Esta mensagem está me humilhando ou humilha outra pessoa",
+                    "Harassment_body_server": "Este servidor está me humilhando ou outra pessoa",
+                    "Illegal": "Conteúdo ilegal",
+                    "Illegal_body_message": "Esta mensagem quebra uma ou mais leis",
+                    "Illegal_body_server": "Este servidor quebra uma ou mais leis",
+                    "IllegalExtortion": "Extorção ilegal",
+                    "IllegalExtortion_body_server": "Este servidor extorce ou chantageia a mim ou outra pessoa",
+                    "IllegalGoods": "Bens ilegais",
+                    "IllegalGoods_body_message": "Esta mensagem vende bens ilegais ou outros serviços",
+                    "IllegalGoods_body_server": "Este servidor vende bens ilegais ou serviços",
+                    "IllegalHacking": "Hacking ilegal",
+                    "IllegalHacking_body_message": "Esta mensagem contém ou promove hacking ilegal ou decifrações",
+                    "IllegalPornography": "Pornografia ilegal",
+                    "IllegalPornography_body_message": "Esta mensagem contém vingança ou pornografia envolvendo menores de idade",
+                    "IllegalPornography_body_server": "Este servidor contém vingança ou pornografia envolvendo menores de idade",
+                    "Impersonation": "Impersonação",
+                    "InappropriateProfile": "Perfil inapropriado",
+                    "InappropriateProfile_body_user": "O perfil deste usuário é inapropriado para uma audiencia geral",
+                    "Malware_body_message": "Esta mensagem contém malware ou links perigosos",
+                    "Malware_body_server": "Este servidor contém malware ou links perigosos",
+                    "Raid": "Invasões",
+                    "Raid_body_server": "Este servidor promove invasões ou ataques de spam",
+                    "NoneSpecified": "Outro",
+                    "NoneSpecified_body": "Algo que não está listado aqui",
+                    "PromotesHarm": "Promove danos",
+                    "IllegalHacking_body_server": "Este servidor contém ou promove hacking ilegal ou decifrações",
+                    "ExtremeViolence_body_server": "Este servidor contém extrema violência, muito sangue ou crueldade com animais",
+                    "IllegalExtortion_body_message": "Esta mensagem extorce ou chatageia a mim ou outra pessoa",
+                    "Impersonation_body_user": "Este usuário está me impersonando ou outra pessoa",
+                    "Raid_body_message": "Essa mensagem é parte de uma invasão ou ataque de spam"
+                },
+                "report_message": "Denunciar Mensagem",
+                "report_server": "Denunciar servidor",
+                "report_user": "Denunciar usuário",
+                "reason_selector_user": "Por que está denunciando esse usuário?",
+                "success_header": "Denúncia enviada",
+                "success_body_generic": "Sua denúncia foi enviada ao time da plataforma para avaliação. Obrigado por ajudar a manter a plataforma segura.",
+                "reason_selector_server": "Por que está denunciando este servidor?",
+                "success_body_revolt": "Sua denúncia foi enviada ao time do Revolt para avaliação. Obrigado por ajudar a manter o Revolt seguro.",
+                "reason_selector_body": "Você pode adicionar mais contexto após selecionar um motivo.",
+                "reason_selector_message": "Por que está denunciando esta mensagem?",
+                "success_body_upryzing": "Sua denúncia foi enviada ao time do Upryzing para avaliação. Obrigado por ajudar a manter o Upryzing seguro."
             }
+        },
+        "analytics": {
+            "tiers": {
+                "basic": "Básico",
+                "full": "Tudo"
+            },
+            "copied_data_toast": "Exemplo de dados copiados",
+            "enable_basic": "Ativar compartilhamento básico",
+            "switch_to_basic": "Trocar para Básico",
+            "enable_full": "Ativar compartilhamento completo",
+            "switch_to_full": "Trocar para completo",
+            "active": "Ativo",
+            "disable_analytics": "Desativar compartilhamento",
+            "continue_without_analytics": "Continuar sem compartilhar",
+            "values": {
+                "model": "O modelo do seu dispositivo",
+                "os": "Seu SO e sua versão",
+                "clerotriVersion": "A versão do Cletori que está usando",
+                "inBasic": "Tudo do Básico",
+                "settings": "Suas configurações do Clerotri",
+                "settings_body_one": "{{count}} seleção",
+                "settings_body_many": "{{count}} seleções",
+                "settings_body_other": "{{count}} seleções",
+                "instance": "URL da sua instância atual",
+                "inBasic_body": "Modelo, Versão do SO, Versão do Clerotri"
+            },
+            "privacy_info": "Informações de Privacidade",
+            "title": "Gerenciar analíticos",
+            "body": "Por padrão, Clerotri não coleta dados. Você pode nos permitir os seguintes dados para ajudar a melhorar o aplicativo.",
+            "analytics_disabled": "Compartilhamento desativado"
         }
     }
 }
