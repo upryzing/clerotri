@@ -1,8 +1,8 @@
 diff --git a/android/build.gradle b/android/build.gradle
-index 99475ac7567464fc4a95783f3e16918058539654..f3e80c7bcd37a1576e53ecd02f8eeff638597484 100644
+index ac149a0e7df5e6ee2a6f839d5fed84c5b24a2175..87bcc81a4e94b03c57cc80231b68dd6e0e8b7b54 100644
 --- a/android/build.gradle
 +++ b/android/build.gradle
-@@ -142,9 +142,13 @@ android {
+@@ -158,9 +158,13 @@ android {
                      arguments "-DREACT_NATIVE_DIR=${REACT_NATIVE_DIR}",
                              "-DREACT_NATIVE_MINOR_VERSION=${REACT_NATIVE_MINOR_VERSION}",
                              "-DANDROID_STL=c++_shared",

@@ -10,7 +10,7 @@ export const isDebug = getBundleId().match('debug');
 export const AppIcon = isDebug ? DebugIcon : ReleaseIcon;
 
 const versionGradient: GradientValue = {
-  type: 'linearGradient',
+  type: 'linear-gradient',
   direction: '90deg',
   colorStops: [
     {color: isDebug ? '#d3bc5f80' : '#0ad3c1a0'},

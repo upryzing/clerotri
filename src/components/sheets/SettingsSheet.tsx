@@ -80,7 +80,7 @@ export const SettingsSheet = observer(({setState}: {setState: Function}) => {
 
   const donateGradient: GradientValue = useMemo(() => {
     return {
-      type: 'linearGradient',
+      type: 'linear-gradient',
       direction: '120deg',
       colorStops: [
         {color: '#00000000'},
