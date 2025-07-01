@@ -1,15 +1,14 @@
 import {useContext} from 'react';
-import {StyleSheet, TouchableOpacity} from 'react-native';
+import {
+  StyleSheet,
+  TouchableOpacity,
+  type TouchableOpacityProps,
+} from 'react-native';
 
 import {commonValues, Theme, ThemeContext} from '@clerotri/lib/themes';
 
-type ButtonProps = {
-  children?: any;
+type ButtonProps = TouchableOpacityProps & {
   backgroundColor?: string;
-  onPress?: any;
-  onLongPress?: any;
-  delayLongPress?: number;
-  style?: any;
 };
 
 export function ContextButton({
