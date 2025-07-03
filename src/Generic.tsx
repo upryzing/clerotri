@@ -480,6 +480,11 @@ export const app = {
       `[FUNCTIONS] Tried to run uninitialised function openAnalyticsMenu (args: ${state}, ${blockClosing})`,
     );
   },
+  openChangelog: (state: boolean) => {
+    console.log(
+      `[FUNCTIONS] Tried to run uninitialised function openChangelog (args: ${state})`,
+    );
+  },
 };
 
 export function setFunction(name: keyof typeof app, func: any) {

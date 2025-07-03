@@ -12,7 +12,6 @@ import {createChannel, setUpNotifeeListener} from '@clerotri/lib/notifications';
 import {OrderedServersContext} from '@clerotri/lib/state';
 import {storage} from '@clerotri/lib/storage';
 import {ThemeContext} from '@clerotri/lib/themes';
-import {checkLastVersion} from '@clerotri/lib/utils';
 import {LoginViews} from '@clerotri/pages/LoginViews';
 import {generateAnalyticsObject} from '@clerotri/lib/analytics';
 import {ANALYTICS_ENDPOINT} from '@clerotri/lib/consts';
@@ -178,8 +177,6 @@ export function MainView() {
 
       let defaultNotif = await createChannel();
       console.log(`[NOTIFEE] Created channel: ${defaultNotif}`);
-
-      checkLastVersion();
 
       await loginWithSavedToken(status);
     }

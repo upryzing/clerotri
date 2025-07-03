@@ -38,7 +38,9 @@ export const BottomSheet = observer(
         backgroundStyle={localStyles.sheetBackground}
         handleIndicatorStyle={localStyles.handleIndicator}
         onChange={onChange}>
-        <BottomSheetScrollView>{children}</BottomSheetScrollView>
+        <BottomSheetScrollView contentContainerStyle={{flex: 1}}>
+          {children}
+        </BottomSheetScrollView>
       </BottomSheetCore>
     );
   },

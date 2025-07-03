@@ -19,7 +19,7 @@ import {client} from '@clerotri/lib/client';
 import {DONATIONS_INFO, OPEN_ISSUES, WEBLATE} from '@clerotri/lib/consts';
 import {storage} from '@clerotri/lib/storage';
 import {getInstanceURL} from '@clerotri/lib/storage/utils';
-import {commonValues, ThemeContext} from '@clerotri/lib/themes';
+import {commonValues, type Theme, ThemeContext} from '@clerotri/lib/themes';
 import {SettingsSection} from '@clerotri/lib/types';
 import {openUrl} from '@clerotri/lib/utils';
 import {styles} from '@clerotri/Theme';
@@ -58,6 +58,17 @@ function copyDebugInfo() {
   Clipboard.setString(JSON.stringify(obj));
 }
 
+export const generateDonateGradient = (currentTheme: Theme) : GradientValue => {
+    return {
+      type: 'linear-gradient',
+      direction: '120deg',
+      colorStops: [
+        {color: '#00000000'},
+        {color: `${currentTheme.accentColor}80`},
+      ],
+    };
+}
+
 export const SettingsSheet = observer(({setState}: {setState: Function}) => {
   const insets = useSafeAreaInsets();
 
@@ -78,16 +89,7 @@ export const SettingsSheet = observer(({setState}: {setState: Function}) => {
     },
   );
 
-  const donateGradient: GradientValue = useMemo(() => {
-    return {
-      type: 'linear-gradient',
-      direction: '120deg',
-      colorStops: [
-        {color: '#00000000'},
-        {color: `${currentTheme.accentColor}80`},
-      ],
-    };
-  }, [currentTheme]);
+  const donateGradient = useMemo(() => generateDonateGradient(currentTheme), [currentTheme]);
 
   return (
     <View
@@ -263,6 +265,22 @@ export const SettingsSheet = observer(({setState}: {setState: Function}) => {
               <Text>{t('app.settings_menu.other.debug_info')}</Text>
             </ContextButton>
             <Text type={'h1'}>{t('app.settings_menu.groups.other')}</Text>
+            <ContextButton
+              style={{flex: 1, marginBottom: 10}}
+              backgroundColor={currentTheme.backgroundSecondary}
+              onPress={() => {
+                setState();
+                app.openChangelog(true);
+              }}>
+              <View style={styles.iconContainer}>
+                <MaterialCommunityIcon
+                  name={'newspaper'}
+                  color={currentTheme.foregroundPrimary}
+                  size={24}
+                />
+              </View>
+              <Text>{t('app.settings_menu.other.changelog')}</Text>
+            </ContextButton>
             <ContextButton
               style={{flex: 1, marginBottom: 10}}
               backgroundColor={currentTheme.backgroundSecondary}

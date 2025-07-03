@@ -363,6 +363,7 @@
                 "loading": "Loading licence data…"
             },
             "other": {
+                "changelog": "View Changelog",
                 "debug_info": "Copy Debug Info",
                 "donate": "Donate",
                 "translate": "Translate Clerotri",

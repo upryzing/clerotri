@@ -1,5 +1,6 @@
 export {AnalyticsSettingsSheet} from './AnalyticsSettingsSheet';
 export {BotInviteSheet} from './BotInviteSheet';
+export {ChangelogSheet} from './ChangelogSheet';
 export {ChannelInfoSheet} from './ChannelInfoSheet';
 export {ChannelMenuSheet} from './ChannelMenuSheet';
 export {ChannelSwitcherSheet} from './ChannelSwitcherSheet';

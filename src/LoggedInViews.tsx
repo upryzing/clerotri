@@ -2,7 +2,7 @@ import {type RefObject, useEffect, useState} from 'react';
 
 import type {API, ClientboundNotification, Server} from 'revolt.js';
 
-import {setFunction, settings} from '@clerotri/Generic';
+import {app, appVersion, setFunction, settings} from '@clerotri/Generic';
 import {client} from '@clerotri/lib/client';
 import {Modals} from '@clerotri/Modals';
 import {SideMenuHandler} from '@clerotri/SideMenu';
@@ -12,7 +12,7 @@ import {handleMessageNotification} from '@clerotri/lib/notifications';
 import {ChannelContext, ServerContext} from '@clerotri/lib/state';
 import {storage} from '@clerotri/lib/storage';
 import {CVChannel} from '@clerotri/lib/types';
-import {openLastChannel} from '@clerotri/lib/utils';
+import {checkLastVersion, openLastChannel, sleep} from '@clerotri/lib/utils';
 
 export function LoggedInViews({
   channelNotificationSettings,
@@ -42,6 +42,24 @@ export function LoggedInViews({
 
   const [notificationMessage, setNotificationMessage] =
     useState<API.Message | null>(null);
+
+  useEffect(() => {
+    const lastVersion = checkLastVersion();
+
+    if (lastVersion !== 'current') {
+      storage.set('lastVersion', appVersion);
+
+      if (lastVersion) {
+        if (settings.get('app.showChangelogs')) {
+          console.log(`[APP] Opening changelog...`);
+          // don't ask why but the sheet doesn't appear without this
+          sleep(50).then(() => {
+            app.openChangelog(true);
+          });
+        }
+      }
+    }
+  }, []);
 
   useEffect(() => {
     if (settings.get('app.reopenLastChannel')) {

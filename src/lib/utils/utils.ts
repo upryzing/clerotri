@@ -91,15 +91,17 @@ export function checkLastVersion() {
     console.log(
       `[APP] lastVersion is null (${lastVersion}), setting to appVersion (${appVersion})`,
     );
-    storage.set('lastVersion', appVersion);
+    return null;
   } else if (appVersion !== lastVersion) {
     console.log(
       `[APP] lastVersion (${lastVersion}) is different from appVersion (${appVersion})`,
     );
+    return lastVersion;
   } else {
     console.log(
       `[APP] lastVersion (${lastVersion}) is equal to appVersion (${appVersion})`,
     );
+    return 'current';
   }
 }
 

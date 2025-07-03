@@ -25,6 +25,7 @@ import {
 import {
   AnalyticsSettingsSheet,
   BotInviteSheet,
+  ChangelogSheet,
   ChannelInfoSheet,
   ChannelMenuSheet,
   ChannelSwitcherSheet,
@@ -159,6 +160,10 @@ const BottomSheets = observer(() => {
     openOrCloseSheet(!!m, 'messageMenu');
   });
 
+  setFunction('openChangelog', (show: boolean) => {
+    openOrCloseSheet(show, 'changelog');
+  });
+
   return (
     <BottomSheet sheetRef={sheetRef} onChange={handleSheetIndexChange}>
       {currentSheet === 'statusMenu' ? (
@@ -179,6 +184,8 @@ const BottomSheets = observer(() => {
         <MemberListSheet context={memberListContext} />
       ) : currentSheet === 'messageMenu' ? (
         <MessageMenuSheet message={messageMenuMessage} />
+      ) : currentSheet === 'changelog' ? (
+        <ChangelogSheet />
       ) : null}
     </BottomSheet>
   );
