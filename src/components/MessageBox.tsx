@@ -133,7 +133,7 @@ export const MessageBox = observer((props: MessageBoxProps) => {
                   justifyContent: 'center',
                 }}
                 onPress={() => {
-                  let replacing = [...replyingMessages];
+                  const replacing = [...replyingMessages];
                   replacing[i].mentions = !replacing[i].mentions;
                   setReplyingMessages(replacing);
                 }}>
@@ -232,13 +232,13 @@ export const MessageBox = observer((props: MessageBoxProps) => {
           <Pressable
             style={localStyles.sendButton}
             onPress={async () => {
-              let thisCurrentText = currentText;
+              const thisCurrentText = currentText;
               setCurrentText('');
               if (editingMessage) {
                 editingMessage.edit({content: thisCurrentText});
                 setEditingMessage(null);
               } else {
-                let nonce = ulid();
+                const nonce = ulid();
                 app.pushToQueue({
                   content: thisCurrentText,
                   channel: props.channel,
@@ -247,10 +247,10 @@ export const MessageBox = observer((props: MessageBoxProps) => {
                     (m: ReplyingMessage) => m.message._id,
                   ),
                 });
-                let uploaded = [];
+                const uploaded = [];
                 const token = storage.getString('token');
                 if (token) {
-                  for (let a of attachments) {
+                  for (const a of attachments) {
                     const formdata = new FormData();
                     formdata.append('file', a);
                     console.log(`[MESSAGEBOX] formdata: ${formdata}`);

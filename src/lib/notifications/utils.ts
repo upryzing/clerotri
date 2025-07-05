@@ -23,11 +23,11 @@ export async function handleMessageNotification(
 
   const channel = client.channels.get(msg.channel);
 
-  let channelNotif =
+  const channelNotif =
     channelNotifications && channel
       ? channelNotifications[channel?._id]
       : undefined;
-  let serverNotif =
+  const serverNotif =
     serverNotifications && channel?.server
       ? serverNotifications[channel?.server?._id]
       : undefined;

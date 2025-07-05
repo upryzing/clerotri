@@ -301,7 +301,7 @@ const OtherModals = observer(() => {
   });
   setFunction('openInvite', async (i: string) => {
     try {
-      let community = await client.fetchInvite(i);
+      const community = await client.fetchInvite(i);
       if (community.type === 'Server') {
         setInviteServer({
           inviteServer: community,

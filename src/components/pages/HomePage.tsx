@@ -30,7 +30,7 @@ export const HomePage = observer(() => {
   const month = `month${rawMonth}`;
 
   // @ts-expect-error hmmmm
-  let holidayEmoji = SPECIAL_DATES.includes(date) ? (
+  const holidayEmoji = SPECIAL_DATES.includes(date) ? (
     <TouchableOpacity
       onPress={() => {
         openUrl(SPECIAL_DATE_OBJECTS[date].link);
@@ -71,7 +71,7 @@ export const HomePage = observer(() => {
             justifyContent: 'center',
           }}
           onPress={() => {
-            let user = client.users.get(client.user?._id!);
+            const user = client.users.get(client.user?._id!);
             if (user) {
               app.openProfile(user);
             }

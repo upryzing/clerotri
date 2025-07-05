@@ -39,7 +39,7 @@ export async function sendNotifeeNotification(
   const channel = client.channels.get(msg.channel);
   const author = client.users.get(msg.author);
 
-  let notifs = (await notifee.getDisplayedNotifications()).filter(
+  const notifs = (await notifee.getDisplayedNotifications()).filter(
     n => n.id === msg.channel,
   );
   const title = `${

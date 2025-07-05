@@ -17,11 +17,11 @@ export const ChannelIcon = ({
 }) => {
   const {currentTheme} = useContext(ThemeContext);
 
-  let color =
+  const color =
     showUnread && channel.unread
       ? currentTheme.foregroundPrimary
       : currentTheme.foregroundSecondary;
-  let radius =
+  const radius =
     channel.channel_type === 'DirectMessage' || channel.channel_type === 'Group'
       ? 10000
       : 0;

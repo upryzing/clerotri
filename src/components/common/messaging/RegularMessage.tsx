@@ -270,7 +270,7 @@ export const RegularMessage = observer((props: MessageProps) => {
                   let height = a.metadata.height;
 
                   if (width > Dimensions.get('screen').width - 75) {
-                    let sizeFactor =
+                    const sizeFactor =
                       (Dimensions.get('screen').width - 75) / width;
                     width = width * sizeFactor;
                     height = height * sizeFactor;

@@ -62,7 +62,7 @@ export function renderEmoji(content: string) {
           }
           let emojis = s.match(RE_UNICODE_EMOJI);
           if (emojis) {
-            let text = s.split(RE_UNICODE_EMOJI);
+            const text = s.split(RE_UNICODE_EMOJI);
             emojis = emojis.map((u, i) => (
               <SVGEmoji
                 key={`unicode-emoji-${i}-${Math.random()}`}

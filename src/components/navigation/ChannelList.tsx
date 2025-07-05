@@ -97,13 +97,13 @@ const ServerChannelList = observer((props: ServerChannelListProps) => {
   const [res, setRes] = useState([] as React.JSX.Element[] | undefined);
 
   useEffect(() => {
-    let categories = props.currentServer.categories?.map(c => {
+    const categories = props.currentServer.categories?.map(c => {
       const element = (
         <ServerChannelListCategory key={`wrapper-${c.id}`} category={c} />
       );
       for (const cnl of c.channels) {
         if (!processedChannels.includes(cnl)) {
-          let newProcessedChannels = processedChannels;
+          const newProcessedChannels = processedChannels;
           newProcessedChannels.push(cnl);
           setProcessedChannels(newProcessedChannels);
         }

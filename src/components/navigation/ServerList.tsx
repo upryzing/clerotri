@@ -69,12 +69,14 @@ export const ServerList = observer(
         key={'server-list-container'}
         style={horizontal && {flexDirection: 'row'}}>
         {servers.map(s => {
-          let iconURL = s.generateIconURL();
-          let pings = s.getMentions().length;
+          const iconURL = s.generateIconURL();
+          const pings = s.getMentions().length;
           let initials = '';
+
           for (const word of s.name.split(' ')) {
             initials += word.charAt(0);
           }
+
           return (
             <View key={`${s._id}-indicator-container`}>
               <TouchableOpacity

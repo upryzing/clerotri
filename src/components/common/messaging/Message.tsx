@@ -14,7 +14,7 @@ import {MessageProps} from '@clerotri/lib/types';
 export const Message = observer((props: MessageProps) => {
   const {currentTheme} = useContext(ThemeContext);
 
-  let [error, setError] = useState(null as any);
+  const [error, setError] = useState(null as any);
   if (error) {
     return (
       <View key={props.message._id}>

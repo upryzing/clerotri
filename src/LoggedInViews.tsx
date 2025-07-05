@@ -71,7 +71,7 @@ export function LoggedInViews({
     if (currentChannel) {
       const lastOpenedChannels = storage.getString('lastOpenedChannels');
       try {
-        let parsedData = JSON.parse(lastOpenedChannels || '{}') || {};
+        const parsedData = JSON.parse(lastOpenedChannels || '{}') || {};
         parsedData[
           typeof currentChannel === 'string' || !currentChannel.server
             ? 'DirectMessage'

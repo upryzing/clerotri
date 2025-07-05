@@ -46,7 +46,7 @@ export const settings = {
       console.warn(`[SETTINGS] Setting ${k} does not exist; func = get`);
       return null;
     }
-    let raw =
+    const raw =
       setting.value !== undefined &&
       (setting.experimental
         ? settings._fetch('ui.settings.showExperimental')?.value

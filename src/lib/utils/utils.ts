@@ -191,26 +191,27 @@ export const openUrl = (url: string) => {
   console.log(`[FUNCTIONS] Handling URL: ${url}`);
   if (url.startsWith('/@')) {
     console.log(`[FUNCTIONS] Opening user profile from URL: ${url}`);
-    let id = url.slice(2);
-    let user = client.users.get(id);
+    const id = url.slice(2);
+    const user = client.users.get(id);
     if (user) {
       app.openProfile(user);
     }
     return;
   }
-  let match = url.match(RE_INVITE);
-  let isDiscover = url.match(DISCOVER_URL);
-  let isWiki = url.match(WIKI_URL);
-  if (match && !isWiki && !isDiscover) {
-    console.log(`[FUNCTIONS] Checking for server invite from URL: ${url}`);
+  const match = url.match(RE_INVITE);
+  if (match) {
+    const isWikiOrDiscover = url.match(DISCOVER_URL) ?? url.match(WIKI_URL);
+    if (!isWikiOrDiscover) {
+      console.log(`[FUNCTIONS] Checking for server invite from URL: ${url}`);
     const invite = match[0].split('/').pop();
     if (invite) {
       console.log(`[FUNCTIONS] Opening server invite from URL: ${url}`);
       app.openInvite(invite);
     }
     return;
+    }
   }
-  let botmatch = url.match(RE_BOT_INVITE);
+  const botmatch = url.match(RE_BOT_INVITE);
   if (botmatch) {
     console.log(`[FUNCTIONS] Checking for bot invite from URL: ${url}`);
     const invite = botmatch[0].split('/').pop();

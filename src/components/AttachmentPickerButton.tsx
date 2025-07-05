@@ -26,7 +26,7 @@ export const AttachmentPickerButton = ({
           return;
         }
         try {
-          let [res] = await pickDocument({
+          const [res] = await pickDocument({
             type: [fileTypes.allFiles],
           });
           let tooBig = false;
