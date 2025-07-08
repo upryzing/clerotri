@@ -7,7 +7,7 @@ import {useSafeAreaInsets} from 'react-native-safe-area-context';
 
 import {ContextButton, Text} from '@clerotri/components/common/atoms';
 import {MarkdownView} from '@clerotri/components/common/MarkdownView';
-import { generateDonateGradient } from '@clerotri/components/sheets/SettingsSheet';
+import {generateDonateGradient} from '@clerotri/components/sheets/SettingsSheet';
 import {DONATIONS_INFO, WEBLATE} from '@clerotri/lib/consts';
 import {commonValues, ThemeContext} from '@clerotri/lib/themes';
 import {appVersion} from '@clerotri/Generic';
@@ -18,7 +18,10 @@ export const ChangelogSheet = observer(() => {
   const insets = useSafeAreaInsets();
   const {currentTheme} = useContext(ThemeContext);
 
-    const donateGradient = useMemo(() => generateDonateGradient(currentTheme), [currentTheme]);
+  const donateGradient = useMemo(
+    () => generateDonateGradient(currentTheme),
+    [currentTheme],
+  );
 
   return (
     <View
@@ -31,14 +34,18 @@ export const ChangelogSheet = observer(() => {
       <View style={{justifyContent: 'center'}}>
         <Text type={'h1'}>v{appVersion}</Text>
         <MarkdownView>
-          This release includes a **new changelog sheet**, support for **a new language** and more!
-          
-          (It also (finally) includes in-app changelogs. These can be disabled in [settings](clerotri://settings/functionality).)
+          This release includes a **new changelog sheet**, support for **a new
+          language** and more! (It also (finally) includes in-app changelogs.
+          These can be disabled in
+          [settings](clerotri://settings/functionality).)
         </MarkdownView>
       </View>
       <View>
         <ContextButton
-          style={{justifyContent: 'center', experimental_backgroundImage: [donateGradient]}}
+          style={{
+            justifyContent: 'center',
+            experimental_backgroundImage: [donateGradient],
+          }}
           onPress={() => {
             openUrl(`${DONATIONS_INFO}_iac_${appVersion}`);
           }}>

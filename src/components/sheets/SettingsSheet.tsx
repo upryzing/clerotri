@@ -58,16 +58,16 @@ function copyDebugInfo() {
   Clipboard.setString(JSON.stringify(obj));
 }
 
-export const generateDonateGradient = (currentTheme: Theme) : GradientValue => {
-    return {
-      type: 'linear-gradient',
-      direction: '120deg',
-      colorStops: [
-        {color: '#00000000'},
-        {color: `${currentTheme.accentColor}80`},
-      ],
-    };
-}
+export const generateDonateGradient = (currentTheme: Theme): GradientValue => {
+  return {
+    type: 'linear-gradient',
+    direction: '120deg',
+    colorStops: [
+      {color: '#00000000'},
+      {color: `${currentTheme.accentColor}80`},
+    ],
+  };
+};
 
 export const SettingsSheet = observer(({setState}: {setState: Function}) => {
   const insets = useSafeAreaInsets();
@@ -89,7 +89,10 @@ export const SettingsSheet = observer(({setState}: {setState: Function}) => {
     },
   );
 
-  const donateGradient = useMemo(() => generateDonateGradient(currentTheme), [currentTheme]);
+  const donateGradient = useMemo(
+    () => generateDonateGradient(currentTheme),
+    [currentTheme],
+  );
 
   return (
     <View

@@ -203,12 +203,12 @@ export const openUrl = (url: string) => {
     const isWikiOrDiscover = url.match(DISCOVER_URL) ?? url.match(WIKI_URL);
     if (!isWikiOrDiscover) {
       console.log(`[FUNCTIONS] Checking for server invite from URL: ${url}`);
-    const invite = match[0].split('/').pop();
-    if (invite) {
-      console.log(`[FUNCTIONS] Opening server invite from URL: ${url}`);
-      app.openInvite(invite);
-    }
-    return;
+      const invite = match[0].split('/').pop();
+      if (invite) {
+        console.log(`[FUNCTIONS] Opening server invite from URL: ${url}`);
+        app.openInvite(invite);
+      }
+      return;
     }
   }
   const botmatch = url.match(RE_BOT_INVITE);
