@@ -37,11 +37,15 @@ function renderMessage(
   messages?: RevoltMessage[],
 ) {
   let grouped = false;
+  let groupedAfter = false;
   if (messages) {
     try {
       const index = messages.indexOf(msg);
       if (index > 0) {
         grouped = calculateGrouped(msg, messages[index - 1]);
+      }
+      if (index < messages.length) {
+        groupedAfter = calculateGrouped(messages[index + 1], msg);
       }
     } catch (err) {
       console.log(
@@ -54,6 +58,7 @@ function renderMessage(
       key={`message-${msg._id}`}
       message={msg}
       grouped={grouped}
+      groupedAfter={groupedAfter}
       onPress={() => onPress(msg)}
       onUserPress={() => app.openProfile(msg.author, msg.channel?.server)}
       onUsernamePress={() => {

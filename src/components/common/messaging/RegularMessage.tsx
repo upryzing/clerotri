@@ -177,9 +177,10 @@ export const RegularMessage = observer((props: MessageProps) => {
           ) : null}
           <View
             style={{
+              ...localStyles.message,
               ...(props.grouped
                 ? localStyles.messageGrouped
-                : localStyles.message),
+                : localStyles.messageUngrouped),
               ...(mentionsUser
                 ? {
                     borderColor: currentTheme.mentionBorder,
@@ -348,21 +349,21 @@ const generateLocalStyles = (currentTheme: Theme) => {
       borderRadius: commonValues.sizes.small,
       borderLeftWidth: 3,
       borderStyle: 'solid',
-      borderColor: currentTheme.backgroundPrimary,
+      borderColor: '#00000000',
       width: '100%',
+    },
+    messageUngrouped: {
       flex: 1,
       flexDirection: 'row',
       paddingVertical: commonValues.sizes.xs,
       paddingHorizontal: commonValues.sizes.xs,
     },
     messageGrouped: {
-      borderRadius: commonValues.sizes.small,
-      borderLeftWidth: 3,
-      borderStyle: 'solid',
-      borderColor: currentTheme.backgroundPrimary,
       paddingLeft: 37,
-      width: '100%',
       paddingVertical: commonValues.sizes.xs,
+    },
+    messageGroupedAfter: {
+      borderRadius: 0,
     },
     messageInner: {
       flex: 1,

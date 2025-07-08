@@ -92,6 +92,7 @@ export type Language = {
 export type MessageProps = {
   message: Message;
   grouped: boolean;
+  groupedAfter?: boolean;
   noTopMargin?: boolean;
   queued?: boolean;
   onUserPress?: any;
