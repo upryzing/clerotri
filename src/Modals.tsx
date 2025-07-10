@@ -8,7 +8,7 @@ import type {API, Channel, Message, Server, User} from 'revolt.js';
 
 import {app, setFunction} from '@clerotri/Generic';
 import {client} from '@clerotri/lib/client';
-import {
+import type {
   CreateChannelModalProps,
   DeletableObject,
   ReportedObject,

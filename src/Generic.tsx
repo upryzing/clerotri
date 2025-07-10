@@ -6,7 +6,7 @@ import {LOADING_SCREEN_REMARKS} from '@clerotri/lib/consts';
 import {checkNotificationPerms} from '@clerotri/lib/notifications/permissions';
 import {storage} from '@clerotri/lib/storage';
 import {themes} from '@clerotri/lib/themes';
-import {
+import type {
   CreateChannelModalProps,
   CVChannel,
   DeletableObject,
