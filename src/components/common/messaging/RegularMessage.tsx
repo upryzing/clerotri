@@ -115,14 +115,8 @@ export const RegularMessage = observer((props: MessageProps) => {
       key={props.message._id}
       activeOpacity={0.8}
       delayLongPress={750}
-      onPress={
-        props.message.author?.relationship === 'Blocked' ? null : props.onPress
-      }
-      onLongPress={
-        props.message.author?.relationship === 'Blocked'
-          ? null
-          : props.onLongPress
-      }>
+      onPress={props.onPress}
+      onLongPress={props.onLongPress}>
       <View
         style={{
           marginTop:
@@ -131,214 +125,182 @@ export const RegularMessage = observer((props: MessageProps) => {
               : (settings.get('ui.messaging.messageSpacing') as number),
         }}
       />
-      {props.message.author?.relationship === 'Blocked' ? (
-        <>
-          <View
-            key={`message-${props.message._id}-blocked-divider-top`}
-            style={{
-              marginBottom: commonValues.sizes.small,
-              height: 1,
-              backgroundColor: currentTheme.foregroundTertiary,
-            }}
-          />
-          <View
-            key={`message-${props.message._id}-blocked`}
-            style={{
-              backgroundColor: currentTheme.background,
-              borderRadius: commonValues.sizes.small,
-              padding: 6,
-            }}>
-            <Text style={{marginLeft: 40}}>Blocked message</Text>
-          </View>
-          <View
-            key={`message-${props.message._id}-blocked-divider-bottom`}
-            style={{
-              marginTop: commonValues.sizes.small,
-              height: 1,
-              backgroundColor: currentTheme.foregroundTertiary,
-            }}
-          />
-        </>
-      ) : (
-        <>
-          {props.message.reply_ids !== null ? (
-            <View style={localStyles.repliedMessagePreviews}>
-              {props.message.reply_ids.map(id => (
-                <ReplyMessage
-                  key={id}
-                  message={client.messages.get(id)}
-                  mention={props.message?.mention_ids?.includes(
-                    props.message?.author_id,
-                  )}
-                  showSymbol={true}
-                />
-              ))}
-            </View>
+
+      {props.message.reply_ids !== null ? (
+        <View style={localStyles.repliedMessagePreviews}>
+          {props.message.reply_ids.map(id => (
+            <ReplyMessage
+              key={id}
+              message={client.messages.get(id)}
+              mention={props.message?.mention_ids?.includes(
+                props.message?.author_id,
+              )}
+              showSymbol={true}
+            />
+          ))}
+        </View>
+      ) : null}
+      <View
+        style={{
+          ...localStyles.message,
+          ...(props.grouped
+            ? localStyles.messageGrouped
+            : localStyles.messageUngrouped),
+          ...(mentionsUser
+            ? {
+                borderColor: currentTheme.mentionBorder,
+                backgroundColor: currentTheme.mentionBackground,
+              }
+            : null),
+        }}>
+        {props.message.author && !props.grouped ? (
+          <Pressable
+            key={`message-${props.message._id}-avatar`}
+            style={{height: 0}}
+            onPress={() => props.onUserPress()}>
+            <Avatar
+              user={props.message.author}
+              masquerade={props.message.generateMasqAvatarURL()}
+              server={props.message.channel?.server}
+              size={35}
+              {...(settings.get('ui.messaging.statusInChatAvatars')
+                ? {status: true}
+                : {})}
+            />
+          </Pressable>
+        ) : null}
+        <View
+          key={`message-${props.message._id}-inner`}
+          style={localStyles.messageInner}>
+          {props.grouped && props.message.edited ? (
+            <Text
+              key={`message-${props.message._id}-edited`}
+              colour={currentTheme.foregroundTertiary}
+              style={{
+                fontSize: 11,
+                position: 'relative',
+                right: 49,
+                marginBottom: -16,
+              }}>
+              {' '}
+              (edited)
+            </Text>
           ) : null}
-          <View
-            style={{
-              ...localStyles.message,
-              ...(props.grouped
-                ? localStyles.messageGrouped
-                : localStyles.messageUngrouped),
-              ...(mentionsUser
-                ? {
-                    borderColor: currentTheme.mentionBorder,
-                    backgroundColor: currentTheme.mentionBackground,
-                  }
-                : null),
-            }}>
-            {props.message.author && !props.grouped ? (
+          {props.message.author && !props.grouped ? (
+            <View
+              key={`message-${props.message._id}-info-row`}
+              style={{flexDirection: 'row'}}>
               <Pressable
-                key={`message-${props.message._id}-avatar`}
-                style={{height: 0}}
-                onPress={() => props.onUserPress()}>
-                <Avatar
+                key={`message-${props.message._id}-username-pressable`}
+                onPress={props.onUsernamePress}>
+                <Username
+                  key={`message-${props.message._id}-username`}
                   user={props.message.author}
-                  masquerade={props.message.generateMasqAvatarURL()}
                   server={props.message.channel?.server}
-                  size={35}
-                  {...(settings.get('ui.messaging.statusInChatAvatars')
-                    ? {status: true}
-                    : {})}
+                  masquerade={props.message.masquerade?.name}
                 />
               </Pressable>
-            ) : null}
-            <View
-              key={`message-${props.message._id}-inner`}
-              style={localStyles.messageInner}>
-              {props.grouped && props.message.edited ? (
+              <Text
+                key={`message-${props.message._id}-timestamp`}
+                style={localStyles.timestamp}>
+                {' '}
+                {formatRelative(props.message.createdAt, new Date(), {
+                  locale: locale,
+                })}
+              </Text>
+              {props.message.edited && (
                 <Text
                   key={`message-${props.message._id}-edited`}
                   colour={currentTheme.foregroundTertiary}
                   style={{
-                    fontSize: 11,
+                    fontSize: 12,
                     position: 'relative',
-                    right: 49,
-                    marginBottom: -16,
+                    top: 2,
+                    left: 2,
                   }}>
                   {' '}
                   (edited)
                 </Text>
-              ) : null}
-              {props.message.author && !props.grouped ? (
-                <View
-                  key={`message-${props.message._id}-info-row`}
-                  style={{flexDirection: 'row'}}>
-                  <Pressable
-                    key={`message-${props.message._id}-username-pressable`}
-                    onPress={props.onUsernamePress}>
-                    <Username
-                      key={`message-${props.message._id}-username`}
-                      user={props.message.author}
-                      server={props.message.channel?.server}
-                      masquerade={props.message.masquerade?.name}
-                    />
-                  </Pressable>
-                  <Text
-                    key={`message-${props.message._id}-timestamp`}
-                    style={localStyles.timestamp}>
-                    {' '}
-                    {formatRelative(props.message.createdAt, new Date(), {
-                      locale: locale,
-                    })}
-                  </Text>
-                  {props.message.edited && (
-                    <Text
-                      key={`message-${props.message._id}-edited`}
-                      colour={currentTheme.foregroundTertiary}
-                      style={{
-                        fontSize: 12,
-                        position: 'relative',
-                        top: 2,
-                        left: 2,
-                      }}>
-                      {' '}
-                      (edited)
-                    </Text>
-                  )}
-                </View>
-              ) : null}
-              {props.message.content ? (
-                <MarkdownView
-                  key={`message-${props.message._id}-rendered-content`}>
-                  {parseRevoltNodes(props.message.content)}
-                </MarkdownView>
-              ) : null}
-              {props.message.attachments?.map(a => {
-                if (a.metadata?.type === 'Image') {
-                  let width = a.metadata.width;
-                  let height = a.metadata.height;
-
-                  if (width > Dimensions.get('screen').width - 75) {
-                    const sizeFactor =
-                      (Dimensions.get('screen').width - 75) / width;
-                    width = width * sizeFactor;
-                    height = height * sizeFactor;
-                  }
-
-                  const imageURL = client.generateFileURL(a);
-
-                  return (
-                    <Pressable
-                      key={`message-${props.message._id}-image-${a._id}`}
-                      onPress={() => app.openImage(a)}>
-                      <Image
-                        source={{uri: imageURL}}
-                        resizeMode={'contain'}
-                        style={{
-                          width: width,
-                          height: height,
-                          marginBottom: commonValues.sizes.small,
-                          borderRadius: 3,
-                        }}
-                      />
-                    </Pressable>
-                  );
-                } else {
-                  return (
-                    <Pressable
-                      key={`message-${props.message._id}-attachment-${a._id}`}
-                      onPress={() => openUrl(client.generateFileURL(a)!)}>
-                      <View
-                        style={{
-                          padding: commonValues.sizes.large,
-                          borderRadius: commonValues.sizes.small,
-                          backgroundColor: currentTheme.backgroundSecondary,
-                          marginBottom: commonValues.sizes.small,
-                        }}>
-                        <Text style={{fontWeight: 'bold'}}>{a.filename}</Text>
-                        <Text>{getReadableFileSize(a.size)}</Text>
-                      </View>
-                    </Pressable>
-                  );
-                }
-              })}
-              {invites?.map((inv, index) => {
-                return (
-                  <InviteEmbed
-                    key={`message-${props.message._id}-invite-${inv}-${index}`}
-                    message={props.message}
-                    invite={inv}
-                  />
-                );
-              })}
-              {props.message.embeds &&
-                props.message.embeds.map((e, i) => {
-                  return (
-                    <MessageEmbed
-                      key={`message-${props.message._id}-embed-${i}`}
-                      embed={e}
-                    />
-                  );
-                })}
-              {settings.get('ui.messaging.showReactions') ? (
-                <MessageReactions msg={props.message} />
-              ) : null}
+              )}
             </View>
-          </View>
-        </>
-      )}
+          ) : null}
+          {props.message.content ? (
+            <MarkdownView key={`message-${props.message._id}-rendered-content`}>
+              {parseRevoltNodes(props.message.content)}
+            </MarkdownView>
+          ) : null}
+          {props.message.attachments?.map(a => {
+            if (a.metadata?.type === 'Image') {
+              let width = a.metadata.width;
+              let height = a.metadata.height;
+
+              if (width > Dimensions.get('screen').width - 75) {
+                const sizeFactor =
+                  (Dimensions.get('screen').width - 75) / width;
+                width = width * sizeFactor;
+                height = height * sizeFactor;
+              }
+
+              const imageURL = client.generateFileURL(a);
+
+              return (
+                <Pressable
+                  key={`message-${props.message._id}-image-${a._id}`}
+                  onPress={() => app.openImage(a)}>
+                  <Image
+                    source={{uri: imageURL}}
+                    resizeMode={'contain'}
+                    style={{
+                      width: width,
+                      height: height,
+                      marginBottom: commonValues.sizes.small,
+                      borderRadius: 3,
+                    }}
+                  />
+                </Pressable>
+              );
+            } else {
+              return (
+                <Pressable
+                  key={`message-${props.message._id}-attachment-${a._id}`}
+                  onPress={() => openUrl(client.generateFileURL(a)!)}>
+                  <View
+                    style={{
+                      padding: commonValues.sizes.large,
+                      borderRadius: commonValues.sizes.small,
+                      backgroundColor: currentTheme.backgroundSecondary,
+                      marginBottom: commonValues.sizes.small,
+                    }}>
+                    <Text style={{fontWeight: 'bold'}}>{a.filename}</Text>
+                    <Text>{getReadableFileSize(a.size)}</Text>
+                  </View>
+                </Pressable>
+              );
+            }
+          })}
+          {invites?.map((inv, index) => {
+            return (
+              <InviteEmbed
+                key={`message-${props.message._id}-invite-${inv}-${index}`}
+                message={props.message}
+                invite={inv}
+              />
+            );
+          })}
+          {props.message.embeds &&
+            props.message.embeds.map((e, i) => {
+              return (
+                <MessageEmbed
+                  key={`message-${props.message._id}-embed-${i}`}
+                  embed={e}
+                />
+              );
+            })}
+          {settings.get('ui.messaging.showReactions') ? (
+            <MessageReactions msg={props.message} />
+          ) : null}
+        </View>
+      </View>
     </TouchableOpacity>
   );
 });

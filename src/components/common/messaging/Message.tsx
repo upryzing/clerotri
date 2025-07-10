@@ -4,6 +4,7 @@ import {observer} from 'mobx-react-lite';
 
 import {settings} from '@clerotri/Generic';
 import {Text} from '@clerotri/components/common/atoms';
+import {BlockedMessage} from '@clerotri/components/common/messaging/BlockedMessage';
 import {PlatformModerationMessage} from '@clerotri/components/common/messaging/PlatformModerationMessage';
 import {RegularMessage} from '@clerotri/components/common/messaging/RegularMessage';
 import {SystemMessage} from '@clerotri/components/common/messaging/SystemMessage';
@@ -52,6 +53,9 @@ export const Message = observer((props: MessageProps) => {
           <PlatformModerationMessage message={props.message} />
         </TouchableOpacity>
       );
+    }
+    if (props.message.author?.relationship !== 'Blocked') {
+      return <BlockedMessage {...props} />;
     }
     return <RegularMessage {...props} />;
   } catch (e) {
