@@ -12,6 +12,7 @@ import type {
   CreateChannelModalProps,
   DeletableObject,
   ReportedObject,
+  SettingsSection,
   TextEditingModalProps,
 } from '@clerotri/lib/types';
 import {BottomSheet} from '@clerotri/components/common/BottomSheet';
@@ -274,6 +275,8 @@ const OtherModals = observer(() => {
     i: null as any,
   });
   const [settingsVisibility, setSettingsVisibility] = useState(false);
+  const [initialSettingsSection, setInitialSettingsSection] =
+    useState<SettingsSection | null>(null);
   const [serverSettingsServer, setServerSettingsServer] = useState(
     null as Server | null,
   );
@@ -293,8 +296,14 @@ const OtherModals = observer(() => {
   setFunction('openImage', (a: any) => {
     setImageViewerState({i: a});
   });
-  setFunction('openSettings', (o: boolean) => {
-    setSettingsVisibility(o);
+  setFunction('openSettings', (o: boolean | SettingsSection) => {
+    if (typeof o !== 'boolean') {
+      setInitialSettingsSection(o);
+      setSettingsVisibility(true);
+    } else {
+      setInitialSettingsSection(null);
+      setSettingsVisibility(o);
+    }
   });
   setFunction('openServerSettings', (s: Server | null) => {
     setServerSettingsServer(s);
@@ -339,7 +348,10 @@ const OtherModals = observer(() => {
         onRequestClose={() =>
           app.handleSettingsVisibility(setSettingsVisibility)
         }>
-        <SettingsSheet setState={() => setSettingsVisibility(false)} />
+        <SettingsSheet
+          initialSection={initialSettingsSection}
+          setState={() => setSettingsVisibility(false)}
+        />
       </FixedModal>
       <FixedModal
         visible={!!inviteServer.inviteServer}

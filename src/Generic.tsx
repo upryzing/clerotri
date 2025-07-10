@@ -13,6 +13,7 @@ import type {
   ReplyingMessage,
   ReportedObject,
   Setting,
+  SettingsSection,
   TextEditingModalProps,
 } from '@clerotri/lib/types';
 
@@ -360,7 +361,7 @@ export const app = {
       `[FUNCTIONS] Tried to run uninitialised function openServerContextMenu (args: ${s})`,
     );
   },
-  openSettings: (o: boolean) => {
+  openSettings: (o: boolean | SettingsSection) => {
     console.log(
       `[FUNCTIONS] Tried to run uninitialised function openSettings (args: ${o})`,
     );

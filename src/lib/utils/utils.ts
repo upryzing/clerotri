@@ -189,6 +189,25 @@ export async function fetchMessages(
 
 export const openUrl = (url: string) => {
   console.log(`[FUNCTIONS] Handling URL: ${url}`);
+  if (url.startsWith('clerotri://')) {
+    console.log(`[FUNCTIONS] Handling Clerotri link: ${url}`);
+    const path = url.slice(11);
+    console.log(path);
+    if (path.startsWith('settings')) {
+      const directories = path.split('/', 3);
+      const sectionObject = directories[1]
+        ? {
+            section: directories[1],
+            ...(directories[2] && {subsection: directories[2]}),
+          }
+        : null;
+      console.log(
+        `[FUNCTIONS] Opening settings from URL: ${directories}, ${sectionObject}`,
+      );
+      app.openSettings(sectionObject ?? true);
+    }
+    return;
+  }
   if (url.startsWith('/@')) {
     console.log(`[FUNCTIONS] Opening user profile from URL: ${url}`);
     const id = url.slice(2);

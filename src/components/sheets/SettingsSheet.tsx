@@ -69,14 +69,26 @@ export const generateDonateGradient = (currentTheme: Theme): GradientValue => {
   };
 };
 
-export const SettingsSheet = observer(({setState}: {setState: Function}) => {
+// this ensures things don't bork if an invalid section is provided by `initialSection`
+const VALID_SECTIONS = [
+  'account',
+  'appearance',
+  'functionality',
+  'info',
+  'i18n',
+  'licenses',
+  'profile',
+];
+
+export const SettingsSheet = observer(({initialSection, setState}: {initialSection: SettingsSection | null, setState: Function}) => {
   const insets = useSafeAreaInsets();
 
   const {currentTheme} = useContext(ThemeContext);
 
   const {t} = useTranslation();
 
-  const [section, setSection] = useState(null as SettingsSection);
+  // this feels Cursed but if someone opens a broken URL I'd rather not have things break in weird ways
+  const [section, setSection] = useState(!!initialSection && VALID_SECTIONS.includes(initialSection.section) ? initialSection : null);
 
   setFunction(
     'handleSettingsVisibility',
