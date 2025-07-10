@@ -130,7 +130,7 @@ const ExpandableProfile = observer(({user}: {user: User}) => {
       );
     }
 
-    // called when switching channels
+    // called when the preview is unmounted
     return () => cleanupListeners();
   }, []);
 
@@ -178,7 +178,7 @@ export const ProfileSettingsSection = observer(() => {
   return (
     <>
       <ExpandableProfile user={client.user!} />
-      <SettingsEntry key={'display-name-settings'}>
+      <SettingsEntry key={'display-name-settings'} style={{marginBlockStart: commonValues.sizes.medium}}>
         <View style={{flex: 1}}>
           <Text key={'display-name-label'} style={{fontWeight: 'bold'}}>
             {t('app.settings_menu.profile.display_name')}
