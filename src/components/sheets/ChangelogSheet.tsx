@@ -15,8 +15,8 @@ import {styles} from '@clerotri/Theme';
 import {openUrl} from '@clerotri/lib/utils';
 
 const changelogParagraphs = [
-  "This release includes **improvements to message grouping**, support for **a new language** and more!",
-  "It also (finally!) includes in-app changelogs. These can be disabled in [settings](clerotri://settings/functionality).",
+  'This release includes **improvements to message grouping**, support for **a new language** and more!',
+  'It also (finally!) includes in-app changelogs. These can be disabled in [settings](clerotri://settings/functionality).',
 ];
 
 export const ChangelogSheet = observer(() => {
@@ -39,12 +39,12 @@ export const ChangelogSheet = observer(() => {
       <View style={{justifyContent: 'center'}}>
         <Text type={'h1'}>v{appVersion}</Text>
         {changelogParagraphs.map((paragraph, index) => (
-          <View key={`changelog-paragraph-${index}`} style={{marginBlockEnd: commonValues.sizes.medium}}>
-          <MarkdownView>
-          {paragraph}
-        </MarkdownView>
-        </View>
-      ))}
+          <View
+            key={`changelog-paragraph-${index}`}
+            style={{marginBlockEnd: commonValues.sizes.medium}}>
+            <MarkdownView>{paragraph}</MarkdownView>
+          </View>
+        ))}
       </View>
       <View>
         <ContextButton

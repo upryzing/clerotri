@@ -80,320 +80,332 @@ const VALID_SECTIONS = [
   'profile',
 ];
 
-export const SettingsSheet = observer(({initialSection, setState}: {initialSection: SettingsSection | null, setState: Function}) => {
-  const insets = useSafeAreaInsets();
+export const SettingsSheet = observer(
+  ({
+    initialSection,
+    setState,
+  }: {
+    initialSection: SettingsSection | null;
+    setState: Function;
+  }) => {
+    const insets = useSafeAreaInsets();
 
-  const {currentTheme} = useContext(ThemeContext);
+    const {currentTheme} = useContext(ThemeContext);
 
-  const {t} = useTranslation();
+    const {t} = useTranslation();
 
-  // this feels Cursed but if someone opens a broken URL I'd rather not have things break in weird ways
-  const [section, setSection] = useState(!!initialSection && VALID_SECTIONS.includes(initialSection.section) ? initialSection : null);
+    // this feels Cursed but if someone opens a broken URL I'd rather not have things break in weird ways
+    const [section, setSection] = useState(
+      !!initialSection && VALID_SECTIONS.includes(initialSection.section)
+        ? initialSection
+        : null,
+    );
 
-  setFunction(
-    'handleSettingsVisibility',
-    (setVisibility: (state: boolean) => void) => {
-      if (section) {
-        setSection(null);
-      } else {
-        setVisibility(false);
-      }
-    },
-  );
+    setFunction(
+      'handleSettingsVisibility',
+      (setVisibility: (state: boolean) => void) => {
+        if (section) {
+          setSection(null);
+        } else {
+          setVisibility(false);
+        }
+      },
+    );
 
-  const donateGradient = useMemo(
-    () => generateDonateGradient(currentTheme),
-    [currentTheme],
-  );
+    const donateGradient = useMemo(
+      () => generateDonateGradient(currentTheme),
+      [currentTheme],
+    );
 
-  return (
-    <View
-      style={{
-        flex: 1,
-        marginTop: insets.top,
-        backgroundColor: currentTheme.backgroundPrimary,
-        paddingTop: commonValues.sizes.xl,
-        paddingInline: commonValues.sizes.xl,
-        borderTopLeftRadius: commonValues.sizes.xl,
-        borderTopRightRadius: commonValues.sizes.xl,
-      }}>
-      <BackButton
-        callback={() => (section === null ? setState() : setSection(null))}
-        type={section === null ? 'close' : 'back'}
-        margin
-      />
-      {section ? (
-        <>
-          <Text type={'h1'}>
-            {t(`app.settings_menu.${section.section}.title`)}
-          </Text>
-          {section.section === 'licenses' ? (
-            <LicenseListSection />
-          ) : (
-            <ScrollView
-              style={{
-                flex: 1,
-              }}
-              contentContainerStyle={[
-                {
-                  paddingBottom: insets.bottom,
-                },
-                section.section === 'info' && {
-                  flex: 1,
-                },
-              ]}
-              showsVerticalScrollIndicator={false}
-              showsHorizontalScrollIndicator={false}>
-              {section.section === 'appearance' ? (
-                <SettingsCategory category={'appearance'} />
-              ) : section.section === 'functionality' ? (
-                <SettingsCategory category={'functionality'} />
-              ) : section.section === 'i18n' ? (
-                <SettingsCategory category={'i18n'} />
-              ) : section.section === 'account' ? (
-                <AccountSettingsSection />
-              ) : section.section === 'profile' ? (
-                <ProfileSettingsSection />
-              ) : (
-                <AppInfoSection />
-              )}
-            </ScrollView>
-          )}
-        </>
-      ) : (
-        <ScrollView
-          style={{flex: 1}}
-          contentContainerStyle={[
-            {
-              paddingBottom: insets.bottom,
-            },
-          ]}
-          showsVerticalScrollIndicator={false}
-          showsHorizontalScrollIndicator={false}>
+    return (
+      <View
+        style={{
+          flex: 1,
+          marginTop: insets.top,
+          backgroundColor: currentTheme.backgroundPrimary,
+          paddingTop: commonValues.sizes.xl,
+          paddingInline: commonValues.sizes.xl,
+          borderTopLeftRadius: commonValues.sizes.xl,
+          borderTopRightRadius: commonValues.sizes.xl,
+        }}>
+        <BackButton
+          callback={() => (section === null ? setState() : setSection(null))}
+          type={section === null ? 'close' : 'back'}
+          margin
+        />
+        {section ? (
           <>
-            <Text type={'h1'}>{t('app.settings_menu.groups.user')}</Text>
-            <ContextButton
-              style={{flex: 1, marginBottom: 10}}
-              backgroundColor={currentTheme.backgroundSecondary}
-              onPress={() => {
-                setSection({section: 'account'});
-              }}>
-              <View style={styles.iconContainer}>
-                <MaterialIcon
-                  name={'person'}
-                  color={currentTheme.foregroundPrimary}
-                  size={24}
-                />
-              </View>
-              <Text>{t('app.settings_menu.account.title')}</Text>
-            </ContextButton>
-            <ContextButton
-              style={{flex: 1, marginBottom: 10}}
-              backgroundColor={currentTheme.backgroundSecondary}
-              onPress={() => {
-                setSection({section: 'profile'});
-              }}>
-              <View style={styles.iconContainer}>
-                <MaterialCommunityIcon
-                  name={'card-account-details'}
-                  color={currentTheme.foregroundPrimary}
-                  size={24}
-                />
-              </View>
-              <Text>{t('app.settings_menu.profile.title')}</Text>
-            </ContextButton>
-            <Text type={'h1'}>{t('app.settings_menu.groups.app')}</Text>
-            <ContextButton
-              style={{flex: 1, marginBottom: 10}}
-              backgroundColor={currentTheme.backgroundSecondary}
-              onPress={() => {
-                setSection({section: 'appearance'});
-              }}>
-              <View style={styles.iconContainer}>
-                <MaterialIcon
-                  name={'palette'}
-                  color={currentTheme.foregroundPrimary}
-                  size={24}
-                />
-              </View>
-              <Text>{t('app.settings_menu.appearance.title')}</Text>
-            </ContextButton>
-            <ContextButton
-              style={{flex: 1, marginBottom: 10}}
-              backgroundColor={currentTheme.backgroundSecondary}
-              onPress={() => {
-                setSection({section: 'functionality'});
-              }}>
-              <View style={styles.iconContainer}>
-                <MaterialIcon
-                  name={'build'}
-                  color={currentTheme.foregroundPrimary}
-                  size={24}
-                />
-              </View>
-              <Text>{t('app.settings_menu.functionality.title')}</Text>
-            </ContextButton>
-            <ContextButton
-              style={{flex: 1, marginBottom: 10}}
-              backgroundColor={currentTheme.backgroundSecondary}
-              onPress={() => {
-                setSection({section: 'i18n'});
-              }}>
-              <View style={styles.iconContainer}>
-                <MaterialIcon
-                  name={'translate'}
-                  color={currentTheme.foregroundPrimary}
-                  size={24}
-                />
-              </View>
-              <Text>{t('app.settings_menu.i18n.title')}</Text>
-            </ContextButton>
-            <ContextButton
-              style={{flex: 1, marginBottom: 10}}
-              backgroundColor={currentTheme.backgroundSecondary}
-              onPress={() => {
-                app.openAnalyticsMenu(true);
-              }}>
-              <View style={styles.iconContainer}>
-                <MaterialIcon
-                  name={'analytics'}
-                  color={currentTheme.foregroundPrimary}
-                  size={24}
-                />
-              </View>
-              <Text>{t('app.settings_menu.analytics.title')}</Text>
-            </ContextButton>
-            <Text type={'h1'}>{t('app.settings_menu.groups.advanced')}</Text>
-            <ContextButton
-              style={{flex: 1, marginBottom: 10}}
-              backgroundColor={currentTheme.backgroundSecondary}
-              onPress={() => {
-                copyDebugInfo();
-              }}>
-              <View style={styles.iconContainer}>
-                <MaterialIcon
-                  name={'bug-report'}
-                  color={currentTheme.foregroundPrimary}
-                  size={24}
-                />
-              </View>
-              <Text>{t('app.settings_menu.other.debug_info')}</Text>
-            </ContextButton>
-            <Text type={'h1'}>{t('app.settings_menu.groups.other')}</Text>
-            <ContextButton
-              style={{flex: 1, marginBottom: 10}}
-              backgroundColor={currentTheme.backgroundSecondary}
-              onPress={() => {
-                setState();
-                app.openChangelog(true);
-              }}>
-              <View style={styles.iconContainer}>
-                <MaterialCommunityIcon
-                  name={'newspaper'}
-                  color={currentTheme.foregroundPrimary}
-                  size={24}
-                />
-              </View>
-              <Text>{t('app.settings_menu.other.changelog')}</Text>
-            </ContextButton>
-            <ContextButton
-              style={{flex: 1, marginBottom: 10}}
-              backgroundColor={currentTheme.backgroundSecondary}
-              onPress={() => {
-                setSection({section: 'info'});
-              }}>
-              <View style={styles.iconContainer}>
-                <MaterialIcon
-                  name={'info'}
-                  color={currentTheme.foregroundPrimary}
-                  size={24}
-                />
-              </View>
-              <Text>{t('app.settings_menu.info.title')}</Text>
-            </ContextButton>
-            <ContextButton
-              style={{flex: 1, marginBottom: 10}}
-              backgroundColor={currentTheme.backgroundSecondary}
-              onPress={() => {
-                setSection({section: 'licenses'});
-              }}>
-              <View style={styles.iconContainer}>
-                <MaterialCommunityIcon
-                  name={'license'}
-                  color={currentTheme.foregroundPrimary}
-                  size={24}
-                />
-              </View>
-              <Text>{t('app.settings_menu.licenses.title')}</Text>
-            </ContextButton>
-            <ContextButton
-              style={{
-                flex: 1,
-                marginBottom: 10,
-                experimental_backgroundImage: [donateGradient],
-              }}
-              backgroundColor={currentTheme.backgroundSecondary}
-              onPress={() => {
-                openUrl(DONATIONS_INFO);
-              }}>
-              <View style={styles.iconContainer}>
-                <MaterialCommunityIcon
-                  name={'heart'}
-                  color={currentTheme.accentColor}
-                  size={24}
-                />
-              </View>
-              <Text>{t('app.settings_menu.other.donate')}</Text>
-            </ContextButton>
-            <ContextButton
-              style={{flex: 1, marginBottom: 10}}
-              backgroundColor={currentTheme.backgroundSecondary}
-              onPress={() => {
-                openUrl(WEBLATE);
-              }}>
-              <View style={styles.iconContainer}>
-                <MaterialCommunityIcon
-                  name={'translate-variant'}
-                  color={currentTheme.foregroundPrimary}
-                  size={24}
-                />
-              </View>
-              <Text>{t('app.settings_menu.other.translate')}</Text>
-            </ContextButton>
-            <ContextButton
-              style={{flex: 1, marginBottom: 10}}
-              backgroundColor={currentTheme.backgroundSecondary}
-              onPress={() => {
-                openUrl(OPEN_ISSUES);
-              }}>
-              <View style={styles.iconContainer}>
-                <MaterialCommunityIcon
-                  name={'github'}
-                  color={currentTheme.foregroundPrimary}
-                  size={24}
-                />
-              </View>
-              <Text>{t('app.settings_menu.other.view_issues')}</Text>
-            </ContextButton>
-            <ContextButton
-              style={{flex: 1}}
-              backgroundColor={currentTheme.error}
-              onPress={() => {
-                setState();
-                app.logOut();
-              }}>
-              <View style={styles.iconContainer}>
-                <MaterialIcon
-                  name={'logout'}
-                  color={currentTheme.foregroundPrimary}
-                  size={24}
-                />
-              </View>
-              <Text>{t('app.settings_menu.other.logout')}</Text>
-            </ContextButton>
+            <Text type={'h1'}>
+              {t(`app.settings_menu.${section.section}.title`)}
+            </Text>
+            {section.section === 'licenses' ? (
+              <LicenseListSection />
+            ) : (
+              <ScrollView
+                style={{
+                  flex: 1,
+                }}
+                contentContainerStyle={[
+                  {
+                    paddingBottom: insets.bottom,
+                  },
+                  section.section === 'info' && {
+                    flex: 1,
+                  },
+                ]}
+                showsVerticalScrollIndicator={false}
+                showsHorizontalScrollIndicator={false}>
+                {section.section === 'appearance' ? (
+                  <SettingsCategory category={'appearance'} />
+                ) : section.section === 'functionality' ? (
+                  <SettingsCategory category={'functionality'} />
+                ) : section.section === 'i18n' ? (
+                  <SettingsCategory category={'i18n'} />
+                ) : section.section === 'account' ? (
+                  <AccountSettingsSection />
+                ) : section.section === 'profile' ? (
+                  <ProfileSettingsSection />
+                ) : (
+                  <AppInfoSection />
+                )}
+              </ScrollView>
+            )}
           </>
-        </ScrollView>
-      )}
-    </View>
-  );
-});
+        ) : (
+          <ScrollView
+            style={{flex: 1}}
+            contentContainerStyle={[
+              {
+                paddingBottom: insets.bottom,
+              },
+            ]}
+            showsVerticalScrollIndicator={false}
+            showsHorizontalScrollIndicator={false}>
+            <>
+              <Text type={'h1'}>{t('app.settings_menu.groups.user')}</Text>
+              <ContextButton
+                style={{flex: 1, marginBottom: 10}}
+                backgroundColor={currentTheme.backgroundSecondary}
+                onPress={() => {
+                  setSection({section: 'account'});
+                }}>
+                <View style={styles.iconContainer}>
+                  <MaterialIcon
+                    name={'person'}
+                    color={currentTheme.foregroundPrimary}
+                    size={24}
+                  />
+                </View>
+                <Text>{t('app.settings_menu.account.title')}</Text>
+              </ContextButton>
+              <ContextButton
+                style={{flex: 1, marginBottom: 10}}
+                backgroundColor={currentTheme.backgroundSecondary}
+                onPress={() => {
+                  setSection({section: 'profile'});
+                }}>
+                <View style={styles.iconContainer}>
+                  <MaterialCommunityIcon
+                    name={'card-account-details'}
+                    color={currentTheme.foregroundPrimary}
+                    size={24}
+                  />
+                </View>
+                <Text>{t('app.settings_menu.profile.title')}</Text>
+              </ContextButton>
+              <Text type={'h1'}>{t('app.settings_menu.groups.app')}</Text>
+              <ContextButton
+                style={{flex: 1, marginBottom: 10}}
+                backgroundColor={currentTheme.backgroundSecondary}
+                onPress={() => {
+                  setSection({section: 'appearance'});
+                }}>
+                <View style={styles.iconContainer}>
+                  <MaterialIcon
+                    name={'palette'}
+                    color={currentTheme.foregroundPrimary}
+                    size={24}
+                  />
+                </View>
+                <Text>{t('app.settings_menu.appearance.title')}</Text>
+              </ContextButton>
+              <ContextButton
+                style={{flex: 1, marginBottom: 10}}
+                backgroundColor={currentTheme.backgroundSecondary}
+                onPress={() => {
+                  setSection({section: 'functionality'});
+                }}>
+                <View style={styles.iconContainer}>
+                  <MaterialIcon
+                    name={'build'}
+                    color={currentTheme.foregroundPrimary}
+                    size={24}
+                  />
+                </View>
+                <Text>{t('app.settings_menu.functionality.title')}</Text>
+              </ContextButton>
+              <ContextButton
+                style={{flex: 1, marginBottom: 10}}
+                backgroundColor={currentTheme.backgroundSecondary}
+                onPress={() => {
+                  setSection({section: 'i18n'});
+                }}>
+                <View style={styles.iconContainer}>
+                  <MaterialIcon
+                    name={'translate'}
+                    color={currentTheme.foregroundPrimary}
+                    size={24}
+                  />
+                </View>
+                <Text>{t('app.settings_menu.i18n.title')}</Text>
+              </ContextButton>
+              <ContextButton
+                style={{flex: 1, marginBottom: 10}}
+                backgroundColor={currentTheme.backgroundSecondary}
+                onPress={() => {
+                  app.openAnalyticsMenu(true);
+                }}>
+                <View style={styles.iconContainer}>
+                  <MaterialIcon
+                    name={'analytics'}
+                    color={currentTheme.foregroundPrimary}
+                    size={24}
+                  />
+                </View>
+                <Text>{t('app.settings_menu.analytics.title')}</Text>
+              </ContextButton>
+              <Text type={'h1'}>{t('app.settings_menu.groups.advanced')}</Text>
+              <ContextButton
+                style={{flex: 1, marginBottom: 10}}
+                backgroundColor={currentTheme.backgroundSecondary}
+                onPress={() => {
+                  copyDebugInfo();
+                }}>
+                <View style={styles.iconContainer}>
+                  <MaterialIcon
+                    name={'bug-report'}
+                    color={currentTheme.foregroundPrimary}
+                    size={24}
+                  />
+                </View>
+                <Text>{t('app.settings_menu.other.debug_info')}</Text>
+              </ContextButton>
+              <Text type={'h1'}>{t('app.settings_menu.groups.other')}</Text>
+              <ContextButton
+                style={{flex: 1, marginBottom: 10}}
+                backgroundColor={currentTheme.backgroundSecondary}
+                onPress={() => {
+                  setState();
+                  app.openChangelog(true);
+                }}>
+                <View style={styles.iconContainer}>
+                  <MaterialCommunityIcon
+                    name={'newspaper'}
+                    color={currentTheme.foregroundPrimary}
+                    size={24}
+                  />
+                </View>
+                <Text>{t('app.settings_menu.other.changelog')}</Text>
+              </ContextButton>
+              <ContextButton
+                style={{flex: 1, marginBottom: 10}}
+                backgroundColor={currentTheme.backgroundSecondary}
+                onPress={() => {
+                  setSection({section: 'info'});
+                }}>
+                <View style={styles.iconContainer}>
+                  <MaterialIcon
+                    name={'info'}
+                    color={currentTheme.foregroundPrimary}
+                    size={24}
+                  />
+                </View>
+                <Text>{t('app.settings_menu.info.title')}</Text>
+              </ContextButton>
+              <ContextButton
+                style={{flex: 1, marginBottom: 10}}
+                backgroundColor={currentTheme.backgroundSecondary}
+                onPress={() => {
+                  setSection({section: 'licenses'});
+                }}>
+                <View style={styles.iconContainer}>
+                  <MaterialCommunityIcon
+                    name={'license'}
+                    color={currentTheme.foregroundPrimary}
+                    size={24}
+                  />
+                </View>
+                <Text>{t('app.settings_menu.licenses.title')}</Text>
+              </ContextButton>
+              <ContextButton
+                style={{
+                  flex: 1,
+                  marginBottom: 10,
+                  experimental_backgroundImage: [donateGradient],
+                }}
+                backgroundColor={currentTheme.backgroundSecondary}
+                onPress={() => {
+                  openUrl(DONATIONS_INFO);
+                }}>
+                <View style={styles.iconContainer}>
+                  <MaterialCommunityIcon
+                    name={'heart'}
+                    color={currentTheme.accentColor}
+                    size={24}
+                  />
+                </View>
+                <Text>{t('app.settings_menu.other.donate')}</Text>
+              </ContextButton>
+              <ContextButton
+                style={{flex: 1, marginBottom: 10}}
+                backgroundColor={currentTheme.backgroundSecondary}
+                onPress={() => {
+                  openUrl(WEBLATE);
+                }}>
+                <View style={styles.iconContainer}>
+                  <MaterialCommunityIcon
+                    name={'translate-variant'}
+                    color={currentTheme.foregroundPrimary}
+                    size={24}
+                  />
+                </View>
+                <Text>{t('app.settings_menu.other.translate')}</Text>
+              </ContextButton>
+              <ContextButton
+                style={{flex: 1, marginBottom: 10}}
+                backgroundColor={currentTheme.backgroundSecondary}
+                onPress={() => {
+                  openUrl(OPEN_ISSUES);
+                }}>
+                <View style={styles.iconContainer}>
+                  <MaterialCommunityIcon
+                    name={'github'}
+                    color={currentTheme.foregroundPrimary}
+                    size={24}
+                  />
+                </View>
+                <Text>{t('app.settings_menu.other.view_issues')}</Text>
+              </ContextButton>
+              <ContextButton
+                style={{flex: 1}}
+                backgroundColor={currentTheme.error}
+                onPress={() => {
+                  setState();
+                  app.logOut();
+                }}>
+                <View style={styles.iconContainer}>
+                  <MaterialIcon
+                    name={'logout'}
+                    color={currentTheme.foregroundPrimary}
+                    size={24}
+                  />
+                </View>
+                <Text>{t('app.settings_menu.other.logout')}</Text>
+              </ContextButton>
+            </>
+          </ScrollView>
+        )}
+      </View>
+    );
+  },
+);
