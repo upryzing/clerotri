@@ -54,7 +54,7 @@ export const Message = observer((props: MessageProps) => {
         </TouchableOpacity>
       );
     }
-    if (props.message.author?.relationship !== 'Blocked') {
+    if (props.message.author?.relationship === 'Blocked') {
       return <BlockedMessage {...props} />;
     }
     return <RegularMessage {...props} />;
