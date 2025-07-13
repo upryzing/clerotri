@@ -285,7 +285,25 @@
             }
         },
         "permissions": {
-            "AssignRoles": "Rollen zuweisen"
+            "AssignRoles": "Rollen zuweisen",
+            "ChangeAvatar": "Avatar ändern",
+            "BanMembers_body_server": "Ermöglicht Mitgliedern mit dieser Rolle, andere Mitglieder vom Server zu sperren und die Sperre aufzuheben. Gesperrte Mitglieder können erst wieder beitreten, wenn ihre Sperre aufgehoben wurde.",
+            "AssignRoles_body_server": "Ermöglicht Mitgliedern mit dieser Rolle, anderen Mitgliedern Rollen unterhalb des Rangs ihrer höchsten Rolle zuzuweisen.",
+            "BanMembers": "Mitglieder sperren",
+            "ChangeAvatar_body_server": "Ermöglicht Mitgliedern mit dieser Rolle, ihren Server-Avatar zu ändern.",
+            "ChangeNickname": "Spitznamen ändern",
+            "ChangeNickname_body_server": "Ermöglicht Mitgliedern mit dieser Rolle, ihren Spitznamen zu ändern.",
+            "Connect": "Verbinden",
+            "Connect_body_server": "Ermöglicht Mitgliedern mit dieser Rolle, eine Verbindung zu Sprachkanälen herzustellen.",
+            "KickMembers": "Mitglieder rauswerfen",
+            "InviteOthers": "Einladungen erstellen",
+            "InviteOthers_body_server": "Ermöglicht Mitgliedern mit dieser Rolle, Servereinladungen zu erstellen.",
+            "ManageChannel": "Kanäle verwalten",
+            "ManageChannel_body_server": "Ermöglicht Mitgliedern mit dieser Rolle, Kanäle zu erstellen, zu bearbeiten und zu löschen.",
+            "ManageCustomisation": "Anpassung verwalten",
+            "ManageCustomisation_body_server": "Ermöglicht Mitgliedern mit dieser Rolle, Emojis zu erstellen und zu löschen.",
+            "ManageMessages": "Nachrichten verwalten",
+            "KickMembers_body_server": "Ermöglicht Mitgliedern mit dieser Rolle, andere Mitglieder vom Server zu werfen. Geworbene Mitglieder können mit einer Einladung wieder beitreten."
         },
         "channel_list": {
             "direct_messages_header": "Persönliche Nachrichten"
