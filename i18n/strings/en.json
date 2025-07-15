@@ -379,6 +379,17 @@
                 "status": "Status",
                 "status_body": "Set your status type and text"
             },
+            "sessions": {
+                "title": "Sessions",
+                "loading": "Loading sessions…",
+                "current_session": "This session",
+                "other_sessions": "Other sessions",
+                "current_session_not_found": "This session's information is unavailable.",
+                "current_session_not_found_with_hint": "This session's information is unavailable. You need to log out and log back in.",
+                "no_other_sessions": "You do not have any other sessions.",
+                "remove_other_sessions": "Log out of your other sessions",
+                "remove_other_sessions_body": "This session will remain logged in."
+            },
             "toasts": {
                 "deprecated": "This setting will be removed in a future version.",
                 "developer": "This setting is intended for developers.",

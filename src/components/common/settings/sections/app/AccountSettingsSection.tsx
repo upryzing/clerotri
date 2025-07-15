@@ -5,13 +5,11 @@ import {observer} from 'mobx-react-lite';
 import Clipboard from '@react-native-clipboard/clipboard';
 import MaterialIcon from '@react-native-vector-icons/material-icons';
 
-import {app} from '@clerotri/Generic';
 import {client} from '@clerotri/lib/client';
 import {styles} from '@clerotri/Theme';
 import {Text} from '@clerotri/components/common/atoms';
 import {GapView} from '@clerotri/components/layout';
 import {SettingsEntry} from '@clerotri/components/common/settings/atoms';
-import {storage} from '@clerotri/lib/storage';
 import {ThemeContext} from '@clerotri/lib/themes';
 
 export const AccountSettingsSection = observer(() => {
@@ -20,8 +18,6 @@ export const AccountSettingsSection = observer(() => {
   const [authInfo, setAuthInfo] = useState({
     email: '',
     mfaEnabled: false,
-    sessions: [] as {_id: string; name: string}[],
-    sessionID: '' as string | undefined,
   });
   const [showEmail, setShowEmail] = useState(false);
 
@@ -29,13 +25,10 @@ export const AccountSettingsSection = observer(() => {
     async function getAuthInfo() {
       const e = await client.api.get('/auth/account/');
       const m = await client.api.get('/auth/mfa/');
-      const s = await client.api.get('/auth/session/all');
-      const i = storage.getString('sessionID');
+
       setAuthInfo({
         email: e.email,
         mfaEnabled: m.totp_mfa ?? m.security_key_mfa ?? false,
-        sessions: s,
-        sessionID: i,
       });
     }
     getAuthInfo();
@@ -166,79 +159,6 @@ export const AccountSettingsSection = observer(() => {
       <Text>
         MFA is currently {authInfo.mfaEnabled ? 'enabled' : 'disabled'}.
       </Text>
-      <GapView size={4} />
-      <Text type={'h1'}>Sessions</Text>
-      <Text
-        style={{
-          color: currentTheme.foregroundSecondary,
-        }}>
-        Review your logged-in sessions.
-      </Text>
-      {authInfo.sessions.map(s => (
-        <SettingsEntry key={`sessions-${s._id}`}>
-          <View style={{flex: 1, flexDirection: 'column'}}>
-            <Text key={`sessions-${s._id}-name`} style={{fontWeight: 'bold'}}>
-              {s.name} {s.name.match(/(RVMob|Clerotri)/) ? '✨' : ''}
-            </Text>
-            <Text key={`sessions-${s._id}-id`}>{s._id}</Text>
-            {authInfo.sessionID === s._id ? (
-              <Text colour={currentTheme.foregroundSecondary}>
-                Current session
-              </Text>
-            ) : null}
-          </View>
-          <Pressable
-            style={{
-              width: 30,
-              height: 20,
-              alignItems: 'center',
-              justifyContent: 'center',
-            }}
-            onPress={() => {
-              app.openTextEditModal({
-                initialString: s.name,
-                id: 'session_name',
-                callback: newName => {
-                  client.api.patch(`/auth/session/${s._id}`, {
-                    friendly_name: newName,
-                  });
-                },
-              });
-            }}>
-            <View style={styles.iconContainer}>
-              <MaterialIcon
-                name="edit"
-                size={20}
-                color={currentTheme.foregroundPrimary}
-              />
-            </View>
-          </Pressable>
-          {authInfo.sessionID !== s._id ? (
-            <Pressable
-              style={{
-                width: 30,
-                height: 20,
-                alignItems: 'center',
-                justifyContent: 'center',
-              }}
-              onPress={async () => {
-                await client.api.delete(`/auth/session/${s._id}`);
-                setAuthInfo({
-                  ...authInfo,
-                  sessions: authInfo.sessions.filter(ses => ses._id !== s._id),
-                });
-              }}>
-              <View style={styles.iconContainer}>
-                <MaterialIcon
-                  name="logout"
-                  size={20}
-                  color={currentTheme.foregroundPrimary}
-                />
-              </View>
-            </Pressable>
-          ) : null}
-        </SettingsEntry>
-      ))}
     </>
   );
 });

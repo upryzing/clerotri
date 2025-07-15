@@ -24,14 +24,26 @@ export function SettingsEntry(props: ViewProps) {
     ...newProps.style,
   };
 
-  return <View style={localStyles.settingsEntry} {...newProps} />;
+  return <View {...newProps} />;
 }
 
 export function PressableSettingsEntry(props: PressableProps) {
   const {currentTheme} = useContext(ThemeContext);
   const localStyles = generateLocalStyles(currentTheme);
 
-  return <Pressable style={[localStyles.settingsEntry]} {...props} />;
+  let newProps = {...props};
+
+  if (!newProps.style) {
+    newProps.style = {};
+  }
+
+  newProps.style = {
+    ...localStyles.settingsEntry,
+    // @ts-expect-error the type error seems to be related to the various ways you can specify style props but it works so shhhh
+    ...newProps.style,
+  };
+
+  return <Pressable {...newProps} />;
 }
 
 const generateLocalStyles = (currentTheme: Theme) => {

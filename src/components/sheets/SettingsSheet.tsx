@@ -34,6 +34,7 @@ import {
   AccountSettingsSection,
   LicenseListSection,
   ProfileSettingsSection,
+  SessionsSettingsSection,
 } from '@clerotri/components/common/settings/sections/app';
 
 function copyDebugInfo() {
@@ -78,6 +79,7 @@ const VALID_SECTIONS = [
   'i18n',
   'licenses',
   'profile',
+  'sessions',
 ];
 
 export const SettingsSheet = observer(
@@ -149,8 +151,9 @@ export const SettingsSheet = observer(
                   {
                     paddingBottom: insets.bottom,
                   },
-                  section.section === 'info' && {
-                    flex: 1,
+                  (section.section === 'info' ||
+                    section.section === 'sessions') && {
+                    flexGrow: 1,
                   },
                 ]}
                 showsVerticalScrollIndicator={false}
@@ -165,6 +168,8 @@ export const SettingsSheet = observer(
                   <AccountSettingsSection />
                 ) : section.section === 'profile' ? (
                   <ProfileSettingsSection />
+                ) : section.section === 'sessions' ? (
+                  <SessionsSettingsSection />
                 ) : (
                   <AppInfoSection />
                 )}
@@ -212,6 +217,21 @@ export const SettingsSheet = observer(
                   />
                 </View>
                 <Text>{t('app.settings_menu.profile.title')}</Text>
+              </ContextButton>
+              <ContextButton
+                style={{flex: 1, marginBottom: 10}}
+                backgroundColor={currentTheme.backgroundSecondary}
+                onPress={() => {
+                  setSection({section: 'sessions'});
+                }}>
+                <View style={styles.iconContainer}>
+                  <MaterialCommunityIcon
+                    name={'shield-check'}
+                    color={currentTheme.foregroundPrimary}
+                    size={24}
+                  />
+                </View>
+                <Text>{t('app.settings_menu.sessions.title')}</Text>
               </ContextButton>
               <Text type={'h1'}>{t('app.settings_menu.groups.app')}</Text>
               <ContextButton

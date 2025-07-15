@@ -178,7 +178,9 @@ export const ProfileSettingsSection = observer(() => {
   return (
     <>
       <ExpandableProfile user={client.user!} />
-      <SettingsEntry key={'display-name-settings'} style={{marginBlockStart: commonValues.sizes.medium}}>
+      <SettingsEntry
+        key={'display-name-settings'}
+        style={{marginBlockStart: commonValues.sizes.medium}}>
         <View style={{flex: 1}}>
           <Text key={'display-name-label'} style={{fontWeight: 'bold'}}>
             {t('app.settings_menu.profile.display_name')}
