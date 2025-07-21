@@ -33,7 +33,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@babel/core@npm:^7.11.6, @babel/core@npm:^7.12.3, @babel/core@npm:^7.21.3, @babel/core@npm:^7.23.9, @babel/core@npm:^7.25.2, @babel/core@npm:^7.27.4, @babel/core@npm:^7.28.0":
+"@babel/core@npm:^7.11.6, @babel/core@npm:^7.12.3, @babel/core@npm:^7.21.3, @babel/core@npm:^7.23.9, @babel/core@npm:^7.25.2, @babel/core@npm:^7.28.0":
   version: 7.28.0
   resolution: "@babel/core@npm:7.28.0"
   dependencies:
@@ -2272,25 +2272,25 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@react-native-documents/picker@npm:^10.1.4":
-  version: 10.1.4
-  resolution: "@react-native-documents/picker@npm:10.1.4"
+"@react-native-documents/picker@npm:^10.1.5":
+  version: 10.1.5
+  resolution: "@react-native-documents/picker@npm:10.1.5"
   peerDependencies:
     react: "*"
     react-native: "*"
-  checksum: 10c0/5fb8df95f09816311e42dc385c00e1b5975b12214281fd08ebc0544adc5e86f126c0f2767bc2275624524a41815c679a9aeebddce2042693439874be99c2e111
+  checksum: 10c0/bc1215a73dd8919c45bc21337092b2baac2241d7d7708c5234306a35bf294358bc98c6fad6d01f68c7691da29e439e016dd86c22e0be91a9423fa67a80e234eb
   languageName: node
   linkType: hard
 
-"@react-native-vector-icons/common@npm:^12.0.1":
-  version: 12.0.1
-  resolution: "@react-native-vector-icons/common@npm:12.0.1"
+"@react-native-vector-icons/common@npm:^12.2.0":
+  version: 12.2.0
+  resolution: "@react-native-vector-icons/common@npm:12.2.0"
   dependencies:
     "@react-native-community/cli-tools": "npm:^17.0.0"
     picocolors: "npm:^1.1.1"
     plist: "npm:^3.1.0"
   peerDependencies:
-    "@react-native-vector-icons/get-image": ^12.0.1
+    "@react-native-vector-icons/get-image": ^12.1.0
     react: "*"
     react-native: "*"
   peerDependenciesMeta:
@@ -2298,31 +2298,31 @@ __metadata:
       optional: true
   bin:
     rnvi-update-plist: lib/commonjs/scripts/updatePlist.js
-  checksum: 10c0/cf6aa5665aacfc9246cde755acda3c8db0c6a52f032235f35205da805d1c1373c65706e2b0a9aaf6c482ae5c11eae1a0d9d0a990d44bb80bd1bc1f3616ce11a4
+  checksum: 10c0/59576908f91b486e996bed51df0e3f049bc37e3962273795bffb6ff5931f4020627cac6177cad0f8e2f0628aee2aad2abebb60805e6fb13b2d9e5073b9cf0da5
   languageName: node
   linkType: hard
 
-"@react-native-vector-icons/material-design-icons@npm:^12.0.1":
-  version: 12.0.1
-  resolution: "@react-native-vector-icons/material-design-icons@npm:12.0.1"
+"@react-native-vector-icons/material-design-icons@npm:^12.2.0":
+  version: 12.2.0
+  resolution: "@react-native-vector-icons/material-design-icons@npm:12.2.0"
   dependencies:
-    "@react-native-vector-icons/common": "npm:^12.0.1"
+    "@react-native-vector-icons/common": "npm:^12.2.0"
   peerDependencies:
     react: "*"
     react-native: "*"
-  checksum: 10c0/893261bd867b4845657730993f00a7aff66b80e0722ae2c9112eb2d600987ad20f48c6bf14d6449fb47a89db4073be07c9fe8d81f189692d4e152fbed66ff4e8
+  checksum: 10c0/fdeef1532c8ca002414de687ad0289c650697e23fb34288fef46f77aac59739cc2a496da53c9ec4ffabddd36a9af56549126461b95e6746b092e2f4b3b360e47
   languageName: node
   linkType: hard
 
-"@react-native-vector-icons/material-icons@npm:^12.0.1":
-  version: 12.0.1
-  resolution: "@react-native-vector-icons/material-icons@npm:12.0.1"
+"@react-native-vector-icons/material-icons@npm:^12.2.0":
+  version: 12.2.0
+  resolution: "@react-native-vector-icons/material-icons@npm:12.2.0"
   dependencies:
-    "@react-native-vector-icons/common": "npm:^12.0.1"
+    "@react-native-vector-icons/common": "npm:^12.2.0"
   peerDependencies:
     react: "*"
     react-native: "*"
-  checksum: 10c0/cda528cfe59a2634645dbef50856863ac53307264c7e333748d822ff31a34163503fe020fcb83e7ffd7a1298054168d9d16d8c2e6a1a8d07075da6f3c1fa4e68
+  checksum: 10c0/043ec5af5839ef1405da9f2c96adcf874a4b93509ad11cc703b25ce55346dbdd473067ee418d47a37b7cee94dd496569f5da2e90721655e9b261bf8df44233ce
   languageName: node
   linkType: hard
 
@@ -2902,10 +2902,10 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@rolldown/pluginutils@npm:1.0.0-beta.19":
-  version: 1.0.0-beta.19
-  resolution: "@rolldown/pluginutils@npm:1.0.0-beta.19"
-  checksum: 10c0/e4205df56e6231a347ac601d044af365639741d51b5bea4e91ecc37e19e9777cb79d1daa924b8709ddf1f743ed6922e4e68e2445126434c4d420d9f4416f4feb
+"@rolldown/pluginutils@npm:1.0.0-beta.27":
+  version: 1.0.0-beta.27
+  resolution: "@rolldown/pluginutils@npm:1.0.0-beta.27"
+  checksum: 10c0/9658f235b345201d4f6bfb1f32da9754ca164f892d1cb68154fe5f53c1df42bd675ecd409836dff46884a7847d6c00bdc38af870f7c81e05bba5c2645eb4ab9c
   languageName: node
   linkType: hard
 
@@ -3383,12 +3383,21 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@types/node@npm:*, @types/node@npm:^24.0.12":
+"@types/node@npm:*":
   version: 24.0.12
   resolution: "@types/node@npm:24.0.12"
   dependencies:
     undici-types: "npm:~7.8.0"
   checksum: 10c0/333777c3416b758bbdb72a09e9db5599ff7789dca519d3fcf8150a1c56c79d808e0009e92d52016e80033b3c52724def08aad2c5b396e28f00dbdfe40a1756a4
+  languageName: node
+  linkType: hard
+
+"@types/node@npm:^24.0.15":
+  version: 24.0.15
+  resolution: "@types/node@npm:24.0.15"
+  dependencies:
+    undici-types: "npm:~7.8.0"
+  checksum: 10c0/39ead0c0ff25dde29357630b5eaa7dd73cf3af796dbd0f01ed439a8af01cbddfa6b68aa9d67fb3243962836170a4463ff856c47fa822250c585987f707eb42b3
   languageName: node
   linkType: hard
 
@@ -3656,19 +3665,19 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@vitejs/plugin-react@npm:^4.6.0":
-  version: 4.6.0
-  resolution: "@vitejs/plugin-react@npm:4.6.0"
+"@vitejs/plugin-react@npm:^4.7.0":
+  version: 4.7.0
+  resolution: "@vitejs/plugin-react@npm:4.7.0"
   dependencies:
-    "@babel/core": "npm:^7.27.4"
+    "@babel/core": "npm:^7.28.0"
     "@babel/plugin-transform-react-jsx-self": "npm:^7.27.1"
     "@babel/plugin-transform-react-jsx-source": "npm:^7.27.1"
-    "@rolldown/pluginutils": "npm:1.0.0-beta.19"
+    "@rolldown/pluginutils": "npm:1.0.0-beta.27"
     "@types/babel__core": "npm:^7.20.5"
     react-refresh: "npm:^0.17.0"
   peerDependencies:
-    vite: ^4.2.0 || ^5.0.0 || ^6.0.0 || ^7.0.0-beta.0
-  checksum: 10c0/73b8f271978a0337debb255afd1667f49c2018c118962a8613120383375c4038255a5315cee2ef210dc7fd07cd30d5b12271077ad47db29980f8156b8a49be2c
+    vite: ^4.2.0 || ^5.0.0 || ^6.0.0 || ^7.0.0
+  checksum: 10c0/692f23960972879485d647713663ec299c478222c96567d60285acf7c7dc5c178e71abfe9d2eefddef1eeb01514dacbc2ed68aad84628debf9c7116134734253
   languageName: node
   linkType: hard
 
@@ -6139,17 +6148,17 @@ __metadata:
   languageName: node
   linkType: hard
 
-"flow-remove-types@npm:^2.259.1":
-  version: 2.259.1
-  resolution: "flow-remove-types@npm:2.259.1"
+"flow-remove-types@npm:^2.275.0":
+  version: 2.276.0
+  resolution: "flow-remove-types@npm:2.276.0"
   dependencies:
-    hermes-parser: "npm:0.25.1"
+    hermes-parser: "npm:0.29.1"
     pirates: "npm:^3.0.2"
     vlq: "npm:^0.2.1"
   bin:
     flow-node: flow-node
     flow-remove-types: flow-remove-types
-  checksum: 10c0/412bc54c76b649ba0528fbff914a7b672c58f6831ca4dc4ba8233f625ce9bcf593869da18c8d19d7662586752667e9394332ed2ad956e6a5297a62d013404441
+  checksum: 10c0/1460d0ceab3a2c2bccc396367ed35443b2a45ea469895b9bedd8f312d3bd486a420c6b86a21cb1933befd3c0f819c14d701fd1b2aa5384c41473edd1a3b49d24
   languageName: node
   linkType: hard
 
@@ -6501,13 +6510,6 @@ __metadata:
   languageName: node
   linkType: hard
 
-"hermes-estree@npm:0.25.1":
-  version: 0.25.1
-  resolution: "hermes-estree@npm:0.25.1"
-  checksum: 10c0/48be3b2fa37a0cbc77a112a89096fa212f25d06de92781b163d67853d210a8a5c3784fac23d7d48335058f7ed283115c87b4332c2a2abaaccc76d0ead1a282ac
-  languageName: node
-  linkType: hard
-
 "hermes-estree@npm:0.28.1":
   version: 0.28.1
   resolution: "hermes-estree@npm:0.28.1"
@@ -6515,12 +6517,10 @@ __metadata:
   languageName: node
   linkType: hard
 
-"hermes-parser@npm:0.25.1":
-  version: 0.25.1
-  resolution: "hermes-parser@npm:0.25.1"
-  dependencies:
-    hermes-estree: "npm:0.25.1"
-  checksum: 10c0/3abaa4c6f1bcc25273f267297a89a4904963ea29af19b8e4f6eabe04f1c2c7e9abd7bfc4730ddb1d58f2ea04b6fee74053d8bddb5656ec6ebf6c79cc8d14202c
+"hermes-estree@npm:0.29.1":
+  version: 0.29.1
+  resolution: "hermes-estree@npm:0.29.1"
+  checksum: 10c0/e6b01f79ba708697d61a74b871d5ebae5f863c6d782657d8e2d2256eb838f1eb86ff9c34773a81d9cc69e54be3a5059c686e0ab54a4afba903b40dde92dd0ccb
   languageName: node
   linkType: hard
 
@@ -6530,6 +6530,15 @@ __metadata:
   dependencies:
     hermes-estree: "npm:0.28.1"
   checksum: 10c0/c6d3c01fb1ea5232f4587b6b038f5c2c6414932e7c48efbe156ab160e2bcaac818c9eb2f828f30967a24b40f543cad503baed0eedf5a7e877852ed271915981f
+  languageName: node
+  linkType: hard
+
+"hermes-parser@npm:0.29.1":
+  version: 0.29.1
+  resolution: "hermes-parser@npm:0.29.1"
+  dependencies:
+    hermes-estree: "npm:0.29.1"
+  checksum: 10c0/7f40d9bdfb5acaa700f333a24c644b17f5f8d0e823b1e7a9fb6dcf253a54d54716ae63c74effa023688ee4f09013c80188c40d601570fee256a44954e04c2926
   languageName: node
   linkType: hard
 
@@ -7799,9 +7808,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"knip@npm:^5.61.3":
-  version: 5.61.3
-  resolution: "knip@npm:5.61.3"
+"knip@npm:^5.62.0":
+  version: 5.62.0
+  resolution: "knip@npm:5.62.0"
   dependencies:
     "@nodelib/fs.walk": "npm:^1.2.3"
     fast-glob: "npm:^3.3.3"
@@ -7822,7 +7831,7 @@ __metadata:
   bin:
     knip: bin/knip.js
     knip-bun: bin/knip-bun.js
-  checksum: 10c0/2f8abef32829e10f43a8374f254be871a792b9a7c8fdc4eda5630813f9d7cd310c9e0c68093a70b5ceeb3a6b20413705523ed75e482a6f5c80bb3323d2687dcf
+  checksum: 10c0/ffc6c123d132bb423936859c3ae5cb85154cfc862985f74637bc54a4920ef34c1f19d41020f7af25100ea8e7ae61f1f5279af8066043434444bcba82b8dc1611
   languageName: node
   linkType: hard
 
@@ -9489,9 +9498,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"react-native-gesture-handler@npm:2.27.1":
-  version: 2.27.1
-  resolution: "react-native-gesture-handler@npm:2.27.1"
+"react-native-gesture-handler@npm:^2.27.2":
+  version: 2.27.2
+  resolution: "react-native-gesture-handler@npm:2.27.2"
   dependencies:
     "@egjs/hammerjs": "npm:^2.0.17"
     hoist-non-react-statics: "npm:^3.3.0"
@@ -9499,21 +9508,7 @@ __metadata:
   peerDependencies:
     react: "*"
     react-native: "*"
-  checksum: 10c0/0cfab31fdb3241ca7fd8a770d4701de067b237055e8a1e96bcce081606ea720fb05fc60c805c74149927a443b086f0c1d085550a6e3a964cad7af44885cf90b5
-  languageName: node
-  linkType: hard
-
-"react-native-gesture-handler@patch:react-native-gesture-handler@npm%3A2.27.1#~/.yarn/patches/react-native-gesture-handler-npm-2.27.1-0ac924b8a3.patch":
-  version: 2.27.1
-  resolution: "react-native-gesture-handler@patch:react-native-gesture-handler@npm%3A2.27.1#~/.yarn/patches/react-native-gesture-handler-npm-2.27.1-0ac924b8a3.patch::version=2.27.1&hash=7d6e74"
-  dependencies:
-    "@egjs/hammerjs": "npm:^2.0.17"
-    hoist-non-react-statics: "npm:^3.3.0"
-    invariant: "npm:^2.2.4"
-  peerDependencies:
-    react: "*"
-    react-native: "*"
-  checksum: 10c0/3d83e5057789edc68602d86977a732f9a50243e18633c89b98362b729bba17a4cf57f06c066928d7a02cf680b3296cd6405cd2da480566ec5a2d7ccf261540c7
+  checksum: 10c0/f671664b29e738b99aa25f4a1acd3c069af506fa1945f03f297158dc655896d441c1be113e9fb5f6cf4eb7eda58fd0471e0dab3e3c498dabd294f2652a0b9575
   languageName: node
   linkType: hard
 
@@ -9621,13 +9616,13 @@ __metadata:
   languageName: node
   linkType: hard
 
-"react-native-safe-area-context@npm:^5.5.1":
-  version: 5.5.1
-  resolution: "react-native-safe-area-context@npm:5.5.1"
+"react-native-safe-area-context@npm:^5.5.2":
+  version: 5.5.2
+  resolution: "react-native-safe-area-context@npm:5.5.2"
   peerDependencies:
     react: "*"
     react-native: "*"
-  checksum: 10c0/603d9f4cdfd34b494ae64dbcbcd57f306271b9843971c0fb820e8d50e6470f63cdd06472536e8ff9668f79a33c3d1ef32741ed6fe71ca81b093ec01ac99054f0
+  checksum: 10c0/529cafcafbc1d994f6d9c9be41ae4f78768b7c103a22265d3fe5223a930249e0a07a934b5ec358ce510622061f339a20c2147b620bd15032366b12b4258c2ce5
   languageName: node
   linkType: hard
 
@@ -10162,9 +10157,9 @@ __metadata:
     "@react-native-community/cli-platform-android": "npm:^19.1.0"
     "@react-native-community/cli-platform-ios": "npm:^19.1.0"
     "@react-native-community/hooks": "npm:^100.1.0"
-    "@react-native-documents/picker": "npm:^10.1.4"
-    "@react-native-vector-icons/material-design-icons": "npm:^12.0.1"
-    "@react-native-vector-icons/material-icons": "npm:^12.0.1"
+    "@react-native-documents/picker": "npm:^10.1.5"
+    "@react-native-vector-icons/material-design-icons": "npm:^12.2.0"
+    "@react-native-vector-icons/material-icons": "npm:^12.2.0"
     "@react-native/babel-preset": "npm:^0.80.1"
     "@react-native/eslint-config": "npm:^0.80.1"
     "@react-native/metro-config": "npm:^0.80.1"
@@ -10178,12 +10173,12 @@ __metadata:
     "@types/babel__core": "npm:^7.20.5"
     "@types/eslint": "npm:^8.56.12"
     "@types/jest": "npm:^29.5.14"
-    "@types/node": "npm:^24.0.12"
+    "@types/node": "npm:^24.0.15"
     "@types/react": "npm:^19.1.8"
     "@types/react-dom": "npm:^19.1.6"
     "@types/react-native-web": "npm:^0.19.1"
     "@types/react-test-renderer": "npm:^19.1.0"
-    "@vitejs/plugin-react": "npm:^4.6.0"
+    "@vitejs/plugin-react": "npm:^4.7.0"
     "@xmldom/xmldom": "npm:^0.9.8"
     babel-plugin-module-resolver: "npm:^5.0.2"
     babel-plugin-react-native-web: "npm:^0.20.0"
@@ -10194,7 +10189,7 @@ __metadata:
     i18next: "npm:^25.3.2"
     intl-pluralrules: "npm:^2.0.1"
     jest: "npm:^29.7.0"
-    knip: "npm:^5.61.3"
+    knip: "npm:^5.62.0"
     mobx: "npm:^6.13.7"
     mobx-react-lite: "npm:^4.1.0"
     prettier: "npm:^3.6.2"
@@ -10205,13 +10200,13 @@ __metadata:
     react-native: "npm:^0.80.1"
     react-native-device-info: "patch:react-native-device-info@npm%3A14.0.4#~/.yarn/patches/react-native-device-info-npm-14.0.4-9bb10f6c3d.patch"
     react-native-drawer-layout: "npm:^4.1.12"
-    react-native-gesture-handler: "patch:react-native-gesture-handler@npm%3A2.27.1#~/.yarn/patches/react-native-gesture-handler-npm-2.27.1-0ac924b8a3.patch"
+    react-native-gesture-handler: "npm:^2.27.2"
     react-native-get-random-values: "npm:^1.11.0"
     react-native-keyboard-controller: "npm:^1.17.5"
     react-native-mmkv: "npm:^3.3.0"
     react-native-reanimated: "patch:react-native-reanimated@npm%3A3.18.0#~/.yarn/patches/react-native-reanimated-npm-3.18.0-3e0f9f00d6.patch"
     react-native-reanimated-image-viewer: "npm:^1.0.2"
-    react-native-safe-area-context: "npm:^5.5.1"
+    react-native-safe-area-context: "npm:^5.5.2"
     react-native-svg: "npm:^15.12.0"
     react-native-svg-transformer: "npm:^1.5.1"
     react-native-web: "npm:^0.19.13"
@@ -10220,7 +10215,7 @@ __metadata:
     revolt.js: "npm:@rexovolt/revolt.js@^6.7.1"
     typescript: "npm:^5.8.3"
     vite: "npm:^6.3.5"
-    vite-plugin-react-native-web: "npm:^2.1.1"
+    vite-plugin-react-native-web: "npm:^2.2.1"
   languageName: unknown
   linkType: soft
 
@@ -11282,12 +11277,12 @@ __metadata:
   languageName: node
   linkType: hard
 
-"vite-plugin-react-native-web@npm:^2.1.1":
-  version: 2.1.1
-  resolution: "vite-plugin-react-native-web@npm:2.1.1"
+"vite-plugin-react-native-web@npm:^2.2.1":
+  version: 2.2.1
+  resolution: "vite-plugin-react-native-web@npm:2.2.1"
   dependencies:
-    flow-remove-types: "npm:^2.259.1"
-  checksum: 10c0/ba0878290fb9f6862c92ccea4cfc4ed4c44166716e03bc66777162d1f30bed282b63b2d9179fddd1239245283654798928bf6e9a453680d3dba94debfc7ebffe
+    flow-remove-types: "npm:^2.275.0"
+  checksum: 10c0/980e2715877ca08bb6f078f0aa4bc25c0ca4b611e5835e94669556e85a448f851967b466553a466c09d47ae883eb2452ce7ee3066d581f67f87ee3a1822332d2
   languageName: node
   linkType: hard
 
