@@ -6,12 +6,13 @@ import {Theme, ThemeContext} from '@clerotri/lib/themes';
 import {openUrl} from '@clerotri/lib/utils';
 
 type LinkProps = {
+  children?: any;
   link: string;
   label: string;
   style?: any;
 };
 
-export const Link = ({link, label, style}: LinkProps) => {
+export const Link = ({children, link, label, style}: LinkProps) => {
   const {currentTheme} = useContext(ThemeContext);
   const styles = generateLocalStyles(currentTheme);
 
@@ -25,7 +26,7 @@ export const Link = ({link, label, style}: LinkProps) => {
       accessibilityRole={'link'}
       onPress={() => openUrl(link)}
       style={finalStyle}>
-      {label}
+      {children ?? label}
     </Text>
   );
 };
