@@ -32,6 +32,7 @@ import {SettingsCategory} from '@clerotri/components/common/settings';
 import {
   AppInfoSection,
   AccountSettingsSection,
+  BotSettingsSection,
   LicenseListSection,
   ProfileSettingsSection,
   SessionsSettingsSection,
@@ -74,6 +75,7 @@ export const generateDonateGradient = (currentTheme: Theme): GradientValue => {
 const VALID_SECTIONS = [
   'account',
   'appearance',
+  'bots',
   'functionality',
   'info',
   'i18n',
@@ -81,6 +83,8 @@ const VALID_SECTIONS = [
   'profile',
   'sessions',
 ];
+
+const FLEX_CONTAINER_SECTIONS = ['bots', 'info', 'sessions'];
 
 export const SettingsSheet = observer(
   ({
@@ -107,7 +111,7 @@ export const SettingsSheet = observer(
       'handleSettingsVisibility',
       (setVisibility: (state: boolean) => void) => {
         if (section) {
-          setSection(null);
+          setSection(section.subsection ? {section: section.section} : null);
         } else {
           setVisibility(false);
         }
@@ -130,16 +134,31 @@ export const SettingsSheet = observer(
           borderTopLeftRadius: commonValues.sizes.xl,
           borderTopRightRadius: commonValues.sizes.xl,
         }}>
-        <BackButton
-          callback={() => (section === null ? setState() : setSection(null))}
-          type={section === null ? 'close' : 'back'}
-          margin
-        />
+        {section?.section !== 'bots' && (
+          <BackButton
+            callback={() =>
+              section === null
+                ? setState()
+                : setSection(
+                    section.subsection
+                      ? {
+                          section: section.section,
+                          subsection: undefined,
+                        }
+                      : null,
+                  )
+            }
+            type={section === null ? 'close' : 'back'}
+            margin
+          />
+        )}
         {section ? (
           <>
-            <Text type={'h1'}>
-              {t(`app.settings_menu.${section.section}.title`)}
-            </Text>
+            {section?.section !== 'bots' && (
+              <Text type={'h1'}>
+                {t(`app.settings_menu.${section.section}.title`)}
+              </Text>
+            )}
             {section.section === 'licenses' ? (
               <LicenseListSection />
             ) : (
@@ -151,8 +170,7 @@ export const SettingsSheet = observer(
                   {
                     paddingBottom: insets.bottom,
                   },
-                  (section.section === 'info' ||
-                    section.section === 'sessions') && {
+                  FLEX_CONTAINER_SECTIONS.includes(section.section) && {
                     flexGrow: 1,
                   },
                 ]}
@@ -170,6 +188,11 @@ export const SettingsSheet = observer(
                   <ProfileSettingsSection />
                 ) : section.section === 'sessions' ? (
                   <SessionsSettingsSection />
+                ) : section.section === 'bots' ? (
+                  <BotSettingsSection
+                    section={section}
+                    setSection={setSection}
+                  />
                 ) : (
                   <AppInfoSection />
                 )}
@@ -233,6 +256,23 @@ export const SettingsSheet = observer(
                 </View>
                 <Text>{t('app.settings_menu.sessions.title')}</Text>
               </ContextButton>
+              {__DEV__ && (
+                <ContextButton
+                  style={{flex: 1, marginBottom: 10}}
+                  backgroundColor={currentTheme.backgroundSecondary}
+                  onPress={() => {
+                    setSection({section: 'bots'});
+                  }}>
+                  <View style={styles.iconContainer}>
+                    <MaterialCommunityIcon
+                      name={'robot'}
+                      color={currentTheme.foregroundPrimary}
+                      size={24}
+                    />
+                  </View>
+                  <Text>{t('app.settings_menu.bots.title')}</Text>
+                </ContextButton>
+              )}
               <Text type={'h1'}>{t('app.settings_menu.groups.app')}</Text>
               <ContextButton
                 style={{flex: 1, marginBottom: 10}}

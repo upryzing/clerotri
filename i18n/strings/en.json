@@ -146,6 +146,8 @@
             "edit_text": {
                 "display_name_header": "Set display name",
                 "display_name_placeholder": "Display name",
+                "new_bot_header": "Create bot",
+                "new_bot_placeholder": "Username",
                 "nickname_header": "Set nickname",
                 "nickname_placeholder": "Nickname (leave blank to reset)",
                 "nickname_other_header": "Set member nickname",
@@ -342,6 +344,14 @@
             },
             "appearance": {
                 "title": "Appearance"
+            },
+            "bots": {
+                "title": "Bots",
+                "loading": "Loading bots…",
+                "no_bots": "You have no bots",
+                "new_bot": "Create new bot",
+                "new_bot_body": "You can create up to {{limit}} bots.",
+                "aup_notice": "All bots must follow the <2>Acceptable Use Policy</2>."
             },
             "functionality": {
                 "title": "Features"
