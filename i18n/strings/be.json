@@ -249,7 +249,8 @@
                 "view_issues": "Праглядзець вядомыя(адкрытыя) праблемы",
                 "logout": "Выйсці",
                 "donate": "Ахвяраваць",
-                "translate": "Пераклад Clerotri"
+                "translate": "Пераклад Clerotri",
+                "changelog": "Праглядзець спіс змен"
             },
             "profile": {
                 "title": "Профіль",

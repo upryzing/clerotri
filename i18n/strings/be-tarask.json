@@ -244,7 +244,8 @@
                 "logout": "Выйсьці",
                 "view_issues": "Праглядзець вядомыя(адкрытыя) праблемы",
                 "donate": "Ахвяраваць",
-                "translate": "Пераклад Clerotri"
+                "translate": "Пераклад Clerotri",
+                "changelog": "Праглядзець сьпіс зьмэнаў"
             },
             "profile": {
                 "title": "Профіль",

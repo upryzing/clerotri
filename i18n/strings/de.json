@@ -2,8 +2,8 @@
     "app": {
         "home": {
             "description": "Wische vom linken Rand oder tippe auf die drei Linien, um deine Server und Nachrichten zu sehen!",
-            "join_lounge": "Revolt Lounge beitreten",
-            "open_lounge": "Revolt Lounge öffnen",
+            "join_lounge": "Revolt-Lounge beitreten",
+            "open_lounge": "Revolt-Lounge öffnen",
             "join_clerotri": "Dem Clerotri-Server beitreten",
             "open_clerotri": "Den Clerotri-Server öffnen",
             "open_settings": "Einstellungen öffnen"
@@ -12,10 +12,11 @@
             "back": "Zurück",
             "close": "schließen",
             "cancel": "Abbrechen",
-            "delete": "löschen",
+            "delete": "Löschen",
             "confirm": "Bestätigen",
             "save": "Speichern",
-            "create_channel": "Kanal erstellen"
+            "create_channel": "Kanal erstellen",
+            "copy_invite": "Einladung kopieren"
         },
         "servers": {
             "settings": {
@@ -138,8 +139,8 @@
             }
         },
         "loading": {
-            "generic": "Lädt…",
-            "connecting": "Loggt ein…",
+            "generic": "Laden…",
+            "connecting": "Wird angemeldet…",
             "unknown_state_body": "Bitte teilen Sie den Entwicklern mit, dass Sie dies gesehen haben (Inhalt: {{state}})",
             "unknown_state": "Oh oh…"
         },
@@ -147,18 +148,20 @@
             "confirm_deletion": {
                 "header_message": "Nachricht löschen?",
                 "header_server": "Server löschen?",
-                "body_message": "Bist du dir sicher, dass du <2>this message</2> löschen willst?",
+                "body_message": "Bist Du sicher, dass Du <2>this message</2> löschen willst?",
                 "warning": "Dies kann nicht rückgängig gemacht werden.",
-                "body_server": "Bist du dir sicher, dass du <2>{{name}}</2> löschen willst?",
-                "body_role": "Sind Sie sicher, dass Sie <2>diese Rolle</2> löschen möchten?",
-                "header_role": "Rolle löschen?"
+                "body_server": "Bist Du sicher, dass Du <2>{{name}}</2> löschen willst?",
+                "body_role": "Bist Du sicher, dass Du <2>diese Rolle</2> löschen möchten?",
+                "header_role": "Rolle löschen?",
+                "header_channel": "Kanal löschen?",
+                "body_channel": "Bist Du sicher, dass Du <2>diesen Kanal</2> löschen möchtest?"
             },
             "create_channel": {
                 "header": "Neuen Kanal erstellen",
                 "name_header": "Name",
                 "name_placeholder": "Kanalname",
                 "type_header": "Typ",
-                "type_text": "Text Kanal",
+                "type_text": "Text-Kanal",
                 "type_voice": "Sprachkanal",
                 "nsfw_header": "NSFW",
                 "nsfw_label": "Kanal als NSFW markieren"
@@ -169,11 +172,15 @@
                 "role_colour_placeholder": "Rollenfarbe",
                 "session_name_header": "Sitzungsnamen festlegen",
                 "session_name_placeholder": "Sitzungsname",
-                "role_colour_header": "Rollenfarbe festlegen",
+                "role_colour_header": "Bestimme eine Farbe für die Rolle",
                 "nickname_placeholder": "Spitzname (zum Zurücksetzen leer lassen)",
                 "nickname_other_placeholder": "Spitzname (zum Zurücksetzen leer lassen)",
-                "nickname_header": "Spitzname festlegen",
+                "nickname_header": "Spitznamen festlegen",
                 "nickname_other_header": "Lege den Spitznamen des Mitglieds fest"
+            },
+            "new_invite": {
+                "header": "Einladung erstellt",
+                "body": "Hier ist dein neuer Einladungs-Link:"
             }
         },
         "misc": {
@@ -192,12 +199,12 @@
         "login": {
             "instance_notice": "Du bist verbunden mit {{url}}.",
             "options": {
-                "login_regular": "Ja, logge mit meine E-Mail und meinem Passwort ein",
+                "login_regular": "Ja, logge mich mit meiner E-Mail-Adresse und meinem Passwort ein",
                 "login_regular_body": "Empfohlen für die meisten Nutzer.",
-                "login_session_token": "Ja, logge mit meinem Session-Tocken ein",
-                "login_session_token_body": "Benutze das hier wenn das normale Loginsystem nicht funktioniert. Einige Funktionen sind vielleicht nicht verfügbar.",
-                "signup": "Nein, melde dich an",
-                "signup_body": "Du wirst zur Web-App weitergeleitet. Sobald du dich angemeldet hast, komm zurück und melde dich an."
+                "login_session_token": "Ja, logge mich mit meinem Session-Token ein",
+                "login_session_token_body": "Benutze das hier, wenn die normale Log-In-Funktion nicht funktioniert. Einige Funktionen sind vielleicht nicht verfügbar.",
+                "signup": "Nein, registriere dich",
+                "signup_body": "Du wirst zur Web-App weitergeleitet. Sobald Du dich angemeldet hast, komm zurück und melde dich an."
             },
             "forms": {
                 "email_placeholder": "E-Mail",
@@ -205,11 +212,11 @@
                 "mfa_placeholder": "Ein-Mal Code",
                 "session_token_placeholder": "Token"
             },
-            "subheader": "Hast du einen Account?",
-            "token_info_label": "Wie komme ich an mein Token?",
+            "subheader": "Hast du ein Benutzerkonto?",
+            "token_info_label": "Wie komme ich an meinen Token?",
             "settings": {
                 "saved": "Gespeichert!",
-                "saved_body": "Im Moment müssen Sie die App schließen und erneut öffnen, damit Ihre Änderungen wirksam werden. Wir wissen, dass dies nicht ideal ist – wir werden dies zu einem späteren Zeitpunkt beheben."
+                "saved_body": "Im Moment musst Du die App schließen und erneut öffnen, damit deine Änderungen wirksam werden. Wir wissen, dass das nicht ideal ist – wir werden das zu einem späteren Zeitpunkt beheben."
             }
         },
         "settings_menu": {
@@ -248,32 +255,99 @@
             }
         },
         "discover": {
-            "count_servers_one": "{{count}} Server",
-            "count_servers_other": "{{count}} Server",
+            "count_servers_one": "Einzelner {{count}} Server",
+            "count_servers_other": "Mehrfache {{count}} Server",
             "fetching_bots": "Lade Bots…",
             "fetching_servers": "Lade Server…",
             "header_bots": "Bots entdecken",
             "header_servers": "Server entdecken",
             "tabs": {
-                "bots": "Bots",
+                "bots": "Bot-Accounts",
                 "servers": "Server"
             },
-            "count_bots_one": "{{count}} bot",
-            "count_bots_other": "{{count}} bots"
+            "count_bots_one": "Einzelner {{count}} Bot",
+            "count_bots_other": "Mehrfache {{count}} Bots"
         },
         "messaging": {
-            "reply_not_loaded": "Nachricht Konnte nicht geladen werden",
+            "reply_not_loaded": "Nachricht konnte nicht geladen werden",
             "message_box_channel": "Nachricht #{{name}}",
             "message_box_group": "Nachricht {{name}}",
             "message_box_dm": "Nachricht @{{name}}",
-            "message_box_saved_notes": "In „Meine Notizen“ gespeichert",
+            "message_box_saved_notes": "In Notizen speichern",
             "no_messages": "Keine Nachrichten",
-            "no_messages_body": "Starte ein Gespräch."
+            "no_messages_body": "Beginne ein Gespräch.",
+            "message_box_system": "Due kannst nicht auf automatische Nachrichten antworten.",
+            "message_box_no_perms": "Dir fehlt die Berechtigung, in diesem Kanal zu schreiben."
         },
         "profile": {
             "roles": {
                 "copied_role_id_toast": "Rollen-ID kopiert"
             }
+        },
+        "permissions": {
+            "AssignRoles": "Rollen zuweisen",
+            "ChangeAvatar": "Avatar ändern",
+            "BanMembers_body_server": "Ermöglicht Mitgliedern mit dieser Rolle, andere Mitglieder vom Server zu sperren und die Sperre aufzuheben. Gesperrte Mitglieder können erst wieder beitreten, wenn ihre Sperre aufgehoben wurde.",
+            "AssignRoles_body_server": "Ermöglicht Mitgliedern mit dieser Rolle, anderen Mitgliedern Rollen unterhalb des Rangs ihrer höchsten Rolle zuzuweisen.",
+            "BanMembers": "Mitglieder sperren",
+            "ChangeAvatar_body_server": "Ermöglicht Mitgliedern mit dieser Rolle, ihren Server-Avatar zu ändern.",
+            "ChangeNickname": "Spitznamen ändern",
+            "ChangeNickname_body_server": "Ermöglicht Mitgliedern mit dieser Rolle, ihren Spitznamen zu ändern.",
+            "Connect": "Verbinden",
+            "Connect_body_server": "Ermöglicht Mitgliedern mit dieser Rolle, eine Verbindung zu Sprachkanälen herzustellen.",
+            "KickMembers": "Mitglieder rauswerfen",
+            "InviteOthers": "Einladungen erstellen",
+            "InviteOthers_body_server": "Ermöglicht Mitgliedern mit dieser Rolle, Servereinladungen zu erstellen.",
+            "ManageChannel": "Kanäle verwalten",
+            "ManageChannel_body_server": "Ermöglicht Mitgliedern mit dieser Rolle, Kanäle zu erstellen, zu bearbeiten und zu löschen.",
+            "ManageCustomisation": "Anpassung verwalten",
+            "ManageCustomisation_body_server": "Ermöglicht Mitgliedern mit dieser Rolle, Emojis zu erstellen und zu löschen.",
+            "ManageMessages": "Nachrichten verwalten",
+            "KickMembers_body_server": "Ermöglicht Mitgliedern mit dieser Rolle, andere Mitglieder vom Server zu werfen. Geworbene Mitglieder können mit einer Einladung wieder beitreten."
+        },
+        "channel_list": {
+            "direct_messages_header": "Persönliche Nachrichten"
+        },
+        "analytics": {
+            "values": {
+                "model": "Dein Gerätemodell",
+                "os": "Dein Betriebssytem und Version",
+                "clerotriVersion": "Die Clerotri-Version die Du nutzt",
+                "inBasic": "Alles in grundlegend",
+                "inBasic_body": "Gerätemodell, Betriebssystem-Version, Clerotri-Version",
+                "instance": "Die URL deiner Instanz",
+                "settings_body_one": "Einzelner {{count}} Eintrag",
+                "settings_body_other": "Mehrfache {{count}} Einträge",
+                "settings": "Define Einstellungen in Clerotri"
+            },
+            "privacy_info": "Datenschutz und Privatsphäre",
+            "title": "Analyse-Tool-Einstellungen bearbeiten",
+            "tiers": {
+                "basic": "Grundlegende",
+                "full": "Umfassende"
+            },
+            "disable_analytics": "Analyse-Tool ausschalten",
+            "analytics_disabled": "Analyse-Tool ausgeschaltet",
+            "copied_data_toast": "Beispieldaten kopiert",
+            "enable_basic": "Grundlegende Erhebung einschalten",
+            "switch_to_basic": "Auf grundlegende wechseln",
+            "enable_full": "Umfassende Erhebung einschalten",
+            "switch_to_full": "Auf umfassende wechseln",
+            "active": "Aktiviert",
+            "continue_without_analytics": "Weiter ohne Erhebung",
+            "body": "Clerotri erhebt und sammelt standardmäßig keine personennezogenen Daten. Du kannst uns helfen, die App zu verbessern, indem Du uns erlaubst, folgenden Daten zu erheben."
+        },
+        "friends_list": {
+            "blocked": "Blockiert - {{count}}",
+            "blocked_empty": "Keine blockierten Nutzer",
+            "incoming": "Erhaltende Anfragen - {{count}}",
+            "incoming_empty": "Keine erhaltenen Anfragen",
+            "onlineFriends_empty": "Keine Freunde online",
+            "offlineFriends": "Freunde offline - {{count}}",
+            "outgoing": "Ausgehende Anfragen - {{count}}",
+            "outgoing_empty": "Keine versendeten Anfragen",
+            "onlineFriends": "Freunde online - {{count}}",
+            "offlineFriends_empty": "Keine Freunde offline"
         }
     }
 }
