@@ -19,6 +19,9 @@
   <a href="https://lea.pet/@clerotri">
     <img src="https://img.shields.io/badge/fedi-@clerotri@lea.pet-teal" alt="Fediverse badge from shields.io"/>
   </a>
+  <a href="https://shields.rbtlog.dev/app.upryzing.clerotri">
+    <img src="https://shields.rbtlog.dev/simple/app.upryzing.clerotri" alt="RB shield">
+  </a>
 </div>
 
 **Clerotri** is an Upryzing and Revolt client made with React Native. It is currently available for Android and will be available for web in the future.
