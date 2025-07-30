@@ -5,7 +5,7 @@
     <img alt="Get it on Accrescent" src="https://accrescent.app/badges/get-it-on.png" height="80">
   </a>
   <a href="https://apt.izzysoft.de/fdroid/index/apk/app.upryzing.clerotri">
-    <img alt="Get it on IzzyOnDroid" src="https://gitlab.com/IzzyOnDroid/repo/-/raw/master/assets/IzzyOnDroidButtonGreyBorder_nofont.png" height="54">
+    <img alt="Get it on IzzyOnDroid" src="https://gitlab.com/IzzyOnDroid/repo/-/raw/master/assets/IzzyOnDroid.png" height="80">
   </a>
 </div>
 
