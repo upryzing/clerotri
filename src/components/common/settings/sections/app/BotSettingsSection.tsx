@@ -115,10 +115,16 @@ const BotSettings = observer(({bot}: {bot: GroupedBotObject}) => {
           }}
         />
       </SettingsEntry>
-      <Button onPress={() => Clipboard.setString(`${client.configuration?.app}/bot/${bot.bot._id}`)} style={{margin: 0, marginBlock: commonValues.sizes.small}}>
+      <Button
+        onPress={() =>
+          Clipboard.setString(`${client.configuration?.app}/bot/${bot.bot._id}`)
+        }
+        style={{margin: 0, marginBlock: commonValues.sizes.small}}>
         <Text>{t('app.settings_menu.bots.copy_invite_link')}</Text>
       </Button>
-      <Button onPress={() => app.openBotInvite(bot.bot._id)} style={{margin: 0, marginBlock: commonValues.sizes.small}}>
+      <Button
+        onPress={() => app.openBotInvite(bot.bot._id)}
+        style={{margin: 0, marginBlock: commonValues.sizes.small}}>
         <Text>{t('app.settings_menu.bots.invite_bot')}</Text>
       </Button>
     </>
