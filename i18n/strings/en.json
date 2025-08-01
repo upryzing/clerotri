@@ -351,7 +351,13 @@
                 "no_bots": "You have no bots",
                 "new_bot": "Create new bot",
                 "new_bot_body": "You can create up to {{limit}} bots.",
-                "aup_notice": "All bots must follow the <2>Acceptable Use Policy</2>."
+                "aup_notice": "All bots must follow the <2>Acceptable Use Policy</2>.",
+                "token": "Token",
+                "public": "Public",
+                "public_body_revolt": "If this is enabled, this bot can be invited to groups and servers by other users.",
+                "public_body_upryzing": "If this is enabled, this bot can be invited to groups and spaces by other users.",
+                "copy_invite_link": "Copy invite link",
+                "invite_bot": "Invite bot"
             },
             "functionality": {
                 "title": "Features"

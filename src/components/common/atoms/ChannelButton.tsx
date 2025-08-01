@@ -4,7 +4,7 @@ import {observer} from 'mobx-react-lite';
 
 import type {Channel} from 'revolt.js';
 
-import {MiniProfile} from '@clerotri/components/common/profile';
+import {MiniProfile} from '@clerotri/components/common/profile/MiniProfile';
 import {ChannelIcon} from '@clerotri/components/navigation/ChannelIcon';
 import {SpecialChannelIcon} from '@clerotri/components/navigation/SpecialChannelIcon';
 import {styles} from '@clerotri/Theme';

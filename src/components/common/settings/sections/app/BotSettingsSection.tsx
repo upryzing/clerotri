@@ -1,8 +1,15 @@
-import {type Dispatch, type SetStateAction, useContext, useEffect, useState} from 'react';
-import {View} from 'react-native';
+import {
+  type Dispatch,
+  type SetStateAction,
+  useContext,
+  useEffect,
+  useState,
+} from 'react';
+import {Pressable, View} from 'react-native';
 import {Trans, useTranslation} from 'react-i18next';
 import {observer} from 'mobx-react-lite';
 
+import Clipboard from '@react-native-clipboard/clipboard';
 import MaterialIcon from '@react-native-vector-icons/material-icons';
 
 import type {API, User} from 'revolt.js';
@@ -13,10 +20,17 @@ import {styles} from '@clerotri/Theme';
 import {
   Avatar,
   BackButton,
+  Button,
+  Checkbox,
   Link,
   Text,
 } from '@clerotri/components/common/atoms';
-import {PressableSettingsEntry} from '@clerotri/components/common/settings/atoms';
+import {ExpandableProfile} from '@clerotri/components/common/profile';
+import {
+  PressableSettingsEntry,
+  SettingsEntry,
+} from '@clerotri/components/common/settings/atoms';
+import {OFFICIAL_INSTANCE_API_URLS} from '@clerotri/lib/consts';
 import {commonValues, ThemeContext} from '@clerotri/lib/themes';
 import type {SettingsSection} from '@clerotri/lib/types';
 
@@ -26,9 +40,87 @@ type GroupedBotObject = {
 };
 
 const BotSettings = observer(({bot}: {bot: GroupedBotObject}) => {
+  const {currentTheme} = useContext(ThemeContext);
+
+  const {t} = useTranslation();
+
+  const [showToken, setShowToken] = useState(false);
+  const [isPublic, setIsPublic] = useState(bot.bot.public);
+
   return (
     <>
-      <Text>{bot.bot._id}</Text>
+      <ExpandableProfile user={bot.user} />
+      <SettingsEntry style={{marginBlockStart: commonValues.sizes.medium}}>
+        <View style={{flex: 1}}>
+          <Text style={{fontWeight: 'bold'}}>
+            {t('app.settings_menu.bots.token')}
+          </Text>
+          <Text>{showToken ? bot.bot.token : '•••••••••••••••••••••••••'}</Text>
+        </View>
+        <Pressable
+          style={{
+            width: 30,
+            height: 20,
+            alignItems: 'center',
+            justifyContent: 'center',
+          }}
+          onPress={() => {
+            setShowToken(state => !state);
+          }}>
+          <View style={styles.iconContainer}>
+            <MaterialIcon
+              name={showToken ? 'visibility-off' : 'visibility'}
+              size={20}
+              color={currentTheme.foregroundPrimary}
+            />
+          </View>
+        </Pressable>
+        <Pressable
+          style={{
+            width: 30,
+            height: 20,
+            alignItems: 'center',
+            justifyContent: 'center',
+          }}
+          onPress={() => {
+            Clipboard.setString(bot.bot.token);
+          }}>
+          <View style={styles.iconContainer}>
+            <MaterialIcon
+              name="content-copy"
+              size={20}
+              color={currentTheme.foregroundPrimary}
+            />
+          </View>
+        </Pressable>
+      </SettingsEntry>
+      <SettingsEntry style={{backgroundColor: currentTheme.backgroundPrimary}}>
+        <View style={{flex: 1}}>
+          <Text style={{fontWeight: 'bold'}}>
+            {t('app.settings_menu.bots.public')}
+          </Text>
+          <Text>
+            {t(
+              `app.settings_menu.bots.public_body_${client.apiURL === OFFICIAL_INSTANCE_API_URLS.upryzing ? 'upryzing' : 'revolt'}`,
+            )}
+          </Text>
+        </View>
+        <Checkbox
+          value={isPublic}
+          callback={async () => {
+            await client.api.patch(`/bots/${bot.bot._id}`, {
+              public: !isPublic,
+            });
+            setIsPublic(publicState => !publicState);
+          }}
+        />
+      </SettingsEntry>
+      <Button onPress={() => Clipboard.setString(`${client.configuration?.app}/bot/${bot.bot._id}`)} style={{margin: 0, marginBlock: commonValues.sizes.small}}>
+        <Text>{t('app.settings_menu.bots.copy_invite_link')}</Text>
+      </Button>
+      <Button onPress={() => app.openBotInvite(bot.bot._id)} style={{margin: 0, marginBlock: commonValues.sizes.small}}>
+        <Text>{t('app.settings_menu.bots.invite_bot')}</Text>
+      </Button>
     </>
   );
 });
@@ -96,7 +188,7 @@ export const BotList = observer(
     bots,
     setSection,
     setCurrentBot,
-    rerender
+    rerender,
   }: {
     bots: GroupedBotObject[] | null;
     setSection: Function;
@@ -114,20 +206,19 @@ export const BotList = observer(
             {bots.length ? (
               <>
                 {bots.length < MAX_BOT_COUNT && (
-                  <PressableSettingsEntry onPress={() => {
-                    app.openTextEditModal({
-                      initialString: '',
-                      id: 'new_bot',
-                      callback: async (s) => {
-                        await client.api.post(
-                        '/bots/create', {
-                          name: s
+                  <PressableSettingsEntry
+                    onPress={() => {
+                      app.openTextEditModal({
+                        initialString: '',
+                        id: 'new_bot',
+                        callback: async s => {
+                          await client.api.post('/bots/create', {
+                            name: s,
+                          });
+                          rerender(renders => renders + 1);
                         },
-                      );
-                      rerender((renders) => renders + 1);
-                    }
-                    })
-                  }}>
+                      });
+                    }}>
                     <View style={{flex: 1, flexDirection: 'column'}}>
                       <Text style={{fontWeight: 'bold'}}>
                         {t('app.settings_menu.bots.new_bot')}
