@@ -5,7 +5,7 @@
     <img alt="Get it on Accrescent" src="https://accrescent.app/badges/get-it-on.png" height="80">
   </a>
   <a href="https://apt.izzysoft.de/fdroid/index/apk/app.upryzing.clerotri">
-    <img alt="Get it on IzzyOnDroid" src="https://gitlab.com/IzzyOnDroid/repo/-/raw/master/assets/IzzyOnDroidButtonGreyBorder_nofont.png" height="54">
+    <img alt="Get it on IzzyOnDroid" src="https://gitlab.com/IzzyOnDroid/repo/-/raw/master/assets/IzzyOnDroid.png" height="80">
   </a>
 </div>
 
@@ -18,6 +18,9 @@
   </a>
   <a href="https://lea.pet/@clerotri">
     <img src="https://img.shields.io/badge/fedi-@clerotri@lea.pet-teal" alt="Fediverse badge from shields.io"/>
+  </a>
+  <a href="https://shields.rbtlog.dev/app.upryzing.clerotri">
+    <img src="https://shields.rbtlog.dev/simple/app.upryzing.clerotri" alt="RB shield">
   </a>
 </div>
 
