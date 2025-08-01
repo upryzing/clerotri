@@ -261,7 +261,8 @@
                 "view_issues": "Просмотреть известные проблемы",
                 "logout": "Выйти",
                 "donate": "Поддержать",
-                "translate": "Перевод Clerotri"
+                "translate": "Перевод Clerotri",
+                "changelog": "Просмотреть список изменений"
             },
             "licenses": {
                 "loading": "Загрузка данных лицензий…",

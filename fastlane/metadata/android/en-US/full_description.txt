@@ -1,0 +1,1 @@
+<p><i>Clerotri</i> is an open source client for Upryzing and Revolt instances. It supports a variety of Revolt's features, from basic messaging to account and server management.</p>
