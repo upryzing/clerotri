@@ -33,9 +33,11 @@ const ProfileCardInner = observer(({user}: {user: User}) => {
           }>
           @{user.username}#{user.discriminator}
         </Text>
+        {user.status?.text && 
         <Text colour={currentTheme.foregroundSecondary} numberOfLines={1}>
           {user.status?.text}
         </Text>
+        }
       </View>
     </>
   );
