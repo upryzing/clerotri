@@ -1,1 +1,80 @@
-{}
+{
+    "app": {
+        "analytics": {
+            "body": "За замовченням, Clerotri не збирає ніяких аналітичних даних. Проте ви можете дати нам збирати дані, детальність яких ви можете обрати нижче, аби допомогти нам покращити програму.",
+            "values": {
+                "clerotriVersion": "Та версія Clerotri, якою користуєтесь",
+                "instance": "Адреса інстансу (серверу) , яким користуєтесь",
+                "model": "Модель вашого пристрою",
+                "os": "Ваша ОС та її версія",
+                "inBasic": "Все з Базової",
+                "inBasic_body": "Модель, Версія ОС, Версія Clerotri",
+                "settings": "Ваші налаштування в Clerotri",
+                "settings_body_one": "{{count}} запис",
+                "settings_body_few": "{{count}} записи",
+                "settings_body_many": "{{count}} записів"
+            },
+            "analytics_disabled": "Аналітику вимкнено",
+            "title": "Керуйте аналітикою",
+            "copied_data_toast": "Приклад даних скопійовано",
+            "enable_basic": "Увімкнути базову аналітику",
+            "tiers": {
+                "full": "Повна",
+                "basic": "Базова"
+            },
+            "switch_to_basic": "Перемкнути на Базову",
+            "enable_full": "Увімкнути повну аналітику",
+            "switch_to_full": "Перемкнути на Повну",
+            "active": "Активна",
+            "disable_analytics": "Вимкнути аналітику",
+            "continue_without_analytics": "Продовжити без аналітики",
+            "privacy_info": "Про приватність"
+        },
+        "discover": {
+            "fetching_bots": "Завантажуємо список ботів…",
+            "count_bots_one": "{{count}} бот",
+            "count_bots_few": "{{count}} боти",
+            "count_bots_many": "{{count}} ботів",
+            "count_servers_one": "{{count}} сервер",
+            "count_servers_few": "{{count}} сервери",
+            "count_servers_many": "{{count}} серверів",
+            "fetching_servers": "Завантажуємо список серверів…",
+            "header_bots": "Відшукайте ботів",
+            "header_servers": "Відшукайте сервери",
+            "tabs": {
+                "bots": "Боти",
+                "servers": "Сервери"
+            }
+        },
+        "friends_list": {
+            "offlineFriends": "Друзів не в мережі - {{count}}",
+            "blocked": "Заблокованих - {{count}}",
+            "onlineFriends_empty": "Жодних друзів в мережі",
+            "blocked_empty": "Ви поки нікого не заблокували",
+            "incoming": "Вхідних запитів - {{count}}",
+            "incoming_empty": "Жодних вхідних запитів",
+            "onlineFriends": "Друзів в мережі - {{count}}",
+            "offlineFriends_empty": "Жодних друзів не в мережі",
+            "outgoing": "Вихідні запити - {{count}}"
+        },
+        "channel_list": {
+            "direct_messages_header": "Особисті повідомлення"
+        },
+        "actions": {
+            "back": "Назад",
+            "cancel": "Скасувати",
+            "close": "Закрити",
+            "confirm": "Підтвердити",
+            "create_channel": "Створити канал",
+            "copy_invite": "Скопіювати запрошення",
+            "delete": "Видалити",
+            "save": "Зберегти"
+        },
+        "login": {
+            "forms": {
+                "email_placeholder": "Електронна пошта",
+                "password_placeholder": "Пароль"
+            }
+        }
+    }
+}
