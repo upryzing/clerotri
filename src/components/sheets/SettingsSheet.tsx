@@ -11,8 +11,6 @@ import {
   getUserAgentSync,
 } from 'react-native-device-info';
 import {useSafeAreaInsets} from 'react-native-safe-area-context';
-import MaterialCommunityIcon from '@react-native-vector-icons/material-design-icons';
-import MaterialIcon from '@react-native-vector-icons/material-icons';
 
 import {app, appVersion, setFunction} from '@clerotri/Generic';
 import {client} from '@clerotri/lib/client';
@@ -22,12 +20,11 @@ import {getInstanceURL} from '@clerotri/lib/storage/utils';
 import {commonValues, type Theme, ThemeContext} from '@clerotri/lib/themes';
 import {SettingsSection} from '@clerotri/lib/types';
 import {openUrl} from '@clerotri/lib/utils';
-import {styles} from '@clerotri/Theme';
 import {
   BackButton,
-  ContextButton,
   Text,
 } from '@clerotri/components/common/atoms';
+import {SettingsButton} from '@clerotri/components/common/buttons';
 import {SettingsCategory} from '@clerotri/components/common/settings';
 import {
   AppInfoSection,
@@ -204,264 +201,162 @@ export const SettingsSheet = observer(
             style={{flex: 1}}
             contentContainerStyle={[
               {
-                paddingBottom: insets.bottom,
+                paddingBottom: commonValues.sizes.xl + insets.bottom,
               },
             ]}
             showsVerticalScrollIndicator={false}
             showsHorizontalScrollIndicator={false}>
             <>
               <Text type={'h1'}>{t('app.settings_menu.groups.user')}</Text>
-              <ContextButton
-                style={{flex: 1, marginBottom: 10}}
-                backgroundColor={currentTheme.backgroundSecondary}
+              <SettingsButton
+                menu={'app'}
+                type={'start'}
+                section={'account'}
+                icon={{pack: 'regular', name: 'person'}}
                 onPress={() => {
                   setSection({section: 'account'});
-                }}>
-                <View style={styles.iconContainer}>
-                  <MaterialIcon
-                    name={'person'}
-                    color={currentTheme.foregroundPrimary}
-                    size={24}
-                  />
-                </View>
-                <Text>{t('app.settings_menu.account.title')}</Text>
-              </ContextButton>
-              <ContextButton
-                style={{flex: 1, marginBottom: 10}}
-                backgroundColor={currentTheme.backgroundSecondary}
+                }}
+              />
+              <SettingsButton
+                menu={'app'}
+                section={'profile'}
+                icon={{pack: 'community', name: 'card-account-details'}}
                 onPress={() => {
                   setSection({section: 'profile'});
-                }}>
-                <View style={styles.iconContainer}>
-                  <MaterialCommunityIcon
-                    name={'card-account-details'}
-                    color={currentTheme.foregroundPrimary}
-                    size={24}
-                  />
-                </View>
-                <Text>{t('app.settings_menu.profile.title')}</Text>
-              </ContextButton>
-              <ContextButton
-                style={{flex: 1, marginBottom: 10}}
-                backgroundColor={currentTheme.backgroundSecondary}
+                }}
+              />
+              <SettingsButton
+                menu={'app'}
+                section={'sessions'}
+                icon={{pack: 'community', name: 'shield-check'}}
                 onPress={() => {
                   setSection({section: 'sessions'});
-                }}>
-                <View style={styles.iconContainer}>
-                  <MaterialCommunityIcon
-                    name={'shield-check'}
-                    color={currentTheme.foregroundPrimary}
-                    size={24}
-                  />
-                </View>
-                <Text>{t('app.settings_menu.sessions.title')}</Text>
-              </ContextButton>
+                }}
+              />
               {__DEV__ && (
-                <ContextButton
-                  style={{flex: 1, marginBottom: 10}}
-                  backgroundColor={currentTheme.backgroundSecondary}
+                <SettingsButton
+                  menu={'app'}
+                  type={'end'}
+                  section={'bots'}
+                  icon={{pack: 'community', name: 'robot'}}
                   onPress={() => {
                     setSection({section: 'bots'});
-                  }}>
-                  <View style={styles.iconContainer}>
-                    <MaterialCommunityIcon
-                      name={'robot'}
-                      color={currentTheme.foregroundPrimary}
-                      size={24}
-                    />
-                  </View>
-                  <Text>{t('app.settings_menu.bots.title')}</Text>
-                </ContextButton>
+                  }}
+                />
               )}
               <Text type={'h1'}>{t('app.settings_menu.groups.app')}</Text>
-              <ContextButton
-                style={{flex: 1, marginBottom: 10}}
-                backgroundColor={currentTheme.backgroundSecondary}
+              <SettingsButton
+                menu={'app'}
+                type={'start'}
+                section={'appearance'}
+                icon={{pack: 'regular', name: 'palette'}}
                 onPress={() => {
                   setSection({section: 'appearance'});
-                }}>
-                <View style={styles.iconContainer}>
-                  <MaterialIcon
-                    name={'palette'}
-                    color={currentTheme.foregroundPrimary}
-                    size={24}
-                  />
-                </View>
-                <Text>{t('app.settings_menu.appearance.title')}</Text>
-              </ContextButton>
-              <ContextButton
-                style={{flex: 1, marginBottom: 10}}
-                backgroundColor={currentTheme.backgroundSecondary}
+                }}
+              />
+              <SettingsButton
+                menu={'app'}
+                section={'functionality'}
+                icon={{pack: 'regular', name: 'build'}}
                 onPress={() => {
                   setSection({section: 'functionality'});
-                }}>
-                <View style={styles.iconContainer}>
-                  <MaterialIcon
-                    name={'build'}
-                    color={currentTheme.foregroundPrimary}
-                    size={24}
-                  />
-                </View>
-                <Text>{t('app.settings_menu.functionality.title')}</Text>
-              </ContextButton>
-              <ContextButton
-                style={{flex: 1, marginBottom: 10}}
-                backgroundColor={currentTheme.backgroundSecondary}
+                }}
+              />
+              <SettingsButton
+                menu={'app'}
+                section={'i18n'}
+                icon={{pack: 'regular', name: 'translate'}}
                 onPress={() => {
                   setSection({section: 'i18n'});
-                }}>
-                <View style={styles.iconContainer}>
-                  <MaterialIcon
-                    name={'translate'}
-                    color={currentTheme.foregroundPrimary}
-                    size={24}
-                  />
-                </View>
-                <Text>{t('app.settings_menu.i18n.title')}</Text>
-              </ContextButton>
-              <ContextButton
-                style={{flex: 1, marginBottom: 10}}
-                backgroundColor={currentTheme.backgroundSecondary}
+                }}
+              />
+              <SettingsButton
+                menu={'app'}
+                type={'end'}
+                section={'analytics'}
+                icon={{pack: 'regular', name: 'analytics'}}
                 onPress={() => {
                   app.openAnalyticsMenu(true);
-                }}>
-                <View style={styles.iconContainer}>
-                  <MaterialIcon
-                    name={'analytics'}
-                    color={currentTheme.foregroundPrimary}
-                    size={24}
-                  />
-                </View>
-                <Text>{t('app.settings_menu.analytics.title')}</Text>
-              </ContextButton>
+                }}
+              />
               <Text type={'h1'}>{t('app.settings_menu.groups.advanced')}</Text>
-              <ContextButton
-                style={{flex: 1, marginBottom: 10}}
-                backgroundColor={currentTheme.backgroundSecondary}
+              <SettingsButton
+                menu={'app-other'}
+                type={'detatched'}
+                section={'debug_info'}
+                icon={{pack: 'regular', name: 'bug-report'}}
                 onPress={() => {
                   copyDebugInfo();
-                }}>
-                <View style={styles.iconContainer}>
-                  <MaterialIcon
-                    name={'bug-report'}
-                    color={currentTheme.foregroundPrimary}
-                    size={24}
-                  />
-                </View>
-                <Text>{t('app.settings_menu.other.debug_info')}</Text>
-              </ContextButton>
+                }}
+              />
               <Text type={'h1'}>{t('app.settings_menu.groups.other')}</Text>
-              <ContextButton
-                style={{flex: 1, marginBottom: 10}}
-                backgroundColor={currentTheme.backgroundSecondary}
+              <SettingsButton
+                menu={'app'}
+                type={'start'}
+                section={'info'}
+                icon={{pack: 'regular', name: 'info'}}
+                onPress={() => {
+                  setSection({section: 'info'});
+                }}
+              />
+              <SettingsButton
+                menu={'app-other'}
+                section={'changelog'}
+                icon={{pack: 'community', name: 'newspaper'}}
                 onPress={() => {
                   setState();
                   app.openChangelog(true);
-                }}>
-                <View style={styles.iconContainer}>
-                  <MaterialCommunityIcon
-                    name={'newspaper'}
-                    color={currentTheme.foregroundPrimary}
-                    size={24}
-                  />
-                </View>
-                <Text>{t('app.settings_menu.other.changelog')}</Text>
-              </ContextButton>
-              <ContextButton
-                style={{flex: 1, marginBottom: 10}}
-                backgroundColor={currentTheme.backgroundSecondary}
-                onPress={() => {
-                  setSection({section: 'info'});
-                }}>
-                <View style={styles.iconContainer}>
-                  <MaterialIcon
-                    name={'info'}
-                    color={currentTheme.foregroundPrimary}
-                    size={24}
-                  />
-                </View>
-                <Text>{t('app.settings_menu.info.title')}</Text>
-              </ContextButton>
-              <ContextButton
-                style={{flex: 1, marginBottom: 10}}
-                backgroundColor={currentTheme.backgroundSecondary}
+                }}
+              />
+              <SettingsButton
+                menu={'app'}
+                type={'end'}
+                section={'licenses'}
+                icon={{pack: 'community', name: 'license'}}
                 onPress={() => {
                   setSection({section: 'licenses'});
-                }}>
-                <View style={styles.iconContainer}>
-                  <MaterialCommunityIcon
-                    name={'license'}
-                    color={currentTheme.foregroundPrimary}
-                    size={24}
-                  />
-                </View>
-                <Text>{t('app.settings_menu.licenses.title')}</Text>
-              </ContextButton>
-              <ContextButton
-                style={{
-                  flex: 1,
-                  marginBottom: 10,
-                  experimental_backgroundImage: [donateGradient],
                 }}
-                backgroundColor={currentTheme.backgroundSecondary}
+              />
+              <SettingsButton
+                menu={'app-other'}
+                type={'detatched'}
+                section={'donate'}
+                icon={{pack: 'community', name: 'heart'}}
+                style={{experimental_backgroundImage: [donateGradient]}}
                 onPress={() => {
                   openUrl(DONATIONS_INFO);
-                }}>
-                <View style={styles.iconContainer}>
-                  <MaterialCommunityIcon
-                    name={'heart'}
-                    color={currentTheme.accentColor}
-                    size={24}
-                  />
-                </View>
-                <Text>{t('app.settings_menu.other.donate')}</Text>
-              </ContextButton>
-              <ContextButton
-                style={{flex: 1, marginBottom: 10}}
-                backgroundColor={currentTheme.backgroundSecondary}
+                }}
+              />
+              <SettingsButton
+                menu={'app-other'}
+                type={'start'}
+                section={'translate'}
+                icon={{pack: 'community', name: 'translate-variant'}}
                 onPress={() => {
                   openUrl(WEBLATE);
-                }}>
-                <View style={styles.iconContainer}>
-                  <MaterialCommunityIcon
-                    name={'translate-variant'}
-                    color={currentTheme.foregroundPrimary}
-                    size={24}
-                  />
-                </View>
-                <Text>{t('app.settings_menu.other.translate')}</Text>
-              </ContextButton>
-              <ContextButton
-                style={{flex: 1, marginBottom: 10}}
-                backgroundColor={currentTheme.backgroundSecondary}
+                }}
+              />
+              <SettingsButton
+                menu={'app-other'}
+                type={'end'}
+                section={'view_issues'}
+                icon={{pack: 'community', name: 'github'}}
                 onPress={() => {
                   openUrl(OPEN_ISSUES);
-                }}>
-                <View style={styles.iconContainer}>
-                  <MaterialCommunityIcon
-                    name={'github'}
-                    color={currentTheme.foregroundPrimary}
-                    size={24}
-                  />
-                </View>
-                <Text>{t('app.settings_menu.other.view_issues')}</Text>
-              </ContextButton>
-              <ContextButton
-                style={{flex: 1}}
+                }}
+              />
+              <SettingsButton
+                menu={'app-other'}
+                type={'detatched'}
+                section={'logout'}
+                icon={{pack: 'regular', name: 'logout'}}
                 backgroundColor={currentTheme.error}
+                style={{marginBlockEnd: 0}}
                 onPress={() => {
                   setState();
                   app.logOut();
-                }}>
-                <View style={styles.iconContainer}>
-                  <MaterialIcon
-                    name={'logout'}
-                    color={currentTheme.foregroundPrimary}
-                    size={24}
-                  />
-                </View>
-                <Text>{t('app.settings_menu.other.logout')}</Text>
-              </ContextButton>
+                }}
+              />
             </>
           </ScrollView>
         )}
