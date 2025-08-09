@@ -1,15 +1,8 @@
 import {useContext} from 'react';
-import {
-  StyleSheet,
-  TouchableOpacity,
-  type TouchableOpacityProps,
-} from 'react-native';
+import {StyleSheet, TouchableOpacity} from 'react-native';
 
 import {commonValues, Theme, ThemeContext} from '@clerotri/lib/themes';
-
-type ButtonProps = TouchableOpacityProps & {
-  backgroundColor?: string;
-};
+import type {ButtonProps} from '@clerotri/lib/types';
 
 export function ContextButton({backgroundColor, style, ...props}: ButtonProps) {
   const {currentTheme} = useContext(ThemeContext);
