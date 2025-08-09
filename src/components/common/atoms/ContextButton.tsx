@@ -11,31 +11,19 @@ type ButtonProps = TouchableOpacityProps & {
   backgroundColor?: string;
 };
 
-export function ContextButton({
-  children,
-  backgroundColor,
-  onPress,
-  onLongPress,
-  delayLongPress,
-  style,
-  ...props
-}: ButtonProps) {
+export function ContextButton({backgroundColor, style, ...props}: ButtonProps) {
   const {currentTheme} = useContext(ThemeContext);
   const localStyles = generateLocalStyles(currentTheme);
 
   return (
     <TouchableOpacity
-      onPress={onPress}
-      onLongPress={onLongPress}
-      delayLongPress={delayLongPress}
       style={[
         localStyles.contextButton,
-        backgroundColor ? {backgroundColor} : {},
+        backgroundColor && {backgroundColor},
         style,
       ]}
-      {...props}>
-      {children}
-    </TouchableOpacity>
+      {...props}
+    />
   );
 }
 

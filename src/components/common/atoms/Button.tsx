@@ -12,11 +12,7 @@ type ButtonProps = TouchableOpacityProps & {
 };
 
 export function Button({
-  children,
   backgroundColor,
-  onPress,
-  onLongPress,
-  delayLongPress,
   style,
   ...props
 }: ButtonProps) {
@@ -25,17 +21,12 @@ export function Button({
 
   return (
     <TouchableOpacity
-      onPress={onPress}
-      onLongPress={onLongPress}
-      delayLongPress={delayLongPress}
       style={[
         localStyles.button,
-        backgroundColor ? {backgroundColor} : {},
+        backgroundColor && {backgroundColor},
         style,
       ]}
-      {...props}>
-      {children}
-    </TouchableOpacity>
+      {...props} />
   );
 }
 

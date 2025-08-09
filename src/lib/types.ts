@@ -1,3 +1,5 @@
+import type {TouchableOpacityProps} from 'react-native';
+
 import type {Channel, Message, Server, User} from 'revolt.js';
 
 type StringSetting = {
@@ -70,6 +72,10 @@ export type DeletableObject =
   | TypedRole
   | TypedMessage
   | TypedServer;
+
+export type ButtonProps = TouchableOpacityProps & {
+  backgroundColor?: string;
+};
 
 export type TextEditingModalProps = {
   initialString: string;
