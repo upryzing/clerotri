@@ -75,7 +75,7 @@ yarn android-release
 > [!TIP]
 > You can run the JS bundling step separately from the actual app compilation/bundling step - for example, if you only need to rebuild the native code - by running `yarn android-release:bundle` and `yarn android-release:apk` respectively. **Make sure you've built the JS bundle first, or the app won't run!**
 
-### CLI commands
+#### CLI commands
 
 | Command        | Description                                         |
 | -------------- | --------------------------------------------------- |
@@ -91,9 +91,9 @@ For more information, see a list of `react-native`'s commands [here](https://git
 
 Note that the app uses `rnx-bundle`, which has extra features (and will produce a smaller bundle) compared to the default bundle command.
 
-## Analytics server
+### Analytics server
 
-Before running the server, you'll neede to set up the databse.
+Before running the server, you'll need to set up the databse.
 
 Connect to Postgres:
 
@@ -143,7 +143,7 @@ nano .env
 
 Once you've filled out the `.env` file, install the dependencies:
 
-```
+```sh
 deno install
 ```
 
