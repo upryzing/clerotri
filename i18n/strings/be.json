@@ -46,7 +46,9 @@
                 "role_colour_placeholder": "Колер ролі",
                 "nickname_placeholder": "Нікнэйм (пакінце пустым каб скінуць)",
                 "nickname_other_header": "Задаць нікнэйм удзельніка",
-                "nickname_other_placeholder": "Нікнэйм (пакінце пустым, каб скінуць)"
+                "nickname_other_placeholder": "Нікнэйм (пакінце пустым, каб скінуць)",
+                "new_bot_header": "Стварыць бота",
+                "new_bot_placeholder": "Імя"
             },
             "create_channel": {
                 "header": "Стварыць новы канал",
@@ -275,6 +277,31 @@
             },
             "analytics": {
                 "title": "Аналітыка"
+            },
+            "bots": {
+                "title": "Боты",
+                "copy_invite_link": "Скапіраваць спасылку",
+                "loading": "Загрузка ботаў…",
+                "token": "Токен",
+                "public_body_revolt": "Калі гэта ўключана, гэтага бота можна будзе запрасіць у групы і на серверы.",
+                "public": "Публічны",
+                "public_body_upryzing": "Калі гэта ўключана, гэтага бота можна будзе запрасіць у групы і прасторы.",
+                "invite_bot": "Запрасіць бота",
+                "no_bots": "У вас няма ботаў",
+                "new_bot": "Стварыць новага бота",
+                "new_bot_body": "Вы можаце стварыць да {{limit}} ботаў.",
+                "aup_notice": "Усе боты мусяць адпавядаць <2>Палітыцы выкарыстання</2>."
+            },
+            "sessions": {
+                "current_session_not_found_with_hint": "Інфармацыя для гэтага сеанса недаступная. Вам трэба выйсці і ўвайсці зноў.",
+                "title": "Сеансы",
+                "loading": "Загрузка сеансаў…",
+                "current_session": "Гэты сеанс",
+                "other_sessions": "Іншыя сеансы",
+                "current_session_not_found": "Інфармацыя для гэтага сеанса недаступная.",
+                "no_other_sessions": "У вас няма іншых сеансаў.",
+                "remove_other_sessions": "Выйсці з усіх іншых сеансаў",
+                "remove_other_sessions_body": "Гэты сеанс не будзе завершаны."
             }
         },
         "discover": {
