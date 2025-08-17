@@ -20,10 +20,7 @@ import {
 import {ChannelHeader} from '@clerotri/components/navigation/ChannelHeader';
 import {SpecialChannelIcon} from '@clerotri/components/navigation/SpecialChannelIcon';
 
-export const HomePage = observer(() => {
-  const {t} = useTranslation();
-
-  // holiday emoji
+const HolidayEmoji = () => {
   const rawDate = new Date();
   const rawMonth = rawDate.getMonth() + 1;
   const date = `${rawDate.getDate()}/${rawMonth}`;
@@ -50,6 +47,12 @@ export const HomePage = observer(() => {
       </Text>
     </TouchableOpacity>
   ) : null;
+
+  return holidayEmoji;
+}
+
+export const HomePage = observer(() => {
+  const {t} = useTranslation();
 
   return (
     <>
@@ -114,7 +117,7 @@ export const HomePage = observer(() => {
           onPress={() => app.openSettings(true)}>
           <Text style={styles.buttonText}>{t('app.home.open_settings')}</Text>
         </Button>
-        {settings.get('ui.home.holidays') ? holidayEmoji : null}
+        {settings.get('ui.home.holidays') ? <HolidayEmoji /> : null}
       </View>
     </>
   );
