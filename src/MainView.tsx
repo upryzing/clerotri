@@ -1,4 +1,4 @@
-import {useContext, useEffect, useRef, useState} from 'react';
+import {useEffect, useRef, useState} from 'react';
 
 import type {ClientboundNotification} from 'revolt.js';
 
@@ -11,14 +11,11 @@ import {loginWithSavedToken} from '@clerotri/lib/auth';
 import {createChannel, setUpNotifeeListener} from '@clerotri/lib/notifications';
 import {OrderedServersContext} from '@clerotri/lib/state';
 import {storage} from '@clerotri/lib/storage';
-import {ThemeContext} from '@clerotri/lib/themes';
 import {LoginViews} from '@clerotri/pages/LoginViews';
 import {generateAnalyticsObject} from '@clerotri/lib/analytics';
 import {ANALYTICS_ENDPOINT} from '@clerotri/lib/consts';
 
 export function MainView() {
-  const {currentTheme} = useContext(ThemeContext);
-
   const [status, setStatus] = useState('loggedOut');
 
   const [orderedServers, setOrderedServers] = useState<string[]>([]);
@@ -199,11 +196,6 @@ export function MainView() {
           header={'app.loading.unknown_state'}
           body={'app.loading.unknown_state_body'}
           bodyParams={{state: status}}
-          styles={{
-            loadingScreen: {
-              backgroundColor: currentTheme.backgroundPrimary,
-            },
-          }}
         />
       )}
       {/* these need to be available before the app is logged in */}

@@ -177,7 +177,9 @@ export const LoginPage = ({
   });
 
   return (
-    <KeyboardAvoidingView behavior={'padding'} style={{flex: 1}}>
+    <KeyboardAvoidingView
+      behavior={'padding'}
+      style={{flex: 1, backgroundColor: currentTheme.backgroundPrimary}}>
       <View
         style={{
           marginTop: insets.top + commonValues.sizes.large,

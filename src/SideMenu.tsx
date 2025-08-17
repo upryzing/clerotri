@@ -82,7 +82,7 @@ const SideMenu = () => {
         <Button
           key={'bottom-nav-friends'}
           onPress={() => setCurrentChannel('friends')}
-          backgroundColor={currentTheme.background}
+          backgroundColor={'#00000000'}
           style={{paddingVertical: 10}}>
           <MaterialIcon
             name="group"
@@ -93,7 +93,7 @@ const SideMenu = () => {
         <Button
           key={'bottom-nav-search'}
           onPress={() => app.openChannelSwitcher(true)}
-          backgroundColor={currentTheme.background}
+          backgroundColor={'#00000000'}
           style={{paddingVertical: 10}}>
           <MaterialCommunityIcon
             name="text-search"
@@ -104,7 +104,7 @@ const SideMenu = () => {
         <Button
           key={'bottom-nav-settings'}
           onPress={() => app.openSettings(true)}
-          backgroundColor={currentTheme.background}
+          backgroundColor={'#00000000'}
           style={{paddingVertical: 10}}>
           <MaterialIcon
             name="settings"
@@ -190,7 +190,6 @@ const generateLocalStyles = (currentTheme: Theme, inset: number) => {
   return StyleSheet.create({
     container: {
       flex: 1,
-      backgroundColor: currentTheme.background,
       paddingBottom: inset - 5,
     },
     sideView: {

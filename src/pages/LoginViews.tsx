@@ -1,15 +1,12 @@
-import {useContext, useState} from 'react';
+import {useState} from 'react';
 import {View} from 'react-native';
 
 import {setFunction} from '@clerotri/Generic';
 import {LoadingScreen} from '@clerotri/components/views/LoadingScreen';
 import {LoginPage} from '@clerotri/pages/auth/LoginPage';
 import {LoginSettingsPage} from '@clerotri/pages/auth/LoginSettingsPage';
-import {ThemeContext} from '@clerotri/lib/themes';
 
 export const LoginViews = ({markAsLoggedIn}: {markAsLoggedIn: any}) => {
-  const {currentTheme} = useContext(ThemeContext);
-
   const [currentPage, setCurrentPage] = useState<
     'loginSettings' | 'loginPage' | 'loadingPage'
   >('loadingPage');
@@ -27,7 +24,7 @@ export const LoginViews = ({markAsLoggedIn}: {markAsLoggedIn: any}) => {
   });
 
   return (
-    <View style={{flex: 1, backgroundColor: currentTheme.backgroundPrimary}}>
+    <View style={{flex: 1}}>
       {currentPage === 'loginSettings' ? (
         <LoginSettingsPage callback={() => setCurrentPage('loginPage')} />
       ) : currentPage === 'loginPage' ? (

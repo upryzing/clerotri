@@ -68,7 +68,7 @@ export const LoginSettingsPage = ({callback}: {callback: () => void}) => {
   }
 
   return (
-    <>
+    <View style={{flex: 1, backgroundColor: currentTheme.backgroundPrimary}}>
       {!saved && (
         <BackButton
           callback={() => callback()}
@@ -132,6 +132,6 @@ export const LoginSettingsPage = ({callback}: {callback: () => void}) => {
           </>
         )}
       </View>
-    </>
+    </View>
   );
 };
