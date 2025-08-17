@@ -123,7 +123,9 @@
                 "display_name_placeholder": "Бачнае ймя",
                 "nickname_other_placeholder": "Нікнэйм (пакіньце пустым каб скінуць)",
                 "role_colour_header": "Задаць колер ролі",
-                "role_colour_placeholder": "Колер ролі"
+                "role_colour_placeholder": "Колер ролі",
+                "new_bot_header": "Стварыць бота",
+                "new_bot_placeholder": "Імя"
             },
             "new_invite": {
                 "header": "Запрашэньне створанае",
@@ -263,6 +265,31 @@
             },
             "analytics": {
                 "title": "Аналітыка"
+            },
+            "sessions": {
+                "other_sessions": "Іншыя сэансы",
+                "current_session_not_found_with_hint": "Інфармацыя для гэтага сэанса недаступная. Вам трэба выйсці і ўвайсці зноў.",
+                "title": "Сэансы",
+                "loading": "Загрузка сэансаў…",
+                "current_session": "Гэты сэанс",
+                "current_session_not_found": "Інфармацыя для гэтага сэанса недаступная.",
+                "no_other_sessions": "У вас няма йншых сэансаў.",
+                "remove_other_sessions": "Выйсьці з усіх іншых сэансаў",
+                "remove_other_sessions_body": "Гэты сэанс не будзе завершаны."
+            },
+            "bots": {
+                "token": "Токэн",
+                "public_body_revolt": "Калі гэта ўключана, гэтага бота можна будзе запрасіць у групы і на сэрвэры.",
+                "title": "Боты",
+                "loading": "Загрузка ботаў…",
+                "no_bots": "У вас няма ботаў",
+                "new_bot": "Стварыць новага бота",
+                "new_bot_body": "Вы можаце стварыць да {{limit}} ботаў.",
+                "aup_notice": "Усе боты мусяць адпавядаць <2>Палітыцы выкарыстаньня</2>.",
+                "public": "Публічны",
+                "public_body_upryzing": "Калі гэта ўключана, гэтага бота можна будзе запрасіць у групы і прасторы.",
+                "copy_invite_link": "Скапіяваць спасылку",
+                "invite_bot": "Запрасіць бота"
             }
         },
         "settings": {
