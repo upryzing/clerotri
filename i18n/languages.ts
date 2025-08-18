@@ -19,6 +19,7 @@ import {default as pt} from './strings/pt.json';
 import {default as mwl} from './strings/mwl.json';
 import {default as ru} from './strings/ru.json';
 import {default as tr} from './strings/tr.json';
+import {default as uk} from './strings/uk.json';
 import {default as zh_Hans} from './strings/zh-Hans.json';
 
 // resources object passed to i18next
@@ -41,6 +42,7 @@ export const resources = {
   mwl: {translation: mwl},
   ru: {translation: ru},
   tr: {translation: tr},
+  uk: {translation: uk},
   'zh-Hans': {translation: zh_Hans},
 };
 
@@ -101,6 +103,7 @@ export const languages: Record<string, Language> = {
   mwl: {name: 'Mirandés', englishName: 'Mirandese', emoji: '🇵🇹'},
   ru: {name: 'Русский', englishName: 'Russian', emoji: '🇷🇺'},
   tr: {name: 'Türkçe', englishName: 'Turkish', emoji: '🇹🇷'},
+  uk: {name: 'Українська', englishName: 'Ukrainian', emoji: '🇺🇦'},
   'zh-Hans': {
     name: '简体中文',
     englishName: 'Chinese (Simplified)',
