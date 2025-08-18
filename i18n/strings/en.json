@@ -39,8 +39,21 @@
             },
             "privacy_info": "Privacy information"
         },
+        "badges": {
+            "Developer": "Revolt Developer",
+            "EarlyAdopter": "Early Adopter",
+            "Founder": "Founder",
+            "Paw": "Insert's Paw",
+            "PlatformModeration": "Platform Moderator",
+            "ResponsibleDisclosure": "Responsibly disclosed a security issue",
+            "Supporter": "Donator",
+            "Translator": "Translator"
+        },
         "channel_list": {
             "direct_messages_header": "Direct Messages"
+        },
+        "custom_badges": {
+            "clerotri_dev": "Clerotri Developer"
         },
         "discover": {
             "count_bots_one": "{{count}} bot",
@@ -104,11 +117,6 @@
             "join_clerotri": "Join the Clerotri server",
             "open_clerotri": "Open the Clerotri server",
             "open_settings": "Open settings"
-        },
-        "profile": {
-            "roles": {
-                "copied_role_id_toast": "Copied role ID"
-            }
         },
         "messaging": {
             "message_box_channel": "Message #{{name}}",
@@ -209,6 +217,39 @@
             "UploadFiles_body_server": "Allows members with this role to upload files in text channels.",
             "ViewChannel": "View Channels",
             "ViewChannel_body_server": "Allows members with this role to view channels."
+        },
+        "profile": {
+            "badges": "Badges",
+            "bot_owner": "Bot Owner",
+            "bio": "Bio",
+            "flags": {
+                "banned": "This user has been banned",
+                "deleted": "This user has deleted their account",
+                "suspended": "This user has been suspended",
+                "unknown": "Unknown flag {{flag}}"
+            },
+            "friend_requests": {
+                "accept": "Accept Friend Request",
+                "cancel": "Cancel Friend Request",
+                "reject": "Reject Friend Request",
+                "send": "Send Friend Request"
+            },
+            "roles_header": "Roles",
+            "roles": {
+                "copied_role_id_toast": "Copied role ID"
+            },
+            "menu": {
+                "back": "Return to Profile",
+                "block_user": "Block User",
+                "report_user": "Report User"
+            },
+            "message_user": "Message",
+            "tabs": {
+                "profile": "Profile",
+                "mutual_servers": "Mutual Servers",
+                "mutual_friends": "Mutual Friends",
+                "mutual_groups": "Mutual Groups"
+            }
         },
         "servers": {
             "settings": {

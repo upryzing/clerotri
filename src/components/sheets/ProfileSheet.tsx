@@ -1,5 +1,6 @@
 import {useContext, useEffect, useState} from 'react';
 import {Pressable, ScrollView, TouchableOpacity, View} from 'react-native';
+import {useTranslation} from 'react-i18next';
 import {observer} from 'mobx-react-lite';
 
 import MaterialIcon from '@react-native-vector-icons/material-icons';
@@ -30,9 +31,218 @@ import {commonValues, ThemeContext} from '@clerotri/lib/themes';
 import {useBackHandler} from '@clerotri/lib/ui';
 import {parseRevoltNodes} from '@clerotri/lib/utils';
 
+const RelationshipButtons = ({user}: {user: User}) => {
+  const {currentTheme} = useContext(ThemeContext);
+
+  const {t} = useTranslation();
+
+  return (
+    <View
+      style={{flexDirection: 'row', marginBlockEnd: commonValues.sizes.medium}}>
+      <View
+        style={{
+          margin: 0,
+          flex: 1,
+        }}>
+        {!user.bot ? (
+          user.relationship === 'Friend' ? (
+            <Button
+              backgroundColor={currentTheme.backgroundPrimary}
+              style={{margin: 0}}
+              onPress={async () => {
+                const c = await user.openDM();
+                try {
+                  console.log(`[PROFILE] Switching to DM: ${c}, ${c._id}`);
+                  app.openDirectMessage(c);
+                } catch (e) {
+                  console.log(
+                    `[PROFILE] Error switching to DM: ${c._id}, ${e}`,
+                  );
+                }
+              }}>
+              <View
+                style={{
+                  alignItems: 'center',
+                  flexDirection: 'column',
+                }}>
+                <View>
+                  <MaterialIcon
+                    name="message"
+                    size={25}
+                    color={currentTheme.foregroundPrimary}
+                  />
+                </View>
+                <Text>Message</Text>
+              </View>
+            </Button>
+          ) : user.relationship === 'Incoming' ? (
+            <>
+              <Button
+                backgroundColor={currentTheme.backgroundPrimary}
+                style={{margin: 0, marginBlockEnd: commonValues.sizes.small}}
+                onPress={() => {
+                  user.addFriend();
+                }}>
+                <View
+                  style={{
+                    alignItems: 'center',
+                    flexDirection: 'column',
+                  }}>
+                  <View>
+                    <MaterialCommunityIcon
+                      name="account-plus"
+                      size={25}
+                      color={currentTheme.foregroundPrimary}
+                    />
+                  </View>
+                  <Text>{t('app.profile.friend_requests.accept')}</Text>
+                </View>
+              </Button>
+              <Button
+                backgroundColor={currentTheme.backgroundPrimary}
+                style={{margin: 0}}
+                onPress={() => {
+                  user.removeFriend();
+                }}>
+                <View
+                  style={{
+                    alignItems: 'center',
+                    flexDirection: 'column',
+                  }}>
+                  <View>
+                    <MaterialCommunityIcon
+                      name="account-remove"
+                      size={25}
+                      color={currentTheme.foregroundPrimary}
+                    />
+                  </View>
+                  <Text>{t('app.profile.friend_requests.reject')}</Text>
+                </View>
+              </Button>
+            </>
+          ) : user.relationship === 'Outgoing' ? (
+            <Button
+              backgroundColor={currentTheme.backgroundPrimary}
+              style={{margin: 0}}
+              onPress={() => {
+                user.removeFriend();
+              }}>
+              <View
+                style={{
+                  alignItems: 'center',
+                  flexDirection: 'column',
+                }}>
+                <View>
+                  <MaterialCommunityIcon
+                    name="account-cancel"
+                    size={25}
+                    color={currentTheme.foregroundPrimary}
+                  />
+                </View>
+                <Text>{t('app.profile.friend_requests.cancel')}</Text>
+              </View>
+            </Button>
+          ) : user.relationship !== 'Blocked' &&
+            user.relationship !== 'BlockedOther' ? (
+            <Button
+              backgroundColor={currentTheme.backgroundPrimary}
+              style={{margin: 0}}
+              onPress={() => {
+                user.addFriend();
+              }}>
+              <View
+                style={{
+                  alignItems: 'center',
+                  flexDirection: 'column',
+                }}>
+                <View>
+                  <MaterialCommunityIcon
+                    name="account-plus"
+                    size={25}
+                    color={currentTheme.foregroundPrimary}
+                  />
+                </View>
+                <Text>{t('app.profile.friend_requests.send')}</Text>
+              </View>
+            </Button>
+          ) : null
+        ) : null}
+      </View>
+    </View>
+  );
+};
+
+const ProfileTabs = ({setSection}: {setSection: (t: string) => void}) => {
+  const {currentTheme} = useContext(ThemeContext);
+
+  const {t} = useTranslation();
+
+  return (
+    <>
+      <View
+        style={{
+          flexDirection: 'row',
+          gap: commonValues.sizes.small,
+          marginBlockEnd: commonValues.sizes.small,
+        }}>
+        <Button
+          backgroundColor={currentTheme.backgroundPrimary}
+          style={{
+            padding: commonValues.sizes.medium,
+            margin: 0,
+            flex: 1,
+          }}
+          onPress={() => setSection('Profile')}>
+          <Text>{t('app.profile.tabs.profile')}</Text>
+        </Button>
+        <Button
+          backgroundColor={currentTheme.backgroundPrimary}
+          style={{
+            padding: commonValues.sizes.medium,
+            margin: 0,
+            flex: 1,
+          }}
+          onPress={() => setSection('Mutual Friends')}>
+          <Text>{t('app.profile.tabs.mutual_friends')}</Text>
+        </Button>
+      </View>
+      <View
+        style={{
+          flexDirection: 'row',
+          gap: commonValues.sizes.small,
+          marginBlockEnd: commonValues.sizes.small,
+        }}>
+        {/* TODO: uncomment when this has been added 
+        <Button
+          backgroundColor={currentTheme.backgroundPrimary}
+          style={{
+            padding: commonValues.sizes.medium,
+            margin: 0,
+            flex: 1,
+          }}
+          onPress={() => setSection('Mutual Groups')}>
+          <Text>{t('app.profile.tabs.mutual_groups')}</Text>
+        </Button> */}
+        <Button
+          backgroundColor={currentTheme.backgroundPrimary}
+          style={{
+            padding: commonValues.sizes.medium,
+            margin: 0,
+            flex: 1,
+          }}
+          onPress={() => setSection('Mutual Servers')}>
+          <Text>{t('app.profile.tabs.mutual_servers')}</Text>
+        </Button>
+      </View>
+    </>
+  );
+};
+
 export const ProfileSheet = observer(
   ({user, server}: {user: User | null; server: Server | null}) => {
     const {currentTheme} = useContext(ThemeContext);
+
+    const {t} = useTranslation();
 
     const [section, setSection] = useState('Profile');
     const [profile, setProfile] = useState<API.UserProfile>({});
@@ -85,7 +295,7 @@ export const ProfileSheet = observer(
     }, [user]);
 
     return (
-      <View style={{paddingHorizontal: 16}}>
+      <View style={{paddingHorizontal: commonValues.sizes.xl}}>
         {!user ? (
           <></>
         ) : showMenu ? (
@@ -110,28 +320,51 @@ export const ProfileSheet = observer(
                   fontSize: 16,
                   marginLeft: 5,
                 }}>
-                Return to Profile
+                {t('app.profile.menu.back')}
               </Text>
             </Pressable>
             {settings.get('ui.showDeveloperFeatures') ? (
               <CopyIDButton id={user._id} />
             ) : null}
             {user.relationship !== 'User' ? (
-              <ContextButton
-                onPress={() => {
-                  app.openReportMenu({object: user, type: 'User'});
-                  setShowMenu(false);
-                  app.openProfile(null);
-                }}>
-                <View style={styles.iconContainer}>
-                  <MaterialIcon
-                    name="flag"
-                    size={20}
-                    color={currentTheme.error}
-                  />
-                </View>
-                <Text colour={currentTheme.error}>Report User</Text>
-              </ContextButton>
+              <>
+                <ContextButton
+                  onPress={() => {
+                    app.openReportMenu({object: user, type: 'User'});
+                    setShowMenu(false);
+                    app.openProfile(null);
+                  }}>
+                  <View style={styles.iconContainer}>
+                    <MaterialIcon
+                      name="flag"
+                      size={20}
+                      color={currentTheme.error}
+                    />
+                  </View>
+                  <Text colour={currentTheme.error}>
+                    {t('app.profile.menu.report_user')}
+                  </Text>
+                </ContextButton>
+                {/* TODO: add block confirm modal then uncomment this {user.relationship !== 'Blocked' ? (
+                  <ContextButton
+                    onPress={() => {
+                      app.openReportMenu({object: user, type: 'User'});
+                      setShowMenu(false);
+                      app.openProfile(null);
+                    }}>
+                    <View style={styles.iconContainer}>
+                      <MaterialIcon
+                        name="block"
+                        size={20}
+                        color={currentTheme.error}
+                      />
+                    </View>
+                    <Text colour={currentTheme.error}>
+                      {t('app.profile.menu.block_user')}
+                    </Text>
+                  </ContextButton>
+                ) : null} */}
+              </>
             ) : null}
           </>
         ) : (
@@ -163,8 +396,7 @@ export const ProfileSheet = observer(
             <View
               style={{
                 flexDirection: 'row',
-                width: '80%',
-                marginBottom: commonValues.sizes.large,
+                marginBlock: commonValues.sizes.medium,
               }}>
               <View>
                 <Username user={user} server={server ?? undefined} size={24} />
@@ -206,198 +438,40 @@ export const ProfileSheet = observer(
                     </View>
                   </View>
                 ) : null}
-                {user.status?.text ? <Text>{user.status?.text}</Text> : <></>}
+                {user.status?.text ? <Text>{user.status?.text}</Text> : null}
               </View>
             </View>
             {user.flags ? (
               /* eslint-disable no-bitwise */
-              user.flags & 1 ? (
-                <Text colour={currentTheme.error}>User is suspended</Text>
-              ) : user.flags & 2 ? (
-                <Text colour={currentTheme.error}>
-                  User deleted their account
-                </Text>
-              ) : user.flags & 4 ? (
-                <Text colour={currentTheme.error}>User is banned</Text>
-              ) : null
+              <Text
+                style={{marginBlockEnd: commonValues.sizes.large}}
+                colour={currentTheme.error}>
+                {t(
+                  `app.profile.flags.${
+                    user.flags & 1
+                      ? 'suspended'
+                      : user.flags & 2
+                        ? 'deleted'
+                        : user.flags & 4
+                          ? 'banned'
+                          : 'unknown'
+                  }`,
+                  {flag: user.flags},
+                )}
+              </Text>
             ) : /* eslint-enable no-bitwise */
             null}
             {user.relationship !== 'User' ? (
               <>
-                <View style={{flexDirection: 'row'}}>
-                  <View
-                    style={{
-                      margin: 3,
-                      flex: 1,
-                    }}>
-                    {!user.bot ? (
-                      user.relationship === 'Friend' ? (
-                        <Button
-                          backgroundColor={currentTheme.backgroundPrimary}
-                          style={{marginHorizontal: 0}}
-                          onPress={async () => {
-                            const c = await user.openDM();
-                            try {
-                              console.log(
-                                `[PROFILE] Switching to DM: ${c}, ${c._id}`,
-                              );
-                              app.openDirectMessage(c);
-                            } catch (e) {
-                              console.log(
-                                `[PROFILE] Error switching to DM: ${c._id}, ${e}`,
-                              );
-                            }
-                          }}>
-                          <View
-                            style={{
-                              alignItems: 'center',
-                              flexDirection: 'column',
-                            }}>
-                            <View>
-                              <MaterialIcon
-                                name="message"
-                                size={25}
-                                color={currentTheme.foregroundPrimary}
-                              />
-                            </View>
-                            <Text>Message</Text>
-                          </View>
-                        </Button>
-                      ) : user.relationship === 'Incoming' ? (
-                        <>
-                          <Button
-                            backgroundColor={currentTheme.backgroundPrimary}
-                            onPress={() => {
-                              user.addFriend();
-                            }}>
-                            <View
-                              style={{
-                                alignItems: 'center',
-                                flexDirection: 'column',
-                              }}>
-                              <View>
-                                <MaterialCommunityIcon
-                                  name="account-plus"
-                                  size={25}
-                                  color={currentTheme.foregroundPrimary}
-                                />
-                              </View>
-                              <Text>Accept Friend Request</Text>
-                            </View>
-                          </Button>
-                          <Button
-                            backgroundColor={currentTheme.backgroundPrimary}
-                            onPress={() => {
-                              user.removeFriend();
-                            }}>
-                            <View
-                              style={{
-                                alignItems: 'center',
-                                flexDirection: 'column',
-                              }}>
-                              <View>
-                                <MaterialCommunityIcon
-                                  name="account-remove"
-                                  size={25}
-                                  color={currentTheme.foregroundPrimary}
-                                />
-                              </View>
-                              <Text>Reject Friend Request</Text>
-                            </View>
-                          </Button>
-                        </>
-                      ) : user.relationship === 'Outgoing' ? (
-                        <Button
-                          backgroundColor={currentTheme.backgroundPrimary}
-                          style={{marginHorizontal: 0}}
-                          onPress={() => {
-                            user.removeFriend();
-                          }}>
-                          <View
-                            style={{
-                              alignItems: 'center',
-                              flexDirection: 'column',
-                            }}>
-                            <View>
-                              <MaterialCommunityIcon
-                                name="account-cancel"
-                                size={25}
-                                color={currentTheme.foregroundPrimary}
-                              />
-                            </View>
-                            <Text>Cancel Friend Request</Text>
-                          </View>
-                        </Button>
-                      ) : user.relationship !== 'Blocked' &&
-                        user.relationship !== 'BlockedOther' ? (
-                        <Button
-                          backgroundColor={currentTheme.backgroundPrimary}
-                          style={{marginHorizontal: 0}}
-                          onPress={() => {
-                            user.addFriend();
-                          }}>
-                          <View
-                            style={{
-                              alignItems: 'center',
-                              flexDirection: 'column',
-                            }}>
-                            <View>
-                              <MaterialCommunityIcon
-                                name="account-plus"
-                                size={25}
-                                color={currentTheme.foregroundPrimary}
-                              />
-                            </View>
-                            <Text>Send Friend Request</Text>
-                          </View>
-                        </Button>
-                      ) : null
-                    ) : (
-                      <></>
-                    )}
-                  </View>
-                </View>
-                <View style={{flexDirection: 'row'}}>
-                  <Button
-                    backgroundColor={currentTheme.backgroundPrimary}
-                    style={{
-                      padding: commonValues.sizes.medium,
-                      margin: 3,
-                      flex: 1,
-                    }}
-                    onPress={() => setSection('Profile')}>
-                    <Text>Profile</Text>
-                  </Button>
-                  <Button
-                    backgroundColor={currentTheme.backgroundPrimary}
-                    style={{
-                      padding: commonValues.sizes.medium,
-                      margin: 3,
-                      flex: 1,
-                    }}
-                    onPress={() => setSection('Mutual Friends')}>
-                    <Text>Mutual Friends</Text>
-                  </Button>
-                </View>
-                <View style={{flexDirection: 'row'}}>
-                  <Button
-                    backgroundColor={currentTheme.backgroundPrimary}
-                    style={{
-                      padding: commonValues.sizes.medium,
-                      margin: 3,
-                      flex: 1,
-                    }}
-                    onPress={() => setSection('Mutual Servers')}>
-                    <Text>Mutual Servers</Text>
-                  </Button>
-                </View>
+                <RelationshipButtons user={user} />
+                <ProfileTabs setSection={setSection} />
               </>
             ) : null}
             {section === 'Profile' ? (
               <ScrollView>
                 {user.bot ? (
                   <>
-                    <Text type={'profile'}>BOT OWNER</Text>
+                    <Text type={'profile'}>{t('app.profile.bot_owner')}</Text>
                     {user.bot.owner && client.users.get(user.bot.owner) ? (
                       <Button
                         style={{
@@ -424,17 +498,19 @@ export const ProfileSheet = observer(
                 ) : null}
                 {server && <RoleView user={user} server={server} />}
                 {user.badges && <BadgeView user={user} />}
-                <Text type={'profile'}>BIO</Text>
+                <Text type={'profile'}>{t('app.profile.bio')}</Text>
                 {profile.content ? (
                   <MarkdownView>
                     {parseRevoltNodes(profile.content)}
                   </MarkdownView>
                 ) : null}
-                <View style={{marginTop: 10}} />
+                {/* <View style={{marginTop: 10}} /> */}
               </ScrollView>
             ) : section === 'Mutual Servers' ? (
               <ScrollView>
-                <Text type={'profile'}>MUTUAL SERVERS</Text>
+                <Text type={'profile'}>
+                  {t('app.profile.tabs.mutual_servers')}
+                </Text>
                 {mutual.servers?.map(srv => {
                   return (
                     <ContextButton
@@ -455,7 +531,9 @@ export const ProfileSheet = observer(
               </ScrollView>
             ) : section === 'Mutual Friends' ? (
               <ScrollView>
-                <Text type={'profile'}>MUTUAL FRIENDS</Text>
+                <Text type={'profile'}>
+                  {t('app.profile.tabs.mutual_friends')}
+                </Text>
                 <UserList users={mutual.users} />
                 <View style={{marginTop: 10}} />
               </ScrollView>

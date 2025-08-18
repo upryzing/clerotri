@@ -44,14 +44,14 @@ export const RoleView = observer(({server, user}: RoleViewProps) => {
   const roles = memberObject.roles.map(r => server.roles![r]);
 
   return (
-    <>
-      <Text type={'profile'}>ROLES</Text>
+    <View style={{marginBlockEnd: commonValues.sizes.medium}}>
+      <Text type={'profile'}>{t('app.profile.roles_header')}</Text>
       <View
         key={`roleview-${server._id}-container`}
         style={{
           flexDirection: 'row',
           flexWrap: 'wrap',
-          rowGap: commonValues.sizes.small,
+          gap: commonValues.sizes.small,
         }}>
         {roles.map((r, i) => (
           <Pressable
@@ -59,9 +59,7 @@ export const RoleView = observer(({server, user}: RoleViewProps) => {
             key={`roleview-${server._id}-${r.name}-${i}`}
             style={{
               flexDirection: 'row',
-              padding: 6,
-              paddingInline: commonValues.sizes.medium,
-              marginEnd: commonValues.sizes.small,
+              padding: commonValues.sizes.medium,
               backgroundColor: currentTheme.backgroundPrimary,
               borderRadius: commonValues.sizes.medium,
             }}>
@@ -82,6 +80,6 @@ export const RoleView = observer(({server, user}: RoleViewProps) => {
           </Pressable>
         ))}
       </View>
-    </>
+    </View>
   );
 });

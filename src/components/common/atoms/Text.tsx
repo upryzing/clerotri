@@ -75,7 +75,8 @@ const generateLocalStyles = (currentTheme: Theme) => {
     profileSubheader: {
       fontWeight: 'bold',
       color: currentTheme.foregroundSecondary,
-      marginVertical: 5,
+      marginVertical: commonValues.sizes.small,
+      textTransform: 'uppercase',
     },
   });
 };
