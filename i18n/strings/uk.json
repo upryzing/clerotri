@@ -506,7 +506,35 @@
         "profile": {
             "roles": {
                 "copied_role_id_toast": "Скопійовано ID ролі"
-            }
+            },
+            "flags": {
+                "unknown": "Невідомий Прапорець {{flag}}",
+                "deleted": "Цей користувач видалив свій акаунт",
+                "banned": "Цього користувача було забанено",
+                "suspended": "Цього користувача було заблоковано"
+            },
+            "bio": "Опис",
+            "bot_owner": "Власник Бота",
+            "badges": "Відзнаки",
+            "friend_requests": {
+                "reject": "Відхилити Запит на Дружбу",
+                "send": "Скинути Запит на Дружбу",
+                "accept": "Прийняти Запит на Дружбу",
+                "cancel": "Відмінити Запит на Дружбу"
+            },
+            "tabs": {
+                "mutual_groups": "Спільні Групи",
+                "mutual_servers": "Спільні Сервери",
+                "profile": "Профіль",
+                "mutual_friends": "Спільні Друзі"
+            },
+            "menu": {
+                "back": "Повернутися до Профілю",
+                "report_user": "Поскаржитися на Користувача",
+                "block_user": "Заблокувати Користувача"
+            },
+            "roles_header": "Ролі",
+            "message_user": "Повідомлення"
         },
         "misc": {
             "generic_errors": {
@@ -520,6 +548,19 @@
                 "header": "Підтримка голосових каналів ще не включено в Clerotri!",
                 "body": "За цей час, ви можете приєднатися до них за домомогою вебзастосунку або Revolt Desktop."
             }
+        },
+        "badges": {
+            "Founder": "Засновник",
+            "EarlyAdopter": "Ранні користувачі",
+            "Paw": "Вставте Лапу",
+            "Supporter": "Підтримувач",
+            "Translator": "Перекладач",
+            "Developer": "Розробник Revolt",
+            "PlatformModeration": "Модератор Платформи",
+            "ResponsibleDisclosure": "Відповідальність розкрито питанням безпеки"
+        },
+        "custom_badges": {
+            "clerotri_dev": "Розробник Clerotri"
         }
     }
 }
