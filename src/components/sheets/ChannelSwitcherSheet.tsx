@@ -5,7 +5,6 @@ import {observer} from 'mobx-react-lite';
 import type BottomSheetCore from '@gorhom/bottom-sheet';
 import MaterialCommunityIcon from '@react-native-vector-icons/material-design-icons';
 import {ScrollView} from 'react-native-gesture-handler';
-import {useSafeAreaInsets} from 'react-native-safe-area-context';
 
 import type {Channel, Server} from 'revolt.js';
 
@@ -176,8 +175,6 @@ const ChannelSearchResults = observer(({query}: {query: string}) => {
 });
 
 export const ChannelSwitcherSheet = observer(() => {
-  const insets = useSafeAreaInsets();
-
   const {currentTheme} = useContext(ThemeContext);
 
   const {currentServer} = useContext(ServerContext);
@@ -226,7 +223,6 @@ export const ChannelSwitcherSheet = observer(() => {
       <View
         style={{
           paddingHorizontal: commonValues.sizes.xl,
-          paddingBottom: insets.bottom,
         }}>
         <View
           style={{

@@ -295,7 +295,11 @@ export const ProfileSheet = observer(
     }, [user]);
 
     return (
-      <View style={{paddingHorizontal: commonValues.sizes.xl}}>
+      <View
+        style={{
+          paddingInline: commonValues.sizes.xl,
+          paddingBlockEnd: commonValues.sizes.xl,
+        }}>
         {!user ? (
           <></>
         ) : showMenu ? (
@@ -304,7 +308,7 @@ export const ProfileSheet = observer(
               style={{
                 flexDirection: 'row',
                 alignItems: 'center',
-                marginBottom: 10,
+                marginBottom: commonValues.sizes.large,
               }}
               onPress={() => {
                 setShowMenu(false);
@@ -504,7 +508,6 @@ export const ProfileSheet = observer(
                     {parseRevoltNodes(profile.content)}
                   </MarkdownView>
                 ) : null}
-                {/* <View style={{marginTop: 10}} /> */}
               </ScrollView>
             ) : section === 'Mutual Servers' ? (
               <ScrollView>
@@ -527,7 +530,6 @@ export const ProfileSheet = observer(
                     </ContextButton>
                   );
                 })}
-                <View style={{marginTop: 10}} />
               </ScrollView>
             ) : section === 'Mutual Friends' ? (
               <ScrollView>
@@ -535,7 +537,6 @@ export const ProfileSheet = observer(
                   {t('app.profile.tabs.mutual_friends')}
                 </Text>
                 <UserList users={mutual.users} />
-                <View style={{marginTop: 10}} />
               </ScrollView>
             ) : null}
           </>

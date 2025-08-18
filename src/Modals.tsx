@@ -1,5 +1,5 @@
 import {useCallback, useRef, useState} from 'react';
-import {Modal, Platform, StyleSheet, View} from 'react-native';
+import {Modal, StyleSheet, View} from 'react-native';
 import {observer} from 'mobx-react-lite';
 
 import type BottomSheetCore from '@gorhom/bottom-sheet';
@@ -430,13 +430,9 @@ export const PreLoginModals = observer(() => {
 export const Modals = observer(() => {
   return (
     <>
-      {Platform.OS !== 'web' && (
-        <>
-          <BottomSheets />
-          {/* this one breaks when trying to move it to the new bottom sheet component (swiping back doesn't work properly unless you select another server or enter text for some reason???) */}
-          <ChannelSwitcherSheet />
-        </>
-      )}
+      <BottomSheets />
+      {/* this one breaks when trying to move it to the new bottom sheet component (swiping back doesn't work properly unless you select another server or enter text for some reason???) */}
+      <ChannelSwitcherSheet />
       <FloatingModals />
       <OtherModals />
     </>

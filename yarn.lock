@@ -1452,9 +1452,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@gorhom/bottom-sheet@npm:^5.1.8":
-  version: 5.1.8
-  resolution: "@gorhom/bottom-sheet@npm:5.1.8"
+"@gorhom/bottom-sheet@npm:^5.2.3":
+  version: 5.2.3
+  resolution: "@gorhom/bottom-sheet@npm:5.2.3"
   dependencies:
     "@gorhom/portal": "npm:1.0.14"
     invariant: "npm:^2.2.4"
@@ -1470,7 +1470,7 @@ __metadata:
       optional: true
     "@types/react-native":
       optional: true
-  checksum: 10c0/b1faa4bf495f2be814cc2477893fbe758282142b5e4a404eacabd0b76475975f17339fabce388719645a02c17ee999e86cffa26e847a40c9c38e98c5c342ee45
+  checksum: 10c0/69bfda17b135559984d7a64a81bd0a2dbb3d338db70b6a78d6c495836e144aa13e0ab0da2d38bc614661da67ecfc3b428ced8ca49148d0fd26a81897f991734e
   languageName: node
   linkType: hard
 
@@ -10176,7 +10176,7 @@ __metadata:
   dependencies:
     "@babel/core": "npm:^7.28.3"
     "@babel/runtime": "npm:^7.28.3"
-    "@gorhom/bottom-sheet": "npm:^5.1.8"
+    "@gorhom/bottom-sheet": "npm:^5.2.3"
     "@notifee/react-native": "npm:^9.1.8"
     "@react-native-clipboard/clipboard": "npm:^1.16.3"
     "@react-native-community/cli": "npm:^19.1.1"

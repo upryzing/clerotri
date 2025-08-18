@@ -1,11 +1,12 @@
 import {useContext, useMemo} from 'react';
 import {StyleSheet} from 'react-native';
+import {observer} from 'mobx-react-lite';
 
 import BottomSheetCore, {
   BottomSheetBackdrop,
   BottomSheetScrollView,
 } from '@gorhom/bottom-sheet';
-import {observer} from 'mobx-react-lite';
+import {useSafeAreaInsets} from 'react-native-safe-area-context';
 
 import {commonValues, Theme, ThemeContext} from '@clerotri/lib/themes';
 
@@ -25,6 +26,8 @@ export const BottomSheet = observer(
       [currentTheme],
     );
 
+    const insets = useSafeAreaInsets();
+
     const snapPoints = useMemo(() => ['50%', '70%', '90%'], []);
 
     return (
@@ -38,7 +41,8 @@ export const BottomSheet = observer(
         backgroundStyle={localStyles.sheetBackground}
         handleIndicatorStyle={localStyles.handleIndicator}
         onChange={onChange}>
-        <BottomSheetScrollView contentContainerStyle={{flex: 1}}>
+        <BottomSheetScrollView
+          contentContainerStyle={{flexGrow: 1, paddingBlockEnd: insets.bottom}}>
           {children}
         </BottomSheetScrollView>
       </BottomSheetCore>
