@@ -363,6 +363,7 @@ const generateLevelBoxStyles = (currentTheme: Theme, screenWidth: number) => {
       padding: commonValues.sizes.xl,
       backgroundColor: currentTheme.headerBackground,
       width: screenWidth - commonValues.sizes.xl * 4,
+      maxWidth: 600,
     },
     basicBox: {
       marginInlineEnd: commonValues.sizes.small,
