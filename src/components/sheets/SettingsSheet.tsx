@@ -20,10 +20,7 @@ import {getInstanceURL} from '@clerotri/lib/storage/utils';
 import {commonValues, type Theme, ThemeContext} from '@clerotri/lib/themes';
 import {SettingsSection} from '@clerotri/lib/types';
 import {openUrl} from '@clerotri/lib/utils';
-import {
-  BackButton,
-  Text,
-} from '@clerotri/components/common/atoms';
+import {BackButton, Text} from '@clerotri/components/common/atoms';
 import {SettingsButton} from '@clerotri/components/common/buttons';
 import {SettingsCategory} from '@clerotri/components/common/settings';
 import {

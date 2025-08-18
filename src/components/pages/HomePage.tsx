@@ -49,7 +49,7 @@ const HolidayEmoji = () => {
   ) : null;
 
   return holidayEmoji;
-}
+};
 
 export const HomePage = observer(() => {
   const {t} = useTranslation();
