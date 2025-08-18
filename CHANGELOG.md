@@ -82,9 +82,8 @@ _This version was released on 25/03/2025._
 
 ### What's new
 
-​- Clerotri now lets you **edit server-wide role permissions!** This is a big step towards complete support for server settings, and the work here should make channel permission editing pretty easy to add in the future :3
-
-- You can now also edit role ranks.
+- Clerotri now lets you **edit server-wide role permissions!** This is a big step towards complete support for server settings, and the work here should make channel permission editing pretty easy to add in the future :3
+  - You can now also edit role ranks.
 - Clerotri now supports several new languages:
   - Spanish,
   - Portuguese,
