@@ -1,5 +1,5 @@
 import {useCallback, useRef, useState} from 'react';
-import {Modal, type ModalProps, Platform, StyleSheet, View} from 'react-native';
+import {Modal, Platform, StyleSheet, View} from 'react-native';
 import {observer} from 'mobx-react-lite';
 
 import type BottomSheetCore from '@gorhom/bottom-sheet';
@@ -43,15 +43,6 @@ import {
 } from '@clerotri/components/sheets';
 import {useBackHandler} from '@react-native-community/hooks';
 import {sleep} from './lib/utils';
-
-// Modals appear to break on the new architecture unless you wrap them in a View. see also https://github.com/react-navigation/react-navigation/issues/12301#issuecomment-2501692557
-const FixedModal = observer((props: ModalProps) => {
-  return (
-    <View>
-      <Modal {...props} />
-    </View>
-  );
-});
 
 const BottomSheets = observer(() => {
   const sheetRef = useRef<BottomSheetCore>(null);
@@ -222,7 +213,7 @@ const FloatingModals = observer(() => {
 
   return (
     <>
-      <FixedModal
+      <Modal
         visible={!!deletableObject}
         animationType="fade"
         statusBarTranslucent
@@ -232,8 +223,8 @@ const FloatingModals = observer(() => {
         <View style={localStyles.modalContainer}>
           <ConfirmDeletionModal target={deletableObject!} />
         </View>
-      </FixedModal>
-      <FixedModal
+      </Modal>
+      <Modal
         visible={!!editingText}
         animationType="fade"
         statusBarTranslucent
@@ -243,8 +234,8 @@ const FloatingModals = observer(() => {
         <View style={localStyles.modalContainer}>
           <TextEditModal object={editingText!} />
         </View>
-      </FixedModal>
-      <FixedModal
+      </Modal>
+      <Modal
         visible={!!createChannelObject}
         animationType="fade"
         statusBarTranslucent
@@ -254,8 +245,8 @@ const FloatingModals = observer(() => {
         <View style={localStyles.modalContainer}>
           <CreateChannelModal object={createChannelObject!} />
         </View>
-      </FixedModal>
-      <FixedModal
+      </Modal>
+      <Modal
         visible={!!newInviteCode}
         animationType="fade"
         statusBarTranslucent
@@ -265,7 +256,7 @@ const FloatingModals = observer(() => {
         <View style={localStyles.modalContainer}>
           <NewInviteModal code={newInviteCode!} />
         </View>
-      </FixedModal>
+      </Modal>
     </>
   );
 });
@@ -327,7 +318,7 @@ const OtherModals = observer(() => {
 
   return (
     <>
-      <FixedModal
+      <Modal
         visible={!!imageViewerState.i}
         transparent={true}
         animationType="fade"
@@ -338,8 +329,8 @@ const OtherModals = observer(() => {
           state={imageViewerState}
           setState={() => setImageViewerState({i: null})}
         />
-      </FixedModal>
-      <FixedModal
+      </Modal>
+      <Modal
         visible={settingsVisibility}
         transparent={true}
         animationType="slide"
@@ -352,8 +343,8 @@ const OtherModals = observer(() => {
           initialSection={initialSettingsSection}
           setState={() => setSettingsVisibility(false)}
         />
-      </FixedModal>
-      <FixedModal
+      </Modal>
+      <Modal
         visible={!!inviteServer.inviteServer}
         transparent={true}
         animationType="fade"
@@ -373,8 +364,8 @@ const OtherModals = observer(() => {
           server={inviteServer.inviteServer}
           inviteCode={inviteServer.inviteServerCode}
         />
-      </FixedModal>
-      <FixedModal
+      </Modal>
+      <Modal
         visible={!!inviteBot}
         transparent={true}
         animationType="fade"
@@ -387,8 +378,8 @@ const OtherModals = observer(() => {
           }}
           bot={inviteBot!}
         />
-      </FixedModal>
-      <FixedModal
+      </Modal>
+      <Modal
         visible={!!serverSettingsServer}
         transparent={true}
         animationType="slide"
@@ -401,7 +392,7 @@ const OtherModals = observer(() => {
           server={serverSettingsServer!}
           setState={() => setServerSettingsServer(null)}
         />
-      </FixedModal>
+      </Modal>
     </>
   );
 });
@@ -419,7 +410,7 @@ export const PreLoginModals = observer(() => {
   });
 
   return (
-    <FixedModal
+    <Modal
       visible={analyticsSettingsVisibility}
       transparent={true}
       animationType="fade"
@@ -432,7 +423,7 @@ export const PreLoginModals = observer(() => {
         blockClosing={analyticsSettingsBlockClosing}
         setState={() => setAnalyticsSettingsVisibility(false)}
       />
-    </FixedModal>
+    </Modal>
   );
 });
 
