@@ -39,7 +39,7 @@
 
 @font-face {
   src: url('../node_modules/@react-native-vector-icons/material-icons/fonts/MaterialIcons.ttf');
-  font-family: MaterialIcons;
+  font-family: MaterialIcons-Regular;
 }
 
 /* don't flashbang the user while loading */
