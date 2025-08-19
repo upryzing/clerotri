@@ -106,7 +106,9 @@
                 "role_colour_placeholder": "Cor do cargo",
                 "session_name_header": "Definir nome da sessão",
                 "session_name_placeholder": "Nome da sessão",
-                "role_colour_header": "Definir cor do cargo"
+                "role_colour_header": "Definir cor do cargo",
+                "new_bot_header": "Criar bot",
+                "new_bot_placeholder": "Nome de usuário"
             },
             "new_invite": {
                 "header": "Convite criado",
@@ -270,7 +272,8 @@
                 "view_issues": "Mostrar Problemas em Aberto",
                 "logout": "Sair",
                 "translate": "Traduzir Clerotri",
-                "donate": "Doar"
+                "donate": "Doar",
+                "changelog": "Ver mudanças"
             },
             "profile": {
                 "title": "Perfil",
@@ -288,6 +291,30 @@
             },
             "analytics": {
                 "title": "Analíticos"
+            },
+            "sessions": {
+                "current_session_not_found": "Informações sobre essa sessão estão indisponíveis.",
+                "current_session_not_found_with_hint": "As informações sobre essa sessão estão indisponíveis. Você deve sair e entrar novamente.",
+                "no_other_sessions": "Você não tem outras sessões.",
+                "remove_other_sessions": "Terminar suas outras sessões",
+                "title": "Sessões",
+                "loading": "Carregando sessões…",
+                "current_session": "Esta sessão",
+                "other_sessions": "Outras sessões"
+            },
+            "bots": {
+                "invite_bot": "Convidar bot",
+                "title": "Bots",
+                "loading": "Carregando bots…",
+                "no_bots": "Você não tem bots",
+                "new_bot": "Criar novo bot",
+                "new_bot_body": "Você pode criar até {{limit}} bots.",
+                "aup_notice": "Todos os bots devem seguir a <2>Política de Uso Aceitável</2>.",
+                "token": "Token",
+                "public": "Público",
+                "public_body_revolt": "Se ativado, permite que o bot seja convidado a grupos e servidores de outros usuários.",
+                "public_body_upryzing": "Se ativado, este bot pode ser convidado a grupos e espaços de outros usuários.",
+                "copy_invite_link": "Copiar link de convite"
             }
         },
         "misc": {
@@ -306,7 +333,35 @@
         "profile": {
             "roles": {
                 "copied_role_id_toast": "ID do cargo copiado"
-            }
+            },
+            "bot_owner": "Dono do Bot",
+            "bio": "Biografia",
+            "flags": {
+                "banned": "Este usuário foi banido",
+                "suspended": "Este usuário foi suspenso",
+                "unknown": "Bandeira {{flag}} desconhecida",
+                "deleted": "Este usuário apagou sua conta"
+            },
+            "friend_requests": {
+                "cancel": "Cancelar pedido de amizade",
+                "accept": "Aceitar pedido de amizade",
+                "reject": "Rejeitar pedido de amizade",
+                "send": "Enviar pedido de amizade"
+            },
+            "menu": {
+                "back": "Retornar ao perfil",
+                "report_user": "Denunciar usuário",
+                "block_user": "Bloquear usuário"
+            },
+            "tabs": {
+                "mutual_friends": "Amigos mútuos",
+                "mutual_groups": "Grupos mútuos",
+                "profile": "Perfil",
+                "mutual_servers": "Servidores mútuos"
+            },
+            "badges": "Insígnias",
+            "roles_header": "Cargos",
+            "message_user": "Mensagem"
         },
         "permissions": {
             "ManageWebhooks": "Gerenciar Webhooks",
@@ -493,6 +548,19 @@
             "title": "Gerenciar analíticos",
             "body": "Por padrão, Clerotri não coleta dados. Você pode nos permitir os seguintes dados para ajudar a melhorar o aplicativo.",
             "analytics_disabled": "Compartilhamento desativado"
+        },
+        "badges": {
+            "EarlyAdopter": "Pioneiro(a)",
+            "Founder": "Fundador",
+            "Paw": "Pata do Insert",
+            "ResponsibleDisclosure": "Denunciou uma vulnerabilidade responsavelmente",
+            "Supporter": "Doador",
+            "Translator": "Tradutor",
+            "Developer": "Desenvolvedor do Revolt",
+            "PlatformModeration": "Moderador da Plataforma"
+        },
+        "custom_badges": {
+            "clerotri_dev": "Desenvolvedor do Clerotri"
         }
     }
 }
