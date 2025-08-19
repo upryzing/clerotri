@@ -111,7 +111,7 @@ android {
             keyPassword 'android'
         }
         release {
-            if (project.hasProperty('CLER OTRI_UPLOAD_STORE_FILE')) {
+            if (project.hasProperty('CLEROTRI_UPLOAD_STORE_FILE')) {
                 storeFile file(CLEROTRI_UPLOAD_STORE_FILE)
                 storePassword CLEROTRI_UPLOAD_STORE_PASSWORD
                 keyAlias CLEROTRI_UPLOAD_KEY_ALIAS
