@@ -116,6 +116,11 @@ android {
                 storePassword CLEROTRI_UPLOAD_STORE_PASSWORD
                 keyAlias CLEROTRI_UPLOAD_KEY_ALIAS
                 keyPassword CLEROTRI_UPLOAD_KEY_PASSWORD
+            } else {
+                storeFile file('debug.keystore')
+                storePassword 'android'
+                keyAlias 'androiddebugkey'
+                keyPassword 'android'
             }
         }
     }
