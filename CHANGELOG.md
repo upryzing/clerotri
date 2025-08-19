@@ -14,7 +14,7 @@ _This version was released on 19/08/2025._
 - The sessions list has been moved to its own settings section, and you can now **log out of all other sessions** in one tap.
 - Clerotri (finally) includes support for **in-app changelogs**! The setting for this has been in place for a while, but until now these weren't implemented.
 - Clerotri now supports **two new languages**:
-  - Ukranian and
+  - Ukrainian and
   - Belarusian (Tarask).
 - **Blocked messages** now look slightly better, and are grouped.
 - Various margins and background colours have been tweaked for consistency.
