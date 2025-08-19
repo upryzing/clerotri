@@ -15,8 +15,8 @@ import {styles} from '@clerotri/Theme';
 import {openUrl} from '@clerotri/lib/utils';
 
 const changelogParagraphs = [
-  'This release includes **improvements to message grouping**, support for **a new language** and more!',
-  'It also (finally!) includes in-app changelogs. These can be disabled in [settings](clerotri://settings/functionality).',
+  'This release includes a **revamped settings menu**, improvements to the **sessions settings menu** support for **2 new languages** and more!',
+  'It also (finally!) includes **in-app changelogs**. These can be disabled in [settings](clerotri://settings/functionality).',
 ];
 
 export const ChangelogSheet = observer(() => {

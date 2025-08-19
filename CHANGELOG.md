@@ -1,5 +1,44 @@
 # Clerotri's changelog
 
+## v0.12.0
+
+_This version was released on 19/08/2025._
+
+### Important notes
+
+- As previously promised, F-Droid support is here: Clerotri is **now available on [IzzyOnDroid][izzy]!** You can grab the app [here][izzy_listing], or by enabling the Izzy repo in your F-Droid client and searching for Clerotri.
+
+### What's new
+
+- The **settings menu has been revamped**, with larger buttons and more connected sessions.
+- The sessions list has been moved to its own settings section, and you can now **log out of all other sessions** in one tap.
+- Clerotri (finally) includes support for **in-app changelogs**! The setting for this has been in place for a while, but until now these weren't implemented.
+- Clerotri now supports **two new languages**:
+  - Ukranian and
+  - Belarusian (Tarask).
+- **Blocked messages** now look slightly better, and are grouped.
+- Various margins and background colours have been tweaked for consistency.
+- More strings across the app are now [translatable][weblate_upryzing].
+- The app now uses React Native 0.80.
+
+### Bug fixes
+
+- Bottom sheets are scrollable again and have been re-enabled on web.
+- Some app icons render properly on web again.
+- The level boxes in the analytics settings menu should no longer be excessively wide on web.
+- The channel header should now have even horizontal margins.
+- The profile preview card no longer has an unusual gap at the bottom when you don't have a status.
+
+### Experimental features
+
+_These features can be access by enabling "Show experimental features" in Settings → Features._
+
+- Clerotri now has experimental support for **bot settings**! Create new bots, control access to them and invite them to new servers.
+  - More options will be added in future updates.
+
+[izzy]: https://apt.izzysoft.de/fdroid
+[izzy_listing]: https://apt.izzysoft.de/fdroid/index/apk/app.upryzing.clerotri
+
 ## v0.11.1
 
 _This version was released on 03/06/2025._
