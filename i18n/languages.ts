@@ -58,7 +58,7 @@ export const languages: Record<string, Language> = {
     englishName: 'Belarusian',
     emoji: '🇧🇾',
   },
-  be_tarask: {
+  'be-tarask': {
     name: 'беларуская (тарашкевіца)',
     englishName: 'Belarusian (Classical)',
     emoji: '🇧🇾',
