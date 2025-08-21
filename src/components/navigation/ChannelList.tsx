@@ -129,7 +129,15 @@ const ServerChannelList = observer((props: ServerChannelListProps) => {
             style={{
               width: '100%',
               paddingHorizontal: 12,
-              backgroundColor: currentTheme.serverNameBackground,
+              experimental_backgroundImage: [
+                {
+                  type: 'linear-gradient',
+                  colorStops: [
+                    {color: `#00000000`},
+                    {color: `${currentTheme.background}`},
+                  ],
+                },
+              ],
             }}>
             <View
               style={{flexDirection: 'row', justifyContent: 'space-between'}}>

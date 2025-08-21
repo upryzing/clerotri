@@ -9,7 +9,10 @@ import {
 } from 'react-native';
 
 import {Drawer} from 'react-native-drawer-layout';
-import {useSafeAreaInsets} from 'react-native-safe-area-context';
+import {
+  type EdgeInsets,
+  useSafeAreaInsets,
+} from 'react-native-safe-area-context';
 import MaterialCommunityIcon from '@react-native-vector-icons/material-design-icons';
 import MaterialIcon from '@react-native-vector-icons/material-icons';
 
@@ -28,14 +31,14 @@ import {
   SideMenuContext,
 } from '@clerotri/lib/state';
 import {getInstanceURL} from '@clerotri/lib/storage/utils';
-import {Theme, ThemeContext} from '@clerotri/lib/themes';
+import {commonValues, Theme, ThemeContext} from '@clerotri/lib/themes';
 import {useBackHandler} from '@clerotri/lib/ui';
 
 const SideMenu = () => {
   const insets = useSafeAreaInsets();
 
   const {currentTheme} = useContext(ThemeContext);
-  const localStyles = generateLocalStyles(currentTheme, insets.bottom);
+  const localStyles = generateLocalStyles(currentTheme, insets);
 
   const {setCurrentChannel} = useContext(ChannelContext);
   const {currentServer, setCurrentServer} = useContext(ServerContext);
@@ -76,6 +79,7 @@ const SideMenu = () => {
             showDiscover={getInstanceURL() === DEFAULT_API_URL}
           />
         </ScrollView>
+        <View style={localStyles.serverListGradient} />
         <ChannelList />
       </View>
       <View style={localStyles.bottomBar}>
@@ -186,19 +190,33 @@ const generateDrawerStyles = (width: number) => {
   });
 };
 
-const generateLocalStyles = (currentTheme: Theme, inset: number) => {
+const generateLocalStyles = (currentTheme: Theme, inset: EdgeInsets) => {
   return StyleSheet.create({
     container: {
       flex: 1,
-      paddingBottom: inset - 5,
+      paddingBottom: inset.bottom - 5,
     },
     sideView: {
       flex: 1,
       flexDirection: 'row',
       justifyContent: 'flex-start',
     },
+    serverListGradient: {
+      width: '100%',
+      height: inset.top,
+      experimental_backgroundImage: [
+        {
+          type: 'linear-gradient',
+          colorStops: [
+            {color: `${currentTheme.background}`},
+            {color: `#00000000`},
+          ],
+        },
+      ],
+      position: 'absolute',
+    },
     serverList: {
-      width: 60,
+      paddingInline: commonValues.sizes.small,
       flexShrink: 1,
       ...(Platform.OS === 'web' && {scrollbarWidth: 'none'}),
     },
