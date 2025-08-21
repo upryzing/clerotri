@@ -133,7 +133,7 @@ export const RegularMessage = observer((props: MessageProps) => {
               key={id}
               message={client.messages.get(id)}
               mention={props.message?.mention_ids?.includes(
-                props.message?.author_id,
+                client.messages.get(id)?.author_id ?? '',
               )}
               showSymbol={true}
             />

@@ -33,19 +33,21 @@ export const ReplyMessage = (props: ReplyProps) => {
           <SystemMessage message={props.message} isReply />
         ) : props.message.author ? (
           <>
-            <Avatar
-              user={props.message.author}
-              server={props.message.channel?.server}
-              masquerade={props.message.generateMasqAvatarURL()}
-              size={16}
-            />
-            <Text style={{marginLeft: 4}}>{props.mention ? '@' : ''}</Text>
+            <View style={{marginEnd: commonValues.sizes.small}}>
+              <Avatar
+                user={props.message.author}
+                server={props.message.channel?.server}
+                masquerade={props.message.generateMasqAvatarURL()}
+                size={16}
+              />
+            </View>
+            {props.mention ? <Text>@</Text> : null}
             <Username
               user={props.message.author}
               server={props.message.channel?.server}
               masquerade={props.message.masquerade?.name}
             />
-            <Text style={localStyles.messageContentReply}>
+            <Text numberOfLines={1} style={localStyles.messageContentReply}>
               {props.message.content?.split('\n').join(' ')}
             </Text>
           </>
@@ -61,7 +63,6 @@ export const ReplyMessage = (props: ReplyProps) => {
 
 const localStyles = StyleSheet.create({
   messageContentReply: {
-    height: 20,
-    marginLeft: commonValues.sizes.small,
+    marginInlineStart: commonValues.sizes.small,
   },
 });
