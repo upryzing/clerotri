@@ -22,17 +22,17 @@ export const MessageEmbed = observer((eRaw: API.Embed) => {
       return (
         <View
           style={{
-            marginTop: commonValues.sizes.small,
+            marginBlock: commonValues.sizes.small,
             backgroundColor: currentTheme.backgroundSecondary,
-            padding: commonValues.sizes.medium,
+            padding: commonValues.sizes.large,
             borderRadius: commonValues.sizes.medium,
             borderStartWidth: commonValues.sizes.small,
-            borderStartColor: e.colour ?? undefined,
+            borderStartColor: e.colour ?? currentTheme.foregroundPrimary,
           }}>
           {e.type === 'Website' && e.site_name ? (
             <Text
               colour={currentTheme.foregroundSecondary}
-              style={{fontSize: 12}}>
+              style={{fontSize: 12, marginBlockEnd: commonValues.sizes.xs}}>
               {e.site_name}
             </Text>
           ) : null}
@@ -40,13 +40,20 @@ export const MessageEmbed = observer((eRaw: API.Embed) => {
             <Link
               link={e.url}
               label={e.title}
-              style={{textDecorationLine: 'none', fontSize: 14}}
+              style={{
+                textDecorationLine: 'none',
+                fontSize: 14,
+                fontWeight: 'bold',
+                marginBlockEnd: commonValues.sizes.small,
+              }}
             />
           ) : (
             <Text
               colour={currentTheme.foregroundSecondary}
               style={{
                 fontSize: 14,
+                fontWeight: 'bold',
+                marginBlockEnd: commonValues.sizes.small,
               }}>
               {e.title}
             </Text>
@@ -68,8 +75,8 @@ export const MessageEmbed = observer((eRaw: API.Embed) => {
                     style={{
                       width: width,
                       height: height,
-                      marginTop: commonValues.sizes.small,
-                      borderRadius: 3,
+                      marginBlock: commonValues.sizes.small,
+                      borderRadius: commonValues.sizes.small,
                     }}
                   />
                 </Pressable>

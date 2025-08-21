@@ -16,9 +16,9 @@ const InviteBackground = observer(({children}: {children: any}) => {
     <View
       style={{
         backgroundColor: currentTheme.backgroundSecondary,
-        padding: commonValues.sizes.medium,
+        padding: commonValues.sizes.large,
         borderRadius: commonValues.sizes.medium,
-        marginVertical: commonValues.sizes.small,
+        marginBlock: commonValues.sizes.small,
       }}>
       {children}
     </View>
@@ -59,9 +59,7 @@ export const InviteEmbed = observer(
 
     return error ? (
       <InviteBackground>
-        <Text
-          colour={currentTheme.foregroundSecondary}
-          style={{marginBottom: 4}}>
+        <Text colour={currentTheme.foregroundSecondary}>
           <Text
             colour={currentTheme.foregroundSecondary}
             style={{
@@ -88,9 +86,7 @@ export const InviteEmbed = observer(
       </InviteBackground>
     ) : invObject.type === 'Server' ? (
       <InviteBackground>
-        <Text
-          colour={currentTheme.foregroundSecondary}
-          style={{marginBottom: 4}}>
+        <Text colour={currentTheme.foregroundSecondary}>
           <Text
             colour={currentTheme.foregroundSecondary}
             style={{
@@ -100,7 +96,12 @@ export const InviteEmbed = observer(
           </Text>{' '}
           invited you to a server
         </Text>
-        <View style={{flex: 1, flexDirection: 'row'}}>
+        <View
+          style={{
+            flex: 1,
+            marginBlock: commonValues.sizes.large,
+            flexDirection: 'row',
+          }}>
           <GeneralAvatar
             attachment={invObject.server_icon?._id}
             size={60}
@@ -128,6 +129,9 @@ export const InviteEmbed = observer(
               (await client.joinInvite(invObject));
             app.openServer(client.servers.get(invObject.server_id));
             app.openLeftMenu(true);
+          }}
+          style={{
+            margin: 0,
           }}>
           <Text style={{fontWeight: 'bold'}}>
             {!client.servers.get(invObject.server_id)
