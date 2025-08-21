@@ -1,5 +1,5 @@
 import {createContext, useContext, useState} from 'react';
-import {Pressable, StyleSheet} from 'react-native';
+import {Pressable, StyleSheet, type TextStyle} from 'react-native';
 
 import {Text} from '@clerotri/components/common/atoms';
 import {commonValues, Theme, ThemeContext} from '@clerotri/lib/themes';
@@ -68,7 +68,7 @@ export const Spoiler = ({
 }: {
   node: any;
   isRevealed: boolean;
-  styles: any;
+  styles: TextStyle;
   inheritedStyles: any;
 }) => {
   const {currentTheme} = useContext(ThemeContext);

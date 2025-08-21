@@ -40,12 +40,12 @@ export const MessageEmbed = observer((eRaw: API.Embed) => {
             <Link
               link={e.url}
               label={e.title}
-              style={{
-                textDecorationLine: 'none',
-                fontSize: 14,
-                fontWeight: 'bold',
-                marginBlockEnd: commonValues.sizes.small,
-              }}
+              // style={{
+              //   textDecorationLine: 'none',
+              //   fontSize: 14,
+              //   fontWeight: 'bold',
+              //   marginBlockEnd: commonValues.sizes.small,
+              // }}
             />
           ) : (
             <Text

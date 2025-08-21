@@ -2,10 +2,10 @@ import {useContext} from 'react';
 import {StyleSheet, TouchableOpacity, View} from 'react-native';
 import {useTranslation} from 'react-i18next';
 
-import MaterialCommunityIcon from '@react-native-vector-icons/material-design-icons';
-import MaterialIcon from '@react-native-vector-icons/material-icons';
+import MaterialCommunityIcon, {type MaterialDesignIconsIconName} from '@react-native-vector-icons/material-design-icons';
+import MaterialIcon, {type MaterialIconsIconName}  from '@react-native-vector-icons/material-icons';
 
-import {ContextButton, Text} from '@clerotri/components/common/atoms';
+import {Text} from '@clerotri/components/common/atoms';
 import {commonValues, type Theme, ThemeContext} from '@clerotri/lib/themes';
 import type {ButtonProps} from '@clerotri/lib/types';
 import {styles} from '@clerotri/Theme';
@@ -16,11 +16,11 @@ type SettingsButtonProps = ButtonProps & {
   type?: 'start' | 'end' | 'detatched';
   icon:
     | {
-        name: string;
+        name: MaterialIconsIconName;
         pack: 'regular';
       }
     | {
-        name: string;
+        name: MaterialDesignIconsIconName;
         pack: 'community';
       };
 };

@@ -26,7 +26,7 @@ export const Avatar = observer(
     user,
     server,
     status,
-    size,
+    size = 35,
     backgroundColor,
     masquerade,
     pressable,
