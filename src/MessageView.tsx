@@ -1,17 +1,13 @@
 import {useContext, useEffect, useRef, useState} from 'react';
-import type {Dispatch, RefObject, SetStateAction} from 'react';
+import type {Dispatch, SetStateAction} from 'react';
 import {
-  FlatList,
-  type NativeSyntheticEvent,
-  type NativeScrollEvent,
   Platform,
   View,
-  // Dimensions,
-  // Keyboard,
 } from 'react-native';
 import {useTranslation} from 'react-i18next';
 import {observer} from 'mobx-react-lite';
 
+import { LegendList } from '@legendapp/list';
 import {ErrorBoundary} from 'react-error-boundary';
 
 import {Channel, Message as RevoltMessage} from 'revolt.js';
@@ -137,15 +133,11 @@ const NewMessageView = observer(
   ({
     channel,
     messages,
-    atEndOfPage,
     fetchMoreMessages,
-    scrollViewRef,
   }: {
     channel: Channel;
     messages: RevoltMessage[];
-    atEndOfPage: {current: boolean};
     fetchMoreMessages: (before: string) => void;
-    scrollViewRef: RefObject<FlatList<RevoltMessage> | null>;
   }) => {
     console.log(`[NEWMESSAGEVIEW] Creating message view for ${channel._id}...`);
 
@@ -164,36 +156,10 @@ const NewMessageView = observer(
       return `message-${item._id}`;
     };
 
-    const onScroll = (e: NativeSyntheticEvent<NativeScrollEvent>) => {
-      const position = e.nativeEvent.contentOffset.y;
-      const viewHeight =
-        e.nativeEvent.contentSize.height -
-        e.nativeEvent.layoutMeasurement.height;
-      // account for decimal weirdness by assuming that if the position is this close to the height that the user is at the bottom
-      if (viewHeight - position <= 1) {
-        console.log('bonk!');
-        atEndOfPage.current = true;
-        channel.ack(channel.last_message_id ?? '01ANOMESSAGES', true);
-      } else {
-        if (atEndOfPage.current) {
-          atEndOfPage.current = false;
-        }
-      }
-      if (e.nativeEvent.contentOffset.y <= 0) {
-        console.log('bonk2!');
-        fetchMoreMessages(messages[0]._id);
-      }
-      // console.log(
-      //   e.nativeEvent.contentOffset.y,
-      //   e.nativeEvent.contentSize.height -
-      //     e.nativeEvent.layoutMeasurement.height,
-      // );
-    };
-
     return (
       <ErrorBoundary FallbackComponent={MessageViewErrorMessage}>
         <View key={'messageview-outer-container'} style={{flex: 1}}>
-          <FlatList
+          <LegendList
             key={'messageview-scrollview'}
             keyExtractor={keyExtractor}
             data={messages}
@@ -204,9 +170,16 @@ const NewMessageView = observer(
               justifyContent: 'flex-end',
               flexDirection: 'column',
             }}
-            ref={scrollViewRef}
+            // ref={scrollViewRef}
             renderItem={renderItem}
-            onScroll={onScroll}
+            initialScrollIndex={messages.length - 1}
+            waitForInitialLayout
+            alignItemsAtEnd
+            maintainScrollAtEnd
+            maintainScrollAtEndThreshold={0.2}
+            maintainVisibleContentPosition
+            onStartReached={() => {console.log('owo'); fetchMoreMessages(messages[0]._id);}}
+            onEndReached={() => {console.log('hii'); channel.ack(channel.last_message_id ?? '01ANOMESSAGES', true);}}
           />
           {messages.length === 0 && (
             <View style={{padding: 16}}>
@@ -224,9 +197,7 @@ const NewMessageView = observer(
 function handleNewMessage(
   channel: Channel,
   handledMessages: string[],
-  atEndOfPage: boolean,
   setMessages: Dispatch<SetStateAction<RevoltMessage[]>>,
-  scrollViewRef: RefObject<FlatList | null>,
   setError: (error: any) => void,
   msg: RevoltMessage,
 ) {
@@ -237,17 +208,12 @@ function handleNewMessage(
   }
 
   // set this before anything happens that might change it
-  const shouldScroll = atEndOfPage;
   try {
-    console.log(atEndOfPage);
     handledMessages.push(msg._id);
     console.log(
-      `[NEWMESSAGEVIEW] New message ${msg._id} is in current channel; pushing it to the message list... (debug: will scroll = ${atEndOfPage})`,
+      `[NEWMESSAGEVIEW] New message ${msg._id} is in current channel; pushing it to the message list...`,
     );
     setMessages(oldMessages => [...oldMessages, msg]);
-    if (shouldScroll) {
-      scrollViewRef.current?.scrollToEnd();
-    }
   } catch (err) {
     console.log(
       `[NEWMESSAGEVIEW] Error pushing new message (${msg._id}): ${err}`,
@@ -275,10 +241,7 @@ export const MessageView = observer(({channel}: {channel: Channel}) => {
   const [messages, setMessages] = useState<RevoltMessage[]>([]);
 
   const [loading, setLoading] = useState(true);
-  const atEndOfPage = useRef(false);
   const [error, setError] = useState(null as any);
-
-  const scrollViewRef = useRef<FlatList>(null);
 
   function fetchMoreMessages(messageID: string) {
     fetchMessages(
@@ -329,9 +292,7 @@ export const MessageView = observer(({channel}: {channel: Channel}) => {
       handleNewMessage(
         channel,
         handledMessages.current,
-        atEndOfPage.current,
         setMessages,
-        scrollViewRef,
         setError,
         msg,
       );
@@ -375,10 +336,8 @@ export const MessageView = observer(({channel}: {channel: Channel}) => {
       ) : (
         <NewMessageView
           channel={channel}
-          atEndOfPage={atEndOfPage}
           messages={messages}
           fetchMoreMessages={fetchMoreMessages}
-          scrollViewRef={scrollViewRef}
         />
       )}
     </ErrorBoundary>

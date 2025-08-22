@@ -28,6 +28,7 @@
   },
   "dependencies": {
     "@gorhom/bottom-sheet": "^5.2.3",
+    "@legendapp/list": "2.0.0-beta.3",
     "@notifee/react-native": "^9.1.8",
     "@react-native-clipboard/clipboard": "^1.16.3",
     "@react-native-community/hooks": "^100.1.0",
