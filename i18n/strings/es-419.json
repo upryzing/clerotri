@@ -7,11 +7,14 @@
             "confirm": "Confirmar",
             "create_channel": "Crear canal",
             "delete": "Eliminar",
-            "save": "Guardar"
+            "save": "Guardar",
+            "copy_invite": "Copiar invitación"
         },
         "loading": {
             "generic": "Cargando…",
-            "connecting": "Iniciando sesión…"
+            "connecting": "Iniciando sesión…",
+            "unknown_state": "Oh oh…",
+            "unknown_state_body": "Por favor, avísale a los desarrolladores que viste esto (valor: {{state}})"
         },
         "login": {
             "forms": {
@@ -30,7 +33,11 @@
                 "login_session_token_body": "Usa esta opción si está teniendo problemas de autentificación. Alguna funcionalidad podría no estar disponible."
             },
             "subheader": "¿Tienes una cuenta?",
-            "token_info_label": "¿Como obtengo mi token?"
+            "token_info_label": "¿Como obtengo mi token?",
+            "settings": {
+                "saved": "¡Guardado!",
+                "saved_body": "Por ahora, tendrás que cerrar y volver a abrir la aplicación para que se apliquen los cambios. Sabemos que esto no es lo ideal, lo solucionaremos más adelante."
+            }
         },
         "home": {
             "description": "¡Desliza desde la parte izquierda de la pantalla o, presione el icono de tres líneas para mirar tus servidores y mensajes!",
@@ -217,6 +224,82 @@
                 "header": "¡Los canales de voz todavía no están soportados en Clerotri!",
                 "body": "Mientras tanto, puedes unirte a través de Revolt para escritorio o la aplicación web."
             }
+        },
+        "discover": {
+            "count_servers_one": "{{count}} servidor",
+            "count_servers_many": "{{count}} servidores",
+            "count_servers_other": "{{count}} servidores",
+            "count_bots_one": "{{count}} bot",
+            "count_bots_many": "{{count}} bots",
+            "count_bots_other": "{{count}} bots",
+            "tabs": {
+                "servers": "Servidores",
+                "bots": "Bots"
+            },
+            "fetching_bots": "Cargando bots…",
+            "fetching_servers": "Cargando servidores…",
+            "header_bots": "Descubrir los bots",
+            "header_servers": "Descubrir Servidores"
+        },
+        "badges": {
+            "Developer": "Desarrollador de Revolt",
+            "Founder": "Fundador",
+            "Translator": "Traductor",
+            "PlatformModeration": "Moderador de Plataforma",
+            "Supporter": "Donante"
+        },
+        "friends_list": {
+            "blocked": "Bloqueados - {{count}}",
+            "incoming": "Solicitudes entrantes - {{count}}",
+            "incoming_empty": "No hay solicitudes entrantes",
+            "onlineFriends": "Amigos en línea - {{count}}",
+            "onlineFriends_empty": "No hay amigos en línea",
+            "offlineFriends": "Amigos desconectados - {{count}}",
+            "offlineFriends_empty": "No hay amigos desconectados",
+            "outgoing": "Solicitudes salientes - {{count}}",
+            "blocked_empty": "No hay usuarios bloqueados",
+            "outgoing_empty": "No hay solicitudes salientes"
+        },
+        "custom_badges": {
+            "clerotri_dev": "Desallorador de Clerotri"
+        },
+        "messaging": {
+            "message_box_channel": "Mensaje #{{name}}",
+            "message_box_group": "Mensaje {{name}}",
+            "message_box_system": "No puedes responder a mensajes del sistema.",
+            "message_box_saved_notes": "Guardar en tus notas",
+            "message_box_dm": "Mensaje @{{name}}"
+        },
+        "channel_list": {
+            "direct_messages_header": "Mensajes Directos"
+        },
+        "analytics": {
+            "title": "Administrar analíticas",
+            "tiers": {
+                "basic": "Básico",
+                "full": "Lleno"
+            },
+            "active": "Activo",
+            "values": {
+                "model": "Modelo de tu dispositivo",
+                "os": "Tu sistema operativo y su versión",
+                "clerotriVersion": "La versión de Clerotri que estas usando",
+                "instance": "URL de tu instancia",
+                "settings": "Tus configuraciones de Clerotri",
+                "inBasic": "Todo en Básico",
+                "inBasic_body": "Modelo, Versión Systema Operativo, Versión Clerotri",
+                "settings_body_one": "{{count}} entrada",
+                "settings_body_many": "{{count}} entradas",
+                "settings_body_other": "{{count}} entradas"
+            },
+            "privacy_info": "Información de privacidad",
+            "enable_basic": "Habilitar analíticas básicas",
+            "copied_data_toast": "Ejemplo de datos copiado",
+            "switch_to_basic": "Cambiar a Básico",
+            "enable_full": "Habilitar analíticas completas",
+            "analytics_disabled": "Analíticas deshabilitadas",
+            "continue_without_analytics": "Continuar sin analíticas",
+            "disable_analytics": "Deshabilitar analíticas"
         }
     }
 }
