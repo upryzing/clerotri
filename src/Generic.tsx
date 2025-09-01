@@ -10,6 +10,7 @@ import type {
   CreateChannelModalProps,
   CVChannel,
   DeletableObject,
+  MemberWithModAction,
   ReplyingMessage,
   ReportedObject,
   Setting,
@@ -484,6 +485,11 @@ export const app = {
   openChangelog: (state: boolean) => {
     console.log(
       `[FUNCTIONS] Tried to run uninitialised function openChangelog (args: ${state})`,
+    );
+  },
+  openModActionModal: (member: MemberWithModAction | null) => {
+    console.log(
+      `[FUNCTIONS] Tried to run uninitialised function openModActionModal (args: ${member})`,
     );
   },
 };

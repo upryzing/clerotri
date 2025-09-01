@@ -11,6 +11,7 @@ import {client} from '@clerotri/lib/client';
 import type {
   CreateChannelModalProps,
   DeletableObject,
+  MemberWithModAction,
   ReportedObject,
   SettingsSection,
   TextEditingModalProps,
@@ -19,6 +20,7 @@ import {BottomSheet} from '@clerotri/components/common/BottomSheet';
 import {ImageViewer} from '@clerotri/components/ImageViewer';
 import {
   ConfirmDeletionModal,
+  ConfirmModActionModal,
   CreateChannelModal,
   NewInviteModal,
   TextEditModal,
@@ -194,6 +196,8 @@ const FloatingModals = observer(() => {
     null as CreateChannelModalProps | null,
   );
   const [newInviteCode, setNewInviteCode] = useState(null as string | null);
+  const [moderatedMember, setModeratedMember] =
+    useState<MemberWithModAction | null>(null);
 
   setFunction('openDeletionConfirmationModal', (o: DeletableObject | null) => {
     setDeletableObject(o);
@@ -209,6 +213,9 @@ const FloatingModals = observer(() => {
   );
   setFunction('openNewInviteModal', (code: string | null) => {
     setNewInviteCode(code);
+  });
+  setFunction('openModActionModal', (member: MemberWithModAction | null) => {
+    setModeratedMember(member);
   });
 
   return (
@@ -255,6 +262,17 @@ const FloatingModals = observer(() => {
         onRequestClose={() => setNewInviteCode(null)}>
         <View style={localStyles.modalContainer}>
           <NewInviteModal code={newInviteCode!} />
+        </View>
+      </Modal>
+      <Modal
+        visible={!!moderatedMember}
+        animationType="fade"
+        statusBarTranslucent
+        navigationBarTranslucent
+        backdropColor={'#00000020'}
+        onRequestClose={() => setModeratedMember(null)}>
+        <View style={localStyles.modalContainer}>
+          <ConfirmModActionModal target={moderatedMember!} />
         </View>
       </Modal>
     </>

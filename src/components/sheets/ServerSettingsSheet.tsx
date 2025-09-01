@@ -96,12 +96,18 @@ export const ServerSettingsSheet = observer(
               {t('app.actions.close')}
             </Text>
           </Pressable>
-        ) : /* the channel and role settings menus handle this themselves as they have subsections */
-        section.section !== 'roles' && section.section !== 'channels' ? (
+        ) : /* the channel, role and member settings menus handle this themselves as they have subsections */
+        section.section !== 'roles' &&
+          section.section !== 'channels' &&
+          section.section !== 'members' ? (
           <BackButton callback={() => setSection(null)} margin />
         ) : null}
         {section?.section === 'members' ? (
-          <MemberSettingsSection server={server} />
+          <MemberSettingsSection
+            server={server}
+            section={section}
+            setSection={setSection}
+          />
         ) : (
           <ScrollView
             style={{flex: 1}}

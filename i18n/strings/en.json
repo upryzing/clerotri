@@ -2,12 +2,14 @@
     "app": {
         "actions": {
             "back": "Back",
+            "ban": "Ban",
             "cancel": "Cancel",
             "close": "Close",
             "confirm": "Confirm",
             "create_channel": "Create channel",
             "copy_invite": "Copy invite",
             "delete": "Delete",
+            "kick": "Kick",
             "save": "Save"
         },
         "analytics": {
@@ -140,6 +142,15 @@
                 "body_message": "Are you sure you want to delete <2>this message</2>?",
                 "body_server": "Are you sure you want to delete <2>{{name}}</2>?",
                 "warning": "This cannot be undone."
+            },
+            "confirm_mod_action": {
+                "header_kick": "Kick this user?",
+                "header_ban": "Ban this user?",
+                "body_kick": "Are you sure you want to <2>kick</2> <4>{{name}}</4>?",
+                "body_ban": "Are you user you want to <2>ban</2> <4>{{name}}</4>?",
+                "reason_kick": "Kick reason (optional)",
+                "reason_ban": "Ban reason (optional)",
+                "reason_placeholder": "Specify a reason…"
             },
             "create_channel": {
                 "header": "Create a new channel",
@@ -319,7 +330,19 @@
                 },
                 "members": {
                     "title": "Members",
-                    "loading": "Fetching members…"
+                    "loading": "Fetching members…",
+                    "nickname": "Nickname",
+                    "nickname_placeholder": "Set a nickname…",
+                    "timeout_user": "Timeout {{name}}",
+                    "timeout_user_body": "They won't be able to send messages or reactions unil their timeout ends.",
+                    "kick_user": "Kick {{name}}",
+                    "kick_user_body": "They can rejoin with an invite.",
+                    "ban_user": "Ban {{name}}",
+                    "ban_user_body": "They won't be able to rejoin unless you unban them.",
+                    "select_mode": {
+                        "title_one": "{{count}} member selected",
+                        "title_other": "{{count}} members selected"
+                    }
                 },
                 "invites": {
                     "title": "Invites",
