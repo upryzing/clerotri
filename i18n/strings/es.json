@@ -291,6 +291,9 @@
                 "header": "¡Los canales de voz aún no son compatibles con Clerotri!",
                 "body": "Mientras tanto, puedes unirte a ellos a través de la aplicación web o Revolt Desktop."
             }
+        },
+        "analytics": {
+            "title": "Administrar analíticas"
         }
     }
 }

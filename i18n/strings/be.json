@@ -334,6 +334,34 @@
         "profile": {
             "roles": {
                 "copied_role_id_toast": "Ідэнтыфікатар ролі скапіраваны"
+            },
+            "badges": "Значкі",
+            "bot_owner": "Уладальнік бота",
+            "bio": "Аба мне",
+            "flags": {
+                "banned": "Гэты карыстальнік быў заблакіраваны",
+                "deleted": "Гэты карыстальнік выдаліў уліковы запіс",
+                "suspended": "Гэты карыстальнік быў часова заблакіраваны",
+                "unknown": "Невядомы сцяг {{flag}}"
+            },
+            "friend_requests": {
+                "accept": "Прыняць запыт сяброўства",
+                "cancel": "Скасаваць запыт сяброўства",
+                "reject": "Адхіліць запыт сяброўства",
+                "send": "Аправіць запыт сяброўства"
+            },
+            "roles_header": "Ролі",
+            "menu": {
+                "back": "Вярнуцца да профілю",
+                "block_user": "Заблакіраваць",
+                "report_user": "Паскардзіцца"
+            },
+            "message_user": "Напісаць",
+            "tabs": {
+                "profile": "Профіль",
+                "mutual_servers": "Агульныя серверы",
+                "mutual_friends": "Агульныя сябры",
+                "mutual_groups": "Агульныя групы"
             }
         },
         "sheets": {
@@ -521,6 +549,19 @@
             "disable_analytics": "Адключыць аналітыку",
             "analytics_disabled": "Аналітыка адключана",
             "privacy_info": "Інфармацыя аб прыватнасці"
+        },
+        "badges": {
+            "Developer": "Распрацоўшчык Revolt",
+            "EarlyAdopter": "Першапраходчык",
+            "Founder": "Заснавальнік",
+            "Paw": "Лапка Інсэрта",
+            "PlatformModeration": "Мадэратар",
+            "ResponsibleDisclosure": "Адказна раскрылі праблему з бяспекай",
+            "Supporter": "Дарыльшчык",
+            "Translator": "Перакладчык"
+        },
+        "custom_badges": {
+            "clerotri_dev": "Распрацоўшчыца Clerotri"
         }
     }
 }

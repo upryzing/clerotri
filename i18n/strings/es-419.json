@@ -7,11 +7,14 @@
             "confirm": "Confirmar",
             "create_channel": "Crear canal",
             "delete": "Eliminar",
-            "save": "Guardar"
+            "save": "Guardar",
+            "copy_invite": "Copiar invitación"
         },
         "loading": {
             "generic": "Cargando…",
-            "connecting": "Iniciando sesión…"
+            "connecting": "Iniciando sesión…",
+            "unknown_state": "Oh oh…",
+            "unknown_state_body": "Por favor, avísale a los desarrolladores que viste esto (valor: {{state}})"
         },
         "login": {
             "forms": {
@@ -30,7 +33,11 @@
                 "login_session_token_body": "Usa esta opción si está teniendo problemas de autentificación. Alguna funcionalidad podría no estar disponible."
             },
             "subheader": "¿Tienes una cuenta?",
-            "token_info_label": "¿Como obtengo mi token?"
+            "token_info_label": "¿Como obtengo mi token?",
+            "settings": {
+                "saved": "¡Guardado!",
+                "saved_body": "Por ahora, tendrás que cerrar y volver a abrir la aplicación para que se apliquen los cambios. Sabemos que esto no es lo ideal, lo solucionaremos más adelante."
+            }
         },
         "home": {
             "description": "¡Desliza desde la parte izquierda de la pantalla o, presione el icono de tres líneas para mirar tus servidores y mensajes!",
@@ -46,7 +53,11 @@
                 "body_message": "¿Estás seguro de eliminar <2>este mensaje</2>?",
                 "warning": "Esto no se puede deshacer.",
                 "header_message": "¿Eliminar mensaje?",
-                "body_server": "¿Estás seguro de eliminar <2>{{name}}</2>?"
+                "body_server": "¿Estás seguro de eliminar <2>{{name}}</2>?",
+                "header_channel": "¿Borrar canal?",
+                "header_role": "¿Eliminar rol?",
+                "body_channel": "¿Estás seguro de que quieres eliminar <2> este canal </2>?",
+                "body_role": "¿Estás seguro de que quieres eliminar <2> este rol </2>?"
             },
             "create_channel": {
                 "name_header": "Nombre",
@@ -68,7 +79,13 @@
                 "role_colour_placeholder": "Color del rol",
                 "session_name_header": "Establecer nombre de la sesión",
                 "session_name_placeholder": "Nombre de la sesión",
-                "nickname_placeholder": "Apodo (Dejalo en blanco para restablecer)"
+                "nickname_placeholder": "Apodo (Dejalo en blanco para restablecer)",
+                "new_bot_header": "Crear bot",
+                "new_bot_placeholder": "Nombre de usuario"
+            },
+            "new_invite": {
+                "header": "Invitación creada",
+                "body": "Aquí está tu nuevo enlace de invitación:"
             }
         },
         "servers": {
@@ -217,6 +234,90 @@
                 "header": "¡Los canales de voz todavía no están soportados en Clerotri!",
                 "body": "Mientras tanto, puedes unirte a través de Revolt para escritorio o la aplicación web."
             }
+        },
+        "discover": {
+            "count_servers_one": "{{count}} servidor",
+            "count_servers_many": "{{count}} servidores",
+            "count_servers_other": "{{count}} servidores",
+            "count_bots_one": "{{count}} bot",
+            "count_bots_many": "{{count}} bots",
+            "count_bots_other": "{{count}} bots",
+            "tabs": {
+                "servers": "Servidores",
+                "bots": "Bots"
+            },
+            "fetching_bots": "Cargando bots…",
+            "fetching_servers": "Cargando servidores…",
+            "header_bots": "Descubrir los bots",
+            "header_servers": "Descubrir Servidores"
+        },
+        "badges": {
+            "Developer": "Desarrollador de Revolt",
+            "Founder": "Fundador",
+            "Translator": "Traductor",
+            "PlatformModeration": "Moderador de Plataforma",
+            "Supporter": "Donante"
+        },
+        "friends_list": {
+            "blocked": "Bloqueados - {{count}}",
+            "incoming": "Solicitudes entrantes - {{count}}",
+            "incoming_empty": "No hay solicitudes entrantes",
+            "onlineFriends": "Amigos en línea - {{count}}",
+            "onlineFriends_empty": "No hay amigos en línea",
+            "offlineFriends": "Amigos desconectados - {{count}}",
+            "offlineFriends_empty": "No hay amigos desconectados",
+            "outgoing": "Solicitudes salientes - {{count}}",
+            "blocked_empty": "No hay usuarios bloqueados",
+            "outgoing_empty": "No hay solicitudes salientes"
+        },
+        "custom_badges": {
+            "clerotri_dev": "Desallorador de Clerotri"
+        },
+        "messaging": {
+            "message_box_channel": "Mensaje #{{name}}",
+            "message_box_group": "Mensaje {{name}}",
+            "message_box_system": "No puedes responder a mensajes del sistema.",
+            "message_box_saved_notes": "Guardar en tus notas",
+            "message_box_dm": "Mensaje @{{name}}",
+            "message_box_no_perms": "No tienes permiso para enviar mensajes en este canal.",
+            "no_messages": "No hay mensajes",
+            "no_messages_body": "Iniciar la conversación.",
+            "reply_not_loaded": "Mensaje no cargado"
+        },
+        "channel_list": {
+            "direct_messages_header": "Mensajes Directos"
+        },
+        "analytics": {
+            "title": "Administrar analíticas",
+            "tiers": {
+                "basic": "Básico",
+                "full": "Lleno"
+            },
+            "active": "Activo",
+            "values": {
+                "model": "Modelo de tu dispositivo",
+                "os": "Tu sistema operativo y su versión",
+                "clerotriVersion": "La versión de Clerotri que estas usando",
+                "instance": "URL de tu instancia",
+                "settings": "Tus configuraciones de Clerotri",
+                "inBasic": "Todo en Básico",
+                "inBasic_body": "Modelo, Versión Systema Operativo, Versión Clerotri",
+                "settings_body_one": "{{count}} entrada",
+                "settings_body_many": "{{count}} entradas",
+                "settings_body_other": "{{count}} entradas"
+            },
+            "privacy_info": "Información de privacidad",
+            "enable_basic": "Habilitar analíticas básicas",
+            "copied_data_toast": "Ejemplo de datos copiado",
+            "switch_to_basic": "Cambiar a Básico",
+            "enable_full": "Habilitar analíticas completas",
+            "analytics_disabled": "Analíticas deshabilitadas",
+            "continue_without_analytics": "Continuar sin analíticas",
+            "disable_analytics": "Deshabilitar analíticas"
+        },
+        "permissions": {
+            "AssignRoles": "Asignar Roles",
+            "AssignRoles_body_server": "Permitir que miembros con este rol asignen roles de menor rango que el ról mayor rango a otros miembros."
         }
     }
 }

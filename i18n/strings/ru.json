@@ -40,7 +40,9 @@
                 "session_name_header": "Задать название сессии",
                 "session_name_placeholder": "Название сессии",
                 "nickname_other_header": "Задать имя пользователя участника",
-                "nickname_other_placeholder": "Никнейм (оставьте пустым для сброса)"
+                "nickname_other_placeholder": "Никнейм (оставьте пустым для сброса)",
+                "new_bot_header": "Создать бота",
+                "new_bot_placeholder": "Имя"
             },
             "create_channel": {
                 "header": "Создать новый канал",
@@ -275,6 +277,31 @@
             },
             "analytics": {
                 "title": "Аналитика"
+            },
+            "bots": {
+                "title": "Боты",
+                "loading": "Загрузка ботов…",
+                "no_bots": "У вас нет ботов",
+                "new_bot_body": "Вы можете создать до {{limit}} ботов.",
+                "aup_notice": "Все боты должны следовать <2>политике об использовании</2>.",
+                "new_bot": "Создать нового бота",
+                "token": "Токен",
+                "public": "Публичный",
+                "public_body_revolt": "Если это включено, бота можно будет приглашать в группы и на сервера.",
+                "public_body_upryzing": "Если это включено, бота можно будет приглашать в группы и пространства.",
+                "copy_invite_link": "Скопировать ссылку-приглашение",
+                "invite_bot": "Пригласить бота"
+            },
+            "sessions": {
+                "remove_other_sessions_body": "Эта сессия не будет завершена.",
+                "title": "Сессии",
+                "loading": "Загрузка сессий…",
+                "current_session": "Эта сессия",
+                "other_sessions": "Другие сессии",
+                "current_session_not_found": "Информация об этой сессии недоступна.",
+                "current_session_not_found_with_hint": "Инофрмация об этой сессии недоступна. Вам следует выйти и войти снова.",
+                "no_other_sessions": "У вас больше нет сессий.",
+                "remove_other_sessions": "Выйти из остальных сессий"
             }
         },
         "discover": {
@@ -307,7 +334,35 @@
         "profile": {
             "roles": {
                 "copied_role_id_toast": "Идентификатор роли был скопирован"
-            }
+            },
+            "bot_owner": "Владелец бота",
+            "bio": "Обо мне",
+            "flags": {
+                "deleted": "Этот пользователь удалил свой аккаунт",
+                "suspended": "Этот пользователь был отстранён",
+                "banned": "Этот пользователь заблокирован",
+                "unknown": "Неизвестный флаг {{flag}}"
+            },
+            "friend_requests": {
+                "accept": "Принять запрос дружбы",
+                "cancel": "Отозвать запрос дружбы",
+                "reject": "Отклонить запрос дружбы",
+                "send": "Отправить запрос дружбы"
+            },
+            "roles_header": "Роли",
+            "menu": {
+                "block_user": "Заблокировать",
+                "report_user": "Пожаловаться",
+                "back": "Вернуться к профилю"
+            },
+            "message_user": "Написать",
+            "tabs": {
+                "profile": "Профиль",
+                "mutual_servers": "Общие сервера",
+                "mutual_friends": "Общие друзья",
+                "mutual_groups": "Общие группы"
+            },
+            "badges": "Значки"
         },
         "sheets": {
             "channel": {
@@ -494,6 +549,19 @@
             "privacy_info": "Информация о конфиденциальности",
             "continue_without_analytics": "Продолжить без сбора",
             "copied_data_toast": "Пример данных скопирован"
+        },
+        "badges": {
+            "EarlyAdopter": "Бета тестер",
+            "Founder": "Основатель",
+            "Paw": "Лапа Инсерта",
+            "PlatformModeration": "Модератор платформы",
+            "Supporter": "Донатер",
+            "Translator": "Переводчик",
+            "ResponsibleDisclosure": "Ответственно раскрыли проблему безопасности",
+            "Developer": "Разработчик Revolt"
+        },
+        "custom_badges": {
+            "clerotri_dev": "Разработчица Clerotri"
         }
     }
 }
