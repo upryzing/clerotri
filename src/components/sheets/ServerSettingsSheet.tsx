@@ -216,17 +216,17 @@ export const ServerSettingsSheet = observer(
                 />
                 {server.owner === client.user?._id ? (
                   <SettingsButton
-                  menu={'server'}
-                  type={'detatched'}
-                  section={'delete_server'}
-                  icon={{pack: 'regular', name: 'delete'}}
-                  onPress={() => {
-                    app.openDeletionConfirmationModal({
+                    menu={'server'}
+                    type={'detatched'}
+                    section={'delete_server'}
+                    icon={{pack: 'regular', name: 'delete'}}
+                    onPress={() => {
+                      app.openDeletionConfirmationModal({
                         type: 'Server',
                         object: server,
                       });
-                  }}
-                />
+                    }}
+                  />
                 ) : null}
               </>
             ) : section.section === 'overview' ? (
