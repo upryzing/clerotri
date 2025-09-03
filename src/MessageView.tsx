@@ -1,13 +1,10 @@
 import {useContext, useEffect, useRef, useState} from 'react';
 import type {Dispatch, SetStateAction} from 'react';
-import {
-  Platform,
-  View,
-} from 'react-native';
+import {Platform, View} from 'react-native';
 import {useTranslation} from 'react-i18next';
 import {observer} from 'mobx-react-lite';
 
-import { LegendList } from '@legendapp/list';
+import {LegendList} from '@legendapp/list';
 import {ErrorBoundary} from 'react-error-boundary';
 
 import {Channel, Message as RevoltMessage} from 'revolt.js';
@@ -178,8 +175,14 @@ const NewMessageView = observer(
             maintainScrollAtEnd
             maintainScrollAtEndThreshold={0.2}
             maintainVisibleContentPosition
-            onStartReached={() => {console.log('owo'); fetchMoreMessages(messages[0]._id);}}
-            onEndReached={() => {console.log('hii'); channel.ack(channel.last_message_id ?? '01ANOMESSAGES', true);}}
+            onStartReached={() => {
+              console.log('owo');
+              fetchMoreMessages(messages[0]._id);
+            }}
+            onEndReached={() => {
+              console.log('hii');
+              channel.ack(channel.last_message_id ?? '01ANOMESSAGES', true);
+            }}
           />
           {messages.length === 0 && (
             <View style={{padding: 16}}>
