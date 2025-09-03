@@ -347,7 +347,6 @@ export const SettingsSheet = observer(
                 type={'detatched'}
                 section={'logout'}
                 icon={{pack: 'regular', name: 'logout'}}
-                backgroundColor={currentTheme.error}
                 style={{marginBlockEnd: 0}}
                 onPress={() => {
                   setState();

@@ -2,8 +2,12 @@ import {useContext} from 'react';
 import {StyleSheet, TouchableOpacity, View} from 'react-native';
 import {useTranslation} from 'react-i18next';
 
-import MaterialCommunityIcon, {type MaterialDesignIconsIconName} from '@react-native-vector-icons/material-design-icons';
-import MaterialIcon, {type MaterialIconsIconName}  from '@react-native-vector-icons/material-icons';
+import MaterialCommunityIcon, {
+  type MaterialDesignIconsIconName,
+} from '@react-native-vector-icons/material-design-icons';
+import MaterialIcon, {
+  type MaterialIconsIconName,
+} from '@react-native-vector-icons/material-icons';
 
 import {Text} from '@clerotri/components/common/atoms';
 import {commonValues, type Theme, ThemeContext} from '@clerotri/lib/themes';
@@ -53,7 +57,11 @@ export const SettingsButton = ({
         {icon.pack === 'regular' ? (
           <MaterialIcon
             name={icon.name}
-            color={currentTheme.foregroundPrimary}
+            color={
+              section === 'logout' || section === 'delete_server'
+                ? currentTheme.error
+                : currentTheme.foregroundPrimary
+            }
             size={24}
           />
         ) : (
@@ -68,9 +76,14 @@ export const SettingsButton = ({
           />
         )}
       </View>
-      <Text>
+      <Text
+        colour={
+          section === 'logout' || section === 'delete_server'
+            ? currentTheme.error
+            : currentTheme.foregroundPrimary
+        }>
         {t(
-          `app.${menu === 'server' ? 'servers.settings' : 'settings_menu'}.${menu === 'app-other' ? `other.${section}` : `${section}.title`}`,
+          `app.${menu === 'server' ? 'servers.settings' : 'settings_menu'}.${section === 'delete_server' ? 'delete_server' : menu === 'app-other' ? `other.${section}` : `${section}.title`}`,
         )}
       </Text>
     </TouchableOpacity>
