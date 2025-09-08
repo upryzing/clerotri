@@ -1,11 +1,16 @@
 import {useContext} from 'react';
-import {Text as NativeText, StyleSheet, type TextProps} from 'react-native';
+import {
+  type ColorValue,
+  Text as NativeText,
+  StyleSheet,
+  type TextProps,
+} from 'react-native';
 
 import {commonValues, Theme, ThemeContext} from '@clerotri/lib/themes';
 
 type FullTextProps = TextProps & {
   font?: 'JetBrains Mono' | 'Inter' | 'Open Sans';
-  colour?: string;
+  colour?: ColorValue;
   type?: 'h1' | 'h2' | 'profile';
 };
 
