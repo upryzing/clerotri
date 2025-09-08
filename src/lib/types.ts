@@ -1,4 +1,7 @@
-import type {TouchableOpacityProps} from 'react-native';
+import type {ColorValue, TouchableOpacityProps} from 'react-native';
+
+import type {MaterialDesignIconsIconName} from '@react-native-vector-icons/material-design-icons';
+import type {MaterialIconsIconName} from '@react-native-vector-icons/material-icons';
 
 import type {Channel, Member, Message, Server, User} from 'revolt.js';
 
@@ -81,6 +84,23 @@ export type MemberWithModAction = {
 
 export type ButtonProps = TouchableOpacityProps & {
   backgroundColor?: string;
+};
+
+export type IconType =
+  | {
+      name: MaterialIconsIconName;
+      pack: 'regular';
+    }
+  | {
+      name: MaterialDesignIconsIconName;
+      pack: 'community';
+    };
+
+export type ContextButtonProps = ButtonProps & {
+  type?: 'start' | 'end' | 'detatched';
+  icon?: IconType & {colour?: string};
+  textString?: string;
+  textColour?: ColorValue;
 };
 
 export type TextEditingModalProps = {

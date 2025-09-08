@@ -318,7 +318,11 @@ export const SettingsSheet = observer(
                 menu={'app-other'}
                 type={'detatched'}
                 section={'donate'}
-                icon={{pack: 'community', name: 'heart'}}
+                icon={{
+                  pack: 'community',
+                  name: 'heart',
+                  colour: currentTheme.accentColor,
+                }}
                 style={{experimental_backgroundImage: [donateGradient]}}
                 onPress={() => {
                   openUrl(DONATIONS_INFO);
@@ -346,7 +350,12 @@ export const SettingsSheet = observer(
                 menu={'app-other'}
                 type={'detatched'}
                 section={'logout'}
-                icon={{pack: 'regular', name: 'logout'}}
+                textColour={currentTheme.error}
+                icon={{
+                  pack: 'regular',
+                  name: 'logout',
+                  colour: currentTheme.error,
+                }}
                 style={{marginBlockEnd: 0}}
                 onPress={() => {
                   setState();

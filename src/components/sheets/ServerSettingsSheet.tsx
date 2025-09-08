@@ -219,7 +219,12 @@ export const ServerSettingsSheet = observer(
                     menu={'server'}
                     type={'detatched'}
                     section={'delete_server'}
-                    icon={{pack: 'regular', name: 'delete'}}
+                    textColour={currentTheme.error}
+                    icon={{
+                      pack: 'regular',
+                      name: 'delete',
+                      colour: currentTheme.error,
+                    }}
                     onPress={() => {
                       app.openDeletionConfirmationModal({
                         type: 'Server',
