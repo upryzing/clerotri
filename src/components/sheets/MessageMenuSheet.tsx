@@ -3,18 +3,14 @@ import {View} from 'react-native';
 import {observer} from 'mobx-react-lite';
 
 import Clipboard from '@react-native-clipboard/clipboard';
-import MaterialCommunityIcon from '@react-native-vector-icons/material-design-icons';
-import MaterialIcon from '@react-native-vector-icons/material-icons';
 
 import type {Message} from 'revolt.js';
 
 import {app, settings} from '@clerotri/Generic';
-import {styles} from '@clerotri/Theme';
 import {
-  ContextButton,
   CopyIDButton,
-  Text,
-} from '@clerotri/components/common/atoms';
+  NewContextButton,
+} from '@clerotri/components/common/buttons';
 import {ReplyMessage} from '@clerotri/components/common/messaging/ReplyMessage';
 import {commonValues, ThemeContext} from '@clerotri/lib/themes';
 
@@ -36,7 +32,10 @@ export const MessageMenuSheet = observer(
               <ReplyMessage message={message} showSymbol={false} />
             </View>
             {message.channel?.havePermission('SendMessage') ? (
-              <ContextButton
+              <NewContextButton
+                type={'detatched'}
+                icon={{pack: 'regular', name: 'reply'}}
+                textString={'Reply'}
                 onPress={() => {
                   let replyingMessages = [...app.getReplyingMessages()];
                   if (
@@ -57,116 +56,108 @@ export const MessageMenuSheet = observer(
                   });
                   app.setReplyingMessages(replyingMessages);
                   app.openMessage(null);
-                }}>
-                <View style={styles.iconContainer}>
-                  <MaterialIcon
-                    name="reply"
-                    size={20}
-                    color={currentTheme.foregroundPrimary}
-                  />
-                </View>
-                <Text>Reply</Text>
-              </ContextButton>
+                }}
+              />
             ) : null}
-            {message.content ? (
-              <ContextButton
+            {message.content !== null ? (
+              <NewContextButton
+                type={'start'}
+                icon={{pack: 'regular', name: 'content-copy'}}
+                textString={'Copy content'}
                 onPress={() => {
                   Clipboard.setString(message.content!);
-                }}>
-                <View style={styles.iconContainer}>
-                  <MaterialIcon
-                    name="content-copy"
-                    size={20}
-                    color={currentTheme.foregroundPrimary}
-                  />
-                </View>
-                <Text>Copy content</Text>
-              </ContextButton>
+                }}
+              />
             ) : null}
             {settings.get('ui.showDeveloperFeatures') ? (
-              <CopyIDButton id={message._id} />
+              <CopyIDButton
+                type={message.content === null ? 'start' : undefined}
+                itemID={message._id}
+              />
             ) : null}
-            <ContextButton
+            <NewContextButton
+              type={'end'}
+              icon={{pack: 'regular', name: 'link'}}
+              textString={'Copy message link'}
               onPress={() => {
                 Clipboard.setString(message.url);
-              }}>
-              <View style={styles.iconContainer}>
-                <MaterialIcon
-                  name="link"
-                  size={20}
-                  color={currentTheme.foregroundPrimary}
-                />
-              </View>
-              <Text>Copy message link</Text>
-            </ContextButton>
+              }}
+            />
             {message.author?.relationship === 'User' ? (
-              <ContextButton
+              <NewContextButton
+                type={
+                  message.channel?.havePermission('ManageMessages')
+                    ? 'start'
+                    : 'detatched'
+                }
+                icon={{pack: 'regular', name: 'edit'}}
+                textString={'Edit'}
                 onPress={() => {
                   app.setMessageBoxInput(message.content);
                   app.setEditingMessage(message);
                   app.setReplyingMessages([]);
                   app.openMessage(null);
-                }}>
-                <View style={styles.iconContainer}>
-                  <MaterialIcon
-                    name="edit"
-                    size={20}
-                    color={currentTheme.foregroundPrimary}
-                  />
-                </View>
-                <Text>Edit</Text>
-              </ContextButton>
+                }}
+              />
             ) : null}
             {message.channel?.havePermission('ManageMessages') ? (
-              <ContextButton
+              <NewContextButton
+                type={
+                  message.author?.relationship === 'User' ? 'end' : 'detatched'
+                }
+                icon={{
+                  pack: 'community',
+                  name: message.pinned ? 'pin-off' : 'pin',
+                }}
+                textString={message.pinned ? 'Unpin' : 'Pin'}
                 onPress={() => {
                   message.pinned ? message.unpin() : message.pin();
                   app.openMessage(null);
-                }}>
-                <View style={styles.iconContainer}>
-                  <MaterialCommunityIcon
-                    name={message.pinned ? 'pin-off' : 'pin'}
-                    size={20}
-                    color={currentTheme.foregroundPrimary}
-                  />
-                </View>
-                <Text>{message.pinned ? 'Unpin' : 'Pin'}</Text>
-              </ContextButton>
+                }}
+              />
             ) : null}
             {message.channel?.havePermission('ManageMessages') ||
             message.author?.relationship === 'User' ? (
-              <ContextButton
+              <NewContextButton
+                type={
+                  message.author?.relationship !== 'User'
+                    ? 'start'
+                    : 'detatched'
+                }
+                icon={{
+                  pack: 'regular',
+                  name: 'delete',
+                  colour: currentTheme.error,
+                }}
+                textString={'Delete'}
+                textColour={currentTheme.error}
                 onPress={() => {
                   app.openDeletionConfirmationModal({
                     type: 'Message',
                     object: message,
                   });
                   app.openMessage(null);
-                }}>
-                <View style={styles.iconContainer}>
-                  <MaterialIcon
-                    name="delete"
-                    size={20}
-                    color={currentTheme.error}
-                  />
-                </View>
-                <Text colour={currentTheme.error}>Delete</Text>
-              </ContextButton>
+                }}
+              />
             ) : null}
             {message.author?.relationship !== 'User' ? (
-              <ContextButton
+              <NewContextButton
+                type={
+                  message.channel?.havePermission('ManageMessages')
+                    ? 'end'
+                    : 'detatched'
+                }
+                icon={{
+                  pack: 'regular',
+                  name: 'flag',
+                  colour: currentTheme.error,
+                }}
+                textString={'Report message'}
+                textColour={currentTheme.error}
                 onPress={() => {
                   app.openReportMenu({object: message, type: 'Message'});
-                }}>
-                <View style={styles.iconContainer}>
-                  <MaterialIcon
-                    name="flag"
-                    size={20}
-                    color={currentTheme.error}
-                  />
-                </View>
-                <Text colour={currentTheme.error}>Report Message</Text>
-              </ContextButton>
+                }}
+              />
             ) : null}
             <View style={{marginTop: 20}} />
           </>

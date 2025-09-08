@@ -4,7 +4,6 @@ export {Button} from './Button';
 export {ChannelButton} from './ChannelButton';
 export {Checkbox} from './Checkbox';
 export {ContextButton} from './ContextButton';
-export {CopyIDButton} from './CopyIDButton';
 export {GeneralAvatar} from './GeneralAvatar';
 export {Input} from './Input';
 export {InputWithButton, InputWithButtonV2} from './InputWithButton';

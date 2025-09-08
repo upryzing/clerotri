@@ -15,11 +15,11 @@ import {
   Avatar,
   Button,
   ContextButton,
-  CopyIDButton,
   GeneralAvatar,
   Text,
   Username,
 } from '@clerotri/components/common/atoms';
+import {CopyIDButton} from '@clerotri/components/common/buttons';
 import {MarkdownView} from '@clerotri/components/common/MarkdownView';
 import {
   BadgeView,
@@ -328,7 +328,7 @@ export const ProfileSheet = observer(
               </Text>
             </Pressable>
             {settings.get('ui.showDeveloperFeatures') ? (
-              <CopyIDButton id={user._id} />
+              <CopyIDButton itemID={user._id} />
             ) : null}
             {user.relationship !== 'User' ? (
               <>

@@ -14,12 +14,8 @@ import {SERVER_FLAGS, SPECIAL_SERVERS} from '@clerotri/lib/consts';
 import {ChannelContext} from '@clerotri/lib/state';
 import {commonValues, ThemeContext} from '@clerotri/lib/themes';
 import {showToast} from '@clerotri/lib/utils';
-import {
-  ContextButton,
-  CopyIDButton,
-  GeneralAvatar,
-  Text,
-} from '../common/atoms';
+import {ContextButton, GeneralAvatar, Text} from '../common/atoms';
+import {CopyIDButton} from '@clerotri/components/common/buttons';
 import {MarkdownView} from '../common/MarkdownView';
 import {Image} from '@clerotri/crossplat/Image';
 
@@ -163,7 +159,7 @@ export const ServerInfoSheet = observer(({server}: {server: Server | null}) => {
               </ContextButton>
             ) : null}
             {settings.get('ui.showDeveloperFeatures') ? (
-              <CopyIDButton id={server._id} />
+              <CopyIDButton itemID={server._id} />
             ) : null}
             {server.owner !== client.user?._id ? (
               <>

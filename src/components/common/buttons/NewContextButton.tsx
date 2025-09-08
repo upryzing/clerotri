@@ -56,6 +56,7 @@ export const NewContextButton = ({
           {t(textString)}
         </Text>
       )}
+      {props.children}
     </TouchableOpacity>
   );
 };

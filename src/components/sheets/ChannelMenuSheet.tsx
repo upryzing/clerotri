@@ -9,11 +9,8 @@ import type {Channel} from 'revolt.js';
 
 import {app, settings} from '@clerotri/Generic';
 import {styles} from '@clerotri/Theme';
-import {
-  ContextButton,
-  CopyIDButton,
-  Text,
-} from '@clerotri/components/common/atoms';
+import {ContextButton, Text} from '@clerotri/components/common/atoms';
+import {CopyIDButton} from '@clerotri/components/common/buttons';
 import {commonValues, ThemeContext} from '@clerotri/lib/themes';
 
 export const ChannelMenuSheet = observer(
@@ -64,7 +61,7 @@ export const ChannelMenuSheet = observer(
               <Text>Mark as read</Text>
             </ContextButton>
             {settings.get('ui.showDeveloperFeatures') ? (
-              <CopyIDButton id={channel._id} />
+              <CopyIDButton itemID={channel._id} />
             ) : null}
             <ContextButton
               onPress={() => {
