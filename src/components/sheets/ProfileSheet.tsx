@@ -10,16 +10,17 @@ import type {API, Server, User} from 'revolt.js';
 
 import {app, settings} from '@clerotri/Generic';
 import {client} from '@clerotri/lib/client';
-import {styles} from '@clerotri/Theme';
 import {
   Avatar,
   Button,
-  ContextButton,
   GeneralAvatar,
   Text,
   Username,
 } from '@clerotri/components/common/atoms';
-import {CopyIDButton} from '@clerotri/components/common/buttons';
+import {
+  CopyIDButton,
+  NewContextButton,
+} from '@clerotri/components/common/buttons';
 import {MarkdownView} from '@clerotri/components/common/MarkdownView';
 import {
   BadgeView,
@@ -328,45 +329,38 @@ export const ProfileSheet = observer(
               </Text>
             </Pressable>
             {settings.get('ui.showDeveloperFeatures') ? (
-              <CopyIDButton itemID={user._id} />
+              <CopyIDButton itemID={user._id} type={'detatched'} />
             ) : null}
             {user.relationship !== 'User' ? (
               <>
-                <ContextButton
+                <NewContextButton
+                  type={
+                    'detatched' /* set to 'start' when the block button exists*/
+                  }
+                  icon={{
+                    pack: 'regular',
+                    name: 'flag',
+                    colour: currentTheme.error,
+                  }}
+                  textString={'app.profile.menu.report_user'}
+                  textColour={currentTheme.error}
                   onPress={() => {
                     app.openReportMenu({object: user, type: 'User'});
                     setShowMenu(false);
                     app.openProfile(null);
-                  }}>
-                  <View style={styles.iconContainer}>
-                    <MaterialIcon
-                      name="flag"
-                      size={20}
-                      color={currentTheme.error}
-                    />
-                  </View>
-                  <Text colour={currentTheme.error}>
-                    {t('app.profile.menu.report_user')}
-                  </Text>
-                </ContextButton>
+                  }}
+                />
                 {/* TODO: add block confirm modal then uncomment this {user.relationship !== 'Blocked' ? (
-                  <ContextButton
+                  <NewContextButton
+                    type={'end'}
+                    icon={{pack: 'regular', name: 'block', colour: currentTheme.error}}
+                    textString={'app.profile.menu.block_user'}
+                    textColour={currentTheme.error}
                     onPress={() => {
                       app.openReportMenu({object: user, type: 'User'});
                       setShowMenu(false);
                       app.openProfile(null);
-                    }}>
-                    <View style={styles.iconContainer}>
-                      <MaterialIcon
-                        name="block"
-                        size={20}
-                        color={currentTheme.error}
-                      />
-                    </View>
-                    <Text colour={currentTheme.error}>
-                      {t('app.profile.menu.block_user')}
-                    </Text>
-                  </ContextButton>
+                    }} />
                 ) : null} */}
               </>
             ) : null}
@@ -514,10 +508,17 @@ export const ProfileSheet = observer(
                 <Text type={'profile'}>
                   {t('app.profile.tabs.mutual_servers')}
                 </Text>
-                {mutual.servers?.map(srv => {
+                {mutual.servers?.map((srv, index) => {
                   return (
-                    <ContextButton
+                    <NewContextButton
                       key={srv!._id}
+                      type={
+                        index === 0
+                          ? 'start'
+                          : index === mutual.servers.length - 1
+                            ? 'end'
+                            : undefined
+                      }
                       onPress={() => {
                         app.openServer(srv);
                         app.openProfile(null);
@@ -527,7 +528,7 @@ export const ProfileSheet = observer(
                       <Text style={{fontWeight: 'bold', marginLeft: 6}}>
                         {srv!.name}
                       </Text>
-                    </ContextButton>
+                    </NewContextButton>
                   );
                 })}
               </ScrollView>

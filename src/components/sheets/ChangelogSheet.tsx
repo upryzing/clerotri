@@ -2,16 +2,15 @@ import {useContext, useMemo} from 'react';
 import {View} from 'react-native';
 import {observer} from 'mobx-react-lite';
 
-import MaterialCommunityIcon from '@react-native-vector-icons/material-design-icons';
 import {useSafeAreaInsets} from 'react-native-safe-area-context';
 
-import {ContextButton, Text} from '@clerotri/components/common/atoms';
+import {Text} from '@clerotri/components/common/atoms';
+import {NewContextButton} from '@clerotri/components/common/buttons';
 import {MarkdownView} from '@clerotri/components/common/MarkdownView';
 import {generateDonateGradient} from '@clerotri/components/sheets/SettingsSheet';
 import {DONATIONS_INFO, WEBLATE} from '@clerotri/lib/consts';
 import {commonValues, ThemeContext} from '@clerotri/lib/themes';
 import {appVersion} from '@clerotri/Generic';
-import {styles} from '@clerotri/Theme';
 import {openUrl} from '@clerotri/lib/utils';
 
 const changelogParagraphs = [
@@ -32,7 +31,7 @@ export const ChangelogSheet = observer(() => {
     <View
       style={{
         padding: commonValues.sizes.xl,
-        paddingBlockEnd: commonValues.sizes.xl + insets.bottom,
+        paddingBlockEnd: commonValues.sizes.medium + insets.bottom,
         flex: 1,
         justifyContent: 'space-between',
       }}>
@@ -47,37 +46,31 @@ export const ChangelogSheet = observer(() => {
         ))}
       </View>
       <View>
-        <ContextButton
+        <NewContextButton
+          type={'start'}
+          icon={{
+            pack: 'community',
+            name: 'heart',
+            colour: currentTheme.accentColor,
+          }}
+          textString={'Donate'}
           style={{
             justifyContent: 'center',
             experimental_backgroundImage: [donateGradient],
           }}
           onPress={() => {
             openUrl(`${DONATIONS_INFO}_iac_${appVersion}`);
-          }}>
-          <View style={styles.iconContainer}>
-            <MaterialCommunityIcon
-              name={'heart'}
-              color={currentTheme.accentColor}
-              size={24}
-            />
-          </View>
-          <Text>Donate</Text>
-        </ContextButton>
-        <ContextButton
+          }}
+        />
+        <NewContextButton
+          type={'end'}
+          icon={{pack: 'community', name: 'book-open-variant'}}
+          textString={'See full changelog'}
           style={{justifyContent: 'center'}}
           onPress={() => {
             openUrl(WEBLATE);
-          }}>
-          <View style={styles.iconContainer}>
-            <MaterialCommunityIcon
-              name={'book-open-variant'}
-              color={currentTheme.foregroundPrimary}
-              size={24}
-            />
-          </View>
-          <Text>See full changelog</Text>
-        </ContextButton>
+          }}
+        />
       </View>
     </View>
   );

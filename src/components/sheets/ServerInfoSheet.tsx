@@ -9,13 +9,15 @@ import type {Member, Server} from 'revolt.js';
 
 import {app, settings} from '@clerotri/Generic';
 import {client} from '@clerotri/lib/client';
-import {styles} from '@clerotri/Theme';
 import {SERVER_FLAGS, SPECIAL_SERVERS} from '@clerotri/lib/consts';
 import {ChannelContext} from '@clerotri/lib/state';
 import {commonValues, ThemeContext} from '@clerotri/lib/themes';
 import {showToast} from '@clerotri/lib/utils';
-import {ContextButton, GeneralAvatar, Text} from '../common/atoms';
-import {CopyIDButton} from '@clerotri/components/common/buttons';
+import {GeneralAvatar, Text} from '../common/atoms';
+import {
+  CopyIDButton,
+  NewContextButton,
+} from '@clerotri/components/common/buttons';
 import {MarkdownView} from '../common/MarkdownView';
 import {Image} from '@clerotri/crossplat/Image';
 
@@ -132,53 +134,53 @@ export const ServerInfoSheet = observer(({server}: {server: Server | null}) => {
                   backgroundColor: currentTheme.background,
                   padding: commonValues.sizes.xl,
                   borderRadius: commonValues.sizes.medium,
+                  marginBlockEnd: commonValues.sizes.medium,
                 }}>
                 <MarkdownView>{server.description}</MarkdownView>
               </View>
             ) : null}
           </View>
-          <View
-            style={{
-              alignItems: 'center',
-              justifyContent: 'center',
-            }}>
+          <View>
             {server.havePermission('ManageServer') ? (
-              <ContextButton
+              <NewContextButton
                 key={'server-ctx-menu-settings'}
+                type={'detatched'}
+                icon={{pack: 'regular', name: 'settings'}}
+                textString={'Server Settings'}
                 onPress={() => {
                   app.openServerSettings(server);
-                }}>
-                <View style={styles.iconContainer}>
-                  <MaterialIcon
-                    name={'settings'}
-                    size={20}
-                    color={currentTheme.foregroundPrimary}
-                  />
-                </View>
-                <Text>Server Settings</Text>
-              </ContextButton>
+                }}
+              />
             ) : null}
             {settings.get('ui.showDeveloperFeatures') ? (
-              <CopyIDButton itemID={server._id} />
+              <CopyIDButton itemID={server._id} type={'detatched'} />
             ) : null}
             {server.owner !== client.user?._id ? (
               <>
-                <ContextButton
+                <NewContextButton
                   key={'server-ctx-menu-report'}
+                  type={'start'}
+                  icon={{
+                    pack: 'regular',
+                    name: 'flag',
+                    colour: currentTheme.error,
+                  }}
+                  textString={'Report Server'}
+                  textColour={currentTheme.error}
                   onPress={() => {
                     app.openReportMenu({object: server, type: 'Server'});
-                  }}>
-                  <View style={styles.iconContainer}>
-                    <MaterialIcon
-                      name="flag"
-                      size={20}
-                      color={currentTheme.error}
-                    />
-                  </View>
-                  <Text colour={currentTheme.error}>Report Server</Text>
-                </ContextButton>
-                <ContextButton
+                  }}
+                />
+                <NewContextButton
                   key={'server-ctx-menu-leave'}
+                  type={'end'}
+                  icon={{
+                    pack: 'regular',
+                    name: 'exit-to-app',
+                    colour: currentTheme.error,
+                  }}
+                  textString={'Leave Server'}
+                  textColour={currentTheme.error}
                   onPress={async () => {
                     app.openServer();
                     app.openServerContextMenu(null);
@@ -189,16 +191,8 @@ export const ServerInfoSheet = observer(({server}: {server: Server | null}) => {
                       setCurrentChannel(null);
                     }
                     await server.delete();
-                  }}>
-                  <View style={styles.iconContainer}>
-                    <MaterialIcon
-                      name="exit-to-app"
-                      size={20}
-                      color={currentTheme.error}
-                    />
-                  </View>
-                  <Text colour={currentTheme.error}>Leave Server</Text>
-                </ContextButton>
+                  }}
+                />
               </>
             ) : null}
           </View>

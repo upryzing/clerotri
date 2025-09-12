@@ -2,8 +2,9 @@ import {useContext} from 'react';
 import {View} from 'react-native';
 import {observer} from 'mobx-react-lite';
 
+import {InputWithButtonV2, Text} from '@clerotri/components/common/atoms';
+import {NewContextButton} from '@clerotri/components/common/buttons';
 import {client} from '@clerotri/lib/client';
-import {ContextButton, InputWithButtonV2, Text} from '../common/atoms';
 import {STATUSES} from '@clerotri/lib/consts';
 import {ThemeContext} from '@clerotri/lib/themes';
 
@@ -16,27 +17,24 @@ export const StatusSheet = observer(() => {
         Status
       </Text>
       <View style={{marginBottom: 10}}>
-        {STATUSES.map(s => (
-          <ContextButton
+        {STATUSES.map((s, i) => (
+          <NewContextButton
             key={s}
+            type={
+              i === 0 ? 'start' : i === STATUSES.length - 1 ? 'end' : undefined
+            }
+            icon={{
+              pack: 'regular',
+              name: 'circle',
+              colour: currentTheme[`status${s}`],
+            }}
+            textString={s}
             onPress={() => {
               client.users.edit({
                 status: {...client.user?.status, presence: s},
               });
-            }}>
-            <View
-              style={{
-                backgroundColor: currentTheme[`status${s}`],
-                height: 16,
-                width: 16,
-                borderRadius: 10000,
-                marginRight: 10,
-              }}
-            />
-            <Text style={{fontSize: 15}} key={`${s}-button-label`}>
-              {s}
-            </Text>
-          </ContextButton>
+            }}
+          />
         ))}
       </View>
       <Text key={'custom-status-input-label'} type={'h1'}>

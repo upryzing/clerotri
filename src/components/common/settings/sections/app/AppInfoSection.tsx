@@ -16,7 +16,7 @@ import {
 } from '@clerotri/lib/metadata';
 import {commonValues, ThemeContext} from '@clerotri/lib/themes';
 import {openUrl} from '@clerotri/lib/utils';
-import {ContextButton, Link, Text} from '@clerotri/components/common/atoms';
+import {Button, Link, Text} from '@clerotri/components/common/atoms';
 import {
   AppIcon,
   GradientStyle,
@@ -105,16 +105,21 @@ export const AppInfoSection = () => {
           />
         </Pressable>
       </View>
-      <ContextButton
-        backgroundColor={currentTheme.error}
-        style={{
-          justifyContent: 'center',
-        }}
-        onPress={() => {
-          settings.clear();
-        }}>
-        <Text>Reset Settings</Text>
-      </ContextButton>
+      <View style={{flexDirection: 'row'}}>
+        <Button
+          style={{
+            backgroundColor: currentTheme.backgroundSecondary,
+            flex: 1,
+            margin: 0,
+          }}
+          onPress={() => {
+            settings.clear();
+          }}>
+          <Text colour={currentTheme.error} style={{fontWeight: 'bold'}}>
+            Reset Settings
+          </Text>
+        </Button>
+      </View>
     </View>
   );
 };
