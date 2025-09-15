@@ -5,7 +5,7 @@ export {ChannelButton} from './ChannelButton';
 export {Checkbox} from './Checkbox';
 export {GeneralAvatar} from './GeneralAvatar';
 export {Input} from './Input';
-export {InputWithButton, InputWithButtonV2} from './InputWithButton';
+export {InputWithButtonV2} from './InputWithButton';
 export {Link} from './Link';
 export {Text} from './Text';
 export {Username} from './Username';

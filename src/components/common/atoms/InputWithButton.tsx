@@ -9,86 +9,9 @@ import {
   type ViewStyle,
 } from 'react-native';
 
-import MaterialIcon from '@react-native-vector-icons/material-icons';
-import MaterialCommunityIcon from '@react-native-vector-icons/material-design-icons';
-
-import {Button} from '@clerotri/components/common/atoms/Button';
 import {Input} from '@clerotri/components/common/atoms/Input';
-import {Text} from '@clerotri/components/common/atoms/Text';
 import {commonValues, Theme, ThemeContext} from '@clerotri/lib/themes';
 import {showToast} from '@clerotri/lib/utils';
-
-export function InputWithButton({
-  defaultValue,
-  placeholder,
-  buttonContents,
-  extraStyles,
-  onPress,
-  skipIfSame,
-  cannotBeEmpty,
-  emptyError,
-  ...props
-}: {
-  defaultValue?: string;
-  placeholder?: string;
-  buttonContents:
-    | {type: 'string'; content: string}
-    | {type: 'icon'; name: string; pack: 'regular' | 'community'};
-  extraStyles?: {container?: ViewStyle; input?: TextStyle; button?: ViewStyle};
-  onPress: any;
-  skipIfSame?: boolean;
-  cannotBeEmpty?: boolean;
-  emptyError?: string;
-}) {
-  const {currentTheme} = useContext(ThemeContext);
-  const localStyles = generateLocalStyles(currentTheme);
-
-  let [value, setValue] = useState(defaultValue);
-  return (
-    // style.input and style.button are applied to the input and button respectively
-    <View style={[localStyles.iwbContainer, extraStyles?.container]}>
-      <Input
-        value={value}
-        onChangeText={v => {
-          setValue(v);
-        }}
-        placeholder={placeholder}
-        skipRegularStyles
-        style={[localStyles.iwbInput, extraStyles?.input]}
-        {...props}
-      />
-      <Button
-        onPress={() => {
-          if (!value && cannotBeEmpty) {
-            showToast(emptyError!);
-          } else {
-            if (!skipIfSame || (skipIfSame && value !== defaultValue)) {
-              onPress(value);
-            }
-          }
-        }}
-        style={[localStyles.iwbButton, extraStyles?.button]}>
-        {buttonContents.type === 'string' ? (
-          <Text style={{color: currentTheme.foregroundPrimary}}>
-            {buttonContents.content}
-          </Text>
-        ) : buttonContents.pack === 'regular' ? (
-          <MaterialIcon
-            name={buttonContents.name}
-            color={currentTheme.foregroundPrimary}
-            size={20}
-          />
-        ) : (
-          <MaterialCommunityIcon
-            name={buttonContents.name}
-            color={currentTheme.foregroundPrimary}
-            size={20}
-          />
-        )}
-      </Button>
-    </View>
-  );
-}
 
 export function InputWithButtonV2({
   inputProps,
