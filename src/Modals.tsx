@@ -296,7 +296,7 @@ const OtherModals = observer(() => {
     inviteServer: API.InviteResponse | null;
     inviteServerCode: string;
   });
-  const [inviteBot, setInviteBot] = useState(null as User | null);
+  const [inviteBot, setInviteBot] = useState(null as API.PublicBot | null);
 
   setFunction('openDirectMessage', (dm: Channel) => {
     app.openProfile(null);

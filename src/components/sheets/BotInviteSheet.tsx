@@ -1,18 +1,23 @@
 import {useContext, useState} from 'react';
-import {Pressable, ScrollView, View} from 'react-native';
+import {ScrollView, View} from 'react-native';
 import {observer} from 'mobx-react-lite';
 
 import {useSafeAreaInsets} from 'react-native-safe-area-context';
 
-import type {Server, User} from 'revolt.js';
+import type {API, Server} from 'revolt.js';
 
 import {client} from '@clerotri/lib/client';
-import {Button, GeneralAvatar, Text} from '@clerotri/components/common/atoms';
+import {
+  BackButton,
+  Button,
+  GeneralAvatar,
+  Text,
+} from '@clerotri/components/common/atoms';
 import {ServerList} from '@clerotri/components/navigation/ServerList';
-import {ThemeContext} from '@clerotri/lib/themes';
+import {commonValues, ThemeContext} from '@clerotri/lib/themes';
 
 export const BotInviteSheet = observer(
-  ({setState, bot}: {setState: Function; bot: User}) => {
+  ({setState, bot}: {setState: Function; bot: API.PublicBot}) => {
     const insets = useSafeAreaInsets();
 
     const {currentTheme} = useContext(ThemeContext);
@@ -23,15 +28,12 @@ export const BotInviteSheet = observer(
       <View
         style={{
           flex: 1,
-          paddingTop: insets.top,
+          padding: commonValues.sizes.xl,
+          paddingBlockStart: commonValues.sizes.xl + insets.top,
+          paddingBlockEnd: commonValues.sizes.xl + insets.bottom,
           backgroundColor: currentTheme.backgroundPrimary,
         }}>
-        <Pressable
-          onPress={() => {
-            setState();
-          }}>
-          <Text style={{fontSize: 24}}>Cancel</Text>
-        </Pressable>
+        <BackButton callback={() => setState()} type={'close'} />
         <View
           style={{
             flex: 1,
@@ -39,13 +41,19 @@ export const BotInviteSheet = observer(
             justifyContent: 'center',
           }}>
           <View style={{flexDirection: 'row', alignItems: 'center'}}>
-            <GeneralAvatar attachment={bot.avatar} size={48} />
+            <GeneralAvatar
+              directory={'/avatars/'}
+              attachment={bot.avatar}
+              size={48}
+            />
             <Text style={{paddingLeft: 10, fontSize: 24, fontWeight: 'bold'}}>
               {bot.username}
             </Text>
           </View>
-          <View style={{height: 56}}>
-            <ScrollView horizontal={true}>
+          <View style={{height: 64, marginBlock: commonValues.sizes.medium}}>
+            <ScrollView
+              horizontal={true}
+              contentContainerStyle={{alignItems: 'center'}}>
               <ServerList
                 onServerPress={(s: Server) => setDestination(s)}
                 filter={(s: Server) => s.havePermission('ManageServer')}
@@ -56,6 +64,8 @@ export const BotInviteSheet = observer(
             </ScrollView>
           </View>
           <Button
+            style={{margin: 0}}
+            disabled={!destination}
             onPress={() => {
               if (!destination) {
                 return;
