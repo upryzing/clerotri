@@ -8,12 +8,7 @@ import MaterialIcon from '@react-native-vector-icons/material-icons';
 import type {Server} from 'revolt.js';
 
 import {GapView} from '@clerotri/components/layout';
-import {
-  InputWithButton,
-  InputWithButtonV2,
-  Link,
-  Text,
-} from '@clerotri/components/common/atoms';
+import {InputWithButtonV2, Link, Text} from '@clerotri/components/common/atoms';
 import {PressableSettingsEntry} from '@clerotri/components/common/settings/atoms';
 import {SYSTEM_MESSAGE_CHANNEL_TYPES} from '@clerotri/lib/consts';
 import {ThemeContext} from '@clerotri/lib/themes';
@@ -74,38 +69,31 @@ export const OverviewSettingsSection = observer(
             style={{fontWeight: 'bold'}}
           />
         </View>
-        <GapView size={2} />
-        <InputWithButton
-          placeholder={t(
-            'app.servers.settings.overview.description_placeholder',
-          )}
-          defaultValue={server.description ?? undefined}
-          onPress={(v: string) => {
+        <GapView size={4} />
+        <InputWithButtonV2
+          inputProps={{
+            placeholder: t(
+              'app.servers.settings.overview.description_placeholder',
+            ),
+            defaultValue: server.description ?? undefined,
+            multiline: true,
+          }}
+          buttonProps={{
+            children: (
+              <Text>{t('app.servers.settings.overview.set_description')}</Text>
+            ),
+          }}
+          vertical
+          containerStyles={{backgroundColor: currentTheme.backgroundSecondary}}
+          buttonStyles={{borderTopColor: currentTheme.backgroundPrimary}}
+          callback={(v?: string) => {
             server.edit({
               description: v,
             });
           }}
-          buttonContents={{
-            type: 'string',
-            content: t('app.servers.settings.overview.set_description'),
-          }}
           skipIfSame
-          // @ts-expect-error this is passed down to the TextInput
-          multiline
-          extraStyles={{
-            container: {
-              flexDirection: 'column',
-              alignItems: 'flex-start',
-            },
-            input: {
-              width: '100%',
-            },
-            button: {
-              marginHorizontal: 0,
-            },
-          }}
         />
-        <GapView size={2} />
+        <GapView size={4} />
         <Text type={'h2'}>
           {t('app.servers.settings.overview.system_messages')}
         </Text>
