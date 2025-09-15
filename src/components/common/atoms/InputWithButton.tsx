@@ -94,6 +94,7 @@ export function InputWithButtonV2({
   inputProps,
   buttonProps,
   callback,
+  vertical,
   containerStyles,
   inputStyles,
   buttonStyles,
@@ -104,6 +105,7 @@ export function InputWithButtonV2({
   inputProps?: Omit<TextInputProps, 'style'>;
   buttonProps?: Omit<PressableProps, 'onPress' | 'style'>;
   callback: (v: string | undefined) => void;
+  vertical?: boolean;
   containerStyles?: ViewStyle;
   inputStyles?: TextStyle;
   buttonStyles?: ViewStyle;
@@ -117,7 +119,12 @@ export function InputWithButtonV2({
   const [value, setValue] = useState(inputProps?.defaultValue);
 
   return (
-    <View style={[localStyles.iwbContainerV2, containerStyles]}>
+    <View
+      style={[
+        localStyles.iwbContainerV2,
+        vertical && localStyles.iwbContainerV2Vertical,
+        containerStyles,
+      ]}>
       <Input
         value={value}
         onChangeText={v => {
@@ -140,7 +147,13 @@ export function InputWithButtonV2({
             }
           }
         }}
-        style={[localStyles.iwbButtonV2, buttonStyles]}
+        style={[
+          localStyles.iwbButtonV2,
+          vertical
+            ? localStyles.iwbButtonV2Vertical
+            : localStyles.iwbButtonV2Horizontal,
+          buttonStyles,
+        ]}
         {...buttonProps}
       />
     </View>
@@ -168,18 +181,29 @@ const generateLocalStyles = (currentTheme: Theme) => {
       borderRadius: commonValues.sizes.medium,
       backgroundColor: currentTheme.backgroundPrimary,
     },
+    iwbContainerV2Vertical: {
+      flexDirection: 'column',
+    },
     iwbInputV2: {
       backgroundColor: '#00000000',
       padding: commonValues.sizes.large,
       flex: 1,
     },
     iwbButtonV2: {
-      paddingInline: commonValues.sizes.large,
-      flexDirection: 'row',
       alignItems: 'center',
       justifyContent: 'center',
+    },
+    iwbButtonV2Horizontal: {
+      paddingInline: commonValues.sizes.large,
+      flexDirection: 'row',
       borderStartWidth: commonValues.sizes.xs,
       borderStartColor: currentTheme.backgroundSecondary,
+    },
+    iwbButtonV2Vertical: {
+      paddingBlock: commonValues.sizes.large,
+      flexDirection: 'column',
+      borderTopWidth: commonValues.sizes.xs,
+      borderTopColor: currentTheme.backgroundSecondary,
     },
   });
 };
