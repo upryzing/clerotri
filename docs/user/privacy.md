@@ -1,6 +1,6 @@
 # Privacy information
 
-_This was last updated on 31/05/2025._
+_This was last updated on 17/09/2025._
 
 _For the purposes of this document, "we" and "us" refers to the core maintainers of Clerotri. As of the date of writing, this only includes me ([Rexogamer](https://rexowo.dev))._
 
@@ -17,7 +17,7 @@ As Clerotri is a third-party client, we don't store or control this data, so ple
 Clerotri doesn't currently support account deletion, though this is planned for a future update.
 
 - If you're using `revolt.chat` (the default instance), see their account deletion guide [here](https://support.revolt.chat/kb/account/deleting-your-account), or their partial data deletion guide [here](https://support.revolt.chat/kb/account/partial-deletion-pii).
-- if you're using another instance, please contact the instance's operators for more information.
+- If you're using another instance, please contact the instance's operators for more information.
 
 ## Analytics
 
@@ -25,7 +25,7 @@ Analytics are disabled by default. If you choose to enable them, Clerotri will c
 
 You will be asked if you wish to enable them upon launching the app for the first time, or (if you're updating from a version before v0.11.0) after updating the app. You can also enable, adjust or disable them at any time by opening the settings menu and selecting "Analytics".
 
-Analytics are sent when you open the app and are split into two tiers.
+Analytics are sent each time you open the app and are split into two tiers.
 
 ### Basic tier
 
@@ -54,3 +54,7 @@ Analytics are stored for up to 365 days. General statistics (e.g. the amount of 
 ### Deletion
 
 As there's no way for us to tie multiple sets of data together, **analytics deletion is not possible**. On the other hand, however, the fact that we can't tie this data together means your privacy is enhanced - we can't identify who a specific set of analytics belongs to.
+
+### Contact us
+
+If you have any further questions or suggestions, feel free to [open an issue](https://github.com/upryzing/clerotri/issues/new) or ask in [Clerotri's Revolt server](https://rvlt.gg/clerotri)

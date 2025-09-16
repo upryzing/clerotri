@@ -14,7 +14,7 @@ If you want to build Clerotri for Android, you'll also need:
 - JDK 17 ([Microsoft's build](https://learn.microsoft.com/en-gb/java/openjdk/download) works well) and
 - the latest Android SDK (preferably via [Android Studio](https://developer.android.com/studio)'s SDK Manager).
 
-If you want to build the analytics server, you'll need:
+If you want to run/work on the analytics server, you'll need:
 
 - the latest version of [Deno](https://deno.com), and
 - [PostgreSQL](https://postgresql.org).
@@ -93,7 +93,7 @@ Note that the app uses `rnx-bundle`, which has extra features (and will produce 
 
 ### Analytics server
 
-Before running the server, you'll need to set up the databse.
+Before running the server, you'll need to set up the database.
 
 Connect to Postgres:
 
@@ -115,7 +115,7 @@ CREATE DATABASE clerotri_analytics;
 -- grrant all privileges on the database to the user:
 GRANT ALL PRIVILEGES ON DATABASE clerotri_analytics TO clerotri;
 
--- switch to the databse:
+-- switch to the database:
 \c clerotri_analytics
 
 -- grant all privileges on the public schema too:
@@ -150,7 +150,7 @@ deno install
 If you're working on the server, run the following:
 
 ```sh
-deno tasks dev
+deno task dev
 ```
 
 If you're not working on the server, run the following:
