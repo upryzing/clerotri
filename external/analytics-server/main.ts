@@ -1,10 +1,10 @@
 import process from 'node:process';
 
-import { App } from 'npm:@tinyhttp/app';
-import * as dotenv from 'npm:@tinyhttp/dotenv';
+import { App } from '@tinyhttp/app';
+import * as dotenv from '@tinyhttp/dotenv';
 import { json as parser } from './vendored/milliparsec.js';
-import pg from 'npm:pg-promise';
-import { ulid } from 'npm:ulid';
+import pg from 'pg-promise';
+import { ulid } from 'ulid';
 
 import sql from './sql/index.ts';
 
