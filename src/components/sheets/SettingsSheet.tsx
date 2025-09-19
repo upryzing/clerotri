@@ -162,7 +162,7 @@ export const SettingsSheet = observer(
                 }}
                 contentContainerStyle={[
                   {
-                    paddingBottom: insets.bottom,
+                    paddingBottom: commonValues.sizes.xl + insets.bottom,
                   },
                   FLEX_CONTAINER_SECTIONS.includes(section.section) && {
                     flexGrow: 1,
