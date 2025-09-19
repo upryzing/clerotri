@@ -15,7 +15,7 @@ import {
   PressableSettingsEntry,
   SettingsEntry,
 } from '@clerotri/components/common/settings/atoms';
-import {GapView} from '@clerotri/components/layout';
+import {GapView, LineSeparator} from '@clerotri/components/layout';
 import {storage} from '@clerotri/lib/storage';
 import {commonValues, ThemeContext} from '@clerotri/lib/themes';
 
@@ -166,15 +166,7 @@ export const SessionsSettingsSection = observer(() => {
                   </View>
                 </View>
               </PressableSettingsEntry>
-              <View
-                style={{
-                  marginBlock: commonValues.sizes.medium,
-                  marginInline: commonValues.sizes.medium,
-                  height: commonValues.sizes.xs,
-                  borderRadius: commonValues.sizes.medium,
-                  backgroundColor: currentTheme.backgroundTertiary,
-                }}
-              />
+              <LineSeparator style={{margin: commonValues.sizes.medium}} />
               {sessions.map(
                 s =>
                   s._id !== sessionID && (
