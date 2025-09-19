@@ -1,4 +1,4 @@
-import {useContext, useState} from 'react';
+import {Fragment, useContext, useState} from 'react';
 import {StyleSheet, TouchableOpacity, View} from 'react-native';
 import {useTranslation} from 'react-i18next';
 
@@ -11,6 +11,7 @@ import {commonValues, Theme, ThemeContext} from '@clerotri/lib/themes';
 import {Setting} from '@clerotri/lib/types';
 import {Text} from '@clerotri/components/common/atoms';
 import {IndicatorIcons} from './IndicatorIcons';
+import {LineSeparator} from '@clerotri/components/layout';
 
 export const OptionSetting = ({sRaw}: {sRaw: Setting}) => {
   const {currentTheme} = useContext(ThemeContext);
@@ -37,42 +38,46 @@ export const OptionSetting = ({sRaw}: {sRaw: Setting}) => {
         </Text>
       ) : null}
       <View style={localStyles.optionsContainer}>
-        {sRaw.options!.map(o => (
-          <TouchableOpacity
-            key={o}
-            style={localStyles.option}
-            onPress={async () => {
-              const shouldChange = sRaw.checkBeforeChanging
-                ? await sRaw.checkBeforeChanging(o)
-                : true;
-              if (shouldChange) {
-                settings.set(sRaw.key, o);
-                setValue(o);
-              }
-            }}>
-            {sRaw.key === 'app.language' ? (
-              <View style={{flex: 1, flexDirection: 'row'}}>
-                <Text style={{alignSelf: 'center', marginEnd: 8}}>
-                  {languages[o].emoji}
-                </Text>
-                <View style={{flexDirection: 'column'}}>
-                  <Text style={{fontWeight: 'bold'}}>{languages[o].name}</Text>
-                  <Text colour={currentTheme.foregroundSecondary}>
-                    {languages[o].englishName}
+        {sRaw.options!.map((o, i) => (
+          <Fragment key={o}>
+            <TouchableOpacity
+              style={[localStyles.option]}
+              onPress={async () => {
+                const shouldChange = sRaw.checkBeforeChanging
+                  ? await sRaw.checkBeforeChanging(o)
+                  : true;
+                if (shouldChange) {
+                  settings.set(sRaw.key, o);
+                  setValue(o);
+                }
+              }}>
+              {sRaw.key === 'app.language' ? (
+                <View style={{flex: 1, flexDirection: 'row'}}>
+                  <Text style={{alignSelf: 'center', marginEnd: 8}}>
+                    {languages[o].emoji}
                   </Text>
+                  <View style={{flexDirection: 'column'}}>
+                    <Text style={{fontWeight: 'bold'}}>
+                      {languages[o].name}
+                    </Text>
+                    <Text colour={currentTheme.foregroundSecondary}>
+                      {languages[o].englishName}
+                    </Text>
+                  </View>
                 </View>
+              ) : (
+                <Text style={{flex: 1}}>{o}</Text>
+              )}
+              <View style={{...styles.iconContainer, marginRight: 0}}>
+                <MaterialIcon
+                  name={`radio-button-${value === o ? 'on' : 'off'}`}
+                  size={28}
+                  color={currentTheme.accentColor}
+                />
               </View>
-            ) : (
-              <Text style={{flex: 1}}>{o}</Text>
-            )}
-            <View style={{...styles.iconContainer, marginRight: 0}}>
-              <MaterialIcon
-                name={`radio-button-${value === o ? 'on' : 'off'}`}
-                size={28}
-                color={currentTheme.accentColor}
-              />
-            </View>
-          </TouchableOpacity>
+            </TouchableOpacity>
+            {i !== sRaw.options!.length - 1 && <LineSeparator />}
+          </Fragment>
         ))}
       </View>
     </View>
@@ -85,17 +90,14 @@ const generateLocalStyles = (currentTheme: Theme) => {
       borderRadius: commonValues.sizes.medium,
       minWidth: '100%',
       backgroundColor: currentTheme.backgroundSecondary,
-      padding: commonValues.sizes.medium,
+      paddingInline: commonValues.sizes.large,
+      paddingBlock: commonValues.sizes.xs,
     },
     option: {
-      height: 40,
       width: '100%',
       alignItems: 'center',
       flexDirection: 'row',
-      backgroundColor: currentTheme.backgroundPrimary,
-      borderRadius: commonValues.sizes.medium,
-      paddingInline: 10,
-      marginVertical: commonValues.sizes.small,
+      paddingBlock: commonValues.sizes.medium,
     },
   });
 };
