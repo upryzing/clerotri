@@ -1,1 +1,1 @@
-Client for Upryzing and Revolt
+Client for Upryzing and Revolt/Stoat

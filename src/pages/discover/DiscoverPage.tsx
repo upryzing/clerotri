@@ -194,7 +194,7 @@ export const DiscoverPage = () => {
 
   useEffect(() => {
     async function fetchData() {
-      const rawData = await fetch(`https://rvlt.gg/discover/${tab}`);
+      const rawData = await fetch(`https://stt.gg/discover/${tab}`);
       const unparsedText = await rawData.text();
 
       // code based on https://codeberg.org/Doru/Discoverolt/src/branch/pages/index.html

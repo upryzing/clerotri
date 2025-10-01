@@ -1,6 +1,6 @@
 # Privacy information
 
-_This was last updated on 17/09/2025._
+_This was last updated on 01/10/2025._
 
 _For the purposes of this document, "we" and "us" refers to the core maintainers of Clerotri. As of the date of writing, this only includes me ([Rexogamer](https://rexowo.dev))._
 
@@ -8,7 +8,7 @@ By default, Clerotri doesn't collect any data itself. You can optionally enable 
 
 ## Regular data
 
-Your messages, attachments and other data you send via the app will - hopefully unsurprisingly - be sent to the Upryzing/Revolt instance you're using. By default, the app connects to [`revolt.chat`](https://revolt.chat).
+Your messages, attachments and other data you send via the app will - hopefully unsurprisingly - be sent to the Upryzing/Revolt instance you're using. By default, the app connects to [`stoat.chat`](https://stoat.chat).
 
 As Clerotri is a third-party client, we don't store or control this data, so please refer to the privacy and data policies of the instance(s) you're using.
 
@@ -16,7 +16,7 @@ As Clerotri is a third-party client, we don't store or control this data, so ple
 
 Clerotri doesn't currently support account deletion, though this is planned for a future update.
 
-- If you're using `revolt.chat` (the default instance), see their account deletion guide [here](https://support.revolt.chat/kb/account/deleting-your-account), or their partial data deletion guide [here](https://support.revolt.chat/kb/account/partial-deletion-pii).
+- If you're using `stoat.chat` (the default instance), see their account deletion guide [here](https://support.revolt.chat/kb/account/deleting-your-account), or their partial data deletion guide [here](https://support.revolt.chat/kb/account/partial-deletion-pii).
 - If you're using another instance, please contact the instance's operators for more information.
 
 ## Analytics
@@ -43,7 +43,7 @@ If you enable the full tier of analytics, Clerotri will collect:
 
 - everything listed in the Basic tier,
 - your settings and their values (e.g. your theme and the features you enable/disable), and
-- your instance's API URL (e.g. `https://api.revolt.chat`).
+- your instance's API URL (e.g. `https://api.stoat.chat`).
 
 This lets us see what settings are being used and how, and which instances are being used - for example, if a setting is unused we can more safely drop it, and if a lot of users are using a specific instance we can consider extra support for it and any extra features or changes it may have.
 
@@ -57,4 +57,4 @@ As there's no way for us to tie multiple sets of data together, **analytics dele
 
 ### Contact us
 
-If you have any further questions or suggestions, feel free to [open an issue](https://github.com/upryzing/clerotri/issues/new) or ask in [Clerotri's Revolt server](https://rvlt.gg/clerotri)
+If you have any further questions or suggestions, feel free to [open an issue](https://github.com/upryzing/clerotri/issues/new) or ask in [Clerotri's Stoat server](https://rvlt.gg/clerotri)

@@ -189,8 +189,8 @@ function SuccessScreen({reportedObject}: {reportedObject: ReportedObject}) {
       <Text style={{marginBlockEnd: commonValues.sizes.small}}>
         {t(
           `app.sheets.report.success_body_${
-            client.apiURL === OFFICIAL_INSTANCE_API_URLS.revolt
-              ? 'revolt'
+            client.apiURL === OFFICIAL_INSTANCE_API_URLS.stoat
+              ? 'stoat'
               : client.apiURL === OFFICIAL_INSTANCE_API_URLS.upryzing
                 ? 'upryzing'
                 : 'generic'
@@ -265,8 +265,8 @@ function ReasonsSelector({
           <View style={{marginBlockStart: commonValues.sizes.medium}}>
             <Notice
               stringKey={`app.sheets.report.destination_notice_${
-                client.apiURL === OFFICIAL_INSTANCE_API_URLS.revolt
-                  ? 'revolt'
+                client.apiURL === OFFICIAL_INSTANCE_API_URLS.stoat
+                  ? 'stoat'
                   : client.apiURL === OFFICIAL_INSTANCE_API_URLS.upryzing
                     ? 'upryzing'
                     : 'generic'

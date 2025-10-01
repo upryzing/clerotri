@@ -101,7 +101,7 @@ const BotSettings = observer(({bot}: {bot: GroupedBotObject}) => {
           </Text>
           <Text>
             {t(
-              `app.settings_menu.bots.public_body_${client.apiURL === OFFICIAL_INSTANCE_API_URLS.upryzing ? 'upryzing' : 'revolt'}`,
+              `app.settings_menu.bots.public_body_${client.apiURL === OFFICIAL_INSTANCE_API_URLS.upryzing ? 'upryzing' : 'stoat'}`,
             )}
           </Text>
         </View>
@@ -187,7 +187,7 @@ const BotListEntry = observer(
 // TODO: de-hardcode these when they can be fetched from the backend
 const MAX_BOT_COUNT = 5;
 
-const AUP_URL = 'https://revolt.chat/aup';
+const AUP_URL = 'https://stoat.chat/aup';
 
 export const BotList = observer(
   ({

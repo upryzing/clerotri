@@ -24,7 +24,7 @@
   </a>
 </div>
 
-**Clerotri** is an Upryzing and Revolt client made with React Native. It is currently available for Android and will be available for web in the future.
+**Clerotri** is an Upryzing and Revolt/Stoat client made with React Native. It is currently available for Android and will be available for web in the future.
 
 **Please note that Clerotri is currently in beta.** It may contain bugs and incomplete features - use at your own discretion.
 
@@ -64,7 +64,7 @@ See [the building guide][building].
 
 ## Troubleshooting
 
-If you encounter bugs, first check if you're able to [open Revolt in your browser](https://app.revolt.chat); also, check if you have any firewall settings that may block the Revolt API.
+If you encounter bugs, first check if you're able to [open Stoat in your browser](https://old.stoat.chat); also, check if you have any firewall settings that may block the Stoat API.
 
 If you're still experiencing issues, and there aren't any open issues for the bug(s) you're facing, please [open an issue](https://github.com/upryzing/clerotri/issues).
 

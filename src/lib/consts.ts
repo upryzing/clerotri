@@ -29,10 +29,10 @@ export const SPECIAL_SERVERS = {
 };
 
 // default API URL - used unless the user specifies another instance
-export const DEFAULT_API_URL = 'https://api.revolt.chat/0.8';
+export const DEFAULT_API_URL = 'https://api.stoat.chat/0.8';
 
 export const OFFICIAL_INSTANCE_API_URLS = {
-  revolt: DEFAULT_API_URL,
+  stoat: DEFAULT_API_URL,
   upryzing: 'https://web.upryzing.app/api',
 };
 
@@ -41,14 +41,16 @@ export const DEFAULT_MESSAGE_LOAD_COUNT = 50;
 
 // sign up URL for the official instance
 export const OFFICIAL_INSTANCE_SIGNUP_URL =
-  'https://app.revolt.chat/login/create';
+  'https://old.stoat.chat/login/create';
 
 // server invite paths for the official instance
 const INVITE_PATHS = [
   'app.revolt.chat/invite',
   'nightly.revolt.chat/invite',
   'local.revolt.chat/invite',
+  'old.stoat.cha/invite',
   'rvlt.gg',
+  'stt.gg',
 ];
 
 // regex to find server invites
@@ -64,6 +66,7 @@ const BOT_INVITE_PATHS = [
   'app.revolt.chat/bot',
   'nightly.revolt.chat/bot',
   'local.revolt.chat/bot',
+  'old.stoat.chat/bot',
 ];
 
 // regex to find bot invites
@@ -75,7 +78,7 @@ export const RE_BOT_INVITE = new RegExp(
 );
 
 // link to discover, used by the invite finder to ignore these links
-export const DISCOVER_URL = 'rvlt.gg/discover';
+export const DISCOVER_URL = 'stt.gg/discover';
 
 // link to the revolt wiki, per above
 export const WIKI_URL = 'wiki.rvlt.gg';

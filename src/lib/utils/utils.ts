@@ -276,7 +276,7 @@ function emojiToCodePoint(rune: string) {
 
 export function unicodeEmojiURL(emoji: string, pack: EmojiPacks = 'mutant') {
   const REVISION = 3;
-  return `https://static.revolt.chat/emoji/${pack}/${emojiToCodePoint(
+  return `https://static.stoat.chat/emoji/${pack}/${emojiToCodePoint(
     emoji,
   )}.svg?rev=${REVISION}`;
 }

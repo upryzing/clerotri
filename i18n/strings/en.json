@@ -42,7 +42,7 @@
             "privacy_info": "Privacy information"
         },
         "badges": {
-            "Developer": "Revolt Developer",
+            "Developer": "Stoat Developer",
             "EarlyAdopter": "Early Adopter",
             "Founder": "Founder",
             "Paw": "Insert's Paw",
@@ -114,8 +114,8 @@
         },
         "home": {
             "description": "Swipe from the left of the screen or tap the three lines icon to see your servers and messages!",
-            "join_lounge": "Join the Revolt Lounge",
-            "open_lounge": "Open the Revolt Lounge",
+            "join_lounge": "Join the Stoat Lounge",
+            "open_lounge": "Open the Stoat Lounge",
             "join_clerotri": "Join the Clerotri server",
             "open_clerotri": "Open the Clerotri server",
             "open_settings": "Open settings"
@@ -418,7 +418,7 @@
                 "aup_notice": "All bots must follow the <2>Acceptable Use Policy</2>.",
                 "token": "Token",
                 "public": "Public",
-                "public_body_revolt": "If this is enabled, this bot can be invited to groups and servers by other users.",
+                "public_body_stoat": "If this is enabled, this bot can be invited to groups and servers by other users.",
                 "public_body_upryzing": "If this is enabled, this bot can be invited to groups and spaces by other users.",
                 "copy_invite_link": "Copy invite link",
                 "invite_bot": "Invite bot"
@@ -488,7 +488,7 @@
                 "additional_context_placeholder": "Add more context (optional)",
                 "additional_context_placeholder_recommended": "Add more context (recommended)",
                 "bridged_message_notice": "This message may have been sent from another platform. If so, we recommend reporting it there as well.",
-                "destination_notice_revolt": "This report will be sent to Revolt's moderation team, not this server's moderators.",
+                "destination_notice_stoat": "This report will be sent to Stoat's moderation team, not this server's moderators.",
                 "destination_notice_upryzing": "This report will be sent to Upryzing's moderation team, not this space's moderators.",
                 "destination_notice_generic": "This report will be sent to the platform's moderation team, not this server's moderators.",
                 "next_steps": {
@@ -554,7 +554,7 @@
                     "SpamAbuse_body_server": "This server is spamming or abusing the platform",
                     "SpamAbuse_body_user": "This user is spamming or abusing the platform",
                     "Underage": "Underage",
-                    "Underage_body_user": "This user is too young to be using Revolt",
+                    "Underage_body_user": "This user is too young to be using the platform",
                     "UnsolicitedSpam": "Unsolicited spam",
                     "UnsolicitedSpam_body_message": "This message contains unsolicited advertising or spam",
                     "UnsolicitedSpam_body_server": "This server contains unsolicited advertising or spam",
@@ -564,7 +564,7 @@
                 "report_server": "Report server",
                 "report_user": "Report user",
                 "success_header": "Report sent",
-                "success_body_revolt": "Your report has been sent to the Revolt team for review. Thank you for helping to keep Revolt safe.",
+                "success_body_stoat": "Your report has been sent to the Stoat team for review. Thank you for helping to keep Stoat safe.",
                 "success_body_upryzing": "Your report has been sent to the Upryzing team for review. Thank you for helping to keep Upryzing safe.",
                 "success_body_generic": "Your report has been sent to the platform's moderation team for review. Thank you for helping to keep the platform safe."
             }
@@ -579,7 +579,7 @@
             },
             "voice": {
                 "header": "Voice channels aren't supported in Clerotri yet!",
-                "body": "In the meantime, you can join them via the web app or Revolt Desktop."
+                "body": "In the meantime, you can join them via the web app or Stoat Desktop."
             }
         }
     }

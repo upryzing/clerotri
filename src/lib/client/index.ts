@@ -8,9 +8,9 @@ function getAPIURL() {
 
   const instance = storage.getString('instanceURL');
 
-  if (!instance) {
+  if (!instance || instance.startsWith('https://api.revolt.chat')) {
     console.log(
-      '[AUTH] Unable to fetch instanceURL; setting apiURL to default',
+      `[AUTH] ${instance ? 'Unable to fetch instanceURL' : 'Current instanceURL is outdated'}; setting apiURL to default`,
     );
     storage.set('instanceURL', DEFAULT_API_URL);
     return DEFAULT_API_URL;
