@@ -12,9 +12,10 @@ import {
 } from 'react-native-device-info';
 import {useSafeAreaInsets} from 'react-native-safe-area-context';
 
-import {app, appVersion, setFunction} from '@clerotri/Generic';
+import {app, setFunction} from '@clerotri/Generic';
 import {client} from '@clerotri/lib/client';
 import {DONATIONS_INFO, OPEN_ISSUES, WEBLATE} from '@clerotri/lib/consts';
+import {APP_VERSION} from '@clerotri/lib/metadata';
 import {storage} from '@clerotri/lib/storage';
 import {getInstanceURL} from '@clerotri/lib/storage/utils';
 import {commonValues, type Theme, ThemeContext} from '@clerotri/lib/themes';
@@ -47,7 +48,7 @@ function copyDebugInfo() {
       instance: getInstanceURL(),
       userID: client.user?._id ?? 'ERR_ID_UNDEFINED',
       settings: storage.getString('settings'),
-      version: appVersion,
+      version: APP_VERSION,
     },
   };
 

@@ -8,8 +8,8 @@ import {
   getUserAgentSync,
 } from 'react-native-device-info';
 
+import {APP_VERSION} from '@clerotri/lib/metadata';
 import {storage} from '@clerotri/lib/storage';
-import {appVersion} from '@clerotri/Generic';
 import {getInstanceURL} from '@clerotri/lib/storage/utils';
 
 export const generateAnalyticsObject = (tier: 'basic' | 'full') => {
@@ -26,7 +26,7 @@ export const generateAnalyticsObject = (tier: 'basic' | 'full') => {
       : Platform.OS === 'web'
         ? `Web (${getBaseOsSync})`
         : 'N/A';
-  const clerotriVersion = `v${appVersion}`;
+  const clerotriVersion = `v${APP_VERSION}`;
 
   // full
   const settings = tier === 'full' ? storage.getString('settings') : null;

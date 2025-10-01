@@ -9,6 +9,7 @@ const dir = fileURLToPath(import.meta.url);
 const currentDir = path.dirname(dir);
 const parentDir = path.dirname(currentDir);
 
+const appVersion = packageData.version;
 const rnVersion = packageData.dependencies['react-native'].replace('^', '');
 const rvjsVersion = packageData.dependencies['revolt.js'].replace(
   'npm:@rexovolt/revolt.js@^',
@@ -23,7 +24,9 @@ exec('git rev-parse HEAD', async (err, result) => {
 
   commitHash = result.replace('\n', '');
 
-  const fileContents = `export const REACT_NATIVE_VERSION = '${rnVersion}';
+  const fileContents = `export const APP_VERSION = '${appVersion}';
+
+export const REACT_NATIVE_VERSION = '${rnVersion}';
 
 export const REVOLT_JS_VERSION = '${rvjsVersion}';
 

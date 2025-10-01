@@ -9,8 +9,8 @@ import {NewContextButton} from '@clerotri/components/common/buttons';
 import {MarkdownView} from '@clerotri/components/common/MarkdownView';
 import {generateDonateGradient} from '@clerotri/components/sheets/SettingsSheet';
 import {DONATIONS_INFO, WEBLATE} from '@clerotri/lib/consts';
+import {APP_VERSION} from '@clerotri/lib/metadata';
 import {commonValues, ThemeContext} from '@clerotri/lib/themes';
-import {appVersion} from '@clerotri/Generic';
 import {openUrl} from '@clerotri/lib/utils';
 
 const changelogParagraphs = [
@@ -36,7 +36,7 @@ export const ChangelogSheet = observer(() => {
         justifyContent: 'space-between',
       }}>
       <View style={{justifyContent: 'center'}}>
-        <Text type={'h1'}>v{appVersion}</Text>
+        <Text type={'h1'}>v{APP_VERSION}</Text>
         {changelogParagraphs.map((paragraph, index) => (
           <View
             key={`changelog-paragraph-${index}`}
@@ -59,7 +59,7 @@ export const ChangelogSheet = observer(() => {
             experimental_backgroundImage: [donateGradient],
           }}
           onPress={() => {
-            openUrl(`${DONATIONS_INFO}_iac_${appVersion}`);
+            openUrl(`${DONATIONS_INFO}_iac_${APP_VERSION}`);
           }}
         />
         <NewContextButton

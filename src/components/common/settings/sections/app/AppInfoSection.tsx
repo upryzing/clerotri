@@ -3,13 +3,14 @@ import {Pressable, View} from 'react-native';
 
 import MaterialCommunityIcon from '@react-native-vector-icons/material-design-icons';
 
-import {appVersion, settings} from '@clerotri/Generic';
+import {settings} from '@clerotri/Generic';
 import {
   CONTRIBUTORS_LIST,
   FEDI_PROFILE,
   GITHUB_REPO,
 } from '@clerotri/lib/consts';
 import {
+  APP_VERSION,
   BUILD_COMMIT,
   REACT_NATIVE_VERSION,
   REVOLT_JS_VERSION,
@@ -50,7 +51,7 @@ export const AppInfoSection = () => {
           <Text type={'h1'}>
             Clerotri{' '}
             <Text colour={currentTheme.foregroundSecondary}>
-              {isDebug ? 'Debug ' : ''}v{appVersion}
+              {isDebug ? 'Debug ' : ''}v{APP_VERSION}
             </Text>
           </Text>
         </View>

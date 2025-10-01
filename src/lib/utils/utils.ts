@@ -4,7 +4,7 @@ import {differenceInMinutes} from 'date-fns/differenceInMinutes';
 import {isSameDay} from 'date-fns/isSameDay';
 import type {Channel, Message} from 'revolt.js';
 
-import {app, appVersion} from '@clerotri/Generic';
+import {app} from '@clerotri/Generic';
 import {client} from '@clerotri/lib/client';
 import {
   DEFAULT_MESSAGE_LOAD_COUNT,
@@ -13,6 +13,7 @@ import {
   RE_INVITE,
   WIKI_URL,
 } from '@clerotri/lib/consts';
+import {APP_VERSION} from '@clerotri/lib/metadata';
 import {storage} from '@clerotri/lib/storage';
 import {EmojiPacks} from '@clerotri/lib/types';
 
@@ -86,20 +87,20 @@ export function openLastChannel() {
 
 export function checkLastVersion() {
   const lastVersion = storage.getString('lastVersion');
-  console.log(appVersion, lastVersion);
+  console.log(APP_VERSION, lastVersion);
   if (!lastVersion || lastVersion === '') {
     console.log(
-      `[APP] lastVersion is null (${lastVersion}), setting to appVersion (${appVersion})`,
+      `[APP] lastVersion is null (${lastVersion}), setting to APP_VERSION (${APP_VERSION})`,
     );
     return null;
-  } else if (appVersion !== lastVersion) {
+  } else if (APP_VERSION !== lastVersion) {
     console.log(
-      `[APP] lastVersion (${lastVersion}) is different from appVersion (${appVersion})`,
+      `[APP] lastVersion (${lastVersion}) is different from APP_VERSION (${APP_VERSION})`,
     );
     return lastVersion;
   } else {
     console.log(
-      `[APP] lastVersion (${lastVersion}) is equal to appVersion (${appVersion})`,
+      `[APP] lastVersion (${lastVersion}) is equal to APP_VERSION (${APP_VERSION})`,
     );
     return 'current';
   }
