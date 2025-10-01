@@ -334,7 +334,7 @@
                     "nickname": "Nickname",
                     "nickname_placeholder": "Set a nickname…",
                     "timeout_user": "Timeout {{name}}",
-                    "timeout_user_body": "They won't be able to send messages or reactions unil their timeout ends.",
+                    "timeout_user_body": "They won't be able to send messages or reactions until their timeout ends.",
                     "kick_user": "Kick {{name}}",
                     "kick_user_body": "They can rejoin with an invite.",
                     "ban_user": "Ban {{name}}",
