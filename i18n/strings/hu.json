@@ -7,16 +7,19 @@
             "back": "Vissza",
             "confirm": "Jóváhagy",
             "save": "Mentés",
-            "create_channel": "Csatorna létrehozása"
+            "create_channel": "Csatorna létrehozása",
+            "copy_invite": "Meghívás másolása"
         },
         "loading": {
             "generic": "Betöltés…",
-            "connecting": "Bejelentkezés alatt…"
+            "connecting": "Bejelentkezés alatt…",
+            "unknown_state": "Aj jaj…",
+            "unknown_state_body": "Légy szíves, értesítsd a fejlesztőket, hogy ezt láttad (érték: {{state}})"
         },
         "home": {
             "description": "A szervereidhez és üzeneteidhez balról húzz egyet a képernyőn, vagy koppints a háromvonalas ikonra!",
-            "join_lounge": "Csatlakozás a Revolt Lounge-hoz",
-            "open_lounge": "Revolt Lounge megnyitása",
+            "join_lounge": "Csatlakozás a Stoat Lounge-hoz",
+            "open_lounge": "Stoat Lounge megnyitása",
             "join_clerotri": "Csatlakozás az Clerotri-szerverhez",
             "open_clerotri": "Clerotri-szerver megnyitása",
             "open_settings": "Beállítások megnyitása"
@@ -27,7 +30,8 @@
                 "body_message": "Biztosan <2>ezt szeretnéd</2> törölni?",
                 "body_server": "Biztosan törlöd őt: <2>{{name}}</2>?",
                 "warning": "A törlést nem lehet majd visszavonni.",
-                "header_server": "Törlöd a szervert?"
+                "header_server": "Törlöd a szervert?",
+                "header_channel": "Csatorna törlése?"
             },
             "edit_text": {
                 "nickname_placeholder": "Becenév (hagy üresen a visszaállításhoz)",
@@ -185,7 +189,11 @@
                 "signup_body": "Átirányítunk a web apphoz, ahol regisztrálhatsz. Miután regisztráltál, jelentkezz be."
             },
             "subheader": "Van már fiókod?",
-            "token_info_label": "Hogyan kapok tokent?"
+            "token_info_label": "Hogyan kapok tokent?",
+            "settings": {
+                "saved": "Mentve!",
+                "saved_body": "Egyelőre, az applikációt újra kell nyitni, hogy a változásaid érvényesüljenek. Tudjuk, hogy ez nem ideális - majd megoldjuk később."
+            }
         },
         "settings_menu": {
             "other": {
@@ -217,6 +225,63 @@
             "profile": {
                 "title": "Profil"
             }
+        },
+        "analytics": {
+            "body": "Alapból a Clerotri nem gyűjt adatokat. Engedélyezheted az adatgyűjtést, ha szeretnél segíteni nekünk az app jobbításában.",
+            "tiers": {
+                "basic": "Alap",
+                "full": "Tele"
+            },
+            "copied_data_toast": "Másolt adat példa",
+            "active": "Aktív",
+            "values": {
+                "model": "A készüléked modellje",
+                "os": "Az operációs rendszered és annak a verziója",
+                "clerotriVersion": "A Clerotri verzió, amit használsz",
+                "inBasic_body": "Modell, operációs rendszer verzió, Clerotri verzió",
+                "settings": "A Clerotri beállításaid"
+            }
+        },
+        "badges": {
+            "Developer": "Stoat fejlesztő",
+            "Paw": "Insert Mancssa",
+            "PlatformModeration": "Platform Moderátor",
+            "ResponsibleDisclosure": "Felelőségteljesen feljelentett egy biztonsági hibát",
+            "Supporter": "Adományozó",
+            "Translator": "Fordító"
+        },
+        "custom_badges": {
+            "clerotri_dev": "Clerotri Fejlesztő"
+        },
+        "discover": {
+            "count_bots_one": "{{count}} bot",
+            "count_bots_other": "{{count}} bot-ok",
+            "count_servers_one": "{{count}} szerver",
+            "count_servers_other": "{{count}} szerverek",
+            "fetching_bots": "Bot-ok betöltése…",
+            "fetching_servers": "Szerverek betöltése…",
+            "tabs": {
+                "bots": "Bot-ok",
+                "servers": "Szerverek"
+            }
+        },
+        "friends_list": {
+            "blocked": "Blokkolt - {{count}}",
+            "blocked_empty": "Nincsenek blokkolt felhasználók",
+            "incoming": "Bejövő kérelmek - {{count}}",
+            "incoming_empty": "Nincsenek bejövő kérelmek",
+            "outgoing": "Kimenő kérelmek - {{count}}",
+            "outgoing_empty": "Nincsenek kimenő kérelmek"
+        },
+        "messaging": {
+            "message_box_channel": "Üzenet #{{name}}",
+            "message_box_group": "Üzenet {{name}}",
+            "message_box_saved_notes": "Mentés a jegyzeteidbe",
+            "message_box_system": "Nem tudsz rendszer üzenetekre válaszolni.",
+            "message_box_no_perms": "Nincs engedélyed, hogy ebben a csatornában üzenjél.",
+            "no_messages": "Nincsenek üzenetek",
+            "no_messages_body": "Kezdd el a beszélgetést.",
+            "reply_not_loaded": "Üzenet nincs betöltve"
         }
     }
 }
