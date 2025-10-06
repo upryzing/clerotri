@@ -104,7 +104,7 @@
             },
             "voice": {
                 "header": "Az clerotri még nem támogatja a beszédcsatornákat!",
-                "body": "Amíg el nem készül, addig a web app-ban, vagy pedig a Revolt Desktop-ban tudsz hangcsatornához csatlakozni."
+                "body": "Amíg el nem készül, addig a web app-ban, vagy pedig a Stoat Desktop-ban tudsz hangcsatornához csatlakozni."
             }
         },
         "servers": {
@@ -121,7 +121,7 @@
                     "description": "Szerver leírása",
                     "markdown_tip": "A szerver leírásához Markdown-formázás is használható.",
                     "errors": {
-                        "empty_server_name": "Meg kell adnod a szerver nevét"
+                        "empty_server_name": "Meg kell adnod a szerver nevét!"
                     }
                 },
                 "user_management": "Felhasználók kezelése",
@@ -132,7 +132,7 @@
                     "name": "Csatornanév",
                     "no_perms_set": "még nincsenek beállítva",
                     "errors": {
-                        "empty_channel_name": "A csatorna neve nem maradhat üresen"
+                        "empty_channel_name": "A csatorna neve nem maradhat üresen!"
                     }
                 },
                 "roles": {
@@ -220,7 +220,7 @@
                 "title": "Nyelv"
             },
             "info": {
-                "title": "Az Clerotriról"
+                "title": "A Clerotriról"
             },
             "profile": {
                 "title": "Profil"
