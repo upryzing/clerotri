@@ -2,8 +2,8 @@
     "app": {
         "home": {
             "description": "Wische vom linken Rand oder tippe auf die drei Linien, um deine Server und Nachrichten zu sehen!",
-            "join_lounge": "Revolt-Lounge beitreten",
-            "open_lounge": "Revolt-Lounge öffnen",
+            "join_lounge": "Stoat-Lounge beitreten",
+            "open_lounge": "Stoat-Lounge öffnen",
             "join_clerotri": "Dem Clerotri-Server beitreten",
             "open_clerotri": "Den Clerotri-Server öffnen",
             "open_settings": "Einstellungen öffnen"
@@ -16,7 +16,9 @@
             "confirm": "Bestätigen",
             "save": "Speichern",
             "create_channel": "Kanal erstellen",
-            "copy_invite": "Einladung kopieren"
+            "copy_invite": "Einladung kopieren",
+            "ban": "Bannen",
+            "kick": "Kick"
         },
         "servers": {
             "settings": {
@@ -176,16 +178,27 @@
                 "nickname_placeholder": "Spitzname (zum Zurücksetzen leer lassen)",
                 "nickname_other_placeholder": "Spitzname (zum Zurücksetzen leer lassen)",
                 "nickname_header": "Spitznamen festlegen",
-                "nickname_other_header": "Lege den Spitznamen des Mitglieds fest"
+                "nickname_other_header": "Lege den Spitznamen des Mitglieds fest",
+                "new_bot_header": "Bot erstellen",
+                "new_bot_placeholder": "Benutzername"
             },
             "new_invite": {
                 "header": "Einladung erstellt",
                 "body": "Hier ist dein neuer Einladungs-Link:"
+            },
+            "confirm_mod_action": {
+                "reason_ban": "Grund für die Sperre (optional)",
+                "reason_placeholder": "Geben Sie einen Grund an…",
+                "header_kick": "Diesen Benutzer rauswerfen?",
+                "header_ban": "Diesen Benutzer sperren?",
+                "body_kick": "Sind Sie sicher, dass Sie <4>{{name}}</4> <2>kicken</2> möchten?",
+                "body_ban": "Sind Sie der Benutzer, den Sie <2>sperren</2> möchten, <4>{{name}}</4>?",
+                "reason_kick": "Grund für den Rauswurf (optional)"
             }
         },
         "misc": {
             "voice": {
-                "body": "In der Zwischenzeit kannst du über die Web-App oder Revolt Desktop beitreten.",
+                "body": "In der Zwischenzeit können Sie ihnen über die Web-App oder Stoat Desktop beitreten.",
                 "header": "Sprachkanäle werden in Clerotri noch nicht unterstützt!"
             },
             "network_indicator": {
@@ -303,7 +316,28 @@
             "ManageCustomisation": "Anpassung verwalten",
             "ManageCustomisation_body_server": "Ermöglicht Mitgliedern mit dieser Rolle, Emojis zu erstellen und zu löschen.",
             "ManageMessages": "Nachrichten verwalten",
-            "KickMembers_body_server": "Ermöglicht Mitgliedern mit dieser Rolle, andere Mitglieder vom Server zu werfen. Geworbene Mitglieder können mit einer Einladung wieder beitreten."
+            "KickMembers_body_server": "Ermöglicht Mitgliedern mit dieser Rolle, andere Mitglieder vom Server zu werfen. Geworbene Mitglieder können mit einer Einladung wieder beitreten.",
+            "ManageMessages_body_server": "Ermöglicht Mitgliedern mit dieser Rolle, Nachrichten anzuheften und von anderen Benutzern gesendete Nachrichten zu löschen.",
+            "ManageNicknames": "Spitznamen verwalten",
+            "ManageNicknames_body_server": "Ermöglicht Mitgliedern mit dieser Rolle, die Spitznamen anderer Mitglieder zu ändern.",
+            "ManagePermissions": "Berechtigungen verwalten",
+            "ManagePermissions_body_server": "Ermöglicht Mitgliedern mit dieser Rolle, die Berechtigungen von Kanälen und Rollen mit einem niedrigeren Rang als ihrer höchsten Rolle zu bearbeiten.",
+            "ManageRole": "Rollen verwalten",
+            "ManageRole_body_server": "Ermöglicht Mitgliedern mit dieser Rolle, Rollen mit einem niedrigeren Rang als ihrer höchsten Rolle zu erstellen, zu bearbeiten und zu löschen.",
+            "ManageServer": "Server verwalten",
+            "ManageServer_body_server": "Ermöglicht Mitgliedern mit dieser Rolle, die Informationen des Servers zu ändern, beispielsweise seinen Namen, sein Symbol und seine Beschreibung.",
+            "ManageWebhooks": "Webhooks verwalten",
+            "ManageWebhooks_body_server": "Ermöglicht Mitgliedern mit dieser Rolle, Webhooks zu erstellen, zu bearbeiten und zu löschen.",
+            "Masquerade": "Verwenden Sie Maskeraden",
+            "Masquerade_body_server": "Ermöglicht Mitgliedern mit dieser Rolle, für einzelne Nachrichten unterschiedliche Namen und Avatare zu verwenden.",
+            "React": "Reagieren",
+            "React_body_server": "Ermöglicht Mitgliedern mit dieser Rolle, auf Nachrichten zu reagieren.",
+            "RemoveAvatars": "Avatare entfernen",
+            "RemoveAvatars_body_server": "Ermöglicht Mitgliedern mit dieser Rolle, die Server-Avatare anderer Mitglieder zu entfernen.",
+            "SendEmbeds": "Embeds senden",
+            "SendEmbeds_body_server": "Ermöglicht Mitgliedern mit dieser Rolle, eingebettete Links und benutzerdefinierte Texte zu senden.",
+            "SendMessage": "Nachrichten senden",
+            "SendMessage_body_server": "Ermöglicht Mitgliedern mit dieser Rolle, Nachrichten in Textkanälen zu senden."
         },
         "channel_list": {
             "direct_messages_header": "Persönliche Nachrichten"
@@ -348,6 +382,19 @@
             "outgoing_empty": "Keine versendeten Anfragen",
             "onlineFriends": "Freunde online - {{count}}",
             "offlineFriends_empty": "Keine Freunde offline"
+        },
+        "badges": {
+            "Developer": "Stoat-Entwickler",
+            "EarlyAdopter": "Frühanwender",
+            "Founder": "Gründer",
+            "Paw": "Pfote des Einsatzes",
+            "PlatformModeration": "Platform Moderator",
+            "ResponsibleDisclosure": "Verantwortungsvoll ein Sicherheitsproblem offengelegt",
+            "Supporter": "Spender",
+            "Translator": "Übersetzer"
+        },
+        "custom_badges": {
+            "clerotri_dev": "Clerotri-Entwickler"
         }
     }
 }
