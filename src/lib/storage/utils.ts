@@ -1,4 +1,4 @@
-import {settingsList} from '@clerotri/Generic';
+import {settingsList} from '@clerotri/lib/settings/list';
 import {DEFAULT_API_URL} from '@clerotri/lib/consts';
 import {storage} from '@clerotri/lib/storage';
 import {Setting} from '@clerotri/lib/types';

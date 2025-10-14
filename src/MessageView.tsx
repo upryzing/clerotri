@@ -9,13 +9,14 @@ import {ErrorBoundary} from 'react-error-boundary';
 
 import {Channel, Message as RevoltMessage} from 'revolt.js';
 
-import {app, settings} from './Generic';
+import {app} from './Generic';
 import {client} from './lib/client';
 import {MessageBox} from './components/MessageBox';
 import {styles} from './Theme';
 import {Button, Text} from './components/common/atoms';
 import {Message} from './components/common/messaging';
 import {LoadingScreen} from './components/views/LoadingScreen';
+import {settings} from './lib/settings';
 import {ThemeContext} from './lib/themes';
 import {calculateGrouped, fetchMessages} from './lib/utils';
 

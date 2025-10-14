@@ -6,7 +6,8 @@ import Clipboard from '@react-native-clipboard/clipboard';
 
 import type {Message} from 'revolt.js';
 
-import {app, settings} from '@clerotri/Generic';
+import {app} from '@clerotri/Generic';
+import {settings} from '@clerotri/lib/settings';
 import {
   CopyIDButton,
   NewContextButton,

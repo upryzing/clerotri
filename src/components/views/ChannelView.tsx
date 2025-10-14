@@ -8,7 +8,8 @@ import MaterialIcon from '@react-native-vector-icons/material-icons';
 
 import type {Channel, Message} from 'revolt.js';
 
-import {app, settings} from '@clerotri/Generic';
+import {app} from '@clerotri/Generic';
+import {settings} from '@clerotri/lib/settings';
 import {Messages} from '@clerotri/LegacyMessageView';
 import {MessageView} from '@clerotri/MessageView';
 import {MessageBox} from '@clerotri/components/MessageBox';

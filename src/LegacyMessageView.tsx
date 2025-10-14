@@ -10,13 +10,14 @@ import {autorun} from 'mobx';
 
 import type {Message as RevoltMessage} from 'revolt.js';
 
-import {app, settings, setFunction, randomizeRemark} from './Generic';
+import {app, setFunction, randomizeRemark} from './Generic';
 import {client} from './lib/client';
 import {styles} from './Theme';
 import {Text} from './components/common/atoms';
 import {Message} from './components/common/messaging';
 import {LoadingScreen} from './components/views/LoadingScreen';
 import {DEFAULT_MESSAGE_LOAD_COUNT} from './lib/consts';
+import {settings} from './lib/settings';
 import {ThemeContext} from './lib/themes';
 import {calculateGrouped} from './lib/utils';
 

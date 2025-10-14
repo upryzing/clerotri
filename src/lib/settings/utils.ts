@@ -1,5 +1,5 @@
-import { settingsList } from "@clerotri/lib/settings/list";
-import { storage } from "@clerotri/lib/storage";
+import {settingsList} from '@clerotri/lib/settings/list';
+import {storage} from '@clerotri/lib/storage';
 
 export const settings = {
   _fetch: (k: string) => {

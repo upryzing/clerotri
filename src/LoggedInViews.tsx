@@ -2,7 +2,7 @@ import {type RefObject, useEffect, useState} from 'react';
 
 import type {API, ClientboundNotification, Server} from 'revolt.js';
 
-import {app, setFunction, settings} from '@clerotri/Generic';
+import {app, setFunction} from '@clerotri/Generic';
 import {client} from '@clerotri/lib/client';
 import {Modals} from '@clerotri/Modals';
 import {SideMenuHandler} from '@clerotri/SideMenu';
@@ -10,6 +10,7 @@ import {NetworkIndicator} from '@clerotri/components/NetworkIndicator';
 import {Notification} from '@clerotri/components/Notification';
 import {APP_VERSION} from '@clerotri/lib/metadata';
 import {handleMessageNotification} from '@clerotri/lib/notifications';
+import {settings} from '@clerotri/lib/settings';
 import {ChannelContext, ServerContext} from '@clerotri/lib/state';
 import {storage} from '@clerotri/lib/storage';
 import {CVChannel} from '@clerotri/lib/types';

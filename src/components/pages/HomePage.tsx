@@ -2,7 +2,8 @@ import {TouchableOpacity, View} from 'react-native';
 import {useTranslation} from 'react-i18next';
 import {observer} from 'mobx-react-lite';
 
-import {app, settings} from '@clerotri/Generic';
+import {app} from '@clerotri/Generic';
+import {settings} from '@clerotri/lib/settings';
 import {client} from '@clerotri/lib/client';
 import {
   SPECIAL_DATES,

@@ -7,7 +7,8 @@ import MaterialCommunityIcon from '@react-native-vector-icons/material-design-ic
 
 import type {Member, Server} from 'revolt.js';
 
-import {app, settings} from '@clerotri/Generic';
+import {app} from '@clerotri/Generic';
+import {settings} from '@clerotri/lib/settings';
 import {client} from '@clerotri/lib/client';
 import {SERVER_FLAGS, SPECIAL_SERVERS} from '@clerotri/lib/consts';
 import {ChannelContext} from '@clerotri/lib/state';

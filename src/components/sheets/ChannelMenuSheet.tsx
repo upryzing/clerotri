@@ -6,7 +6,8 @@ import Clipboard from '@react-native-clipboard/clipboard';
 
 import type {Channel} from 'revolt.js';
 
-import {app, settings} from '@clerotri/Generic';
+import {app} from '@clerotri/Generic';
+import {settings} from '@clerotri/lib/settings';
 import {Text} from '@clerotri/components/common/atoms';
 import {
   CopyIDButton,

@@ -2,8 +2,8 @@ import {useState} from 'react';
 import {View} from 'react-native';
 import {observer} from 'mobx-react-lite';
 
-import {settings, settingsList} from '@clerotri/Generic';
 import {BoolSetting, OptionSetting, StringNumberSetting} from './atoms';
+import {settings, settingsList} from '@clerotri/lib/settings';
 
 export const SettingsCategory = observer(({category}: {category: string}) => {
   const [showExperimental, setShowExperimental] = useState(

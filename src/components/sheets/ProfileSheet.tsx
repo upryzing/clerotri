@@ -8,7 +8,8 @@ import MaterialCommunityIcon from '@react-native-vector-icons/material-design-ic
 
 import type {API, Server, User} from 'revolt.js';
 
-import {app, settings} from '@clerotri/Generic';
+import {app} from '@clerotri/Generic';
+import {settings} from '@clerotri/lib/settings';
 import {client} from '@clerotri/lib/client';
 import {
   Avatar,

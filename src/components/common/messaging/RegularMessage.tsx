@@ -12,7 +12,8 @@ import {formatRelative} from 'date-fns/formatRelative';
 import {enGB, enUS} from 'date-fns/locale';
 import {decodeTime} from 'ulid';
 
-import {app, settings} from '@clerotri/Generic';
+import {app} from '@clerotri/Generic';
+import {settings} from '@clerotri/lib/settings';
 import {client} from '@clerotri/lib/client';
 import {Avatar, Text, Username} from '@clerotri/components/common/atoms';
 import {MarkdownView} from '@clerotri/components/common/MarkdownView';

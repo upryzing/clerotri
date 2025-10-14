@@ -12,8 +12,9 @@ import MaterialCommunityIcon from '@react-native-vector-icons/material-design-ic
 import type {Channel, Message} from 'revolt.js';
 import {ulid} from 'ulid';
 
-import {app, setFunction, settings} from '@clerotri/Generic';
+import {app, setFunction} from '@clerotri/Generic';
 import {client} from '@clerotri/lib/client';
+import {settings} from '@clerotri/lib/settings';
 import {styles} from '@clerotri/Theme';
 
 import {AttachmentPickerButton} from '@clerotri/components/AttachmentPickerButton';

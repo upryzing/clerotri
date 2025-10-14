@@ -1,6 +1,7 @@
 import type {API} from 'revolt.js';
 
-import {app, settings} from '@clerotri/Generic';
+import {app} from '@clerotri/Generic';
+import {settings} from '@clerotri/lib/settings';
 import {client} from '@clerotri/lib/client';
 import {sendNotifeeNotification} from '@clerotri/lib/notifications/notifee';
 import {sleep} from '@clerotri/lib/utils';
