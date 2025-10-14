@@ -2,7 +2,7 @@ import {useContext} from 'react';
 import {StyleSheet, View} from 'react-native';
 import {observer} from 'mobx-react-lite';
 
-import {settings} from '@clerotri/Generic';
+import {settings} from '@clerotri/lib/settings';
 import {Text} from '@clerotri/components/common/atoms';
 import {commonValues, Theme, ThemeContext} from '@clerotri/lib/themes';
 import {MessageProps} from '@clerotri/lib/types';

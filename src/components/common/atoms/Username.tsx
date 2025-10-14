@@ -4,7 +4,7 @@ import {observer} from 'mobx-react-lite';
 
 import type {Server, User} from 'revolt.js';
 
-import {settings} from '@clerotri/Generic';
+import {settings} from '@clerotri/lib/settings';
 import {client} from '@clerotri/lib/client';
 import {Text} from './Text';
 import {USER_IDS} from '@clerotri/lib/consts';

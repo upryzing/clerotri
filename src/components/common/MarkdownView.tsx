@@ -7,7 +7,7 @@ import Markdown, {
   MarkdownIt,
 } from '@rexovolt/react-native-markdown-display';
 
-import {settings} from '@clerotri/Generic';
+import {settings} from '@clerotri/lib/settings';
 import {Text} from './atoms';
 import {Spoiler, SpoilerContext, SpoilerWrapper} from './markdown/Spoiler';
 import {renderEmoji} from './messaging/Emoji';

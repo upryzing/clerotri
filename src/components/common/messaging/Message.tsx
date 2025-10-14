@@ -2,7 +2,7 @@ import {useContext, useState} from 'react';
 import {TouchableOpacity, View} from 'react-native';
 import {observer} from 'mobx-react-lite';
 
-import {settings} from '@clerotri/Generic';
+import {settings} from '@clerotri/lib/settings';
 import {Text} from '@clerotri/components/common/atoms';
 import {BlockedMessage} from '@clerotri/components/common/messaging/BlockedMessage';
 import {PlatformModerationMessage} from '@clerotri/components/common/messaging/PlatformModerationMessage';

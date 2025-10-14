@@ -2,7 +2,7 @@ import {useContext, useState} from 'react';
 import {View} from 'react-native';
 import {useTranslation} from 'react-i18next';
 
-import {settings} from '@clerotri/Generic';
+import {settings} from '@clerotri/lib/settings';
 import {Setting} from '@clerotri/lib/types';
 import {Checkbox, Text} from '../../atoms';
 import {IndicatorIcons} from './IndicatorIcons';

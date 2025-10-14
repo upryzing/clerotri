@@ -5,7 +5,7 @@ import {useTranslation} from 'react-i18next';
 import MaterialIcon from '@react-native-vector-icons/material-icons';
 
 import {languages} from '@clerotri-i18n/languages';
-import {settings} from '@clerotri/Generic';
+import {settings} from '@clerotri/lib/settings';
 import {styles} from '@clerotri/Theme';
 import {commonValues, Theme, ThemeContext} from '@clerotri/lib/themes';
 import {Setting} from '@clerotri/lib/types';

@@ -8,7 +8,7 @@ import MaterialIcon from '@react-native-vector-icons/material-icons';
 import type {Message as RevoltMessage} from 'revolt.js';
 
 import {Text, Username} from '@clerotri/components/common/atoms';
-import {settings} from '@clerotri/Generic';
+import {settings} from '@clerotri/lib/settings';
 import {client} from '@clerotri/lib/client';
 import {ThemeContext} from '@clerotri/lib/themes';
 

@@ -3,7 +3,7 @@ import {Pressable, View} from 'react-native';
 
 import MaterialCommunityIcon from '@react-native-vector-icons/material-design-icons';
 
-import {settings} from '@clerotri/Generic';
+import {settings} from '@clerotri/lib/settings';
 import {
   CONTRIBUTORS_LIST,
   FEDI_PROFILE,

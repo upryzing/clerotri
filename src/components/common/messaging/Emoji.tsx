@@ -3,7 +3,7 @@ import {StyleSheet} from 'react-native';
 
 import {SVGEmoji} from './SVGEmoji';
 import {Image} from '@clerotri/crossplat/Image';
-import {settings} from '@clerotri/Generic';
+import {settings} from '@clerotri/lib/settings';
 import {client} from '@clerotri/lib/client';
 import {Text} from '../atoms';
 import {
