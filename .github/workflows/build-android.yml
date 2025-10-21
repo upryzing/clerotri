@@ -22,6 +22,8 @@ jobs:
           java-version: '17'
           distribution: 'microsoft'
           cache: gradle
+      - name: Check CMake version
+        run: cmake --version
       - name: Install dependencies and prepare assets
         run: yarn install && npx react-native-asset
       - name: Prepare the JS bundle
