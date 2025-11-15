@@ -1,11 +1,11 @@
-import {Fragment, useContext, useState} from 'react';
+import {Fragment, useContext} from 'react';
 import {StyleSheet, TouchableOpacity, View} from 'react-native';
 import {useTranslation} from 'react-i18next';
+import {useMMKVString} from 'react-native-mmkv';
 
 import MaterialIcon from '@react-native-vector-icons/material-icons';
 
 import {languages} from '@clerotri-i18n/languages';
-import {settings} from '@clerotri/lib/settings';
 import {styles} from '@clerotri/Theme';
 import {commonValues, Theme, ThemeContext} from '@clerotri/lib/themes';
 import {Setting} from '@clerotri/lib/types';
@@ -19,7 +19,8 @@ export const OptionSetting = ({sRaw}: {sRaw: Setting}) => {
 
   const {t} = useTranslation();
 
-  const [value, setValue] = useState(settings.getRaw(sRaw.key));
+  const [value = sRaw.default, setValue] = useMMKVString(sRaw.key);
+
   return (
     <View style={{marginTop: 10}}>
       <IndicatorIcons s={sRaw} />
@@ -47,8 +48,8 @@ export const OptionSetting = ({sRaw}: {sRaw: Setting}) => {
                   ? await sRaw.checkBeforeChanging(o)
                   : true;
                 if (shouldChange) {
-                  settings.set(sRaw.key, o);
                   setValue(o);
+                  sRaw.onChange && sRaw.onChange(o);
                 }
               }}>
               {sRaw.key === 'app.language' ? (

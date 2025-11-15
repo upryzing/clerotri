@@ -1,4 +1,5 @@
 export {BoolSetting} from './BoolSetting';
 export {OptionSetting} from './OptionSetting';
+export {NumberSetting} from './NumberSetting';
 export {PressableSettingsEntry, SettingsEntry} from './SettingsEntry';
-export {StringNumberSetting} from './StringNumberSetting';
+export {StringSetting} from './StringSetting';

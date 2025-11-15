@@ -1,18 +1,22 @@
-import {useState} from 'react';
 import {View} from 'react-native';
 import {observer} from 'mobx-react-lite';
+import {useMMKVBoolean} from 'react-native-mmkv';
 
-import {BoolSetting, OptionSetting, StringNumberSetting} from './atoms';
+import {
+  BoolSetting,
+  OptionSetting,
+  NumberSetting,
+  StringSetting,
+} from './atoms';
 import {settings, settingsList} from '@clerotri/lib/settings';
 
 export const SettingsCategory = observer(({category}: {category: string}) => {
-  const [showExperimental, setShowExperimental] = useState(
-    settings.get('ui.settings.showExperimental') as boolean,
-  );
+  const [
+    showExperimental = settings.getDefault('ui.settings.showExperimental'),
+  ] = useMMKVBoolean('ui.settings.showExperimental');
 
-  const [showDev, setShowDev] = useState(
-    settings.get('ui.showDeveloperFeatures') as boolean,
-  );
+  const [showDev = settings.getDefault('ui.showDeveloperFeatures')] =
+    useMMKVBoolean('ui.showDeveloperFeatures');
 
   return (
     <View key={`settings-category-${category}`}>
@@ -27,21 +31,19 @@ export const SettingsCategory = observer(({category}: {category: string}) => {
           }
           if (sRaw.type === 'boolean') {
             return (
-              <BoolSetting
-                key={`settings-${sRaw.key}-outer`}
-                sRaw={sRaw}
-                experimentalFunction={setShowExperimental}
-                devFunction={setShowDev}
-              />
+              <BoolSetting key={`settings-${sRaw.key}-outer`} sRaw={sRaw} />
             );
-          } else if (sRaw.type === 'string' || sRaw.type === 'number') {
+          }
+          if (sRaw.type === 'number') {
+            return (
+              <NumberSetting key={`settings-${sRaw.key}-outer`} sRaw={sRaw} />
+            );
+          }
+          if (sRaw.type === 'string') {
             return sRaw.options ? (
               <OptionSetting key={`settings-${sRaw.key}-outer`} sRaw={sRaw} />
             ) : (
-              <StringNumberSetting
-                key={`settings-${sRaw.key}-outer`}
-                sRaw={sRaw}
-              />
+              <StringSetting key={`settings-${sRaw.key}-outer`} sRaw={sRaw} />
             );
           }
         } catch (err) {

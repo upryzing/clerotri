@@ -1,27 +1,20 @@
-import {useContext, useState} from 'react';
+import {useContext} from 'react';
 import {View} from 'react-native';
 import {useTranslation} from 'react-i18next';
+import {useMMKVBoolean} from 'react-native-mmkv';
 
-import {settings} from '@clerotri/lib/settings';
 import {Setting} from '@clerotri/lib/types';
 import {Checkbox, Text} from '../../atoms';
 import {IndicatorIcons} from './IndicatorIcons';
 import {ThemeContext} from '@clerotri/lib/themes';
 
-export const BoolSetting = ({
-  sRaw,
-  experimentalFunction,
-  devFunction,
-}: {
-  sRaw: Setting;
-  experimentalFunction: any;
-  devFunction: any;
-}) => {
+export const BoolSetting = ({sRaw}: {sRaw: Setting}) => {
   const {currentTheme} = useContext(ThemeContext);
 
   const {t} = useTranslation();
 
-  const [value, setValue] = useState(settings.get(sRaw.key) as boolean);
+  const [value = sRaw.default as boolean, setValue] = useMMKVBoolean(sRaw.key);
+
   return (
     <View
       key={`settings_${sRaw.key}`}
@@ -50,14 +43,8 @@ export const BoolSetting = ({
             ? await sRaw.checkBeforeChanging(newValue)
             : true;
           if (shouldChange) {
-            settings.set(sRaw.key, newValue);
             setValue(newValue);
-            sRaw.key === 'ui.settings.showExperimental'
-              ? experimentalFunction(newValue)
-              : null;
-            sRaw.key === 'ui.showDeveloperFeatures'
-              ? devFunction(newValue)
-              : null;
+            sRaw.onChange && sRaw.onChange(newValue);
           }
         }}
       />

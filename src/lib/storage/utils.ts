@@ -4,46 +4,74 @@ import {storage} from '@clerotri/lib/storage';
 import {Setting} from '@clerotri/lib/types';
 
 export function initialiseSettings() {
-  const settings = storage.getString('settings');
-  if (settings) {
+  const settingsVersion = storage.getNumber('settingsVersion');
+  if (settingsVersion === undefined) {
+    const settings = storage.getString('settings');
+    if (!settings) {
+      storage.set('settingsVersion', 3);
+      return;
+    }
     try {
       const storedSettings = JSON.parse(settings);
-      if (!Array.isArray(storedSettings)) {
-        initialiseObjectSettings(storedSettings);
-      } else {
-        const newSettings = {} as any;
-        storedSettings.forEach((key: {key: string; value: any}) => {
-          if (key.key === 'app.instance') {
-            storage.set('instanceURL', key.value);
-          } else {
-            newSettings[key.key] = key.value;
-          }
-        });
-        const newData = JSON.stringify(newSettings);
-        storage.set('settings', newData);
-        initialiseObjectSettings(newSettings);
-      }
+      migrateToIndividualSettings(storedSettings);
     } catch (e) {
       console.error(e);
     }
+  } else {
+    settingsList.forEach(setting => {
+      let value: string | boolean | undefined;
+      switch (setting.type) {
+        case 'string':
+          value = storage.getString(setting.key);
+          break;
+        case 'number':
+          const initialValue = storage.getNumber(setting.key);
+          value = initialValue !== undefined ? `${initialValue}` : initialValue;
+          console.log(value);
+          break;
+        case 'boolean':
+          value = storage.getBoolean(setting.key);
+          break;
+      }
+      value !== undefined && initialiseSetting(setting.key, value);
+    });
   }
 }
 
-function initialiseObjectSettings(storedSettings: any) {
-  Object.keys(storedSettings).forEach(key => {
-    let st: Setting | undefined;
-    for (const setting of settingsList) {
-      if (setting.key === key) {
-        st = setting;
-      }
+function initialiseSetting(key: string, value: string | boolean) {
+  console.log(key, value);
+  let st: Setting | undefined;
+  for (const setting of settingsList) {
+    if (setting.key === key) {
+      st = setting;
     }
-    if (st) {
-      st.value = storedSettings[key];
-      st.onInitialize && st.onInitialize(storedSettings[key]);
-    } else {
-      console.warn(`[SETTINGS] Unknown setting in MMKV settings: ${key}`);
-    }
-  });
+  }
+  if (st) {
+    st.onInitialize && st.onInitialize(value);
+  } else {
+    console.warn(`[SETTINGS] Unknown setting in MMKV settings: ${key}`);
+  }
+}
+
+function migrateToIndividualSettings(settings: any) {
+  if (Array.isArray(settings)) {
+    settings.forEach(setting => {
+      migrateToIndividualSetting(setting.key, setting.value);
+    });
+  } else {
+    const keys = Object.keys(settings);
+    keys.forEach(key => {
+      migrateToIndividualSetting(key, settings[key]);
+    });
+  }
+  storage.set('settingsVersion', 3);
+}
+
+function migrateToIndividualSetting(key: string, value: string | boolean) {
+  const valueAsNumber = Number.parseInt(`${value}`, 10);
+  const finalValue = isNaN(valueAsNumber) ? value : valueAsNumber;
+  storage.set(key, finalValue);
+  initialiseSetting(key, value);
 }
 
 export function getInstanceURL() {

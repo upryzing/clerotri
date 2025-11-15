@@ -1,6 +1,7 @@
 import {useContext} from 'react';
 import {StyleSheet, View} from 'react-native';
 import {observer} from 'mobx-react-lite';
+import {useMMKVNumber} from 'react-native-mmkv';
 
 import MaterialCommunityIcon from '@react-native-vector-icons/material-design-icons';
 import MaterialIcon from '@react-native-vector-icons/material-icons';
@@ -71,6 +72,8 @@ const SystemMessageIcon = observer(
   ({icon}: {icon: {iconSet: 'main' | 'community'; name: string}}) => {
     const {currentTheme} = useContext(ThemeContext);
 
+    const [size] = useMMKVNumber('ui.messaging.fontSize');
+
     const IconComponent =
       icon.iconSet === 'community' ? MaterialCommunityIcon : MaterialIcon;
     return (
@@ -78,7 +81,7 @@ const SystemMessageIcon = observer(
         // @ts-expect-error not sure how to type the function param above
         name={icon.name}
         color={currentTheme.foregroundSecondary}
-        size={(settings.get('ui.messaging.fontSize') as number) ?? 14}
+        size={size !== undefined ? size : 14}
         style={{alignSelf: 'center', paddingEnd: 4}}
       />
     );

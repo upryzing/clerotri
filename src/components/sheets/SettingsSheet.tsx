@@ -16,7 +16,7 @@ import {app, setFunction} from '@clerotri/Generic';
 import {client} from '@clerotri/lib/client';
 import {DONATIONS_INFO, OPEN_ISSUES, WEBLATE} from '@clerotri/lib/consts';
 import {APP_VERSION} from '@clerotri/lib/metadata';
-import {storage} from '@clerotri/lib/storage';
+import {getSettingsObject} from '@clerotri/lib/settings';
 import {getInstanceURL} from '@clerotri/lib/storage/utils';
 import {commonValues, type Theme, ThemeContext} from '@clerotri/lib/themes';
 import {SettingsSection} from '@clerotri/lib/types';
@@ -47,7 +47,7 @@ function copyDebugInfo() {
     appInfo: {
       instance: getInstanceURL(),
       userID: client.user?._id ?? 'ERR_ID_UNDEFINED',
-      settings: storage.getString('settings'),
+      settings: getSettingsObject(),
       version: APP_VERSION,
     },
   };

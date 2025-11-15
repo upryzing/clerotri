@@ -1,19 +1,20 @@
-import {useContext, useState} from 'react';
+import {useContext} from 'react';
 import {View} from 'react-native';
 import {useTranslation} from 'react-i18next';
+import {useMMKVNumber} from 'react-native-mmkv';
 
-import {settings} from '@clerotri/lib/settings';
 import {ThemeContext} from '@clerotri/lib/themes';
 import {Setting} from '@clerotri/lib/types';
 import {Input, Text} from '../../atoms';
 import {IndicatorIcons} from './IndicatorIcons';
 
-export const StringNumberSetting = ({sRaw}: {sRaw: Setting}) => {
+export const NumberSetting = ({sRaw}: {sRaw: Setting}) => {
   const {currentTheme} = useContext(ThemeContext);
 
   const {t} = useTranslation();
 
-  const [value, setValue] = useState(settings.getRaw(sRaw.key));
+  const [value = sRaw.default, setValue] = useMMKVNumber(sRaw.key);
+
   return (
     <View
       key={`settings_${sRaw.key}`}
@@ -35,15 +36,16 @@ export const StringNumberSetting = ({sRaw}: {sRaw: Setting}) => {
           </Text>
         ) : null}
         <Input
-          value={value as string}
-          keyboardType={sRaw.type === 'number' ? 'decimal-pad' : 'default'}
+          value={`${value}`}
+          keyboardType={'decimal-pad'}
           onChangeText={async v => {
             const shouldChange = sRaw.checkBeforeChanging
               ? await sRaw.checkBeforeChanging(v)
               : true;
             if (shouldChange) {
-              setValue(v);
-              settings.set(sRaw.key, v);
+              const newValue = Number.parseInt(v, 10);
+              setValue(newValue);
+              sRaw.onChange && sRaw.onChange(newValue);
             }
           }}
         />

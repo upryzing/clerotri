@@ -166,7 +166,7 @@ const LevelBoxes = observer(
     const data = generateAnalyticsObject('full');
 
     const settingsLength = data.settings
-      ? Object.entries(JSON.parse(data.settings)).length
+      ? Object.entries(data.settings).length
       : 0;
 
     return (

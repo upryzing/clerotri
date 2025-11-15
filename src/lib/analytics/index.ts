@@ -9,7 +9,7 @@ import {
 } from 'react-native-device-info';
 
 import {APP_VERSION} from '@clerotri/lib/metadata';
-import {storage} from '@clerotri/lib/storage';
+import {getSettingsObject} from '@clerotri/lib/settings';
 import {getInstanceURL} from '@clerotri/lib/storage/utils';
 
 export const generateAnalyticsObject = (tier: 'basic' | 'full') => {
@@ -29,7 +29,7 @@ export const generateAnalyticsObject = (tier: 'basic' | 'full') => {
   const clerotriVersion = `v${APP_VERSION}`;
 
   // full
-  const settings = tier === 'full' ? storage.getString('settings') : null;
+  const settings = tier === 'full' ? getSettingsObject() : null;
   const instanceURL = tier === 'full' ? getInstanceURL() : null;
 
   return {

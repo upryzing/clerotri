@@ -1,7 +1,8 @@
-import {useContext, useState} from 'react';
+import {useContext} from 'react';
 import {StyleSheet, TouchableOpacity, View} from 'react-native';
 import {ErrorBoundary} from 'react-error-boundary';
 import {observer} from 'mobx-react-lite';
+import {useMMKVBoolean} from 'react-native-mmkv';
 
 import MaterialCommunityIcon from '@react-native-vector-icons/material-design-icons';
 import MaterialIcon from '@react-native-vector-icons/material-icons';
@@ -74,7 +75,10 @@ const SpecialChannelViews = observer(({channel}: {channel: SpecialChannel}) => {
 const RegularChannelView = observer(({channel}: {channel: Channel}) => {
   const {currentTheme} = useContext(ThemeContext);
 
-  const [renderCount, rerender] = useState(0);
+  const [
+    showNSFW = settings.getDefault('ui.messaging.showNSFWContent'),
+    setShowNSFW,
+  ] = useMMKVBoolean('ui.messaging.showNSFWContent');
 
   return (
     <View style={styles.flex}>
@@ -133,7 +137,7 @@ const RegularChannelView = observer(({channel}: {channel: Channel}) => {
       </ChannelHeader>
       {channel?.channel_type === 'VoiceChannel' ? (
         <VoiceChannel />
-      ) : !channel?.nsfw || settings.get('ui.messaging.showNSFWContent') ? (
+      ) : !channel?.nsfw || showNSFW ? (
         <ErrorBoundary FallbackComponent={MessageViewErrorMessage}>
           {settings.get('ui.messaging.useNewMessageView') ? (
             <MessageView channel={channel} />
@@ -177,8 +181,7 @@ const RegularChannelView = observer(({channel}: {channel: Channel}) => {
           </Text>
           <Button
             onPress={() => {
-              settings.set('ui.messaging.showNSFWContent', true);
-              rerender(renderCount + 1);
+              setShowNSFW(true);
             }}>
             <Text style={styles.buttonText}>
               I am 18 or older and wish to enter
