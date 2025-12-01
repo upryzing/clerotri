@@ -1,5 +1,6 @@
 import {useContext, useEffect, useState} from 'react';
 import {Pressable, ScrollView, TouchableOpacity, View} from 'react-native';
+import {StyleSheet} from 'react-native-unistyles';
 import {useTranslation} from 'react-i18next';
 import {observer} from 'mobx-react-lite';
 
@@ -175,63 +176,31 @@ const RelationshipButtons = ({user}: {user: User}) => {
 };
 
 const ProfileTabs = ({setSection}: {setSection: (t: string) => void}) => {
-  const {currentTheme} = useContext(ThemeContext);
-
   const {t} = useTranslation();
 
   return (
     <>
-      <View
-        style={{
-          flexDirection: 'row',
-          gap: commonValues.sizes.small,
-          marginBlockEnd: commonValues.sizes.small,
-        }}>
+      <View style={localStyles.profileTabsContainer}>
         <Button
-          backgroundColor={currentTheme.backgroundPrimary}
-          style={{
-            padding: commonValues.sizes.medium,
-            margin: 0,
-            flex: 1,
-          }}
+          style={localStyles.profileTab}
           onPress={() => setSection('Profile')}>
           <Text>{t('app.profile.tabs.profile')}</Text>
         </Button>
         <Button
-          backgroundColor={currentTheme.backgroundPrimary}
-          style={{
-            padding: commonValues.sizes.medium,
-            margin: 0,
-            flex: 1,
-          }}
+          style={localStyles.profileTab}
           onPress={() => setSection('Mutual Friends')}>
           <Text>{t('app.profile.tabs.mutual_friends')}</Text>
         </Button>
       </View>
-      <View
-        style={{
-          flexDirection: 'row',
-          gap: commonValues.sizes.small,
-          marginBlockEnd: commonValues.sizes.small,
-        }}>
+      <View style={localStyles.profileTabsContainer}>
         {/* TODO: uncomment when this has been added 
         <Button
-          backgroundColor={currentTheme.backgroundPrimary}
-          style={{
-            padding: commonValues.sizes.medium,
-            margin: 0,
-            flex: 1,
-          }}
+          style={localStyles.profileTab}
           onPress={() => setSection('Mutual Groups')}>
           <Text>{t('app.profile.tabs.mutual_groups')}</Text>
         </Button> */}
         <Button
-          backgroundColor={currentTheme.backgroundPrimary}
-          style={{
-            padding: commonValues.sizes.medium,
-            margin: 0,
-            flex: 1,
-          }}
+          style={localStyles.profileTab}
           onPress={() => setSection('Mutual Servers')}>
           <Text>{t('app.profile.tabs.mutual_servers')}</Text>
         </Button>
@@ -460,7 +429,7 @@ export const ProfileSheet = observer(
               </Text>
             ) : /* eslint-enable no-bitwise */
             null}
-            {user.relationship !== 'User' ? (
+            {user.relationship === 'User' ? (
               <>
                 <RelationshipButtons user={user} />
                 <ProfileTabs setSection={setSection} />
@@ -547,3 +516,17 @@ export const ProfileSheet = observer(
     );
   },
 );
+
+const localStyles = StyleSheet.create(currentTheme => ({
+  profileTabsContainer: {
+    flexDirection: 'row',
+    gap: commonValues.sizes.small,
+    marginBlockEnd: commonValues.sizes.small,
+  },
+  profileTab: {
+    padding: commonValues.sizes.medium,
+    margin: 0,
+    flex: 1,
+    backgroundColor: currentTheme.backgroundPrimary,
+  },
+}));

@@ -21,7 +21,8 @@ export const App = () => {
   setFunction('setTheme', (themeName: string) => {
     const newTheme = themes[themeName] ?? themes.Dark;
     setTheme(newTheme);
-    // UnistylesRuntime.setTheme(themeName);
+    // don't trigger this in dev to help catch bits that need updating
+    !__DEV__ && UnistylesRuntime.setTheme(themeName);
     StatusBar.setBarStyle(`${newTheme.contentType}-content`);
   });
 

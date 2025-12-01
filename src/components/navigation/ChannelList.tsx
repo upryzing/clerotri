@@ -133,7 +133,7 @@ const ServerChannelList = observer((props: ServerChannelListProps) => {
                   type: 'linear-gradient',
                   colorStops: [
                     {color: `#00000000`},
-                    {color: `${currentTheme.background}`},
+                    {color: `${currentTheme.backgroundSecondary}`},
                   ],
                 },
               ],

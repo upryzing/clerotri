@@ -1,12 +1,13 @@
 import {useContext, useState} from 'react';
 import {
+  type ColorValue,
   Platform,
   Pressable,
   ScrollView,
   useWindowDimensions,
   View,
 } from 'react-native';
-import {StyleSheet} from 'react-native-unistyles';
+import {StyleSheet, withUnistyles} from 'react-native-unistyles';
 
 import {Drawer} from 'react-native-drawer-layout';
 import {useSafeAreaInsets} from 'react-native-safe-area-context';
@@ -30,6 +31,42 @@ import {
 import {getInstanceURL} from '@clerotri/lib/storage/utils';
 import {commonValues, ThemeContext} from '@clerotri/lib/themes';
 import {useBackHandler} from '@clerotri/lib/ui';
+
+// Unistyles doesn't seem to support experimental_backgroundImage, which is needed for the gradient,
+// so work around this by passing the needed values as props
+const ServerListGradientCore = ({
+  colour,
+  inset,
+}: {
+  colour: ColorValue;
+  inset: number;
+}) => {
+  console.log(inset);
+  return (
+    <View
+      style={[
+        localStyles.serverListGradient,
+        {
+          experimental_backgroundImage: [
+            {
+              type: 'linear-gradient',
+              colorStops: [{color: colour}, {color: `#00000000`}],
+            },
+          ],
+          height: inset,
+        },
+      ]}
+    />
+  );
+};
+
+const ServerListGradient = withUnistyles(
+  ServerListGradientCore,
+  (currentTheme, rt) => ({
+    colour: currentTheme.background,
+    inset: rt.insets.top,
+  }),
+);
 
 const SideMenu = () => {
   const insets = useSafeAreaInsets();
@@ -75,7 +112,7 @@ const SideMenu = () => {
             showDiscover={getInstanceURL() === DEFAULT_API_URL}
           />
         </ScrollView>
-        <View style={localStyles.serverListGradient} />
+        <ServerListGradient />
         <ChannelList />
       </View>
       <View style={localStyles.bottomBar}>
@@ -198,16 +235,6 @@ const localStyles = StyleSheet.create((currentTheme, rt) => ({
   },
   serverListGradient: {
     width: '100%',
-    height: rt.insets.top,
-    experimental_backgroundImage: [
-      {
-        type: 'linear-gradient',
-        colorStops: [
-          {color: `${currentTheme.background}`},
-          {color: `#00000000`},
-        ],
-      },
-    ],
     position: 'absolute',
   },
   serverList: {

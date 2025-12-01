@@ -1,5 +1,6 @@
 import {useContext, useEffect, useState} from 'react';
 import {FlatList, View} from 'react-native';
+import {StyleSheet} from 'react-native-unistyles';
 import {useTranslation} from 'react-i18next';
 
 import {useSafeAreaInsets} from 'react-native-safe-area-context';
@@ -15,17 +16,39 @@ import {DOMParserFunction} from '@clerotri/lib/utils';
 
 const parser = DOMParserFunction();
 
+const ItemDescription = ({description}: {description: string}) => {
+  return (
+    <View style={localStyles.description}>
+      <Text numberOfLines={5}>{description}</Text>
+    </View>
+  );
+};
+
+const ItemTags = ({itemID, tags}: {itemID: string; tags: string[]}) => {
+  return (
+    <View
+      key={`discover-entry-${itemID}-tags`}
+      style={localStyles.tagsContainer}>
+      {tags.map((tag: string) => {
+        return (
+          <View
+            style={localStyles.tag}
+            key={`discover-entry-${itemID}-tag-${tag}`}>
+            <Text>#{tag}</Text>
+          </View>
+        );
+      })}
+    </View>
+  );
+};
+
 const BotEntry = ({bot}: {bot: any}) => {
   const {currentTheme} = useContext(ThemeContext);
 
   return (
     <View
       key={`discover-entry-bot-${bot._id}`}
-      style={{
-        borderRadius: commonValues.sizes.medium,
-        padding: commonValues.sizes.xl,
-        backgroundColor: currentTheme.backgroundSecondary,
-      }}>
+      style={localStyles.itemContainer}>
       <View
         style={{
           alignItems: 'center',
@@ -45,40 +68,10 @@ const BotEntry = ({bot}: {bot: any}) => {
           <Text colour={currentTheme.foregroundSecondary}>{bot._id}</Text>
         </View>
       </View>
-      <View
-        style={{
-          marginBlock: commonValues.sizes.medium,
-          backgroundColor: currentTheme.background,
-          borderRadius: commonValues.sizes.medium,
-          padding: commonValues.sizes.medium,
-        }}>
-        <Text numberOfLines={5}>{bot.profile.content}</Text>
-      </View>
-      {bot.tags.length > 0 && (
-        <View
-          key={`discover-entry-${bot._id}-tags`}
-          style={{
-            rowGap: commonValues.sizes.small,
-            flexWrap: 'wrap',
-            flexDirection: 'row',
-            marginBlockEnd: commonValues.sizes.medium,
-          }}>
-          {bot.tags.map((tag: string) => {
-            return (
-              <View
-                style={{
-                  padding: commonValues.sizes.small,
-                  borderRadius: commonValues.sizes.medium,
-                  backgroundColor: currentTheme.buttonBackground,
-                  marginEnd: commonValues.sizes.small,
-                }}
-                key={`discover-entry-${bot._id}-tag-${tag}`}>
-                <Text>#{tag}</Text>
-              </View>
-            );
-          })}
-        </View>
+      {bot.profile.content && (
+        <ItemDescription description={bot.profile.content} />
       )}
+      {bot.tags.length > 0 && <ItemTags itemID={bot._id} tags={bot.tags} />}
       <Button
         style={{margin: 0}}
         onPress={() => {
@@ -96,11 +89,7 @@ const ServerEntry = ({server}: {server: any}) => {
   return (
     <View
       key={`discover-entry-server-${server._id}`}
-      style={{
-        borderRadius: commonValues.sizes.medium,
-        padding: commonValues.sizes.xl,
-        backgroundColor: currentTheme.backgroundSecondary,
-      }}>
+      style={localStyles.itemContainer}>
       <View
         style={{
           alignItems: 'center',
@@ -120,39 +109,11 @@ const ServerEntry = ({server}: {server: any}) => {
           <Text colour={currentTheme.foregroundSecondary}>{server._id}</Text>
         </View>
       </View>
-      <View
-        style={{
-          marginBlock: commonValues.sizes.medium,
-          backgroundColor: currentTheme.background,
-          borderRadius: commonValues.sizes.medium,
-          padding: commonValues.sizes.medium,
-        }}>
-        <Text numberOfLines={5}>{server.description}</Text>
-      </View>
+      {server.description && (
+        <ItemDescription description={server.description} />
+      )}
       {server.tags.length > 0 && (
-        <View
-          key={`discover-entry-${server._id}-tags`}
-          style={{
-            rowGap: commonValues.sizes.small,
-            flexWrap: 'wrap',
-            flexDirection: 'row',
-            marginBlockEnd: commonValues.sizes.medium,
-          }}>
-          {server.tags.map((tag: string) => {
-            return (
-              <View
-                style={{
-                  padding: commonValues.sizes.small,
-                  borderRadius: commonValues.sizes.medium,
-                  backgroundColor: currentTheme.buttonBackground,
-                  marginEnd: commonValues.sizes.small,
-                }}
-                key={`discover-entry-${server._id}-tag-${tag}`}>
-                <Text>#{tag}</Text>
-              </View>
-            );
-          })}
-        </View>
+        <ItemTags itemID={server._id} tags={server.tags} />
       )}
       <Button
         style={{margin: 0}}
@@ -277,3 +238,29 @@ export const DiscoverPage = () => {
     </View>
   );
 };
+
+const localStyles = StyleSheet.create(currentTheme => ({
+  itemContainer: {
+    borderRadius: commonValues.sizes.medium,
+    padding: commonValues.sizes.xl,
+    backgroundColor: currentTheme.backgroundSecondary,
+  },
+  description: {
+    marginBlock: commonValues.sizes.medium,
+    backgroundColor: currentTheme.background,
+    borderRadius: commonValues.sizes.medium,
+    padding: commonValues.sizes.medium,
+  },
+  tagsContainer: {
+    rowGap: commonValues.sizes.small,
+    flexWrap: 'wrap',
+    flexDirection: 'row',
+    marginBlockEnd: commonValues.sizes.medium,
+  },
+  tag: {
+    padding: commonValues.sizes.small,
+    borderRadius: commonValues.sizes.medium,
+    backgroundColor: currentTheme.buttonBackground,
+    marginEnd: commonValues.sizes.small,
+  },
+}));

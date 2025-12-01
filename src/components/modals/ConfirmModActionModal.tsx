@@ -1,5 +1,6 @@
 import {useContext, useState} from 'react';
 import {View} from 'react-native';
+import {StyleSheet} from 'react-native-unistyles';
 import {Trans, useTranslation} from 'react-i18next';
 import {observer} from 'mobx-react-lite';
 
@@ -22,15 +23,7 @@ export const ConfirmModActionModal = observer(
       target.member.user?.username;
 
     return (
-      <View
-        style={{
-          width: '80%',
-          borderRadius: commonValues.sizes.medium,
-          padding: 20,
-          backgroundColor: currentTheme.backgroundPrimary,
-          justifyContent: 'center',
-          alignSelf: 'center',
-        }}>
+      <View style={localStyles.container}>
         <Text type={'h1'}>
           {t(`app.modals.confirm_mod_action.header_${target.action}`)}
         </Text>
@@ -85,3 +78,14 @@ export const ConfirmModActionModal = observer(
     );
   },
 );
+
+const localStyles = StyleSheet.create(currentTheme => ({
+  container: {
+    width: '80%',
+    borderRadius: commonValues.sizes.medium,
+    padding: 20,
+    backgroundColor: currentTheme.backgroundPrimary,
+    justifyContent: 'center',
+    alignSelf: 'center',
+  },
+}));
