@@ -27,7 +27,6 @@ export function initialiseSettings() {
         case 'number':
           const initialValue = storage.getNumber(setting.key);
           value = initialValue !== undefined ? `${initialValue}` : initialValue;
-          console.log(value);
           break;
         case 'boolean':
           value = storage.getBoolean(setting.key);
@@ -39,7 +38,6 @@ export function initialiseSettings() {
 }
 
 function initialiseSetting(key: string, value: string | boolean) {
-  console.log(key, value);
   let st: Setting | undefined;
   for (const setting of settingsList) {
     if (setting.key === key) {

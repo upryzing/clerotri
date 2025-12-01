@@ -187,7 +187,7 @@ export const themes: Record<string, Theme> = {
     contentType: 'light',
     error: '#ED4245',
   },
-  'Rosé Pine': {
+  'Rose Pine': {
     ...commonColours,
     background: '#191724',
     backgroundPrimary: '#1f1d2e',
@@ -212,7 +212,7 @@ export const themes: Record<string, Theme> = {
     contentType: 'light',
     error: '#eb6f92',
   },
-  'Rosé Pine Moon': {
+  'Rose Pine Moon': {
     ...commonColours,
     background: '#232136',
     backgroundPrimary: '#2a273f',
@@ -237,7 +237,7 @@ export const themes: Record<string, Theme> = {
     contentType: 'light',
     error: '#eb6f92',
   },
-  'Rosé Pine Dawn': {
+  'Rose Pine Dawn': {
     ...commonColours,
     background: '#faf4ed',
     backgroundPrimary: '#fffaf3',

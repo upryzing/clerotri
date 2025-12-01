@@ -1,16 +1,13 @@
-import {useContext} from 'react';
-import {StyleSheet, View} from 'react-native';
+import {View} from 'react-native';
+import {StyleSheet} from 'react-native-unistyles';
 import {observer} from 'mobx-react-lite';
 
 import {settings} from '@clerotri/lib/settings';
 import {Text} from '@clerotri/components/common/atoms';
-import {commonValues, Theme, ThemeContext} from '@clerotri/lib/themes';
+import {commonValues} from '@clerotri/lib/themes';
 import {MessageProps} from '@clerotri/lib/types';
 
 export const BlockedMessage = observer((props: MessageProps) => {
-  const {currentTheme} = useContext(ThemeContext);
-  const localStyles = generateLocalStyles(currentTheme);
-
   return props.grouped ? null : (
     <View
       key={`message-${props.message._id}-blocked`}
@@ -30,12 +27,10 @@ export const BlockedMessage = observer((props: MessageProps) => {
   );
 });
 
-const generateLocalStyles = (currentTheme: Theme) => {
-  return StyleSheet.create({
-    innerBox: {
-      backgroundColor: currentTheme.background,
-      borderRadius: commonValues.sizes.small,
-      padding: commonValues.sizes.medium,
-    },
-  });
-};
+const localStyles = StyleSheet.create(currentTheme => ({
+  innerBox: {
+    backgroundColor: currentTheme.background,
+    borderRadius: commonValues.sizes.small,
+    padding: commonValues.sizes.medium,
+  },
+}));

@@ -2620,16 +2620,17 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@rexovolt/react-native-markdown-display@npm:^9.1.1":
-  version: 9.1.1
-  resolution: "@rexovolt/react-native-markdown-display@npm:9.1.1"
+"@rexovolt/react-native-markdown-display@npm:^10.0.1":
+  version: 10.0.1
+  resolution: "@rexovolt/react-native-markdown-display@npm:10.0.1"
   dependencies:
     "@rexovolt/markdown-it": "npm:^14.2.1"
     css-to-react-native: "npm:^3.2.0"
   peerDependencies:
     react: ">=16.2.0"
     react-native: ">=0.50.4"
-  checksum: 10c0/f971c1433db99f7021dedf953f211fd2d8d3b19b88689d5cb737f21602220cc802660bd6f0b7ad6f45346841701dca8373f6811ecd30b72ffcd2aa43d76a23a9
+    react-native-unistyles: "*"
+  checksum: 10c0/4b0cb0ec764e68abb7d3f94f1ef0de135b802e67c6194b902bc7d430608dfaf344ee6f6e7064b4bfb814d41297fdd1e5165333b36ec6f6889ffc31c8bffa8ae6
   languageName: node
   linkType: hard
 
@@ -9664,6 +9665,16 @@ __metadata:
   languageName: node
   linkType: hard
 
+"react-native-nitro-modules@npm:0.31.10":
+  version: 0.31.10
+  resolution: "react-native-nitro-modules@npm:0.31.10"
+  peerDependencies:
+    react: "*"
+    react-native: "*"
+  checksum: 10c0/0acc6ca5f12e24a6601e682070f257a771b95214c11fba911b342af705071234544c93076900f43400c8ae2f1a6738011b120e4425813968102997860ffd7626
+  languageName: node
+  linkType: hard
+
 "react-native-reanimated-image-viewer@npm:^1.0.2":
   version: 1.0.2
   resolution: "react-native-reanimated-image-viewer@npm:1.0.2"
@@ -9760,6 +9771,23 @@ __metadata:
     react: "*"
     react-native: "*"
   checksum: 10c0/89ba2ed640f78e69d44980473530fdb83e24336a1a43936e19f532e772c41e8532ee1d4f3ae003339e817a3e3b055aa2a8ee3c0da31754cd2c83fa1a81130d6a
+  languageName: node
+  linkType: hard
+
+"react-native-unistyles@npm:^3.0.19":
+  version: 3.0.19
+  resolution: "react-native-unistyles@npm:3.0.19"
+  peerDependencies:
+    "@react-native/normalize-colors": "*"
+    react: "*"
+    react-native: ">=0.76.0"
+    react-native-edge-to-edge: "*"
+    react-native-nitro-modules: "*"
+    react-native-reanimated: "*"
+  peerDependenciesMeta:
+    react-native-reanimated:
+      optional: true
+  checksum: 10c0/c7b1c91cf741f5883066bacb6557f6ab79ea7b7c343de53ce02f56b918c1ccdf4fc1a1ef992732f2130a66bd424847fb7844c9d8ef43745a933342e465ddb5cb
   languageName: node
   linkType: hard
 
@@ -10266,7 +10294,7 @@ __metadata:
     "@react-native/eslint-config": "npm:^0.80.2"
     "@react-native/metro-config": "npm:^0.80.2"
     "@react-native/typescript-config": "npm:^0.80.2"
-    "@rexovolt/react-native-markdown-display": "npm:^9.1.1"
+    "@rexovolt/react-native-markdown-display": "npm:^10.0.1"
     "@rnx-kit/babel-preset-metro-react-native": "npm:^2.0.0"
     "@rnx-kit/cli": "npm:^0.18.13"
     "@rnx-kit/metro-config": "npm:^2.1.1"
@@ -10306,11 +10334,13 @@ __metadata:
     react-native-get-random-values: "npm:^1.11.0"
     react-native-keyboard-controller: "npm:^1.17.5"
     react-native-mmkv: "npm:^3.3.1"
+    react-native-nitro-modules: "npm:0.31.10"
     react-native-reanimated: "patch:react-native-reanimated@npm%3A3.18.0#~/.yarn/patches/react-native-reanimated-npm-3.18.0-3e0f9f00d6.patch"
     react-native-reanimated-image-viewer: "npm:^1.0.2"
     react-native-safe-area-context: "npm:^5.5.2"
     react-native-svg: "npm:^15.13.0"
     react-native-svg-transformer: "npm:^1.5.1"
+    react-native-unistyles: "npm:^3.0.19"
     react-native-web: "npm:^0.19.13"
     react-test-renderer: "npm:19.1.0"
     reanimated-color-picker: "npm:^4.1.0"

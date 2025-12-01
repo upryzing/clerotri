@@ -1,11 +1,6 @@
 import {useContext, useMemo, useState} from 'react';
-import {
-  Platform,
-  SectionList,
-  StyleSheet,
-  TouchableOpacity,
-  View,
-} from 'react-native';
+import {Platform, SectionList, TouchableOpacity, View} from 'react-native';
+import {StyleSheet} from 'react-native-unistyles';
 import {useTranslation} from 'react-i18next';
 import {observer} from 'mobx-react-lite';
 

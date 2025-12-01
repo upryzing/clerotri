@@ -3,16 +3,13 @@ import {
   Platform,
   Pressable,
   ScrollView,
-  StyleSheet,
   useWindowDimensions,
   View,
 } from 'react-native';
+import {StyleSheet} from 'react-native-unistyles';
 
 import {Drawer} from 'react-native-drawer-layout';
-import {
-  type EdgeInsets,
-  useSafeAreaInsets,
-} from 'react-native-safe-area-context';
+import {useSafeAreaInsets} from 'react-native-safe-area-context';
 import MaterialCommunityIcon from '@react-native-vector-icons/material-design-icons';
 import MaterialIcon from '@react-native-vector-icons/material-icons';
 
@@ -31,14 +28,13 @@ import {
   SideMenuContext,
 } from '@clerotri/lib/state';
 import {getInstanceURL} from '@clerotri/lib/storage/utils';
-import {commonValues, Theme, ThemeContext} from '@clerotri/lib/themes';
+import {commonValues, ThemeContext} from '@clerotri/lib/themes';
 import {useBackHandler} from '@clerotri/lib/ui';
 
 const SideMenu = () => {
   const insets = useSafeAreaInsets();
 
   const {currentTheme} = useContext(ThemeContext);
-  const localStyles = generateLocalStyles(currentTheme, insets);
 
   const {setCurrentChannel} = useContext(ChannelContext);
   const {currentServer, setCurrentServer} = useContext(ServerContext);
@@ -190,49 +186,47 @@ const generateDrawerStyles = (width: number) => {
   });
 };
 
-const generateLocalStyles = (currentTheme: Theme, inset: EdgeInsets) => {
-  return StyleSheet.create({
-    container: {
-      flex: 1,
-      paddingBottom: inset.bottom - 5,
-    },
-    sideView: {
-      flex: 1,
-      flexDirection: 'row',
-      justifyContent: 'flex-start',
-    },
-    serverListGradient: {
-      width: '100%',
-      height: inset.top,
-      experimental_backgroundImage: [
-        {
-          type: 'linear-gradient',
-          colorStops: [
-            {color: `${currentTheme.background}`},
-            {color: `#00000000`},
-          ],
-        },
-      ],
-      position: 'absolute',
-    },
-    serverList: {
-      paddingInline: commonValues.sizes.small,
-      flexShrink: 1,
-      ...(Platform.OS === 'web' && {scrollbarWidth: 'none'}),
-    },
-    separator: {
-      margin: 6,
-      height: 2,
-      width: '80%',
-      backgroundColor: currentTheme.backgroundPrimary,
-    },
-    bottomBar: {
-      height: 52,
-      width: '100%',
-      borderTopWidth: currentTheme.generalBorderWidth,
-      borderColor: currentTheme.generalBorderColor,
-      flexDirection: 'row',
-      justifyContent: 'space-evenly',
-    },
-  });
-};
+const localStyles = StyleSheet.create((currentTheme, rt) => ({
+  container: {
+    flex: 1,
+    paddingBottom: rt.insets.bottom - 5,
+  },
+  sideView: {
+    flex: 1,
+    flexDirection: 'row',
+    justifyContent: 'flex-start',
+  },
+  serverListGradient: {
+    width: '100%',
+    height: rt.insets.top,
+    experimental_backgroundImage: [
+      {
+        type: 'linear-gradient',
+        colorStops: [
+          {color: `${currentTheme.background}`},
+          {color: `#00000000`},
+        ],
+      },
+    ],
+    position: 'absolute',
+  },
+  serverList: {
+    paddingInline: commonValues.sizes.small,
+    flexShrink: 1,
+    ...(Platform.OS === 'web' && {scrollbarWidth: 'none'}),
+  },
+  separator: {
+    margin: 6,
+    height: 2,
+    width: '80%',
+    backgroundColor: currentTheme.backgroundPrimary,
+  },
+  bottomBar: {
+    height: 52,
+    width: '100%',
+    borderTopWidth: currentTheme.generalBorderWidth,
+    borderColor: currentTheme.generalBorderColor,
+    flexDirection: 'row',
+    justifyContent: 'space-evenly',
+  },
+}));

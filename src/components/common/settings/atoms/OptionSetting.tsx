@@ -1,5 +1,6 @@
 import {Fragment, useContext} from 'react';
-import {StyleSheet, TouchableOpacity, View} from 'react-native';
+import {TouchableOpacity, View} from 'react-native';
+import {StyleSheet} from 'react-native-unistyles';
 import {useTranslation} from 'react-i18next';
 import {useMMKVString} from 'react-native-mmkv';
 
@@ -7,7 +8,7 @@ import MaterialIcon from '@react-native-vector-icons/material-icons';
 
 import {languages} from '@clerotri-i18n/languages';
 import {styles} from '@clerotri/Theme';
-import {commonValues, Theme, ThemeContext} from '@clerotri/lib/themes';
+import {commonValues, ThemeContext} from '@clerotri/lib/themes';
 import {Setting} from '@clerotri/lib/types';
 import {Text} from '@clerotri/components/common/atoms';
 import {IndicatorIcons} from './IndicatorIcons';
@@ -15,7 +16,6 @@ import {LineSeparator} from '@clerotri/components/layout';
 
 export const OptionSetting = ({sRaw}: {sRaw: Setting}) => {
   const {currentTheme} = useContext(ThemeContext);
-  const localStyles = generateLocalStyles(currentTheme);
 
   const {t} = useTranslation();
 
@@ -67,7 +67,9 @@ export const OptionSetting = ({sRaw}: {sRaw: Setting}) => {
                   </View>
                 </View>
               ) : (
-                <Text style={{flex: 1}}>{o}</Text>
+                <Text style={{flex: 1}}>
+                  {sRaw.key === 'ui.theme' ? t(`app.themes.${o}`) : o}
+                </Text>
               )}
               <View style={{...styles.iconContainer, marginRight: 0}}>
                 <MaterialIcon
@@ -85,20 +87,18 @@ export const OptionSetting = ({sRaw}: {sRaw: Setting}) => {
   );
 };
 
-const generateLocalStyles = (currentTheme: Theme) => {
-  return StyleSheet.create({
-    optionsContainer: {
-      borderRadius: commonValues.sizes.medium,
-      minWidth: '100%',
-      backgroundColor: currentTheme.backgroundSecondary,
-      paddingInline: commonValues.sizes.large,
-      paddingBlock: commonValues.sizes.xs,
-    },
-    option: {
-      width: '100%',
-      alignItems: 'center',
-      flexDirection: 'row',
-      paddingBlock: commonValues.sizes.medium,
-    },
-  });
-};
+const localStyles = StyleSheet.create(currentTheme => ({
+  optionsContainer: {
+    borderRadius: commonValues.sizes.medium,
+    minWidth: '100%',
+    backgroundColor: currentTheme.backgroundSecondary,
+    paddingInline: commonValues.sizes.large,
+    paddingBlock: commonValues.sizes.xs,
+  },
+  option: {
+    width: '100%',
+    alignItems: 'center',
+    flexDirection: 'row',
+    paddingBlock: commonValues.sizes.medium,
+  },
+}));

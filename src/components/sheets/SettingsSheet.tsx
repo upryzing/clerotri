@@ -1,5 +1,6 @@
 import {useContext, useMemo, useState} from 'react';
 import {type GradientValue, Platform, ScrollView, View} from 'react-native';
+import {StyleSheet} from 'react-native-unistyles';
 import {useTranslation} from 'react-i18next';
 import {observer} from 'mobx-react-lite';
 
@@ -119,16 +120,7 @@ export const SettingsSheet = observer(
     );
 
     return (
-      <View
-        style={{
-          flex: 1,
-          marginTop: insets.top,
-          backgroundColor: currentTheme.backgroundPrimary,
-          paddingTop: commonValues.sizes.xl,
-          paddingInline: commonValues.sizes.xl,
-          borderTopLeftRadius: commonValues.sizes.xl,
-          borderTopRightRadius: commonValues.sizes.xl,
-        }}>
+      <View style={localStyles.container}>
         {section?.section !== 'bots' && (
           <BackButton
             callback={() =>
@@ -370,3 +362,15 @@ export const SettingsSheet = observer(
     );
   },
 );
+
+const localStyles = StyleSheet.create((currentTheme, rt) => ({
+  container: {
+    flex: 1,
+    marginTop: rt.insets.top,
+    backgroundColor: currentTheme.backgroundPrimary,
+    paddingTop: commonValues.sizes.xl,
+    paddingInline: commonValues.sizes.xl,
+    borderTopLeftRadius: commonValues.sizes.xl,
+    borderTopRightRadius: commonValues.sizes.xl,
+  },
+}));

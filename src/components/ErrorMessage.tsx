@@ -1,10 +1,11 @@
 import {useContext} from 'react';
-import {StyleSheet, View} from 'react-native';
+import {View} from 'react-native';
+import {StyleSheet} from 'react-native-unistyles';
 
 import Clipboard from '@react-native-clipboard/clipboard';
 
 import {Button, Text} from '@clerotri/components/common/atoms';
-import {commonValues, Theme, ThemeContext} from '@clerotri/lib/themes';
+import {commonValues, ThemeContext} from '@clerotri/lib/themes';
 
 export function ErrorMessage({
   error,
@@ -14,7 +15,6 @@ export function ErrorMessage({
   resetErrorBoundary: Function;
 }) {
   const {currentTheme} = useContext(ThemeContext);
-  const localStyles = generateLocalStyles(currentTheme);
 
   const errorMessage = `${error}`;
 
@@ -51,32 +51,30 @@ export function ErrorMessage({
   );
 }
 
-const generateLocalStyles = (currentTheme: Theme) => {
-  return StyleSheet.create({
-    container: {
-      flex: 1,
-      backgroundColor: currentTheme.backgroundPrimary,
-      padding: commonValues.sizes.xl,
-      justifyContent: 'center',
-      alignItems: 'center',
-    },
-    innerContainer: {
-      maxWidth: 800,
-    },
-    textContainer: {
-      alignItems: 'center',
-      justifyContent: 'center',
-      textAlign: 'center',
-    },
-    header: {
-      fontSize: 30,
-      fontWeight: 'bold',
-    },
-    errorMessageBox: {
-      backgroundColor: currentTheme.background,
-      borderRadius: commonValues.sizes.medium,
-      marginVertical: commonValues.sizes.xl,
-      padding: commonValues.sizes.xl,
-    },
-  });
-};
+const localStyles = StyleSheet.create(currentTheme => ({
+  container: {
+    flex: 1,
+    backgroundColor: currentTheme.backgroundPrimary,
+    padding: commonValues.sizes.xl,
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+  innerContainer: {
+    maxWidth: 800,
+  },
+  textContainer: {
+    alignItems: 'center',
+    justifyContent: 'center',
+    textAlign: 'center',
+  },
+  header: {
+    fontSize: 30,
+    fontWeight: 'bold',
+  },
+  errorMessageBox: {
+    backgroundColor: currentTheme.background,
+    borderRadius: commonValues.sizes.medium,
+    marginVertical: commonValues.sizes.xl,
+    padding: commonValues.sizes.xl,
+  },
+}));

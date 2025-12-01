@@ -1,7 +1,8 @@
 import 'react-native-get-random-values'; // react native moment
 
 import {useEffect, useState} from 'react';
-import {StatusBar, StyleSheet} from 'react-native';
+import {StatusBar} from 'react-native';
+import {StyleSheet, UnistylesRuntime} from 'react-native-unistyles';
 import {ErrorBoundary} from 'react-error-boundary';
 
 import {GestureHandlerRootView} from 'react-native-gesture-handler';
@@ -17,11 +18,10 @@ import {themes, type Theme, ThemeContext} from '@clerotri/lib/themes';
 export const App = () => {
   const [theme, setTheme] = useState<Theme>(themes.Dark);
 
-  const localStyles = generateLocalStyles(theme);
-
   setFunction('setTheme', (themeName: string) => {
     const newTheme = themes[themeName] ?? themes.Dark;
     setTheme(newTheme);
+    // UnistylesRuntime.setTheme(themeName);
     StatusBar.setBarStyle(`${newTheme.contentType}-content`);
   });
 
@@ -45,10 +45,8 @@ export const App = () => {
   );
 };
 
-const generateLocalStyles = (currentTheme: Theme) => {
-  return StyleSheet.create({
+const localStyles = StyleSheet.create(currentTheme => ({
     outer: {
       backgroundColor: currentTheme.background,
     },
-  });
-};
+}));

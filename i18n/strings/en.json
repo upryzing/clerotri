@@ -569,6 +569,15 @@
                 "success_body_generic": "Your report has been sent to the platform's moderation team for review. Thank you for helping to keep the platform safe."
             }
         },
+        "themes": {
+            "Light": "Light",
+            "Dark": "Dark",
+            "Solarized": "Solarised",
+            "AMOLED": "AMOLED",
+            "Rose Pine": "Rosé Pine",
+            "Rose Pine Moon": "Rosé Pine Moon",
+            "Rose Pine Dawn": "Rosé Pine Dawn"
+        },
         "misc": {
             "generic_errors": {
                 "rateLimited_toast": "Slow down and try again in a minute."

@@ -1,5 +1,6 @@
 import {useContext, useState} from 'react';
-import {Platform, Pressable, StyleSheet, View} from 'react-native';
+import {Platform, Pressable, View} from 'react-native';
+import {StyleSheet} from 'react-native-unistyles';
 import {useTranslation} from 'react-i18next';
 import {observer} from 'mobx-react-lite';
 
@@ -21,7 +22,7 @@ import {AttachmentPickerButton} from '@clerotri/components/AttachmentPickerButto
 import {Avatar, Input, Text, Username} from '@clerotri/components/common/atoms';
 import {USER_IDS} from '@clerotri/lib/consts';
 import {storage} from '@clerotri/lib/storage';
-import {commonValues, Theme, ThemeContext} from '@clerotri/lib/themes';
+import {commonValues, ThemeContext} from '@clerotri/lib/themes';
 import {ReplyingMessage} from '@clerotri/lib/types';
 import {getReadableFileSize} from '@clerotri/lib/utils';
 
@@ -50,7 +51,6 @@ export const MessageBox = observer((props: MessageBoxProps) => {
   const insets = useSafeAreaInsets();
 
   const {currentTheme} = useContext(ThemeContext);
-  const localStyles = generateLocalStyles(currentTheme, insets.bottom);
 
   const {t} = useTranslation();
 
@@ -322,14 +322,13 @@ const AttachmentsBar = observer(
     setAttachments: Function;
   }) => {
     const {currentTheme} = useContext(ThemeContext);
-    const localStyles = generateAttachmentsBarStyles(currentTheme);
 
     // TODO: add file previews?
     if (attachments?.length > 0) {
       return (
         <View
           key={'message-box-attachments-bar'}
-          style={localStyles.attachmentsBar}>
+          style={attachmentsBarStyles.attachmentsBar}>
           <Text
             key={'message-box-attachments-bar-header'}
             style={{fontWeight: 'bold'}}>
@@ -393,9 +392,6 @@ const AttachmentsBar = observer(
 );
 
 const TypingIndicator = observer(({channel}: {channel: Channel}) => {
-  const {currentTheme} = useContext(ThemeContext);
-  const localStyles = generateTypingBarStyles(currentTheme);
-
   if (channel) {
     let users = channel.typing?.filter(entry => !!entry) || undefined;
     !settings.get('ui.messaging.showSelfInTypingIndicator') &&
@@ -439,7 +435,7 @@ const TypingIndicator = observer(({channel}: {channel: Channel}) => {
     }
     if (users?.length > 0) {
       return (
-        <View style={localStyles.typingBar}>
+        <View style={typingBarStyles.typingBar}>
           {users.map(u => {
             return (
               <View key={u?._id} style={{marginRight: -10}}>
@@ -457,83 +453,77 @@ const TypingIndicator = observer(({channel}: {channel: Channel}) => {
   return <View />;
 });
 
-const generateLocalStyles = (currentTheme: Theme, inset: number) => {
-  return StyleSheet.create({
-    messageBoxBar: {
-      padding: commonValues.sizes.small,
-      paddingVertical: commonValues.sizes.medium,
-      borderBottomColor: currentTheme.backgroundPrimary,
-      borderBottomWidth: 1,
-      flexDirection: 'row',
-    },
-    messageBox: {
-      backgroundColor: currentTheme.messageBoxInput,
-      paddingInline: commonValues.sizes.large,
-      padding: commonValues.sizes.medium,
-      flex: 1,
-    },
-    messageBoxInner: {
-      flexDirection: 'row',
-      alignItems: 'center',
-      minHeight: 50,
-      paddingHorizontal: commonValues.sizes.medium,
-      paddingVertical: commonValues.sizes.small,
-      paddingBottom: inset + commonValues.sizes.small,
-    },
-    messageBoxOuter: {
-      backgroundColor: currentTheme.messageBox,
-      overflow: 'hidden',
-      paddingVertical: commonValues.sizes.small,
-    },
-    sendButton: {
-      marginStart: commonValues.sizes.medium,
-      justifyContent: 'center',
-      alignItems: 'center',
-      padding: 5,
-      borderRadius: commonValues.sizes.medium,
-      backgroundColor: currentTheme.accentColor,
-    },
-    noPermissionBox: {
-      backgroundColor: currentTheme.backgroundSecondary,
-      minHeight: 50,
-      paddingVertical: 20,
-      paddingBottom: inset + 20,
-      paddingHorizontal: commonValues.sizes.medium,
-      alignItems: 'center',
-      justifyContent: 'center',
-    },
-    attachment: {
-      flexDirection: 'row',
-      padding: commonValues.sizes.medium,
-      margin: commonValues.sizes.small,
-      backgroundColor: currentTheme.backgroundPrimary,
-      borderRadius: commonValues.sizes.small,
-      alignItems: 'center',
-    },
-  });
-};
+const localStyles = StyleSheet.create((currentTheme, rt) => ({
+  messageBoxBar: {
+    padding: commonValues.sizes.small,
+    paddingVertical: commonValues.sizes.medium,
+    borderBottomColor: currentTheme.backgroundPrimary,
+    borderBottomWidth: 1,
+    flexDirection: 'row',
+  },
+  messageBox: {
+    backgroundColor: currentTheme.messageBoxInput,
+    paddingInline: commonValues.sizes.large,
+    padding: commonValues.sizes.medium,
+    flex: 1,
+  },
+  messageBoxInner: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    minHeight: 50,
+    paddingHorizontal: commonValues.sizes.medium,
+    paddingVertical: commonValues.sizes.small,
+    paddingBottom: rt.insets.bottom + commonValues.sizes.small,
+  },
+  messageBoxOuter: {
+    backgroundColor: currentTheme.messageBox,
+    overflow: 'hidden',
+    paddingVertical: commonValues.sizes.small,
+  },
+  sendButton: {
+    marginStart: commonValues.sizes.medium,
+    justifyContent: 'center',
+    alignItems: 'center',
+    padding: 5,
+    borderRadius: commonValues.sizes.medium,
+    backgroundColor: currentTheme.accentColor,
+  },
+  noPermissionBox: {
+    backgroundColor: currentTheme.backgroundSecondary,
+    minHeight: 50,
+    paddingVertical: 20,
+    paddingBottom: rt.insets.bottom + 20,
+    paddingHorizontal: commonValues.sizes.medium,
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
+  attachment: {
+    flexDirection: 'row',
+    padding: commonValues.sizes.medium,
+    margin: commonValues.sizes.small,
+    backgroundColor: currentTheme.backgroundPrimary,
+    borderRadius: commonValues.sizes.small,
+    alignItems: 'center',
+  },
+}));
 
-const generateAttachmentsBarStyles = (currentTheme: Theme) => {
-  return StyleSheet.create({
-    attachmentsBar: {
-      padding: commonValues.sizes.medium,
-      borderBottomColor: currentTheme.backgroundPrimary,
-      borderBottomWidth: 1,
-      flexDirection: 'column',
-    },
-  });
-};
+const attachmentsBarStyles = StyleSheet.create(currentTheme => ({
+  attachmentsBar: {
+    padding: commonValues.sizes.medium,
+    borderBottomColor: currentTheme.backgroundPrimary,
+    borderBottomWidth: 1,
+    flexDirection: 'column',
+  },
+}));
 
-const generateTypingBarStyles = (currentTheme: Theme) => {
-  return StyleSheet.create({
-    typingBar: {
-      height: 26,
-      paddingLeft: 6,
-      padding: 3,
-      backgroundColor: currentTheme.backgroundSecondary,
-      borderBottomColor: currentTheme.backgroundPrimary,
-      borderBottomWidth: 1,
-      flexDirection: 'row',
-    },
-  });
-};
+const typingBarStyles = StyleSheet.create(currentTheme => ({
+  typingBar: {
+    height: 26,
+    paddingLeft: 6,
+    padding: 3,
+    backgroundColor: currentTheme.backgroundSecondary,
+    borderBottomColor: currentTheme.backgroundPrimary,
+    borderBottomWidth: 1,
+    flexDirection: 'row',
+  },
+}));

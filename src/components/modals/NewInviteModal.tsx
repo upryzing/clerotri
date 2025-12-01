@@ -1,21 +1,15 @@
-import {useContext, useMemo} from 'react';
-import {StyleSheet, View} from 'react-native';
+import {View} from 'react-native';
+import {StyleSheet} from 'react-native-unistyles';
 import {useTranslation} from 'react-i18next';
 import {observer} from 'mobx-react-lite';
 
 import {app} from '@clerotri/Generic';
 import {Button, Text} from '@clerotri/components/common/atoms';
 import {client} from '@clerotri/lib/client';
-import {commonValues, Theme, ThemeContext} from '@clerotri/lib/themes';
+import {commonValues} from '@clerotri/lib/themes';
 import Clipboard from '@react-native-clipboard/clipboard';
 
 export const NewInviteModal = observer(({code}: {code: string}) => {
-  const {currentTheme} = useContext(ThemeContext);
-  const localStyles = useMemo(
-    () => generateLocalStyles(currentTheme),
-    [currentTheme],
-  );
-
   const {t} = useTranslation();
 
   const link = `${client.configuration?.app}/invite/`;
@@ -61,38 +55,36 @@ export const NewInviteModal = observer(({code}: {code: string}) => {
   );
 });
 
-const generateLocalStyles = (currentTheme: Theme) => {
-  return StyleSheet.create({
-    container: {
-      width: '80%',
-      borderRadius: commonValues.sizes.medium,
-      padding: 20,
-      backgroundColor: currentTheme.backgroundPrimary,
-      justifyContent: 'center',
-      alignSelf: 'center',
-    },
-    typeSelector: {
-      marginVertical: commonValues.sizes.small,
-      borderRadius: commonValues.sizes.medium,
-      minWidth: '100%',
-      backgroundColor: currentTheme.backgroundSecondary,
-      padding: commonValues.sizes.medium,
-    },
-    channelType: {
-      height: 40,
-      width: '100%',
-      alignItems: 'center',
-      flexDirection: 'row',
-      backgroundColor: currentTheme.backgroundPrimary,
-      borderRadius: commonValues.sizes.medium,
-      paddingInline: 10,
-      marginVertical: commonValues.sizes.small,
-    },
-    checkboxRow: {
-      flexDirection: 'row',
-      alignItems: 'center',
-      justifyContent: 'space-between',
-      marginVertical: commonValues.sizes.small,
-    },
-  });
-};
+const localStyles = StyleSheet.create(currentTheme => ({
+  container: {
+    width: '80%',
+    borderRadius: commonValues.sizes.medium,
+    padding: 20,
+    backgroundColor: currentTheme.backgroundPrimary,
+    justifyContent: 'center',
+    alignSelf: 'center',
+  },
+  typeSelector: {
+    marginVertical: commonValues.sizes.small,
+    borderRadius: commonValues.sizes.medium,
+    minWidth: '100%',
+    backgroundColor: currentTheme.backgroundSecondary,
+    padding: commonValues.sizes.medium,
+  },
+  channelType: {
+    height: 40,
+    width: '100%',
+    alignItems: 'center',
+    flexDirection: 'row',
+    backgroundColor: currentTheme.backgroundPrimary,
+    borderRadius: commonValues.sizes.medium,
+    paddingInline: 10,
+    marginVertical: commonValues.sizes.small,
+  },
+  checkboxRow: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'space-between',
+    marginVertical: commonValues.sizes.small,
+  },
+}));

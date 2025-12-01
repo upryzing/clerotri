@@ -1,5 +1,6 @@
 import {useContext, useMemo, useState} from 'react';
-import {StyleSheet, useWindowDimensions, View} from 'react-native';
+import {useWindowDimensions, View} from 'react-native';
+import {StyleSheet} from 'react-native-unistyles';
 import {useTranslation} from 'react-i18next';
 import {observer} from 'mobx-react-lite';
 
@@ -21,7 +22,7 @@ import {
 } from '@clerotri/components/common/atoms';
 import {MarkdownView} from '@clerotri/components/common/MarkdownView';
 import {OFFICIAL_INSTANCE_API_URLS, USER_IDS} from '@clerotri/lib/consts';
-import {commonValues, Theme, ThemeContext} from '@clerotri/lib/themes';
+import {commonValues, ThemeContext} from '@clerotri/lib/themes';
 import type {ReportedObject} from '@clerotri/lib/types';
 import {useBackHandler} from '@clerotri/lib/ui';
 
@@ -84,15 +85,19 @@ async function sendReport(
   }
 }
 
-const generateLocalStyles = (currentTheme: Theme) => {
-  return StyleSheet.create({
-    input: {
-      backgroundColor: currentTheme.backgroundPrimary,
-      marginBlock: commonValues.sizes.small,
-      padding: commonValues.sizes.large,
-    },
-  });
-};
+const noticeStyles = StyleSheet.create(currentTheme => ({
+  container: {
+    flexDirection: 'row',
+    padding: commonValues.sizes.medium,
+    borderRadius: commonValues.sizes.medium,
+    backgroundColor: currentTheme.background,
+    alignItems: 'center',
+  },
+  text: {
+    flex: 1,
+    marginInlineStart: commonValues.sizes.medium,
+  },
+}));
 
 function Notice({
   stringKey,
@@ -106,14 +111,7 @@ function Notice({
   const {t} = useTranslation();
 
   return (
-    <View
-      style={{
-        flexDirection: 'row',
-        padding: commonValues.sizes.medium,
-        borderRadius: commonValues.sizes.medium,
-        backgroundColor: currentTheme.background,
-        alignItems: 'center',
-      }}>
+    <View style={noticeStyles.container}>
       <MaterialIcon
         name={type ?? 'info'}
         size={28}
@@ -121,9 +119,7 @@ function Notice({
           type === 'error' ? currentTheme.error : currentTheme.foregroundPrimary
         }
       />
-      <Text style={{flex: 1, marginInlineStart: commonValues.sizes.medium}}>
-        {t(stringKey)}
-      </Text>
+      <Text style={noticeStyles.text}>{t(stringKey)}</Text>
     </View>
   );
 }
@@ -237,6 +233,17 @@ function SuccessScreen({reportedObject}: {reportedObject: ReportedObject}) {
   );
 }
 
+const reasonsSelectorStyles = StyleSheet.create(currentTheme => ({
+  reasonsContainer: {
+    marginBlockStart: commonValues.sizes.small,
+    gap: commonValues.sizes.medium,
+  },
+  reasonButton: {
+    justifyContent: 'flex-start',
+    margin: 0,
+    backgroundColor: currentTheme.backgroundPrimary,
+  },
+}));
 function ReasonsSelector({
   reportedObject,
   setReason,
@@ -244,8 +251,6 @@ function ReasonsSelector({
   reportedObject: ReportedObject;
   setReason: Function;
 }) {
-  const {currentTheme} = useContext(ThemeContext);
-
   const {t} = useTranslation();
 
   const reasons =
@@ -276,35 +281,51 @@ function ReasonsSelector({
           </View>
         ) : null}
       </View>
-      {reasons.map(r => {
-        return (
-          <Button
-            key={`reason_${r}`}
-            style={{
-              justifyContent: 'flex-start',
-              marginInline: 0,
-              marginBlock: commonValues.sizes.small,
-            }}
-            backgroundColor={currentTheme.backgroundPrimary}
-            onPress={() => {
-              setReason(r);
-            }}>
-            <View>
-              <Text style={{fontWeight: 'bold'}}>
-                {t(`app.sheets.report.reasons.${r}`)}
-              </Text>
-              <Text>
-                {t(
-                  `app.sheets.report.reasons.${r}_body${r === 'NoneSpecified' ? '' : `_${reportedObject.type.toLowerCase()}`}`,
-                )}
-              </Text>
-            </View>
-          </Button>
-        );
-      })}
+      <View style={reasonsSelectorStyles.reasonsContainer}>
+        {reasons.map(r => {
+          return (
+            <Button
+              key={`reason_${r}`}
+              style={reasonsSelectorStyles.reasonButton}
+              onPress={() => {
+                setReason(r);
+              }}>
+              <View>
+                <Text style={{fontWeight: 'bold'}}>
+                  {t(`app.sheets.report.reasons.${r}`)}
+                </Text>
+                <Text>
+                  {t(
+                    `app.sheets.report.reasons.${r}_body${r === 'NoneSpecified' ? '' : `_${reportedObject.type.toLowerCase()}`}`,
+                  )}
+                </Text>
+              </View>
+            </Button>
+          );
+        })}
+      </View>
     </>
   );
 }
+
+const contextProviderStyles = StyleSheet.create(currentTheme => ({
+  reason: {
+    marginBlockEnd: commonValues.sizes.small,
+    padding: commonValues.sizes.medium,
+    borderRadius: commonValues.sizes.medium,
+    backgroundColor: currentTheme.background,
+  },
+  input: {
+    backgroundColor: currentTheme.backgroundPrimary,
+    marginBlock: commonValues.sizes.small,
+    padding: commonValues.sizes.large,
+  },
+  button: {
+    backgroundColor: currentTheme.backgroundPrimary,
+    marginInline: 0,
+    marginBlock: commonValues.sizes.small,
+  },
+}));
 
 function ContextProvider({
   reportedObject,
@@ -315,9 +336,6 @@ function ContextProvider({
   reason: string;
   setStatus: Function;
 }) {
-  const {currentTheme} = useContext(ThemeContext);
-  const localStyles = generateLocalStyles(currentTheme);
-
   const {t} = useTranslation();
 
   const [additionalContext, setAdditionalContext] = useState('');
@@ -325,13 +343,7 @@ function ContextProvider({
   return (
     <>
       {reason && (
-        <View
-          style={{
-            marginBlockEnd: commonValues.sizes.small,
-            padding: commonValues.sizes.medium,
-            borderRadius: commonValues.sizes.medium,
-            backgroundColor: currentTheme.background,
-          }}>
+        <View style={contextProviderStyles.reason}>
           <Text style={{fontWeight: 'bold'}}>
             {t(`app.sheets.report.reasons.${reason}`)}
           </Text>
@@ -345,7 +357,7 @@ function ContextProvider({
       <Text>{t('app.sheets.report.additional_context_body')}</Text>
       <Input
         skipRegularStyles
-        style={localStyles.input}
+        style={contextProviderStyles.input}
         value={additionalContext}
         onChangeText={(c: string) => {
           setAdditionalContext(c);
@@ -358,11 +370,7 @@ function ContextProvider({
         onPress={async () =>
           setStatus(await sendReport(reportedObject, reason, additionalContext))
         }
-        style={{
-          backgroundColor: currentTheme.backgroundPrimary,
-          marginInline: 0,
-          marginBlock: commonValues.sizes.small,
-        }}>
+        style={contextProviderStyles.button}>
         <Text>
           {t(`app.sheets.report.report_${reportedObject.type.toLowerCase()}`)}
         </Text>
@@ -370,6 +378,15 @@ function ContextProvider({
     </>
   );
 }
+
+const messageDetailsStyles = StyleSheet.create(currentTheme => ({
+  container: {
+    padding: commonValues.sizes.medium,
+    borderRadius: commonValues.sizes.medium,
+    backgroundColor: currentTheme.backgroundPrimary,
+    marginBlockEnd: commonValues.sizes.medium,
+  },
+}));
 
 const MessageDetails = observer(({msg}: {msg: Message}) => {
   const {height} = useWindowDimensions();
@@ -382,13 +399,7 @@ const MessageDetails = observer(({msg}: {msg: Message}) => {
   );
 
   return (
-    <View
-      style={{
-        padding: commonValues.sizes.medium,
-        borderRadius: commonValues.sizes.medium,
-        backgroundColor: currentTheme.backgroundPrimary,
-        marginBlockEnd: commonValues.sizes.medium,
-      }}>
+    <View style={messageDetailsStyles.container}>
       <ScrollView
         style={{
           marginBottom: commonValues.sizes.small,

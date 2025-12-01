@@ -1,5 +1,6 @@
 import {useContext} from 'react';
 import {Dimensions, Pressable, View} from 'react-native';
+import {StyleSheet} from 'react-native-unistyles';
 import {observer} from 'mobx-react-lite';
 
 import type {API} from 'revolt.js';
@@ -22,14 +23,10 @@ export const MessageEmbed = observer((eRaw: API.Embed) => {
     case 'Website':
       return (
         <View
-          style={{
-            marginBlock: commonValues.sizes.small,
-            backgroundColor: currentTheme.backgroundSecondary,
-            padding: commonValues.sizes.large,
-            borderRadius: commonValues.sizes.medium,
-            borderStartWidth: commonValues.sizes.small,
-            borderStartColor: e.colour ?? currentTheme.foregroundPrimary,
-          }}>
+          style={[
+            localStyles.container,
+            e.color && {borderStartColor: e.color},
+          ]}>
           {e.type === 'Website' && e.site_name ? (
             <Text
               colour={currentTheme.foregroundSecondary}
@@ -128,3 +125,14 @@ export const MessageEmbed = observer((eRaw: API.Embed) => {
       );
   }
 });
+
+const localStyles = StyleSheet.create(currentTheme => ({
+  container: {
+    marginBlock: commonValues.sizes.small,
+    backgroundColor: currentTheme.backgroundSecondary,
+    padding: commonValues.sizes.large,
+    borderRadius: commonValues.sizes.medium,
+    borderStartWidth: commonValues.sizes.small,
+    borderStartColor: currentTheme.foregroundPrimary,
+  },
+}));

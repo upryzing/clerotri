@@ -1,5 +1,5 @@
-import {useContext} from 'react';
-import {StyleSheet, View} from 'react-native';
+import {View} from 'react-native';
+import {StyleSheet} from 'react-native-unistyles';
 
 import spoilerPlugin from '@traptitech/markdown-it-spoiler';
 import Markdown, {
@@ -12,170 +12,168 @@ import {Text} from './atoms';
 import {Spoiler, SpoilerContext, SpoilerWrapper} from './markdown/Spoiler';
 import {renderEmoji} from './messaging/Emoji';
 import {openUrl} from '@clerotri/lib/utils';
-import {commonValues, Theme, ThemeContext} from '@clerotri/lib/themes';
+import {commonValues} from '@clerotri/lib/themes';
 
 const defaultMarkdownIt = MarkdownIt({linkify: true})
   .disable(['image'])
   .use(spoilerPlugin);
 
-const generateDefaultStyles = (currentTheme: Theme) => {
-  return StyleSheet.create({
-    body: {
-      fontFamily: 'Open Sans',
-      color: currentTheme.foregroundPrimary,
-    },
-    paragraph: {
-      flexWrap: 'wrap',
-      flexDirection: 'row',
-      alignItems: 'flex-start',
-      justifyContent: 'flex-start',
-      marginTop: -3,
-      marginBottom: commonValues.sizes.xs,
-      fontSize: settings.get('ui.messaging.fontSize') as number,
-      backgroundColor: 'transparent',
-    },
-    hardbreak: {
-      width: '100%',
-      height: 1,
-    },
-    heading1: {
-      flexDirection: 'row',
-      fontSize: 32,
-      fontWeight: 'bold',
-      backgroundColor: 'transparent',
-    },
-    heading2: {
-      flexDirection: 'row',
-      fontSize: 24,
-      fontWeight: 'bold',
-      backgroundColor: 'transparent',
-    },
-    heading3: {
-      flexDirection: 'row',
-      fontSize: 18,
-      fontWeight: 'bold',
-      backgroundColor: 'transparent',
-    },
-    heading4: {
-      flexDirection: 'row',
-      fontSize: 16,
-      fontWeight: 'bold',
-      backgroundColor: 'transparent',
-    },
-    heading5: {
-      flexDirection: 'row',
-      fontSize: 13,
-      fontWeight: 'bold',
-      backgroundColor: 'transparent',
-    },
-    heading6: {
-      flexDirection: 'row',
-      fontSize: 11,
-      fontWeight: 'bold',
-      backgroundColor: 'transparent',
-    },
-    strong: {
-      fontWeight: 'bold',
-    },
-    em: {
-      fontStyle: 'italic',
-    },
-    s: {
-      textDecorationLine: 'line-through',
-    },
-    link: {
-      color: currentTheme.accentColor,
-      textDecorationLine: 'underline',
-    },
-    code_inline: {
-      fontFamily: 'JetBrains Mono',
-      backgroundColor: 'transparent',
-      padding: 0,
-      borderWidth: 0,
-      marginBlock: 0,
-    },
-    code_inline_container: {
-      // align it properly (see also https://github.com/facebook/react-native/issues/31955)
-      transform: [
-        {
-          translateY: 6,
-        },
-      ],
-      backgroundColor: currentTheme.backgroundSecondary,
-      paddingHorizontal: commonValues.sizes.xs,
-      borderRadius: commonValues.sizes.small,
-    },
-    fence: {
-      fontFamily: 'JetBrains Mono',
-      backgroundColor: currentTheme.backgroundSecondary,
-      borderWidth: 0,
-      borderRadius: commonValues.sizes.small,
-      marginBottom: commonValues.sizes.xs,
-      padding: 10,
-    },
-    blockquote: {
-      marginLeft: 0,
-      marginBottom: commonValues.sizes.xs,
-      borderLeftWidth: commonValues.sizes.small,
-      borderColor: currentTheme.foregroundPrimary,
-      borderRadius: commonValues.sizes.small,
-      backgroundColor: currentTheme.blockQuoteBackground,
-      paddingHorizontal: commonValues.sizes.medium,
-      paddingVertical: commonValues.sizes.small,
-    },
-    spoiler: {
-      marginBlock: 0,
-    },
-    list_item: {
-      flexDirection: 'row',
-      justifyContent: 'flex-start',
-      backgroundColor: 'transparent',
-    },
-    bullet_list_icon: {
-      marginHorizontal: 10,
-    },
-    bullet_list_content: {
-      flex: 1,
-    },
-    ordered_list_icon: {
-      marginHorizontal: 10,
-    },
-    ordered_list_content: {
-      flex: 1,
-    },
-    table: {
-      borderWidth: 1,
-      borderTopWidth: 2,
-      borderEndWidth: 2,
-      borderColor: currentTheme.foregroundSecondary,
-      borderRadius: commonValues.sizes.small,
-    },
-    thead: {
-      fontWeight: 'bold',
-    },
-    th: {
-      flex: 1,
-      padding: 5,
-      borderStartWidth: 1,
-      borderColor: currentTheme.foregroundSecondary,
-    },
-    td: {
-      flex: 1,
-      padding: 5,
-      borderStartWidth: 1,
-      borderColor: currentTheme.foregroundSecondary,
-    },
-    tr: {
-      borderBottomWidth: 1,
-      flexDirection: 'row',
-      borderColor: currentTheme.foregroundSecondary,
-    },
-    hr: {
-      backgroundColor: currentTheme.foregroundSecondary,
-      height: 1,
-    },
-  });
-};
+const defaultStyles = StyleSheet.create(currentTheme => ({
+  body: {
+    fontFamily: 'Open Sans',
+    color: currentTheme.foregroundPrimary,
+  },
+  paragraph: {
+    flexWrap: 'wrap',
+    flexDirection: 'row',
+    alignItems: 'flex-start',
+    justifyContent: 'flex-start',
+    marginTop: -3,
+    marginBottom: commonValues.sizes.xs,
+    fontSize: settings.get('ui.messaging.fontSize') as number,
+    backgroundColor: 'transparent',
+  },
+  hardbreak: {
+    width: '100%',
+    height: 1,
+  },
+  heading1: {
+    flexDirection: 'row',
+    fontSize: 32,
+    fontWeight: 'bold',
+    backgroundColor: 'transparent',
+  },
+  heading2: {
+    flexDirection: 'row',
+    fontSize: 24,
+    fontWeight: 'bold',
+    backgroundColor: 'transparent',
+  },
+  heading3: {
+    flexDirection: 'row',
+    fontSize: 18,
+    fontWeight: 'bold',
+    backgroundColor: 'transparent',
+  },
+  heading4: {
+    flexDirection: 'row',
+    fontSize: 16,
+    fontWeight: 'bold',
+    backgroundColor: 'transparent',
+  },
+  heading5: {
+    flexDirection: 'row',
+    fontSize: 13,
+    fontWeight: 'bold',
+    backgroundColor: 'transparent',
+  },
+  heading6: {
+    flexDirection: 'row',
+    fontSize: 11,
+    fontWeight: 'bold',
+    backgroundColor: 'transparent',
+  },
+  strong: {
+    fontWeight: 'bold',
+  },
+  em: {
+    fontStyle: 'italic',
+  },
+  s: {
+    textDecorationLine: 'line-through',
+  },
+  link: {
+    color: currentTheme.accentColor,
+    textDecorationLine: 'underline',
+  },
+  code_inline: {
+    fontFamily: 'JetBrains Mono',
+    backgroundColor: 'transparent',
+    padding: 0,
+    borderWidth: 0,
+    marginBlock: 0,
+  },
+  code_inline_container: {
+    // align it properly (see also https://github.com/facebook/react-native/issues/31955)
+    transform: [
+      {
+        translateY: 6,
+      },
+    ],
+    backgroundColor: currentTheme.backgroundSecondary,
+    paddingHorizontal: commonValues.sizes.xs,
+    borderRadius: commonValues.sizes.small,
+  },
+  fence: {
+    fontFamily: 'JetBrains Mono',
+    backgroundColor: currentTheme.backgroundSecondary,
+    borderWidth: 0,
+    borderRadius: commonValues.sizes.small,
+    marginBottom: commonValues.sizes.xs,
+    padding: 10,
+  },
+  blockquote: {
+    marginLeft: 0,
+    marginBottom: commonValues.sizes.xs,
+    borderLeftWidth: commonValues.sizes.small,
+    borderColor: currentTheme.foregroundPrimary,
+    borderRadius: commonValues.sizes.small,
+    backgroundColor: currentTheme.blockQuoteBackground,
+    paddingHorizontal: commonValues.sizes.medium,
+    paddingVertical: commonValues.sizes.small,
+  },
+  spoiler: {
+    marginBlock: 0,
+  },
+  list_item: {
+    flexDirection: 'row',
+    justifyContent: 'flex-start',
+    backgroundColor: 'transparent',
+  },
+  bullet_list_icon: {
+    marginHorizontal: 10,
+  },
+  bullet_list_content: {
+    flex: 1,
+  },
+  ordered_list_icon: {
+    marginHorizontal: 10,
+  },
+  ordered_list_content: {
+    flex: 1,
+  },
+  table: {
+    borderWidth: 1,
+    borderTopWidth: 2,
+    borderEndWidth: 2,
+    borderColor: currentTheme.foregroundSecondary,
+    borderRadius: commonValues.sizes.small,
+  },
+  thead: {
+    fontWeight: 'bold',
+  },
+  th: {
+    flex: 1,
+    padding: 5,
+    borderStartWidth: 1,
+    borderColor: currentTheme.foregroundSecondary,
+  },
+  td: {
+    flex: 1,
+    padding: 5,
+    borderStartWidth: 1,
+    borderColor: currentTheme.foregroundSecondary,
+  },
+  tr: {
+    borderBottomWidth: 1,
+    flexDirection: 'row',
+    borderColor: currentTheme.foregroundSecondary,
+  },
+  hr: {
+    backgroundColor: currentTheme.foregroundSecondary,
+    height: 1,
+  },
+}));
 
 const shouldRenderTextAsSpoilerText = (parents: any) => {
   if (!hasParents(parents, 'spoiler')) {
@@ -276,10 +274,7 @@ const spoilerRule = {
 };
 
 export const MarkdownView = (props: any) => {
-  const {currentTheme} = useContext(ThemeContext);
-  const defaultStyles = generateDefaultStyles(currentTheme);
-
-  let newProps = {...props};
+  let {style, ...newProps} = props;
 
   if (!newProps.onLinkPress) {
     newProps = Object.assign({onLinkPress: openUrl}, newProps);
@@ -293,17 +288,10 @@ export const MarkdownView = (props: any) => {
     newProps = Object.assign({rules: spoilerRule}, newProps);
   }
 
-  if (!newProps.style) {
-    newProps = Object.assign({style: {}}, newProps);
-  }
-
-  newProps.style = {
-    ...defaultStyles,
-    ...newProps.style,
-  };
+  const styles = StyleSheet.flatten([defaultStyles, style]);
 
   try {
-    return <Markdown {...newProps}>{newProps.children}</Markdown>;
+    return <Markdown style={styles} {...newProps} />;
   } catch (e) {
     return <Text>Error rendering markdown</Text>;
   }

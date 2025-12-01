@@ -1,5 +1,6 @@
 import {useContext, useEffect, useState} from 'react';
 import {View} from 'react-native';
+import {StyleSheet} from 'react-native-unistyles';
 import {observer} from 'mobx-react-lite';
 
 import type {API, Message} from 'revolt.js';
@@ -9,20 +10,17 @@ import {client} from '@clerotri/lib/client';
 import {Button, GeneralAvatar, Text} from '../atoms';
 import {commonValues, ThemeContext} from '@clerotri/lib/themes';
 
-const InviteBackground = observer(({children}: {children: any}) => {
-  const {currentTheme} = useContext(ThemeContext);
+const localStyles = StyleSheet.create(currentTheme => ({
+  background: {
+    backgroundColor: currentTheme.backgroundSecondary,
+    padding: commonValues.sizes.large,
+    borderRadius: commonValues.sizes.medium,
+    marginBlock: commonValues.sizes.small,
+  },
+}));
 
-  return (
-    <View
-      style={{
-        backgroundColor: currentTheme.backgroundSecondary,
-        padding: commonValues.sizes.large,
-        borderRadius: commonValues.sizes.medium,
-        marginBlock: commonValues.sizes.small,
-      }}>
-      {children}
-    </View>
-  );
+const InviteBackground = observer(({children}: {children: any}) => {
+  return <View style={localStyles.background}>{children}</View>;
 });
 
 export const InviteEmbed = observer(

@@ -1,26 +1,20 @@
 import {useContext} from 'react';
-import {Pressable, StyleSheet, View} from 'react-native';
+import {Pressable, View} from 'react-native';
+import {StyleSheet} from 'react-native-unistyles';
 
 import {gestureHandlerRootHOC} from 'react-native-gesture-handler';
 import ImageViewerCore from 'react-native-reanimated-image-viewer';
-import {
-  type EdgeInsets,
-  useSafeAreaInsets,
-} from 'react-native-safe-area-context';
 import MaterialCommunityIcon from '@react-native-vector-icons/material-design-icons';
 
 import {client} from '@clerotri/lib/client';
 import {Text} from '@clerotri/components/common/atoms';
 import {GapView} from '@clerotri/components/layout';
-import {commonValues, Theme, ThemeContext} from '@clerotri/lib/themes';
+import {commonValues, ThemeContext} from '@clerotri/lib/themes';
 import {getReadableFileSize, openUrl} from '@clerotri/lib/utils';
 
 export const ImageViewer = gestureHandlerRootHOC(
   ({state, setState}: {state: any; setState: any}) => {
-    const insets = useSafeAreaInsets();
-
     const {currentTheme} = useContext(ThemeContext);
-    const localStyles = generateLocalStyles(currentTheme, insets);
 
     const imageUrl = state.i?.metadata
       ? client.generateFileURL(state.i)!
@@ -73,32 +67,30 @@ export const ImageViewer = gestureHandlerRootHOC(
   {backgroundColor: 'red'},
 );
 
-const generateLocalStyles = (currentTheme: Theme, insets: EdgeInsets) => {
-  return StyleSheet.create({
-    container: {
-      flex: 1,
-      justifyContent: 'space-between',
-    },
-    topBar: {
-      backgroundColor: currentTheme.background,
-      paddingTop: insets.top,
-      paddingBottom: commonValues.sizes.large,
-      paddingHorizontal: commonValues.sizes.large,
-      alignItems: 'center',
-      justifyContent: 'space-between',
-      flexDirection: 'row',
-      zIndex: 10,
-    },
-    image: {
-      flex: 1,
-    },
-    fileInfo: {
-      paddingTop: commonValues.sizes.large,
-      paddingBottom: insets.bottom,
-      backgroundColor: currentTheme.background,
-      paddingHorizontal: commonValues.sizes.large,
-      justifyContent: 'center',
-      zIndex: 10,
-    },
-  });
-};
+const localStyles = StyleSheet.create((currentTheme, rt) => ({
+  container: {
+    flex: 1,
+    justifyContent: 'space-between',
+  },
+  topBar: {
+    backgroundColor: currentTheme.background,
+    paddingTop: rt.insets.top,
+    paddingBottom: commonValues.sizes.large,
+    paddingHorizontal: commonValues.sizes.large,
+    alignItems: 'center',
+    justifyContent: 'space-between',
+    flexDirection: 'row',
+    zIndex: 10,
+  },
+  image: {
+    flex: 1,
+  },
+  fileInfo: {
+    paddingTop: commonValues.sizes.large,
+    paddingBottom: rt.insets.bottom,
+    backgroundColor: currentTheme.background,
+    paddingHorizontal: commonValues.sizes.large,
+    justifyContent: 'center',
+    zIndex: 10,
+  },
+}));

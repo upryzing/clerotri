@@ -1,12 +1,13 @@
 import {useContext} from 'react';
-import {StyleSheet, TouchableOpacity, View} from 'react-native';
+import {TouchableOpacity, View} from 'react-native';
+import {StyleSheet} from 'react-native-unistyles';
 import {useTranslation} from 'react-i18next';
 
 import MaterialCommunityIcon from '@react-native-vector-icons/material-design-icons';
 import MaterialIcon from '@react-native-vector-icons/material-icons';
 
 import {Text} from '@clerotri/components/common/atoms';
-import {commonValues, type Theme, ThemeContext} from '@clerotri/lib/themes';
+import {commonValues, ThemeContext} from '@clerotri/lib/themes';
 import type {ContextButtonProps} from '@clerotri/lib/types';
 import {styles} from '@clerotri/Theme';
 
@@ -20,7 +21,6 @@ export const NewContextButton = ({
   ...props
 }: ContextButtonProps) => {
   const {currentTheme} = useContext(ThemeContext);
-  const localStyles = generateLocalStyles(currentTheme);
 
   const {t} = useTranslation();
 
@@ -61,26 +61,24 @@ export const NewContextButton = ({
   );
 };
 
-const generateLocalStyles = (currentTheme: Theme) => {
-  return StyleSheet.create({
-    common: {
-      flex: 1,
-      backgroundColor: currentTheme.backgroundPrimary,
-      alignItems: 'center',
-      flexDirection: 'row',
-      borderRadius: commonValues.sizes.small,
-      paddingInline: commonValues.sizes.large,
-      paddingBlock: commonValues.sizes.medium,
-      marginBlock: commonValues.sizes.xs,
-    },
-    start: {
-      borderStartStartRadius: commonValues.sizes.medium,
-      borderEndStartRadius: commonValues.sizes.medium,
-    },
-    end: {
-      borderStartEndRadius: commonValues.sizes.medium,
-      borderEndEndRadius: commonValues.sizes.medium,
-      marginBlockEnd: commonValues.sizes.medium,
-    },
-  });
-};
+const localStyles = StyleSheet.create(currentTheme => ({
+  common: {
+    flex: 1,
+    backgroundColor: currentTheme.backgroundPrimary,
+    alignItems: 'center',
+    flexDirection: 'row',
+    borderRadius: commonValues.sizes.small,
+    paddingInline: commonValues.sizes.large,
+    paddingBlock: commonValues.sizes.medium,
+    marginBlock: commonValues.sizes.xs,
+  },
+  start: {
+    borderStartStartRadius: commonValues.sizes.medium,
+    borderEndStartRadius: commonValues.sizes.medium,
+  },
+  end: {
+    borderStartEndRadius: commonValues.sizes.medium,
+    borderEndEndRadius: commonValues.sizes.medium,
+    marginBlockEnd: commonValues.sizes.medium,
+  },
+}));

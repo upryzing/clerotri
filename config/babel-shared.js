@@ -8,7 +8,17 @@ const webAlias = {
   '^react-native$': 'react-native-web',
 };
 
-const commonPlugins = ['react-native-reanimated/plugin'];
+const commonPlugins = [
+  [
+    'react-native-unistyles/plugin',
+    {
+      root: 'src',
+      autoProcessImports: ['@clerotri/components'],
+      autoProcessPaths: ['node_modules/@rexovolt/react-native-markdown-display'],
+    },
+  ],
+  'react-native-reanimated/plugin',
+];
 
 module.exports = {
   mobilePlugins: [

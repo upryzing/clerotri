@@ -1,12 +1,13 @@
-import {useContext} from 'react';
 import {
   type ColorValue,
   Text as NativeText,
-  StyleSheet,
+  type StyleProp,
   type TextProps,
+  type TextStyle,
 } from 'react-native';
+import {StyleSheet} from 'react-native-unistyles';
 
-import {commonValues, Theme, ThemeContext} from '@clerotri/lib/themes';
+import {commonValues} from '@clerotri/lib/themes';
 
 type FullTextProps = TextProps & {
   font?: 'JetBrains Mono' | 'Inter' | 'Open Sans';
@@ -14,29 +15,19 @@ type FullTextProps = TextProps & {
   type?: 'h1' | 'h2' | 'profile';
 };
 
-export const Text = (props: FullTextProps) => {
-  const {currentTheme} = useContext(ThemeContext);
-  const localStyles = generateLocalStyles(currentTheme);
-
-  let newProps = {...props};
-
-  if (!newProps.style) {
-    newProps.style = {};
-  }
+export const Text = ({style, ...props}: FullTextProps) => {
+  const styleArray: StyleProp<TextStyle> = [localStyles.base];
 
   if (props.type) {
     switch (props.type) {
       case 'h1':
-        // @ts-expect-error the type error seems to be related to the various ways you can specify style props but it works so shhhh
-        newProps.style = {...localStyles.h1, ...newProps.style};
+        styleArray.push(localStyles.h1);
         break;
       case 'h2':
-        // @ts-expect-error ditto
-        newProps.style = {...localStyles.h2, ...newProps.style};
+        styleArray.push(localStyles.h2);
         break;
       case 'profile':
-        // @ts-expect-error ditto
-        newProps.style = {...localStyles.profileSubheader, ...newProps.style};
+        styleArray.push(localStyles.profileSubheader);
         break;
       default:
         break;
@@ -44,44 +35,40 @@ export const Text = (props: FullTextProps) => {
   }
 
   if (props.colour) {
-    // @ts-expect-error ditto
-    newProps.style!.color = props.colour;
+    styleArray.push({color: props.colour});
   }
 
-  newProps.style = {
-    ...localStyles.base,
-    ...(props.font && {
-      fontFamily: props.font,
-    }),
-    // @ts-expect-error ditto
-    ...newProps.style,
-  };
+  if (props.font) {
+    styleArray.push({fontFamily: props.font});
+  }
 
-  return <NativeText {...newProps}>{newProps.children}</NativeText>;
+  if (style) {
+    styleArray.push(style);
+  }
+
+  return <NativeText style={styleArray} {...props} />;
 };
 
-const generateLocalStyles = (currentTheme: Theme) => {
-  return StyleSheet.create({
-    base: {
-      color: currentTheme.foregroundPrimary,
-      flexWrap: 'wrap',
-      fontFamily: 'Open Sans',
-    },
-    h1: {
-      fontWeight: 'bold',
-      fontSize: 18,
-      marginBottom: commonValues.sizes.small,
-    },
-    h2: {
-      fontWeight: 'bold',
-      fontSize: 16,
-      marginBottom: commonValues.sizes.small,
-    },
-    profileSubheader: {
-      fontWeight: 'bold',
-      color: currentTheme.foregroundSecondary,
-      marginVertical: commonValues.sizes.small,
-      textTransform: 'uppercase',
-    },
-  });
-};
+const localStyles = StyleSheet.create(currentTheme => ({
+  base: {
+    color: currentTheme.foregroundPrimary,
+    flexWrap: 'wrap',
+    fontFamily: 'Open Sans',
+  },
+  h1: {
+    fontWeight: 'bold',
+    fontSize: 18,
+    marginBottom: commonValues.sizes.small,
+  },
+  h2: {
+    fontWeight: 'bold',
+    fontSize: 16,
+    marginBottom: commonValues.sizes.small,
+  },
+  profileSubheader: {
+    fontWeight: 'bold',
+    color: currentTheme.foregroundSecondary,
+    marginVertical: commonValues.sizes.small,
+    textTransform: 'uppercase',
+  },
+}));

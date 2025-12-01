@@ -1,8 +1,6 @@
-import {useContext} from 'react';
-import {StyleSheet} from 'react-native';
+import {StyleSheet} from 'react-native-unistyles';
 
 import {Text} from './Text';
-import {Theme, ThemeContext} from '@clerotri/lib/themes';
 import {openUrl} from '@clerotri/lib/utils';
 
 type LinkProps = {
@@ -13,10 +11,7 @@ type LinkProps = {
 };
 
 export const Link = ({children, link, label, style}: LinkProps) => {
-  const {currentTheme} = useContext(ThemeContext);
-  const styles = generateLocalStyles(currentTheme);
-
-  let finalStyle = styles.link;
+  let finalStyle = localStyles.link;
   if (style) {
     finalStyle = {...finalStyle, ...style};
   }
@@ -31,11 +26,9 @@ export const Link = ({children, link, label, style}: LinkProps) => {
   );
 };
 
-const generateLocalStyles = (currentTheme: Theme) => {
-  return StyleSheet.create({
-    link: {
-      color: currentTheme.accentColor,
-      textDecorationLine: 'underline',
-    },
-  });
-};
+const localStyles = StyleSheet.create(currentTheme => ({
+  link: {
+    color: currentTheme.accentColor,
+    textDecorationLine: 'underline',
+  },
+}));

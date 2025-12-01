@@ -1,4 +1,5 @@
-import {StyleSheet, View} from 'react-native';
+import {View} from 'react-native';
+import {StyleSheet} from 'react-native-unistyles';
 import {useTranslation} from 'react-i18next';
 
 import type {Message} from 'revolt.js';

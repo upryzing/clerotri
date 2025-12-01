@@ -1,5 +1,6 @@
 import {useContext, useMemo, useState} from 'react';
-import {Pressable, ScrollView, StyleSheet, View} from 'react-native';
+import {Pressable, ScrollView, View} from 'react-native';
+import {StyleSheet} from 'react-native-unistyles';
 import {useTranslation} from 'react-i18next';
 import {observer} from 'mobx-react-lite';
 
@@ -11,7 +12,7 @@ import type {Server} from 'revolt.js';
 import {app, setFunction} from '@clerotri/Generic';
 import {client} from '@clerotri/lib/client';
 import {Image} from '@clerotri/crossplat/Image';
-import {commonValues, Theme, ThemeContext} from '@clerotri/lib/themes';
+import {commonValues, ThemeContext} from '@clerotri/lib/themes';
 import {SettingsSection} from '@clerotri/lib/types';
 import {BackButton, Text} from '@clerotri/components/common/atoms';
 import {SettingsButton} from '@clerotri/components/common/buttons';
@@ -31,7 +32,6 @@ export const ServerSettingsSheet = observer(
     const insets = useSafeAreaInsets();
 
     const {currentTheme} = useContext(ThemeContext);
-    const localStyles = generateLocalStyles(currentTheme, insets.top);
 
     const {t} = useTranslation();
 
@@ -262,25 +262,23 @@ export const ServerSettingsSheet = observer(
   },
 );
 
-const generateLocalStyles = (currentTheme: Theme, inset: number) => {
-  return StyleSheet.create({
-    background: {
-      flex: 1,
-      marginTop: inset,
-      backgroundColor: currentTheme.backgroundPrimary,
-      paddingTop: commonValues.sizes.xl,
-      paddingInline: commonValues.sizes.xl,
-      borderTopLeftRadius: commonValues.sizes.xl,
-      borderTopRightRadius: commonValues.sizes.xl,
-    },
-    serverNameInitials: {
-      borderRadius: 5000,
-      justifyContent: 'center',
-      alignItems: 'center',
-      width: 80,
-      height: 80,
-      backgroundColor: currentTheme.backgroundSecondary,
-      overflow: 'hidden',
-    },
-  });
-};
+const localStyles = StyleSheet.create((currentTheme, rt) => ({
+  background: {
+    flex: 1,
+    marginTop: rt.insets.top,
+    backgroundColor: currentTheme.backgroundPrimary,
+    paddingTop: commonValues.sizes.xl,
+    paddingInline: commonValues.sizes.xl,
+    borderTopLeftRadius: commonValues.sizes.xl,
+    borderTopRightRadius: commonValues.sizes.xl,
+  },
+  serverNameInitials: {
+    borderRadius: 5000,
+    justifyContent: 'center',
+    alignItems: 'center',
+    width: 80,
+    height: 80,
+    backgroundColor: currentTheme.backgroundSecondary,
+    overflow: 'hidden',
+  },
+}));

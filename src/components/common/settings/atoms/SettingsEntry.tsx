@@ -1,18 +1,14 @@
-import {useContext} from 'react';
 import {
   Pressable,
   type PressableProps,
-  StyleSheet,
   View,
   type ViewProps,
 } from 'react-native';
+import {StyleSheet} from 'react-native-unistyles';
 
-import {commonValues, Theme, ThemeContext} from '@clerotri/lib/themes';
+import {commonValues} from '@clerotri/lib/themes';
 
 export function SettingsEntry(props: ViewProps) {
-  const {currentTheme} = useContext(ThemeContext);
-  const localStyles = generateLocalStyles(currentTheme);
-
   let newProps = {...props};
 
   if (!newProps.style) {
@@ -28,9 +24,6 @@ export function SettingsEntry(props: ViewProps) {
 }
 
 export function PressableSettingsEntry(props: PressableProps) {
-  const {currentTheme} = useContext(ThemeContext);
-  const localStyles = generateLocalStyles(currentTheme);
-
   let newProps = {...props};
 
   if (!newProps.style) {
@@ -46,15 +39,13 @@ export function PressableSettingsEntry(props: PressableProps) {
   return <Pressable {...newProps} />;
 }
 
-const generateLocalStyles = (currentTheme: Theme) => {
-  return StyleSheet.create({
-    settingsEntry: {
-      flexDirection: 'row',
-      padding: commonValues.sizes.medium,
-      marginVertical: commonValues.sizes.small,
-      backgroundColor: currentTheme.backgroundSecondary,
-      borderRadius: commonValues.sizes.small,
-      alignItems: 'center',
-    },
-  });
-};
+const localStyles = StyleSheet.create(currentTheme => ({
+  settingsEntry: {
+    flexDirection: 'row',
+    padding: commonValues.sizes.medium,
+    marginVertical: commonValues.sizes.small,
+    backgroundColor: currentTheme.backgroundSecondary,
+    borderRadius: commonValues.sizes.small,
+    alignItems: 'center',
+  },
+}));

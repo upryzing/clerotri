@@ -1,5 +1,5 @@
-import {useContext} from 'react';
-import {Pressable, type PressableProps, StyleSheet, View} from 'react-native';
+import {Pressable, type PressableProps, View} from 'react-native';
+import {StyleSheet} from 'react-native-unistyles';
 import {observer} from 'mobx-react-lite';
 
 import type {Message} from 'revolt.js';
@@ -7,13 +7,10 @@ import type {Message} from 'revolt.js';
 import {client} from '@clerotri/lib/client';
 import {Text} from '@clerotri/components/common/atoms';
 import {Image} from '@clerotri/crossplat/Image';
-import {commonValues, type Theme, ThemeContext} from '@clerotri/lib/themes';
+import {commonValues} from '@clerotri/lib/themes';
 import {showToast} from '@clerotri/lib/utils';
 
 export const ReactionBox = (props: PressableProps & {active: boolean}) => {
-  const {currentTheme} = useContext(ThemeContext);
-  const localStyles = generateLocalStyles(currentTheme);
-
   return (
     <Pressable
       style={[localStyles.reaction, props.active && localStyles.activeReaction]}
@@ -84,20 +81,18 @@ export const MessageReactions = observer(({msg}: {msg: Message}) => {
   return <></>;
 });
 
-const generateLocalStyles = (currentTheme: Theme) => {
-  return StyleSheet.create({
-    reaction: {
-      padding: commonValues.sizes.small,
-      borderRadius: commonValues.sizes.small,
-      borderColor: currentTheme.backgroundTertiary,
-      backgroundColor: currentTheme.backgroundSecondary,
-      borderWidth: commonValues.sizes.xs,
-      marginEnd: commonValues.sizes.small,
-      marginVertical: commonValues.sizes.xs,
-      flexDirection: 'row',
-    },
-    activeReaction: {
-      borderColor: currentTheme.accentColor,
-    },
-  });
-};
+const localStyles = StyleSheet.create(currentTheme => ({
+  reaction: {
+    padding: commonValues.sizes.small,
+    borderRadius: commonValues.sizes.small,
+    borderColor: currentTheme.backgroundTertiary,
+    backgroundColor: currentTheme.backgroundSecondary,
+    borderWidth: commonValues.sizes.xs,
+    marginEnd: commonValues.sizes.small,
+    marginVertical: commonValues.sizes.xs,
+    flexDirection: 'row',
+  },
+  activeReaction: {
+    borderColor: currentTheme.accentColor,
+  },
+}));

@@ -1,5 +1,6 @@
 import {useContext} from 'react';
-import {StyleSheet, TouchableOpacity, View} from 'react-native';
+import {TouchableOpacity, View} from 'react-native';
+import {StyleSheet} from 'react-native-unistyles';
 import {observer} from 'mobx-react-lite';
 
 import MaterialCommunityIcon from '@react-native-vector-icons/material-design-icons';
@@ -9,7 +10,8 @@ import {Text} from '@clerotri/components/common/atoms';
 import {Image} from '@clerotri/crossplat/Image';
 import {client} from '@clerotri/lib/client';
 import {OrderedServersContext} from '@clerotri/lib/state';
-import {commonValues, Theme, ThemeContext} from '@clerotri/lib/themes';
+import {commonValues, ThemeContext} from '@clerotri/lib/themes';
+import {LineSeparator} from '../layout';
 
 export const ServerList = observer(
   ({
@@ -28,7 +30,6 @@ export const ServerList = observer(
     horizontal?: boolean;
   }) => {
     const {currentTheme} = useContext(ThemeContext);
-    const localStyles = generateLocalStyles(currentTheme);
 
     const {orderedServers} = useContext(OrderedServersContext);
 
@@ -123,11 +124,9 @@ export const ServerList = observer(
         })}
         {showDiscover ? (
           <>
-            <View
+            <LineSeparator
               style={{
                 margin: 6,
-                height: 2,
-                width: '80%',
                 backgroundColor: currentTheme.backgroundPrimary,
               }}
             />
@@ -151,51 +150,50 @@ export const ServerList = observer(
     );
   },
 );
-const generateLocalStyles = (currentTheme: Theme) => {
-  return StyleSheet.create({
-    serverButton: {
-      borderRadius: 5000,
-      width: 48,
-      height: 48,
-      margin: commonValues.sizes.small,
-      backgroundColor: currentTheme.backgroundPrimary,
-      overflow: 'hidden',
-    },
-    serverIcon: {
-      width: 48,
-      height: 48,
-    },
-    serverButtonInitials: {
-      fontWeight: 'bold',
-      textAlign: 'center',
-      marginTop: '30%',
-    },
-    mentionsIndicator: {
-      borderRadius: 10000,
-      backgroundColor: currentTheme.error,
-      height: 20,
-      width: 20,
-      marginBottom: -20,
-      left: 36,
-      position: 'absolute',
-      justifyContent: 'center',
-      alignItems: 'center',
-    },
-    mentionsIndicatorText: {
-      color: '#FFFFFF',
-      marginRight: 1,
-      marginBottom: 2,
-    },
-    unreadsIndicator: {
-      borderRadius: 10000,
-      borderWidth: 3,
-      borderColor: currentTheme.background,
-      backgroundColor: currentTheme.foregroundPrimary,
-      height: 20,
-      width: 20,
-      marginBottom: -20,
-      left: 36,
-      position: 'absolute',
-    },
-  });
-};
+
+const localStyles = StyleSheet.create(currentTheme => ({
+  serverButton: {
+    borderRadius: 5000,
+    width: 48,
+    height: 48,
+    margin: commonValues.sizes.small,
+    backgroundColor: currentTheme.backgroundPrimary,
+    overflow: 'hidden',
+  },
+  serverIcon: {
+    width: 48,
+    height: 48,
+  },
+  serverButtonInitials: {
+    fontWeight: 'bold',
+    textAlign: 'center',
+    marginTop: '30%',
+  },
+  mentionsIndicator: {
+    borderRadius: 10000,
+    backgroundColor: currentTheme.error,
+    height: 20,
+    width: 20,
+    marginBottom: -20,
+    left: 36,
+    position: 'absolute',
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+  mentionsIndicatorText: {
+    color: '#FFFFFF',
+    marginRight: 1,
+    marginBottom: 2,
+  },
+  unreadsIndicator: {
+    borderRadius: 10000,
+    borderWidth: 3,
+    borderColor: currentTheme.background,
+    backgroundColor: currentTheme.foregroundPrimary,
+    height: 20,
+    width: 20,
+    marginBottom: -20,
+    left: 36,
+    position: 'absolute',
+  },
+}));

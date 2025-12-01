@@ -1,11 +1,12 @@
 import {type Dispatch, type SetStateAction, useContext} from 'react';
-import {Pressable, StyleSheet} from 'react-native';
+import {Pressable} from 'react-native';
+import {StyleSheet} from 'react-native-unistyles';
 
 import {type DocumentPickerResponse} from '@react-native-documents/picker';
 import MaterialIcon from '@react-native-vector-icons/material-icons';
 
 import {pickDocument, fileTypes} from '@clerotri/crossplat/DocumentPicker';
-import {commonValues, type Theme, ThemeContext} from '@clerotri/lib/themes';
+import {commonValues, ThemeContext} from '@clerotri/lib/themes';
 import {showToast} from '@clerotri/lib/utils';
 
 export const AttachmentPickerButton = ({
@@ -16,7 +17,6 @@ export const AttachmentPickerButton = ({
   setAttachments: Dispatch<SetStateAction<DocumentPickerResponse[]>>;
 }) => {
   const {currentTheme} = useContext(ThemeContext);
-  const localStyles = generateLocalStyles(currentTheme);
 
   return (
     <Pressable
@@ -73,16 +73,14 @@ export const AttachmentPickerButton = ({
   );
 };
 
-const generateLocalStyles = (currentTheme: Theme) => {
-  return StyleSheet.create({
-    attachmentsButton: {
-      justifyContent: 'center',
-      alignItems: 'center',
-      padding: 5,
-      borderRadius: commonValues.sizes.medium,
-      marginStart: 0,
-      marginEnd: commonValues.sizes.medium,
-      backgroundColor: currentTheme.messageBox,
-    },
-  });
-};
+const localStyles = StyleSheet.create(currentTheme => ({
+  attachmentsButton: {
+    justifyContent: 'center',
+    alignItems: 'center',
+    padding: 5,
+    borderRadius: commonValues.sizes.medium,
+    marginStart: 0,
+    marginEnd: commonValues.sizes.medium,
+    backgroundColor: currentTheme.messageBox,
+  },
+}));

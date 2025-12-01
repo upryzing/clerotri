@@ -1,11 +1,6 @@
 import {useContext} from 'react';
-import {
-  Dimensions,
-  Pressable,
-  StyleSheet,
-  TouchableOpacity,
-  View,
-} from 'react-native';
+import {Dimensions, Pressable, TouchableOpacity, View} from 'react-native';
+import {StyleSheet} from 'react-native-unistyles';
 import {observer} from 'mobx-react-lite';
 
 import {formatRelative} from 'date-fns/formatRelative';
@@ -23,7 +18,7 @@ import {MessageReactions} from '@clerotri/components/common/messaging/MessageRea
 import {ReplyMessage} from '@clerotri/components/common/messaging/ReplyMessage';
 import {Image} from '@clerotri/crossplat/Image';
 import {RE_INVITE} from '@clerotri/lib/consts';
-import {commonValues, Theme, ThemeContext} from '@clerotri/lib/themes';
+import {commonValues, ThemeContext} from '@clerotri/lib/themes';
 import {MessageProps} from '@clerotri/lib/types';
 import {
   getReadableFileSize,
@@ -33,7 +28,6 @@ import {
 
 export const RegularMessage = observer((props: MessageProps) => {
   const {currentTheme} = useContext(ThemeContext);
-  const localStyles = generateLocalStyles(currentTheme);
 
   const locale = settings.get('ui.messaging.use24H') ? enGB : enUS;
   const mentionsUser = props.message.mention_ids?.includes(client.user?._id!);
@@ -142,18 +136,13 @@ export const RegularMessage = observer((props: MessageProps) => {
         </View>
       ) : null}
       <View
-        style={{
-          ...localStyles.message,
-          ...(props.grouped
+        style={[
+          localStyles.message,
+          props.grouped
             ? localStyles.messageGrouped
-            : localStyles.messageUngrouped),
-          ...(mentionsUser
-            ? {
-                borderColor: currentTheme.mentionBorder,
-                backgroundColor: currentTheme.mentionBackground,
-              }
-            : null),
-        }}>
+            : localStyles.messageUngrouped,
+          mentionsUser ? localStyles.messageMentioned : null,
+        ]}>
         {props.message.author && !props.grouped ? (
           <Pressable
             key={`message-${props.message._id}-avatar`}
@@ -177,13 +166,14 @@ export const RegularMessage = observer((props: MessageProps) => {
             <Text
               key={`message-${props.message._id}-edited`}
               colour={currentTheme.foregroundTertiary}
-              style={{
-                fontSize: 11,
-                position: 'relative',
-                right: 49,
-                marginBottom: -16,
-              }}>
-              {' '}
+              style={[
+                localStyles.editIndicator,
+                {
+                  fontSize: 12,
+                  right: 48,
+                  marginBottom: -16,
+                },
+              ]}>
               (edited)
             </Text>
           ) : null}
@@ -212,13 +202,14 @@ export const RegularMessage = observer((props: MessageProps) => {
               {props.message.edited && (
                 <Text
                   key={`message-${props.message._id}-edited`}
-                  colour={currentTheme.foregroundTertiary}
-                  style={{
-                    fontSize: 12,
-                    position: 'relative',
-                    top: 2,
-                    left: 2,
-                  }}>
+                  style={[
+                    localStyles.editIndicator,
+                    {
+                      fontSize: 12,
+                      top: 2,
+                      left: 2,
+                    },
+                  ]}>
                   {' '}
                   (edited)
                 </Text>
@@ -265,13 +256,7 @@ export const RegularMessage = observer((props: MessageProps) => {
                 <Pressable
                   key={`message-${props.message._id}-attachment-${a._id}`}
                   onPress={() => openUrl(client.generateFileURL(a)!)}>
-                  <View
-                    style={{
-                      padding: commonValues.sizes.large,
-                      borderRadius: commonValues.sizes.small,
-                      backgroundColor: currentTheme.backgroundSecondary,
-                      marginBottom: commonValues.sizes.small,
-                    }}>
+                  <View style={localStyles.attachmentButton}>
                     <Text style={{fontWeight: 'bold'}}>{a.filename}</Text>
                     <Text>{getReadableFileSize(a.size)}</Text>
                   </View>
@@ -306,41 +291,53 @@ export const RegularMessage = observer((props: MessageProps) => {
   );
 });
 
-const generateLocalStyles = (currentTheme: Theme) => {
-  return StyleSheet.create({
-    message: {
-      borderRadius: commonValues.sizes.small,
-      borderLeftWidth: 3,
-      borderStyle: 'solid',
-      borderColor: '#00000000',
-      width: '100%',
-    },
-    messageUngrouped: {
-      flex: 1,
-      flexDirection: 'row',
-      paddingVertical: commonValues.sizes.xs,
-      paddingHorizontal: commonValues.sizes.xs,
-    },
-    messageGrouped: {
-      paddingLeft: 37,
-      paddingVertical: commonValues.sizes.xs,
-    },
-    messageGroupedAfter: {
-      borderRadius: 0,
-    },
-    messageInner: {
-      flex: 1,
-      paddingLeft: 10,
-    },
-    timestamp: {
-      fontSize: 12,
-      color: currentTheme.foregroundTertiary,
-      position: 'relative',
-      top: 2,
-      left: 2,
-    },
-    repliedMessagePreviews: {
-      paddingTop: commonValues.sizes.small,
-    },
-  });
-};
+const localStyles = StyleSheet.create(currentTheme => ({
+  message: {
+    borderRadius: commonValues.sizes.small,
+    borderLeftWidth: 3,
+    borderStyle: 'solid',
+    borderColor: '#00000000',
+    width: '100%',
+  },
+  messageUngrouped: {
+    flex: 1,
+    flexDirection: 'row',
+    paddingVertical: commonValues.sizes.xs,
+    paddingHorizontal: commonValues.sizes.xs,
+  },
+  messageGrouped: {
+    paddingLeft: 37,
+    paddingVertical: commonValues.sizes.xs,
+  },
+  messageGroupedAfter: {
+    borderRadius: 0,
+  },
+  messageMentioned: {
+    borderColor: currentTheme.mentionBorder,
+    backgroundColor: currentTheme.mentionBackground,
+  },
+  messageInner: {
+    flex: 1,
+    paddingLeft: 10,
+  },
+  timestamp: {
+    fontSize: 12,
+    color: currentTheme.foregroundTertiary,
+    position: 'relative',
+    top: 2,
+    left: 2,
+  },
+  repliedMessagePreviews: {
+    paddingTop: commonValues.sizes.small,
+  },
+  editIndicator: {
+    color: currentTheme.foregroundTertiary,
+    position: 'relative',
+  },
+  attachmentButton: {
+    padding: commonValues.sizes.large,
+    borderRadius: commonValues.sizes.small,
+    backgroundColor: currentTheme.backgroundSecondary,
+    marginBottom: commonValues.sizes.small,
+  },
+}));

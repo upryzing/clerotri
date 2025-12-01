@@ -1,5 +1,6 @@
 import {useContext} from 'react';
-import {StyleSheet, TouchableOpacity, View} from 'react-native';
+import {TouchableOpacity, View} from 'react-native';
+import {StyleSheet} from 'react-native-unistyles';
 import {ErrorBoundary} from 'react-error-boundary';
 import {observer} from 'mobx-react-lite';
 import {useMMKVBoolean} from 'react-native-mmkv';
@@ -23,7 +24,7 @@ import {FriendsPage} from '@clerotri/components/pages/FriendsPage';
 import {HomePage} from '@clerotri/components/pages/HomePage';
 import {VoiceChannel} from '@clerotri/components/pages/VoiceChannel';
 import {ChannelContext} from '@clerotri/lib/state';
-import {type Theme, ThemeContext} from '@clerotri/lib/themes';
+import {ThemeContext} from '@clerotri/lib/themes';
 import {SpecialChannel} from '@clerotri/lib/types';
 import {DiscoverPage} from '@clerotri/pages/discover/DiscoverPage';
 
@@ -194,9 +195,6 @@ const RegularChannelView = observer(({channel}: {channel: Channel}) => {
 });
 
 export const ChannelView = observer(() => {
-  const {currentTheme} = useContext(ThemeContext);
-  const localStyles = generateLocalStyles(currentTheme);
-
   const {currentChannel} = useContext(ChannelContext);
   console.log(
     `[CHANNELVIEW] Rendering channel view for ${
@@ -219,11 +217,9 @@ export const ChannelView = observer(() => {
   );
 });
 
-const generateLocalStyles = (currentTheme: Theme) => {
-  return StyleSheet.create({
-    mainView: {
-      flex: 1,
-      backgroundColor: currentTheme.backgroundPrimary,
-    },
-  });
-};
+const localStyles = StyleSheet.create(currentTheme => ({
+  mainView: {
+    flex: 1,
+    backgroundColor: currentTheme.backgroundPrimary,
+  },
+}));

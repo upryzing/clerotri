@@ -1,5 +1,6 @@
 import {useContext, useState} from 'react';
-import {Pressable, StyleSheet, View} from 'react-native';
+import {Pressable, View} from 'react-native';
+import {StyleSheet} from 'react-native-unistyles';
 import {observer} from 'mobx-react-lite';
 
 import type {Channel} from 'revolt.js';
@@ -9,7 +10,7 @@ import {ChannelIcon} from '@clerotri/components/navigation/ChannelIcon';
 import {SpecialChannelIcon} from '@clerotri/components/navigation/SpecialChannelIcon';
 import {styles} from '@clerotri/Theme';
 import {Text} from '@clerotri/components/common/atoms/Text';
-import {commonValues, Theme, ThemeContext} from '@clerotri/lib/themes';
+import {commonValues, ThemeContext} from '@clerotri/lib/themes';
 
 type ChannelButtonProps = {
   channel: Channel | 'Home' | 'Friends' | 'Saved Notes' | 'Debug';
@@ -30,7 +31,6 @@ export const ChannelButton = observer(
     showUnread = true,
   }: ChannelButtonProps) => {
     const {currentTheme} = useContext(ThemeContext);
-    const localStyles = generateLocalStyles(currentTheme);
 
     const [isBeingPressed, setIsBeingPressed] = useState(false);
 
@@ -100,41 +100,39 @@ export const ChannelButton = observer(
   },
 );
 
-const generateLocalStyles = (currentTheme: Theme) => {
-  return StyleSheet.create({
-    channelButton: {
-      marginHorizontal: commonValues.sizes.medium,
-      borderRadius: commonValues.sizes.medium,
-      padding: commonValues.sizes.medium,
-      flexDirection: 'row',
-      alignItems: 'center',
-    },
-    channelButtonPressed: {
-      backgroundColor: currentTheme.hover,
-    },
-    channelButtonSelected: {
-      backgroundColor: currentTheme.hover,
-    },
-    mentionIndicator: {
-      width: 20,
-      height: 20,
-      marginHorizontal: commonValues.sizes.small,
-      borderRadius: 10000,
-      backgroundColor: currentTheme.error,
-      justifyContent: 'center',
-      alignItems: 'center',
-    },
-    mentionCount: {
-      color: '#FFFFFF',
-      marginRight: 1,
-      marginBottom: 2,
-    },
-    unreadIndicator: {
-      width: commonValues.sizes.large,
-      height: commonValues.sizes.large,
-      marginHorizontal: commonValues.sizes.medium,
-      borderRadius: 10000,
-      backgroundColor: currentTheme.foregroundPrimary,
-    },
-  });
-};
+const localStyles = StyleSheet.create(currentTheme => ({
+  channelButton: {
+    marginHorizontal: commonValues.sizes.medium,
+    borderRadius: commonValues.sizes.medium,
+    padding: commonValues.sizes.medium,
+    flexDirection: 'row',
+    alignItems: 'center',
+  },
+  channelButtonPressed: {
+    backgroundColor: currentTheme.hover,
+  },
+  channelButtonSelected: {
+    backgroundColor: currentTheme.hover,
+  },
+  mentionIndicator: {
+    width: 20,
+    height: 20,
+    marginHorizontal: commonValues.sizes.small,
+    borderRadius: 10000,
+    backgroundColor: currentTheme.error,
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+  mentionCount: {
+    color: '#FFFFFF',
+    marginRight: 1,
+    marginBottom: 2,
+  },
+  unreadIndicator: {
+    width: commonValues.sizes.large,
+    height: commonValues.sizes.large,
+    marginHorizontal: commonValues.sizes.medium,
+    borderRadius: 10000,
+    backgroundColor: currentTheme.foregroundPrimary,
+  },
+}));

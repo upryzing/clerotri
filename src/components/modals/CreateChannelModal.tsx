@@ -1,5 +1,6 @@
-import {useContext, useMemo, useState} from 'react';
-import {Pressable, StyleSheet, View} from 'react-native';
+import {useContext, useState} from 'react';
+import {Pressable, View} from 'react-native';
+import {StyleSheet} from 'react-native-unistyles';
 import {useTranslation} from 'react-i18next';
 import {observer} from 'mobx-react-lite';
 
@@ -8,16 +9,12 @@ import MaterialIcon from '@react-native-vector-icons/material-icons';
 import {app} from '@clerotri/Generic';
 import {styles} from '@clerotri/Theme';
 import {Button, Checkbox, Input, Text} from '@clerotri/components/common/atoms';
-import {commonValues, Theme, ThemeContext} from '@clerotri/lib/themes';
+import {commonValues, ThemeContext} from '@clerotri/lib/themes';
 import {CreateChannelModalProps} from '@clerotri/lib/types';
 
 export const CreateChannelModal = observer(
   ({object}: {object: CreateChannelModalProps}) => {
     const {currentTheme} = useContext(ThemeContext);
-    const localStyles = useMemo(
-      () => generateLocalStyles(currentTheme),
-      [currentTheme],
-    );
 
     const {t} = useTranslation();
 
@@ -41,6 +38,7 @@ export const CreateChannelModal = observer(
             onChangeText={v => {
               setName(v);
             }}
+            style={localStyles.nameInput}
           />
           <Text type={'h2'}>{t('app.modals.create_channel.type_header')}</Text>
           <View style={localStyles.typeSelector}>
@@ -95,38 +93,39 @@ export const CreateChannelModal = observer(
   },
 );
 
-const generateLocalStyles = (currentTheme: Theme) => {
-  return StyleSheet.create({
-    container: {
-      width: '80%',
-      borderRadius: commonValues.sizes.medium,
-      padding: 20,
-      backgroundColor: currentTheme.backgroundPrimary,
-      justifyContent: 'center',
-      alignSelf: 'center',
-    },
-    typeSelector: {
-      marginVertical: commonValues.sizes.small,
-      borderRadius: commonValues.sizes.medium,
-      minWidth: '100%',
-      backgroundColor: currentTheme.backgroundSecondary,
-      padding: commonValues.sizes.medium,
-    },
-    channelType: {
-      height: 40,
-      width: '100%',
-      alignItems: 'center',
-      flexDirection: 'row',
-      backgroundColor: currentTheme.backgroundPrimary,
-      borderRadius: commonValues.sizes.medium,
-      paddingInline: 10,
-      marginVertical: commonValues.sizes.small,
-    },
-    checkboxRow: {
-      flexDirection: 'row',
-      alignItems: 'center',
-      justifyContent: 'space-between',
-      marginVertical: commonValues.sizes.small,
-    },
-  });
-};
+const localStyles = StyleSheet.create(currentTheme => ({
+  container: {
+    width: '80%',
+    borderRadius: commonValues.sizes.medium,
+    padding: 20,
+    backgroundColor: currentTheme.backgroundPrimary,
+    justifyContent: 'center',
+    alignSelf: 'center',
+  },
+  nameInput: {
+    marginBlockEnd: commonValues.sizes.medium,
+  },
+  typeSelector: {
+    marginVertical: commonValues.sizes.small,
+    borderRadius: commonValues.sizes.medium,
+    minWidth: '100%',
+    backgroundColor: currentTheme.backgroundSecondary,
+    padding: commonValues.sizes.medium,
+    gap: commonValues.sizes.medium,
+  },
+  channelType: {
+    height: 40,
+    width: '100%',
+    alignItems: 'center',
+    flexDirection: 'row',
+    backgroundColor: currentTheme.backgroundPrimary,
+    borderRadius: commonValues.sizes.medium,
+    paddingInline: 10,
+  },
+  checkboxRow: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'space-between',
+    marginVertical: commonValues.sizes.small,
+  },
+}));

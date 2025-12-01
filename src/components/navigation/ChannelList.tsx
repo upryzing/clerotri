@@ -4,14 +4,13 @@ import {
   ImageBackground,
   Platform,
   ScrollView,
-  StyleSheet,
   TouchableOpacity,
   View,
 } from 'react-native';
+import {StyleSheet} from 'react-native-unistyles';
 import {useTranslation} from 'react-i18next';
 import {observer} from 'mobx-react-lite';
 
-import {useSafeAreaInsets} from 'react-native-safe-area-context';
 import MaterialCommunityIcon from '@react-native-vector-icons/material-design-icons';
 
 import {API, Channel, Server} from 'revolt.js';
@@ -24,7 +23,7 @@ import {
   ServerContext,
   SideMenuContext,
 } from '@clerotri/lib/state';
-import {commonValues, type Theme, ThemeContext} from '@clerotri/lib/themes';
+import {commonValues, ThemeContext} from '@clerotri/lib/themes';
 
 type UserChannelListChannel =
   | Channel
@@ -317,11 +316,6 @@ const UserChannelList = observer(() => {
 });
 
 export const ChannelList = observer(() => {
-  const insets = useSafeAreaInsets();
-
-  const {currentTheme} = useContext(ThemeContext);
-  const localStyles = generateLocalStyles(currentTheme, insets.top);
-
   const {currentServer} = useContext(ServerContext);
 
   return currentServer ? (
@@ -339,16 +333,14 @@ export const ChannelList = observer(() => {
   );
 });
 
-const generateLocalStyles = (currentTheme: Theme, inset: number) => {
-  return StyleSheet.create({
-    channelList: {
-      backgroundColor: currentTheme.backgroundSecondary,
-      flexGrow: 1000,
-      flex: 1000,
-      ...(Platform.OS !== 'web' && {marginTop: inset}),
-    },
-  });
-};
+const localStyles = StyleSheet.create((currentTheme, rt) => ({
+  channelList: {
+    backgroundColor: currentTheme.backgroundSecondary,
+    flexGrow: 1000,
+    flex: 1000,
+    ...(Platform.OS !== 'web' && {marginTop: rt.insets.top}),
+  },
+}));
 
 const subListStyles = StyleSheet.create({
   userChannelListHeader: {

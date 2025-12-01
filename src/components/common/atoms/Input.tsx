@@ -1,7 +1,8 @@
 import {useContext} from 'react';
-import {StyleSheet, TextInput, type TextInputProps} from 'react-native';
+import {TextInput, type TextInputProps} from 'react-native';
+import {StyleSheet} from 'react-native-unistyles';
 
-import {commonValues, Theme, ThemeContext} from '@clerotri/lib/themes';
+import {commonValues, ThemeContext} from '@clerotri/lib/themes';
 
 type InputProps = TextInputProps & {
   isLoginInput?: boolean;
@@ -10,7 +11,6 @@ type InputProps = TextInputProps & {
 
 export function Input(props: InputProps) {
   const {currentTheme} = useContext(ThemeContext);
-  const localStyles = generateLocalStyles(currentTheme);
 
   const {style, ...cleanProps} = props;
 
@@ -30,23 +30,21 @@ export function Input(props: InputProps) {
   );
 }
 
-const generateLocalStyles = (currentTheme: Theme) => {
-  return StyleSheet.create({
-    coreInput: {
-      fontFamily: 'Open Sans',
-      borderRadius: commonValues.sizes.medium,
-      backgroundColor: currentTheme.backgroundSecondary,
-      color: currentTheme.foregroundPrimary,
-    },
-    regularInput: {
-      minWidth: '100%',
-      padding: commonValues.sizes.large,
-    },
-    loginInput: {
-      padding: commonValues.sizes.medium,
-      paddingHorizontal: commonValues.sizes.large,
-      margin: commonValues.sizes.medium,
-      width: '80%',
-    },
-  });
-};
+const localStyles = StyleSheet.create(currentTheme => ({
+  coreInput: {
+    fontFamily: 'Open Sans',
+    borderRadius: commonValues.sizes.medium,
+    backgroundColor: currentTheme.backgroundSecondary,
+    color: currentTheme.foregroundPrimary,
+  },
+  regularInput: {
+    minWidth: '100%',
+    padding: commonValues.sizes.large,
+  },
+  loginInput: {
+    padding: commonValues.sizes.medium,
+    paddingHorizontal: commonValues.sizes.large,
+    margin: commonValues.sizes.medium,
+    width: '80%',
+  },
+}));

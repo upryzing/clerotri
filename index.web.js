@@ -2,6 +2,8 @@
  * @format
  */
 
+import '@clerotri/lib/unistyles';
+
 import {AppRegistry} from 'react-native';
 
 import {App} from './App';
