@@ -1,0 +1,31 @@
+diff --git a/lib/index.js b/lib/index.js
+index d99063be19a61a9375a3e10a01a2f048fcd67b04..c742454cbd0fd5b95262f4640e8ab12b217ebdb3 100644
+--- a/lib/index.js
++++ b/lib/index.js
+@@ -249,7 +249,7 @@ function MetroSerializer(metroPlugins = [], buildOptions) {
+             entryPoints: [prelude],
+             legalComments: "none",
+             logLevel: buildOptions?.logLevel ?? "error",
+-            metafile: Boolean(buildOptions?.analyze || buildOptions?.metafile),
++            metafile: true, // Boolean(buildOptions?.analyze || buildOptions?.metafile),
+             minify: buildOptions?.minify ?? !options.dev,
+             minifyWhitespace: buildOptions?.minifyWhitespace,
+             minifyIdentifiers: buildOptions?.minifyIdentifiers,
+@@ -257,7 +257,7 @@ function MetroSerializer(metroPlugins = [], buildOptions) {
+             outfile,
+             plugins,
+             pure: buildOptions?.pure,
+-            sourcemap: Boolean(options.sourceMapUrl) && "linked",
++            sourcemap: true, // Boolean(options.sourceMapUrl) && "linked",
+             target,
+             supported: (() => {
+                 if (typeof target !== "string" || !target.startsWith("hermes")) {
+@@ -306,7 +306,7 @@ function MetroSerializer(metroPlugins = [], buildOptions) {
+                 }
+                 if (typeof buildOptions?.metafile === "string") {
+                     const outDir = path.dirname(sourcemapfile);
+-                    const out = path.join(outDir, buildOptions.metafile);
++                    const out = path.join(outDir, 'dist/sus.json' /* buildOptions.metafile */);
+                     (0, console_1.info)("Writing esbuild metafile to:", out);
+                     const metadata = typeof metafile === "string"
+                         ? metafile

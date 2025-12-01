@@ -1,0 +1,13 @@
+diff --git a/lib/module/index.js b/lib/module/index.js
+index 4de0ab6b87134ffc52ef28d832a8fb18e98739de..753ce6c4e97008e3b9beff77a2590cd198befc41 100644
+--- a/lib/module/index.js
++++ b/lib/module/index.js
+@@ -5,7 +5,7 @@ const [majorReactVersions] = React.version.split('.').map(Number.parseInt);
+ if (majorReactVersions === undefined || majorReactVersions < 19) {
+   throw new Error('Unistyles 🦄: To enable full Fabric power you need to use React 19.0.0 or higher');
+ }
+-export { StyleSheet, UnistylesRuntime, StatusBar, NavigationBar } from './specs';
++export { StyleSheet, UnistylesRuntime /* , StatusBar, NavigationBar */ } from './specs';
+ export { mq } from './mq';
+ export { withUnistyles, useUnistyles, createUnistylesElement } from './core';
+ export { Display, Hide, ScopedTheme } from './components';
