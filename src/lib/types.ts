@@ -1,9 +1,11 @@
-import type {ColorValue, TouchableOpacityProps} from 'react-native';
+import type {ColorValue, TextProps, TouchableOpacityProps} from 'react-native';
 
 import type {MaterialDesignIconsIconName} from '@react-native-vector-icons/material-design-icons';
 import type {MaterialIconsIconName} from '@react-native-vector-icons/material-icons';
 
 import type {Channel, Member, Message, Server, User} from 'revolt.js';
+
+import {Theme} from '@clerotri/lib/themes';
 
 type StringSetting = {
   default: string;
@@ -140,3 +142,17 @@ export type EmojiPacks = 'mutant' | 'twemoji' | 'noto' | 'openmoji';
 export type SpecialChannel = 'friends' | 'discover' | 'debug' | null;
 
 export type CVChannel = Channel | SpecialChannel;
+
+type IconProps = TextProps & {
+  color?: keyof Omit<Theme, 'generalBorderWidth'>;
+  customColor?: ColorValue;
+  size?: number;
+};
+
+export type MaterialIconProps = IconProps & {
+  name: MaterialIconsIconName;
+};
+
+export type MaterialCommunityIconProps = IconProps & {
+  name: MaterialDesignIconsIconName;
+};
