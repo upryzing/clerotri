@@ -5,83 +5,84 @@ import {useMMKVNumber} from 'react-native-mmkv';
 import type {Message as RevoltMessage} from 'revolt.js';
 
 import {Text, Username} from '@clerotri/components/common/atoms';
-import {MaterialCommunityIcon, MaterialIcon} from '@clerotri/components/common/icons';
+import {
+  MaterialCommunityIcon,
+  MaterialIcon,
+} from '@clerotri/components/common/icons';
 import {settings} from '@clerotri/lib/settings';
 import {client} from '@clerotri/lib/client';
+import type {IconType} from '@clerotri/lib/types';
 
-const SYSTEM_MESSAGE_ICONS = {
+const SYSTEM_MESSAGE_ICONS: Record<string, IconType> = {
   text: {
     name: 'info',
-    iconSet: 'main',
+    pack: 'regular',
   },
   user_joined: {
     name: 'format-horizontal-align-right',
-    iconSet: 'community',
+    pack: 'community',
   },
   user_left: {
     name: 'format-horizontal-align-left',
-    iconSet: 'community',
+    pack: 'community',
   },
   user_added: {
     name: 'person-add',
-    iconSet: 'main',
+    pack: 'regular',
   },
   user_remove: {
     name: 'person-remove',
-    iconSet: 'main',
+    pack: 'regular',
   },
   user_kicked: {
     name: 'person-remove',
-    iconSet: 'main',
+    pack: 'regular',
   },
   user_banned: {
     name: 'hammer',
-    iconSet: 'community',
+    pack: 'community',
   },
   channel_renamed: {
     name: 'edit',
-    iconSet: 'main',
+    pack: 'regular',
   },
   channel_description_changed: {
     name: 'edit-note',
-    iconSet: 'main',
+    pack: 'regular',
   },
   channel_icon_changed: {
     name: 'image-edit',
-    iconSet: 'community',
+    pack: 'community',
   },
   channel_ownership_changed: {
     name: 'account-key',
-    iconSet: 'community',
+    pack: 'community',
   },
   message_pinned: {
     name: 'pin',
-    iconSet: 'community',
+    pack: 'community',
   },
   message_unpinned: {
     name: 'pin-off',
-    iconSet: 'community',
+    pack: 'community',
   },
-} as const;
+};
 
-const SystemMessageIcon = observer(
-  // FIXME: use IconType instead
-  ({icon}: {icon: {iconSet: 'main' | 'community'; name: string}}) => {
-    const [size] = useMMKVNumber('ui.messaging.fontSize');
+const SystemMessageIcon = observer(({icon}: {icon: IconType}) => {
+  const [size] = useMMKVNumber('ui.messaging.fontSize');
 
-    const IconComponent =
-      icon.iconSet === 'community' ? MaterialCommunityIcon : MaterialIcon;
-    return (
-      <IconComponent
-        // @ts-expect-error remove when the above comment is resolved
-        name={icon.name}
-        color={'foregroundSecondary'}
-        size={size !== undefined ? size : 14}
-        style={{alignSelf: 'center', paddingEnd: 4}}
-      />
-    );
-  },
-);
+  const commonProps = {
+    color: 'foregroundSecondary',
+    size: size !== undefined ? size : 14,
+    style: {alignSelf: 'center', paddingEnd: 4},
+  } as const;
+
+  return icon.pack === 'community' ? (
+    <MaterialCommunityIcon name={icon.name} {...commonProps} />
+  ) : (
+    <MaterialIcon name={icon.name} {...commonProps} />
+  );
+});
 
 export const SystemMessage = observer(
   ({message, isReply}: {message: RevoltMessage; isReply?: boolean}) => {

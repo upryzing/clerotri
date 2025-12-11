@@ -16,7 +16,7 @@ import {commonValues, ThemeContext} from '@clerotri/lib/themes';
 export const MessageEmbed = observer((eRaw: API.Embed) => {
   const {currentTheme} = useContext(ThemeContext);
 
-  // @ts-expect-error This seems to be necessary even though it clashses with the API types
+  // @ts-expect-error This seems to be necessary even though it clashes with the API types
   const e = eRaw.embed;
   switch (e.type) {
     case 'Text':
