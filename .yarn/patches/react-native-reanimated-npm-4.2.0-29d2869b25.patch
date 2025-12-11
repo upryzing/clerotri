@@ -1,5 +1,5 @@
 diff --git a/android/CMakeLists.txt b/android/CMakeLists.txt
-index 741c501a8548985ed7f71a1326ccf620a0efef5e..54ae40b070d86ccabbf498acd3731d7edbcf4901 100644
+index d4731e6c9e5b7cfee8c14dcd7c34639e4d3842d6..1cfe7f6d85c6a01dda01d120a2d4dbaad4d7b9c1 100644
 --- a/android/CMakeLists.txt
 +++ b/android/CMakeLists.txt
 @@ -11,6 +11,10 @@ set(CMAKE_CXX_STANDARD 20)
@@ -10,6 +10,6 @@ index 741c501a8548985ed7f71a1326ccf620a0efef5e..54ae40b070d86ccabbf498acd3731d7e
 +  -Wl,--build-id=none
 +)
 +
- string(APPEND CMAKE_CXX_FLAGS
-        " -DREACT_NATIVE_MINOR_VERSION=${REACT_NATIVE_MINOR_VERSION}\
-    -DREANIMATED_VERSION=${REANIMATED_VERSION}")
+ string(
+   APPEND
+   CMAKE_CXX_FLAGS

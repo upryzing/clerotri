@@ -1,0 +1,15 @@
+diff --git a/android/CMakeLists.txt b/android/CMakeLists.txt
+index 7ce60581c4dedee1465bd187fa09df383186ed77..5e27da574ca1e69cefbbb4006256e60c0f157ada 100644
+--- a/android/CMakeLists.txt
++++ b/android/CMakeLists.txt
+@@ -11,6 +11,10 @@ set(CMAKE_CXX_STANDARD 20)
+ include("${REACT_NATIVE_DIR}/ReactAndroid/cmake-utils/folly-flags.cmake")
+ add_compile_options(${folly_FLAGS})
+ 
++add_link_options(
++  -Wl,--build-id=none
++)
++
+ string(
+   APPEND
+   CMAKE_CXX_FLAGS

@@ -43,7 +43,6 @@ const ServerListGradientCore = ({
   colour: ColorValue;
   inset: number;
 }) => {
-  console.log(inset);
   return (
     <View
       style={[
