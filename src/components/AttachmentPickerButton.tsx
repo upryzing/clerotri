@@ -4,7 +4,7 @@ import {StyleSheet} from 'react-native-unistyles';
 
 import {type DocumentPickerResponse} from '@react-native-documents/picker';
 
-import { MaterialIcon} from '@clerotri/components/common/icons';
+import {MaterialIcon} from '@clerotri/components/common/icons';
 import {pickDocument, fileTypes} from '@clerotri/crossplat/DocumentPicker';
 import {commonValues} from '@clerotri/lib/themes';
 import {showToast} from '@clerotri/lib/utils';
@@ -62,9 +62,7 @@ export const AttachmentPickerButton = ({
         name="add-circle"
         size={24}
         color={
-          attachments.length >= 5
-            ? 'foregroundSecondary'
-            : 'foregroundPrimary'
+          attachments.length >= 5 ? 'foregroundSecondary' : 'foregroundPrimary'
         }
       />
     </Pressable>

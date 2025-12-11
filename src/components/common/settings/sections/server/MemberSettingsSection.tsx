@@ -22,7 +22,10 @@ import {
   InputWithButtonV2,
   Text,
 } from '@clerotri/components/common/atoms';
-import {MaterialCommunityIcon, MaterialIcon} from '@clerotri/components/common/icons';
+import {
+  MaterialCommunityIcon,
+  MaterialIcon,
+} from '@clerotri/components/common/icons';
 import {PressableSettingsEntry} from '@clerotri/components/common/settings/atoms';
 import {GapView} from '@clerotri/components/layout';
 import {client} from '@clerotri/lib/client';
@@ -306,12 +309,7 @@ const MemberSettings = observer(
             editable: canEditNickname,
           }}
           buttonProps={{
-            children: (
-              <MaterialIcon
-                name={'save'}
-                size={20}
-              />
-            ),
+            children: <MaterialIcon name={'save'} size={20} />,
             disabled: !canEditNickname,
           }}
           containerStyles={{backgroundColor: currentTheme.backgroundSecondary}}

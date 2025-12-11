@@ -62,10 +62,7 @@ const ChannelSettingsChannelList = observer(
                 justifyContent: 'center',
               }}>
               <View style={styles.iconContainer}>
-                <MaterialIcon
-                  name={'add'}
-                  size={20}
-                />
+                <MaterialIcon name={'add'} size={20} />
               </View>
             </Pressable>
           ) : null}
@@ -159,10 +156,7 @@ const ChannelSettingsChannelList = observer(
                     justifyContent: 'center',
                   }}>
                   <View style={styles.iconContainer}>
-                    <MaterialIcon
-                      name={'arrow-forward'}
-                      size={20}
-                    />
+                    <MaterialIcon name={'arrow-forward'} size={20} />
                   </View>
                 </View>
               </PressableSettingsEntry>
@@ -192,12 +186,7 @@ const ChannelSettings = observer(
             defaultValue: channel.name ?? '',
           }}
           buttonProps={{
-            children: (
-              <MaterialIcon
-                name={'save'}
-                size={20}
-              />
-            ),
+            children: <MaterialIcon name={'save'} size={20} />,
           }}
           containerStyles={{backgroundColor: currentTheme.backgroundSecondary}}
           buttonStyles={{borderStartColor: currentTheme.backgroundPrimary}}

@@ -16,7 +16,10 @@ import {
   CopyIDButton,
   NewContextButton,
 } from '@clerotri/components/common/buttons';
-import {MaterialCommunityIcon, MaterialIcon} from '@clerotri/components/common/icons';
+import {
+  MaterialCommunityIcon,
+  MaterialIcon,
+} from '@clerotri/components/common/icons';
 import {MarkdownView} from '../common/MarkdownView';
 import {Image} from '@clerotri/crossplat/Image';
 
@@ -65,19 +68,13 @@ export const ServerInfoSheet = observer(({server}: {server: Server | null}) => {
                 <TouchableOpacity
                   onPress={() => showToast('Official Server')}
                   style={{alignSelf: 'center', marginEnd: 4}}>
-                  <MaterialCommunityIcon
-                    name={'crown'}
-                    size={24}
-                  />
+                  <MaterialCommunityIcon name={'crown'} size={24} />
                 </TouchableOpacity>
               ) : server.flags === SERVER_FLAGS.Verified ? (
                 <TouchableOpacity
                   onPress={() => showToast('Verified Server')}
                   style={{alignSelf: 'center', marginEnd: 4}}>
-                  <MaterialIcon
-                    name={'verified'}
-                    size={24}
-                  />
+                  <MaterialIcon name={'verified'} size={24} />
                 </TouchableOpacity>
               ) : null}
               <Text

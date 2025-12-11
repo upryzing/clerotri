@@ -82,10 +82,7 @@ export const EmojiSettingsSection = observer(({server}: {server: Server}) => {
                   );
                 }}>
                 <View style={styles.iconContainer}>
-                  <MaterialIcon
-                    name={'delete'}
-                    size={20}
-                  />
+                  <MaterialIcon name={'delete'} size={20} />
                 </View>
               </Pressable>
             ) : null}

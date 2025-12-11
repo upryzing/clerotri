@@ -59,10 +59,7 @@ export const AccountSettingsSection = observer(() => {
             Clipboard.setString(client.user?.username!);
           }}>
           <View style={styles.iconContainer}>
-            <MaterialIcon
-              name="content-copy"
-              size={20}
-            />
+            <MaterialIcon name="content-copy" size={20} />
           </View>
         </Pressable>
         {/* <Pressable
@@ -118,10 +115,7 @@ export const AccountSettingsSection = observer(() => {
             Clipboard.setString(authInfo.email);
           }}>
           <View style={styles.iconContainer}>
-            <MaterialIcon
-              name="content-copy"
-              size={20}
-            />
+            <MaterialIcon name="content-copy" size={20} />
           </View>
         </Pressable>
         {/* <Pressable

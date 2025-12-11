@@ -57,10 +57,7 @@ const SessionEntry = observer(
             });
           }}>
           <View style={styles.iconContainer}>
-            <MaterialIcon
-              name="edit"
-              size={20}
-            />
+            <MaterialIcon name="edit" size={20} />
           </View>
         </Pressable>
         {sessionID !== session._id ? (
@@ -73,10 +70,7 @@ const SessionEntry = observer(
             }}
             onPress={() => onDelete(session)}>
             <View style={styles.iconContainer}>
-              <MaterialIcon
-                name="logout"
-                size={20}
-              />
+              <MaterialIcon name="logout" size={20} />
             </View>
           </Pressable>
         ) : null}
@@ -153,10 +147,7 @@ export const SessionsSettingsSection = observer(() => {
                     justifyContent: 'center',
                   }}>
                   <View style={styles.iconContainer}>
-                    <MaterialIcon
-                      name="arrow-forward"
-                      size={20}
-                    />
+                    <MaterialIcon name="arrow-forward" size={20} />
                   </View>
                 </View>
               </PressableSettingsEntry>

@@ -68,10 +68,7 @@ const PackageEntry = ({packageInfo}: {packageInfo: Package}) => {
             // @ts-expect-error there's a null check literally right above this???
             openUrl(packageInfo.url)
           }>
-          <MaterialCommunityIcon
-            name={'open-in-new'}
-            size={28}
-          />
+          <MaterialCommunityIcon name={'open-in-new'} size={28} />
         </Pressable>
       ) : (
         <View />

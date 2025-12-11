@@ -106,10 +106,7 @@ export const Notification = observer(
             }}
             onPress={() => dismiss()}>
             <View style={styles.iconContainer}>
-              <MaterialCommunityIcon
-                name="close-circle"
-                size={20}
-              />
+              <MaterialCommunityIcon name="close-circle" size={20} />
             </View>
           </Pressable>
         </TouchableOpacity>

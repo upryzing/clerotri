@@ -147,10 +147,7 @@ const ServerChannelList = observer((props: ServerChannelListProps) => {
                   justifyContent: 'center',
                   alignItems: 'center',
                 }}>
-                <MaterialCommunityIcon
-                  name={'dots-horizontal'}
-                  size={30}
-                />
+                <MaterialCommunityIcon name={'dots-horizontal'} size={30} />
               </View>
             </View>
           </TouchableOpacity>
@@ -168,10 +165,7 @@ const ServerChannelList = observer((props: ServerChannelListProps) => {
                 justifyContent: 'center',
                 alignItems: 'center',
               }}>
-              <MaterialCommunityIcon
-                name={'dots-horizontal'}
-                size={30}
-              />
+              <MaterialCommunityIcon name={'dots-horizontal'} size={30} />
             </View>
           </View>
         </TouchableOpacity>

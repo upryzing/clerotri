@@ -21,7 +21,10 @@ import {
   Link,
   Text,
 } from '@clerotri/components/common/atoms';
-import {MaterialCommunityIcon, MaterialIcon} from '@clerotri/components/common/icons';
+import {
+  MaterialCommunityIcon,
+  MaterialIcon,
+} from '@clerotri/components/common/icons';
 import {generateAnalyticsObject} from '@clerotri/lib/analytics';
 import {PRIVACY_INFO} from '@clerotri/lib/consts';
 import {commonValues, ThemeContext} from '@clerotri/lib/themes';
@@ -63,15 +66,9 @@ const LevelBoxEntry = ({
         marginBlock: commonValues.sizes.small,
       }}>
       {dataType === 'clerotriVersion' ? (
-        <MaterialCommunityIcon
-          name={'flower'}
-          size={24}
-        />
+        <MaterialCommunityIcon name={'flower'} size={24} />
       ) : (
-        <MaterialIcon
-          name={iconFromType(dataType)}
-          size={24}
-        />
+        <MaterialIcon name={iconFromType(dataType)} size={24} />
       )}
       <View style={{marginInlineStart: commonValues.sizes.medium}}>
         <Text style={{fontWeight: 'bold'}}>
@@ -184,10 +181,7 @@ const LevelBoxes = observer(
                     );
                     showToast(t('app.analytics.copied_data_toast'));
                   }}>
-                  <MaterialIcon
-                    name={'content-copy'}
-                    size={20}
-                  />
+                  <MaterialIcon name={'content-copy'} size={20} />
                 </Pressable>
               </View>
               <LevelBoxEntry dataType={'model'} value={data.model} />
@@ -210,10 +204,7 @@ const LevelBoxes = observer(
                     );
                     showToast(t('app.analytics.copied_data_toast'));
                   }}>
-                  <MaterialIcon
-                    name={'content-copy'}
-                    size={20}
-                  />
+                  <MaterialIcon name={'content-copy'} size={20} />
                 </Pressable>
               </View>
               <LevelBoxEntry

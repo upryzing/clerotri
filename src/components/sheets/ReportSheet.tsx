@@ -113,9 +113,7 @@ function Notice({
       <MaterialIcon
         name={type ?? 'info'}
         size={28}
-        color={
-          type === 'error' ? 'error' : 'foregroundPrimary'
-        }
+        color={type === 'error' ? 'error' : 'foregroundPrimary'}
       />
       <Text style={noticeStyles.text}>{t(stringKey)}</Text>
     </View>

@@ -85,10 +85,7 @@ const BotSettings = observer(({bot}: {bot: GroupedBotObject}) => {
             Clipboard.setString(bot.bot.token);
           }}>
           <View style={styles.iconContainer}>
-            <MaterialIcon
-              name="content-copy"
-              size={20}
-            />
+            <MaterialIcon name="content-copy" size={20} />
           </View>
         </Pressable>
       </SettingsEntry>
@@ -169,10 +166,7 @@ const BotListEntry = observer(
             justifyContent: 'center',
           }}>
           <View style={styles.iconContainer}>
-            <MaterialIcon
-              name="arrow-forward"
-              size={20}
-            />
+            <MaterialIcon name="arrow-forward" size={20} />
           </View>
         </View>
       </PressableSettingsEntry>
@@ -239,10 +233,7 @@ export const BotList = observer(
                         justifyContent: 'center',
                       }}>
                       <View style={styles.iconContainer}>
-                        <MaterialIcon
-                          name="arrow-forward"
-                          size={20}
-                        />
+                        <MaterialIcon name="arrow-forward" size={20} />
                       </View>
                     </View>
                   </PressableSettingsEntry>

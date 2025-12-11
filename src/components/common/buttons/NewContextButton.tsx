@@ -4,7 +4,10 @@ import {StyleSheet} from 'react-native-unistyles';
 import {useTranslation} from 'react-i18next';
 
 import {Text} from '@clerotri/components/common/atoms';
-import {MaterialCommunityIcon, MaterialIcon} from '@clerotri/components/common/icons';
+import {
+  MaterialCommunityIcon,
+  MaterialIcon,
+} from '@clerotri/components/common/icons';
 import {commonValues, ThemeContext} from '@clerotri/lib/themes';
 import type {ContextButtonProps} from '@clerotri/lib/types';
 import {styles} from '@clerotri/Theme';

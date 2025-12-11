@@ -20,7 +20,10 @@ import {
   CopyIDButton,
   NewContextButton,
 } from '@clerotri/components/common/buttons';
-import {MaterialCommunityIcon, MaterialIcon} from '@clerotri/components/common/icons';
+import {
+  MaterialCommunityIcon,
+  MaterialIcon,
+} from '@clerotri/components/common/icons';
 import {MarkdownView} from '@clerotri/components/common/MarkdownView';
 import {
   BadgeView,
@@ -67,10 +70,7 @@ const RelationshipButtons = ({user}: {user: User}) => {
                   flexDirection: 'column',
                 }}>
                 <View>
-                  <MaterialIcon
-                    name="message"
-                    size={25}
-                  />
+                  <MaterialIcon name="message" size={25} />
                 </View>
                 <Text>Message</Text>
               </View>
@@ -89,10 +89,7 @@ const RelationshipButtons = ({user}: {user: User}) => {
                     flexDirection: 'column',
                   }}>
                   <View>
-                    <MaterialCommunityIcon
-                      name="account-plus"
-                      size={25}
-                    />
+                    <MaterialCommunityIcon name="account-plus" size={25} />
                   </View>
                   <Text>{t('app.profile.friend_requests.accept')}</Text>
                 </View>
@@ -109,10 +106,7 @@ const RelationshipButtons = ({user}: {user: User}) => {
                     flexDirection: 'column',
                   }}>
                   <View>
-                    <MaterialCommunityIcon
-                      name="account-remove"
-                      size={25}
-                    />
+                    <MaterialCommunityIcon name="account-remove" size={25} />
                   </View>
                   <Text>{t('app.profile.friend_requests.reject')}</Text>
                 </View>
@@ -131,10 +125,7 @@ const RelationshipButtons = ({user}: {user: User}) => {
                   flexDirection: 'column',
                 }}>
                 <View>
-                  <MaterialCommunityIcon
-                    name="account-cancel"
-                    size={25}
-                  />
+                  <MaterialCommunityIcon name="account-cancel" size={25} />
                 </View>
                 <Text>{t('app.profile.friend_requests.cancel')}</Text>
               </View>
@@ -153,10 +144,7 @@ const RelationshipButtons = ({user}: {user: User}) => {
                   flexDirection: 'column',
                 }}>
                 <View>
-                  <MaterialCommunityIcon
-                    name="account-plus"
-                    size={25}
-                  />
+                  <MaterialCommunityIcon name="account-plus" size={25} />
                 </View>
                 <Text>{t('app.profile.friend_requests.send')}</Text>
               </View>
@@ -346,10 +334,7 @@ export const ProfileSheet = observer(
                   alignItems: 'center',
                 }}>
                 <TouchableOpacity onPress={() => setShowMenu(true)}>
-                  <MaterialIcon
-                    name="more-vert"
-                    size={30}
-                  />
+                  <MaterialIcon name="more-vert" size={30} />
                 </TouchableOpacity>
               </View>
             </View>

@@ -3,7 +3,10 @@ import {Pressable, type ViewStyle} from 'react-native';
 import {useTranslation} from 'react-i18next';
 
 import {Text} from './Text';
-import {MaterialCommunityIcon, MaterialIcon} from '@clerotri/components/common/icons';
+import {
+  MaterialCommunityIcon,
+  MaterialIcon,
+} from '@clerotri/components/common/icons';
 import {ThemeContext} from '@clerotri/lib/themes';
 
 export function BackButton({

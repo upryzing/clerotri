@@ -18,7 +18,10 @@ import {styles} from '@clerotri/Theme';
 
 import {AttachmentPickerButton} from '@clerotri/components/AttachmentPickerButton';
 import {Avatar, Input, Text, Username} from '@clerotri/components/common/atoms';
-import {MaterialCommunityIcon, MaterialIcon} from '@clerotri/components/common/icons';
+import {
+  MaterialCommunityIcon,
+  MaterialIcon,
+} from '@clerotri/components/common/icons';
 import {USER_IDS} from '@clerotri/lib/consts';
 import {storage} from '@clerotri/lib/storage';
 import {commonValues, ThemeContext} from '@clerotri/lib/themes';
@@ -118,10 +121,7 @@ export const MessageBox = observer((props: MessageBoxProps) => {
                   )
                 }>
                 <View style={styles.iconContainer}>
-                  <MaterialCommunityIcon
-                    name="close-circle"
-                    size={16}
-                  />
+                  <MaterialCommunityIcon name="close-circle" size={16} />
                 </View>
               </Pressable>
               <Pressable
@@ -177,10 +177,7 @@ export const MessageBox = observer((props: MessageBoxProps) => {
               setCurrentText('');
             }}>
             <View style={styles.iconContainer}>
-              <MaterialCommunityIcon
-                name="close-circle"
-                size={16}
-              />
+              <MaterialCommunityIcon name="close-circle" size={16} />
             </View>
           </Pressable>
           <Text style={{marginTop: -1}}> Editing message</Text>
@@ -291,17 +288,9 @@ export const MessageBox = observer((props: MessageBoxProps) => {
               }
             }}>
             {editingMessage ? (
-              <MaterialIcon
-                name="edit"
-                size={24}
-                color={'messageBox'}
-              />
+              <MaterialIcon name="edit" size={24} color={'messageBox'} />
             ) : (
-              <MaterialIcon
-                name="send"
-                size={24}
-                color={'messageBox'}
-              />
+              <MaterialIcon name="send" size={24} color={'messageBox'} />
             )}
           </Pressable>
         ) : null}
@@ -359,10 +348,7 @@ const AttachmentsBar = observer(
                     setAttachments(attachments?.filter(a2 => a2.uri !== a.uri))
                   }>
                   <View style={styles.iconContainer}>
-                    <MaterialCommunityIcon
-                      name="close-circle"
-                      size={16}
-                    />
+                    <MaterialCommunityIcon name="close-circle" size={16} />
                   </View>
                 </Pressable>
                 <View style={{flexDirection: 'column'}}>

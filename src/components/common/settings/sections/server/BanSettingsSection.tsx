@@ -58,10 +58,7 @@ export const BanSettingsSection = observer(({server}: {server: Server}) => {
                     triggerReload(reload + 1);
                   }}>
                   <View style={styles.iconContainer}>
-                    <MaterialIcon
-                      name={'delete'}
-                      size={20}
-                    />
+                    <MaterialIcon name={'delete'} size={20} />
                   </View>
                 </Pressable>
               ) : null}

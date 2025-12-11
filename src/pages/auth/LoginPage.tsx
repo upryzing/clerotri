@@ -200,10 +200,7 @@ export const LoginPage = ({
         )}
         {loginType === '' ? (
           <TouchableOpacity onPress={() => openLoginSettings()}>
-            <MaterialIcon
-              name="more-vert"
-              size={30}
-            />
+            <MaterialIcon name="more-vert" size={30} />
           </TouchableOpacity>
         ) : (
           <View />

@@ -16,11 +16,7 @@ export const Checkbox = ({
       style={[localStyles.base, value && localStyles.active]}
       onPress={callback}>
       {value ? (
-        <MaterialIcon
-          name="check"
-          color={'accentColorForeground'}
-          size={24}
-        />
+        <MaterialIcon name="check" color={'accentColorForeground'} size={24} />
       ) : null}
     </TouchableOpacity>
   );
@@ -36,6 +32,6 @@ const localStyles = StyleSheet.create(currentTheme => ({
     justifyContent: 'center',
   },
   active: {
-    backgroundColor: currentTheme.accentColor
+    backgroundColor: currentTheme.accentColor,
   },
 }));

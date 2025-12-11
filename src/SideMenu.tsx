@@ -16,7 +16,10 @@ import type {Server} from 'revolt.js';
 
 import {app, setFunction} from './Generic';
 import {Avatar, Button} from './components/common/atoms';
-import {MaterialCommunityIcon, MaterialIcon} from '@clerotri/components/common/icons';
+import {
+  MaterialCommunityIcon,
+  MaterialIcon,
+} from '@clerotri/components/common/icons';
 import {ChannelList} from './components/navigation/ChannelList';
 import {ServerList} from './components/navigation/ServerList';
 import {ChannelView} from './components/views/ChannelView';
@@ -120,30 +123,21 @@ const SideMenu = () => {
           onPress={() => setCurrentChannel('friends')}
           backgroundColor={'#00000000'}
           style={{paddingVertical: 10}}>
-          <MaterialIcon
-            name="group"
-            size={20}
-          />
+          <MaterialIcon name="group" size={20} />
         </Button>
         <Button
           key={'bottom-nav-search'}
           onPress={() => app.openChannelSwitcher(true)}
           backgroundColor={'#00000000'}
           style={{paddingVertical: 10}}>
-          <MaterialCommunityIcon
-            name="text-search"
-            size={20}
-          />
+          <MaterialCommunityIcon name="text-search" size={20} />
         </Button>
         <Button
           key={'bottom-nav-settings'}
           onPress={() => app.openSettings(true)}
           backgroundColor={'#00000000'}
           style={{paddingVertical: 10}}>
-          <MaterialIcon
-            name="settings"
-            size={20}
-          />
+          <MaterialIcon name="settings" size={20} />
         </Button>
       </View>
     </View>

@@ -223,8 +223,7 @@ export const ChannelSwitcherSheet = observer(() => {
         style={{
           paddingHorizontal: commonValues.sizes.xl,
         }}>
-        <View
-          style={localStyles.searchBoxContainer}>
+        <View style={localStyles.searchBoxContainer}>
           <Input
             value={searchText}
             onChangeText={v => setSearchText(v)}
@@ -307,9 +306,9 @@ export const ChannelSwitcherSheet = observer(() => {
 
 const localStyles = StyleSheet.create(currentTheme => ({
   searchBoxContainer: {
-            flexDirection: 'row',
-            borderRadius: commonValues.sizes.medium,
-            backgroundColor: currentTheme.background,
-            marginBlockEnd: commonValues.sizes.large,
-          }
+    flexDirection: 'row',
+    borderRadius: commonValues.sizes.medium,
+    backgroundColor: currentTheme.background,
+    marginBlockEnd: commonValues.sizes.large,
+  },
 }));

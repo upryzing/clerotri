@@ -55,10 +55,7 @@ export const ProfileSettingsSection = observer(() => {
             );
           }}>
           <View style={styles.iconContainer}>
-            <MaterialIcon
-              name="content-copy"
-              size={20}
-            />
+            <MaterialIcon name="content-copy" size={20} />
           </View>
         </Pressable>
         <Pressable
@@ -78,10 +75,7 @@ export const ProfileSettingsSection = observer(() => {
             });
           }}>
           <View style={styles.iconContainer}>
-            <MaterialIcon
-              name="edit"
-              size={20}
-            />
+            <MaterialIcon name="edit" size={20} />
           </View>
         </Pressable>
       </SettingsEntry>
@@ -109,10 +103,7 @@ export const ProfileSettingsSection = observer(() => {
             justifyContent: 'center',
           }}>
           <View style={styles.iconContainer}>
-            <MaterialIcon
-              name={'arrow-forward'}
-              size={20}
-            />
+            <MaterialIcon name={'arrow-forward'} size={20} />
           </View>
         </View>
       </PressableSettingsEntry>

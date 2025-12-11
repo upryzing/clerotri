@@ -14,7 +14,10 @@ import {MessageView} from '@clerotri/MessageView';
 import {MessageBox} from '@clerotri/components/MessageBox';
 import {styles} from '@clerotri/Theme';
 import {Button, Text} from '@clerotri/components/common/atoms';
-import {MaterialCommunityIcon, MaterialIcon} from '@clerotri/components/common/icons';
+import {
+  MaterialCommunityIcon,
+  MaterialIcon,
+} from '@clerotri/components/common/icons';
 import {ChannelIcon} from '@clerotri/components/navigation/ChannelIcon';
 import {ChannelHeader} from '@clerotri/components/navigation/ChannelHeader';
 import {SpecialChannelIcon} from '@clerotri/components/navigation/SpecialChannelIcon';
@@ -98,20 +101,14 @@ const RegularChannelView = observer(({channel}: {channel: Channel}) => {
           <View style={{marginStart: 16}}>
             <TouchableOpacity
               onPress={() => app.openPinnedMessagesMenu(channel)}>
-              <MaterialCommunityIcon
-                name="pin"
-                size={24}
-              />
+              <MaterialCommunityIcon name="pin" size={24} />
             </TouchableOpacity>
           </View>
         ) : null}
         {channel.channel_type === 'Group' || channel.server ? (
           <View style={{marginStart: 16}}>
             <TouchableOpacity onPress={() => app.openChannelInfoMenu(channel)}>
-              <MaterialIcon
-                name="info"
-                size={24}
-              />
+              <MaterialIcon name="info" size={24} />
             </TouchableOpacity>
           </View>
         ) : null}
@@ -121,10 +118,7 @@ const RegularChannelView = observer(({channel}: {channel: Channel}) => {
               onPress={() => {
                 app.openMemberList(channel);
               }}>
-              <MaterialIcon
-                name="group"
-                size={24}
-              />
+              <MaterialIcon name="group" size={24} />
             </TouchableOpacity>
           </View>
         ) : null}

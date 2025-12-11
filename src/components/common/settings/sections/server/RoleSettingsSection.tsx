@@ -65,10 +65,7 @@ const RoleSettingsRoleList = observer(
                 justifyContent: 'center',
               }}>
               <View style={styles.iconContainer}>
-                <MaterialIcon
-                  name={'arrow-forward'}
-                  size={20}
-                />
+                <MaterialIcon name={'arrow-forward'} size={20} />
               </View>
             </View>
           </PressableSettingsEntry>
@@ -119,12 +116,7 @@ const RoleSettings = observer(
             defaultValue: role.name,
           }}
           buttonProps={{
-            children: (
-              <MaterialIcon
-                name={'save'}
-                size={20}
-              />
-            ),
+            children: <MaterialIcon name={'save'} size={20} />,
           }}
           containerStyles={{backgroundColor: currentTheme.backgroundSecondary}}
           buttonStyles={{borderStartColor: currentTheme.backgroundPrimary}}
@@ -146,12 +138,7 @@ const RoleSettings = observer(
             keyboardType: 'decimal-pad',
           }}
           buttonProps={{
-            children: (
-              <MaterialIcon
-                name={'save'}
-                size={20}
-              />
-            ),
+            children: <MaterialIcon name={'save'} size={20} />,
           }}
           containerStyles={{backgroundColor: currentTheme.backgroundSecondary}}
           buttonStyles={{borderStartColor: currentTheme.backgroundPrimary}}
@@ -218,10 +205,7 @@ const RoleSettings = observer(
               justifyContent: 'center',
             }}>
             <View style={styles.iconContainer}>
-              <MaterialIcon
-                name={'arrow-forward'}
-                size={20}
-              />
+              <MaterialIcon name={'arrow-forward'} size={20} />
             </View>
           </View>
         </PressableSettingsEntry>
@@ -260,10 +244,7 @@ const RoleSettings = observer(
                 setShowColourPicker(true);
               }}>
               <View style={styles.iconContainer}>
-                <MaterialIcon
-                  name={'edit'}
-                  size={20}
-                />
+                <MaterialIcon name={'edit'} size={20} />
               </View>
             </Pressable>
             <Pressable
@@ -275,10 +256,7 @@ const RoleSettings = observer(
               }}
               onPress={() => Clipboard.setString(role.colour ?? 'No colour')}>
               <View style={styles.iconContainer}>
-                <MaterialIcon
-                  name={'content-copy'}
-                  size={20}
-                />
+                <MaterialIcon name={'content-copy'} size={20} />
               </View>
             </Pressable>
           </View>

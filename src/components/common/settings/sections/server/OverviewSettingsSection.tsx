@@ -30,12 +30,7 @@ export const OverviewSettingsSection = observer(
             defaultValue: server.name,
           }}
           buttonProps={{
-            children: (
-              <MaterialIcon
-                name={'save'}
-                size={20}
-              />
-            ),
+            children: <MaterialIcon name={'save'} size={20} />,
           }}
           containerStyles={{backgroundColor: currentTheme.backgroundSecondary}}
           buttonStyles={{borderStartColor: currentTheme.backgroundPrimary}}

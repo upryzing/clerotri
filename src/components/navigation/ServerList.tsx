@@ -136,10 +136,7 @@ export const ServerList = observer(
               key={'serverlist-discover'}
               style={localStyles.serverButton}>
               <View style={{alignItems: 'center', marginVertical: '22.5%'}}>
-                <MaterialCommunityIcon
-                  name={'compass'}
-                  size={25}
-                />
+                <MaterialCommunityIcon name={'compass'} size={25} />
               </View>
             </TouchableOpacity>
           </>

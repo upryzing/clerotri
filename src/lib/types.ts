@@ -84,7 +84,10 @@ export type MemberWithModAction = {
   callback: (s: string) => void;
 };
 
-export type ThemeColour = keyof Omit<Theme, 'generalBorderWidth' | 'contentType'>;
+export type ThemeColour = keyof Omit<
+  Theme,
+  'generalBorderWidth' | 'contentType'
+>;
 
 export type ButtonProps = TouchableOpacityProps & {
   backgroundColor?: string;

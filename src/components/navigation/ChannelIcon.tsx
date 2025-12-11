@@ -1,6 +1,9 @@
 import type {Channel} from 'revolt.js';
 
-import {MaterialCommunityIcon, MaterialIcon} from '@clerotri/components/common/icons';
+import {
+  MaterialCommunityIcon,
+  MaterialIcon,
+} from '@clerotri/components/common/icons';
 import {Image} from '@clerotri/crossplat/Image';
 
 export const ChannelIcon = ({
@@ -11,9 +14,7 @@ export const ChannelIcon = ({
   showUnread?: boolean;
 }) => {
   const color =
-    showUnread && channel.unread
-      ? 'foregroundPrimary'
-      : 'foregroundSecondary';
+    showUnread && channel.unread ? 'foregroundPrimary' : 'foregroundSecondary';
   const radius =
     channel.channel_type === 'DirectMessage' || channel.channel_type === 'Group'
       ? 10000

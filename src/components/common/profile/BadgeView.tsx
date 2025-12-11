@@ -7,7 +7,10 @@ import {observer} from 'mobx-react-lite';
 import type {User} from 'revolt.js';
 
 import {Text} from '@clerotri/components/common/atoms/Text';
-import {MaterialCommunityIcon, MaterialIcon} from '@clerotri/components/common/icons';
+import {
+  MaterialCommunityIcon,
+  MaterialIcon,
+} from '@clerotri/components/common/icons';
 import {BADGES, USER_IDS} from '@clerotri/lib/consts';
 import {commonValues, ThemeContext} from '@clerotri/lib/themes';
 import {openUrl, showToast} from '@clerotri/lib/utils';
