@@ -4,9 +4,6 @@ import {StyleSheet} from 'react-native-unistyles';
 import {useTranslation} from 'react-i18next';
 import {observer} from 'mobx-react-lite';
 
-import MaterialIcon from '@react-native-vector-icons/material-icons';
-import MaterialCommunityIcon from '@react-native-vector-icons/material-design-icons';
-
 import type {API, Server, User} from 'revolt.js';
 
 import {app} from '@clerotri/Generic';
@@ -23,6 +20,7 @@ import {
   CopyIDButton,
   NewContextButton,
 } from '@clerotri/components/common/buttons';
+import {MaterialCommunityIcon, MaterialIcon} from '@clerotri/components/common/icons';
 import {MarkdownView} from '@clerotri/components/common/MarkdownView';
 import {
   BadgeView,
@@ -72,7 +70,6 @@ const RelationshipButtons = ({user}: {user: User}) => {
                   <MaterialIcon
                     name="message"
                     size={25}
-                    color={currentTheme.foregroundPrimary}
                   />
                 </View>
                 <Text>Message</Text>
@@ -95,7 +92,6 @@ const RelationshipButtons = ({user}: {user: User}) => {
                     <MaterialCommunityIcon
                       name="account-plus"
                       size={25}
-                      color={currentTheme.foregroundPrimary}
                     />
                   </View>
                   <Text>{t('app.profile.friend_requests.accept')}</Text>
@@ -116,7 +112,6 @@ const RelationshipButtons = ({user}: {user: User}) => {
                     <MaterialCommunityIcon
                       name="account-remove"
                       size={25}
-                      color={currentTheme.foregroundPrimary}
                     />
                   </View>
                   <Text>{t('app.profile.friend_requests.reject')}</Text>
@@ -139,7 +134,6 @@ const RelationshipButtons = ({user}: {user: User}) => {
                   <MaterialCommunityIcon
                     name="account-cancel"
                     size={25}
-                    color={currentTheme.foregroundPrimary}
                   />
                 </View>
                 <Text>{t('app.profile.friend_requests.cancel')}</Text>
@@ -162,7 +156,6 @@ const RelationshipButtons = ({user}: {user: User}) => {
                   <MaterialCommunityIcon
                     name="account-plus"
                     size={25}
-                    color={currentTheme.foregroundPrimary}
                   />
                 </View>
                 <Text>{t('app.profile.friend_requests.send')}</Text>
@@ -287,7 +280,7 @@ export const ProfileSheet = observer(
               <MaterialIcon
                 name="arrow-back"
                 size={20}
-                color={currentTheme.foregroundSecondary}
+                color={'foregroundSecondary'}
               />
               <Text
                 style={{
@@ -310,7 +303,7 @@ export const ProfileSheet = observer(
                   icon={{
                     pack: 'regular',
                     name: 'flag',
-                    colour: currentTheme.error,
+                    colour: 'error',
                   }}
                   textString={'app.profile.menu.report_user'}
                   textColour={currentTheme.error}
@@ -356,7 +349,6 @@ export const ProfileSheet = observer(
                   <MaterialIcon
                     name="more-vert"
                     size={30}
-                    color={currentTheme.foregroundPrimary}
                   />
                 </TouchableOpacity>
               </View>

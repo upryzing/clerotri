@@ -5,7 +5,6 @@ import {Trans, useTranslation} from 'react-i18next';
 import {observer} from 'mobx-react-lite';
 
 import Clipboard from '@react-native-clipboard/clipboard';
-import MaterialIcon from '@react-native-vector-icons/material-icons';
 import ColourPicker, {
   HueCircular,
   OpacitySlider,
@@ -25,6 +24,7 @@ import {
   InputWithButtonV2,
   Text,
 } from '@clerotri/components/common/atoms';
+import {MaterialIcon} from '@clerotri/components/common/icons';
 import {
   PressableSettingsEntry,
   SettingsEntry,
@@ -68,7 +68,6 @@ const RoleSettingsRoleList = observer(
                 <MaterialIcon
                   name={'arrow-forward'}
                   size={20}
-                  color={currentTheme.foregroundPrimary}
                 />
               </View>
             </View>
@@ -123,7 +122,6 @@ const RoleSettings = observer(
             children: (
               <MaterialIcon
                 name={'save'}
-                color={currentTheme.foregroundPrimary}
                 size={20}
               />
             ),
@@ -151,7 +149,6 @@ const RoleSettings = observer(
             children: (
               <MaterialIcon
                 name={'save'}
-                color={currentTheme.foregroundPrimary}
                 size={20}
               />
             ),
@@ -224,7 +221,6 @@ const RoleSettings = observer(
               <MaterialIcon
                 name={'arrow-forward'}
                 size={20}
-                color={currentTheme.foregroundPrimary}
               />
             </View>
           </View>
@@ -267,7 +263,6 @@ const RoleSettings = observer(
                 <MaterialIcon
                   name={'edit'}
                   size={20}
-                  color={currentTheme.foregroundPrimary}
                 />
               </View>
             </Pressable>
@@ -283,7 +278,6 @@ const RoleSettings = observer(
                 <MaterialIcon
                   name={'content-copy'}
                   size={20}
-                  color={currentTheme.foregroundPrimary}
                 />
               </View>
             </Pressable>
@@ -467,8 +461,8 @@ const RolePermissionSelector = observer(
               size={20}
               color={
                 (role.permissions.d & number) === number
-                  ? currentTheme.backgroundSecondary
-                  : currentTheme.error
+                  ? 'backgroundSecondary'
+                  : 'error'
               }
             />
           </View>
@@ -521,8 +515,8 @@ const RolePermissionSelector = observer(
               color={
                 (role.permissions.d & number) !== number &&
                 (role.permissions.a & number) !== number
-                  ? currentTheme.backgroundSecondary
-                  : currentTheme.foregroundSecondary
+                  ? 'backgroundSecondary'
+                  : 'foregroundSecondary'
               }
             />
           </View>
@@ -567,8 +561,8 @@ const RolePermissionSelector = observer(
               size={20}
               color={
                 (role.permissions.a & number) === number
-                  ? currentTheme.backgroundSecondary
-                  : currentTheme.accentColor
+                  ? 'backgroundSecondary'
+                  : 'accentColor'
               }
             />
           </View>

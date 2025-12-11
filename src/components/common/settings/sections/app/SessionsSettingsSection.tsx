@@ -3,14 +3,13 @@ import {Pressable, View} from 'react-native';
 import {useTranslation} from 'react-i18next';
 import {observer} from 'mobx-react-lite';
 
-import MaterialIcon from '@react-native-vector-icons/material-icons';
-
 import type {API} from 'revolt.js';
 
 import {app} from '@clerotri/Generic';
 import {client} from '@clerotri/lib/client';
 import {styles} from '@clerotri/Theme';
 import {Text} from '@clerotri/components/common/atoms';
+import {MaterialIcon} from '@clerotri/components/common/icons';
 import {
   PressableSettingsEntry,
   SettingsEntry,
@@ -29,8 +28,6 @@ const SessionEntry = observer(
     sessionID?: string;
     onDelete: (s: API.SessionInfo) => void;
   }) => {
-    const {currentTheme} = useContext(ThemeContext);
-
     return (
       <SettingsEntry>
         <View style={{flex: 1, flexDirection: 'column'}}>
@@ -63,7 +60,6 @@ const SessionEntry = observer(
             <MaterialIcon
               name="edit"
               size={20}
-              color={currentTheme.foregroundPrimary}
             />
           </View>
         </Pressable>
@@ -80,7 +76,6 @@ const SessionEntry = observer(
               <MaterialIcon
                 name="logout"
                 size={20}
-                color={currentTheme.foregroundPrimary}
               />
             </View>
           </Pressable>
@@ -161,7 +156,6 @@ export const SessionsSettingsSection = observer(() => {
                     <MaterialIcon
                       name="arrow-forward"
                       size={20}
-                      color={currentTheme.foregroundPrimary}
                     />
                   </View>
                 </View>

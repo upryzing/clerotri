@@ -1,12 +1,12 @@
-import {type Dispatch, type SetStateAction, useContext} from 'react';
+import {type Dispatch, type SetStateAction} from 'react';
 import {Pressable} from 'react-native';
 import {StyleSheet} from 'react-native-unistyles';
 
 import {type DocumentPickerResponse} from '@react-native-documents/picker';
-import MaterialIcon from '@react-native-vector-icons/material-icons';
 
+import { MaterialIcon} from '@clerotri/components/common/icons';
 import {pickDocument, fileTypes} from '@clerotri/crossplat/DocumentPicker';
-import {commonValues, ThemeContext} from '@clerotri/lib/themes';
+import {commonValues} from '@clerotri/lib/themes';
 import {showToast} from '@clerotri/lib/utils';
 
 export const AttachmentPickerButton = ({
@@ -16,8 +16,6 @@ export const AttachmentPickerButton = ({
   attachments: DocumentPickerResponse[];
   setAttachments: Dispatch<SetStateAction<DocumentPickerResponse[]>>;
 }) => {
-  const {currentTheme} = useContext(ThemeContext);
-
   return (
     <Pressable
       style={localStyles.attachmentsButton}
@@ -65,8 +63,8 @@ export const AttachmentPickerButton = ({
         size={24}
         color={
           attachments.length >= 5
-            ? currentTheme.foregroundSecondary
-            : currentTheme.foregroundPrimary
+            ? 'foregroundSecondary'
+            : 'foregroundPrimary'
         }
       />
     </Pressable>

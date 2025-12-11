@@ -2,10 +2,8 @@ import {useContext} from 'react';
 import {Pressable, type ViewStyle} from 'react-native';
 import {useTranslation} from 'react-i18next';
 
-import MaterialCommunityIcon from '@react-native-vector-icons/material-design-icons';
-import MaterialIcon from '@react-native-vector-icons/material-icons';
-
 import {Text} from './Text';
+import {MaterialCommunityIcon, MaterialIcon} from '@clerotri/components/common/icons';
 import {ThemeContext} from '@clerotri/lib/themes';
 
 export function BackButton({
@@ -39,13 +37,13 @@ export function BackButton({
         <MaterialCommunityIcon
           name="close-circle"
           size={24}
-          color={currentTheme.foregroundSecondary}
+          color={'foregroundSecondary'}
         />
       ) : (
         <MaterialIcon
           name={'arrow-back'}
           size={24}
-          color={currentTheme.foregroundSecondary}
+          color={'foregroundSecondary'}
         />
       )}
       <Text

@@ -7,8 +7,6 @@ import {observer} from 'mobx-react-lite';
 import {type DocumentPickerResponse} from '@react-native-documents/picker';
 import {KeyboardAvoidingView} from 'react-native-keyboard-controller';
 import {useSafeAreaInsets} from 'react-native-safe-area-context';
-import MaterialIcon from '@react-native-vector-icons/material-icons';
-import MaterialCommunityIcon from '@react-native-vector-icons/material-design-icons';
 
 import type {Channel, Message} from 'revolt.js';
 import {ulid} from 'ulid';
@@ -20,6 +18,7 @@ import {styles} from '@clerotri/Theme';
 
 import {AttachmentPickerButton} from '@clerotri/components/AttachmentPickerButton';
 import {Avatar, Input, Text, Username} from '@clerotri/components/common/atoms';
+import {MaterialCommunityIcon, MaterialIcon} from '@clerotri/components/common/icons';
 import {USER_IDS} from '@clerotri/lib/consts';
 import {storage} from '@clerotri/lib/storage';
 import {commonValues, ThemeContext} from '@clerotri/lib/themes';
@@ -122,7 +121,6 @@ export const MessageBox = observer((props: MessageBoxProps) => {
                   <MaterialCommunityIcon
                     name="close-circle"
                     size={16}
-                    color={currentTheme.foregroundPrimary}
                   />
                 </View>
               </Pressable>
@@ -182,7 +180,6 @@ export const MessageBox = observer((props: MessageBoxProps) => {
               <MaterialCommunityIcon
                 name="close-circle"
                 size={16}
-                color={currentTheme.foregroundPrimary}
               />
             </View>
           </Pressable>
@@ -297,13 +294,13 @@ export const MessageBox = observer((props: MessageBoxProps) => {
               <MaterialIcon
                 name="edit"
                 size={24}
-                color={currentTheme.messageBox}
+                color={'messageBox'}
               />
             ) : (
               <MaterialIcon
                 name="send"
                 size={24}
-                color={currentTheme.messageBox}
+                color={'messageBox'}
               />
             )}
           </Pressable>
@@ -365,7 +362,6 @@ const AttachmentsBar = observer(
                     <MaterialCommunityIcon
                       name="close-circle"
                       size={16}
-                      color={currentTheme.foregroundPrimary}
                     />
                   </View>
                 </Pressable>

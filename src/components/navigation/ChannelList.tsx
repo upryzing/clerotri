@@ -11,13 +11,12 @@ import {StyleSheet} from 'react-native-unistyles';
 import {useTranslation} from 'react-i18next';
 import {observer} from 'mobx-react-lite';
 
-import MaterialCommunityIcon from '@react-native-vector-icons/material-design-icons';
-
 import {API, Channel, Server} from 'revolt.js';
 
 import {app} from '@clerotri/Generic';
 import {client} from '@clerotri/lib/client';
 import {ChannelButton, Text} from '../common/atoms';
+import {MaterialCommunityIcon} from '@clerotri/components/common/icons';
 import {
   ChannelContext,
   ServerContext,
@@ -151,7 +150,6 @@ const ServerChannelList = observer((props: ServerChannelListProps) => {
                 <MaterialCommunityIcon
                   name={'dots-horizontal'}
                   size={30}
-                  color={currentTheme.foregroundPrimary}
                 />
               </View>
             </View>
@@ -173,7 +171,6 @@ const ServerChannelList = observer((props: ServerChannelListProps) => {
               <MaterialCommunityIcon
                 name={'dots-horizontal'}
                 size={30}
-                color={currentTheme.foregroundPrimary}
               />
             </View>
           </View>

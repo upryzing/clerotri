@@ -1,21 +1,18 @@
-import {useContext, useState} from 'react';
+import {useState} from 'react';
 import {Pressable, View} from 'react-native';
 import {StyleSheet} from 'react-native-unistyles';
 import {useTranslation} from 'react-i18next';
 import {observer} from 'mobx-react-lite';
 
-import MaterialIcon from '@react-native-vector-icons/material-icons';
-
 import {app} from '@clerotri/Generic';
 import {styles} from '@clerotri/Theme';
 import {Button, Checkbox, Input, Text} from '@clerotri/components/common/atoms';
-import {commonValues, ThemeContext} from '@clerotri/lib/themes';
+import {MaterialIcon} from '@clerotri/components/common/icons';
+import {commonValues} from '@clerotri/lib/themes';
 import {CreateChannelModalProps} from '@clerotri/lib/types';
 
 export const CreateChannelModal = observer(
   ({object}: {object: CreateChannelModalProps}) => {
-    const {currentTheme} = useContext(ThemeContext);
-
     const {t} = useTranslation();
 
     const [name, setName] = useState('');
@@ -54,7 +51,7 @@ export const CreateChannelModal = observer(
                   <MaterialIcon
                     name={`radio-button-${type === ct ? 'on' : 'off'}`}
                     size={28}
-                    color={currentTheme.accentColor}
+                    color={'accentColor'}
                   />
                 </View>
               </Pressable>

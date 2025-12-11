@@ -1,10 +1,8 @@
-import {useContext} from 'react';
 import {TouchableOpacity} from 'react-native';
 import {StyleSheet} from 'react-native-unistyles';
 
-import MaterialIcon from '@react-native-vector-icons/material-icons';
-
-import {commonValues, ThemeContext} from '@clerotri/lib/themes';
+import {MaterialIcon} from '@clerotri/components/common/icons';
+import {commonValues} from '@clerotri/lib/themes';
 
 export const Checkbox = ({
   value,
@@ -13,7 +11,6 @@ export const Checkbox = ({
   value: boolean;
   callback: any;
 }) => {
-  const {currentTheme} = useContext(ThemeContext);
   return (
     <TouchableOpacity
       style={[localStyles.base, value && localStyles.active]}
@@ -21,7 +18,7 @@ export const Checkbox = ({
       {value ? (
         <MaterialIcon
           name="check"
-          color={currentTheme.accentColorForeground}
+          color={'accentColorForeground'}
           size={24}
         />
       ) : null}
@@ -38,5 +35,7 @@ const localStyles = StyleSheet.create(currentTheme => ({
     alignItems: 'center',
     justifyContent: 'center',
   },
-  active: {backgroundColor: currentTheme.accentColor},
+  active: {
+    backgroundColor: currentTheme.accentColor
+  },
 }));

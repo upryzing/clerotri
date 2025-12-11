@@ -1,4 +1,3 @@
-import {useContext} from 'react';
 import {View} from 'react-native';
 import {observer} from 'mobx-react-lite';
 
@@ -6,11 +5,8 @@ import {InputWithButtonV2, Text} from '@clerotri/components/common/atoms';
 import {NewContextButton} from '@clerotri/components/common/buttons';
 import {client} from '@clerotri/lib/client';
 import {STATUSES} from '@clerotri/lib/consts';
-import {ThemeContext} from '@clerotri/lib/themes';
 
 export const StatusSheet = observer(() => {
-  const {currentTheme} = useContext(ThemeContext);
-
   return (
     <View style={{paddingHorizontal: 16}}>
       <Text key={'custom-status-selector-label'} type={'h1'}>
@@ -26,7 +22,7 @@ export const StatusSheet = observer(() => {
             icon={{
               pack: 'regular',
               name: 'circle',
-              colour: currentTheme[`status${s}`],
+              colour: `status${s}`,
             }}
             textString={s}
             onPress={() => {

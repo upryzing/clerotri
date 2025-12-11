@@ -3,11 +3,11 @@ import {Pressable, View} from 'react-native';
 import {observer} from 'mobx-react-lite';
 
 import Clipboard from '@react-native-clipboard/clipboard';
-import MaterialIcon from '@react-native-vector-icons/material-icons';
 
 import {client} from '@clerotri/lib/client';
 import {styles} from '@clerotri/Theme';
 import {Text} from '@clerotri/components/common/atoms';
+import {MaterialIcon} from '@clerotri/components/common/icons';
 import {GapView} from '@clerotri/components/layout';
 import {SettingsEntry} from '@clerotri/components/common/settings/atoms';
 import {ThemeContext} from '@clerotri/lib/themes';
@@ -62,7 +62,6 @@ export const AccountSettingsSection = observer(() => {
             <MaterialIcon
               name="content-copy"
               size={20}
-              color={currentTheme.foregroundPrimary}
             />
           </View>
         </Pressable>
@@ -78,7 +77,6 @@ export const AccountSettingsSection = observer(() => {
         <MaterialIcon
           name="edit"
           size={20}
-          color={currentTheme.foregroundPrimary}
         />
       </View>
     </Pressable> */}
@@ -106,7 +104,6 @@ export const AccountSettingsSection = observer(() => {
             <MaterialIcon
               name={showEmail ? 'visibility-off' : 'visibility'}
               size={20}
-              color={currentTheme.foregroundPrimary}
             />
           </View>
         </Pressable>
@@ -124,7 +121,6 @@ export const AccountSettingsSection = observer(() => {
             <MaterialIcon
               name="content-copy"
               size={20}
-              color={currentTheme.foregroundPrimary}
             />
           </View>
         </Pressable>

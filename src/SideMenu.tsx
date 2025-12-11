@@ -11,13 +11,12 @@ import {StyleSheet, withUnistyles} from 'react-native-unistyles';
 
 import {Drawer} from 'react-native-drawer-layout';
 import {useSafeAreaInsets} from 'react-native-safe-area-context';
-import MaterialCommunityIcon from '@react-native-vector-icons/material-design-icons';
-import MaterialIcon from '@react-native-vector-icons/material-icons';
 
 import type {Server} from 'revolt.js';
 
 import {app, setFunction} from './Generic';
 import {Avatar, Button} from './components/common/atoms';
+import {MaterialCommunityIcon, MaterialIcon} from '@clerotri/components/common/icons';
 import {ChannelList} from './components/navigation/ChannelList';
 import {ServerList} from './components/navigation/ServerList';
 import {ChannelView} from './components/views/ChannelView';
@@ -124,7 +123,6 @@ const SideMenu = () => {
           <MaterialIcon
             name="group"
             size={20}
-            color={currentTheme.foregroundPrimary}
           />
         </Button>
         <Button
@@ -135,7 +133,6 @@ const SideMenu = () => {
           <MaterialCommunityIcon
             name="text-search"
             size={20}
-            color={currentTheme.foregroundPrimary}
           />
         </Button>
         <Button
@@ -146,7 +143,6 @@ const SideMenu = () => {
           <MaterialIcon
             name="settings"
             size={20}
-            color={currentTheme.foregroundPrimary}
           />
         </Button>
       </View>

@@ -1,8 +1,6 @@
 import {useContext} from 'react';
 import {Pressable, View} from 'react-native';
 
-import MaterialCommunityIcon from '@react-native-vector-icons/material-design-icons';
-
 import {settings} from '@clerotri/lib/settings';
 import {
   CONTRIBUTORS_LIST,
@@ -18,6 +16,7 @@ import {
 import {commonValues, ThemeContext} from '@clerotri/lib/themes';
 import {openUrl} from '@clerotri/lib/utils';
 import {Button, Link, Text} from '@clerotri/components/common/atoms';
+import {MaterialCommunityIcon} from '@clerotri/components/common/icons';
 import {
   AppIcon,
   GradientStyle,
@@ -92,7 +91,6 @@ export const AppInfoSection = () => {
         <Pressable onPress={() => openUrl(GITHUB_REPO)} style={{marginEnd: 16}}>
           <MaterialCommunityIcon
             name={'github'}
-            color={currentTheme.foregroundPrimary}
             size={60}
           />
         </Pressable>
@@ -101,7 +99,6 @@ export const AppInfoSection = () => {
           style={{marginStart: 16}}>
           <MaterialCommunityIcon
             name={'mastodon'}
-            color={currentTheme.foregroundPrimary}
             size={60}
           />
         </Pressable>

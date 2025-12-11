@@ -3,12 +3,11 @@ import {View} from 'react-native';
 import {useTranslation} from 'react-i18next';
 import {observer} from 'mobx-react-lite';
 
-import MaterialIcon from '@react-native-vector-icons/material-icons';
-
 import type {Server} from 'revolt.js';
 
 import {GapView} from '@clerotri/components/layout';
 import {InputWithButtonV2, Link, Text} from '@clerotri/components/common/atoms';
+import {MaterialIcon} from '@clerotri/components/common/icons';
 import {PressableSettingsEntry} from '@clerotri/components/common/settings/atoms';
 import {SYSTEM_MESSAGE_CHANNEL_TYPES} from '@clerotri/lib/consts';
 import {ThemeContext} from '@clerotri/lib/themes';
@@ -34,7 +33,6 @@ export const OverviewSettingsSection = observer(
             children: (
               <MaterialIcon
                 name={'save'}
-                color={currentTheme.foregroundPrimary}
                 size={20}
               />
             ),

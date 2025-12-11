@@ -51,7 +51,7 @@ export const ChangelogSheet = observer(() => {
           icon={{
             pack: 'community',
             name: 'heart',
-            colour: currentTheme.accentColor,
+            colour: 'accentColor',
           }}
           textString={'Donate'}
           style={{

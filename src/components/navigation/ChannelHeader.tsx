@@ -1,13 +1,11 @@
-import {useContext} from 'react';
 import {TouchableOpacity, useWindowDimensions, View} from 'react-native';
 import {StyleSheet} from 'react-native-unistyles';
-
-import MaterialIcon from '@react-native-vector-icons/material-icons';
 
 import {app} from '@clerotri/Generic';
 import {styles} from '@clerotri/Theme';
 import {Text} from '@clerotri/components/common/atoms';
-import {commonValues, ThemeContext} from '@clerotri/lib/themes';
+import {MaterialIcon} from '@clerotri/components/common/icons';
+import {commonValues} from '@clerotri/lib/themes';
 
 export const ChannelHeader = ({
   children,
@@ -18,8 +16,6 @@ export const ChannelHeader = ({
   icon?: React.JSX.Element;
   name?: string;
 }) => {
-  const {currentTheme} = useContext(ThemeContext);
-
   const {height, width} = useWindowDimensions();
 
   return (
@@ -31,11 +27,7 @@ export const ChannelHeader = ({
             app.openLeftMenu(true);
           }}>
           <View style={styles.iconContainer}>
-            <MaterialIcon
-              name="menu"
-              size={20}
-              color={currentTheme.foregroundPrimary}
-            />
+            <MaterialIcon name="menu" size={20} />
           </View>
         </TouchableOpacity>
       ) : null}

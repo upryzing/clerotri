@@ -84,6 +84,8 @@ export type MemberWithModAction = {
   callback: (s: string) => void;
 };
 
+type ThemeColour = keyof Omit<Theme, 'generalBorderWidth'>;
+
 export type ButtonProps = TouchableOpacityProps & {
   backgroundColor?: string;
 };
@@ -100,7 +102,7 @@ export type IconType =
 
 export type ContextButtonProps = ButtonProps & {
   type?: 'start' | 'end' | 'detatched';
-  icon?: IconType & {colour?: string};
+  icon?: IconType & {colour?: ThemeColour; customColour?: ColorValue};
   textString?: string;
   textColour?: ColorValue;
 };
@@ -144,7 +146,7 @@ export type SpecialChannel = 'friends' | 'discover' | 'debug' | null;
 export type CVChannel = Channel | SpecialChannel;
 
 type IconProps = TextProps & {
-  color?: keyof Omit<Theme, 'generalBorderWidth'>;
+  color?: ThemeColour;
   customColor?: ColorValue;
   size?: number;
 };

@@ -1,21 +1,18 @@
-import {useContext} from 'react';
 import {Pressable, View} from 'react-native';
 import {StyleSheet} from 'react-native-unistyles';
 
 import {gestureHandlerRootHOC} from 'react-native-gesture-handler';
 import ImageViewerCore from 'react-native-reanimated-image-viewer';
-import MaterialCommunityIcon from '@react-native-vector-icons/material-design-icons';
 
 import {client} from '@clerotri/lib/client';
 import {Text} from '@clerotri/components/common/atoms';
+import {MaterialCommunityIcon} from '@clerotri/components/common/icons';
 import {GapView} from '@clerotri/components/layout';
-import {commonValues, ThemeContext} from '@clerotri/lib/themes';
+import {commonValues} from '@clerotri/lib/themes';
 import {getReadableFileSize, openUrl} from '@clerotri/lib/utils';
 
 export const ImageViewer = gestureHandlerRootHOC(
   ({state, setState}: {state: any; setState: any}) => {
-    const {currentTheme} = useContext(ThemeContext);
-
     const imageUrl = state.i?.metadata
       ? client.generateFileURL(state.i)!
       : state.i;
@@ -32,7 +29,7 @@ export const ImageViewer = gestureHandlerRootHOC(
             <MaterialCommunityIcon
               name="web"
               size={32}
-              color={currentTheme.foregroundSecondary}
+              color={'foregroundSecondary'}
             />
           </Pressable>
           <GapView size={5} type={'horizontal'} />
@@ -40,7 +37,7 @@ export const ImageViewer = gestureHandlerRootHOC(
             <MaterialCommunityIcon
               name="close-circle"
               size={32}
-              color={currentTheme.foregroundSecondary}
+              color={'foregroundSecondary'}
             />
           </Pressable>
         </View>

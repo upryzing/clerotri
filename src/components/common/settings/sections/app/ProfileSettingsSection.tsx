@@ -4,12 +4,12 @@ import {useTranslation} from 'react-i18next';
 import {observer} from 'mobx-react-lite';
 
 import Clipboard from '@react-native-clipboard/clipboard';
-import MaterialIcon from '@react-native-vector-icons/material-icons';
 
 import {app} from '@clerotri/Generic';
 import {client} from '@clerotri/lib/client';
 import {styles} from '@clerotri/Theme';
 import {Text} from '@clerotri/components/common/atoms';
+import {MaterialIcon} from '@clerotri/components/common/icons';
 import {ExpandableProfile} from '@clerotri/components/common/profile';
 import {
   PressableSettingsEntry,
@@ -58,7 +58,6 @@ export const ProfileSettingsSection = observer(() => {
             <MaterialIcon
               name="content-copy"
               size={20}
-              color={currentTheme.foregroundPrimary}
             />
           </View>
         </Pressable>
@@ -82,7 +81,6 @@ export const ProfileSettingsSection = observer(() => {
             <MaterialIcon
               name="edit"
               size={20}
-              color={currentTheme.foregroundPrimary}
             />
           </View>
         </Pressable>
@@ -114,7 +112,6 @@ export const ProfileSettingsSection = observer(() => {
             <MaterialIcon
               name={'arrow-forward'}
               size={20}
-              color={currentTheme.foregroundPrimary}
             />
           </View>
         </View>

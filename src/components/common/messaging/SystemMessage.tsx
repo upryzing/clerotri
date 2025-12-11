@@ -1,17 +1,13 @@
-import {useContext} from 'react';
 import {StyleSheet, View} from 'react-native';
 import {observer} from 'mobx-react-lite';
 import {useMMKVNumber} from 'react-native-mmkv';
 
-import MaterialCommunityIcon from '@react-native-vector-icons/material-design-icons';
-import MaterialIcon from '@react-native-vector-icons/material-icons';
-
 import type {Message as RevoltMessage} from 'revolt.js';
 
 import {Text, Username} from '@clerotri/components/common/atoms';
+import {MaterialCommunityIcon, MaterialIcon} from '@clerotri/components/common/icons';
 import {settings} from '@clerotri/lib/settings';
 import {client} from '@clerotri/lib/client';
-import {ThemeContext} from '@clerotri/lib/themes';
 
 const SYSTEM_MESSAGE_ICONS = {
   text: {
@@ -69,18 +65,17 @@ const SYSTEM_MESSAGE_ICONS = {
 } as const;
 
 const SystemMessageIcon = observer(
+  // FIXME: use IconType instead
   ({icon}: {icon: {iconSet: 'main' | 'community'; name: string}}) => {
-    const {currentTheme} = useContext(ThemeContext);
-
     const [size] = useMMKVNumber('ui.messaging.fontSize');
 
     const IconComponent =
       icon.iconSet === 'community' ? MaterialCommunityIcon : MaterialIcon;
     return (
       <IconComponent
-        // @ts-expect-error not sure how to type the function param above
+        // @ts-expect-error remove when the above comment is resolved
         name={icon.name}
-        color={currentTheme.foregroundSecondary}
+        color={'foregroundSecondary'}
         size={size !== undefined ? size : 14}
         style={{alignSelf: 'center', paddingEnd: 4}}
       />

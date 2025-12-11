@@ -10,7 +10,6 @@ import {Trans, useTranslation} from 'react-i18next';
 import {observer} from 'mobx-react-lite';
 
 import Clipboard from '@react-native-clipboard/clipboard';
-import MaterialIcon from '@react-native-vector-icons/material-icons';
 
 import type {API, User} from 'revolt.js';
 
@@ -25,6 +24,7 @@ import {
   Link,
   Text,
 } from '@clerotri/components/common/atoms';
+import {MaterialIcon} from '@clerotri/components/common/icons';
 import {ExpandableProfile} from '@clerotri/components/common/profile';
 import {
   PressableSettingsEntry,
@@ -71,7 +71,6 @@ const BotSettings = observer(({bot}: {bot: GroupedBotObject}) => {
             <MaterialIcon
               name={showToken ? 'visibility-off' : 'visibility'}
               size={20}
-              color={currentTheme.foregroundPrimary}
             />
           </View>
         </Pressable>
@@ -89,7 +88,6 @@ const BotSettings = observer(({bot}: {bot: GroupedBotObject}) => {
             <MaterialIcon
               name="content-copy"
               size={20}
-              color={currentTheme.foregroundPrimary}
             />
           </View>
         </Pressable>
@@ -146,7 +144,6 @@ const BotListEntry = observer(
         <MaterialIcon
           name={bot.bot.public ? 'public' : 'lock'}
           size={20}
-          color={currentTheme.foregroundPrimary}
           style={{marginInlineEnd: commonValues.sizes.medium}}
         />
         <Avatar user={bot.user} />
@@ -175,7 +172,6 @@ const BotListEntry = observer(
             <MaterialIcon
               name="arrow-forward"
               size={20}
-              color={currentTheme.foregroundPrimary}
             />
           </View>
         </View>
@@ -246,7 +242,6 @@ export const BotList = observer(
                         <MaterialIcon
                           name="arrow-forward"
                           size={20}
-                          color={currentTheme.foregroundPrimary}
                         />
                       </View>
                     </View>

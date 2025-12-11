@@ -2,9 +2,6 @@ import {useContext, useEffect, useState} from 'react';
 import {TouchableOpacity, View} from 'react-native';
 import {observer} from 'mobx-react-lite';
 
-import MaterialIcon from '@react-native-vector-icons/material-icons';
-import MaterialCommunityIcon from '@react-native-vector-icons/material-design-icons';
-
 import type {Member, Server} from 'revolt.js';
 
 import {app} from '@clerotri/Generic';
@@ -19,6 +16,7 @@ import {
   CopyIDButton,
   NewContextButton,
 } from '@clerotri/components/common/buttons';
+import {MaterialCommunityIcon, MaterialIcon} from '@clerotri/components/common/icons';
 import {MarkdownView} from '../common/MarkdownView';
 import {Image} from '@clerotri/crossplat/Image';
 
@@ -69,7 +67,6 @@ export const ServerInfoSheet = observer(({server}: {server: Server | null}) => {
                   style={{alignSelf: 'center', marginEnd: 4}}>
                   <MaterialCommunityIcon
                     name={'crown'}
-                    color={currentTheme.foregroundPrimary}
                     size={24}
                   />
                 </TouchableOpacity>
@@ -79,7 +76,6 @@ export const ServerInfoSheet = observer(({server}: {server: Server | null}) => {
                   style={{alignSelf: 'center', marginEnd: 4}}>
                   <MaterialIcon
                     name={'verified'}
-                    color={currentTheme.foregroundPrimary}
                     size={24}
                   />
                 </TouchableOpacity>
@@ -103,7 +99,7 @@ export const ServerInfoSheet = observer(({server}: {server: Server | null}) => {
               style={{flexDirection: 'row'}}>
               <MaterialIcon
                 name={server.discoverable ? 'public' : 'home'}
-                color={currentTheme.foregroundSecondary}
+                color={'foregroundSecondary'}
                 size={20}
                 style={{
                   alignSelf: 'center',

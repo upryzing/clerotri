@@ -5,12 +5,12 @@ import {useTranslation} from 'react-i18next';
 import {observer} from 'mobx-react-lite';
 
 import {useSafeAreaInsets} from 'react-native-safe-area-context';
-import MaterialCommunityIcon from '@react-native-vector-icons/material-design-icons';
 
 import type {Server} from 'revolt.js';
 
 import {app, setFunction} from '@clerotri/Generic';
 import {client} from '@clerotri/lib/client';
+import {MaterialCommunityIcon} from '@clerotri/components/common/icons';
 import {Image} from '@clerotri/crossplat/Image';
 import {commonValues, ThemeContext} from '@clerotri/lib/themes';
 import {SettingsSection} from '@clerotri/lib/types';
@@ -84,7 +84,7 @@ export const ServerSettingsSheet = observer(
             <MaterialCommunityIcon
               name="close-circle"
               size={24}
-              color={currentTheme.foregroundSecondary}
+              color={'foregroundSecondary'}
             />
             <Text
               style={{
@@ -223,7 +223,7 @@ export const ServerSettingsSheet = observer(
                     icon={{
                       pack: 'regular',
                       name: 'delete',
-                      colour: currentTheme.error,
+                      colour: 'error',
                     }}
                     onPress={() => {
                       app.openDeletionConfirmationModal({

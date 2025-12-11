@@ -71,7 +71,7 @@ export const ChannelMenuSheet = observer(
                 icon={{
                   pack: 'regular',
                   name: 'delete',
-                  colour: currentTheme.error,
+                  colour: 'error',
                 }}
                 textString={'Delete channel'}
                 textColour={currentTheme.error}

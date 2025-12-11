@@ -314,7 +314,7 @@ export const SettingsSheet = observer(
                 icon={{
                   pack: 'community',
                   name: 'heart',
-                  colour: currentTheme.accentColor,
+                  colour: 'accentColor',
                 }}
                 style={{experimental_backgroundImage: [donateGradient]}}
                 onPress={() => {
@@ -347,7 +347,7 @@ export const SettingsSheet = observer(
                 icon={{
                   pack: 'regular',
                   name: 'logout',
-                  colour: currentTheme.error,
+                  colour: 'error',
                 }}
                 style={{marginBlockEnd: 0}}
                 onPress={() => {

@@ -1,9 +1,9 @@
 import {useContext, useRef, useState} from 'react';
 import {Pressable, View} from 'react-native';
+import {StyleSheet} from 'react-native-unistyles';
 import {observer} from 'mobx-react-lite';
 
 import type BottomSheetCore from '@gorhom/bottom-sheet';
-import MaterialCommunityIcon from '@react-native-vector-icons/material-design-icons';
 import {ScrollView} from 'react-native-gesture-handler';
 
 import type {Channel, Server} from 'revolt.js';
@@ -11,6 +11,7 @@ import type {Channel, Server} from 'revolt.js';
 import {app, setFunction} from '@clerotri/Generic';
 import {Input, Text} from '@clerotri/components/common/atoms';
 import {BottomSheet} from '@clerotri/components/common/BottomSheet';
+import {MaterialCommunityIcon} from '@clerotri/components/common/icons';
 import {ChannelIcon} from '@clerotri/components/navigation/ChannelIcon';
 import {ServerList} from '@clerotri/components/navigation/ServerList';
 import {client} from '@clerotri/lib/client';
@@ -175,8 +176,6 @@ const ChannelSearchResults = observer(({query}: {query: string}) => {
 });
 
 export const ChannelSwitcherSheet = observer(() => {
-  const {currentTheme} = useContext(ThemeContext);
-
   const {currentServer} = useContext(ServerContext);
 
   const [searchText, setSearchText] = useState('');
@@ -225,12 +224,7 @@ export const ChannelSwitcherSheet = observer(() => {
           paddingHorizontal: commonValues.sizes.xl,
         }}>
         <View
-          style={{
-            flexDirection: 'row',
-            borderRadius: commonValues.sizes.medium,
-            backgroundColor: currentTheme.background,
-            marginBlockEnd: commonValues.sizes.large,
-          }}>
+          style={localStyles.searchBoxContainer}>
           <Input
             value={searchText}
             onChangeText={v => setSearchText(v)}
@@ -254,7 +248,7 @@ export const ChannelSwitcherSheet = observer(() => {
               <MaterialCommunityIcon
                 name={'close-circle'}
                 size={18}
-                color={currentTheme.foregroundSecondary}
+                color={'foregroundSecondary'}
               />
             </Pressable>
           )}
@@ -310,3 +304,12 @@ export const ChannelSwitcherSheet = observer(() => {
     </BottomSheet>
   );
 });
+
+const localStyles = StyleSheet.create(currentTheme => ({
+  searchBoxContainer: {
+            flexDirection: 'row',
+            borderRadius: commonValues.sizes.medium,
+            backgroundColor: currentTheme.background,
+            marginBlockEnd: commonValues.sizes.large,
+          }
+}));

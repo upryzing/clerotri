@@ -5,9 +5,6 @@ import {ErrorBoundary} from 'react-error-boundary';
 import {observer} from 'mobx-react-lite';
 import {useMMKVBoolean} from 'react-native-mmkv';
 
-import MaterialCommunityIcon from '@react-native-vector-icons/material-design-icons';
-import MaterialIcon from '@react-native-vector-icons/material-icons';
-
 import type {Channel, Message} from 'revolt.js';
 
 import {app} from '@clerotri/Generic';
@@ -17,6 +14,7 @@ import {MessageView} from '@clerotri/MessageView';
 import {MessageBox} from '@clerotri/components/MessageBox';
 import {styles} from '@clerotri/Theme';
 import {Button, Text} from '@clerotri/components/common/atoms';
+import {MaterialCommunityIcon, MaterialIcon} from '@clerotri/components/common/icons';
 import {ChannelIcon} from '@clerotri/components/navigation/ChannelIcon';
 import {ChannelHeader} from '@clerotri/components/navigation/ChannelHeader';
 import {SpecialChannelIcon} from '@clerotri/components/navigation/SpecialChannelIcon';
@@ -74,8 +72,6 @@ const SpecialChannelViews = observer(({channel}: {channel: SpecialChannel}) => {
 });
 
 const RegularChannelView = observer(({channel}: {channel: Channel}) => {
-  const {currentTheme} = useContext(ThemeContext);
-
   const [
     showNSFW = settings.getDefault('ui.messaging.showNSFWContent'),
     setShowNSFW,
@@ -105,7 +101,6 @@ const RegularChannelView = observer(({channel}: {channel: Channel}) => {
               <MaterialCommunityIcon
                 name="pin"
                 size={24}
-                color={currentTheme.foregroundPrimary}
               />
             </TouchableOpacity>
           </View>
@@ -116,7 +111,6 @@ const RegularChannelView = observer(({channel}: {channel: Channel}) => {
               <MaterialIcon
                 name="info"
                 size={24}
-                color={currentTheme.foregroundPrimary}
               />
             </TouchableOpacity>
           </View>
@@ -130,7 +124,6 @@ const RegularChannelView = observer(({channel}: {channel: Channel}) => {
               <MaterialIcon
                 name="group"
                 size={24}
-                color={currentTheme.foregroundPrimary}
               />
             </TouchableOpacity>
           </View>

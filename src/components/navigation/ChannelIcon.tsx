@@ -1,12 +1,7 @@
-import {useContext} from 'react';
-
-import MaterialIcon from '@react-native-vector-icons/material-icons';
-import MaterialCommunityIcon from '@react-native-vector-icons/material-design-icons';
-
 import type {Channel} from 'revolt.js';
 
+import {MaterialCommunityIcon, MaterialIcon} from '@clerotri/components/common/icons';
 import {Image} from '@clerotri/crossplat/Image';
-import {ThemeContext} from '@clerotri/lib/themes';
 
 export const ChannelIcon = ({
   channel,
@@ -15,12 +10,10 @@ export const ChannelIcon = ({
   channel: Channel;
   showUnread?: boolean;
 }) => {
-  const {currentTheme} = useContext(ThemeContext);
-
   const color =
     showUnread && channel.unread
-      ? currentTheme.foregroundPrimary
-      : currentTheme.foregroundSecondary;
+      ? 'foregroundPrimary'
+      : 'foregroundSecondary';
   const radius =
     channel.channel_type === 'DirectMessage' || channel.channel_type === 'Group'
       ? 10000

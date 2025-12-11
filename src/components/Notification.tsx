@@ -3,12 +3,12 @@ import {Pressable, TouchableOpacity, View} from 'react-native';
 import {observer} from 'mobx-react-lite';
 
 import {useSafeAreaInsets} from 'react-native-safe-area-context';
-import MaterialCommunityIcon from '@react-native-vector-icons/material-design-icons';
 
 import type {API, Channel} from 'revolt.js';
 
 import {styles} from '../Theme';
 import {Avatar, Text, Username} from './common/atoms';
+import {MaterialCommunityIcon} from '@clerotri/components/common/icons';
 import {MarkdownView} from './common/MarkdownView';
 import {client} from '@clerotri/lib/client';
 import {ChannelContext} from '@clerotri/lib/state';
@@ -109,7 +109,6 @@ export const Notification = observer(
               <MaterialCommunityIcon
                 name="close-circle"
                 size={20}
-                color={currentTheme.foregroundPrimary}
               />
             </View>
           </Pressable>

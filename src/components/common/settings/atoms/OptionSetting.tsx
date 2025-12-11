@@ -4,13 +4,12 @@ import {StyleSheet} from 'react-native-unistyles';
 import {useTranslation} from 'react-i18next';
 import {useMMKVString} from 'react-native-mmkv';
 
-import MaterialIcon from '@react-native-vector-icons/material-icons';
-
 import {languages} from '@clerotri-i18n/languages';
 import {styles} from '@clerotri/Theme';
 import {commonValues, ThemeContext} from '@clerotri/lib/themes';
 import {Setting} from '@clerotri/lib/types';
 import {Text} from '@clerotri/components/common/atoms';
+import {MaterialIcon} from '@clerotri/components/common/icons';
 import {IndicatorIcons} from './IndicatorIcons';
 import {LineSeparator} from '@clerotri/components/layout';
 
@@ -75,7 +74,7 @@ export const OptionSetting = ({sRaw}: {sRaw: Setting}) => {
                 <MaterialIcon
                   name={`radio-button-${value === o ? 'on' : 'off'}`}
                   size={28}
-                  color={currentTheme.accentColor}
+                  color={'accentColor'}
                 />
               </View>
             </TouchableOpacity>

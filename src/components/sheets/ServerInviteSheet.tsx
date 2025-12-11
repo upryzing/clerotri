@@ -3,13 +3,13 @@ import {Pressable, View} from 'react-native';
 import {observer} from 'mobx-react-lite';
 
 import {useSafeAreaInsets} from 'react-native-safe-area-context';
-import MaterialCommunityIcon from '@react-native-vector-icons/material-design-icons';
 
 import type {API} from 'revolt.js';
 
 import {app} from '@clerotri/Generic';
 import {client} from '@clerotri/lib/client';
 import {Button, GeneralAvatar, Text} from '@clerotri/components/common/atoms';
+import {MaterialCommunityIcon} from '@clerotri/components/common/icons';
 import {Image} from '@clerotri/crossplat/Image';
 import {commonValues, ThemeContext} from '@clerotri/lib/themes';
 
@@ -46,7 +46,7 @@ export const ServerInviteSheet = observer(
           <MaterialCommunityIcon
             name="close-circle"
             size={24}
-            color={currentTheme.foregroundSecondary}
+            color={'foregroundSecondary'}
           />
           <Text
             colour={currentTheme.foregroundSecondary}

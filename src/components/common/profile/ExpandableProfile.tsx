@@ -3,12 +3,11 @@ import {ImageBackground, Pressable, View} from 'react-native';
 import {useTranslation} from 'react-i18next';
 import {observer} from 'mobx-react-lite';
 
-import MaterialIcon from '@react-native-vector-icons/material-icons';
-
 import type {API, ClientboundNotification, User} from 'revolt.js';
 
 import {client} from '@clerotri/lib/client';
 import {Avatar, Text} from '@clerotri/components/common/atoms';
+import {MaterialIcon} from '@clerotri/components/common/icons';
 import {commonValues, ThemeContext} from '@clerotri/lib/themes';
 import {MarkdownView} from '@clerotri/components/common/MarkdownView';
 
@@ -146,7 +145,7 @@ export const ExpandableProfile = observer(({user}: {user: User}) => {
         <MaterialIcon
           name={expanded ? 'expand-less' : 'expand-more'}
           size={24}
-          color={currentTheme.foregroundSecondary}
+          color={'foregroundSecondary'}
         />
         <Text
           style={{alignContent: 'center', fontSize: 16, fontWeight: 'bold'}}

@@ -3,8 +3,6 @@ import {Pressable, View} from 'react-native';
 import {useTranslation} from 'react-i18next';
 import {observer} from 'mobx-react-lite';
 
-import MaterialIcon from '@react-native-vector-icons/material-icons';
-
 import type {Channel, Server} from 'revolt.js';
 
 import {app} from '@clerotri/Generic';
@@ -15,6 +13,7 @@ import {
   InputWithButtonV2,
   Text,
 } from '@clerotri/components/common/atoms';
+import {MaterialIcon} from '@clerotri/components/common/icons';
 import {ChannelIcon} from '@clerotri/components/navigation/ChannelIcon';
 import {
   PressableSettingsEntry,
@@ -66,7 +65,6 @@ const ChannelSettingsChannelList = observer(
                 <MaterialIcon
                   name={'add'}
                   size={20}
-                  color={currentTheme.foregroundPrimary}
                 />
               </View>
             </Pressable>
@@ -164,7 +162,6 @@ const ChannelSettingsChannelList = observer(
                     <MaterialIcon
                       name={'arrow-forward'}
                       size={20}
-                      color={currentTheme.foregroundPrimary}
                     />
                   </View>
                 </View>
@@ -198,7 +195,6 @@ const ChannelSettings = observer(
             children: (
               <MaterialIcon
                 name={'save'}
-                color={currentTheme.foregroundPrimary}
                 size={20}
               />
             ),

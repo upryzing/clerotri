@@ -10,8 +10,6 @@ import {useTranslation} from 'react-i18next';
 import {observer} from 'mobx-react-lite';
 
 import {LegendList} from '@legendapp/list';
-import MaterialCommunityIcon from '@react-native-vector-icons/material-design-icons';
-import MaterialIcon from '@react-native-vector-icons/material-icons';
 import {useSafeAreaInsets} from 'react-native-safe-area-context';
 
 import type {API, Member, Server} from 'revolt.js';
@@ -24,6 +22,7 @@ import {
   InputWithButtonV2,
   Text,
 } from '@clerotri/components/common/atoms';
+import {MaterialCommunityIcon, MaterialIcon} from '@clerotri/components/common/icons';
 import {PressableSettingsEntry} from '@clerotri/components/common/settings/atoms';
 import {GapView} from '@clerotri/components/layout';
 import {client} from '@clerotri/lib/client';
@@ -77,7 +76,6 @@ const MemberListEntry = observer(
                   : 'arrow-forward'
               }
               size={20}
-              color={currentTheme.foregroundPrimary}
             />
           </View>
         </View>
@@ -99,8 +97,6 @@ const MemberList = observer(
     setMember: Function;
   }) => {
     const insets = useSafeAreaInsets();
-
-    const {currentTheme} = useContext(ThemeContext);
 
     const {t} = useTranslation();
 
@@ -243,7 +239,6 @@ const MemberList = observer(
                       : 'checkbox-multiple-blank-outline'
                   }
                   size={24}
-                  color={currentTheme.foregroundPrimary}
                 />
               </View>
             </Pressable>
@@ -314,7 +309,6 @@ const MemberSettings = observer(
             children: (
               <MaterialIcon
                 name={'save'}
-                color={currentTheme.foregroundPrimary}
                 size={20}
               />
             ),

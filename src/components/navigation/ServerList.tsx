@@ -3,10 +3,9 @@ import {TouchableOpacity, View} from 'react-native';
 import {StyleSheet} from 'react-native-unistyles';
 import {observer} from 'mobx-react-lite';
 
-import MaterialCommunityIcon from '@react-native-vector-icons/material-design-icons';
-
 import {app} from '@clerotri/Generic';
 import {Text} from '@clerotri/components/common/atoms';
+import {MaterialCommunityIcon} from '@clerotri/components/common/icons';
 import {Image} from '@clerotri/crossplat/Image';
 import {client} from '@clerotri/lib/client';
 import {OrderedServersContext} from '@clerotri/lib/state';
@@ -140,7 +139,6 @@ export const ServerList = observer(
                 <MaterialCommunityIcon
                   name={'compass'}
                   size={25}
-                  color={currentTheme.foregroundPrimary}
                 />
               </View>
             </TouchableOpacity>

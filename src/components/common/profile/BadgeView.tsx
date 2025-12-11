@@ -4,12 +4,10 @@ import {ScrollView, TouchableOpacity, View, type ViewProps} from 'react-native';
 import {useTranslation} from 'react-i18next';
 import {observer} from 'mobx-react-lite';
 
-import MaterialIcon from '@react-native-vector-icons/material-icons';
-import MaterialCommunityIcon from '@react-native-vector-icons/material-design-icons';
-
 import type {User} from 'revolt.js';
 
 import {Text} from '@clerotri/components/common/atoms/Text';
+import {MaterialCommunityIcon, MaterialIcon} from '@clerotri/components/common/icons';
 import {BADGES, USER_IDS} from '@clerotri/lib/consts';
 import {commonValues, ThemeContext} from '@clerotri/lib/themes';
 import {openUrl, showToast} from '@clerotri/lib/utils';
@@ -48,7 +46,7 @@ export const BadgeView = observer(({user}: {user: User}) => {
         <MaterialIcon
           name={'help'}
           size={18}
-          color={currentTheme.accentColor}
+          color={'accentColor'}
           onPress={() =>
             openUrl('https://support.revolt.chat/kb/account/badges')
           }
@@ -95,7 +93,7 @@ export const BadgeView = observer(({user}: {user: User}) => {
                               <MaterialIcon
                                 name="star"
                                 size={28}
-                                color={'red'}
+                                customColor={'red'}
                               />
                             );
                           case 'Developer':
@@ -103,7 +101,7 @@ export const BadgeView = observer(({user}: {user: User}) => {
                               <MaterialIcon
                                 name="build"
                                 size={28}
-                                color={currentTheme.foregroundSecondary}
+                                color={'foregroundSecondary'}
                               />
                             );
                           case 'Translator':
@@ -111,7 +109,7 @@ export const BadgeView = observer(({user}: {user: User}) => {
                               <MaterialIcon
                                 name="translate"
                                 size={28}
-                                color={'green'}
+                                customColor={'green'}
                               />
                             );
                           case 'Supporter':
@@ -119,7 +117,7 @@ export const BadgeView = observer(({user}: {user: User}) => {
                               <MaterialCommunityIcon
                                 name="cash"
                                 size={28}
-                                color={'#80c95b'}
+                                customColor={'#80c95b'}
                               />
                             );
                           case 'ResponsibleDisclosure':
@@ -127,7 +125,7 @@ export const BadgeView = observer(({user}: {user: User}) => {
                               <MaterialCommunityIcon
                                 name="bug-check"
                                 size={28}
-                                color={'pink'}
+                                customColor={'pink'}
                               />
                             );
                           case 'EarlyAdopter':
@@ -135,7 +133,7 @@ export const BadgeView = observer(({user}: {user: User}) => {
                               <MaterialCommunityIcon
                                 name="beta"
                                 size={28}
-                                color={'cyan'}
+                                customColor={'cyan'}
                               />
                             );
                           case 'PlatformModeration':
@@ -143,7 +141,7 @@ export const BadgeView = observer(({user}: {user: User}) => {
                               <MaterialIcon
                                 name="gavel"
                                 size={28}
-                                color={'#e04040'}
+                                customColor={'#e04040'}
                               />
                             );
                           case 'Paw':
@@ -177,7 +175,7 @@ export const BadgeView = observer(({user}: {user: User}) => {
                 <MaterialCommunityIcon
                   name="flower"
                   size={28}
-                  color={currentTheme.accentColor}
+                  color={'accentColor'}
                 />
               </TouchableOpacity>
             </BadgeWrapper>
@@ -188,7 +186,7 @@ export const BadgeView = observer(({user}: {user: User}) => {
                 <MaterialCommunityIcon
                   name={'paw'}
                   size={28}
-                  color={currentTheme.foregroundSecondary}
+                  color={'foregroundSecondary'}
                 />
               </TouchableOpacity>
             </BadgeWrapper>

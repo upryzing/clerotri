@@ -3,12 +3,11 @@ import {Pressable, View} from 'react-native';
 import {useTranslation} from 'react-i18next';
 import {observer} from 'mobx-react-lite';
 
-import MaterialIcon from '@react-native-vector-icons/material-icons';
-
 import type {API, Server} from 'revolt.js';
 
 import {styles} from '@clerotri/Theme';
 import {Text} from '@clerotri/components/common/atoms';
+import {MaterialIcon} from '@clerotri/components/common/icons';
 import {SettingsEntry} from '@clerotri/components/common/settings/atoms';
 import {ThemeContext} from '@clerotri/lib/themes';
 
@@ -62,7 +61,6 @@ export const BanSettingsSection = observer(({server}: {server: Server}) => {
                     <MaterialIcon
                       name={'delete'}
                       size={20}
-                      color={currentTheme.foregroundPrimary}
                     />
                   </View>
                 </Pressable>

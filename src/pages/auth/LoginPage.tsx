@@ -4,7 +4,6 @@ import {useTranslation} from 'react-i18next';
 
 import {KeyboardAvoidingView} from 'react-native-keyboard-controller';
 import {useSafeAreaInsets} from 'react-native-safe-area-context';
-import MaterialIcon from '@react-native-vector-icons/material-icons';
 
 import {app} from '@clerotri/Generic';
 import {client} from '@clerotri/lib/client';
@@ -15,6 +14,7 @@ import {
   Link,
   Text,
 } from '@clerotri/components/common/atoms';
+import {MaterialIcon} from '@clerotri/components/common/icons';
 import {loginRegular, loginWithToken} from '@clerotri/lib/auth';
 import {OFFICIAL_INSTANCE_SIGNUP_URL} from '@clerotri/lib/consts';
 import {getInstanceURL} from '@clerotri/lib/storage/utils';
@@ -203,7 +203,6 @@ export const LoginPage = ({
             <MaterialIcon
               name="more-vert"
               size={30}
-              color={currentTheme.foregroundPrimary}
             />
           </TouchableOpacity>
         ) : (

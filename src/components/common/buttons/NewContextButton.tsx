@@ -3,10 +3,8 @@ import {TouchableOpacity, View} from 'react-native';
 import {StyleSheet} from 'react-native-unistyles';
 import {useTranslation} from 'react-i18next';
 
-import MaterialCommunityIcon from '@react-native-vector-icons/material-design-icons';
-import MaterialIcon from '@react-native-vector-icons/material-icons';
-
 import {Text} from '@clerotri/components/common/atoms';
+import {MaterialCommunityIcon, MaterialIcon} from '@clerotri/components/common/icons';
 import {commonValues, ThemeContext} from '@clerotri/lib/themes';
 import type {ContextButtonProps} from '@clerotri/lib/types';
 import {styles} from '@clerotri/Theme';
@@ -39,13 +37,15 @@ export const NewContextButton = ({
           {icon.pack === 'regular' ? (
             <MaterialIcon
               name={icon.name}
-              color={icon.colour ?? currentTheme.foregroundPrimary}
+              customColor={icon.customColour}
+              color={icon.colour ?? 'foregroundPrimary'}
               size={24}
             />
           ) : (
             <MaterialCommunityIcon
               name={icon.name}
-              color={icon.colour ?? currentTheme.foregroundPrimary}
+              customColor={icon.customColour}
+              color={icon.colour ?? 'foregroundPrimary'}
               size={24}
             />
           )}

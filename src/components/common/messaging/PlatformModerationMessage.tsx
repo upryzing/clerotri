@@ -2,11 +2,10 @@ import {useContext} from 'react';
 import {View} from 'react-native';
 import {observer} from 'mobx-react-lite';
 
-import MaterialIcon from '@react-native-vector-icons/material-icons';
-
 import type {Message} from 'revolt.js';
 
 import {Text} from '@clerotri/components/common/atoms';
+import {MaterialIcon} from '@clerotri/components/common/icons';
 import {MarkdownView} from '@clerotri/components/common/MarkdownView';
 import {commonValues, ThemeContext} from '@clerotri/lib/themes';
 
@@ -203,12 +202,12 @@ export const PlatformModerationMessage = observer(
                 <MaterialIcon
                   color={
                     responseType === 'POSITIVE'
-                      ? currentTheme.statusOnline
+                      ? 'statusOnline'
                       : responseType === 'MIXED'
-                        ? currentTheme.statusIdle
+                        ? 'statusIdle'
                         : responseType === 'NEGATIVE'
-                          ? currentTheme.statusBusy
-                          : currentTheme.statusInvisible
+                          ? 'statusBusy'
+                          : 'statusInvisible'
                   }
                   name={
                     responseType === 'POSITIVE'

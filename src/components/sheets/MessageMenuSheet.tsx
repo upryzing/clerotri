@@ -128,7 +128,7 @@ export const MessageMenuSheet = observer(
                 icon={{
                   pack: 'regular',
                   name: 'delete',
-                  colour: currentTheme.error,
+                  colour: 'error',
                 }}
                 textString={'Delete'}
                 textColour={currentTheme.error}
@@ -151,7 +151,7 @@ export const MessageMenuSheet = observer(
                 icon={{
                   pack: 'regular',
                   name: 'flag',
-                  colour: currentTheme.error,
+                  colour: 'error',
                 }}
                 textString={'Report message'}
                 textColour={currentTheme.error}

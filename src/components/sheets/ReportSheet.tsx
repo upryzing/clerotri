@@ -4,7 +4,6 @@ import {StyleSheet} from 'react-native-unistyles';
 import {useTranslation} from 'react-i18next';
 import {observer} from 'mobx-react-lite';
 
-import MaterialIcon from '@react-native-vector-icons/material-icons';
 import {ScrollView} from 'react-native-gesture-handler';
 import {useSafeAreaInsets} from 'react-native-safe-area-context';
 
@@ -20,6 +19,7 @@ import {
   Text,
   Username,
 } from '@clerotri/components/common/atoms';
+import {MaterialIcon} from '@clerotri/components/common/icons';
 import {MarkdownView} from '@clerotri/components/common/MarkdownView';
 import {OFFICIAL_INSTANCE_API_URLS, USER_IDS} from '@clerotri/lib/consts';
 import {commonValues, ThemeContext} from '@clerotri/lib/themes';
@@ -106,8 +106,6 @@ function Notice({
   stringKey: string;
   type?: 'info' | 'warning' | 'error';
 }) {
-  const {currentTheme} = useContext(ThemeContext);
-
   const {t} = useTranslation();
 
   return (
@@ -116,7 +114,7 @@ function Notice({
         name={type ?? 'info'}
         size={28}
         color={
-          type === 'error' ? currentTheme.error : currentTheme.foregroundPrimary
+          type === 'error' ? 'error' : 'foregroundPrimary'
         }
       />
       <Text style={noticeStyles.text}>{t(stringKey)}</Text>

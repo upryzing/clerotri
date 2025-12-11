@@ -1,9 +1,4 @@
-import {useContext} from 'react';
-
-import MaterialIcon from '@react-native-vector-icons/material-icons';
-import MaterialCommunityIcon from '@react-native-vector-icons/material-design-icons';
-
-import {ThemeContext} from '@clerotri/lib/themes';
+import {MaterialCommunityIcon, MaterialIcon} from '@clerotri/components/common/icons';
 
 type SpecialCIChannel =
   | 'Home'
@@ -13,9 +8,8 @@ type SpecialCIChannel =
   | 'Debug';
 
 export const SpecialChannelIcon = ({channel}: {channel: SpecialCIChannel}) => {
-  const {currentTheme} = useContext(ThemeContext);
+  const color = 'foregroundSecondary';
 
-  const color = currentTheme.foregroundSecondary;
   switch (channel) {
     case 'Home':
       return <MaterialIcon name="home" size={24} color={color} />;

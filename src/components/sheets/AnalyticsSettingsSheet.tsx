@@ -12,8 +12,6 @@ import {useTranslation} from 'react-i18next';
 import {observer} from 'mobx-react-lite';
 
 import Clipboard from '@react-native-clipboard/clipboard';
-import MaterialCommunityIcon from '@react-native-vector-icons/material-design-icons';
-import MaterialIcon from '@react-native-vector-icons/material-icons';
 import {useMMKVString} from 'react-native-mmkv';
 
 import {app, setFunction} from '@clerotri/Generic';
@@ -23,6 +21,7 @@ import {
   Link,
   Text,
 } from '@clerotri/components/common/atoms';
+import {MaterialCommunityIcon, MaterialIcon} from '@clerotri/components/common/icons';
 import {generateAnalyticsObject} from '@clerotri/lib/analytics';
 import {PRIVACY_INFO} from '@clerotri/lib/consts';
 import {commonValues, ThemeContext} from '@clerotri/lib/themes';
@@ -66,13 +65,11 @@ const LevelBoxEntry = ({
       {dataType === 'clerotriVersion' ? (
         <MaterialCommunityIcon
           name={'flower'}
-          color={currentTheme.foregroundPrimary}
           size={24}
         />
       ) : (
         <MaterialIcon
           name={iconFromType(dataType)}
-          color={currentTheme.foregroundPrimary}
           size={24}
         />
       )}
@@ -102,7 +99,7 @@ const TierButton = ({
 
   return analyticsLevel === tier ? (
     <View style={tierButtonStyles.activeContainer}>
-      <MaterialIcon name={'check'} color={currentTheme.accentColor} size={24} />
+      <MaterialIcon name={'check'} color={'accentColor'} size={24} />
       <Text style={tierButtonStyles.activeText}>
         {t('app.analytics.active')}
       </Text>
@@ -189,7 +186,6 @@ const LevelBoxes = observer(
                   }}>
                   <MaterialIcon
                     name={'content-copy'}
-                    color={currentTheme.foregroundPrimary}
                     size={20}
                   />
                 </Pressable>
@@ -216,7 +212,6 @@ const LevelBoxes = observer(
                   }}>
                   <MaterialIcon
                     name={'content-copy'}
-                    color={currentTheme.foregroundPrimary}
                     size={20}
                   />
                 </Pressable>
@@ -263,7 +258,7 @@ const LevelBoxes = observer(
             ]}>
             <MaterialCommunityIcon
               name={'arrow-left'}
-              color={currentTheme.accentColorForeground}
+              color={'accentColorForeground'}
               size={24}
             />
           </Pressable>
@@ -281,7 +276,7 @@ const LevelBoxes = observer(
             ]}>
             <MaterialCommunityIcon
               name={'arrow-right'}
-              color={currentTheme.accentColorForeground}
+              color={'accentColorForeground'}
               size={24}
             />
           </Pressable>
