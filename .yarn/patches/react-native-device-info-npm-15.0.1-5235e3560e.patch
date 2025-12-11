@@ -11,10 +11,10 @@ index 81444a4ef009124fbbdfec86e91ed94018c31064..f295b2c1a49ccd8ced73bdb6af031bb8
    def firebaseIidVersion = safeExtGet('firebaseIidVersion', null)
    def googlePlayServicesIidVersion = safeExtGet('googlePlayServicesIidVersion', null)
 diff --git a/android/src/main/java/com/learnium/RNDeviceInfo/RNDeviceModule.java b/android/src/main/java/com/learnium/RNDeviceInfo/RNDeviceModule.java
-index 23e8fb441b516e2d9e2e86afbcc8e0fd9e0fe323..75c535c546963d8a31237d76c28766a5ee61506e 100644
+index 64253a17cdc45ee848c0ba38ff177413643781f6..219d812ce3e3bf9a5ea4f91e1636a17ab3b3ddff 100644
 --- a/android/src/main/java/com/learnium/RNDeviceInfo/RNDeviceModule.java
 +++ b/android/src/main/java/com/learnium/RNDeviceInfo/RNDeviceModule.java
-@@ -80,7 +80,6 @@ public class RNDeviceModule extends ReactContextBaseJavaModule {
+@@ -83,7 +83,6 @@ public class RNDeviceModule extends ReactContextBaseJavaModule {
    private BroadcastReceiver headphoneConnectionReceiver;
    private BroadcastReceiver headphoneWiredConnectionReceiver;
    private BroadcastReceiver headphoneBluetoothConnectionReceiver;
@@ -22,7 +22,7 @@ index 23e8fb441b516e2d9e2e86afbcc8e0fd9e0fe323..75c535c546963d8a31237d76c28766a5
    private InputMethodManager inputMethodManager;
  
    private double mLastBatteryLevel = -1;
-@@ -95,7 +94,6 @@ public class RNDeviceModule extends ReactContextBaseJavaModule {
+@@ -98,7 +97,6 @@ public class RNDeviceModule extends ReactContextBaseJavaModule {
      super(reactContext);
      this.deviceTypeResolver = new DeviceTypeResolver(reactContext);
      this.deviceIdResolver = new DeviceIdResolver(reactContext);
@@ -30,7 +30,7 @@ index 23e8fb441b516e2d9e2e86afbcc8e0fd9e0fe323..75c535c546963d8a31237d76c28766a5
      this.inputMethodManager = (InputMethodManager) reactContext.getSystemService(Context.INPUT_METHOD_SERVICE);
    }
  
-@@ -722,14 +720,6 @@ public class RNDeviceModule extends ReactContextBaseJavaModule {
+@@ -725,14 +723,6 @@ public class RNDeviceModule extends ReactContextBaseJavaModule {
    @ReactMethod
    public void getAvailableLocationProviders(Promise p) { p.resolve(getAvailableLocationProvidersSync()); }
  

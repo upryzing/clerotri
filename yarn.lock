@@ -1029,7 +1029,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@emnapi/core@npm:^1.5.0":
+"@emnapi/core@npm:^1.7.1":
   version: 1.7.1
   resolution: "@emnapi/core@npm:1.7.1"
   dependencies:
@@ -1039,7 +1039,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@emnapi/runtime@npm:^1.5.0":
+"@emnapi/runtime@npm:^1.7.1":
   version: 1.7.1
   resolution: "@emnapi/runtime@npm:1.7.1"
   dependencies:
@@ -1064,9 +1064,23 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@esbuild/aix-ppc64@npm:0.27.1":
+  version: 0.27.1
+  resolution: "@esbuild/aix-ppc64@npm:0.27.1"
+  conditions: os=aix & cpu=ppc64
+  languageName: node
+  linkType: hard
+
 "@esbuild/android-arm64@npm:0.25.0":
   version: 0.25.0
   resolution: "@esbuild/android-arm64@npm:0.25.0"
+  conditions: os=android & cpu=arm64
+  languageName: node
+  linkType: hard
+
+"@esbuild/android-arm64@npm:0.27.1":
+  version: 0.27.1
+  resolution: "@esbuild/android-arm64@npm:0.27.1"
   conditions: os=android & cpu=arm64
   languageName: node
   linkType: hard
@@ -1078,9 +1092,23 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@esbuild/android-arm@npm:0.27.1":
+  version: 0.27.1
+  resolution: "@esbuild/android-arm@npm:0.27.1"
+  conditions: os=android & cpu=arm
+  languageName: node
+  linkType: hard
+
 "@esbuild/android-x64@npm:0.25.0":
   version: 0.25.0
   resolution: "@esbuild/android-x64@npm:0.25.0"
+  conditions: os=android & cpu=x64
+  languageName: node
+  linkType: hard
+
+"@esbuild/android-x64@npm:0.27.1":
+  version: 0.27.1
+  resolution: "@esbuild/android-x64@npm:0.27.1"
   conditions: os=android & cpu=x64
   languageName: node
   linkType: hard
@@ -1092,9 +1120,23 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@esbuild/darwin-arm64@npm:0.27.1":
+  version: 0.27.1
+  resolution: "@esbuild/darwin-arm64@npm:0.27.1"
+  conditions: os=darwin & cpu=arm64
+  languageName: node
+  linkType: hard
+
 "@esbuild/darwin-x64@npm:0.25.0":
   version: 0.25.0
   resolution: "@esbuild/darwin-x64@npm:0.25.0"
+  conditions: os=darwin & cpu=x64
+  languageName: node
+  linkType: hard
+
+"@esbuild/darwin-x64@npm:0.27.1":
+  version: 0.27.1
+  resolution: "@esbuild/darwin-x64@npm:0.27.1"
   conditions: os=darwin & cpu=x64
   languageName: node
   linkType: hard
@@ -1106,9 +1148,23 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@esbuild/freebsd-arm64@npm:0.27.1":
+  version: 0.27.1
+  resolution: "@esbuild/freebsd-arm64@npm:0.27.1"
+  conditions: os=freebsd & cpu=arm64
+  languageName: node
+  linkType: hard
+
 "@esbuild/freebsd-x64@npm:0.25.0":
   version: 0.25.0
   resolution: "@esbuild/freebsd-x64@npm:0.25.0"
+  conditions: os=freebsd & cpu=x64
+  languageName: node
+  linkType: hard
+
+"@esbuild/freebsd-x64@npm:0.27.1":
+  version: 0.27.1
+  resolution: "@esbuild/freebsd-x64@npm:0.27.1"
   conditions: os=freebsd & cpu=x64
   languageName: node
   linkType: hard
@@ -1120,9 +1176,23 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@esbuild/linux-arm64@npm:0.27.1":
+  version: 0.27.1
+  resolution: "@esbuild/linux-arm64@npm:0.27.1"
+  conditions: os=linux & cpu=arm64
+  languageName: node
+  linkType: hard
+
 "@esbuild/linux-arm@npm:0.25.0":
   version: 0.25.0
   resolution: "@esbuild/linux-arm@npm:0.25.0"
+  conditions: os=linux & cpu=arm
+  languageName: node
+  linkType: hard
+
+"@esbuild/linux-arm@npm:0.27.1":
+  version: 0.27.1
+  resolution: "@esbuild/linux-arm@npm:0.27.1"
   conditions: os=linux & cpu=arm
   languageName: node
   linkType: hard
@@ -1134,9 +1204,23 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@esbuild/linux-ia32@npm:0.27.1":
+  version: 0.27.1
+  resolution: "@esbuild/linux-ia32@npm:0.27.1"
+  conditions: os=linux & cpu=ia32
+  languageName: node
+  linkType: hard
+
 "@esbuild/linux-loong64@npm:0.25.0":
   version: 0.25.0
   resolution: "@esbuild/linux-loong64@npm:0.25.0"
+  conditions: os=linux & cpu=loong64
+  languageName: node
+  linkType: hard
+
+"@esbuild/linux-loong64@npm:0.27.1":
+  version: 0.27.1
+  resolution: "@esbuild/linux-loong64@npm:0.27.1"
   conditions: os=linux & cpu=loong64
   languageName: node
   linkType: hard
@@ -1148,9 +1232,23 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@esbuild/linux-mips64el@npm:0.27.1":
+  version: 0.27.1
+  resolution: "@esbuild/linux-mips64el@npm:0.27.1"
+  conditions: os=linux & cpu=mips64el
+  languageName: node
+  linkType: hard
+
 "@esbuild/linux-ppc64@npm:0.25.0":
   version: 0.25.0
   resolution: "@esbuild/linux-ppc64@npm:0.25.0"
+  conditions: os=linux & cpu=ppc64
+  languageName: node
+  linkType: hard
+
+"@esbuild/linux-ppc64@npm:0.27.1":
+  version: 0.27.1
+  resolution: "@esbuild/linux-ppc64@npm:0.27.1"
   conditions: os=linux & cpu=ppc64
   languageName: node
   linkType: hard
@@ -1162,9 +1260,23 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@esbuild/linux-riscv64@npm:0.27.1":
+  version: 0.27.1
+  resolution: "@esbuild/linux-riscv64@npm:0.27.1"
+  conditions: os=linux & cpu=riscv64
+  languageName: node
+  linkType: hard
+
 "@esbuild/linux-s390x@npm:0.25.0":
   version: 0.25.0
   resolution: "@esbuild/linux-s390x@npm:0.25.0"
+  conditions: os=linux & cpu=s390x
+  languageName: node
+  linkType: hard
+
+"@esbuild/linux-s390x@npm:0.27.1":
+  version: 0.27.1
+  resolution: "@esbuild/linux-s390x@npm:0.27.1"
   conditions: os=linux & cpu=s390x
   languageName: node
   linkType: hard
@@ -1176,9 +1288,23 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@esbuild/linux-x64@npm:0.27.1":
+  version: 0.27.1
+  resolution: "@esbuild/linux-x64@npm:0.27.1"
+  conditions: os=linux & cpu=x64
+  languageName: node
+  linkType: hard
+
 "@esbuild/netbsd-arm64@npm:0.25.0":
   version: 0.25.0
   resolution: "@esbuild/netbsd-arm64@npm:0.25.0"
+  conditions: os=netbsd & cpu=arm64
+  languageName: node
+  linkType: hard
+
+"@esbuild/netbsd-arm64@npm:0.27.1":
+  version: 0.27.1
+  resolution: "@esbuild/netbsd-arm64@npm:0.27.1"
   conditions: os=netbsd & cpu=arm64
   languageName: node
   linkType: hard
@@ -1190,9 +1316,23 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@esbuild/netbsd-x64@npm:0.27.1":
+  version: 0.27.1
+  resolution: "@esbuild/netbsd-x64@npm:0.27.1"
+  conditions: os=netbsd & cpu=x64
+  languageName: node
+  linkType: hard
+
 "@esbuild/openbsd-arm64@npm:0.25.0":
   version: 0.25.0
   resolution: "@esbuild/openbsd-arm64@npm:0.25.0"
+  conditions: os=openbsd & cpu=arm64
+  languageName: node
+  linkType: hard
+
+"@esbuild/openbsd-arm64@npm:0.27.1":
+  version: 0.27.1
+  resolution: "@esbuild/openbsd-arm64@npm:0.27.1"
   conditions: os=openbsd & cpu=arm64
   languageName: node
   linkType: hard
@@ -1204,9 +1344,30 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@esbuild/openbsd-x64@npm:0.27.1":
+  version: 0.27.1
+  resolution: "@esbuild/openbsd-x64@npm:0.27.1"
+  conditions: os=openbsd & cpu=x64
+  languageName: node
+  linkType: hard
+
+"@esbuild/openharmony-arm64@npm:0.27.1":
+  version: 0.27.1
+  resolution: "@esbuild/openharmony-arm64@npm:0.27.1"
+  conditions: os=openharmony & cpu=arm64
+  languageName: node
+  linkType: hard
+
 "@esbuild/sunos-x64@npm:0.25.0":
   version: 0.25.0
   resolution: "@esbuild/sunos-x64@npm:0.25.0"
+  conditions: os=sunos & cpu=x64
+  languageName: node
+  linkType: hard
+
+"@esbuild/sunos-x64@npm:0.27.1":
+  version: 0.27.1
+  resolution: "@esbuild/sunos-x64@npm:0.27.1"
   conditions: os=sunos & cpu=x64
   languageName: node
   linkType: hard
@@ -1218,6 +1379,13 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@esbuild/win32-arm64@npm:0.27.1":
+  version: 0.27.1
+  resolution: "@esbuild/win32-arm64@npm:0.27.1"
+  conditions: os=win32 & cpu=arm64
+  languageName: node
+  linkType: hard
+
 "@esbuild/win32-ia32@npm:0.25.0":
   version: 0.25.0
   resolution: "@esbuild/win32-ia32@npm:0.25.0"
@@ -1225,9 +1393,23 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@esbuild/win32-ia32@npm:0.27.1":
+  version: 0.27.1
+  resolution: "@esbuild/win32-ia32@npm:0.27.1"
+  conditions: os=win32 & cpu=ia32
+  languageName: node
+  linkType: hard
+
 "@esbuild/win32-x64@npm:0.25.0":
   version: 0.25.0
   resolution: "@esbuild/win32-x64@npm:0.25.0"
+  conditions: os=win32 & cpu=x64
+  languageName: node
+  linkType: hard
+
+"@esbuild/win32-x64@npm:0.27.1":
+  version: 0.27.1
+  resolution: "@esbuild/win32-x64@npm:0.27.1"
   conditions: os=win32 & cpu=x64
   languageName: node
   linkType: hard
@@ -1274,9 +1456,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@gorhom/bottom-sheet@npm:^5.2.7":
-  version: 5.2.7
-  resolution: "@gorhom/bottom-sheet@npm:5.2.7"
+"@gorhom/bottom-sheet@npm:^5.2.8":
+  version: 5.2.8
+  resolution: "@gorhom/bottom-sheet@npm:5.2.8"
   dependencies:
     "@gorhom/portal": "npm:1.0.14"
     invariant: "npm:^2.2.4"
@@ -1292,7 +1474,7 @@ __metadata:
       optional: true
     "@types/react-native":
       optional: true
-  checksum: 10c0/1358c1224d90018b8ddb5cb36d57bb834a82157ebd2a0023c84203ca3a65044a2378059269b70cecf867ff961b7083cc6bbacc1ff956a00700351841cc1dfc17
+  checksum: 10c0/9bb71a375cdcaec650e8c84ab5e3e42f55b3ae19d9e08cf90688cf72706588d211f3aeef28b857a37e9e411efa8fdf038429c90a8855167c7ab3dce5c595dfca
   languageName: node
   linkType: hard
 
@@ -1715,14 +1897,14 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@napi-rs/wasm-runtime@npm:^1.0.7":
-  version: 1.0.7
-  resolution: "@napi-rs/wasm-runtime@npm:1.0.7"
+"@napi-rs/wasm-runtime@npm:^1.1.0":
+  version: 1.1.0
+  resolution: "@napi-rs/wasm-runtime@npm:1.1.0"
   dependencies:
-    "@emnapi/core": "npm:^1.5.0"
-    "@emnapi/runtime": "npm:^1.5.0"
+    "@emnapi/core": "npm:^1.7.1"
+    "@emnapi/runtime": "npm:^1.7.1"
     "@tybys/wasm-util": "npm:^0.10.1"
-  checksum: 10c0/2d8635498136abb49d6dbf7395b78c63422292240963bf055f307b77aeafbde57ae2c0ceaaef215601531b36d6eb92a2cdd6f5ba90ed2aa8127c27aff9c4ae55
+  checksum: 10c0/ee351052123bfc635c4cef03ac273a686522394ccd513b1e5b7b3823cecd6abb4a31f23a3a962933192b87eb7b7c3eb3def7748bd410edc66f932d90cf44e9ab
   languageName: node
   linkType: hard
 
@@ -1793,137 +1975,144 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@oxc-resolver/binding-android-arm-eabi@npm:11.14.0":
-  version: 11.14.0
-  resolution: "@oxc-resolver/binding-android-arm-eabi@npm:11.14.0"
+"@oxc-resolver/binding-android-arm-eabi@npm:11.15.0":
+  version: 11.15.0
+  resolution: "@oxc-resolver/binding-android-arm-eabi@npm:11.15.0"
   conditions: os=android & cpu=arm
   languageName: node
   linkType: hard
 
-"@oxc-resolver/binding-android-arm64@npm:11.14.0":
-  version: 11.14.0
-  resolution: "@oxc-resolver/binding-android-arm64@npm:11.14.0"
+"@oxc-resolver/binding-android-arm64@npm:11.15.0":
+  version: 11.15.0
+  resolution: "@oxc-resolver/binding-android-arm64@npm:11.15.0"
   conditions: os=android & cpu=arm64
   languageName: node
   linkType: hard
 
-"@oxc-resolver/binding-darwin-arm64@npm:11.14.0":
-  version: 11.14.0
-  resolution: "@oxc-resolver/binding-darwin-arm64@npm:11.14.0"
+"@oxc-resolver/binding-darwin-arm64@npm:11.15.0":
+  version: 11.15.0
+  resolution: "@oxc-resolver/binding-darwin-arm64@npm:11.15.0"
   conditions: os=darwin & cpu=arm64
   languageName: node
   linkType: hard
 
-"@oxc-resolver/binding-darwin-x64@npm:11.14.0":
-  version: 11.14.0
-  resolution: "@oxc-resolver/binding-darwin-x64@npm:11.14.0"
+"@oxc-resolver/binding-darwin-x64@npm:11.15.0":
+  version: 11.15.0
+  resolution: "@oxc-resolver/binding-darwin-x64@npm:11.15.0"
   conditions: os=darwin & cpu=x64
   languageName: node
   linkType: hard
 
-"@oxc-resolver/binding-freebsd-x64@npm:11.14.0":
-  version: 11.14.0
-  resolution: "@oxc-resolver/binding-freebsd-x64@npm:11.14.0"
+"@oxc-resolver/binding-freebsd-x64@npm:11.15.0":
+  version: 11.15.0
+  resolution: "@oxc-resolver/binding-freebsd-x64@npm:11.15.0"
   conditions: os=freebsd & cpu=x64
   languageName: node
   linkType: hard
 
-"@oxc-resolver/binding-linux-arm-gnueabihf@npm:11.14.0":
-  version: 11.14.0
-  resolution: "@oxc-resolver/binding-linux-arm-gnueabihf@npm:11.14.0"
+"@oxc-resolver/binding-linux-arm-gnueabihf@npm:11.15.0":
+  version: 11.15.0
+  resolution: "@oxc-resolver/binding-linux-arm-gnueabihf@npm:11.15.0"
   conditions: os=linux & cpu=arm
   languageName: node
   linkType: hard
 
-"@oxc-resolver/binding-linux-arm-musleabihf@npm:11.14.0":
-  version: 11.14.0
-  resolution: "@oxc-resolver/binding-linux-arm-musleabihf@npm:11.14.0"
+"@oxc-resolver/binding-linux-arm-musleabihf@npm:11.15.0":
+  version: 11.15.0
+  resolution: "@oxc-resolver/binding-linux-arm-musleabihf@npm:11.15.0"
   conditions: os=linux & cpu=arm
   languageName: node
   linkType: hard
 
-"@oxc-resolver/binding-linux-arm64-gnu@npm:11.14.0":
-  version: 11.14.0
-  resolution: "@oxc-resolver/binding-linux-arm64-gnu@npm:11.14.0"
+"@oxc-resolver/binding-linux-arm64-gnu@npm:11.15.0":
+  version: 11.15.0
+  resolution: "@oxc-resolver/binding-linux-arm64-gnu@npm:11.15.0"
   conditions: os=linux & cpu=arm64 & libc=glibc
   languageName: node
   linkType: hard
 
-"@oxc-resolver/binding-linux-arm64-musl@npm:11.14.0":
-  version: 11.14.0
-  resolution: "@oxc-resolver/binding-linux-arm64-musl@npm:11.14.0"
+"@oxc-resolver/binding-linux-arm64-musl@npm:11.15.0":
+  version: 11.15.0
+  resolution: "@oxc-resolver/binding-linux-arm64-musl@npm:11.15.0"
   conditions: os=linux & cpu=arm64 & libc=musl
   languageName: node
   linkType: hard
 
-"@oxc-resolver/binding-linux-ppc64-gnu@npm:11.14.0":
-  version: 11.14.0
-  resolution: "@oxc-resolver/binding-linux-ppc64-gnu@npm:11.14.0"
+"@oxc-resolver/binding-linux-ppc64-gnu@npm:11.15.0":
+  version: 11.15.0
+  resolution: "@oxc-resolver/binding-linux-ppc64-gnu@npm:11.15.0"
   conditions: os=linux & cpu=ppc64 & libc=glibc
   languageName: node
   linkType: hard
 
-"@oxc-resolver/binding-linux-riscv64-gnu@npm:11.14.0":
-  version: 11.14.0
-  resolution: "@oxc-resolver/binding-linux-riscv64-gnu@npm:11.14.0"
+"@oxc-resolver/binding-linux-riscv64-gnu@npm:11.15.0":
+  version: 11.15.0
+  resolution: "@oxc-resolver/binding-linux-riscv64-gnu@npm:11.15.0"
   conditions: os=linux & cpu=riscv64 & libc=glibc
   languageName: node
   linkType: hard
 
-"@oxc-resolver/binding-linux-riscv64-musl@npm:11.14.0":
-  version: 11.14.0
-  resolution: "@oxc-resolver/binding-linux-riscv64-musl@npm:11.14.0"
+"@oxc-resolver/binding-linux-riscv64-musl@npm:11.15.0":
+  version: 11.15.0
+  resolution: "@oxc-resolver/binding-linux-riscv64-musl@npm:11.15.0"
   conditions: os=linux & cpu=riscv64 & libc=musl
   languageName: node
   linkType: hard
 
-"@oxc-resolver/binding-linux-s390x-gnu@npm:11.14.0":
-  version: 11.14.0
-  resolution: "@oxc-resolver/binding-linux-s390x-gnu@npm:11.14.0"
+"@oxc-resolver/binding-linux-s390x-gnu@npm:11.15.0":
+  version: 11.15.0
+  resolution: "@oxc-resolver/binding-linux-s390x-gnu@npm:11.15.0"
   conditions: os=linux & cpu=s390x & libc=glibc
   languageName: node
   linkType: hard
 
-"@oxc-resolver/binding-linux-x64-gnu@npm:11.14.0":
-  version: 11.14.0
-  resolution: "@oxc-resolver/binding-linux-x64-gnu@npm:11.14.0"
+"@oxc-resolver/binding-linux-x64-gnu@npm:11.15.0":
+  version: 11.15.0
+  resolution: "@oxc-resolver/binding-linux-x64-gnu@npm:11.15.0"
   conditions: os=linux & cpu=x64 & libc=glibc
   languageName: node
   linkType: hard
 
-"@oxc-resolver/binding-linux-x64-musl@npm:11.14.0":
-  version: 11.14.0
-  resolution: "@oxc-resolver/binding-linux-x64-musl@npm:11.14.0"
+"@oxc-resolver/binding-linux-x64-musl@npm:11.15.0":
+  version: 11.15.0
+  resolution: "@oxc-resolver/binding-linux-x64-musl@npm:11.15.0"
   conditions: os=linux & cpu=x64 & libc=musl
   languageName: node
   linkType: hard
 
-"@oxc-resolver/binding-wasm32-wasi@npm:11.14.0":
-  version: 11.14.0
-  resolution: "@oxc-resolver/binding-wasm32-wasi@npm:11.14.0"
+"@oxc-resolver/binding-openharmony-arm64@npm:11.15.0":
+  version: 11.15.0
+  resolution: "@oxc-resolver/binding-openharmony-arm64@npm:11.15.0"
+  conditions: os=openharmony & cpu=arm64
+  languageName: node
+  linkType: hard
+
+"@oxc-resolver/binding-wasm32-wasi@npm:11.15.0":
+  version: 11.15.0
+  resolution: "@oxc-resolver/binding-wasm32-wasi@npm:11.15.0"
   dependencies:
-    "@napi-rs/wasm-runtime": "npm:^1.0.7"
+    "@napi-rs/wasm-runtime": "npm:^1.1.0"
   conditions: cpu=wasm32
   languageName: node
   linkType: hard
 
-"@oxc-resolver/binding-win32-arm64-msvc@npm:11.14.0":
-  version: 11.14.0
-  resolution: "@oxc-resolver/binding-win32-arm64-msvc@npm:11.14.0"
+"@oxc-resolver/binding-win32-arm64-msvc@npm:11.15.0":
+  version: 11.15.0
+  resolution: "@oxc-resolver/binding-win32-arm64-msvc@npm:11.15.0"
   conditions: os=win32 & cpu=arm64
   languageName: node
   linkType: hard
 
-"@oxc-resolver/binding-win32-ia32-msvc@npm:11.14.0":
-  version: 11.14.0
-  resolution: "@oxc-resolver/binding-win32-ia32-msvc@npm:11.14.0"
+"@oxc-resolver/binding-win32-ia32-msvc@npm:11.15.0":
+  version: 11.15.0
+  resolution: "@oxc-resolver/binding-win32-ia32-msvc@npm:11.15.0"
   conditions: os=win32 & cpu=ia32
   languageName: node
   linkType: hard
 
-"@oxc-resolver/binding-win32-x64-msvc@npm:11.14.0":
-  version: 11.14.0
-  resolution: "@oxc-resolver/binding-win32-x64-msvc@npm:11.14.0"
+"@oxc-resolver/binding-win32-x64-msvc@npm:11.15.0":
+  version: 11.15.0
+  resolution: "@oxc-resolver/binding-win32-x64-msvc@npm:11.15.0"
   conditions: os=win32 & cpu=x64
   languageName: node
   linkType: hard
@@ -2140,13 +2329,13 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@react-native-documents/picker@npm:^11.0.2":
-  version: 11.0.2
-  resolution: "@react-native-documents/picker@npm:11.0.2"
+"@react-native-documents/picker@npm:^11.0.3":
+  version: 11.0.3
+  resolution: "@react-native-documents/picker@npm:11.0.3"
   peerDependencies:
     react: "*"
     react-native: ">=0.79.0"
-  checksum: 10c0/0f8cfe1dbbb7001a1ec9bca8caeef0a67c5f173d159da5a31240af046ec9050b94823c370d91099caf71dd2dab588f019aa02ff7a54ef3eb2da72b6a85ee8fa3
+  checksum: 10c0/d7c2336bced7736b74d593f188419fe9b1497175e3707b63bee672300d9a05765145badf5114f7e6ff901208497dafd2e9107fd612281643628a0bed549a6278
   languageName: node
   linkType: hard
 
@@ -2475,9 +2664,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@rnx-kit/babel-preset-metro-react-native@npm:^2.0.0":
-  version: 2.0.0
-  resolution: "@rnx-kit/babel-preset-metro-react-native@npm:2.0.0"
+"@rnx-kit/babel-preset-metro-react-native@npm:^3.0.0":
+  version: 3.0.0
+  resolution: "@rnx-kit/babel-preset-metro-react-native@npm:3.0.0"
   dependencies:
     "@rnx-kit/console": "npm:^2.0.0"
     babel-plugin-const-enum: "npm:^1.0.0"
@@ -2486,38 +2675,33 @@ __metadata:
     "@babel/plugin-transform-typescript": ^7.20.0
     "@babel/runtime": ^7.20.0
     "@react-native/babel-preset": "*"
-    metro-react-native-babel-preset: "*"
   peerDependenciesMeta:
     "@babel/plugin-transform-typescript":
       optional: true
-    "@react-native/babel-preset":
-      optional: true
-    metro-react-native-babel-preset:
-      optional: true
-  checksum: 10c0/8d6de76c182066059a03f24f02e7198c3c27ea5c367c953b54f56ba33cf609196d4c6d9514c48bed7c7a5e529c33ee9ca86f941bc495ee393f62abfb0f401cb0
+  checksum: 10c0/f44af61ac443c1b97752190aca67b3d5deed86c0af9c70f64a35d8f99aa1c94a69aff49f59606287c3c464fa96f7405f2abf30eb9a282a8f56261137317a03d5
   languageName: node
   linkType: hard
 
-"@rnx-kit/cli@npm:^0.18.16":
-  version: 0.18.16
-  resolution: "@rnx-kit/cli@npm:0.18.16"
+"@rnx-kit/cli@npm:^0.18.17":
+  version: 0.18.17
+  resolution: "@rnx-kit/cli@npm:0.18.17"
   dependencies:
     "@rnx-kit/align-deps": "npm:^3.3.3"
     "@rnx-kit/config": "npm:^0.7.0"
     "@rnx-kit/console": "npm:^2.0.0"
     "@rnx-kit/metro-plugin-cyclic-dependencies-detector": "npm:^2.0.0"
     "@rnx-kit/metro-plugin-duplicates-checker": "npm:^3.0.0"
-    "@rnx-kit/metro-plugin-typescript": "npm:^0.5.0"
+    "@rnx-kit/metro-plugin-typescript": "npm:^0.5.3"
     "@rnx-kit/metro-serializer": "npm:^2.0.0"
-    "@rnx-kit/metro-serializer-esbuild": "npm:^0.2.7"
-    "@rnx-kit/metro-service": "npm:^4.0.2"
+    "@rnx-kit/metro-serializer-esbuild": "npm:^0.2.8"
+    "@rnx-kit/metro-service": "npm:^4.1.3"
     "@rnx-kit/third-party-notices": "npm:^2.0.0"
-    "@rnx-kit/tools-android": "npm:^0.2.1"
-    "@rnx-kit/tools-apple": "npm:^0.2.1"
+    "@rnx-kit/tools-android": "npm:^0.2.2"
+    "@rnx-kit/tools-apple": "npm:^0.2.2"
     "@rnx-kit/tools-filesystem": "npm:^0.1.0"
-    "@rnx-kit/tools-language": "npm:^3.0.0"
-    "@rnx-kit/tools-node": "npm:^3.0.0"
-    "@rnx-kit/tools-react-native": "npm:^2.0.3"
+    "@rnx-kit/tools-language": "npm:^3.0.1"
+    "@rnx-kit/tools-node": "npm:^3.0.3"
+    "@rnx-kit/tools-react-native": "npm:^2.3.2"
     commander: "npm:^11.1.0"
     ora: "npm:^5.4.1"
     qrcode: "npm:^1.5.0"
@@ -2531,7 +2715,7 @@ __metadata:
       optional: true
   bin:
     rnx-cli: bin/rnx-cli.cjs
-  checksum: 10c0/2b7ce78217b0145fc9e5583aa9625212ffe471449b007bf24eb279cfca6cef0e4061af04d8b2066cbf20cf92f4dfb2c88869f58359436f87f3cdbe3d71690747
+  checksum: 10c0/a57fd7f0bfb5cec8da01d3670c1bafad9c8dc954d83c6f8b977d1168b894d6497b9d51d14118f38edc291fa0abb2a160413fbfb731962772bd956caf354cc0eb
   languageName: node
   linkType: hard
 
@@ -2594,62 +2778,48 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@rnx-kit/metro-plugin-typescript@npm:^0.5.0":
-  version: 0.5.1
-  resolution: "@rnx-kit/metro-plugin-typescript@npm:0.5.1"
+"@rnx-kit/metro-plugin-typescript@npm:^0.5.3":
+  version: 0.5.3
+  resolution: "@rnx-kit/metro-plugin-typescript@npm:0.5.3"
   dependencies:
     "@rnx-kit/config": "npm:^0.7.0"
     "@rnx-kit/console": "npm:^2.0.0"
-    "@rnx-kit/tools-node": "npm:^3.0.0"
-    "@rnx-kit/tools-react-native": "npm:^2.0.0"
-    "@rnx-kit/typescript-service": "npm:^2.0.0"
+    "@rnx-kit/tools-node": "npm:^3.0.3"
+    "@rnx-kit/tools-react-native": "npm:^2.3.2"
+    "@rnx-kit/typescript-service": "npm:^2.0.2"
     typescript: "npm:>=4.7.0"
-  checksum: 10c0/ef18ad41815115a47428e5cbbbfbf5fe2ef52ac8fef7c8ccf3a48706ec51b8735a91d7c924ef1314fc1ea7f8eb98f76adaf1907940c5c4be9a1ccc4c3f5dbdd0
+  checksum: 10c0/90925be96ec23acb35ac42e2a3460d7bda79aa64c907f67f016075ec0e44b3ecd9decc7741f673dc41af19d5087d6b271efcf453d9e571bc99be64678c3e5c49
   languageName: node
   linkType: hard
 
-"@rnx-kit/metro-resolver-symlinks@npm:^0.2.7":
-  version: 0.2.7
-  resolution: "@rnx-kit/metro-resolver-symlinks@npm:0.2.7"
+"@rnx-kit/metro-resolver-symlinks@npm:^0.2.8":
+  version: 0.2.8
+  resolution: "@rnx-kit/metro-resolver-symlinks@npm:0.2.8"
   dependencies:
     "@rnx-kit/console": "npm:^2.0.0"
-    "@rnx-kit/tools-node": "npm:^3.0.0"
-    "@rnx-kit/tools-react-native": "npm:^2.2.0"
+    "@rnx-kit/tools-node": "npm:^3.0.3"
+    "@rnx-kit/tools-react-native": "npm:^2.3.2"
     enhanced-resolve: "npm:^5.8.3"
   peerDependencies:
     oxc-resolver: ^11.0.0
   peerDependenciesMeta:
     oxc-resolver:
       optional: true
-  checksum: 10c0/4c769a4dbe868c8762e43055702ca09c7f8d541352634f2ecada9702b40b4ccc7fbf1112cd0ab13e033177c663d722b74fe11e5a5c6d8e51c67fb133b434bdde
+  checksum: 10c0/c77a398d6a69af918bf28844808e13358a70208aa2a5ac03994be3c31147d51577fdd158041007d0fdee69dc5b009a449a057ae17c6b82d3af0b25f26063b8d9
   languageName: node
   linkType: hard
 
-"@rnx-kit/metro-serializer-esbuild@npm:0.2.7":
-  version: 0.2.7
-  resolution: "@rnx-kit/metro-serializer-esbuild@npm:0.2.7"
+"@rnx-kit/metro-serializer-esbuild@npm:^0.2.8":
+  version: 0.2.8
+  resolution: "@rnx-kit/metro-serializer-esbuild@npm:0.2.8"
   dependencies:
     "@rnx-kit/console": "npm:^2.0.0"
-    "@rnx-kit/tools-node": "npm:^3.0.2"
-    "@rnx-kit/tools-react-native": "npm:^2.3.0"
-    esbuild: "npm:^0.25.0"
+    "@rnx-kit/tools-node": "npm:^3.0.3"
+    "@rnx-kit/tools-react-native": "npm:^2.3.2"
+    esbuild: "npm:^0.27.1"
     esbuild-plugin-lodash: "npm:^1.2.0"
     fast-glob: "npm:^3.2.7"
-  checksum: 10c0/adef2357f1c4b7132eb60f90f9628568e285cca2c3ce7add302a10ffe62880309306606ab90d1d7f5e96d98416c8b968edb05d17bf79b9e9166f5e3f864918c4
-  languageName: node
-  linkType: hard
-
-"@rnx-kit/metro-serializer-esbuild@patch:@rnx-kit/metro-serializer-esbuild@npm%3A0.2.7#~/.yarn/patches/@rnx-kit-metro-serializer-esbuild-npm-0.2.7-e08d43f1ad.patch":
-  version: 0.2.7
-  resolution: "@rnx-kit/metro-serializer-esbuild@patch:@rnx-kit/metro-serializer-esbuild@npm%3A0.2.7#~/.yarn/patches/@rnx-kit-metro-serializer-esbuild-npm-0.2.7-e08d43f1ad.patch::version=0.2.7&hash=bea715"
-  dependencies:
-    "@rnx-kit/console": "npm:^2.0.0"
-    "@rnx-kit/tools-node": "npm:^3.0.2"
-    "@rnx-kit/tools-react-native": "npm:^2.3.0"
-    esbuild: "npm:^0.25.0"
-    esbuild-plugin-lodash: "npm:^1.2.0"
-    fast-glob: "npm:^3.2.7"
-  checksum: 10c0/2f732849be37ed5ed30db2afa0628ad8d659dca54f4235f2f8d0463a6f3fd67dad738eb361698c5c26448448f015baafd42d3aeae3834f380b7a080abd3e5f45
+  checksum: 10c0/c6aaed5fb0c2b94c209350d57c00d79b7ec608efa6674bae189385390514f3f58613d2f8a8e5640682392f288e95ec916173a5eef76889517037088035b47b37
   languageName: node
   linkType: hard
 
@@ -2663,13 +2833,13 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@rnx-kit/metro-service@npm:^4.0.2":
-  version: 4.0.2
-  resolution: "@rnx-kit/metro-service@npm:4.0.2"
+"@rnx-kit/metro-service@npm:^4.1.3":
+  version: 4.1.3
+  resolution: "@rnx-kit/metro-service@npm:4.1.3"
   dependencies:
     "@rnx-kit/console": "npm:^2.0.0"
-    "@rnx-kit/tools-node": "npm:^3.0.0"
-    "@rnx-kit/tools-react-native": "npm:^2.0.0"
+    "@rnx-kit/tools-node": "npm:^3.0.3"
+    "@rnx-kit/tools-react-native": "npm:^2.3.2"
     node-fetch: "npm:^2.6.7"
   peerDependencies:
     "@office-iss/react-native-win32": "*"
@@ -2682,7 +2852,7 @@ __metadata:
       optional: true
     metro-react-native-babel-transformer:
       optional: true
-  checksum: 10c0/2e3d8e9475f92dcead8586b63dc1693d9884a5aa6932b9d6a58f7ce3034d249ec96e4fba6307ed64b3acd642a14ef8df1f1742c647722df88fab75dc13f72627
+  checksum: 10c0/789dddee2dc7a5ba50fe60c910651a953d74f31225e5a56b8acc56b15407286ed194e08c9f7df3fc4acf391a78de6313bbdc39e0b75af959b6d981ac2203e410
   languageName: node
   linkType: hard
 
@@ -2700,22 +2870,22 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@rnx-kit/tools-android@npm:^0.2.1":
-  version: 0.2.1
-  resolution: "@rnx-kit/tools-android@npm:0.2.1"
+"@rnx-kit/tools-android@npm:^0.2.2":
+  version: 0.2.2
+  resolution: "@rnx-kit/tools-android@npm:0.2.2"
   dependencies:
-    "@rnx-kit/tools-shell": "npm:^0.2.0"
-  checksum: 10c0/63ec0ffb0325b3dd541b80052ad17401084132daa7812613057e445c0431741447046ea6356d237530167ce6383d51dfe56b82b5672aa83ce3523c027a941fcf
+    "@rnx-kit/tools-shell": "npm:^0.2.2"
+  checksum: 10c0/ae44c212ab392f1bce2d0299104112f4e73a2d244f0640f9dd4873d82b933fc49b09308c6b534354556ee5abb43d4870534a017f93daa6a00d03ccec331d4ff0
   languageName: node
   linkType: hard
 
-"@rnx-kit/tools-apple@npm:^0.2.1":
-  version: 0.2.1
-  resolution: "@rnx-kit/tools-apple@npm:0.2.1"
+"@rnx-kit/tools-apple@npm:^0.2.2":
+  version: 0.2.2
+  resolution: "@rnx-kit/tools-apple@npm:0.2.2"
   dependencies:
-    "@rnx-kit/tools-shell": "npm:^0.2.0"
+    "@rnx-kit/tools-shell": "npm:^0.2.2"
     fast-xml-parser: "npm:^4.0.0"
-  checksum: 10c0/dc587048484d3087a481840f96b467f70e6202b7c83217ed8b16b1454def2bd56e862111912eaa0679aafea8a7ff87fbe3e419d6ee75ac4cced7ef8f54699def
+  checksum: 10c0/fee9b00ed8483d2a19ff3bfe7d150bab9a1c028f75941ca4197b033fdd3a50a2ebbe501bd1886dcb18e633508e67f4ca071ed34fdeeef573783ca8ffabeccc07
   languageName: node
   linkType: hard
 
@@ -2726,33 +2896,33 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@rnx-kit/tools-language@npm:^3.0.0":
-  version: 3.0.0
-  resolution: "@rnx-kit/tools-language@npm:3.0.0"
-  checksum: 10c0/159b9bfce500b652e65367f425197afa8f54b652c71968047d6e64e2ebf34cbacf63217f6159fd987409cc5cd7a94eb0f11dee8fa5910a1a388ea28d9ca60525
+"@rnx-kit/tools-language@npm:^3.0.1":
+  version: 3.0.1
+  resolution: "@rnx-kit/tools-language@npm:3.0.1"
+  checksum: 10c0/66f5fc3516e5421b9c884bb6919a34d90d8c519947deba3d10c8b1a8f22dd8008aeda5e08b3fbf561047afb8fa37b656ece0c2376c27ea269206fb12f56d555c
   languageName: node
   linkType: hard
 
-"@rnx-kit/tools-node@npm:^3.0.0, @rnx-kit/tools-node@npm:^3.0.2":
-  version: 3.0.2
-  resolution: "@rnx-kit/tools-node@npm:3.0.2"
-  checksum: 10c0/ea8cfc264e3adea18511316a7a90cacad18087561464177c5291f54fca0befe37fde88f3facbb7a102e7fa45a0816137aaa2eee30f0bcf320e35c60895e8286c
+"@rnx-kit/tools-node@npm:^3.0.0, @rnx-kit/tools-node@npm:^3.0.3":
+  version: 3.0.3
+  resolution: "@rnx-kit/tools-node@npm:3.0.3"
+  checksum: 10c0/5fa2123cb156fc6d268c95b2fa094b3ccf5f264ff5dcfd08f024454f45972093144e5745d4bcbe84e8f731faf01b7bfb6d3bca3e7c97ec89da3fc2e3e1121959
   languageName: node
   linkType: hard
 
-"@rnx-kit/tools-react-native@npm:^2.0.0, @rnx-kit/tools-react-native@npm:^2.0.3, @rnx-kit/tools-react-native@npm:^2.2.0, @rnx-kit/tools-react-native@npm:^2.3.0, @rnx-kit/tools-react-native@npm:^2.3.1":
-  version: 2.3.1
-  resolution: "@rnx-kit/tools-react-native@npm:2.3.1"
+"@rnx-kit/tools-react-native@npm:^2.0.0, @rnx-kit/tools-react-native@npm:^2.3.1, @rnx-kit/tools-react-native@npm:^2.3.2":
+  version: 2.3.2
+  resolution: "@rnx-kit/tools-react-native@npm:2.3.2"
   dependencies:
-    "@rnx-kit/tools-node": "npm:^3.0.0"
-  checksum: 10c0/60f463e6929657731f07caf7e2a7136957d083636c1bc6baf81e78b5faac6fd2047d2c78744ed58b83c9b480a918ebcd70b65b6c741a5e4f7dbfecbdacd59ba3
+    "@rnx-kit/tools-node": "npm:^3.0.3"
+  checksum: 10c0/eb12603e0a036d953689e2fb1db4995830cb74eb28847bf1f7d0600ab771b7c5b12388c0b93277690ae8d9bce03a13c56bbff099e867a957659bb1b14d888c2b
   languageName: node
   linkType: hard
 
-"@rnx-kit/tools-shell@npm:^0.2.0":
-  version: 0.2.1
-  resolution: "@rnx-kit/tools-shell@npm:0.2.1"
-  checksum: 10c0/f8b531ba0e62bcb384150d3f0d1ed8d6b308dfd6379b9ca0b526afb1fd0964645fceb972e9ab896f78d4fe49584b9e7b8abff89e9863d880ca6ce2db0758b7d7
+"@rnx-kit/tools-shell@npm:^0.2.2":
+  version: 0.2.2
+  resolution: "@rnx-kit/tools-shell@npm:0.2.2"
+  checksum: 10c0/bfaf427b73cb1e2ec5958ead91f1e48c893a2f88286139f428bd22f133097edc3227eb7faf88a34c2fc04dbfe19d1ece196580fa287fc6103d981b8e2b86d2ba
   languageName: node
   linkType: hard
 
@@ -2768,14 +2938,14 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@rnx-kit/typescript-service@npm:^2.0.0":
-  version: 2.0.0
-  resolution: "@rnx-kit/typescript-service@npm:2.0.0"
+"@rnx-kit/typescript-service@npm:^2.0.2":
+  version: 2.0.2
+  resolution: "@rnx-kit/typescript-service@npm:2.0.2"
   dependencies:
     "@rnx-kit/tools-node": "npm:^3.0.0"
   peerDependencies:
     typescript: ">=4.0"
-  checksum: 10c0/73c3503e0b5cbd46b1f3641ef14a0b8b888ee71f4de91af7eeb676ecc77581549aeb0c0ccc938eed75b0f4075d23d31f1c622713e64a72b788cc2a0f8187f231
+  checksum: 10c0/253bdee64737a4f493dbfa56ab8264a24947d11b7ff46302b4ae12d36545af10d53278b5d8806979e5f949948c001b96ba146cef3c6c9a07bf749249426a7d82
   languageName: node
   linkType: hard
 
@@ -3260,21 +3430,21 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@types/node@npm:*, @types/node@npm:^24.10.1":
-  version: 24.10.1
-  resolution: "@types/node@npm:24.10.1"
+"@types/node@npm:*, @types/node@npm:^24.10.3":
+  version: 24.10.3
+  resolution: "@types/node@npm:24.10.3"
   dependencies:
     undici-types: "npm:~7.16.0"
-  checksum: 10c0/d6bca7a78f550fbb376f236f92b405d676003a8a09a1b411f55920ef34286ee3ee51f566203920e835478784df52662b5b2af89159d9d319352e9ea21801c002
+  checksum: 10c0/58ddaf9ce3dd9d3aa55f7dfacb7b8f16481ad64a47b99f1890fa3d4498d1958def78699838f422c0a81851d6be8b9de7ffc344435a60abcf02c0e2c085008b20
   languageName: node
   linkType: hard
 
-"@types/react-dom@npm:^19.1.9":
-  version: 19.1.9
-  resolution: "@types/react-dom@npm:19.1.9"
+"@types/react-dom@npm:^19.2.3":
+  version: 19.2.3
+  resolution: "@types/react-dom@npm:19.2.3"
   peerDependencies:
-    "@types/react": ^19.0.0
-  checksum: 10c0/34c8dda86c1590b3ef0e7ecd38f9663a66ba2dd69113ba74fb0adc36b83bbfb8c94c1487a2505282a5f7e5e000d2ebf36f4c0fd41b3b672f5178fd1d4f1f8f58
+    "@types/react": ^19.2.0
+  checksum: 10c0/b486ebe0f4e2fb35e2e108df1d8fc0927ca5d6002d5771e8a739de11239fe62d0e207c50886185253c99eb9dedfeeb956ea7429e5ba17f6693c7acb4c02f8cd1
   languageName: node
   linkType: hard
 
@@ -3297,12 +3467,12 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@types/react@npm:*, @types/react@npm:^19.1.12":
-  version: 19.1.12
-  resolution: "@types/react@npm:19.1.12"
+"@types/react@npm:*, @types/react@npm:^19.2.7":
+  version: 19.2.7
+  resolution: "@types/react@npm:19.2.7"
   dependencies:
-    csstype: "npm:^3.0.2"
-  checksum: 10c0/e35912b43da0caaab5252444bab87a31ca22950cde2822b3b3dc32e39c2d42dad1a4cf7b5dde9783aa2d007f0b2cba6ab9563fc6d2dbcaaa833b35178118767c
+    csstype: "npm:^3.2.2"
+  checksum: 10c0/a7b75f1f9fcb34badd6f84098be5e35a0aeca614bc91f93d2698664c0b2ba5ad128422bd470ada598238cebe4f9e604a752aead7dc6f5a92261d0c7f9b27cfd1
   languageName: node
   linkType: hard
 
@@ -4763,10 +4933,10 @@ __metadata:
   languageName: node
   linkType: hard
 
-"csstype@npm:^3.0.2":
-  version: 3.1.3
-  resolution: "csstype@npm:3.1.3"
-  checksum: 10c0/80c089d6f7e0c5b2bd83cf0539ab41474198579584fa10d86d0cafe0642202343cbc119e076a0b1aece191989477081415d66c9fefbf3c957fc2fc4b7009f248
+"csstype@npm:^3.2.2":
+  version: 3.2.3
+  resolution: "csstype@npm:3.2.3"
+  checksum: 10c0/cd29c51e70fa822f1cecd8641a1445bed7063697469d35633b516e60fe8c1bde04b08f6c5b6022136bb669b64c63d4173af54864510fbb4ee23281801841a3ce
   languageName: node
   linkType: hard
 
@@ -5374,6 +5544,95 @@ __metadata:
   bin:
     esbuild: bin/esbuild
   checksum: 10c0/5767b72da46da3cfec51661647ec850ddbf8a8d0662771139f10ef0692a8831396a0004b2be7966cecdb08264fb16bdc16290dcecd92396fac5f12d722fa013d
+  languageName: node
+  linkType: hard
+
+"esbuild@npm:^0.27.1":
+  version: 0.27.1
+  resolution: "esbuild@npm:0.27.1"
+  dependencies:
+    "@esbuild/aix-ppc64": "npm:0.27.1"
+    "@esbuild/android-arm": "npm:0.27.1"
+    "@esbuild/android-arm64": "npm:0.27.1"
+    "@esbuild/android-x64": "npm:0.27.1"
+    "@esbuild/darwin-arm64": "npm:0.27.1"
+    "@esbuild/darwin-x64": "npm:0.27.1"
+    "@esbuild/freebsd-arm64": "npm:0.27.1"
+    "@esbuild/freebsd-x64": "npm:0.27.1"
+    "@esbuild/linux-arm": "npm:0.27.1"
+    "@esbuild/linux-arm64": "npm:0.27.1"
+    "@esbuild/linux-ia32": "npm:0.27.1"
+    "@esbuild/linux-loong64": "npm:0.27.1"
+    "@esbuild/linux-mips64el": "npm:0.27.1"
+    "@esbuild/linux-ppc64": "npm:0.27.1"
+    "@esbuild/linux-riscv64": "npm:0.27.1"
+    "@esbuild/linux-s390x": "npm:0.27.1"
+    "@esbuild/linux-x64": "npm:0.27.1"
+    "@esbuild/netbsd-arm64": "npm:0.27.1"
+    "@esbuild/netbsd-x64": "npm:0.27.1"
+    "@esbuild/openbsd-arm64": "npm:0.27.1"
+    "@esbuild/openbsd-x64": "npm:0.27.1"
+    "@esbuild/openharmony-arm64": "npm:0.27.1"
+    "@esbuild/sunos-x64": "npm:0.27.1"
+    "@esbuild/win32-arm64": "npm:0.27.1"
+    "@esbuild/win32-ia32": "npm:0.27.1"
+    "@esbuild/win32-x64": "npm:0.27.1"
+  dependenciesMeta:
+    "@esbuild/aix-ppc64":
+      optional: true
+    "@esbuild/android-arm":
+      optional: true
+    "@esbuild/android-arm64":
+      optional: true
+    "@esbuild/android-x64":
+      optional: true
+    "@esbuild/darwin-arm64":
+      optional: true
+    "@esbuild/darwin-x64":
+      optional: true
+    "@esbuild/freebsd-arm64":
+      optional: true
+    "@esbuild/freebsd-x64":
+      optional: true
+    "@esbuild/linux-arm":
+      optional: true
+    "@esbuild/linux-arm64":
+      optional: true
+    "@esbuild/linux-ia32":
+      optional: true
+    "@esbuild/linux-loong64":
+      optional: true
+    "@esbuild/linux-mips64el":
+      optional: true
+    "@esbuild/linux-ppc64":
+      optional: true
+    "@esbuild/linux-riscv64":
+      optional: true
+    "@esbuild/linux-s390x":
+      optional: true
+    "@esbuild/linux-x64":
+      optional: true
+    "@esbuild/netbsd-arm64":
+      optional: true
+    "@esbuild/netbsd-x64":
+      optional: true
+    "@esbuild/openbsd-arm64":
+      optional: true
+    "@esbuild/openbsd-x64":
+      optional: true
+    "@esbuild/openharmony-arm64":
+      optional: true
+    "@esbuild/sunos-x64":
+      optional: true
+    "@esbuild/win32-arm64":
+      optional: true
+    "@esbuild/win32-ia32":
+      optional: true
+    "@esbuild/win32-x64":
+      optional: true
+  bin:
+    esbuild: bin/esbuild
+  checksum: 10c0/8bfcf13a499a9e7b7da4b68273e12b453c7d7a5e39c944c2e5a4c64a0594d6df1391fc168a5353c22bc94eeae38dd9897199ddbbc4973525b0aae18186e996bd
   languageName: node
   linkType: hard
 
@@ -6437,9 +6696,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"i18next@npm:^25.7.0":
-  version: 25.7.0
-  resolution: "i18next@npm:25.7.0"
+"i18next@npm:^25.7.2":
+  version: 25.7.2
+  resolution: "i18next@npm:25.7.2"
   dependencies:
     "@babel/runtime": "npm:^7.28.4"
   peerDependencies:
@@ -6447,7 +6706,7 @@ __metadata:
   peerDependenciesMeta:
     typescript:
       optional: true
-  checksum: 10c0/f985200473b3fb602c7aa4373249b0f4c83c51ddbb04dc5df59cb4e99e4178e2d76135ca5bdc6a123e3f7217c7cd012882bd33084bb5f103b69032dc98cb36bf
+  checksum: 10c0/137782fdd8fc166fa5f74088db52c80ea7b2dc60fb8da7486d0213b28f41d68947041b6466489cfceb5c439630618a2b709a3c2d6b098740e3be9ce58e6ec1fd
   languageName: node
   linkType: hard
 
@@ -7631,9 +7890,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"knip@npm:^5.71.0":
-  version: 5.71.0
-  resolution: "knip@npm:5.71.0"
+"knip@npm:^5.73.3":
+  version: 5.73.3
+  resolution: "knip@npm:5.73.3"
   dependencies:
     "@nodelib/fs.walk": "npm:^1.2.3"
     fast-glob: "npm:^3.3.3"
@@ -7641,7 +7900,7 @@ __metadata:
     jiti: "npm:^2.6.0"
     js-yaml: "npm:^4.1.1"
     minimist: "npm:^1.2.8"
-    oxc-resolver: "npm:^11.13.2"
+    oxc-resolver: "npm:^11.15.0"
     picocolors: "npm:^1.1.1"
     picomatch: "npm:^4.0.1"
     smol-toml: "npm:^1.5.2"
@@ -7653,7 +7912,7 @@ __metadata:
   bin:
     knip: bin/knip.js
     knip-bun: bin/knip-bun.js
-  checksum: 10c0/954a899343afe2bc495da205dceeecf0ff665f26ceb44424e465e4246ce7ee72c204e679bc375b9095443999d383b838e37dd2a9868d8884e4096be3dca66a7e
+  checksum: 10c0/d015e35fef32072ab8196a50690dce45a8cc9833eb5d7d2602b8077b8635096ef739145b7142952fc564127614cbcc92283f25afd1b36d3873bb57a981cad3d9
   languageName: node
   linkType: hard
 
@@ -8732,29 +8991,30 @@ __metadata:
   languageName: node
   linkType: hard
 
-"oxc-resolver@npm:^11.13.2":
-  version: 11.14.0
-  resolution: "oxc-resolver@npm:11.14.0"
+"oxc-resolver@npm:^11.15.0":
+  version: 11.15.0
+  resolution: "oxc-resolver@npm:11.15.0"
   dependencies:
-    "@oxc-resolver/binding-android-arm-eabi": "npm:11.14.0"
-    "@oxc-resolver/binding-android-arm64": "npm:11.14.0"
-    "@oxc-resolver/binding-darwin-arm64": "npm:11.14.0"
-    "@oxc-resolver/binding-darwin-x64": "npm:11.14.0"
-    "@oxc-resolver/binding-freebsd-x64": "npm:11.14.0"
-    "@oxc-resolver/binding-linux-arm-gnueabihf": "npm:11.14.0"
-    "@oxc-resolver/binding-linux-arm-musleabihf": "npm:11.14.0"
-    "@oxc-resolver/binding-linux-arm64-gnu": "npm:11.14.0"
-    "@oxc-resolver/binding-linux-arm64-musl": "npm:11.14.0"
-    "@oxc-resolver/binding-linux-ppc64-gnu": "npm:11.14.0"
-    "@oxc-resolver/binding-linux-riscv64-gnu": "npm:11.14.0"
-    "@oxc-resolver/binding-linux-riscv64-musl": "npm:11.14.0"
-    "@oxc-resolver/binding-linux-s390x-gnu": "npm:11.14.0"
-    "@oxc-resolver/binding-linux-x64-gnu": "npm:11.14.0"
-    "@oxc-resolver/binding-linux-x64-musl": "npm:11.14.0"
-    "@oxc-resolver/binding-wasm32-wasi": "npm:11.14.0"
-    "@oxc-resolver/binding-win32-arm64-msvc": "npm:11.14.0"
-    "@oxc-resolver/binding-win32-ia32-msvc": "npm:11.14.0"
-    "@oxc-resolver/binding-win32-x64-msvc": "npm:11.14.0"
+    "@oxc-resolver/binding-android-arm-eabi": "npm:11.15.0"
+    "@oxc-resolver/binding-android-arm64": "npm:11.15.0"
+    "@oxc-resolver/binding-darwin-arm64": "npm:11.15.0"
+    "@oxc-resolver/binding-darwin-x64": "npm:11.15.0"
+    "@oxc-resolver/binding-freebsd-x64": "npm:11.15.0"
+    "@oxc-resolver/binding-linux-arm-gnueabihf": "npm:11.15.0"
+    "@oxc-resolver/binding-linux-arm-musleabihf": "npm:11.15.0"
+    "@oxc-resolver/binding-linux-arm64-gnu": "npm:11.15.0"
+    "@oxc-resolver/binding-linux-arm64-musl": "npm:11.15.0"
+    "@oxc-resolver/binding-linux-ppc64-gnu": "npm:11.15.0"
+    "@oxc-resolver/binding-linux-riscv64-gnu": "npm:11.15.0"
+    "@oxc-resolver/binding-linux-riscv64-musl": "npm:11.15.0"
+    "@oxc-resolver/binding-linux-s390x-gnu": "npm:11.15.0"
+    "@oxc-resolver/binding-linux-x64-gnu": "npm:11.15.0"
+    "@oxc-resolver/binding-linux-x64-musl": "npm:11.15.0"
+    "@oxc-resolver/binding-openharmony-arm64": "npm:11.15.0"
+    "@oxc-resolver/binding-wasm32-wasi": "npm:11.15.0"
+    "@oxc-resolver/binding-win32-arm64-msvc": "npm:11.15.0"
+    "@oxc-resolver/binding-win32-ia32-msvc": "npm:11.15.0"
+    "@oxc-resolver/binding-win32-x64-msvc": "npm:11.15.0"
   dependenciesMeta:
     "@oxc-resolver/binding-android-arm-eabi":
       optional: true
@@ -8786,6 +9046,8 @@ __metadata:
       optional: true
     "@oxc-resolver/binding-linux-x64-musl":
       optional: true
+    "@oxc-resolver/binding-openharmony-arm64":
+      optional: true
     "@oxc-resolver/binding-wasm32-wasi":
       optional: true
     "@oxc-resolver/binding-win32-arm64-msvc":
@@ -8794,7 +9056,7 @@ __metadata:
       optional: true
     "@oxc-resolver/binding-win32-x64-msvc":
       optional: true
-  checksum: 10c0/07fc64fc69462860d7e1dcb32d10880670cd777936d99721b523e8d095df8240fa01ee624aafc19978010b7b788bfb53202cea2b70efe5fc43bc1d1296025e6b
+  checksum: 10c0/88492de76bcf6a8bed8e7482a37f2079d5267e224dad96eeb70cc99cad3370481ceb5b327620c56e776b5f2231482e61a5900fc58d1a9617e9d8de16ddd8d1bb
   languageName: node
   linkType: hard
 
@@ -9093,12 +9355,12 @@ __metadata:
   languageName: node
   linkType: hard
 
-"prettier@npm:^3.7.3":
-  version: 3.7.3
-  resolution: "prettier@npm:3.7.3"
+"prettier@npm:^3.7.4":
+  version: 3.7.4
+  resolution: "prettier@npm:3.7.4"
   bin:
     prettier: bin/prettier.cjs
-  checksum: 10c0/ee86bb06121c74dadc54f30b6f99aff6288966d9b842ce501d6991e20d20c6ce2d45028651b3b0955ca6e5fa89c1bee1e72b6f810243a93cef8bc69737972ef7
+  checksum: 10c0/9675d2cd08eacb1faf1d1a2dbfe24bfab6a912b059fc9defdb380a408893d88213e794a40a2700bd29b140eb3172e0b07c852853f6e22f16f3374659a1a13389
   languageName: node
   linkType: hard
 
@@ -9340,21 +9602,21 @@ __metadata:
   languageName: node
   linkType: hard
 
-"react-native-device-info@npm:14.0.4":
-  version: 14.0.4
-  resolution: "react-native-device-info@npm:14.0.4"
+"react-native-device-info@npm:15.0.1":
+  version: 15.0.1
+  resolution: "react-native-device-info@npm:15.0.1"
   peerDependencies:
     react-native: "*"
-  checksum: 10c0/3d89519b4e9f9f130b352f5243282f8b807aba0f55ccc0e1dc9f15b285215949751491ef2f11f1984a55f0f5e0ae76cd16620d2cdfcc118e2ca5f39d300d5524
+  checksum: 10c0/f33a28b44bc9a67939f2c837ea55c6f59f3096323b5ccc834093bece941d343bad3d86b0faa9340004c2e657abe47fac6cee539d9274f5fabfb5745bfdc77c92
   languageName: node
   linkType: hard
 
-"react-native-device-info@patch:react-native-device-info@npm%3A14.0.4#~/.yarn/patches/react-native-device-info-npm-14.0.4-9bb10f6c3d.patch":
-  version: 14.0.4
-  resolution: "react-native-device-info@patch:react-native-device-info@npm%3A14.0.4#~/.yarn/patches/react-native-device-info-npm-14.0.4-9bb10f6c3d.patch::version=14.0.4&hash=420f1b"
+"react-native-device-info@patch:react-native-device-info@npm%3A15.0.1#~/.yarn/patches/react-native-device-info-npm-15.0.1-5235e3560e.patch":
+  version: 15.0.1
+  resolution: "react-native-device-info@patch:react-native-device-info@npm%3A15.0.1#~/.yarn/patches/react-native-device-info-npm-15.0.1-5235e3560e.patch::version=15.0.1&hash=4812e7"
   peerDependencies:
     react-native: "*"
-  checksum: 10c0/a3b909a3b2e3776cd7417f7e40eeeae2a38348fd674737fed631c3aa77cd1745a0fafca27da5f471bad77c14753180cb7ae371f652680f585aa853adb9939a61
+  checksum: 10c0/d56d6bff541c52a79ed8fa9a265e5e09f44c5909d299583ab9dcd7c3bae3941fb4efd9705c9731d802be3b057ac3f00649cbc76d7ce500ff0a70123b0fedbd68
   languageName: node
   linkType: hard
 
@@ -9387,14 +9649,14 @@ __metadata:
   languageName: node
   linkType: hard
 
-"react-native-get-random-values@npm:^1.11.0":
-  version: 1.11.0
-  resolution: "react-native-get-random-values@npm:1.11.0"
+"react-native-get-random-values@npm:^2.0.0":
+  version: 2.0.0
+  resolution: "react-native-get-random-values@npm:2.0.0"
   dependencies:
     fast-base64-decode: "npm:^1.0.0"
   peerDependencies:
-    react-native: ">=0.56"
-  checksum: 10c0/2ce71f1ab7f5b36d4a9dd59cc80b4aa75526f047c6680a7f1a388fa8b9a62efdacaf7b7de3be593c73e882773b2eee74916b00f7c8b158e40b46388998218586
+    react-native: ">=0.81"
+  checksum: 10c0/fd2e10ab3bca54bff8f5844e3314b797e02822e86663bc2dafe00a511b8a8e1c05d96aa0b8dc1ffad428387d44bbf458ce770a429858433d36f58a16e6e52986
   languageName: node
   linkType: hard
 
@@ -10062,7 +10324,7 @@ __metadata:
   dependencies:
     "@babel/core": "npm:^7.28.5"
     "@babel/runtime": "npm:^7.28.4"
-    "@gorhom/bottom-sheet": "npm:^5.2.7"
+    "@gorhom/bottom-sheet": "npm:^5.2.8"
     "@legendapp/list": "npm:^2.0.16"
     "@notifee/react-native": "npm:^9.1.8"
     "@react-native-clipboard/clipboard": "npm:^1.16.3"
@@ -10070,7 +10332,7 @@ __metadata:
     "@react-native-community/cli-platform-android": "npm:^19.1.2"
     "@react-native-community/cli-platform-ios": "npm:^19.1.2"
     "@react-native-community/hooks": "npm:^100.1.0"
-    "@react-native-documents/picker": "npm:^11.0.2"
+    "@react-native-documents/picker": "npm:^11.0.3"
     "@react-native-vector-icons/material-design-icons": "npm:^12.4.0"
     "@react-native-vector-icons/material-icons": "npm:^12.4.0"
     "@react-native/babel-preset": "npm:^0.80.2"
@@ -10078,17 +10340,17 @@ __metadata:
     "@react-native/metro-config": "npm:^0.80.2"
     "@react-native/typescript-config": "npm:^0.80.2"
     "@rexovolt/react-native-markdown-display": "npm:^10.0.1"
-    "@rnx-kit/babel-preset-metro-react-native": "npm:^2.0.0"
-    "@rnx-kit/cli": "npm:^0.18.16"
+    "@rnx-kit/babel-preset-metro-react-native": "npm:^3.0.0"
+    "@rnx-kit/cli": "npm:^0.18.17"
     "@rnx-kit/metro-config": "npm:^2.2.1"
-    "@rnx-kit/metro-resolver-symlinks": "npm:^0.2.7"
+    "@rnx-kit/metro-resolver-symlinks": "npm:^0.2.8"
     "@traptitech/markdown-it-spoiler": "patch:@traptitech/markdown-it-spoiler@npm%3A1.1.6#~/.yarn/patches/@traptitech-markdown-it-spoiler-npm-1.1.6-ee0dc02626.patch"
     "@types/babel__core": "npm:^7.20.5"
     "@types/eslint": "npm:^8.56.12"
     "@types/jest": "npm:^29.5.14"
-    "@types/node": "npm:^24.10.1"
-    "@types/react": "npm:^19.1.12"
-    "@types/react-dom": "npm:^19.1.9"
+    "@types/node": "npm:^24.10.3"
+    "@types/react": "npm:^19.2.7"
+    "@types/react-dom": "npm:^19.2.3"
     "@types/react-native-web": "npm:^0.19.2"
     "@types/react-test-renderer": "npm:^19.1.0"
     "@vitejs/plugin-react": "npm:^4.7.0"
@@ -10099,22 +10361,22 @@ __metadata:
     date-fns: "npm:^4.1.0"
     eslint: "npm:^8.57.1"
     eslint-plugin-de-morgan: "npm:^1.3.1"
-    i18next: "npm:^25.7.0"
+    i18next: "npm:^25.7.2"
     intl-pluralrules: "npm:^2.0.1"
     jest: "npm:^29.7.0"
-    knip: "npm:^5.71.0"
+    knip: "npm:^5.73.3"
     mobx: "npm:^6.15.0"
     mobx-react-lite: "npm:^4.1.1"
-    prettier: "npm:^3.7.3"
+    prettier: "npm:^3.7.4"
     react: "npm:19.1.0"
     react-dom: "npm:19.1.0"
     react-error-boundary: "npm:^6.0.0"
     react-i18next: "npm:^15.7.4"
     react-native: "npm:^0.80.2"
-    react-native-device-info: "patch:react-native-device-info@npm%3A14.0.4#~/.yarn/patches/react-native-device-info-npm-14.0.4-9bb10f6c3d.patch"
+    react-native-device-info: "patch:react-native-device-info@npm%3A15.0.1#~/.yarn/patches/react-native-device-info-npm-15.0.1-5235e3560e.patch"
     react-native-drawer-layout: "npm:^4.2.0"
     react-native-gesture-handler: "npm:^2.27.2"
-    react-native-get-random-values: "npm:^1.11.0"
+    react-native-get-random-values: "npm:^2.0.0"
     react-native-keyboard-controller: "npm:^1.17.5"
     react-native-mmkv: "npm:^3.3.3"
     react-native-nitro-modules: "npm:0.31.10"
