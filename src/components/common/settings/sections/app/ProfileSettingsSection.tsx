@@ -89,9 +89,7 @@ export const ProfileSettingsSection = observer(() => {
           <Text key={'status-settings-link-label'} style={{fontWeight: 'bold'}}>
             {t('app.settings_menu.profile.status')}
           </Text>
-          <Text
-            key={'status-settings-link-body'}
-            colour={currentTheme.foregroundPrimary}>
+          <Text key={'status-settings-link-body'}>
             {t('app.settings_menu.profile.status_body')}
           </Text>
         </View>

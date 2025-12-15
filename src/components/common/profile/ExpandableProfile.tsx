@@ -1,5 +1,6 @@
 import {useContext, useEffect, useState} from 'react';
 import {ImageBackground, Pressable, View} from 'react-native';
+import {StyleSheet} from 'react-native-unistyles';
 import {useTranslation} from 'react-i18next';
 import {observer} from 'mobx-react-lite';
 
@@ -18,9 +19,7 @@ const ProfileCardInner = observer(({user}: {user: User}) => {
     <>
       <Avatar user={user} size={80} status />
       <View style={{flex: 1, paddingStart: 20}}>
-        <Text
-          style={{fontSize: 20, fontWeight: 'bold'}}
-          colour={currentTheme.foregroundPrimary}>
+        <Text style={{fontSize: 20, fontWeight: 'bold'}}>
           {user.display_name ?? user.username}
         </Text>
         <Text
@@ -43,8 +42,6 @@ const ProfileCardInner = observer(({user}: {user: User}) => {
 });
 
 const ProfileCard = observer(({user}: {user: User}) => {
-  const {currentTheme} = useContext(ThemeContext);
-
   const [profile, setProfile] = useState({} as {background?: API.File | null});
 
   useEffect(() => {
@@ -59,20 +56,12 @@ const ProfileCard = observer(({user}: {user: User}) => {
   return (
     <ImageBackground
       src={profile.background ? client.generateFileURL(profile.background) : ''}
-      style={{
-        backgroundColor: currentTheme.background,
-        borderRadius: commonValues.sizes.medium,
-        overflow: 'hidden',
-      }}>
+      style={localStyles.bannerBackground}>
       <View
-        style={{
-          flexDirection: 'row',
-          alignItems: 'center',
-          backgroundColor: profile.background
-            ? currentTheme.serverNameBackground
-            : undefined,
-          padding: commonValues.sizes.xl * 2,
-        }}>
+        style={[
+          localStyles.cardContainer,
+          profile.background && localStyles.cardBackground,
+        ]}>
         <ProfileCardInner user={user} />
       </View>
     </ImageBackground>
@@ -129,11 +118,7 @@ export const ExpandableProfile = observer(({user}: {user: User}) => {
   }, []);
 
   return (
-    <View
-      style={{
-        backgroundColor: currentTheme.background,
-        borderRadius: commonValues.sizes.medium,
-      }}>
+    <View style={localStyles.container}>
       <ProfileCard user={user} />
       <Pressable
         onPress={() => (profile ? setExpanded(!expanded) : null)}
@@ -163,3 +148,23 @@ export const ExpandableProfile = observer(({user}: {user: User}) => {
     </View>
   );
 });
+
+const localStyles = StyleSheet.create(currentTheme => ({
+  container: {
+    backgroundColor: currentTheme.background,
+    borderRadius: commonValues.sizes.medium,
+  },
+  bannerBackground: {
+    backgroundColor: currentTheme.background,
+    borderRadius: commonValues.sizes.medium,
+    overflow: 'hidden',
+  },
+  cardContainer: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    padding: commonValues.sizes.xl * 2,
+  },
+  cardBackground: {
+    backgroundColor: currentTheme.serverNameBackground,
+  },
+}));

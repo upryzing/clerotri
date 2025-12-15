@@ -157,7 +157,7 @@ export const ServerInfoSheet = observer(({server}: {server: Server | null}) => {
                   icon={{
                     pack: 'regular',
                     name: 'flag',
-                    colour: currentTheme.error,
+                    colour: 'error',
                   }}
                   textString={'Report Server'}
                   textColour={currentTheme.error}
@@ -171,7 +171,7 @@ export const ServerInfoSheet = observer(({server}: {server: Server | null}) => {
                   icon={{
                     pack: 'regular',
                     name: 'exit-to-app',
-                    colour: currentTheme.error,
+                    colour: 'error',
                   }}
                   textString={'Leave Server'}
                   textColour={currentTheme.error}
