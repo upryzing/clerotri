@@ -7,15 +7,25 @@ import {
 } from 'react-native';
 import {StyleSheet} from 'react-native-unistyles';
 
+import {Text as NewText} from './NewText';
 import {commonValues} from '@clerotri/lib/themes';
+import {ThemeColour} from '@clerotri/lib/types';
 
-type FullTextProps = TextProps & {
+type CommonTextProps = TextProps & {
   font?: 'JetBrains Mono' | 'Inter' | 'Open Sans';
-  colour?: ColorValue;
+  customColour?: ColorValue;
   type?: 'h1' | 'h2' | 'profile';
 };
 
-export const Text = ({style, ...props}: FullTextProps) => {
+type LegacyTextProps = CommonTextProps & {
+  colour?: ColorValue;
+};
+
+type NewTextProps = CommonTextProps & {
+  colour?: ThemeColour;
+};
+
+export const LegacyText = ({style, ...props}: LegacyTextProps) => {
   const styleArray: StyleProp<TextStyle> = [localStyles.base];
 
   if (props.type) {
@@ -36,6 +46,10 @@ export const Text = ({style, ...props}: FullTextProps) => {
 
   if (props.colour) {
     styleArray.push({color: props.colour});
+  }
+
+  if (props.customColour) {
+    styleArray.push({color: props.customColour});
   }
 
   if (props.font) {
@@ -72,3 +86,13 @@ const localStyles = StyleSheet.create(currentTheme => ({
     textTransform: 'uppercase',
   },
 }));
+
+export const Text = ({
+  useNewText,
+  ...props
+}:
+  | (NewTextProps & {useNewText: true})
+  | (LegacyTextProps & {useNewText?: false})) => {
+  // @ts-expect-error this is going away soon enoughso meh
+  return useNewText ? <NewText {...props} /> : <LegacyText {...props} />;
+};
