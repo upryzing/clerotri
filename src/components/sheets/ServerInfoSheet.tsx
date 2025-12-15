@@ -104,13 +104,15 @@ export const ServerInfoSheet = observer(({server}: {server: Server | null}) => {
                 }}
               />
               <Text
-                colour={currentTheme.foregroundSecondary}
+                useNewText
+                colour={'foregroundSecondary'}
                 style={{alignSelf: 'center'}}>
                 {server.discoverable ? 'Public server' : 'Invite-only server'}
               </Text>
             </TouchableOpacity>
             <Text
-              colour={currentTheme.foregroundSecondary}
+              useNewText
+              colour={'foregroundSecondary'}
               style={{
                 marginVertical: commonValues.sizes.small,
               }}>

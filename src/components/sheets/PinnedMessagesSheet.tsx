@@ -1,17 +1,16 @@
-import {useContext, useEffect, useState} from 'react';
+import {useEffect, useState} from 'react';
 import {View} from 'react-native';
+import {StyleSheet} from 'react-native-unistyles';
 import {observer} from 'mobx-react-lite';
 
 import type {Channel, Message as RevoltMessage} from 'revolt.js';
 
 import {Text} from '@clerotri/components/common/atoms';
 import {Message} from '@clerotri/components/common/messaging';
-import {commonValues, ThemeContext} from '@clerotri/lib/themes';
+import {commonValues} from '@clerotri/lib/themes';
 
 export const PinnedMessagesSheet = observer(
   ({channel}: {channel: Channel | null}) => {
-    const {currentTheme} = useContext(ThemeContext);
-
     const [pinnedMessages, setPinnedMessages] = useState([] as RevoltMessage[]);
 
     useEffect(() => {
@@ -34,7 +33,8 @@ export const PinnedMessagesSheet = observer(
             <View style={{justifyContent: 'center'}}>
               <Text type={'h1'}>Pinned messages</Text>
               <Text
-                colour={currentTheme.foregroundSecondary}
+                useNewText
+                colour={'foregroundSecondary'}
                 style={{
                   marginVertical: commonValues.sizes.small,
                 }}>
@@ -48,12 +48,8 @@ export const PinnedMessagesSheet = observer(
                 pinnedMessages.map(message => {
                   return (
                     <View
-                      style={{
-                        backgroundColor: currentTheme.backgroundPrimary,
-                        padding: commonValues.sizes.medium,
-                        borderRadius: commonValues.sizes.medium,
-                        marginBlockEnd: commonValues.sizes.xl,
-                      }}>
+                      key={message._id}
+                      style={localStyles.messageContainer}>
                       <Message
                         key={message._id}
                         message={message}
@@ -70,3 +66,12 @@ export const PinnedMessagesSheet = observer(
     );
   },
 );
+
+const localStyles = StyleSheet.create(currentTheme => ({
+  messageContainer: {
+    backgroundColor: currentTheme.backgroundPrimary,
+    padding: commonValues.sizes.medium,
+    borderRadius: commonValues.sizes.medium,
+    marginBlockEnd: commonValues.sizes.xl,
+  },
+}));

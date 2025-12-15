@@ -104,7 +104,7 @@ const RoleSettings = observer(
       <>
         <Text
           type={'h1'}
-          colour={role.colour ?? currentTheme.foregroundPrimary}>
+          customColour={role.colour ?? currentTheme.foregroundPrimary}>
           {role.name}
         </Text>
         <Text colour={currentTheme.foregroundSecondary}>{roleID}</Text>

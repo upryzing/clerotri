@@ -1,4 +1,3 @@
-import {useContext} from 'react';
 import {Pressable, type ViewStyle} from 'react-native';
 import {useTranslation} from 'react-i18next';
 
@@ -7,7 +6,6 @@ import {
   MaterialCommunityIcon,
   MaterialIcon,
 } from '@clerotri/components/common/icons';
-import {ThemeContext} from '@clerotri/lib/themes';
 
 export function BackButton({
   callback,
@@ -22,8 +20,6 @@ export function BackButton({
   label?: string;
   style?: ViewStyle;
 }) {
-  const {currentTheme} = useContext(ThemeContext);
-
   const {t} = useTranslation();
   return (
     <Pressable
@@ -50,7 +46,8 @@ export function BackButton({
         />
       )}
       <Text
-        colour={currentTheme.foregroundSecondary}
+        useNewText
+        colour={'foregroundSecondary'}
         style={{
           fontSize: 20,
           marginLeft: 5,

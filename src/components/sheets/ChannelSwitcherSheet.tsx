@@ -16,7 +16,7 @@ import {ChannelIcon} from '@clerotri/components/navigation/ChannelIcon';
 import {ServerList} from '@clerotri/components/navigation/ServerList';
 import {client} from '@clerotri/lib/client';
 import {ChannelContext, ServerContext} from '@clerotri/lib/state';
-import {commonValues, ThemeContext} from '@clerotri/lib/themes';
+import {commonValues} from '@clerotri/lib/themes';
 import {useBackHandler} from '@clerotri/lib/ui';
 
 const getChannelCategory = (channel: Channel) => {
@@ -35,7 +35,6 @@ const getChannelCategory = (channel: Channel) => {
 
 const SwitcherChannelButton = observer(
   ({channel, showServerName}: {channel: Channel; showServerName?: boolean}) => {
-    const {currentTheme} = useContext(ThemeContext);
     const {setCurrentChannel} = useContext(ChannelContext);
 
     const [isBeingPressed, setIsBeingPressed] = useState(false);
@@ -53,16 +52,7 @@ const SwitcherChannelButton = observer(
             app.openServer(channel.server);
             app.openChannelSwitcher(false);
           }}
-          style={{
-            flexDirection: 'row',
-            backgroundColor: isBeingPressed
-              ? currentTheme.hover
-              : currentTheme.backgroundPrimary,
-            padding: commonValues.sizes.medium,
-            borderRadius: commonValues.sizes.medium,
-            marginBlockEnd: commonValues.sizes.medium,
-            justifyContent: 'space-between',
-          }}>
+          style={[localStyles.channelButton, isBeingPressed && localStyles.pressedChannelButton]}>
           <View
             style={{
               flex: 1,
@@ -79,10 +69,11 @@ const SwitcherChannelButton = observer(
                 flexWrap: 'wrap',
               }}>
               <Text
+                useNewText
                 colour={
                   channel.unread
-                    ? currentTheme.foregroundPrimary
-                    : currentTheme.foregroundSecondary
+                    ? 'foregroundPrimary'
+                    : 'foregroundSecondary'
                 }
                 style={{
                   fontWeight: 'bold',
@@ -92,7 +83,7 @@ const SwitcherChannelButton = observer(
                   channel.recipient?.username ??
                   ''}{' '}
               </Text>
-              <Text colour={currentTheme.foregroundSecondary}>
+              <Text useNewText colour={'foregroundSecondary'}>
                 {channelCategory?.title ||
                   (channel.channel_type === 'Group'
                     ? `${channel.recipients?.length} ${channel.recipients?.length === 1 ? 'member' : 'members'}`
@@ -108,24 +99,12 @@ const SwitcherChannelButton = observer(
           <View style={{flexDirection: 'row', alignItems: 'center'}}>
             {channel.mentions.length > 0 ? (
               <View
-                style={{
-                  width: commonValues.sizes.xl,
-                  height: commonValues.sizes.xl,
-                  borderRadius: 10000,
-                  outlineWidth: commonValues.sizes.small,
-                  outlineOffset: -commonValues.sizes.small,
-                  outlineColor: currentTheme.error,
-                }}
+                style={localStyles.mentionIndicator}
               />
             ) : (
               channel.unread && (
                 <View
-                  style={{
-                    width: commonValues.sizes.xl,
-                    height: commonValues.sizes.xl,
-                    borderRadius: 10000,
-                    backgroundColor: currentTheme.foregroundPrimary,
-                  }}
+                  style={localStyles.unreadIndicator}
                 />
               )
             )}
@@ -311,4 +290,25 @@ const localStyles = StyleSheet.create(currentTheme => ({
     backgroundColor: currentTheme.background,
     marginBlockEnd: commonValues.sizes.large,
   },
+  channelButton: {
+    flexDirection: 'row',
+            backgroundColor: currentTheme.backgroundPrimary,
+            padding: commonValues.sizes.medium,
+            borderRadius: commonValues.sizes.medium,
+            marginBlockEnd: commonValues.sizes.medium,
+            justifyContent: 'space-between',
+  },
+  pressedChannelButton: {
+    backgroundColor: currentTheme.hover,
+  },
+  mentionIndicator: {width: commonValues.sizes.xl,
+                  height: commonValues.sizes.xl,
+                  borderRadius: 10000,
+                  outlineWidth: commonValues.sizes.small,
+                  outlineOffset: -commonValues.sizes.small,
+                  outlineColor: currentTheme.error,},
+  unreadIndicator: {width: commonValues.sizes.xl,
+                    height: commonValues.sizes.xl,
+                    borderRadius: 10000,
+                    backgroundColor: currentTheme.foregroundPrimary,},
 }));

@@ -282,7 +282,7 @@ export class Messages extends ReactComponent {
   render() {
     if (this.state.error) {
       return (
-        <Text colour={'#ff6666'}>
+        <Text customColour={'#ff6666'}>
           Error rendering message: {this.state.error.message}
         </Text>
       );

@@ -1,5 +1,6 @@
 import {useContext} from 'react';
 import {View} from 'react-native';
+import {StyleSheet} from 'react-native-unistyles';
 import {observer} from 'mobx-react-lite';
 
 import type {Server, User} from 'revolt.js';
@@ -39,7 +40,7 @@ const UsernameCore = observer(
   ({user, size, name, colour, skipDisplayName}: UsernameCoreProps) => {
     return (
       <Text
-        colour={colour}
+        customColour={colour}
         style={{
           fontWeight: 'bold',
           fontSize: size,
@@ -54,34 +55,25 @@ const UsernameCore = observer(
 
 const UsernameBadge = observer(
   ({user, size, masquerade}: UsernameBadgeProps) => {
-    const {currentTheme} = useContext(ThemeContext);
-
     const badgeSize = (size || 14) * 0.6;
 
     const bridgedMessage =
       user._id === USER_IDS.automod && masquerade !== undefined;
 
-    const badgeStyle = {
-      color: currentTheme.accentColorForeground,
-      backgroundColor: currentTheme.accentColor,
-      marginInlineStart: badgeSize * 0.4,
-      paddingHorizontal: badgeSize * 0.4,
-      alignSelf: 'center' as const,
-      borderRadius: 2,
-      fontSize: badgeSize,
-      top: badgeSize * 0.1,
-    };
-
     return (
       <>
         {bridgedMessage ? (
-          <Text style={badgeStyle}>BRIDGE</Text>
+          <Text style={localStyles.badge(badgeSize)}>BRIDGE</Text>
         ) : (
           <>
-            {user?.bot ? <Text style={badgeStyle}>BOT</Text> : null}
-            {masquerade ? <Text style={badgeStyle}>MASQ.</Text> : null}
+            {user?.bot ? (
+              <Text style={localStyles.badge(badgeSize)}>BOT</Text>
+            ) : null}
+            {masquerade ? (
+              <Text style={localStyles.badge(badgeSize)}>MASQ.</Text>
+            ) : null}
             {user?._id === USER_IDS.platformModeration ? (
-              <Text style={badgeStyle}>SYSTEM</Text>
+              <Text style={localStyles.badge(badgeSize)}>SYSTEM</Text>
             ) : null}
           </>
         )}
@@ -155,3 +147,16 @@ export const Username = observer(
     );
   },
 );
+
+const localStyles = StyleSheet.create(currentTheme => ({
+  badge: (badgeSize: number) => ({
+    color: currentTheme.accentColorForeground,
+    backgroundColor: currentTheme.accentColor,
+    marginInlineStart: badgeSize * 0.4,
+    paddingHorizontal: badgeSize * 0.4,
+    alignSelf: 'center' as const,
+    borderRadius: 2,
+    fontSize: badgeSize,
+    top: badgeSize * 0.1,
+  }),
+}));

@@ -1,4 +1,4 @@
-import {Fragment, useContext} from 'react';
+import {Fragment} from 'react';
 import {TouchableOpacity, View} from 'react-native';
 import {StyleSheet} from 'react-native-unistyles';
 import {useTranslation} from 'react-i18next';
@@ -6,7 +6,7 @@ import {useMMKVString} from 'react-native-mmkv';
 
 import {languages} from '@clerotri-i18n/languages';
 import {styles} from '@clerotri/Theme';
-import {commonValues, ThemeContext} from '@clerotri/lib/themes';
+import {commonValues} from '@clerotri/lib/themes';
 import {Setting} from '@clerotri/lib/types';
 import {Text} from '@clerotri/components/common/atoms';
 import {MaterialIcon} from '@clerotri/components/common/icons';
@@ -14,8 +14,6 @@ import {IndicatorIcons} from './IndicatorIcons';
 import {LineSeparator} from '@clerotri/components/layout';
 
 export const OptionSetting = ({sRaw}: {sRaw: Setting}) => {
-  const {currentTheme} = useContext(ThemeContext);
-
   const {t} = useTranslation();
 
   const [value = sRaw.default, setValue] = useMMKVString(sRaw.key);
@@ -32,7 +30,8 @@ export const OptionSetting = ({sRaw}: {sRaw: Setting}) => {
       </Text>
       {sRaw.remark ? (
         <Text
-          colour={currentTheme.foregroundSecondary}
+          useNewText
+          colour={'foregroundSecondary'}
           style={{marginBottom: commonValues.sizes.medium}}>
           {t(`app.settings.${sRaw.key}_remark`)}
         </Text>
@@ -60,7 +59,7 @@ export const OptionSetting = ({sRaw}: {sRaw: Setting}) => {
                     <Text style={{fontWeight: 'bold'}}>
                       {languages[o].name}
                     </Text>
-                    <Text colour={currentTheme.foregroundSecondary}>
+                    <Text useNewText colour={'foregroundSecondary'}>
                       {languages[o].englishName}
                     </Text>
                   </View>
