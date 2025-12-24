@@ -1,17 +1,13 @@
-import {useContext} from 'react';
-import {Pressable, View} from 'react-native';
+import {ImageBackground, View} from 'react-native';
+import {StyleSheet} from 'react-native-unistyles';
 import {observer} from 'mobx-react-lite';
-
-import {useSafeAreaInsets} from 'react-native-safe-area-context';
 
 import type {API} from 'revolt.js';
 
 import {app} from '@clerotri/Generic';
 import {client} from '@clerotri/lib/client';
 import {Button, GeneralAvatar, Text} from '@clerotri/components/common/atoms';
-import {MaterialCommunityIcon} from '@clerotri/components/common/icons';
-import {Image} from '@clerotri/crossplat/Image';
-import {commonValues, ThemeContext} from '@clerotri/lib/themes';
+import {commonValues} from '@clerotri/lib/themes';
 
 export const ServerInviteSheet = observer(
   ({
@@ -23,122 +19,105 @@ export const ServerInviteSheet = observer(
     server: API.InviteResponse;
     inviteCode: string;
   }) => {
-    const insets = useSafeAreaInsets();
-
-    const {currentTheme} = useContext(ThemeContext);
-
     return (
-      <View
-        style={{
-          flex: 1,
-          paddingTop: insets.top,
-          backgroundColor: currentTheme.backgroundPrimary,
-        }}>
-        <Pressable
-          style={{
-            flexDirection: 'row',
-            alignItems: 'center',
-            margin: 15,
-          }}
-          onPress={() => {
-            setState();
-          }}>
-          <MaterialCommunityIcon
-            name="close-circle"
-            size={24}
-            color={'foregroundSecondary'}
-          />
-          <Text
-            colour={currentTheme.foregroundSecondary}
-            style={{
-              fontSize: 20,
-              marginLeft: 5,
-            }}>
-            Close
-          </Text>
-        </Pressable>
-        <View style={{flex: 1, alignItems: 'center', justifyContent: 'center'}}>
+      <View style={localStyles.container}>
+        <ImageBackground
+          src={
+            server.type === 'Server' && server?.server_banner
+              ? client.generateFileURL(server.server_banner)
+              : ''
+          }
+          style={localStyles.banner}>
           {server?.type === 'Server' ? (
-            <>
-              {server.server_banner ? (
-                <Image
-                  source={
-                    server.server_banner
-                      ? {
-                          uri: client.generateFileURL(server.server_banner),
-                        }
-                      : {}
-                  }
-                  style={{width: '100%', height: '100%'}}
-                />
-              ) : null}
-              <View
-                style={{
-                  height: '100%',
-                  width: '100%',
-                  position: 'absolute',
-                  top: 0,
-                  left: 0,
-                  alignItems: 'center',
-                  justifyContent: 'center',
-                }}>
+            <View
+              style={{
+                position: 'absolute',
+                height: '100%',
+                width: '100%',
+                top: 0,
+                left: 0,
+                flex: 1,
+                justifyContent: 'center',
+              }}>
+              <View style={[localStyles.infoBox]}>
                 <View
                   style={{
-                    padding: 10,
-                    borderRadius: commonValues.sizes.medium,
-                    maxWidth: '80%',
-                    backgroundColor: currentTheme.backgroundPrimary + 'dd',
-                    justifyContent: 'center',
                     alignItems: 'center',
+                    flexDirection: 'row',
+                    marginBlockEnd: commonValues.sizes.xl,
                   }}>
-                  <View style={{alignItems: 'center', flexDirection: 'row'}}>
-                    <GeneralAvatar
-                      attachment={server.server_icon?._id}
-                      size={60}
-                      directory={'/icons/'}
-                    />
-                    <View style={{marginLeft: 10}} />
-                    <View style={{flexDirection: 'row'}}>
-                      <Text
-                        style={{
-                          fontWeight: 'bold',
-                          fontSize: 26,
-                          flexWrap: 'wrap',
-                        }}>
-                        {server?.server_name}
-                      </Text>
-                    </View>
-                  </View>
-                  <Text
-                    colour={currentTheme.foregroundSecondary}
+                  <GeneralAvatar
+                    attachment={server.server_icon?._id}
+                    size={60}
+                    directory={'/icons/'}
+                  />
+                  <View
                     style={{
-                      marginVertical: commonValues.sizes.small,
+                      marginStart: commonValues.sizes.large,
                     }}>
-                    {server?.member_count}{' '}
-                    {server?.member_count === 1 ? 'member' : 'members'}
-                  </Text>
-                  <Button
-                    onPress={async () => {
-                      !client.servers.get(server?.server_id) &&
-                        (await client.joinInvite(inviteCode));
-                      app.openServer(client.servers.get(server?.server_id));
-                      app.openLeftMenu(true);
-                      setState();
-                    }}>
-                    <Text>
-                      {client.servers.get(server?.server_id)
-                        ? 'Go to Server'
-                        : 'Join Server'}
+                    <Text
+                      style={{
+                        fontWeight: 'bold',
+                        fontSize: 26,
+                        flexWrap: 'wrap',
+                      }}>
+                      {server?.server_name}
                     </Text>
-                  </Button>
+                    <Text useNewText colour={'foregroundSecondary'} style={{}}>
+                      {server?.member_count}{' '}
+                      {server?.member_count === 1 ? 'member' : 'members'}
+                    </Text>
+                  </View>
                 </View>
+                <Button
+                  onPress={async () => {
+                    !client.servers.get(server?.server_id) &&
+                      (await client.joinInvite(inviteCode));
+                    app.openServer(client.servers.get(server?.server_id));
+                    app.openLeftMenu(true);
+                    setState();
+                  }}
+                  style={localStyles.button}>
+                  <Text useNewText>
+                    {client.servers.get(server?.server_id)
+                      ? 'Go to Server'
+                      : 'Join Server'}
+                  </Text>
+                </Button>
+                <Button
+                  onPress={() => setState()}
+                  style={localStyles.button}>
+                  <Text>Back</Text>
+                </Button>
               </View>
-            </>
+            </View>
           ) : (
             <Text>{server?.toString()}</Text>
           )}
-        </View>
+        </ImageBackground>
       </View>
     );
   },
 );
+
+const localStyles = StyleSheet.create(currentTheme => ({
+  container: {
+    flex: 1,
+    backgroundColor: currentTheme.backgroundPrimary,
+  },
+  banner: {
+    flex: 1,
+  },
+  button: {
+    width: '90%',
+  },
+  infoBox: {
+    alignSelf: 'center',
+    backgroundColor: currentTheme.backgroundSecondary + 'dd',
+    padding: commonValues.sizes.xl,
+    borderRadius: commonValues.sizes.medium,
+    width: '80%',
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+}));
