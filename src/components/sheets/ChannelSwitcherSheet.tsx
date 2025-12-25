@@ -52,7 +52,10 @@ const SwitcherChannelButton = observer(
             app.openServer(channel.server);
             app.openChannelSwitcher(false);
           }}
-          style={[localStyles.channelButton, isBeingPressed && localStyles.pressedChannelButton]}>
+          style={[
+            localStyles.channelButton,
+            isBeingPressed && localStyles.pressedChannelButton,
+          ]}>
           <View
             style={{
               flex: 1,
@@ -71,9 +74,7 @@ const SwitcherChannelButton = observer(
               <Text
                 useNewText
                 colour={
-                  channel.unread
-                    ? 'foregroundPrimary'
-                    : 'foregroundSecondary'
+                  channel.unread ? 'foregroundPrimary' : 'foregroundSecondary'
                 }
                 style={{
                   fontWeight: 'bold',
@@ -98,15 +99,9 @@ const SwitcherChannelButton = observer(
           </View>
           <View style={{flexDirection: 'row', alignItems: 'center'}}>
             {channel.mentions.length > 0 ? (
-              <View
-                style={localStyles.mentionIndicator}
-              />
+              <View style={localStyles.mentionIndicator} />
             ) : (
-              channel.unread && (
-                <View
-                  style={localStyles.unreadIndicator}
-                />
-              )
+              channel.unread && <View style={localStyles.unreadIndicator} />
             )}
           </View>
         </Pressable>
@@ -292,23 +287,27 @@ const localStyles = StyleSheet.create(currentTheme => ({
   },
   channelButton: {
     flexDirection: 'row',
-            backgroundColor: currentTheme.backgroundPrimary,
-            padding: commonValues.sizes.medium,
-            borderRadius: commonValues.sizes.medium,
-            marginBlockEnd: commonValues.sizes.medium,
-            justifyContent: 'space-between',
+    backgroundColor: currentTheme.backgroundPrimary,
+    padding: commonValues.sizes.medium,
+    borderRadius: commonValues.sizes.medium,
+    marginBlockEnd: commonValues.sizes.medium,
+    justifyContent: 'space-between',
   },
   pressedChannelButton: {
     backgroundColor: currentTheme.hover,
   },
-  mentionIndicator: {width: commonValues.sizes.xl,
-                  height: commonValues.sizes.xl,
-                  borderRadius: 10000,
-                  outlineWidth: commonValues.sizes.small,
-                  outlineOffset: -commonValues.sizes.small,
-                  outlineColor: currentTheme.error,},
-  unreadIndicator: {width: commonValues.sizes.xl,
-                    height: commonValues.sizes.xl,
-                    borderRadius: 10000,
-                    backgroundColor: currentTheme.foregroundPrimary,},
+  mentionIndicator: {
+    width: commonValues.sizes.xl,
+    height: commonValues.sizes.xl,
+    borderRadius: 10000,
+    outlineWidth: commonValues.sizes.small,
+    outlineOffset: -commonValues.sizes.small,
+    outlineColor: currentTheme.error,
+  },
+  unreadIndicator: {
+    width: commonValues.sizes.xl,
+    height: commonValues.sizes.xl,
+    borderRadius: 10000,
+    backgroundColor: currentTheme.foregroundPrimary,
+  },
 }));

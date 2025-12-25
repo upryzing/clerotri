@@ -84,9 +84,7 @@ export const ServerInviteSheet = observer(
                       : 'Join Server'}
                   </Text>
                 </Button>
-                <Button
-                  onPress={() => setState()}
-                  style={localStyles.button}>
+                <Button onPress={() => setState()} style={localStyles.button}>
                   <Text>Back</Text>
                 </Button>
               </View>
