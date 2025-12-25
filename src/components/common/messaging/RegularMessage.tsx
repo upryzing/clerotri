@@ -1,4 +1,3 @@
-import {useContext} from 'react';
 import {Dimensions, Pressable, TouchableOpacity, View} from 'react-native';
 import {StyleSheet} from 'react-native-unistyles';
 import {observer} from 'mobx-react-lite';
@@ -18,7 +17,7 @@ import {MessageReactions} from '@clerotri/components/common/messaging/MessageRea
 import {ReplyMessage} from '@clerotri/components/common/messaging/ReplyMessage';
 import {Image} from '@clerotri/crossplat/Image';
 import {RE_INVITE} from '@clerotri/lib/consts';
-import {commonValues, ThemeContext} from '@clerotri/lib/themes';
+import {commonValues} from '@clerotri/lib/themes';
 import {MessageProps} from '@clerotri/lib/types';
 import {
   getReadableFileSize,
@@ -27,8 +26,6 @@ import {
 } from '@clerotri/lib/utils';
 
 export const RegularMessage = observer((props: MessageProps) => {
-  const {currentTheme} = useContext(ThemeContext);
-
   const locale = settings.get('ui.messaging.use24H') ? enGB : enUS;
   const mentionsUser = props.message.mention_ids?.includes(client.user?._id!);
 
@@ -165,7 +162,6 @@ export const RegularMessage = observer((props: MessageProps) => {
           {props.grouped && props.message.edited ? (
             <Text
               key={`message-${props.message._id}-edited`}
-              colour={currentTheme.foregroundTertiary}
               style={[
                 localStyles.editIndicator,
                 {

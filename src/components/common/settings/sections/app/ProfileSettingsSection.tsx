@@ -1,4 +1,3 @@
-import {useContext} from 'react';
 import {Pressable, View} from 'react-native';
 import {useTranslation} from 'react-i18next';
 import {observer} from 'mobx-react-lite';
@@ -15,11 +14,9 @@ import {
   PressableSettingsEntry,
   SettingsEntry,
 } from '@clerotri/components/common/settings/atoms';
-import {commonValues, ThemeContext} from '@clerotri/lib/themes';
+import {commonValues} from '@clerotri/lib/themes';
 
 export const ProfileSettingsSection = observer(() => {
-  const {currentTheme} = useContext(ThemeContext);
-
   const {t} = useTranslation();
 
   return (
@@ -33,11 +30,12 @@ export const ProfileSettingsSection = observer(() => {
             {t('app.settings_menu.profile.display_name')}
           </Text>
           <Text
+            useNewText
             key={'display-name'}
             colour={
               client.user?.display_name
-                ? currentTheme.foregroundPrimary
-                : currentTheme.foregroundSecondary
+                ? 'foregroundPrimary'
+                : 'foregroundSecondary'
             }>
             {client.user?.display_name ?? 'No display name set'}
           </Text>

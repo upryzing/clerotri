@@ -1,4 +1,4 @@
-import {Pressable, type ViewStyle} from 'react-native';
+import {Pressable, StyleProp, type ViewStyle} from 'react-native';
 import {useTranslation} from 'react-i18next';
 
 import {Text} from './Text';
@@ -18,17 +18,19 @@ export function BackButton({
   type?: 'back' | 'close';
   margin?: boolean;
   label?: string;
-  style?: ViewStyle;
+  style?: StyleProp<ViewStyle>;
 }) {
   const {t} = useTranslation();
   return (
     <Pressable
-      style={{
-        flexDirection: 'row',
-        alignItems: 'center',
-        marginBottom: margin ? 10 : 0,
-        ...style,
-      }}
+      style={[
+        {
+          flexDirection: 'row',
+          alignItems: 'center',
+          marginBottom: margin ? 10 : 0,
+        },
+        style,
+      ]}
       onPress={() => {
         callback();
       }}>

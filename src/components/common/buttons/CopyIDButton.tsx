@@ -1,10 +1,7 @@
-import {useContext} from 'react';
-
 import Clipboard from '@react-native-clipboard/clipboard';
 
 import {Text} from '@clerotri/components/common/atoms/Text';
 import {NewContextButton} from '@clerotri/components/common/buttons/NewContextButton';
-import {ThemeContext} from '@clerotri/lib/themes';
 import type {ContextButtonProps} from '@clerotri/lib/types';
 
 export type CopyIDButtonProps = ContextButtonProps & {
@@ -15,8 +12,6 @@ export type CopyIDButtonProps = ContextButtonProps & {
 };
 
 export const CopyIDButton = ({itemID, ...props}: CopyIDButtonProps) => {
-  const {currentTheme} = useContext(ThemeContext);
-
   return (
     <NewContextButton
       key={`copy-id-button-${itemID}`}
@@ -27,7 +22,9 @@ export const CopyIDButton = ({itemID, ...props}: CopyIDButtonProps) => {
       {...props}>
       <Text>
         Copy ID{' '}
-        <Text colour={currentTheme.foregroundSecondary}>({itemID})</Text>
+        <Text useNewText colour={'foregroundSecondary'}>
+          ({itemID})
+        </Text>
       </Text>
     </NewContextButton>
   );

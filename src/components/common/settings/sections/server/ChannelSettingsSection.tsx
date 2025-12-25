@@ -32,8 +32,6 @@ const ChannelSettingsChannelList = observer(
     setSection: Function;
     setChannel: Function;
   }) => {
-    const {currentTheme} = useContext(ThemeContext);
-
     const {t} = useTranslation();
 
     return (
@@ -80,7 +78,7 @@ const ChannelSettingsChannelList = observer(
                   {cat.id === 'default' ? 'Uncategorised' : cat.title}
                 </Text>
                 {cat.id !== 'default' ? (
-                  <Text colour={currentTheme.foregroundSecondary}>
+                  <Text useNewText colour={'foregroundSecondary'}>
                     {cat.id}
                   </Text>
                 ) : null}
@@ -143,7 +141,7 @@ const ChannelSettingsChannelList = observer(
                       style={{fontWeight: 'bold'}}>
                       #{c.name}
                     </Text>
-                    <Text colour={currentTheme.foregroundSecondary}>
+                    <Text useNewText colour={'foregroundSecondary'}>
                       {c._id}
                     </Text>
                   </View>
@@ -177,7 +175,9 @@ const ChannelSettings = observer(
     return (
       <>
         <Text type={'h1'}>{channel.name}</Text>
-        <Text colour={currentTheme.foregroundSecondary}>{channel._id}</Text>
+        <Text useNewText colour={'foregroundSecondary'}>
+          {channel._id}
+        </Text>
         <GapView size={2} />
         <Text type={'h2'}>{t('app.servers.settings.channels.name')}</Text>
         <InputWithButtonV2
@@ -208,12 +208,15 @@ const ChannelSettings = observer(
             <View style={{flex: 1}}>
               <View>
                 <Text
+                  useNewText
                   key={`channel-settings-entry-${r.id}-name`}
-                  colour={r.colour ?? currentTheme.foregroundPrimary}
+                  customColour={r.colour ?? undefined}
                   style={{fontWeight: 'bold'}}>
                   {r.name}
                 </Text>
-                <Text colour={currentTheme.foregroundSecondary}>{r.id}</Text>
+                <Text useNewText colour={'foregroundSecondary'}>
+                  {r.id}
+                </Text>
               </View>
             </View>
             <View>

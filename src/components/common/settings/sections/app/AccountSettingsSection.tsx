@@ -1,4 +1,4 @@
-import {useContext, useEffect, useState} from 'react';
+import {useEffect, useState} from 'react';
 import {Pressable, View} from 'react-native';
 import {observer} from 'mobx-react-lite';
 
@@ -10,11 +10,8 @@ import {Text} from '@clerotri/components/common/atoms';
 import {MaterialIcon} from '@clerotri/components/common/icons';
 import {GapView} from '@clerotri/components/layout';
 import {SettingsEntry} from '@clerotri/components/common/settings/atoms';
-import {ThemeContext} from '@clerotri/lib/themes';
 
 export const AccountSettingsSection = observer(() => {
-  const {currentTheme} = useContext(ThemeContext);
-
   const [authInfo, setAuthInfo] = useState({
     email: '',
     mfaEnabled: false,
@@ -43,7 +40,7 @@ export const AccountSettingsSection = observer(() => {
           </Text>
           <Text key={'username'}>
             {client.user?.username}
-            <Text colour={currentTheme.foregroundSecondary}>
+            <Text useNewText colour={'foregroundSecondary'}>
               #{client.user?.discriminator}
             </Text>
           </Text>
@@ -137,10 +134,7 @@ export const AccountSettingsSection = observer(() => {
       </SettingsEntry>
       <GapView size={4} />
       <Text type={'h1'}>Multi-factor authentication</Text>
-      <Text
-        style={{
-          color: currentTheme.foregroundSecondary,
-        }}>
+      <Text useNewText colour={'foregroundSecondary'}>
         Make your account more secure by enabling multi-factor authentication
         (MFA).
       </Text>

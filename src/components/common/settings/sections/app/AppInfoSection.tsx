@@ -1,5 +1,5 @@
-import {useContext} from 'react';
 import {Pressable, View} from 'react-native';
+import {StyleSheet} from 'react-native-unistyles';
 
 import {settings} from '@clerotri/lib/settings';
 import {
@@ -13,7 +13,7 @@ import {
   REACT_NATIVE_VERSION,
   REVOLT_JS_VERSION,
 } from '@clerotri/lib/metadata';
-import {commonValues, ThemeContext} from '@clerotri/lib/themes';
+import {commonValues} from '@clerotri/lib/themes';
 import {openUrl} from '@clerotri/lib/utils';
 import {Button, Link, Text} from '@clerotri/components/common/atoms';
 import {MaterialCommunityIcon} from '@clerotri/components/common/icons';
@@ -24,8 +24,6 @@ import {
 } from '@clerotri/components/common/settings/sections/app/AppInfoDecorations';
 
 export const AppInfoSection = () => {
-  const {currentTheme} = useContext(ThemeContext);
-
   return (
     <View
       style={{
@@ -37,24 +35,15 @@ export const AppInfoSection = () => {
         <AppIcon height={250} width={250} />
       </View>
       <View style={{alignItems: 'center', marginVertical: 16}}>
-        <View
-          style={[
-            {
-              borderRadius: commonValues.sizes.medium,
-              paddingInline: commonValues.sizes.medium,
-              paddingBlockStart: commonValues.sizes.small,
-              marginBlockEnd: commonValues.sizes.small,
-            },
-            GradientStyle,
-          ]}>
+        <View style={[localStyles.versionBox, GradientStyle]}>
           <Text type={'h1'}>
             Clerotri{' '}
-            <Text colour={currentTheme.foregroundSecondary}>
+            <Text useNewText colour={'foregroundSecondary'}>
               {isDebug ? 'Debug ' : ''}v{APP_VERSION}
             </Text>
           </Text>
         </View>
-        <Text colour={currentTheme.foregroundSecondary}>
+        <Text useNewText colour={'foregroundSecondary'}>
           commit{' '}
           <Link
             link={`${GITHUB_REPO}/commit/${BUILD_COMMIT}`}
@@ -99,15 +88,11 @@ export const AppInfoSection = () => {
       </View>
       <View style={{flexDirection: 'row'}}>
         <Button
-          style={{
-            backgroundColor: currentTheme.backgroundSecondary,
-            flex: 1,
-            margin: 0,
-          }}
+          style={localStyles.resetButton}
           onPress={() => {
             settings.clear();
           }}>
-          <Text colour={currentTheme.error} style={{fontWeight: 'bold'}}>
+          <Text useNewText colour={'error'} style={{fontWeight: 'bold'}}>
             Reset Settings
           </Text>
         </Button>
@@ -115,3 +100,17 @@ export const AppInfoSection = () => {
     </View>
   );
 };
+
+const localStyles = StyleSheet.create(currentTheme => ({
+  versionBox: {
+    borderRadius: commonValues.sizes.medium,
+    paddingInline: commonValues.sizes.medium,
+    paddingBlockStart: commonValues.sizes.small,
+    marginBlockEnd: commonValues.sizes.small,
+  },
+  resetButton: {
+    backgroundColor: currentTheme.backgroundSecondary,
+    flex: 1,
+    margin: 0,
+  },
+}));

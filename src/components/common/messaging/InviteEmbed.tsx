@@ -1,4 +1,4 @@
-import {useContext, useEffect, useState} from 'react';
+import {useEffect, useState} from 'react';
 import {View} from 'react-native';
 import {StyleSheet} from 'react-native-unistyles';
 import {observer} from 'mobx-react-lite';
@@ -8,7 +8,7 @@ import type {API, Message} from 'revolt.js';
 import {app} from '@clerotri/Generic';
 import {client} from '@clerotri/lib/client';
 import {Button, GeneralAvatar, Text} from '../atoms';
-import {commonValues, ThemeContext} from '@clerotri/lib/themes';
+import {commonValues} from '@clerotri/lib/themes';
 
 const localStyles = StyleSheet.create(currentTheme => ({
   background: {
@@ -25,8 +25,6 @@ const InviteBackground = observer(({children}: {children: any}) => {
 
 export const InviteEmbed = observer(
   ({message, invite}: {message: Message; invite: string}) => {
-    const {currentTheme} = useContext(ThemeContext);
-
     const [invObject, setInvObject] = useState({} as API.InviteResponse);
     const [error, setError] = useState('');
 
@@ -57,9 +55,10 @@ export const InviteEmbed = observer(
 
     return error ? (
       <InviteBackground>
-        <Text colour={currentTheme.foregroundSecondary}>
+        <Text useNewText colour={'foregroundSecondary'}>
           <Text
-            colour={currentTheme.foregroundSecondary}
+            useNewText
+            colour={'foregroundSecondary'}
             style={{
               fontWeight: 'bold',
             }}>
@@ -84,9 +83,10 @@ export const InviteEmbed = observer(
       </InviteBackground>
     ) : invObject.type === 'Server' ? (
       <InviteBackground>
-        <Text colour={currentTheme.foregroundSecondary}>
+        <Text useNewText colour={'foregroundSecondary'}>
           <Text
-            colour={currentTheme.foregroundSecondary}
+            useNewText
+            colour={'foregroundSecondary'}
             style={{
               fontWeight: 'bold',
             }}>
@@ -115,7 +115,7 @@ export const InviteEmbed = observer(
             <Text style={{fontWeight: 'bold', fontSize: 18}}>
               {invObject.server_name}
             </Text>
-            <Text colour={currentTheme.foregroundSecondary}>
+            <Text useNewText colour={'foregroundSecondary'}>
               {invObject?.member_count}{' '}
               {invObject?.member_count === 1 ? 'member' : 'members'}
             </Text>

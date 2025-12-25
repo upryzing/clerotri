@@ -46,8 +46,6 @@ const MemberListEntry = observer(
     selectMode: boolean;
     selected: boolean;
   }) => {
-    const {currentTheme} = useContext(ThemeContext);
-
     return (
       <PressableSettingsEntry
         style={{flexDirection: 'column'}}
@@ -57,15 +55,16 @@ const MemberListEntry = observer(
         <View style={{flexDirection: 'row', alignItems: 'center'}}>
           <View style={{flex: 1, flexDirection: 'column'}}>
             <Text
+              useNewText
               key={`member-settings-entry-${item._id.user}-id`}
-              colour={item.roleColour ?? currentTheme.foregroundPrimary}
+              customColour={item.roleColour ?? undefined}
               style={{fontWeight: 'bold'}}>
               {item.nickname ?? item.user?.display_name ?? item.user?.username}
             </Text>
-            <Text colour={currentTheme.foregroundSecondary}>
+            <Text useNewText colour={'foregroundSecondary'}>
               @{item.user?.username}#{item.user?.discriminator}
             </Text>
-            <Text colour={currentTheme.foregroundSecondary}>
+            <Text useNewText colour={'foregroundSecondary'}>
               {item._id.user}
             </Text>
           </View>
@@ -295,11 +294,14 @@ const MemberSettings = observer(
     return (
       <>
         <Text
+          useNewText
           type={'h1'}
-          colour={member.roleColour ?? currentTheme.foregroundPrimary}>
+          customColour={member.roleColour ?? undefined}>
           {displayName}
         </Text>
-        <Text colour={currentTheme.foregroundSecondary}>{member._id.user}</Text>
+        <Text useNewText colour={'foregroundSecondary'}>
+          {member._id.user}
+        </Text>
         <GapView size={8} />
         <Text type={'h2'}>{t('app.servers.settings.members.nickname')}</Text>
         <InputWithButtonV2
@@ -324,12 +326,12 @@ const MemberSettings = observer(
           /* TODO: timeout menu */ false && (
             <PressableSettingsEntry>
               <View>
-                <Text style={{fontWeight: 'bold'}} colour={currentTheme.error}>
+                <Text useNewText style={{fontWeight: 'bold'}} colour={'error'}>
                   {t('app.servers.settings.members.timeout_user', {
                     name: displayName,
                   })}
                 </Text>
-                <Text colour={currentTheme.foregroundSecondary}>
+                <Text useNewText colour={'foregroundSecondary'}>
                   {t('app.servers.settings.members.timeout_user_body')}
                 </Text>
               </View>
@@ -347,12 +349,12 @@ const MemberSettings = observer(
               })
             }>
             <View>
-              <Text style={{fontWeight: 'bold'}} colour={currentTheme.error}>
+              <Text useNewText style={{fontWeight: 'bold'}} colour={'error'}>
                 {t('app.servers.settings.members.kick_user', {
                   name: displayName,
                 })}
               </Text>
-              <Text colour={currentTheme.foregroundSecondary}>
+              <Text useNewText colour={'foregroundSecondary'}>
                 {t('app.servers.settings.members.kick_user_body')}
               </Text>
             </View>
@@ -369,12 +371,12 @@ const MemberSettings = observer(
               })
             }>
             <View>
-              <Text style={{fontWeight: 'bold'}} colour={currentTheme.error}>
+              <Text useNewText style={{fontWeight: 'bold'}} colour={'error'}>
                 {t('app.servers.settings.members.ban_user', {
                   name: displayName,
                 })}
               </Text>
-              <Text colour={currentTheme.foregroundSecondary}>
+              <Text useNewText colour={'foregroundSecondary'}>
                 {t('app.servers.settings.members.ban_user_body')}
               </Text>
             </View>
