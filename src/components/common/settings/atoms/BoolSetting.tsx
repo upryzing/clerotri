@@ -1,4 +1,3 @@
-import {useContext} from 'react';
 import {View} from 'react-native';
 import {useTranslation} from 'react-i18next';
 import {useMMKVBoolean} from 'react-native-mmkv';
@@ -6,11 +5,8 @@ import {useMMKVBoolean} from 'react-native-mmkv';
 import {Setting} from '@clerotri/lib/types';
 import {Checkbox, Text} from '../../atoms';
 import {IndicatorIcons} from './IndicatorIcons';
-import {ThemeContext} from '@clerotri/lib/themes';
 
 export const BoolSetting = ({sRaw}: {sRaw: Setting}) => {
-  const {currentTheme} = useContext(ThemeContext);
-
   const {t} = useTranslation();
 
   const [value = sRaw.default as boolean, setValue] = useMMKVBoolean(sRaw.key);
@@ -29,7 +25,7 @@ export const BoolSetting = ({sRaw}: {sRaw: Setting}) => {
           {t(`app.settings.${sRaw.key}`)}
         </Text>
         {sRaw.remark ? (
-          <Text colour={currentTheme.foregroundSecondary}>
+          <Text useNewText colour={'foregroundSecondary'}>
             {t(`app.settings.${sRaw.key}_remark`)}
           </Text>
         ) : null}

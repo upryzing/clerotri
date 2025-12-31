@@ -1,4 +1,4 @@
-import {useContext, useState} from 'react';
+import {useState} from 'react';
 import {TouchableOpacity, View} from 'react-native';
 import {StyleSheet} from 'react-native-unistyles';
 import {useTranslation} from 'react-i18next';
@@ -7,23 +7,23 @@ import {observer} from 'mobx-react-lite';
 import type {Client} from 'revolt.js';
 
 import {Text} from './common/atoms';
-import {commonValues, ThemeContext} from '@clerotri/lib/themes';
+import {commonValues} from '@clerotri/lib/themes';
 
 export const NetworkIndicator = observer(({client}: {client: Client}) => {
-  const {currentTheme} = useContext(ThemeContext);
-
   const {t} = useTranslation();
 
   const [collapsed, setCollapsed] = useState(false);
+
   if (!client.user?.online && client.user?.status?.presence && !collapsed) {
     return (
       <View style={localStyles.container}>
-        <Text colour={currentTheme.accentColor} style={localStyles.text}>
+        <Text useNewText colour={'accentColor'} style={localStyles.text}>
           {t('app.misc.network_indicator.body')}
         </Text>
         <TouchableOpacity onPress={() => setCollapsed(true)}>
           <Text
-            colour={currentTheme.accentColor}
+            useNewText
+            colour={'accentColor'}
             style={{
               fontSize: 16,
               fontWeight: 'bold',
@@ -34,7 +34,8 @@ export const NetworkIndicator = observer(({client}: {client: Client}) => {
       </View>
     );
   }
-  return <></>;
+
+  return null;
 });
 
 const localStyles = StyleSheet.create((currentTheme, rt) => ({
