@@ -1,4 +1,4 @@
-import {useContext, useState} from 'react';
+import {type Dispatch, type SetStateAction, useContext, useState} from 'react';
 import {Platform, Pressable, View} from 'react-native';
 import {StyleSheet} from 'react-native-unistyles';
 import {useTranslation} from 'react-i18next';
@@ -49,6 +49,66 @@ function placeholderText(channel: Channel) {
   }
 }
 
+const ReplyingMessages = observer(
+  ({
+    replyingMessages,
+    setReplyingMessages,
+    channel,
+  }: {
+    replyingMessages: ReplyingMessage[];
+    setReplyingMessages: Dispatch<SetStateAction<ReplyingMessage[]>>;
+    channel: Channel;
+  }) => {
+    return replyingMessages
+      ? replyingMessages.map((m, i) => (
+          <View key={m.message._id} style={localStyles.messageBoxBar}>
+            <Pressable
+              style={{
+                width: 30,
+                height: 20,
+                alignItems: 'center',
+                justifyContent: 'center',
+              }}
+              onPress={() =>
+                setReplyingMessages(
+                  replyingMessages?.filter(
+                    m2 => m2.message._id !== m.message._id,
+                  ),
+                )
+              }>
+              <View style={styles.iconContainer}>
+                <MaterialCommunityIcon name="close-circle" size={16} />
+              </View>
+            </Pressable>
+            <Pressable
+              style={{
+                width: 45,
+                height: 20,
+                alignItems: 'center',
+                justifyContent: 'center',
+              }}
+              onPress={() => {
+                const replacing = [...replyingMessages];
+                replacing[i].mentions = !replacing[i].mentions;
+                setReplyingMessages(replacing);
+              }}>
+              <Text
+                useNewText
+                colour={m.mentions ? 'accentColor' : undefined}
+                style={{
+                  fontWeight: 'bold',
+                }}>
+                @{m.mentions ? 'ON' : 'OFF'}
+              </Text>
+            </Pressable>
+            <Text> Replying to </Text>
+            <Username user={m.message.author} server={channel.server} />
+          </View>
+        ))
+      : null;
+  },
+);
+
 export const MessageBox = observer((props: MessageBoxProps) => {
   const insets = useSafeAreaInsets();
 
@@ -97,68 +157,14 @@ export const MessageBox = observer((props: MessageBoxProps) => {
       </View>
     );
   }
+
   return (
     <KeyboardAvoidingView
       behavior={'padding'}
       keyboardVerticalOffset={-insets.bottom + 4}
       style={localStyles.messageBoxOuter}>
       <TypingIndicator channel={props.channel} />
-      {replyingMessages
-        ? replyingMessages.map((m, i) => (
-            <View key={m.message._id} style={localStyles.messageBoxBar}>
-              <Pressable
-                style={{
-                  width: 30,
-                  height: 20,
-                  alignItems: 'center',
-                  justifyContent: 'center',
-                }}
-                onPress={() =>
-                  setReplyingMessages(
-                    replyingMessages?.filter(
-                      m2 => m2.message._id !== m.message._id,
-                    ),
-                  )
-                }>
-                <View style={styles.iconContainer}>
-                  <MaterialCommunityIcon name="close-circle" size={16} />
-                </View>
-              </Pressable>
-              <Pressable
-                style={{
-                  width: 45,
-                  height: 20,
-                  alignItems: 'center',
-                  justifyContent: 'center',
-                }}
-                onPress={() => {
-                  const replacing = [...replyingMessages];
-                  replacing[i].mentions = !replacing[i].mentions;
-                  setReplyingMessages(replacing);
-                }}>
-                <Text
-                  colour={
-                    m.mentions
-                      ? currentTheme.accentColor
-                      : currentTheme.foregroundPrimary
-                  }
-                  style={{
-                    fontWeight: 'bold',
-                    marginTop: -3,
-                  }}>
-                  @{m.mentions ? 'ON' : 'OFF'}
-                </Text>
-              </Pressable>
-              <Text style={{marginTop: -1}}> Replying to </Text>
-              <View style={{marginTop: -1}}>
-                <Username
-                  user={m.message.author}
-                  server={props.channel.server}
-                />
-              </View>
-            </View>
-          ))
-        : null}
+      <ReplyingMessages replyingMessages={replyingMessages} setReplyingMessages={setReplyingMessages} channel={props.channel} />
       <AttachmentsBar
         attachments={attachments}
         setAttachments={setAttachments}
@@ -180,7 +186,7 @@ export const MessageBox = observer((props: MessageBoxProps) => {
               <MaterialCommunityIcon name="close-circle" size={16} />
             </View>
           </Pressable>
-          <Text style={{marginTop: -1}}> Editing message</Text>
+          <Text>Editing message</Text>
         </View>
       ) : null}
       <View style={localStyles.messageBoxInner}>
@@ -287,11 +293,7 @@ export const MessageBox = observer((props: MessageBoxProps) => {
                 setReplyingMessages([]);
               }
             }}>
-            {editingMessage ? (
-              <MaterialIcon name="edit" size={24} color={'messageBox'} />
-            ) : (
-              <MaterialIcon name="send" size={24} color={'messageBox'} />
-            )}
+              <MaterialIcon name={editingMessage ? 'edit' : 'send'} size={24} color={'messageBox'} />
           </Pressable>
         ) : null}
       </View>
@@ -307,8 +309,6 @@ const AttachmentsBar = observer(
     attachments: DocumentPickerResponse[];
     setAttachments: Function;
   }) => {
-    const {currentTheme} = useContext(ThemeContext);
-
     // TODO: add file previews?
     if (attachments?.length > 0) {
       return (
@@ -328,14 +328,7 @@ const AttachmentsBar = observer(
               : 'Unknown';
             return (
               <View
-                style={{
-                  flexDirection: 'row',
-                  padding: commonValues.sizes.medium,
-                  margin: commonValues.sizes.small,
-                  backgroundColor: currentTheme.backgroundPrimary,
-                  borderRadius: commonValues.sizes.small,
-                  alignItems: 'center',
-                }}
+                style={attachmentsBarStyles.attachment}
                 key={`message-box-attachments-bar-attachment-${a.name}`}>
                 <Pressable
                   style={{
@@ -369,7 +362,7 @@ const AttachmentsBar = observer(
       );
     }
 
-    return <View />;
+    return null;
   },
 );
 
@@ -432,7 +425,7 @@ const TypingIndicator = observer(({channel}: {channel: Channel}) => {
     }
   }
 
-  return <View />;
+  return null;
 });
 
 const localStyles = StyleSheet.create((currentTheme, rt) => ({
@@ -442,6 +435,7 @@ const localStyles = StyleSheet.create((currentTheme, rt) => ({
     borderBottomColor: currentTheme.backgroundPrimary,
     borderBottomWidth: 1,
     flexDirection: 'row',
+    alignItems: 'center',
   },
   messageBox: {
     backgroundColor: currentTheme.messageBoxInput,
@@ -453,14 +447,12 @@ const localStyles = StyleSheet.create((currentTheme, rt) => ({
     flexDirection: 'row',
     alignItems: 'center',
     minHeight: 50,
-    paddingHorizontal: commonValues.sizes.medium,
-    paddingVertical: commonValues.sizes.small,
+    padding: commonValues.sizes.medium,
     paddingBottom: rt.insets.bottom + commonValues.sizes.small,
   },
   messageBoxOuter: {
     backgroundColor: currentTheme.messageBox,
     overflow: 'hidden',
-    paddingVertical: commonValues.sizes.small,
   },
   sendButton: {
     marginStart: commonValues.sizes.medium,
@@ -479,14 +471,6 @@ const localStyles = StyleSheet.create((currentTheme, rt) => ({
     alignItems: 'center',
     justifyContent: 'center',
   },
-  attachment: {
-    flexDirection: 'row',
-    padding: commonValues.sizes.medium,
-    margin: commonValues.sizes.small,
-    backgroundColor: currentTheme.backgroundPrimary,
-    borderRadius: commonValues.sizes.small,
-    alignItems: 'center',
-  },
 }));
 
 const attachmentsBarStyles = StyleSheet.create(currentTheme => ({
@@ -496,6 +480,14 @@ const attachmentsBarStyles = StyleSheet.create(currentTheme => ({
     borderBottomWidth: 1,
     flexDirection: 'column',
   },
+  attachment: {
+                  flexDirection: 'row',
+                  padding: commonValues.sizes.medium,
+                  margin: commonValues.sizes.small,
+                  backgroundColor: currentTheme.backgroundPrimary,
+                  borderRadius: commonValues.sizes.small,
+                  alignItems: 'center',
+                },
 }));
 
 const typingBarStyles = StyleSheet.create(currentTheme => ({
