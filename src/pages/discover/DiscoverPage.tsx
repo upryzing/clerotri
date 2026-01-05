@@ -1,4 +1,4 @@
-import {useContext, useEffect, useState} from 'react';
+import {useEffect, useState} from 'react';
 import {FlatList, View} from 'react-native';
 import {StyleSheet} from 'react-native-unistyles';
 import {useTranslation} from 'react-i18next';
@@ -11,7 +11,7 @@ import {Button, GeneralAvatar, Text} from '@clerotri/components/common/atoms';
 import {ChannelHeader} from '@clerotri/components/navigation/ChannelHeader';
 import {SpecialChannelIcon} from '@clerotri/components/navigation/SpecialChannelIcon';
 import {client} from '@clerotri/lib/client';
-import {commonValues, ThemeContext} from '@clerotri/lib/themes';
+import {commonValues} from '@clerotri/lib/themes';
 import {DOMParserFunction} from '@clerotri/lib/utils';
 
 const parser = DOMParserFunction();
@@ -43,8 +43,6 @@ const ItemTags = ({itemID, tags}: {itemID: string; tags: string[]}) => {
 };
 
 const BotEntry = ({bot}: {bot: any}) => {
-  const {currentTheme} = useContext(ThemeContext);
-
   return (
     <View
       key={`discover-entry-bot-${bot._id}`}
@@ -65,7 +63,9 @@ const BotEntry = ({bot}: {bot: any}) => {
         ) : null}
         <View>
           <Text type={'h1'}>{bot.username}</Text>
-          <Text colour={currentTheme.foregroundSecondary}>{bot._id}</Text>
+          <Text useNewText colour={'foregroundSecondary'}>
+            {bot._id}
+          </Text>
         </View>
       </View>
       {bot.profile.content && (
@@ -84,8 +84,6 @@ const BotEntry = ({bot}: {bot: any}) => {
 };
 
 const ServerEntry = ({server}: {server: any}) => {
-  const {currentTheme} = useContext(ThemeContext);
-
   return (
     <View
       key={`discover-entry-server-${server._id}`}
@@ -106,7 +104,9 @@ const ServerEntry = ({server}: {server: any}) => {
         ) : null}
         <View>
           <Text type={'h1'}>{server.name}</Text>
-          <Text colour={currentTheme.foregroundSecondary}>{server._id}</Text>
+          <Text useNewText colour={'foregroundSecondary'}>
+            {server._id}
+          </Text>
         </View>
       </View>
       {server.description && (

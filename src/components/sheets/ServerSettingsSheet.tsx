@@ -1,5 +1,5 @@
 import {useContext, useMemo, useState} from 'react';
-import {Pressable, ScrollView, View} from 'react-native';
+import {ScrollView, View} from 'react-native';
 import {StyleSheet} from 'react-native-unistyles';
 import {useTranslation} from 'react-i18next';
 import {observer} from 'mobx-react-lite';
@@ -10,7 +10,6 @@ import type {Server} from 'revolt.js';
 
 import {app, setFunction} from '@clerotri/Generic';
 import {client} from '@clerotri/lib/client';
-import {MaterialCommunityIcon} from '@clerotri/components/common/icons';
 import {Image} from '@clerotri/crossplat/Image';
 import {commonValues, ThemeContext} from '@clerotri/lib/themes';
 import {SettingsSection} from '@clerotri/lib/types';
@@ -72,29 +71,7 @@ export const ServerSettingsSheet = observer(
     return (
       <View style={localStyles.background}>
         {section == null ? (
-          <Pressable
-            style={{
-              flexDirection: 'row',
-              alignItems: 'center',
-              marginBottom: 10,
-            }}
-            onPress={() => {
-              setState();
-            }}>
-            <MaterialCommunityIcon
-              name="close-circle"
-              size={24}
-              color={'foregroundSecondary'}
-            />
-            <Text
-              style={{
-                color: currentTheme.foregroundSecondary,
-                fontSize: 20,
-                marginLeft: 5,
-              }}>
-              {t('app.actions.close')}
-            </Text>
-          </Pressable>
+          <BackButton type={'close'} callback={() => setState()} margin />
         ) : /* the channel, role and member settings menus handle this themselves as they have subsections */
         section.section !== 'roles' &&
           section.section !== 'channels' &&

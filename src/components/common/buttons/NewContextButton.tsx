@@ -1,4 +1,3 @@
-import {useContext} from 'react';
 import {TouchableOpacity, View} from 'react-native';
 import {StyleSheet} from 'react-native-unistyles';
 import {useTranslation} from 'react-i18next';
@@ -8,7 +7,7 @@ import {
   MaterialCommunityIcon,
   MaterialIcon,
 } from '@clerotri/components/common/icons';
-import {commonValues, ThemeContext} from '@clerotri/lib/themes';
+import {commonValues} from '@clerotri/lib/themes';
 import type {ContextButtonProps} from '@clerotri/lib/types';
 import {styles} from '@clerotri/Theme';
 
@@ -21,8 +20,6 @@ export const NewContextButton = ({
   style,
   ...props
 }: ContextButtonProps) => {
-  const {currentTheme} = useContext(ThemeContext);
-
   const {t} = useTranslation();
 
   return (
@@ -54,11 +51,7 @@ export const NewContextButton = ({
           )}
         </View>
       )}
-      {textString && (
-        <Text colour={textColour ?? currentTheme.foregroundPrimary}>
-          {t(textString)}
-        </Text>
-      )}
+      {textString && <Text colour={textColour}>{t(textString)}</Text>}
       {props.children}
     </TouchableOpacity>
   );

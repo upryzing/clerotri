@@ -145,7 +145,7 @@ export function LoggedInViews({
       <ChannelContext.Provider value={{currentChannel, setCurrentChannel}}>
         <SideMenuHandler />
         <Modals />
-        <NetworkIndicator client={client} />
+        <NetworkIndicator />
         {notificationMessage && (
           <Notification
             message={notificationMessage}

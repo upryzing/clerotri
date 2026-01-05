@@ -1,4 +1,4 @@
-import {useContext, useEffect, useRef, useState} from 'react';
+import {useEffect, useRef, useState} from 'react';
 import type {Dispatch, SetStateAction} from 'react';
 import {Platform, View} from 'react-native';
 import {useTranslation} from 'react-i18next';
@@ -17,7 +17,6 @@ import {Button, Text} from './components/common/atoms';
 import {Message} from './components/common/messaging';
 import {LoadingScreen} from './components/views/LoadingScreen';
 import {settings} from './lib/settings';
-import {ThemeContext} from './lib/themes';
 import {calculateGrouped, fetchMessages} from './lib/utils';
 
 type DoubleTapState = {
@@ -107,14 +106,12 @@ function MessageViewErrorMessage({
   error: any;
   resetErrorBoundary: () => void;
 }) {
-  const {currentTheme} = useContext(ThemeContext);
-
   const errorMessage = `${error}`;
 
   console.error(`[MESSAGEVIEW] Uncaught error: ${errorMessage}`);
   return (
     <>
-      <Text colour={currentTheme.error}>
+      <Text useNewText colour={'error'}>
         Error rendering messages: {errorMessage}
       </Text>
       <Button
@@ -238,8 +235,6 @@ function handleMessageDeletion(
 }
 
 export const MessageView = observer(({channel}: {channel: Channel}) => {
-  const {currentTheme} = useContext(ThemeContext);
-
   const handledMessages = useRef<string[]>([]);
 
   const [messages, setMessages] = useState<RevoltMessage[]>([]);
@@ -332,7 +327,7 @@ export const MessageView = observer(({channel}: {channel: Channel}) => {
   return (
     <ErrorBoundary FallbackComponent={MessageViewErrorMessage}>
       {error ? (
-        <Text colour={currentTheme.error}>
+        <Text useNewText colour={'error'}>
           Error rendering messages: {error.message ?? error}
         </Text>
       ) : loading ? (

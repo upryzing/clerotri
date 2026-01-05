@@ -1,25 +1,21 @@
 import {useContext} from 'react';
 import {Pressable, TouchableOpacity, View} from 'react-native';
+import {StyleSheet} from 'react-native-unistyles';
 import {observer} from 'mobx-react-lite';
-
-import {useSafeAreaInsets} from 'react-native-safe-area-context';
 
 import type {API, Channel} from 'revolt.js';
 
-import {styles} from '../Theme';
 import {Avatar, Text, Username} from './common/atoms';
 import {MaterialCommunityIcon} from '@clerotri/components/common/icons';
 import {MarkdownView} from './common/MarkdownView';
 import {client} from '@clerotri/lib/client';
 import {ChannelContext} from '@clerotri/lib/state';
-import {commonValues, ThemeContext} from '@clerotri/lib/themes';
+import {commonValues} from '@clerotri/lib/themes';
 import {parseRevoltNodes} from '@clerotri/lib/utils';
 
+// IDEA: make thebackground one View and then have separate Pressables for the message and close button. probably easier to dismiss that way too
 export const Notification = observer(
   ({message, dismiss}: {message: API.Message; dismiss: Function}) => {
-    const insets = useSafeAreaInsets();
-
-    const {currentTheme} = useContext(ThemeContext);
     const {setCurrentChannel} = useContext(ChannelContext);
 
     const openChannel = (channel: Channel | undefined) => {
@@ -31,46 +27,16 @@ export const Notification = observer(
     const channel = client.channels.get(message.channel);
 
     return (
-      <View
-        style={{
-          position: 'absolute',
-          top: insets.top + 20,
-          left: 0,
-          width: '100%',
-        }}>
-        <TouchableOpacity
-          style={{
-            flexDirection: 'row',
-            alignSelf: 'center',
-            alignItems: 'center',
-            justifyContent: 'space-between',
-            width: '90%',
-            backgroundColor: currentTheme.background,
-            borderRadius: commonValues.sizes.small,
-            minHeight: 40,
-            padding: commonValues.sizes.medium,
-            boxShadow: [
-              {
-                color: '#00000060',
-                blurRadius: commonValues.sizes.large,
-                offsetX: 0,
-                offsetY: 0,
-              },
-            ],
-          }}
-          onPress={() => openChannel(channel)}>
-          <View
-            style={{
-              alignItems: 'center',
-              flexDirection: 'row',
-              overflow: 'hidden',
-            }}>
+      <View style={localStyles.container}>
+        <View style={localStyles.notificationBox}>
+          <TouchableOpacity
+            style={localStyles.notificationContent}
+            onPress={() => openChannel(channel)}>
             <Avatar user={author} size={35} />
             <View
               style={{
                 marginHorizontal: commonValues.sizes.medium,
-                maxWidth: '80%',
-                overflow: 'hidden',
+                flexWrap: 'wrap',
               }}>
               <View
                 style={{
@@ -79,7 +45,13 @@ export const Notification = observer(
                 <Username user={author} server={channel?.server} />
                 <Text style={{fontWeight: 'bold'}}>
                   {' '}
-                  ({channel?.name ?? channel?._id})
+                  (
+                  {channel?.channel_type === 'DirectMessage'
+                    ? '@'
+                    : channel?.channel_type === 'TextChannel'
+                      ? '#'
+                      : ''}
+                  {channel?.name ?? channel?._id})
                 </Text>
               </View>
               {message.content ? (
@@ -91,12 +63,12 @@ export const Notification = observer(
                   )}
                 </MarkdownView>
               ) : (
-                <Text colour={currentTheme.foregroundSecondary}>
+                <Text useNewText colour={'foregroundSecondary'}>
                   Tap to view message
                 </Text>
               )}
             </View>
-          </View>
+          </TouchableOpacity>
           <Pressable
             style={{
               width: 20,
@@ -105,12 +77,43 @@ export const Notification = observer(
               justifyContent: 'center',
             }}
             onPress={() => dismiss()}>
-            <View style={styles.iconContainer}>
-              <MaterialCommunityIcon name="close-circle" size={20} />
-            </View>
+            <MaterialCommunityIcon name="close-circle" size={20} />
           </Pressable>
-        </TouchableOpacity>
+        </View>
       </View>
     );
   },
 );
+
+const localStyles = StyleSheet.create((currentTheme, rt) => ({
+  container: {
+    position: 'absolute',
+    top: rt.insets.top,
+    left: 0,
+    width: '100%',
+    padding: commonValues.sizes.xl,
+  },
+  notificationBox: {
+    flex: 1,
+    backgroundColor: currentTheme.background,
+    borderRadius: commonValues.sizes.medium,
+    minHeight: 40,
+    padding: commonValues.sizes.large,
+    boxShadow: [
+      {
+        color: '#00000080',
+        blurRadius: commonValues.sizes.large,
+        offsetX: 0,
+        offsetY: 0,
+      },
+    ],
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'space-between',
+  },
+  notificationContent: {
+    alignItems: 'center',
+    flexDirection: 'row',
+    overflow: 'hidden',
+  },
+}));

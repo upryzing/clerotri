@@ -4,12 +4,11 @@ import {StyleSheet} from 'react-native-unistyles';
 import {useTranslation} from 'react-i18next';
 import {observer} from 'mobx-react-lite';
 
-import type {Client} from 'revolt.js';
-
 import {Text} from './common/atoms';
+import {client} from '@clerotri/lib/client';
 import {commonValues} from '@clerotri/lib/themes';
 
-export const NetworkIndicator = observer(({client}: {client: Client}) => {
+export const NetworkIndicator = observer(() => {
   const {t} = useTranslation();
 
   const [collapsed, setCollapsed] = useState(false);

@@ -9,7 +9,7 @@ import {MaterialCommunityIcon} from '@clerotri/components/common/icons';
 import {Image} from '@clerotri/crossplat/Image';
 import {client} from '@clerotri/lib/client';
 import {OrderedServersContext} from '@clerotri/lib/state';
-import {commonValues, ThemeContext} from '@clerotri/lib/themes';
+import {commonValues} from '@clerotri/lib/themes';
 import {LineSeparator} from '../layout';
 
 export const ServerList = observer(
@@ -28,8 +28,6 @@ export const ServerList = observer(
     showDiscover?: boolean;
     horizontal?: boolean;
   }) => {
-    const {currentTheme} = useContext(ThemeContext);
-
     const {orderedServers} = useContext(OrderedServersContext);
 
     let servers = [...client.servers.values()];
@@ -123,12 +121,7 @@ export const ServerList = observer(
         })}
         {showDiscover ? (
           <>
-            <LineSeparator
-              style={{
-                margin: 6,
-                backgroundColor: currentTheme.backgroundPrimary,
-              }}
-            />
+            <LineSeparator style={localStyles.separator} />
             <TouchableOpacity
               onPress={() => {
                 app.openChannel('discover');
@@ -190,5 +183,9 @@ const localStyles = StyleSheet.create(currentTheme => ({
     marginBottom: -20,
     left: 36,
     position: 'absolute',
+  },
+  separator: {
+    margin: 6,
+    backgroundColor: currentTheme.backgroundPrimary,
   },
 }));
