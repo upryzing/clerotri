@@ -164,7 +164,11 @@ export const MessageBox = observer((props: MessageBoxProps) => {
       keyboardVerticalOffset={-insets.bottom + 4}
       style={localStyles.messageBoxOuter}>
       <TypingIndicator channel={props.channel} />
-      <ReplyingMessages replyingMessages={replyingMessages} setReplyingMessages={setReplyingMessages} channel={props.channel} />
+      <ReplyingMessages
+        replyingMessages={replyingMessages}
+        setReplyingMessages={setReplyingMessages}
+        channel={props.channel}
+      />
       <AttachmentsBar
         attachments={attachments}
         setAttachments={setAttachments}
@@ -293,7 +297,11 @@ export const MessageBox = observer((props: MessageBoxProps) => {
                 setReplyingMessages([]);
               }
             }}>
-              <MaterialIcon name={editingMessage ? 'edit' : 'send'} size={24} color={'messageBox'} />
+            <MaterialIcon
+              name={editingMessage ? 'edit' : 'send'}
+              size={24}
+              color={'messageBox'}
+            />
           </Pressable>
         ) : null}
       </View>
@@ -481,13 +489,13 @@ const attachmentsBarStyles = StyleSheet.create(currentTheme => ({
     flexDirection: 'column',
   },
   attachment: {
-                  flexDirection: 'row',
-                  padding: commonValues.sizes.medium,
-                  margin: commonValues.sizes.small,
-                  backgroundColor: currentTheme.backgroundPrimary,
-                  borderRadius: commonValues.sizes.small,
-                  alignItems: 'center',
-                },
+    flexDirection: 'row',
+    padding: commonValues.sizes.medium,
+    margin: commonValues.sizes.small,
+    backgroundColor: currentTheme.backgroundPrimary,
+    borderRadius: commonValues.sizes.small,
+    alignItems: 'center',
+  },
 }));
 
 const typingBarStyles = StyleSheet.create(currentTheme => ({
