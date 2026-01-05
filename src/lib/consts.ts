@@ -48,7 +48,7 @@ const INVITE_PATHS = [
   'app.revolt.chat/invite',
   'nightly.revolt.chat/invite',
   'local.revolt.chat/invite',
-  'old.stoat.cha/invite',
+  'old.stoat.chat/invite',
   'rvlt.gg',
   'stt.gg',
 ];
