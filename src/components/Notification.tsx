@@ -13,7 +13,6 @@ import {ChannelContext} from '@clerotri/lib/state';
 import {commonValues} from '@clerotri/lib/themes';
 import {parseRevoltNodes} from '@clerotri/lib/utils';
 
-// IDEA: make thebackground one View and then have separate Pressables for the message and close button. probably easier to dismiss that way too
 export const Notification = observer(
   ({message, dismiss}: {message: API.Message; dismiss: Function}) => {
     const {setCurrentChannel} = useContext(ChannelContext);
