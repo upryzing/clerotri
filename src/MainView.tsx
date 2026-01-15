@@ -27,7 +27,9 @@ export function MainView() {
     async function sendAnalytics(analyticsSetting: 'basic' | 'full') {
       if (!__DEV__) {
         try {
-          const data = generateAnalyticsObject(analyticsSetting);
+          const {settings, ...initialData} = generateAnalyticsObject(analyticsSetting);
+          const data = {...initialData, ...settings && {settings: JSON.stringify(settings)}};
+
           await fetch(ANALYTICS_ENDPOINT, {
             method: 'POST',
             body: JSON.stringify(data),
