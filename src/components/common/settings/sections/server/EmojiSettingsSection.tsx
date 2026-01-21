@@ -1,4 +1,4 @@
-import {useContext, useState} from 'react';
+import {useState} from 'react';
 import {Pressable, View} from 'react-native';
 import {useTranslation} from 'react-i18next';
 import {observer} from 'mobx-react-lite';
@@ -11,12 +11,10 @@ import {Text} from '@clerotri/components/common/atoms';
 import {MaterialIcon} from '@clerotri/components/common/icons';
 import {SettingsEntry} from '@clerotri/components/common/settings/atoms';
 import {Image} from '@clerotri/crossplat/Image';
-import {commonValues, ThemeContext} from '@clerotri/lib/themes';
+import {commonValues} from '@clerotri/lib/themes';
 import {showToast} from '@clerotri/lib/utils';
 
 export const EmojiSettingsSection = observer(({server}: {server: Server}) => {
-  const {currentTheme} = useContext(ThemeContext);
-
   const {t} = useTranslation();
 
   const [emoji, setEmoji] = useState(
@@ -58,8 +56,10 @@ export const EmojiSettingsSection = observer(({server}: {server: Server}) => {
                 style={{fontWeight: 'bold'}}>
                 {e.name}
               </Text>
-              <Text colour={currentTheme.foregroundSecondary}>{e._id}</Text>
-              <Text colour={currentTheme.foregroundSecondary}>
+              <Text useNewText colour={'foregroundSecondary'}>
+                {e._id}
+              </Text>
+              <Text useNewText colour={'foregroundSecondary'}>
                 {t('app.servers.settings.emoji.added_by', {
                   name: e.creator ? e.creator.username : e.creator_id,
                 })}

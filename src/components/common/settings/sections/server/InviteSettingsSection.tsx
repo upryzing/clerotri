@@ -1,4 +1,4 @@
-import {useContext, useEffect, useState} from 'react';
+import {useEffect, useState} from 'react';
 import {Pressable, View} from 'react-native';
 import {useTranslation} from 'react-i18next';
 import {observer} from 'mobx-react-lite';
@@ -10,11 +10,9 @@ import {styles} from '@clerotri/Theme';
 import {Text} from '@clerotri/components/common/atoms';
 import {MaterialIcon} from '@clerotri/components/common/icons';
 import {SettingsEntry} from '@clerotri/components/common/settings/atoms';
-import {commonValues, ThemeContext} from '@clerotri/lib/themes';
+import {commonValues} from '@clerotri/lib/themes';
 
 export const InviteSettingsSection = observer(({server}: {server: Server}) => {
-  const {currentTheme} = useContext(ThemeContext);
-
   const {t} = useTranslation();
 
   const [reload, triggerReload] = useState(0);
@@ -39,7 +37,7 @@ export const InviteSettingsSection = observer(({server}: {server: Server}) => {
         <View style={{flex: 1}}>
           <Text type={'h1'}>{t('app.servers.settings.invites.title')}</Text>
         </View>
-        {/* TODO: add channel selector
+        {/* TODO: add channel selector 
         {server.havePermission('InviteOthers') ? (
           <Pressable
             onPress={() => {
@@ -74,7 +72,7 @@ export const InviteSettingsSection = observer(({server}: {server: Server}) => {
                   style={{fontWeight: 'bold'}}>
                   {i._id}
                 </Text>
-                <Text colour={currentTheme.foregroundSecondary}>
+                <Text useNewText colour={'foregroundSecondary'}>
                   @{i.creator} - #{i.channel}
                 </Text>
               </View>

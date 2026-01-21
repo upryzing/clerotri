@@ -1,17 +1,16 @@
-import {useContext, useEffect, useState} from 'react';
+import {useEffect, useState} from 'react';
 import {View} from 'react-native';
+import {StyleSheet} from 'react-native-unistyles';
 import {observer} from 'mobx-react-lite';
 
 import type {Channel, User} from 'revolt.js';
 
 import {Text} from '@clerotri/components/common/atoms';
 import {MarkdownView} from '@clerotri/components/common/MarkdownView';
-import {commonValues, ThemeContext} from '@clerotri/lib/themes';
+import {commonValues} from '@clerotri/lib/themes';
 
 export const ChannelInfoSheet = observer(
   ({channel}: {channel: Channel | null}) => {
-    const {currentTheme} = useContext(ThemeContext);
-
     const [groupMembers, setGroupMembers] = useState([] as User[]);
 
     useEffect(() => {
@@ -34,7 +33,8 @@ export const ChannelInfoSheet = observer(
             <View style={{justifyContent: 'center'}}>
               <Text type={'h1'}>{channel.name}</Text>
               <Text
-                colour={currentTheme.foregroundSecondary}
+                useNewText
+                colour={'foregroundSecondary'}
                 style={{
                   marginVertical: commonValues.sizes.small,
                 }}>
@@ -45,18 +45,8 @@ export const ChannelInfoSheet = observer(
                   : 'Regular channel'}
               </Text>
               {channel.description ? (
-                <View
-                  style={{
-                    backgroundColor: currentTheme.background,
-                    padding: commonValues.sizes.medium,
-                    borderRadius: commonValues.sizes.medium,
-                  }}>
-                  <MarkdownView
-                    style={{
-                      color: currentTheme.foregroundSecondary,
-                      fontSize: 16,
-                      textAlign: 'center',
-                    }}>
+                <View style={localStyles.descriptionContainer}>
+                  <MarkdownView style={localStyles.description}>
                     {channel.description}
                   </MarkdownView>
                 </View>
@@ -68,3 +58,16 @@ export const ChannelInfoSheet = observer(
     );
   },
 );
+
+const localStyles = StyleSheet.create(currentTheme => ({
+  descriptionContainer: {
+    backgroundColor: currentTheme.background,
+    padding: commonValues.sizes.medium,
+    borderRadius: commonValues.sizes.medium,
+  },
+  description: {
+    color: currentTheme.foregroundSecondary,
+    fontSize: 16,
+    textAlign: 'center',
+  },
+}));

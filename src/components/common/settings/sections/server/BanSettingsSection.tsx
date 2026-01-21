@@ -1,4 +1,4 @@
-import {useContext, useEffect, useState} from 'react';
+import {useEffect, useState} from 'react';
 import {Pressable, View} from 'react-native';
 import {useTranslation} from 'react-i18next';
 import {observer} from 'mobx-react-lite';
@@ -9,11 +9,8 @@ import {styles} from '@clerotri/Theme';
 import {Text} from '@clerotri/components/common/atoms';
 import {MaterialIcon} from '@clerotri/components/common/icons';
 import {SettingsEntry} from '@clerotri/components/common/settings/atoms';
-import {ThemeContext} from '@clerotri/lib/themes';
 
 export const BanSettingsSection = observer(({server}: {server: Server}) => {
-  const {currentTheme} = useContext(ThemeContext);
-
   const {t} = useTranslation();
 
   const [reload, triggerReload] = useState(0);
@@ -41,7 +38,7 @@ export const BanSettingsSection = observer(({server}: {server: Server}) => {
                   {bans.users.find(u => u._id === b._id.user)?.username ??
                     b._id.user}
                 </Text>
-                <Text colour={currentTheme.foregroundSecondary}>
+                <Text useNewText colour={'foregroundSecondary'}>
                   {b.reason ?? t('app.servers.settings.bans.no_reason')}
                 </Text>
               </View>

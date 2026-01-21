@@ -1,6 +1,7 @@
 /* eslint-disable no-bitwise */
 import {useContext, useState} from 'react';
-import {Modal, Pressable, View} from 'react-native';
+import {type ColorValue, Modal, Pressable, View} from 'react-native';
+import {StyleSheet} from 'react-native-unistyles';
 import {Trans, useTranslation} from 'react-i18next';
 import {observer} from 'mobx-react-lite';
 
@@ -35,8 +36,6 @@ import {showToast} from '@clerotri/lib/utils';
 
 const RoleSettingsRoleList = observer(
   ({server, setSection}: {server: Server; setSection: Function}) => {
-    const {currentTheme} = useContext(ThemeContext);
-
     const {t} = useTranslation();
 
     return (
@@ -51,11 +50,13 @@ const RoleSettingsRoleList = observer(
             <View style={{flex: 1, flexDirection: 'column'}}>
               <Text
                 key={`role-settings-entry-${r.id}-name`}
-                colour={r.colour ?? currentTheme.foregroundPrimary}
+                colour={r.colour ?? undefined}
                 style={{fontWeight: 'bold'}}>
                 {r.name}
               </Text>
-              <Text colour={currentTheme.foregroundSecondary}>{r.id}</Text>
+              <Text useNewText colour={'foregroundSecondary'}>
+                {r.id}
+              </Text>
             </View>
             <View
               style={{
@@ -102,12 +103,12 @@ const RoleSettings = observer(
 
     return (
       <>
-        <Text
-          type={'h1'}
-          customColour={role.colour ?? currentTheme.foregroundPrimary}>
+        <Text type={'h1'} customColour={role.colour ?? undefined}>
           {role.name}
         </Text>
-        <Text colour={currentTheme.foregroundSecondary}>{roleID}</Text>
+        <Text useNewText colour={'foregroundSecondary'}>
+          {roleID}
+        </Text>
         <GapView size={8} />
         <Text type={'h2'}>{t('app.servers.settings.roles.name')}</Text>
         <InputWithButtonV2
@@ -165,7 +166,7 @@ const RoleSettings = observer(
             <Text style={{fontWeight: 'bold'}}>
               {t('app.servers.settings.roles.options.hoist')}
             </Text>
-            <Text colour={currentTheme.foregroundSecondary}>
+            <Text useNewText colour={'foregroundSecondary'}>
               {t('app.servers.settings.roles.options.hoist_body')}
             </Text>
           </View>
@@ -193,7 +194,7 @@ const RoleSettings = observer(
             <Text style={{fontWeight: 'bold'}}>
               {t('app.servers.settings.roles.permissions')}
             </Text>
-            <Text colour={currentTheme.foregroundSecondary}>
+            <Text useNewText colour={'foregroundSecondary'}>
               {t('app.servers.settings.roles.permissions_body')}
             </Text>
           </View>
@@ -211,24 +212,9 @@ const RoleSettings = observer(
         </PressableSettingsEntry>
         <GapView size={8} />
         <Text type={'h2'}>{t('app.servers.settings.roles.colour')}</Text>
-        <View
-          style={{
-            alignItems: 'center',
-            flexDirection: 'row',
-            justifyContent: 'space-between',
-            backgroundColor: currentTheme.backgroundSecondary,
-            padding: commonValues.sizes.medium,
-            borderRadius: commonValues.sizes.medium,
-          }}>
+        <View style={localStyles.colourContainer}>
           <View style={{alignItems: 'center', flexDirection: 'row'}}>
-            <View
-              style={{
-                padding: commonValues.sizes.xl,
-                borderRadius: commonValues.sizes.medium,
-                marginEnd: commonValues.sizes.medium,
-                backgroundColor: role.colour ?? '#00000000',
-              }}
-            />
+            <View style={localStyles.colourPreview(role.colour)} />
             <Text>{role.colour ?? 'No colour'}</Text>
           </View>
           <View style={{alignItems: 'center', flexDirection: 'row'}}>
@@ -367,8 +353,6 @@ const RolePermissionSelector = observer(
     name: string;
     number: number;
   }) => {
-    const {currentTheme} = useContext(ThemeContext);
-
     const {t} = useTranslation();
 
     function addToAllowed() {
@@ -395,7 +379,7 @@ const RolePermissionSelector = observer(
             style={{fontWeight: 'bold'}}>
             {t(`app.permissions.${name}`)}
           </Text>
-          <Text colour={currentTheme.foregroundSecondary}>
+          <Text useNewText colour={'foregroundSecondary'}>
             {t(`app.permissions.${name}_body_server`)}
           </Text>
         </View>
@@ -429,10 +413,8 @@ const RolePermissionSelector = observer(
           <View
             style={[
               styles.iconContainer,
-              (role.permissions.d & number) === number && {
-                borderRadius: commonValues.sizes.medium,
-                backgroundColor: currentTheme.error,
-              },
+              (role.permissions.d & number) === number &&
+                localStyles.permissionDenied,
             ]}>
             <MaterialIcon
               name={'close'}
@@ -482,10 +464,8 @@ const RolePermissionSelector = observer(
             style={[
               styles.iconContainer,
               (role.permissions.d & number) !== number &&
-                (role.permissions.a & number) !== number && {
-                  borderRadius: commonValues.sizes.medium,
-                  backgroundColor: currentTheme.foregroundSecondary,
-                },
+                (role.permissions.a & number) !== number &&
+                localStyles.permissionNeutral,
             ]}>
             <MaterialIcon
               name={'horizontal-rule'}
@@ -529,10 +509,8 @@ const RolePermissionSelector = observer(
           <View
             style={[
               styles.iconContainer,
-              (role.permissions.a & number) === number && {
-                borderRadius: commonValues.sizes.medium,
-                backgroundColor: currentTheme.accentColor,
-              },
+              (role.permissions.a & number) === number &&
+                localStyles.permissionAllowed,
             ]}>
             <MaterialIcon
               name={'check'}
@@ -571,8 +549,6 @@ const RolePermissionSettings = observer(
     role: API.Role;
     roleID: string;
   }) => {
-    const {currentTheme} = useContext(ThemeContext);
-
     const {t} = useTranslation();
 
     return (
@@ -583,9 +559,7 @@ const RolePermissionSettings = observer(
             i18nKey={'app.servers.settings.roles.permissions_list_header'}
             tOptions={{role: role.name}}>
             Permissions for{' '}
-            <Text colour={role.colour ?? currentTheme.foregroundPrimary}>
-              {role.name}
-            </Text>
+            <Text colour={role.colour ?? undefined}>{role.name}</Text>
           </Trans>
         </Text>
         <Text>{t('app.servers.settings.roles.permissions_list_body')}</Text>
@@ -661,3 +635,32 @@ export const RoleSettingsSection = observer(
     );
   },
 );
+
+const localStyles = StyleSheet.create(currentTheme => ({
+  colourContainer: {
+    alignItems: 'center',
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    backgroundColor: currentTheme.backgroundSecondary,
+    padding: commonValues.sizes.medium,
+    borderRadius: commonValues.sizes.medium,
+  },
+  colourPreview: (roleColour?: ColorValue | null) => ({
+    padding: commonValues.sizes.xl,
+    borderRadius: commonValues.sizes.medium,
+    marginEnd: commonValues.sizes.medium,
+    backgroundColor: roleColour ?? '#00000000',
+  }),
+  permissionDenied: {
+    borderRadius: commonValues.sizes.medium,
+    backgroundColor: currentTheme.error,
+  },
+  permissionNeutral: {
+    borderRadius: commonValues.sizes.medium,
+    backgroundColor: currentTheme.foregroundSecondary,
+  },
+  permissionAllowed: {
+    borderRadius: commonValues.sizes.medium,
+    backgroundColor: currentTheme.accentColor,
+  },
+}));
