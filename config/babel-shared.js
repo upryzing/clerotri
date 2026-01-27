@@ -17,7 +17,7 @@ const commonPlugins = [
       autoProcessPaths: ['node_modules/@rexovolt/react-native-markdown-display'],
     },
   ],
-  'react-native-reanimated/plugin',
+  'react-native-worklets/plugin',
 ];
 
 module.exports = {

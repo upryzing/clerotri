@@ -1,0 +1,16 @@
+diff --git a/lib/index.js b/lib/index.js
+index fdb124784d378901305f64b6e36428f275077a06..2944f924ab87b07c5309b2c72feedd89fa3ea9c2 100644
+--- a/lib/index.js
++++ b/lib/index.js
+@@ -36,8 +36,9 @@ const semver = __importStar(require("semver"));
+  */
+ function MetroSerializer(plugins) {
+     const metroPath = (0, metro_1.findMetroPath)() || "metro";
+-    const baseJSBundle = require(`${metroPath}/src/DeltaBundler/Serializers/baseJSBundle`);
+-    const bundleToString = require(`${metroPath}/src/lib/bundleToString`);
++    // PATCH: Metro switched to ESM, so use `default` imports
++    const baseJSBundle = require(`${metroPath}/src/DeltaBundler/Serializers/baseJSBundle`).default;
++    const bundleToString = require(`${metroPath}/src/lib/bundleToString`).default;
+     const { version } = require(`${metroPath}/package.json`);
+     const shouldReturnPromise = semver.satisfies(version, ">=0.60.0");
+     return (entryPoint, preModules, graph, options) => {
