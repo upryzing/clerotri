@@ -1,1 +1,323 @@
-{}
+{
+    "app": {
+        "actions": {
+            "back": "Retour",
+            "ban": "Bannir",
+            "cancel": "Annuler",
+            "close": "Fermer",
+            "confirm": "Confirmer",
+            "create_channel": "Créer un canal",
+            "copy_invite": "Copier l'invitation",
+            "delete": "Supprimer",
+            "kick": "Renvoi",
+            "save": "Sauvegarder"
+        },
+        "analytics": {
+            "title": "Gérer la télémétrie",
+            "body": "Par défaut, Clerotri ne collecte aucune données. Vous pouvez optionnellement nous laisser collecter les données suivantes afin de nous aider à améliorer l'application.",
+            "tiers": {
+                "basic": "Basique",
+                "full": "Complet"
+            },
+            "copied_data_toast": "Example de données copiées",
+            "enable_basic": "Activer la télémétrie basique",
+            "switch_to_basic": "Transitionner vers basique",
+            "enable_full": "Activer la télémétrie complète",
+            "switch_to_full": "Transitionner vers complet",
+            "active": "Actif",
+            "disable_analytics": "Désactiver la télémétrie",
+            "analytics_disabled": "Télémétrie désactivée",
+            "continue_without_analytics": "Continuer sans télémétrie",
+            "values": {
+                "model": "Votre modèle d'appareil",
+                "os": "Votre Système d'exploitation et sa version",
+                "clerotriVersion": "La version de Clerotri que vous utilisez",
+                "inBasic": "Tout en Basique",
+                "inBasic_body": "Modèle, version du système d'exploitation, version de Clerotri",
+                "settings": "Vos paramètres de Clerotri",
+                "settings_body_one": "{{count}} entrée",
+                "settings_body_many": "{{count}} entrées",
+                "settings_body_other": "{{count}} entrées",
+                "instance": "Adresse réticulaire de votre instance"
+            },
+            "privacy_info": "Informations privées"
+        },
+        "badges": {
+            "Developer": "Développeur de Stoat",
+            "EarlyAdopter": "Pionnier",
+            "Founder": "Fondateur",
+            "Paw": "Patte d'insertion",
+            "PlatformModeration": "Modérateur de la Plateforme",
+            "ResponsibleDisclosure": "Divulgation responsable d'un problème de sécurité",
+            "Supporter": "Donateur",
+            "Translator": "Traducteur"
+        },
+        "channel_list": {
+            "direct_messages_header": "Messages directs"
+        },
+        "custom_badges": {
+            "clerotri_dev": "Développeur de Clerotri"
+        },
+        "discover": {
+            "count_bots_one": "{{count}} automate",
+            "count_bots_many": "{{count}} automates",
+            "count_bots_other": "{{count}} automates",
+            "count_servers_one": "{{count}} serveur",
+            "count_servers_many": "{{count}} serveurs",
+            "count_servers_other": "{{count}} serveurs",
+            "fetching_bots": "Chargement des automates …",
+            "fetching_servers": "Chargement des serveurs…",
+            "header_bots": "Découvrir les automates",
+            "header_servers": "Découvrir les serveurs",
+            "tabs": {
+                "bots": "Automates",
+                "servers": "Serveurs"
+            }
+        },
+        "friends_list": {
+            "blocked": "Bloqués - {{count}}",
+            "blocked_empty": "Pas d'utilisateurs bloqués",
+            "incoming": "Requêtes entrantes - {{count}}",
+            "incoming_empty": "Pas de requêtes entrantes",
+            "onlineFriends": "Amis en lignes - {{count}}",
+            "onlineFriends_empty": "Pas d'amis en ligne",
+            "offlineFriends": "Amis hors ligne - {{count}}",
+            "offlineFriends_empty": "Pas d'amis hors ligne",
+            "outgoing": "Requêtes sortantes - {{count}}",
+            "outgoing_empty": "Pas de requêtes sortantes"
+        },
+        "loading": {
+            "generic": "Chargement…",
+            "connecting": "Connexion en cours…",
+            "unknown_state": "Oh oh…",
+            "unknown_state_body": "Merci de faire savoir au développeur que vous avez vue ceci (valeur : {{state}})"
+        },
+        "login": {
+            "forms": {
+                "email_placeholder": "Courriel",
+                "password_placeholder": "Mot de passe",
+                "mfa_placeholder": "Code à usage unique",
+                "session_token_placeholder": "Jeton"
+            },
+            "instance_notice": "Vous êtes connectés à {{url}}.",
+            "options": {
+                "login_regular": "Oui, me connecter avec mon courriel et mon mot de passe",
+                "login_regular_body": "Recommandé pour la majorité des utilisateurs.",
+                "login_session_token": "Oui, me connecter avec un jeton de session",
+                "login_session_token_body": "Utilisez ceci si vous avez des problèmes avec le système classique de connexion. Certaines fonctionnalités peuvent ne pas être disponibles.",
+                "signup": "Non, m'enregistrer",
+                "signup_body": "Vous allez être redirigés vers l'application de la toile. Une fois enregistré, revenez ici et connectez vous."
+            },
+            "settings": {
+                "saved": "Enregistré !",
+                "saved_body": "Pour le moment, vous devez fermer et rouvrir l'application pour que vos changements s'appliquent. Nous savons que ce n'est pas idéal - nous allons régler ceci plus tard."
+            },
+            "subheader": "Avez vous un compte ?",
+            "token_info_label": "Comment puis-je obtenir mon jeton ?"
+        },
+        "home": {
+            "description": "Faites glisser depuis la gauche de l'écran ou tapez sur l'icone avec les trois lignes pour voir vos serveurs et vos messages !",
+            "join_lounge": "Rejoindre la loge Stoat",
+            "open_lounge": "Ouvrir la loge Stoat",
+            "join_clerotri": "Rejoindre le serveur de Clerotri",
+            "open_clerotri": "Ouvrir le serveur de Clerotri",
+            "open_settings": "Ouvrir les paramètres"
+        },
+        "messaging": {
+            "message_box_channel": "Message #{{name}}",
+            "message_box_group": "Message {{name}}",
+            "message_box_dm": "Message @{{name}}",
+            "message_box_saved_notes": "Sauvegarder vos notes",
+            "message_box_system": "Vous ne pouvez pas répondre aux messages du système.",
+            "message_box_no_perms": "Vous n'avez pas la permission d'envoyer des messages dans ce canal.",
+            "no_messages": "Pas de messages",
+            "no_messages_body": "Commencer la conversation.",
+            "reply_not_loaded": "Message non chargé"
+        },
+        "modals": {
+            "confirm_deletion": {
+                "header_channel": "Supprimer le canal ?",
+                "header_role": "Supprimer le rôle ?",
+                "header_message": "Supprimer le message ?",
+                "header_server": "Supprimer le serveur ?",
+                "body_channel": "Êtes-vous sûr de vouloir supprimer <2>ce canal</2> ?",
+                "body_role": "Êtes-vous sûr de vouloir supprimer <2>ce rôle</2> ?",
+                "body_message": "Êtes-vous sûr de vouloir supprimer <2>ce message</2> ?",
+                "body_server": "Êtes-vous sûr de vouloir supprimer <2>{{name}}</2> ?",
+                "warning": "Cela ne peut pas être annulé."
+            },
+            "confirm_mod_action": {
+                "header_kick": "Renvoyer l'utilisateur ?",
+                "header_ban": "Bannir cet utilisateur ?",
+                "body_kick": "Êtes-vous sûr de vouloir <2>renvoyer</2> <4>{{name}}</4> ?",
+                "body_ban": "Êtes-vous sûr de vouloir <2>bannir</2> <4>{{name}}</4> ?",
+                "reason_kick": "Raison du renvoi (optionnel)",
+                "reason_ban": "Raison du banissement (optionnel)",
+                "reason_placeholder": "Précisez une raison…"
+            },
+            "create_channel": {
+                "header": "Créer un nouveau canal",
+                "name_header": "Nom",
+                "name_placeholder": "Nom du canal",
+                "type_header": "Type",
+                "type_text": "Canal textuel",
+                "type_voice": "Canal vocal",
+                "nsfw_header": "Contenu sensible",
+                "nsfw_label": "Marque le canal en tant que contenu sensible"
+            },
+            "edit_text": {
+                "display_name_header": "Définir le nom d'affichage",
+                "display_name_placeholder": "Nom d'affichage",
+                "new_bot_header": "Créer un automate",
+                "new_bot_placeholder": "Nom d'utilisateur",
+                "nickname_header": "Définir le surnom",
+                "nickname_placeholder": "Surnom (laisser vide pour réinitialiser)",
+                "nickname_other_header": "Définir le surnom du membre",
+                "nickname_other_placeholder": "Surnom (laisser vide pour réinitialiser)",
+                "role_colour_header": "Définir la couleur du rôle",
+                "role_colour_placeholder": "Couleur du rôle",
+                "session_name_header": "Définir la nom de session",
+                "session_name_placeholder": "Nom de session"
+            },
+            "new_invite": {
+                "header": "Invitation crée",
+                "body": "Voici votre nouveau lien d'invitation :"
+            }
+        },
+        "permissions": {
+            "AssignRoles": "Assigner les rôles",
+            "AssignRoles_body_server": "Autoriser les membres avec ce rôle d'assigner les rôles en dessous du rang de leur rôle le plus élevé aux autres membres.",
+            "BanMembers": "Bannir des membres",
+            "BanMembers_body_server": "Autoriser les membres avec ce rôle de bannir et de dé-bannir les autres membres de ce serveur. Les membres bannis ne peuvent rejoindre à moins qu'ils ne soient dé-bannis.",
+            "ChangeAvatar": "Changer l'avatar",
+            "ChangeAvatar_body_server": "Autoriser les membres avec ce rôle de changer leur avatar de ce serveur.",
+            "ChangeNickname": "Change le surnom",
+            "ChangeNickname_body_server": "Autoriser les membres avec ce rôle de changer leur surnom.",
+            "Connect": "Connecter",
+            "Connect_body_server": "Autoriser les membres avec ce rôle de se connecter aux canals vocaux.",
+            "KickMembers": "Renvoyer des membres",
+            "KickMembers_body_server": "Autoriser les membres avec ce rôle de renvoyer les autres membres du serveur. Les membres renvoyés peuvent rejoindre avec une invitation.",
+            "InviteOthers": "Créer des invitations",
+            "InviteOthers_body_server": "Autoriser les membres avec ce rôle de créer des invitation pour ce serveur.",
+            "ManageChannel": "Gérer les canaux",
+            "ManageChannel_body_server": "Autoriser les membres avec ce rôle de créer, éditer et supprimer des canaux.",
+            "ManageCustomisation": "Gérer la personnalisation",
+            "ManageCustomisation_body_server": "Autoriser les membres avec ce rôle de créer et de supprimer des émoticônes.",
+            "ManageMessages": "Gérer les messages",
+            "ManageMessages_body_server": "Autoriser les membres avec ce rôle d'épingler des messages et de supprimer des messages envoyés par d'autres utilisateurs.",
+            "ManageNicknames": "Gérer les surnoms",
+            "ManageNicknames_body_server": "Autoriser les membres avec ce rôle de changer les surnoms des autres membres.",
+            "ManagePermissions": "Gérer les permissions",
+            "ManagePermissions_body_server": "Autoriser les membres avec ce rôle de modifier les permissions des canaux et des rôles avec un rang moins élevés que le propre rôle.",
+            "ManageRole": "Gérer les rôles",
+            "ManageRole_body_server": "Autoriser les membres avec ce rôle de créer, modifier et supprimer les rôles avec un rang moins élevés que leur propre rôle.",
+            "ManageServer": "Gérer le serveur",
+            "ManageServer_body_server": "Autoriser les membres avec ce rôle de changer les informations du serveur, tels que son nom, son icone et sa description.",
+            "ManageWebhooks": "Gérer les crochets réseau",
+            "ManageWebhooks_body_server": "Autoriser les membres avec ce rôle de créer, de modifier et de supprimer les crochet réseaux.",
+            "Masquerade": "Utiliser les mascarades",
+            "Masquerade_body_server": "Autoriser les membres avec ce rôle d'utiliser différents noms et avatars pour les messages individuels.",
+            "React": "Réagir",
+            "React_body_server": "Autoriser les membres avec ce rôle de réagir aux messages.",
+            "RemoveAvatars": "Retirer les avatars",
+            "RemoveAvatars_body_server": "Autoriser les membres avec ce rôle de retirer les avatars de serveur aux autres membres.",
+            "SendEmbeds": "Envoyer des incorporations",
+            "SendEmbeds_body_server": "Autoriser les membres avec ce rôle d'envoyer des liens d'incorporations et des textes personnalisés d'incorporations.",
+            "SendMessage": "Envoyer des messages",
+            "SendMessage_body_server": "Autoriser les utilisateurs avec ce rôle d'envoyer des messages dans les salons textuels.",
+            "TimeoutMembers": "Délai d'attente des membres",
+            "TimeoutMembers_body_server": "Autoriser les membres avec ce rôle d'ajouter un délai d'attente aux autres membres, le empêchant temporairement d'interagir avec le serveur.",
+            "UploadFiles": "Téléversement de fichiers",
+            "UploadFiles_body_server": "Autoriser les membres avec ce rôle de téléverser des fichiers dans les salons textuels.",
+            "ViewChannel": "Visionner les canaux",
+            "ViewChannel_body_server": "Autoriser les membres avec ce rôle de visionner les canaux."
+        },
+        "profile": {
+            "badges": "Insignes",
+            "bot_owner": "Propriétaire d'un automate",
+            "bio": "Biographie",
+            "flags": {
+                "banned": "Cet utilisateur a été banni",
+                "deleted": "Cet utilisateur a supprimé son compte",
+                "suspended": "Cet utilisateur a été suspendu",
+                "unknown": "Drapeau inconnu {{flag}}"
+            },
+            "friend_requests": {
+                "accept": "Accepter la demande d'ami",
+                "cancel": "Annuler la demande d'ami",
+                "reject": "Rejeter la demande d'ami",
+                "send": "Envoyer une demande d'ami"
+            },
+            "roles_header": "Rôles",
+            "roles": {
+                "copied_role_id_toast": "Identifiant de rôle copié"
+            },
+            "menu": {
+                "back": "Retourner au profil",
+                "block_user": "Bloquer l'utilisateur",
+                "report_user": "Signaler l'utilisateur"
+            },
+            "message_user": "Message",
+            "tabs": {
+                "profile": "Profil",
+                "mutual_servers": "Serveurs mutuels",
+                "mutual_friends": "Amis mutuels",
+                "mutual_groups": "Groupes mutuels"
+            }
+        },
+        "servers": {
+            "settings": {
+                "general": "Général",
+                "customisation": "Personnalisation",
+                "user_management": "Gérer l'utilisateur",
+                "delete_server": "Supprimer le serveur",
+                "overview": {
+                    "title": "Aperçu",
+                    "name": "Nom du serveur",
+                    "description": "Description du serveur",
+                    "markdown_tip": "La description du serveur supporte le formattage Markdown.",
+                    "markdown_tip_link": "En apprendre plus.",
+                    "description_placeholder": "Ajouter une description…",
+                    "set_description": "Définir la description",
+                    "system_messages": "Messages système",
+                    "system_messages_description": "Quand les membres rejoignent, quittent ou sont renvoyés ou bannis, vous pouvez recevoir des messages.",
+                    "system_message_channel_types": {
+                        "user_joined": "L\"utilisateur a rejoint",
+                        "user_left": "L'utilisateur est partit",
+                        "user_kicked": "L'utilsater a été renvoyé",
+                        "user_banned": "L'utilisateur a été banni"
+                    },
+                    "errors": {
+                        "empty_server_name": "Le nom du serveur ne peut pas être vide !"
+                    }
+                },
+                "channels": {
+                    "title": "Canaux",
+                    "name": "Nom du canal",
+                    "name_placeholder": "Définir un nom de canal…",
+                    "permissions": "Permissions du canal",
+                    "no_perms_set": "Don défini",
+                    "errors": {
+                        "empty_channel_name": "Le nom du canal ne peut pas être vide !"
+                    }
+                },
+                "roles": {
+                    "title": "Rôles",
+                    "name": "Nom",
+                    "name_placeholder": "Définir un nom de rôle…",
+                    "options_header": "Options",
+                    "options": {
+                        "hoist": "Rôle de palan",
+                        "hoist_body": "Afficher ce rôle au dessus des autres dans la liste des membres."
+                    },
+                    "rank": "Rang",
+                    "rank_placeholder": "Définir le rang du rôle…",
+                    "permissions": "Autorisations",
+                    "permissions_body": "Changer les autorisations de ce rôle",
+                    "permissions_list_header": "Autorisations pour <2>{{role}}</2>",
+                    "permissions_list_body": "Ces autorisations sont appliqués sur tout le serveur. Certaines d'entre elles peuvent être écrasées pour certains canaux spécifiques."
+                }
+            }
+        }
+    }
+}
