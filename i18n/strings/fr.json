@@ -315,8 +315,284 @@
                     "permissions": "Autorisations",
                     "permissions_body": "Changer les autorisations de ce rôle",
                     "permissions_list_header": "Autorisations pour <2>{{role}}</2>",
-                    "permissions_list_body": "Ces autorisations sont appliqués sur tout le serveur. Certaines d'entre elles peuvent être écrasées pour certains canaux spécifiques."
+                    "permissions_list_body": "Ces autorisations sont appliqués sur tout le serveur. Certaines d'entre elles peuvent être écrasées pour certains canaux spécifiques.",
+                    "colour": "Couleur",
+                    "delete": "Supprimer le rôle",
+                    "set_colour": "Définir la couleur du rôle",
+                    "open_colour_modal": "Entrer la couleur manuellement",
+                    "errors": {
+                        "empty_rank": "Le classement des rôles ne peut pas être vide !",
+                        "empty_role_name": "Les noms de rôles ne peuvent pas être vides !"
+                    }
+                },
+                "emoji": {
+                    "title": "Émoticône",
+                    "added_by": "Ajouté pat @{{name}}",
+                    "empty": "Pas d'émoticône",
+                    "deleted_toast": "{{name}} supprimé"
+                },
+                "members": {
+                    "title": "Membres",
+                    "loading": "Récupération des membres…",
+                    "nickname": "Surnom",
+                    "nickname_placeholder": "Définir un surnom…",
+                    "timeout_user": "délai d'attente {{name}}",
+                    "timeout_user_body": "Ils ne vont pas être capable d'envoyer des messages ou des réactions tant que leur délai d'attente nest pas terminé.",
+                    "kick_user": "Renvoyer {{name}}",
+                    "kick_user_body": "Ils peuvent rejoindre avec une inviation.",
+                    "ban_user": "Bannir {{name}}",
+                    "ban_user_body": "Ils ne vont pas être capable de rejoindre tant que vous ne les avez pas débannis.",
+                    "select_mode": {
+                        "title_one": "{{count}} membre sélectonné",
+                        "title_many": "{{count}} membres sélectionnés",
+                        "title_other": "{{count}} membres sélectionnés"
+                    }
+                },
+                "invites": {
+                    "title": "Invitations",
+                    "loading": "Récupération des invitations…",
+                    "empty": "Pas d'invitations"
+                },
+                "bans": {
+                    "title": "Bannissements",
+                    "loading": "Récupération des bannissements…",
+                    "empty": "Pas de bannissements",
+                    "no_reason": "Pas de raison fournie"
                 }
+            }
+        },
+        "settings": {
+            "app": {
+                "language": "Sélectionner votre langue",
+                "refetchOnReconnect": "Récupérer de nouveau les messages pendant la reconnection",
+                "reopenLastChannel": "Réouvrir le dernier canal ou vous étiez quand l'application s'ouvre",
+                "notifications": {
+                    "enabled": "Activer les notifications de veille",
+                    "enabledInApp": "Activer les notification dans l'application",
+                    "notifyOnSelfPing": "Recevoir une notification quand vous bippez"
+                },
+                "showChangelogs": "Afficher le journal des changements après la mise à jour de Clerotri"
+            },
+            "ui": {
+                "home": {
+                    "holidays": "Afficher les vacances sur la page d'accueil"
+                },
+                "theme": "Thème",
+                "messaging": {
+                    "doubleTapToReply": "Répondre aux messages en tapant deux fois dessus",
+                    "doubleTapToReply_remark": "Ceci est uniquement supporté dans la nouvelle vue de message.",
+                    "emojiPack": "Paquet d'émoticône",
+                    "experimentalScrolling": "Activer le défilement de canal pour la vue des anciens messages",
+                    "experimentalScrolling_remark": "Vous ne pouvez que défiler en arrière.",
+                    "fontSize": "Taille de la police",
+                    "fontSize_remark": "Ceci va être appliqué aux messages et à certaines parties de l'application.",
+                    "messageSpacing": "Espace de messages",
+                    "sendAttachments": "Activer l'envoi de pièces jointes",
+                    "showMasqAvatar": "Afficher l'avatar de mascarade dans le coin",
+                    "showNSFWContent": "Constentir au contenu pour adultes",
+                    "showReactions": "Afficher les réactions en dessous des messages",
+                    "showReactions_remark": "Vous pouvez ajouter aux réactions existantes, mais vous ne pouvez pas encore en ajouter de nouvelles.",
+                    "showSelfInTypingIndicator": "Affichez-vous dans l’indicateur de dactylographie",
+                    "statusInChatAvatars": "Afficher le statut des utilisateurs dans leur avatar de conversation",
+                    "use24H": "Utiliser l'heurodatage de 24 heures",
+                    "useNewMessageView": "Utiliser la nouvelle vue de messages"
+                },
+                "settings": {
+                    "showExperimental": "Afficher les fonctionnalitées expérimentales"
+                },
+                "showDeveloperFeatures": "Afficher les outils de développeur"
+            }
+        },
+        "settings_menu": {
+            "account": {
+                "title": "Compte"
+            },
+            "analytics": {
+                "title": "Télémétrie"
+            },
+            "appearance": {
+                "title": "Apparence"
+            },
+            "bots": {
+                "title": "Automates",
+                "loading": "Chargement des automates…",
+                "no_bots": "Vous n'avez pas d'automates",
+                "new_bot": "Créer un nouvel automate",
+                "new_bot_body": "Vous pouvez créer jusqu'à {{limit}} automates.",
+                "aup_notice": "Tous les automates doivent suivre la <2> politique d'utilisation acceptable </2>.",
+                "token": "Jeton",
+                "public": "Publique",
+                "public_body_stoat": "Si ceci est activé, cet automate peut être invité aux groupes et aux serveurs par d'autres utilisateurs.",
+                "public_body_upryzing": "Si ceci est activé, cet automate peut être invité aux groupes et espaces par d'autres utilisateurs.",
+                "copy_invite_link": "Copier le lien d'invitation",
+                "invite_bot": "Inviter l'automate"
+            },
+            "functionality": {
+                "title": "Fonctionnalitées"
+            },
+            "groups": {
+                "advanced": "Avancé",
+                "app": "Application",
+                "other": "Autres",
+                "user": "Utilisateur"
+            },
+            "i18n": {
+                "title": "Langue"
+            },
+            "info": {
+                "title": "À propos de Clerotri"
+            },
+            "licenses": {
+                "title": "Licenses libres",
+                "loading": "Chargement des données de la licence…"
+            },
+            "other": {
+                "changelog": "Journal des changements de la vue",
+                "debug_info": "Copier les informations de débogage",
+                "donate": "Doner",
+                "translate": "Traduire Clerotri",
+                "view_issues": "Voir les problèmes ouverts",
+                "logout": "Se déconnecter"
+            },
+            "profile": {
+                "title": "Profil",
+                "loading_bio": "Chargement de la biographie…",
+                "expand_bio": "Étendre la biographie",
+                "collapse_bio": "Réduire la biographie",
+                "display_name": "Afficher le nom",
+                "status": "Statut",
+                "status_body": "Définir votre type de statut et texte"
+            },
+            "sessions": {
+                "title": "Sessions",
+                "loading": "Chargement des sessions…",
+                "current_session": "Cette session",
+                "other_sessions": "Autres sessions",
+                "current_session_not_found": "Les informations de cette session ne sont pas disponibles.",
+                "current_session_not_found_with_hint": "Les informations de cette session ne sont pas disponibles. Vous devez vous déconnecter et vous connecter de nouveau.",
+                "no_other_sessions": "Vous n'avez pas d'autre sessions.",
+                "remove_other_sessions": "Déconnection de vos autres sessions",
+                "remove_other_sessions_body": "Cette session va rester connectée."
+            },
+            "toasts": {
+                "deprecated": "Ce paramètre va être retiré dans une version future.",
+                "developer": "Ce paramètre est prévu pour les développeurs.",
+                "experimental": "Ce paramètre est expérimental et peut être retiré ou modifié à n'importe quel moment."
+            }
+        },
+        "sheets": {
+            "channel": {
+                "create_invite": "Créer une invitation",
+                "mark_as_read": "Marqué comme lu",
+                "copy_link": "Copier le lien du canal",
+                "delete": "Supprimer le canal"
+            },
+            "report": {
+                "additional_context_body": "Vous pouvez ajouter plus de contexte à vos rapports ici.",
+                "additional_context_placeholder": "Ajouter plus de contexte (optionnel)",
+                "additional_context_placeholder_recommended": "Ajouter plus de contexte (recommandé)",
+                "bridged_message_notice": "Ce message à pu être envoyé depuis une autre plateforme. Si c'est le cas, nous recommandons de le signaler ici aussi.",
+                "destination_notice_stoat": "Ce signalement va être envoyé à la modération de Stoat et non pas aux modérateurs de ce server.",
+                "destination_notice_upryzing": "Ce signalement va être envoyé à l'équipe de modération d'Upryzing et non pas à la aux modérateurs de cet espace.",
+                "destination_notice_generic": "Ce signalement va être envoyé à l'équipe de modération de cette plateforme et non pas aux modérateurs de ce serveur.",
+                "next_steps": {
+                    "header": "Prochaines étapes",
+                    "block_message_author_body": "Vous pouvez aussi bloquer l'auteur de ce message.",
+                    "block_user_body": "Vous pouvez aussi bloquer cet utilisateur.",
+                    "block_message_author": "Bloquer l'auteur",
+                    "block_user": "Bloquer l'utilisateur",
+                    "message_author_blocked": "Auteur bloqué",
+                    "user_blocked": "Utilisateur bloqué",
+                    "leave_server_body": "Vous pouvez aussi quitter ce serveur. Les autres membres ne vont pas être notifiés.",
+                    "leave_server": "Quitter le serveur",
+                    "done": "Effectué"
+                },
+                "reason_selector_message": "Pourquoi signalez-vous ce message ?",
+                "reason_selector_server": "Pourquoi signalez-vous ce serveur ?",
+                "reason_selector_user": "Pourquoi signalez-vous cet utilisateur ?",
+                "reason_selector_body": "Vous pouvez ajouter plus de contexte après avoir sélectionné une raison.",
+                "reasons": {
+                    "BanEvasion": "Évitement de bannissement",
+                    "BanEvasion_body_user": "Cet utilisateur évite un bannissement",
+                    "ExtremeViolence": "Violence extrême",
+                    "ExtremeViolence_body_message": "Ce message contient de la violence extrême, du gore ou de la cruauté envers les animaux",
+                    "ExtremeViolence_body_server": "Ce serveur contient de la violence extrême, du gore ou de la cruauté envers les animaux",
+                    "Harassment": "Harcèlement",
+                    "Harassment_body_message": "Ce message me harcèle ou harcèle quelqu'un d'autre",
+                    "Harassment_body_server": "Ce serveur me harcèle ou quelqu'un d'autre",
+                    "Illegal": "Contenu illégal",
+                    "Illegal_body_message": "Ce message enfreint une ou plusieurs lois",
+                    "Illegal_body_server": "Ce serveur enfreint une ou plusieurs lois",
+                    "IllegalExtortion": "Extortion illégale",
+                    "IllegalExtortion_body_message": "Ce message est une extortion ou un chantage envers moi ou quelqu'un d'autre",
+                    "IllegalExtortion_body_server": "Ce serveur m'extorque ou fait du chantage envers moi ou quelqu'un d'autre",
+                    "IllegalGoods": "Produits illégaux",
+                    "IllegalGoods_body_message": "Ce message vend des produits ou services illégaux",
+                    "IllegalGoods_body_server": "Ce serveur vend des produits ou services illégaux",
+                    "IllegalHacking": "Piratage illégal",
+                    "IllegalHacking_body_message": "Ce message contient ou promeut le piratage ou le craquage illégal",
+                    "IllegalHacking_body_server": "Ce serveur contient ou promeut du piratage ou du craquage illégal",
+                    "IllegalPornography": "Pornographie illégale",
+                    "IllegalPornography_body_message": "Ce message contient de la pornographie vengeresse ou mineure",
+                    "IllegalPornography_body_server": "Ce serveur contient de la pornographie vengeresse ou mineure",
+                    "Impersonation": "Usurpation",
+                    "Impersonation_body_user": "Cet utilisateur m'usurpe ou quelqu'un d'autre",
+                    "InappropriateProfile": "Profil inapproprié",
+                    "InappropriateProfile_body_user": "Le profil de cet utilisateur est inapproprié pour une large audience",
+                    "Malware": "Maliciel",
+                    "Malware_body_message": "Ce message contient un maliciel ou des liens dangereux",
+                    "Malware_body_server": "Ce serveur contient des maliciels ou des liens dangereux",
+                    "Raid": "Invasion",
+                    "Raid_body_message": "Ce message fait partie d'une invasion ou d'une attaque pollurielle",
+                    "Raid_body_server": "Ce serveur promeut des invasions ou des attaques pollurielles",
+                    "NoneSpecified": "Autre",
+                    "NoneSpecified_body": "Quelque chose qui n'est pas listé ici",
+                    "PromotesHarm": "Appel à la violence",
+                    "PromotesHarm_body_message": "Ce message est un appel à la violence ou aux abus",
+                    "PromotesHarm_body_server": "Ce serveur promeut l'appel à la violence ou aux abus",
+                    "ScamsFraud": "Arnaque ou fraude",
+                    "ScamsFraud_body_message": "Ce message promeut l'arnaque ou la fraude",
+                    "ScamsFraud_body_server": "Ce serveur promeut l'arnaque ou la fraude",
+                    "SpamAbuse": "Polluriel ou utilisation abusive de la plateforme",
+                    "SpamAbuse_body_message": "Ce message est un polluriel ou une utilisation abusive de la plateforme",
+                    "SpamAbuse_body_server": "Ce serveur pollue ou utilise abusivement la plateforme",
+                    "SpamAbuse_body_user": "Cet utilisateur pollue ou utilise abusivement la plateforme",
+                    "Underage": "Mineur",
+                    "Underage_body_user": "Cet utilisateur est trop jeune pour utiliser la plateforme",
+                    "UnsolicitedSpam": "Polluriel non sollicité",
+                    "UnsolicitedSpam_body_message": "Ce message contient des publicités ou des polluriels non solicités",
+                    "UnsolicitedSpam_body_server": "Ce serveur contient des publicités ou des polluriels non solicités",
+                    "UnsolicitedSpam_body_user": "Cet utilisateur envoie des publicités ou des polluriels non solicités"
+                },
+                "report_message": "Signaler le message",
+                "report_server": "Signaler le serveur",
+                "report_user": "Signaler l'utilisateur",
+                "success_header": "Signalement envoyé",
+                "success_body_stoat": "Votre signalement a été envoyé à l'équipe de Stoat pour révision. Merci pour votre aide afin de garder Stoat sécurisé.",
+                "success_body_upryzing": "Votre signalement a été envoyé à l'équipe d'Upryzing pour révision. Merci de votre aide afin de garder Upryzing sécurisé.",
+                "success_body_generic": "Votre signalement a été envoyé à l'équipe de modération de la plateforme pour révision. Merci de votre aide afin de garder la plateforme sécurisée."
+            }
+        },
+        "themes": {
+            "Light": "Clair",
+            "Dark": "Foncé",
+            "Solarized": "Solarisé",
+            "AMOLED": "AMOLED",
+            "Rose Pine": "Pin rosé",
+            "Rose Pine Moon": "Pin rosé lunaire",
+            "Rose Pine Dawn": "Pin rosé aurore"
+        },
+        "misc": {
+            "generic_errors": {
+                "rateLimited_toast": "Ralentissez et ré-essayez dans une minute."
+            },
+            "network_indicator": {
+                "body": "Connection perdue",
+                "hide": "(cacher)"
+            },
+            "voice": {
+                "header": "Les canaux vocaux ne sont pas encore supportés dans Clerotri !",
+                "body": "Pendant ce temps, vous pouvez les rejoindre via l'application web ou via l'application bureautique Stoat."
             }
         }
     }
