@@ -1,23 +1,26 @@
 import {useContext, useState} from 'react';
-import {View} from 'react-native';
+import {ScrollView, View} from 'react-native';
+import {StyleSheet} from 'react-native-unistyles';
+import {useMMKVString} from 'react-native-mmkv';
 
-import {useSafeAreaInsets} from 'react-native-safe-area-context';
-
+import {languages} from '@clerotri-i18n/languages';
 import {
   BackButton,
   Button,
   Input,
   Text,
 } from '@clerotri/components/common/atoms';
+import {MaterialIcon} from '@clerotri/components/common/icons';
+import {PressableSettingsEntry} from '@clerotri/components/common/settings/atoms';
+import {SettingsCategory} from '@clerotri/components/common/settings';
 import {LoadingScreen} from '@clerotri/components/views/LoadingScreen';
+import {DEFAULT_API_URL} from '@clerotri/lib/consts';
 import {storage} from '@clerotri/lib/storage';
 import {getInstanceURL} from '@clerotri/lib/storage/utils';
 import {commonValues, ThemeContext} from '@clerotri/lib/themes';
 import {useBackHandler} from '@clerotri/lib/ui';
 
-export const LoginSettingsPage = ({callback}: {callback: () => void}) => {
-  const insets = useSafeAreaInsets();
-
+const InstanceSwitcher = ({callback}: {callback: () => void}) => {
   const {currentTheme} = useContext(ThemeContext);
 
   const [instanceURL, setInstanceURL] = useState(getInstanceURL());
@@ -68,14 +71,12 @@ export const LoginSettingsPage = ({callback}: {callback: () => void}) => {
   }
 
   return (
-    <View style={{flex: 1, backgroundColor: currentTheme.backgroundPrimary}}>
+    <>
       {!saved && (
         <BackButton
           callback={() => callback()}
-          type={'close'}
           style={{
             padding: commonValues.sizes.large,
-            paddingTop: insets.top + commonValues.sizes.large,
           }}
         />
       )}
@@ -132,6 +133,80 @@ export const LoginSettingsPage = ({callback}: {callback: () => void}) => {
           </>
         )}
       </View>
+    </>
+  );
+};
+
+export const LoginSettingsPage = ({callback}: {callback: () => void}) => {
+  const [currentSection, setCurrentSection] = useState<
+    'instanceSwitcher' | 'languageSwitcher' | null
+  >(null);
+
+  const [currentInstance] = useMMKVString('instanceURL');
+  const [currentLanguage] = useMMKVString('app.language');
+
+  useBackHandler(() => {
+    if (currentSection) {
+      setCurrentSection(null);
+      return true;
+    }
+
+    callback();
+    return true;
+  });
+
+  return (
+    <View style={localStyles.container}>
+      {currentSection !== 'instanceSwitcher' && (
+        <BackButton
+          callback={() =>
+            currentSection ? setCurrentSection(null) : callback()
+          }
+          type={currentSection ? 'back' : 'close'}
+          style={{
+            padding: commonValues.sizes.large,
+          }}
+        />
+      )}
+      {currentSection === 'instanceSwitcher' ? (
+        <InstanceSwitcher callback={() => setCurrentSection(null)} />
+      ) : currentSection === 'languageSwitcher' ? (
+        <ScrollView contentContainerStyle={{padding: commonValues.sizes.xl}}>
+          <SettingsCategory category={'i18n'} skipMargin />
+        </ScrollView>
+      ) : (
+        <View style={{paddingInline: commonValues.sizes.xl}}>
+          <PressableSettingsEntry
+            onPress={() => setCurrentSection('instanceSwitcher')}>
+            <MaterialIcon name={'link'} size={24} />
+            <View style={{marginStart: commonValues.sizes.medium}}>
+              <Text style={{fontWeight: 'bold'}}>Instance</Text>
+              <Text useNewText colour={'foregroundSecondary'}>
+                {currentInstance ?? DEFAULT_API_URL}
+              </Text>
+            </View>
+          </PressableSettingsEntry>
+          <PressableSettingsEntry
+            onPress={() => setCurrentSection('languageSwitcher')}>
+            <MaterialIcon name={'translate'} size={24} />
+            <View style={{marginStart: commonValues.sizes.medium}}>
+              <Text style={{fontWeight: 'bold'}}>Language</Text>
+              <Text useNewText colour={'foregroundSecondary'}>
+                {languages[currentLanguage ?? 'en'].name}
+              </Text>
+            </View>
+          </PressableSettingsEntry>
+        </View>
+      )}
     </View>
   );
 };
+
+const localStyles = StyleSheet.create((currentTheme, rt) => ({
+  container: {
+    flex: 1,
+    backgroundColor: currentTheme.backgroundPrimary,
+    paddingTop: rt.insets.top,
+    paddingBottom: rt.insets.bottom,
+  },
+}));

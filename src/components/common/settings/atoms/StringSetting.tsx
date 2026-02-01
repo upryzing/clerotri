@@ -17,7 +17,6 @@ export const StringSetting = ({sRaw}: {sRaw: Setting}) => {
       style={{
         flexDirection: 'row',
         alignItems: 'center',
-        marginTop: 10,
       }}>
       <View>
         <IndicatorIcons s={sRaw} />

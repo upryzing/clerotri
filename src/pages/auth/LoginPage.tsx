@@ -27,8 +27,6 @@ function LoginTypeSelector({
 }: {
   setLoginType: (type: 'email' | 'token') => void;
 }) {
-  const {currentTheme} = useContext(ThemeContext);
-
   const {t} = useTranslation();
 
   return (
@@ -87,7 +85,7 @@ function LoginTypeSelector({
           </Text>
         </View>
       </Button>
-      <Text colour={currentTheme.foregroundSecondary}>
+      <Text useNewText colour={'foregroundSecondary'}>
         {t('app.login.instance_notice', {
           url: getInstanceURL(),
         })}

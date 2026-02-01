@@ -42,9 +42,9 @@ const localStyles = StyleSheet.create(currentTheme => ({
     padding: commonValues.sizes.large,
   },
   loginInput: {
-    padding: commonValues.sizes.medium,
+    padding: commonValues.sizes.large,
     paddingHorizontal: commonValues.sizes.large,
-    margin: commonValues.sizes.medium,
+    margin: commonValues.sizes.small,
     width: '80%',
   },
 }));

@@ -17,7 +17,6 @@ export const BoolSetting = ({sRaw}: {sRaw: Setting}) => {
       style={{
         flexDirection: 'row',
         alignItems: 'center',
-        marginTop: 10,
       }}>
       <IndicatorIcons s={sRaw} />
       <View style={{flex: 1, flexDirection: 'column'}}>

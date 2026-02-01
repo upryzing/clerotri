@@ -19,7 +19,7 @@ export const OptionSetting = ({sRaw}: {sRaw: Setting}) => {
   const [value = sRaw.default, setValue] = useMMKVString(sRaw.key);
 
   return (
-    <View style={{marginTop: 10}}>
+    <View>
       <IndicatorIcons s={sRaw} />
       <Text
         style={{
