@@ -588,6 +588,15 @@
         },
         "custom_badges": {
             "clerotri_dev": "Распрацоўшчыца Clerotri"
+        },
+        "themes": {
+            "Light": "Сьветлая",
+            "Dark": "Цёмная",
+            "Solarized": "Салярызаваная",
+            "AMOLED": "AMOLED",
+            "Rose Pine": "Ружэ Пінэ",
+            "Rose Pine Moon": "Лунная Ружэ Пінэ",
+            "Rose Pine Dawn": "Усходняя Ружэ Пінэ"
         }
     }
 }
