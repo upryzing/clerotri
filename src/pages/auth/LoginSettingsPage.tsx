@@ -1,6 +1,7 @@
 import {useContext, useState} from 'react';
 import {ScrollView, View} from 'react-native';
 import {StyleSheet} from 'react-native-unistyles';
+// import {useTranslation} from 'react-i18next';
 import {useMMKVString} from 'react-native-mmkv';
 
 import {languages} from '@clerotri-i18n/languages';
@@ -13,6 +14,7 @@ import {
 import {MaterialIcon} from '@clerotri/components/common/icons';
 import {PressableSettingsEntry} from '@clerotri/components/common/settings/atoms';
 import {SettingsCategory} from '@clerotri/components/common/settings';
+import {LineSeparator} from '@clerotri/components/layout';
 import {LoadingScreen} from '@clerotri/components/views/LoadingScreen';
 import {DEFAULT_API_URL} from '@clerotri/lib/consts';
 import {storage} from '@clerotri/lib/storage';
@@ -137,7 +139,17 @@ const InstanceSwitcher = ({callback}: {callback: () => void}) => {
   );
 };
 
-export const LoginSettingsPage = ({callback}: {callback: () => void}) => {
+export const LoginSettingsPage = ({
+  callback,
+  isV2,
+  temporarySessionTokenFunction,
+}: {
+  callback: () => void;
+  isV2?: boolean;
+  temporarySessionTokenFunction?: () => void;
+}) => {
+  // const {t} = useTranslation();
+
   const [currentSection, setCurrentSection] = useState<
     'instanceSwitcher' | 'languageSwitcher' | null
   >(null);
@@ -196,6 +208,24 @@ export const LoginSettingsPage = ({callback}: {callback: () => void}) => {
               </Text>
             </View>
           </PressableSettingsEntry>
+          {isV2 && (
+            <>
+              <LineSeparator style={{margin: commonValues.sizes.medium}} />
+              <PressableSettingsEntry
+                onPress={() => temporarySessionTokenFunction!()}>
+                <MaterialIcon name={'key'} size={24} />
+                <View style={{marginStart: commonValues.sizes.medium}}>
+                  <Text style={{fontWeight: 'bold'}}>
+                    Log in with a session token
+                  </Text>
+                  <Text useNewText colour={'foregroundSecondary'}>
+                    Some functionality may be unavailable.
+                    {/* {t('app.login.options.login_session_token_body')} */}
+                  </Text>
+                </View>
+              </PressableSettingsEntry>
+            </>
+          )}
         </View>
       )}
     </View>

@@ -109,6 +109,7 @@
                 "saved": "Saved!",
                 "saved_body": "For now, you'll have to close and reopen the app for your changes to apply. We know this isn't ideal - we'll fix this at a later date."
             },
+            "settings_button": "Login settings",
             "subheader": "Do you have an account?",
             "token_info_label": "How do I get my token?"
         },

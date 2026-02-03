@@ -1,5 +1,6 @@
 import {useState} from 'react';
 import {Pressable, View} from 'react-native';
+import {StyleSheet} from 'react-native-unistyles';
 
 import {setFunction} from '@clerotri/Generic';
 import {LoadingScreen} from '@clerotri/components/views/LoadingScreen';
@@ -7,6 +8,7 @@ import {LoginPage} from '@clerotri/pages/auth/LoginPage';
 import {LoginPageV2} from '@clerotri/pages/auth/LoginPageV2';
 import {LoginSettingsPage} from '@clerotri/pages/auth/LoginSettingsPage';
 import {Text} from '@clerotri/components/common/atoms';
+import {commonValues} from '@clerotri/lib/themes';
 
 export const LoginViews = ({markAsLoggedIn}: {markAsLoggedIn: any}) => {
   const [loginV2, setLoginV2] = useState(false);
@@ -28,17 +30,6 @@ export const LoginViews = ({markAsLoggedIn}: {markAsLoggedIn: any}) => {
 
   return (
     <View style={{flex: 1}}>
-      {__DEV__ && (
-        <Pressable
-          style={{
-            height: 80,
-            backgroundColor: 'darkgreen',
-            justifyContent: 'center',
-          }}
-          onPress={() => setLoginV2(state => !state)}>
-          <Text>use login v{loginV2 ? '1' : '2'}</Text>
-        </Pressable>
-      )}
       {loginV2 ? (
         <LoginPageV2 />
       ) : (
@@ -61,6 +52,25 @@ export const LoginViews = ({markAsLoggedIn}: {markAsLoggedIn: any}) => {
           )}
         </>
       )}
+      {__DEV__ && (
+        <Pressable
+          style={localStyles.temporaryVersionSwitcher}
+          onPress={() => setLoginV2(state => !state)}>
+          <Text>use login v{loginV2 ? '1' : '2'}</Text>
+        </Pressable>
+      )}
     </View>
   );
 };
+
+const localStyles = StyleSheet.create((currentTheme, rt) => ({
+  temporaryVersionSwitcher: {
+    padding: commonValues.sizes.medium,
+    paddingBlockEnd: commonValues.sizes.medium + rt.insets.bottom,
+    position: 'absolute',
+    bottom: 0,
+    width: '100%',
+    backgroundColor: currentTheme.backgroundSecondary,
+    justifyContent: 'center',
+  },
+}));
