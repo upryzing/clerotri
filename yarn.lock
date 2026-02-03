@@ -2696,7 +2696,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@rnx-kit/metro-serializer-esbuild@npm:^0.3.0":
+"@rnx-kit/metro-serializer-esbuild@npm:0.3.0":
   version: 0.3.0
   resolution: "@rnx-kit/metro-serializer-esbuild@npm:0.3.0"
   dependencies:
@@ -2709,23 +2709,25 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@rnx-kit/metro-serializer@npm:2.0.0":
-  version: 2.0.0
-  resolution: "@rnx-kit/metro-serializer@npm:2.0.0"
+"@rnx-kit/metro-serializer-esbuild@patch:@rnx-kit/metro-serializer-esbuild@npm%3A0.3.0#~/.yarn/patches/@rnx-kit-metro-serializer-esbuild-npm-0.3.0-af83927639.patch":
+  version: 0.3.0
+  resolution: "@rnx-kit/metro-serializer-esbuild@patch:@rnx-kit/metro-serializer-esbuild@npm%3A0.3.0#~/.yarn/patches/@rnx-kit-metro-serializer-esbuild-npm-0.3.0-af83927639.patch::version=0.3.0&hash=bea715"
   dependencies:
-    "@rnx-kit/tools-react-native": "npm:^2.0.0"
-    semver: "npm:^7.0.0"
-  checksum: 10c0/1539a646e482bf556b6240023a13e797319a2adb8d107d2781414d294c1cf2d9e992c4a11ee523c9d2ed84eb5737adace39482355175fb66b366267790a0ef95
+    "@rnx-kit/console": "npm:^2.0.0"
+    "@rnx-kit/tools-node": "npm:^3.0.3"
+    "@rnx-kit/tools-react-native": "npm:^2.3.2"
+    esbuild: "npm:^0.27.1"
+    esbuild-plugin-lodash: "npm:^1.2.0"
+  checksum: 10c0/753f4ccbfcb8f89891d3b4f372da44251a184a2f988792bff906d78936888bff880f9a73b99377e4731f9b9dc028ccea5e6b6c92d365456761177118fe187728
   languageName: node
   linkType: hard
 
-"@rnx-kit/metro-serializer@patch:@rnx-kit/metro-serializer@npm%3A2.0.0#~/.yarn/patches/@rnx-kit-metro-serializer-npm-2.0.0-a975697c3c.patch":
-  version: 2.0.0
-  resolution: "@rnx-kit/metro-serializer@patch:@rnx-kit/metro-serializer@npm%3A2.0.0#~/.yarn/patches/@rnx-kit-metro-serializer-npm-2.0.0-a975697c3c.patch::version=2.0.0&hash=0eea99"
+"@rnx-kit/metro-serializer@npm:^2.0.0":
+  version: 2.0.3
+  resolution: "@rnx-kit/metro-serializer@npm:2.0.3"
   dependencies:
-    "@rnx-kit/tools-react-native": "npm:^2.0.0"
-    semver: "npm:^7.0.0"
-  checksum: 10c0/125b496872042c0acd4eacdb0d0a98108550c8e4cf8c3e1d6bb3b9d001813ada8c7e4bff1cddc56944dac4e6462103cf517afb58db152c2987f3fcdc73d86768
+    "@rnx-kit/tools-react-native": "npm:^2.3.0"
+  checksum: 10c0/4e34791a69298a24bfb65d5c91ecc675b2110a45381ebf25228d1c0155750c5a06484c6a32d868bd76bd105b4609fb166bb0119830c0f8570d46098c716b861a
   languageName: node
   linkType: hard
 
@@ -2806,7 +2808,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@rnx-kit/tools-react-native@npm:^2.0.0, @rnx-kit/tools-react-native@npm:^2.3.1, @rnx-kit/tools-react-native@npm:^2.3.2":
+"@rnx-kit/tools-react-native@npm:^2.3.0, @rnx-kit/tools-react-native@npm:^2.3.1, @rnx-kit/tools-react-native@npm:^2.3.2":
   version: 2.3.2
   resolution: "@rnx-kit/tools-react-native@npm:2.3.2"
   dependencies:
@@ -3326,12 +3328,12 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@types/node@npm:*, @types/node@npm:^24.10.9":
-  version: 24.10.9
-  resolution: "@types/node@npm:24.10.9"
+"@types/node@npm:*, @types/node@npm:^24.10.10":
+  version: 24.10.10
+  resolution: "@types/node@npm:24.10.10"
   dependencies:
     undici-types: "npm:~7.16.0"
-  checksum: 10c0/e9e436fcd2136bddb1bbe3271a89f4653910bcf6ee8047c4117f544c7905a106c039e2720ee48f28505ef2560e22fb9ead719f28bf5e075fdde0c1120e38e3b2
+  checksum: 10c0/ae6871069373cf9ea2f9f9c6d42af6d0a66a213f8688c1b4ced6466cbcdd0f926e4603480a454b1df330feb1243d2ac50749895eddf5667e25e6873d3f8b9488
   languageName: node
   linkType: hard
 
@@ -10078,7 +10080,7 @@ __metadata:
     "@types/babel__core": "npm:^7.20.5"
     "@types/eslint": "npm:^8.56.12"
     "@types/jest": "npm:^29.5.14"
-    "@types/node": "npm:^24.10.9"
+    "@types/node": "npm:^24.10.10"
     "@types/react": "npm:^19.2.10"
     "@types/react-dom": "npm:^19.2.3"
     "@types/react-native-web": "npm:^0.19.2"
