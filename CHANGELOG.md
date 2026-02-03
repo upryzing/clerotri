@@ -206,7 +206,7 @@ Please note that the changelog for this version is incomplete. It's been over a 
 - You might've noticed something different: **the app has a new name and icon!** RVMob is now known as **Clerotri**, inspired by the [_Clerodendrum trichotomum_][flower].
 - **Breaking change:** the app's bundle identifier has changed to `app.upryzing.clerotri`, meaning that **this update will install as a new app**, your settings **won't migrate** and **you'll need to log back in**. I sincerely apologise for the inconvenience, but I swear this will be the last time for the foreseeable future that you'll need to do anything major when updating.
 - **Breaking change:** the app now _actually_ requires Android 7. It was the listed minimum version for v0.6.0, but the minimum SDK was set to Android 5 - this has now been fixed. (This isn't really much of a breaking change, though - Android 5/6 were never _officially_ supported, and I doubt anyone was using RVMob on them... if it even worked :eye::eye:)
-- Clerotri is **now on the Fediverse!** I'll be posting updates and proving some amount of support at [`@clerotri@lea.pet`][fedi].
+- Clerotri is **now on the Fediverse!** I'll be posting updates and providing some amount of support at [`@clerotri@lea.pet`][fedi].
 
 ​### What's new
 
