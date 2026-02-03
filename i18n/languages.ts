@@ -10,6 +10,7 @@ import {default as eo} from './strings/eo.json';
 import {default as es} from './strings/es.json';
 import {default as es_419} from './strings/es-419.json';
 import {default as fil} from './strings/fil.json';
+import {default as fr} from './strings/fr.json';
 import {default as hu} from './strings/hu.json';
 import {default as id} from './strings/id.json';
 import {default as lv} from './strings/lv.json';
@@ -33,6 +34,7 @@ export const resources = {
   es: {translation: es},
   'es-419': {translation: es_419},
   fil: {translation: fil},
+  fr: {translation: fr},
   hu: {translation: hu},
   id: {translation: id},
   lv: {translation: lv},
@@ -84,6 +86,11 @@ export const languages: Record<string, Language> = {
     name: 'Filipino',
     englishName: 'Filipino',
     emoji: '🇵🇭',
+  },
+  fr: {
+    name: 'Français',
+    englishName: 'French',
+    emoji: '🇫🇷',
   },
   hu: {name: 'Magyar', englishName: 'Hungarian', emoji: '🇭🇺'},
   id: {
