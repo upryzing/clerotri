@@ -2,16 +2,18 @@ import {createContext, useContext, useState} from 'react';
 import {View} from 'react-native';
 import {StyleSheet} from 'react-native-unistyles';
 import {useTranslation} from 'react-i18next';
+import {observer} from 'mobx-react-lite';
 
 import {KeyboardAvoidingView} from 'react-native-keyboard-controller';
 
 import {AppIcon} from '@clerotri/components/common/settings/sections/app/AppInfoDecorations';
-import {Button, Text} from '@clerotri/components/common/atoms';
+import {Button, Input, Text} from '@clerotri/components/common/atoms';
 import {MaterialIcon} from '@clerotri/components/common/icons';
 import {OFFICIAL_INSTANCE_SIGNUP_URL} from '@clerotri/lib/consts';
 import {client} from '@clerotri/lib/client';
 import {getInstanceURL} from '@clerotri/lib/storage/utils';
 import {commonValues} from '@clerotri/lib/themes';
+import {useBackHandler} from '@clerotri/lib/ui';
 import {openUrl} from '@clerotri/lib/utils';
 import {LoginSettingsPage} from '@clerotri/pages/auth/LoginSettingsPage';
 
@@ -103,8 +105,44 @@ const StartPage = () => {
   );
 };
 
+const SignInPage = observer(() => {
+  const {t} = useTranslation();
+
+  const [loggingIn, _setLoggingIn] = useState(false);
+
+  return (
+    <View style={{alignItems: 'center'}}>
+      <Input
+        isLoginInput
+        skipRegularStyles
+        placeholder={t('app.login.forms.email_placeholder')}
+        keyboardType={'email-address'}
+        autoComplete={'email'}
+        disabled={loggingIn}
+      />
+      <Input
+        isLoginInput
+        skipRegularStyles
+        placeholder={t('app.login.forms.password_placeholder')}
+        secureTextEntry={true}
+        autoComplete={'password'}
+        disabled={loggingIn}
+      />
+    </View>
+  );
+});
+
 export const LoginPageV2 = () => {
   const [currentPage, setCurrentPage] = useState<LoginPage>('start');
+
+  useBackHandler(() => {
+    if (currentPage !== 'start') {
+      setCurrentPage('start');
+      return true;
+    }
+
+    return false;
+  });
 
   return (
     <KeyboardAvoidingView behavior={'padding'} style={localStyles.container}>
@@ -115,6 +153,8 @@ export const LoginPageV2 = () => {
             isV2
             temporarySessionTokenFunction={() => setCurrentPage('login_token')}
           />
+        ) : currentPage === 'login' ? (
+          <SignInPage />
         ) : (
           <StartPage />
         )}
