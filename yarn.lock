@@ -2569,7 +2569,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@rnx-kit/cli@npm:^1.0.0":
+"@rnx-kit/cli@npm:1.0.0":
   version: 1.0.0
   resolution: "@rnx-kit/cli@npm:1.0.0"
   dependencies:
@@ -2603,6 +2603,43 @@ __metadata:
   bin:
     rnx-cli: bin/rnx-cli.cjs
   checksum: 10c0/02573ddb0ba57cfe4ab70f4789f7e23583c8ca36ef5193a6cfab199d90f5250027b08dcadaeaad4465af3ce27f6a03ccaf4de3e276a898c7996846b934c133dd
+  languageName: node
+  linkType: hard
+
+"@rnx-kit/cli@patch:@rnx-kit/cli@npm%3A1.0.0#~/.yarn/patches/@rnx-kit-cli-npm-1.0.0-9f40e0294d.patch":
+  version: 1.0.0
+  resolution: "@rnx-kit/cli@patch:@rnx-kit/cli@npm%3A1.0.0#~/.yarn/patches/@rnx-kit-cli-npm-1.0.0-9f40e0294d.patch::version=1.0.0&hash=706d0b"
+  dependencies:
+    "@rnx-kit/align-deps": "npm:^3.3.3"
+    "@rnx-kit/config": "npm:^0.7.0"
+    "@rnx-kit/console": "npm:^2.0.0"
+    "@rnx-kit/metro-plugin-cyclic-dependencies-detector": "npm:^2.0.0"
+    "@rnx-kit/metro-plugin-duplicates-checker": "npm:^3.0.0"
+    "@rnx-kit/metro-plugin-typescript": "npm:^0.5.3"
+    "@rnx-kit/metro-serializer": "npm:^2.0.0"
+    "@rnx-kit/metro-serializer-esbuild": "npm:^0.3.0"
+    "@rnx-kit/metro-service": "npm:^4.1.3"
+    "@rnx-kit/third-party-notices": "npm:^2.0.0"
+    "@rnx-kit/tools-android": "npm:^0.2.2"
+    "@rnx-kit/tools-apple": "npm:^0.2.2"
+    "@rnx-kit/tools-filesystem": "npm:^0.1.0"
+    "@rnx-kit/tools-language": "npm:^3.0.1"
+    "@rnx-kit/tools-node": "npm:^3.0.3"
+    "@rnx-kit/tools-react-native": "npm:^2.3.2"
+    commander: "npm:^11.1.0"
+    ora: "npm:^5.4.1"
+    qrcode: "npm:^1.5.0"
+  peerDependencies:
+    jest: ">=26.0"
+    react-native: ">=0.64"
+  peerDependenciesMeta:
+    jest:
+      optional: true
+    react-native:
+      optional: true
+  bin:
+    rnx-cli: bin/rnx-cli.cjs
+  checksum: 10c0/a4e05205affd4d6e55ce3704bc67e066759f7f6e7875944a4818f64271ccb16ccfc2d1283c8578f7ede84500e39401b5d577502025f5dca0c103eb95ee7fcf47
   languageName: node
   linkType: hard
 
@@ -10090,7 +10127,7 @@ __metadata:
     "@react-native/typescript-config": "npm:^0.84.0-rc.4"
     "@rexovolt/react-native-markdown-display": "npm:^10.0.1"
     "@rnx-kit/babel-preset-metro-react-native": "npm:3.0.0"
-    "@rnx-kit/cli": "npm:^1.0.0"
+    "@rnx-kit/cli": "patch:@rnx-kit/cli@npm%3A1.0.0#~/.yarn/patches/@rnx-kit-cli-npm-1.0.0-9f40e0294d.patch"
     "@rnx-kit/metro-config": "npm:^2.2.3"
     "@rnx-kit/metro-resolver-symlinks": "npm:^0.2.11"
     "@traptitech/markdown-it-spoiler": "patch:@traptitech/markdown-it-spoiler@npm%3A1.1.6#~/.yarn/patches/@traptitech-markdown-it-spoiler-npm-1.1.6-ee0dc02626.patch"

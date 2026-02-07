@@ -1,0 +1,13 @@
+diff --git a/lib/bundle/hermes.js b/lib/bundle/hermes.js
+index c1de4fc01d797050b4885a25e565d60dd8c4087d..6ba3e8cce7cad3952a51ea164e9b3ce83c8d30b7 100644
+--- a/lib/bundle/hermes.js
++++ b/lib/bundle/hermes.js
+@@ -58,6 +58,8 @@ function findHermesBinary({ reactNativePath }) {
+     const locations = [
+         () => path.join(reactNativePath, "sdks", "hermesc"),
+         () => (0, package_1.findPackageDependencyDir)("hermes-engine"),
++        // PATCH: also look for the newer hermes-compiler package (used for Hermes v1)
++        () => (0, package_1.findPackageDependencyDir)("hermes-compiler/hermesc"),
+     ];
+     for (const getLocation of locations) {
+         const location = getLocation();

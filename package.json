@@ -76,7 +76,7 @@
     "@react-native/metro-config": "^0.84.0-rc.4",
     "@react-native/typescript-config": "^0.84.0-rc.4",
     "@rnx-kit/babel-preset-metro-react-native": "3.0.0",
-    "@rnx-kit/cli": "^1.0.0",
+    "@rnx-kit/cli": "patch:@rnx-kit/cli@npm%3A1.0.0#~/.yarn/patches/@rnx-kit-cli-npm-1.0.0-9f40e0294d.patch",
     "@rnx-kit/metro-config": "^2.2.3",
     "@rnx-kit/metro-resolver-symlinks": "^0.2.11",
     "@types/babel__core": "^7.20.5",
