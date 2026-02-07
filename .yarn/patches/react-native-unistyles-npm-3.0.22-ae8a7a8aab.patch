@@ -1,5 +1,5 @@
 diff --git a/lib/module/index.js b/lib/module/index.js
-index 4de0ab6b87134ffc52ef28d832a8fb18e98739de..753ce6c4e97008e3b9beff77a2590cd198befc41 100644
+index 4de0ab6b87134ffc52ef28d832a8fb18e98739de..4c19b0cda90ab98ea3920254950e8a147977f2f9 100644
 --- a/lib/module/index.js
 +++ b/lib/module/index.js
 @@ -5,7 +5,7 @@ const [majorReactVersions] = React.version.split('.').map(Number.parseInt);

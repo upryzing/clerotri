@@ -2551,9 +2551,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@rnx-kit/babel-preset-metro-react-native@npm:^3.0.1":
-  version: 3.0.1
-  resolution: "@rnx-kit/babel-preset-metro-react-native@npm:3.0.1"
+"@rnx-kit/babel-preset-metro-react-native@npm:3.0.0":
+  version: 3.0.0
+  resolution: "@rnx-kit/babel-preset-metro-react-native@npm:3.0.0"
   dependencies:
     "@rnx-kit/console": "npm:^2.0.0"
     babel-plugin-const-enum: "npm:^1.0.0"
@@ -2565,7 +2565,7 @@ __metadata:
   peerDependenciesMeta:
     "@babel/plugin-transform-typescript":
       optional: true
-  checksum: 10c0/85771c4fec9750d3431fcaaffb68a4b95c2f775dea47503819f42c508e08859779e8f0bf013dcf58411b8160465b06c02f0bfb68aa512d4f5976ddeb34066a2e
+  checksum: 10c0/f44af61ac443c1b97752190aca67b3d5deed86c0af9c70f64a35d8f99aa1c94a69aff49f59606287c3c464fa96f7405f2abf30eb9a282a8f56261137317a03d5
   languageName: node
   linkType: hard
 
@@ -9535,7 +9535,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"react-native-unistyles@npm:^3.0.22":
+"react-native-unistyles@npm:3.0.22":
   version: 3.0.22
   resolution: "react-native-unistyles@npm:3.0.22"
   peerDependencies:
@@ -9549,6 +9549,23 @@ __metadata:
     react-native-reanimated:
       optional: true
   checksum: 10c0/04bcf666284cc7c3e7b93bb804cebd473245ed57d307ea3e24eaa67f5c67bea5f00609941a414081b674e5550b0c5157ba3d927efd0de94c347b798af08f9690
+  languageName: node
+  linkType: hard
+
+"react-native-unistyles@patch:react-native-unistyles@npm%3A3.0.22#~/.yarn/patches/react-native-unistyles-npm-3.0.22-ae8a7a8aab.patch":
+  version: 3.0.22
+  resolution: "react-native-unistyles@patch:react-native-unistyles@npm%3A3.0.22#~/.yarn/patches/react-native-unistyles-npm-3.0.22-ae8a7a8aab.patch::version=3.0.22&hash=50c31e"
+  peerDependencies:
+    "@react-native/normalize-colors": "*"
+    react: "*"
+    react-native: ">=0.76.0"
+    react-native-edge-to-edge: "*"
+    react-native-nitro-modules: "*"
+    react-native-reanimated: "*"
+  peerDependenciesMeta:
+    react-native-reanimated:
+      optional: true
+  checksum: 10c0/e2845152f57b45d1b795c3320088f1d31edd20c3f7d5cd49ed6f0ecd664931a31f1963b29e9abd4587808dedd66fc195dc575a98db58f7eb79ddb42e30699a3e
   languageName: node
   linkType: hard
 
@@ -10072,7 +10089,7 @@ __metadata:
     "@react-native/metro-config": "npm:^0.84.0-rc.4"
     "@react-native/typescript-config": "npm:^0.84.0-rc.4"
     "@rexovolt/react-native-markdown-display": "npm:^10.0.1"
-    "@rnx-kit/babel-preset-metro-react-native": "npm:^3.0.1"
+    "@rnx-kit/babel-preset-metro-react-native": "npm:3.0.0"
     "@rnx-kit/cli": "npm:^1.0.0"
     "@rnx-kit/metro-config": "npm:^2.2.3"
     "@rnx-kit/metro-resolver-symlinks": "npm:^0.2.11"
@@ -10117,7 +10134,7 @@ __metadata:
     react-native-safe-area-context: "npm:^5.6.2"
     react-native-svg: "npm:^15.15.1"
     react-native-svg-transformer: "npm:^1.5.3"
-    react-native-unistyles: "npm:^3.0.22"
+    react-native-unistyles: "patch:react-native-unistyles@npm%3A3.0.22#~/.yarn/patches/react-native-unistyles-npm-3.0.22-ae8a7a8aab.patch"
     react-native-web: "npm:^0.19.13"
     react-native-worklets: "npm:^0.7.2"
     react-test-renderer: "npm:19.2.3"
