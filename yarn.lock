@@ -2608,7 +2608,7 @@ __metadata:
 
 "@rnx-kit/cli@patch:@rnx-kit/cli@npm%3A1.0.0#~/.yarn/patches/@rnx-kit-cli-npm-1.0.0-9f40e0294d.patch":
   version: 1.0.0
-  resolution: "@rnx-kit/cli@patch:@rnx-kit/cli@npm%3A1.0.0#~/.yarn/patches/@rnx-kit-cli-npm-1.0.0-9f40e0294d.patch::version=1.0.0&hash=706d0b"
+  resolution: "@rnx-kit/cli@patch:@rnx-kit/cli@npm%3A1.0.0#~/.yarn/patches/@rnx-kit-cli-npm-1.0.0-9f40e0294d.patch::version=1.0.0&hash=20c5c3"
   dependencies:
     "@rnx-kit/align-deps": "npm:^3.3.3"
     "@rnx-kit/config": "npm:^0.7.0"
@@ -2639,7 +2639,7 @@ __metadata:
       optional: true
   bin:
     rnx-cli: bin/rnx-cli.cjs
-  checksum: 10c0/a4e05205affd4d6e55ce3704bc67e066759f7f6e7875944a4818f64271ccb16ccfc2d1283c8578f7ede84500e39401b5d577502025f5dca0c103eb95ee7fcf47
+  checksum: 10c0/ddc01328f8bec0ea8bbebd4c34d69024bccd35e6bc73a50a651432987a42a145b7a5543751062a61a3f50d09fbef332cc4949f6031593e0e19ba76a2da26d966
   languageName: node
   linkType: hard
 
