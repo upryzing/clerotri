@@ -3,6 +3,8 @@ import {TouchableOpacity, View} from 'react-native';
 import {StyleSheet} from 'react-native-unistyles';
 import {observer} from 'mobx-react-lite';
 
+import type {Server} from 'revolt.js';
+
 import {app} from '@clerotri/Generic';
 import {Text} from '@clerotri/components/common/atoms';
 import {MaterialCommunityIcon} from '@clerotri/components/common/icons';
@@ -11,6 +13,72 @@ import {client} from '@clerotri/lib/client';
 import {OrderedServersContext} from '@clerotri/lib/state';
 import {commonValues} from '@clerotri/lib/themes';
 import {LineSeparator} from '../layout';
+
+const ServerListEntry = observer(
+  ({
+    server,
+    onServerPress,
+    onServerLongPress,
+    showUnread,
+  }: {
+    server: Server;
+    onServerPress: any;
+    onServerLongPress?: any;
+    showUnread?: boolean;
+  }) => {
+    const iconURL = server.generateIconURL();
+    const pings = server.getMentions().length;
+    let initials = '';
+
+    for (const word of server.name.split(' ')) {
+      initials += word.charAt(0);
+    }
+
+    return (
+      <View key={`${server._id}-indicator-container`}>
+        <TouchableOpacity
+          onPress={() => {
+            onServerPress(server);
+          }}
+          onLongPress={() => {
+            onServerLongPress(server);
+          }}
+          key={server._id}
+          style={localStyles.serverButton}>
+          {iconURL ? (
+            <Image
+              key={`${server._id}-icon`}
+              source={{uri: iconURL}}
+              style={localStyles.serverIcon}
+            />
+          ) : (
+            <Text
+              key={`${server._id}-initials`}
+              style={localStyles.serverButtonInitials}>
+              {initials}
+            </Text>
+          )}
+        </TouchableOpacity>
+        {showUnread && pings > 0 ? (
+          <View
+            key={`${server._id}-mentions-indicator`}
+            style={localStyles.mentionsIndicator}>
+            <Text
+              key={`${server._id}-mentions-indicator-count`}
+              style={localStyles.mentionsIndicatorText}>
+              {pings > 9 ? '9+' : pings}
+            </Text>
+          </View>
+        ) : showUnread && server.isUnread() ? (
+          <View
+            key={`${server._id}-unreads-indicator`}
+            style={localStyles.unreadsIndicator}
+          />
+        ) : null}
+      </View>
+    );
+  },
+);
 
 export const ServerList = observer(
   ({
@@ -66,59 +134,15 @@ export const ServerList = observer(
       <View
         key={'server-list-container'}
         style={horizontal && {flexDirection: 'row'}}>
-        {servers.map(s => {
-          const iconURL = s.generateIconURL();
-          const pings = s.getMentions().length;
-          let initials = '';
-
-          for (const word of s.name.split(' ')) {
-            initials += word.charAt(0);
-          }
-
-          return (
-            <View key={`${s._id}-indicator-container`}>
-              <TouchableOpacity
-                onPress={() => {
-                  onServerPress(s);
-                }}
-                onLongPress={() => {
-                  onServerLongPress(s);
-                }}
-                key={s._id}
-                style={localStyles.serverButton}>
-                {iconURL ? (
-                  <Image
-                    key={`${s._id}-icon`}
-                    source={{uri: iconURL}}
-                    style={localStyles.serverIcon}
-                  />
-                ) : (
-                  <Text
-                    key={`${s._id}-initials`}
-                    style={localStyles.serverButtonInitials}>
-                    {initials}
-                  </Text>
-                )}
-              </TouchableOpacity>
-              {showUnread && s.getMentions().length > 0 ? (
-                <View
-                  key={`${s._id}-mentions-indicator`}
-                  style={localStyles.mentionsIndicator}>
-                  <Text
-                    key={`${s._id}-mentions-indicator-count`}
-                    style={localStyles.mentionsIndicatorText}>
-                    {pings > 9 ? '9+' : pings}
-                  </Text>
-                </View>
-              ) : showUnread && s.isUnread() ? (
-                <View
-                  key={`${s._id}-unreads-indicator`}
-                  style={localStyles.unreadsIndicator}
-                />
-              ) : null}
-            </View>
-          );
-        })}
+        {servers.map(s => (
+          <ServerListEntry
+            key={s._id}
+            server={s}
+            onServerPress={onServerPress}
+            onServerLongPress={onServerLongPress}
+            showUnread={showUnread}
+          />
+        ))}
         {showDiscover ? (
           <>
             <LineSeparator style={localStyles.separator} />
