@@ -83,6 +83,12 @@
             "outgoing": "Outgoing requests - {{count}}",
             "outgoing_empty": "No outgoing requests"
         },
+        "invites": {
+            "member_count_one": "{{count}} member",
+                        "member_count_other": "{{count}} members",
+                        "join_server": "Join server", 
+                        "go_to_server": "Go to server"
+        },
         "loading": {
             "generic": "Loading…",
             "connecting": "Logging in…",

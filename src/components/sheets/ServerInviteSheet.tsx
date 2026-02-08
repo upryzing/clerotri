@@ -1,5 +1,6 @@
 import {ImageBackground, View} from 'react-native';
 import {StyleSheet} from 'react-native-unistyles';
+import {useTranslation} from 'react-i18next';
 import {observer} from 'mobx-react-lite';
 
 import type {API} from 'revolt.js';
@@ -19,6 +20,8 @@ export const ServerInviteSheet = observer(
     server: API.InviteResponse;
     inviteCode: string;
   }) => {
+    const {t} = useTranslation();
+
     return (
       <View style={localStyles.container}>
         <ImageBackground
@@ -43,7 +46,7 @@ export const ServerInviteSheet = observer(
                 <View
                   style={{
                     alignItems: 'center',
-                    flexDirection: 'row',
+                    justifyContent: 'center',
                     marginBlockEnd: commonValues.sizes.xl,
                   }}>
                   <GeneralAvatar
@@ -51,42 +54,46 @@ export const ServerInviteSheet = observer(
                     size={60}
                     directory={'/icons/'}
                   />
-                  <View
+
+                  <Text
                     style={{
-                      marginStart: commonValues.sizes.large,
+                      fontWeight: 'bold',
+                      fontSize: 26,
+                      flexWrap: 'wrap',
+                      marginBlock: commonValues.sizes.small,
                     }}>
-                    <Text
-                      style={{
-                        fontWeight: 'bold',
-                        fontSize: 26,
-                        flexWrap: 'wrap',
-                      }}>
-                      {server?.server_name}
-                    </Text>
-                    <Text useNewText colour={'foregroundSecondary'} style={{}}>
-                      {server?.member_count}{' '}
-                      {server?.member_count === 1 ? 'member' : 'members'}
-                    </Text>
-                  </View>
-                </View>
-                <Button
-                  onPress={async () => {
-                    !client.servers.get(server?.server_id) &&
-                      (await client.joinInvite(inviteCode));
-                    app.openServer(client.servers.get(server?.server_id));
-                    app.openLeftMenu(true);
-                    setState();
-                  }}
-                  style={localStyles.button}>
-                  <Text useNewText>
-                    {client.servers.get(server?.server_id)
-                      ? 'Go to Server'
-                      : 'Join Server'}
+                    {server?.server_name}
                   </Text>
-                </Button>
-                <Button onPress={() => setState()} style={localStyles.button}>
-                  <Text>Back</Text>
-                </Button>
+                  <Text useNewText colour={'foregroundSecondary'}>
+                    {t('app.invites.member_count', {
+                      count: server.member_count,
+                    })}
+                  </Text>
+                </View>
+                <View style={localStyles.buttonsContainer}>
+                  <Button
+                    onPress={async () => {
+                      !client.servers.get(server?.server_id) &&
+                        (await client.joinInvite(inviteCode));
+                      app.openServer(client.servers.get(server?.server_id));
+                      app.openLeftMenu(true);
+                      setState();
+                    }}
+                    style={localStyles.button}>
+                    <Text useNewText style={{fontWeight: 'bold'}}>
+                      {t(
+                        `app.invites.${
+                          client.servers.get(server?.server_id)
+                            ? 'go_to_server'
+                            : 'join_server'
+                        }`,
+                      )}
+                    </Text>
+                  </Button>
+                  <Button onPress={() => setState()} style={localStyles.button}>
+                    <Text>Back</Text>
+                  </Button>
+                </View>
               </View>
             </View>
           ) : (
@@ -106,13 +113,20 @@ const localStyles = StyleSheet.create(currentTheme => ({
   banner: {
     flex: 1,
   },
+  buttonsContainer: {
+    justifyContent: 'center',
+    alignItems: 'center',
+    width: '100%',
+    gap: commonValues.sizes.medium,
+  },
   button: {
-    width: '90%',
+    width: '100%',
+    margin: 0,
   },
   infoBox: {
     alignSelf: 'center',
     backgroundColor: currentTheme.backgroundSecondary + 'dd',
-    padding: commonValues.sizes.xl,
+    padding: commonValues.sizes.large * 2,
     borderRadius: commonValues.sizes.medium,
     width: '80%',
     justifyContent: 'center',
