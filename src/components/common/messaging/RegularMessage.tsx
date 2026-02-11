@@ -1,5 +1,6 @@
 import {Dimensions, Pressable, TouchableOpacity, View} from 'react-native';
 import {StyleSheet} from 'react-native-unistyles';
+import {useMMKVNumber} from 'react-native-mmkv';
 import {observer} from 'mobx-react-lite';
 
 import {formatRelative} from 'date-fns/formatRelative';
@@ -28,6 +29,8 @@ import {
 export const RegularMessage = observer((props: MessageProps) => {
   const locale = settings.get('ui.messaging.use24H') ? enGB : enUS;
   const mentionsUser = props.message.mention_ids?.includes(client.user?._id!);
+
+  const [fontSize = settings.getDefault('ui.messaging.fontSize') as unknown as number] = useMMKVNumber('ui.messaging.fontSize');
 
   // check for invite links, then take the code from each
   const rawInvites = Array.from(
@@ -165,7 +168,7 @@ export const RegularMessage = observer((props: MessageProps) => {
               style={[
                 localStyles.editIndicator,
                 {
-                  fontSize: 12,
+                  fontSize: fontSize - 2,
                   right: 48,
                   marginBottom: -16,
                 },
@@ -201,7 +204,7 @@ export const RegularMessage = observer((props: MessageProps) => {
                   style={[
                     localStyles.editIndicator,
                     {
-                      fontSize: 12,
+                      fontSize: fontSize - 2,
                       top: 2,
                       left: 2,
                     },
@@ -317,7 +320,7 @@ const localStyles = StyleSheet.create(currentTheme => ({
     paddingLeft: 10,
   },
   timestamp: {
-    fontSize: 12,
+    fontSize: (settings.get('ui.messaging.fontSize') as number) - 2,
     color: currentTheme.foregroundTertiary,
     position: 'relative',
     top: 2,
