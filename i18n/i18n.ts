@@ -26,7 +26,3 @@ i18n
   });
 
 export default i18n;
-
-export function setLanguage(l: string) {
-  i18n.changeLanguage(l);
-}

@@ -2,12 +2,9 @@
  * @format
  */
 
-import '@clerotri/lib/unistyles';
-
 import {AppRegistry} from 'react-native';
 
 import {App} from './App';
-import './i18n/i18n';
 
 import {name as appName} from './app.json';
 

@@ -9,6 +9,7 @@ import {GestureHandlerRootView} from 'react-native-gesture-handler';
 import {KeyboardProvider} from 'react-native-keyboard-controller';
 import {SafeAreaProvider} from 'react-native-safe-area-context';
 
+import '@clerotri-i18n/i18n';
 import {setFunction} from '@clerotri/Generic';
 import {MainView} from '@clerotri/MainView';
 import {ErrorMessage} from '@clerotri/components/ErrorMessage';

@@ -1,4 +1,4 @@
-import {setLanguage} from '@clerotri-i18n/i18n';
+import {setLanguage} from '@clerotri-i18n/setLanguage';
 import {languages} from '@clerotri-i18n/languages';
 import {app} from '@clerotri/Generic';
 import {checkNotificationPerms} from '@clerotri/lib/notifications/permissions';
