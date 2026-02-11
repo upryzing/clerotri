@@ -33,6 +33,6 @@ export const languageDetectorPlugin = {
   cacheUserLanguage: function (language: string) {
     try {
       storage.set(STORE_LANGUAGE_KEY, language);
-    } catch (error) {}
+    } catch {}
   },
 };

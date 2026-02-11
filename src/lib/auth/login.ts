@@ -126,7 +126,7 @@ export async function loginWithToken(
     console.log(decodeTime(token));
     setLoginError('That is a user ID, not a token.');
     setStatus('awaitingLogin');
-  } catch (e) {
+  } catch {
     try {
       await client.useExistingSession({
         token,

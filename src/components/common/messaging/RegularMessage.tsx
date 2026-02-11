@@ -30,7 +30,11 @@ export const RegularMessage = observer((props: MessageProps) => {
   const locale = settings.get('ui.messaging.use24H') ? enGB : enUS;
   const mentionsUser = props.message.mention_ids?.includes(client.user?._id!);
 
-  const [fontSize = settings.getDefault('ui.messaging.fontSize') as unknown as number] = useMMKVNumber('ui.messaging.fontSize');
+  const [
+    fontSize = settings.getDefault(
+      'ui.messaging.fontSize',
+    ) as unknown as number,
+  ] = useMMKVNumber('ui.messaging.fontSize');
 
   // check for invite links, then take the code from each
   const rawInvites = Array.from(
