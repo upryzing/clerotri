@@ -100,14 +100,14 @@ export const settingsList = [
   {
     key: 'ui.messaging.messageSpacing',
     category: 'appearance',
-    default: '10',
+    default: 10,
     type: 'number',
   },
   {
     key: 'ui.messaging.fontSize',
     category: 'appearance',
     remark: true,
-    default: '14',
+    default: 14,
     type: 'number',
   },
   {

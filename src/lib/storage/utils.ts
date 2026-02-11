@@ -19,14 +19,13 @@ export function initialiseSettings() {
     }
   } else {
     settingsList.forEach(setting => {
-      let value: string | boolean | undefined;
+      let value: string | boolean | number | undefined;
       switch (setting.type) {
         case 'string':
           value = storage.getString(setting.key);
           break;
         case 'number':
-          const initialValue = storage.getNumber(setting.key);
-          value = initialValue !== undefined ? `${initialValue}` : initialValue;
+          value = storage.getNumber(setting.key);
           break;
         case 'boolean':
           value = storage.getBoolean(setting.key);
@@ -37,7 +36,7 @@ export function initialiseSettings() {
   }
 }
 
-function initialiseSetting(key: string, value: string | boolean) {
+function initialiseSetting(key: string, value: string | boolean | number) {
   let st: Setting | undefined;
   for (const setting of settingsList) {
     if (setting.key === key) {
