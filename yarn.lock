@@ -2662,9 +2662,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@rnx-kit/metro-config@npm:^2.2.3":
-  version: 2.2.3
-  resolution: "@rnx-kit/metro-config@npm:2.2.3"
+"@rnx-kit/metro-config@npm:^2.2.4":
+  version: 2.2.4
+  resolution: "@rnx-kit/metro-config@npm:2.2.4"
   dependencies:
     "@rnx-kit/tools-node": "npm:^3.0.0"
     "@rnx-kit/tools-react-native": "npm:^2.3.1"
@@ -2676,7 +2676,7 @@ __metadata:
   peerDependenciesMeta:
     "@react-native/metro-config":
       optional: true
-  checksum: 10c0/82e2bfaa0af95764de4ed9aaede77179f99c33ca675aba68129bc7d619f201b3eadd3ffd39844a6f33cbbb619460e403f0488da4b40f11eaadd5538fd1c3707c
+  checksum: 10c0/e07553e1fa1dfaea7586e0aeb9f2af10157f7d8fdcb7e1a07d75a5ebb83a02117e44c7899491f8ccc46b2a49b45c55459adfa44378d8070a60b18b55311f5e2c
   languageName: node
   linkType: hard
 
@@ -3365,12 +3365,12 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@types/node@npm:*, @types/node@npm:^24.10.10":
-  version: 24.10.10
-  resolution: "@types/node@npm:24.10.10"
+"@types/node@npm:*, @types/node@npm:^24.10.13":
+  version: 24.10.13
+  resolution: "@types/node@npm:24.10.13"
   dependencies:
     undici-types: "npm:~7.16.0"
-  checksum: 10c0/ae6871069373cf9ea2f9f9c6d42af6d0a66a213f8688c1b4ced6466cbcdd0f926e4603480a454b1df330feb1243d2ac50749895eddf5667e25e6873d3f8b9488
+  checksum: 10c0/4ff0b9b060b5477c0fec5b11a176f294be588104ab546295db65b17a92ba0a6077b52ad92dd3c0d2154198c7f9d0021e6c1d42b00c9ac7ebfd85632afbcc48a4
   languageName: node
   linkType: hard
 
@@ -6547,9 +6547,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"i18next@npm:^25.8.0":
-  version: 25.8.0
-  resolution: "i18next@npm:25.8.0"
+"i18next@npm:^25.8.5":
+  version: 25.8.5
+  resolution: "i18next@npm:25.8.5"
   dependencies:
     "@babel/runtime": "npm:^7.28.4"
   peerDependencies:
@@ -6557,7 +6557,7 @@ __metadata:
   peerDependenciesMeta:
     typescript:
       optional: true
-  checksum: 10c0/20451fcaa86584b7395ee0375d2038270cce84e1541ec154bacfa32efbb420a2bafd1c71184242927f0eb8be6ec379ea132850f847b39b2eebcea6a49d746cac
+  checksum: 10c0/6f4e52bcfd667715be60bdf93f5e7ae5ef37c3be328b26680ac8edb5477a8ef443dc4fb349d11556e607a47674de049ea72c50fbddd870c7ad2c7c6fa0172728
   languageName: node
   linkType: hard
 
@@ -7724,9 +7724,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"knip@npm:^5.83.0":
-  version: 5.83.0
-  resolution: "knip@npm:5.83.0"
+"knip@npm:^5.83.1":
+  version: 5.83.1
+  resolution: "knip@npm:5.83.1"
   dependencies:
     "@nodelib/fs.walk": "npm:^1.2.3"
     fast-glob: "npm:^3.3.3"
@@ -7746,7 +7746,7 @@ __metadata:
   bin:
     knip: bin/knip.js
     knip-bun: bin/knip-bun.js
-  checksum: 10c0/17087d7fbdf02d77004105cb8b020a6b04742078a8b98f6ff817560dd45663a00b47f4f507cbf8af034b4d5a1f7ef7a6be88bf836428fa482a31ac8f09e92823
+  checksum: 10c0/94efd7f4fc3a1c12baca7f1974cbfc7340836a521ed79e962aba89e8720ea374c8bf90462144512555bb891ca398f9ce496963fdda9f4eae4a91a7edf30b42c3
   languageName: node
   linkType: hard
 
@@ -9424,9 +9424,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"react-native-drawer-layout@npm:^4.2.1":
-  version: 4.2.1
-  resolution: "react-native-drawer-layout@npm:4.2.1"
+"react-native-drawer-layout@npm:^4.2.2":
+  version: 4.2.2
+  resolution: "react-native-drawer-layout@npm:4.2.2"
   dependencies:
     color: "npm:^4.2.3"
     use-latest-callback: "npm:^0.2.4"
@@ -9435,7 +9435,7 @@ __metadata:
     react-native: "*"
     react-native-gesture-handler: ">= 2.0.0"
     react-native-reanimated: ">= 2.0.0"
-  checksum: 10c0/156960cf9947db0628e4ae5f4ba39c85c4fd75825326090eb9a3051aec94bd0b429e6f90e5983e3da64fe124ef41887e344cf08e5f40a27a2d6a81e0ebeec3b2
+  checksum: 10c0/bee3c0c4f01101d6e71ce4e91f3b8910af85bdf08abf6699501f7f09b160be1b1c422f63d45c3f15ba750da59e889f1ea70bdbb72dbd559ad3e11aee45332abf
   languageName: node
   linkType: hard
 
@@ -9497,13 +9497,13 @@ __metadata:
   languageName: node
   linkType: hard
 
-"react-native-nitro-modules@npm:0.33.2":
-  version: 0.33.2
-  resolution: "react-native-nitro-modules@npm:0.33.2"
+"react-native-nitro-modules@npm:0.33.7":
+  version: 0.33.7
+  resolution: "react-native-nitro-modules@npm:0.33.7"
   peerDependencies:
     react: "*"
     react-native: "*"
-  checksum: 10c0/dda8b16b8cf955abcc9899e456b5397fff52d6854a9bb66747b6ac3ce1d9f82f729747db8933e0dba93d62f10ee28fb5c4b8dfb0e0fb2063d85c84d3f94a768a
+  checksum: 10c0/2fdec1ff28f9330d10d604bb241a0521af1273eed6894418101b32976ac97fe454762385fd0eef78b878efd905fd67101d70ae6452746791e23e850e6925eb36
   languageName: node
   linkType: hard
 
@@ -9558,9 +9558,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"react-native-svg@npm:^15.15.1":
-  version: 15.15.1
-  resolution: "react-native-svg@npm:15.15.1"
+"react-native-svg@npm:^15.15.3":
+  version: 15.15.3
+  resolution: "react-native-svg@npm:15.15.3"
   dependencies:
     css-select: "npm:^5.1.0"
     css-tree: "npm:^1.1.3"
@@ -9568,13 +9568,13 @@ __metadata:
   peerDependencies:
     react: "*"
     react-native: "*"
-  checksum: 10c0/9e047e8afdd5121296a3402c5c37363b9b37fbddc41f7b0b49b923ac4d2898954c8b57a6784a625321236987e494ee54f594e22f9de815f807e03a3433d7fefd
+  checksum: 10c0/6aa5ea4745c7d174909468b5d5cb75059856d907f0b039bf3650deb81c9afcbd356f2382d7a7424d4cc69597aea5a508484ee5dba91b9126e3b520bc10faefe9
   languageName: node
   linkType: hard
 
-"react-native-unistyles@npm:3.0.22":
-  version: 3.0.22
-  resolution: "react-native-unistyles@npm:3.0.22"
+"react-native-unistyles@npm:3.0.23":
+  version: 3.0.23
+  resolution: "react-native-unistyles@npm:3.0.23"
   peerDependencies:
     "@react-native/normalize-colors": "*"
     react: "*"
@@ -9585,13 +9585,13 @@ __metadata:
   peerDependenciesMeta:
     react-native-reanimated:
       optional: true
-  checksum: 10c0/04bcf666284cc7c3e7b93bb804cebd473245ed57d307ea3e24eaa67f5c67bea5f00609941a414081b674e5550b0c5157ba3d927efd0de94c347b798af08f9690
+  checksum: 10c0/467421fc1b5dbf0eac101d85335052b09bb36a3b42f4a84c0ea1bddb124a8f73d286f83155a61f03bb0932394fbbf2a8274f53f0e5b3a3ea3ef9be229f9f176a
   languageName: node
   linkType: hard
 
-"react-native-unistyles@patch:react-native-unistyles@npm%3A3.0.22#~/.yarn/patches/react-native-unistyles-npm-3.0.22-ae8a7a8aab.patch":
-  version: 3.0.22
-  resolution: "react-native-unistyles@patch:react-native-unistyles@npm%3A3.0.22#~/.yarn/patches/react-native-unistyles-npm-3.0.22-ae8a7a8aab.patch::version=3.0.22&hash=50c31e"
+"react-native-unistyles@patch:react-native-unistyles@npm%3A3.0.23#~/.yarn/patches/react-native-unistyles-npm-3.0.23-a0d5e78831.patch":
+  version: 3.0.23
+  resolution: "react-native-unistyles@patch:react-native-unistyles@npm%3A3.0.23#~/.yarn/patches/react-native-unistyles-npm-3.0.23-a0d5e78831.patch::version=3.0.23&hash=50c31e"
   peerDependencies:
     "@react-native/normalize-colors": "*"
     react: "*"
@@ -9602,7 +9602,7 @@ __metadata:
   peerDependenciesMeta:
     react-native-reanimated:
       optional: true
-  checksum: 10c0/e2845152f57b45d1b795c3320088f1d31edd20c3f7d5cd49ed6f0ecd664931a31f1963b29e9abd4587808dedd66fc195dc575a98db58f7eb79ddb42e30699a3e
+  checksum: 10c0/780c29a4c3b6f6d6f48f68b6fcbd5d82e3dd495ea17d8b84c4e2e08d7ab7917287c097d3639f2ab6313ffc54c38aa1b1f9fada4ff331e7d0fa508551323c1cf5
   languageName: node
   linkType: hard
 
@@ -9625,9 +9625,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"react-native-worklets@npm:^0.7.2":
-  version: 0.7.2
-  resolution: "react-native-worklets@npm:0.7.2"
+"react-native-worklets@npm:^0.7.3":
+  version: 0.7.3
+  resolution: "react-native-worklets@npm:0.7.3"
   dependencies:
     "@babel/plugin-transform-arrow-functions": "npm:7.27.1"
     "@babel/plugin-transform-class-properties": "npm:7.27.1"
@@ -9644,7 +9644,7 @@ __metadata:
     "@babel/core": "*"
     react: "*"
     react-native: "*"
-  checksum: 10c0/ee5f57c3d12dfa6b58a8b16588cc925e4543d3e4733c01051af43e113494296681d3af06dcc334100511c692e17d6be7fdb3e86b1774cfca825f30a1289e062e
+  checksum: 10c0/15cae9da2827000015408d828de9ea5fc3fec0d7a38d06fbf1aa28c12a7ab590e87e0a431fe19f1144d67a96cfc2d0c6f46653358c5290de61c005f8d6c8c140
   languageName: node
   linkType: hard
 
@@ -10128,13 +10128,13 @@ __metadata:
     "@rexovolt/react-native-markdown-display": "npm:^10.0.1"
     "@rnx-kit/babel-preset-metro-react-native": "npm:3.0.0"
     "@rnx-kit/cli": "patch:@rnx-kit/cli@npm%3A1.0.0#~/.yarn/patches/@rnx-kit-cli-npm-1.0.0-9f40e0294d.patch"
-    "@rnx-kit/metro-config": "npm:^2.2.3"
+    "@rnx-kit/metro-config": "npm:^2.2.4"
     "@rnx-kit/metro-resolver-symlinks": "npm:^0.2.11"
     "@traptitech/markdown-it-spoiler": "patch:@traptitech/markdown-it-spoiler@npm%3A1.1.6#~/.yarn/patches/@traptitech-markdown-it-spoiler-npm-1.1.6-ee0dc02626.patch"
     "@types/babel__core": "npm:^7.20.5"
     "@types/eslint": "npm:^8.56.12"
     "@types/jest": "npm:^29.5.14"
-    "@types/node": "npm:^24.10.10"
+    "@types/node": "npm:^24.10.13"
     "@types/react": "npm:^19.2.10"
     "@types/react-dom": "npm:^19.2.3"
     "@types/react-native-web": "npm:^0.19.2"
@@ -10147,10 +10147,10 @@ __metadata:
     date-fns: "npm:^4.1.0"
     eslint: "npm:^8.57.1"
     eslint-plugin-de-morgan: "npm:^1.3.1"
-    i18next: "npm:^25.8.0"
+    i18next: "npm:^25.8.5"
     intl-pluralrules: "npm:^2.0.1"
     jest: "npm:^29.7.0"
-    knip: "npm:^5.83.0"
+    knip: "npm:^5.83.1"
     mobx: "npm:^6.15.0"
     mobx-react-lite: "npm:^4.1.1"
     prettier: "npm:^3.8.1"
@@ -10160,20 +10160,20 @@ __metadata:
     react-i18next: "npm:^16.5.4"
     react-native: "npm:^0.84.0-rc.4"
     react-native-device-info: "patch:react-native-device-info@npm%3A15.0.1#~/.yarn/patches/react-native-device-info-npm-15.0.1-5235e3560e.patch"
-    react-native-drawer-layout: "npm:^4.2.1"
+    react-native-drawer-layout: "npm:^4.2.2"
     react-native-gesture-handler: "npm:^2.30.0"
     react-native-get-random-values: "npm:^2.0.0"
     react-native-keyboard-controller: "npm:^1.20.7"
     react-native-mmkv: "npm:^3.3.3"
-    react-native-nitro-modules: "npm:0.33.2"
+    react-native-nitro-modules: "npm:0.33.7"
     react-native-reanimated: "npm:^4.2.1"
     react-native-reanimated-image-viewer: "npm:^1.0.2"
     react-native-safe-area-context: "npm:^5.6.2"
-    react-native-svg: "npm:^15.15.1"
+    react-native-svg: "npm:^15.15.3"
     react-native-svg-transformer: "npm:^1.5.3"
-    react-native-unistyles: "patch:react-native-unistyles@npm%3A3.0.22#~/.yarn/patches/react-native-unistyles-npm-3.0.22-ae8a7a8aab.patch"
+    react-native-unistyles: "patch:react-native-unistyles@npm%3A3.0.23#~/.yarn/patches/react-native-unistyles-npm-3.0.23-a0d5e78831.patch"
     react-native-web: "npm:^0.19.13"
-    react-native-worklets: "npm:^0.7.2"
+    react-native-worklets: "npm:^0.7.3"
     react-test-renderer: "npm:19.2.3"
     reanimated-color-picker: "npm:^4.2.0"
     revolt.js: "npm:@rexovolt/revolt.js@^6.8.0"
