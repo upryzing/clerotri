@@ -2089,5 +2089,8 @@ export const DONATIONS_INFO =
 
 export const WEBLATE = 'https://translate.upryzing.app/projects/clerotri';
 
+export const CHANGELOG =
+  'https://github.com/upryzing/clerotri/blob/main/CHANGELOG.md';
+
 export const PRIVACY_INFO =
   'https://github.com/upryzing/clerotri/blob/main/docs/user/privacy.md';

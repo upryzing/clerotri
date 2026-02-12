@@ -8,7 +8,7 @@ import {Text} from '@clerotri/components/common/atoms';
 import {NewContextButton} from '@clerotri/components/common/buttons';
 import {MarkdownView} from '@clerotri/components/common/MarkdownView';
 import {generateDonateGradient} from '@clerotri/components/sheets/SettingsSheet';
-import {DONATIONS_INFO, WEBLATE} from '@clerotri/lib/consts';
+import {CHANGELOG, DONATIONS_INFO} from '@clerotri/lib/consts';
 import {APP_VERSION} from '@clerotri/lib/metadata';
 import {commonValues, ThemeContext} from '@clerotri/lib/themes';
 import {openUrl} from '@clerotri/lib/utils';
@@ -68,7 +68,7 @@ export const ChangelogSheet = observer(() => {
           textString={'See full changelog'}
           style={{justifyContent: 'center'}}
           onPress={() => {
-            openUrl(WEBLATE);
+            openUrl(CHANGELOG);
           }}
         />
       </View>
