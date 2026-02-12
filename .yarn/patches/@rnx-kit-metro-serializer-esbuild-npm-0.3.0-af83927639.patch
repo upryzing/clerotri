@@ -1,5 +1,5 @@
 diff --git a/lib/index.js b/lib/index.js
-index d99063be19a61a9375a3e10a01a2f048fcd67b04..c742454cbd0fd5b95262f4640e8ab12b217ebdb3 100644
+index d99063be19a61a9375a3e10a01a2f048fcd67b04..7169c059c13d67de5f28c775877ba97867b1c7a0 100644
 --- a/lib/index.js
 +++ b/lib/index.js
 @@ -249,7 +249,7 @@ function MetroSerializer(metroPlugins = [], buildOptions) {
@@ -20,9 +20,12 @@ index d99063be19a61a9375a3e10a01a2f048fcd67b04..c742454cbd0fd5b95262f4640e8ab12b
              target,
              supported: (() => {
                  if (typeof target !== "string" || !target.startsWith("hermes")) {
-@@ -306,7 +306,7 @@ function MetroSerializer(metroPlugins = [], buildOptions) {
+@@ -304,9 +304,9 @@ function MetroSerializer(metroPlugins = [], buildOptions) {
+                 else {
+                     (0, console_1.info)("esbuild bundle size:", result.code.length);
                  }
-                 if (typeof buildOptions?.metafile === "string") {
+-                if (typeof buildOptions?.metafile === "string") {
++                if (true /* typeof buildOptions?.metafile === "string" */) {
                      const outDir = path.dirname(sourcemapfile);
 -                    const out = path.join(outDir, buildOptions.metafile);
 +                    const out = path.join(outDir, 'dist/sus.json' /* buildOptions.metafile */);
