@@ -18,7 +18,7 @@
   - You **_must_** run the final release build **_after_** making the release commit - if you don't, it'll break reproducible builds for the release, and the app itself will link to the wrong commit in the about page
 - [ ] Once you're **certain** that everything is ready, run the full release build command (`yarn android-release:full`) and push the release commit
 - [ ] On GitHub, [create a new release](https://github.com/upryzing/clerotri/releases/new) - **make sure you create a new tag!** - and upload the 4 APK files in `android/app/build/outputs/apk/release`, renaming them to `Clerotri-v[VERSION]-[ARCH].apk` (e.g. `Clerotri-v0.13.0-arm64-v8a.apk`)
-- [ ] Open [the Accrescent console](https://console.accrescent.app/apps/app.upryzing.clerotri/details) and submit a new update, using the APK set file in `dir`
+- [ ] Open [the Accrescent console](https://console.accrescent.app/apps/app.upryzing.clerotri/details) and submit a new update, using the APK set file in `android/app/build/outputs/apkset/release`
 
 ## Post release
 
