@@ -12,7 +12,7 @@
 - [ ] Create a new file in `fastlane/metadata/android/en-US/changelogs/` - named `xyz.txt`, with `xyz` being the new `versionCode` - and note the biggest changes in the release, with a link to the full `CHANGELOG.md` entry - **this cannot exceed 500 characters**
 - [ ] Update `changelogParagraphs` in `src/components/sheets/ChangelogSheet.tsx` with a short summary of the changes
 - [ ] Write out a full changelog entry for `CHANGELOG.md` - use the previous entries as a guide for formatting
-  - You can use `git log v[VERSION]...main --format="%s (%h)"` to get a clean list of commits since the last release - this can help make sure you don't miss anything
+  - You can use `git log v[LASTVERSION]...main --format="%s (%h)"` to get a clean list of commits since the last release - this can help make sure you don't miss anything
 - [ ] Stage and commit these changes in a commit titled `release: x.y.z` (with `x.y.z` being the new version) - do **not** push the commit yet
 - [ ] Run another release build **_after_** committing the changes and check that everything looks right - if not, undo the commit, make any necessary changes and repeat
   - You **_must_** run the final release build **_after_** making the release commit - if you don't, it'll break reproducible builds for the release, and the app itself will link to the wrong commit in the about page
