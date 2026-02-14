@@ -3,6 +3,7 @@ import {StyleSheet} from 'react-native-unistyles';
 
 import {settings} from '@clerotri/lib/settings';
 import {
+  BLUESKY_PROFILE,
   CONTRIBUTORS_LIST,
   FEDI_PROFILE,
   GITHUB_REPO,
@@ -76,14 +77,19 @@ export const AppInfoSection = () => {
           />
         </Text>
       </View>
-      <View style={{flexDirection: 'row', marginBottom: 16}}>
-        <Pressable onPress={() => openUrl(GITHUB_REPO)} style={{marginEnd: 16}}>
+      <View style={{flexDirection: 'row', marginBottom: 16, gap: 24}}>
+        <Pressable onPress={() => openUrl(GITHUB_REPO)}>
           <MaterialCommunityIcon name={'github'} size={60} />
         </Pressable>
         <Pressable
           onPress={() => openUrl(FEDI_PROFILE)}
-          style={{marginStart: 16}}>
+          >
           <MaterialCommunityIcon name={'mastodon'} size={60} />
+        </Pressable>
+        <Pressable
+          onPress={() => openUrl(BLUESKY_PROFILE)}
+          >
+          <MaterialCommunityIcon name={'butterfly'} size={60} />
         </Pressable>
       </View>
       <View style={{flexDirection: 'row'}}>

@@ -2078,6 +2078,8 @@ export const ANALYTICS_ENDPOINT = 'https://clerotri.upryzing.app/v1/submit';
 // Links used in the settings menu
 export const FEDI_PROFILE = 'https://lea.pet/@clerotri';
 
+export const BLUESKY_PROFILE = 'https://bsky.app/profile/clerotri.upryzing.app';
+
 export const GITHUB_REPO = 'https://github.com/upryzing/clerotri';
 
 export const CONTRIBUTORS_LIST = `${GITHUB_REPO}/graphs/contributors`;

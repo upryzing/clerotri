@@ -19,6 +19,9 @@
   <a href="https://lea.pet/@clerotri">
     <img src="https://img.shields.io/badge/fedi-@clerotri@lea.pet-teal" alt="Fediverse badge from shields.io"/>
   </a>
+  <a href="https://bsky.app/profile/clerotri.upryzing.app">
+    <img src="https://img.shields.io/badge/bluesky-@clerotri.upryzing.app-dodgerblue" alt="Fediverse badge from shields.io"/>
+  </a>
   <a href="https://shields.rbtlog.dev/app.upryzing.clerotri">
     <img src="https://shields.rbtlog.dev/simple/app.upryzing.clerotri" alt="RB shield">
   </a>
