@@ -23,6 +23,8 @@ i18n
       defaultTransParent: Text,
       useSuspense: false,
     },
+
+    showSupportNotice: false,
   });
 
 export default i18n;
