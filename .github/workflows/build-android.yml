@@ -8,20 +8,20 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout Repository
-        uses: actions/checkout@v4
+        uses: actions/checkout@v6
       - name: Enable Corepack
         run: corepack enable
       - name: Set up Node
-        uses: actions/setup-node@v4
+        uses: actions/setup-node@v6
         with:
-          node-version: 22
+          node-version: 24
           cache: 'yarn'
       - name: Set up Java
-        uses: actions/setup-java@v4
+        uses: actions/setup-java@v5
         with:
-          java-version: '17'
+          java-version: '21'
           distribution: 'microsoft'
-          cache: gradle
+          cache: 'gradle'
       - name: Install dependencies and prepare assets
         run: yarn install && npx react-native-asset
       - name: Prepare the JS bundle
@@ -36,7 +36,7 @@ jobs:
           mv app-x86-release.apk Clerotri-${{ github.sha }}-x86.apk
         working-directory: /home/runner/work/clerotri/clerotri/android/app/build/outputs/apk/release/
       - name: Upload release APKs
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v6
         with:
           path: |
             /home/runner/work/clerotri/clerotri/android/app/build/outputs/apk/release/Clerotri-${{ github.sha }}-arm64-v8a.apk 
