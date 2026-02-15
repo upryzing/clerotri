@@ -81,14 +81,10 @@ export const AppInfoSection = () => {
         <Pressable onPress={() => openUrl(GITHUB_REPO)}>
           <MaterialCommunityIcon name={'github'} size={60} />
         </Pressable>
-        <Pressable
-          onPress={() => openUrl(FEDI_PROFILE)}
-          >
+        <Pressable onPress={() => openUrl(FEDI_PROFILE)}>
           <MaterialCommunityIcon name={'mastodon'} size={60} />
         </Pressable>
-        <Pressable
-          onPress={() => openUrl(BLUESKY_PROFILE)}
-          >
+        <Pressable onPress={() => openUrl(BLUESKY_PROFILE)}>
           <MaterialCommunityIcon name={'butterfly'} size={60} />
         </Pressable>
       </View>
