@@ -1,5 +1,41 @@
 # Clerotri's changelog
 
+## v0.13.0
+
+_This version was released on 15/02/2026._
+
+### Important notes
+
+- Clerotri is **now on Bluesky!** As with fedi, I'll be using the account to share updates and provide support. You can follow it at [`@clerotri.upryzing.app`][bluesky].
+
+### What's new
+
+- The message view now uses a new rendering system, meaning that **channels should start at the latest message** when you open them. I know this was a fairly noticeable annoyance, so hopefully this should make the app a bit nicer to use :3
+- The **login menu** has received a few improvements:
+  - you can now switch languages without logging in,
+  - the settings menu is an actual menu, and
+  - some styling improvements have been made.
+- The **server invite menu has been revamped**, and it should be slightly easier to exit from.
+- The **member settings menu** now uses subpages for the actual settings; they also now have descriptions.
+- Clerotri is **now available in French**.
+- Context menus and the server settings menu **now use the new style of button** introduced in the last update.
+- There are now gradients at the top of the server list and, for servers with banners, below the server name displayed above the channel list.
+- Several "destructive" buttons (e.g. the "Log Out" button in the settings menu) are now more readable.
+- Various components (including in-app notifications, embeds, invite embeds and multi-option settings) have improved styles and designs.
+- Various mentions of Revolt have been updated to refer to Stoat.
+- The app now uses React Native 0.84.
+
+### Bug fixes
+
+- The bot avatar in the bot invite menu is no longer missing.
+- The mention indicator in replies should now show up again.
+- The timestamp and edit notices in messages now scale with your font size.
+- The "See full changelog" button in the changelog sheet now correctly links to the full changelog.
+- Setting the language to Belarusian (Classical) now works correctly.
+- The margin at the bottom of several settings pages has been corrected.
+
+[bluesky]: https://bsky.app/profile/clerotri.upryzing.app
+
 ## v0.12.0
 
 _This version was released on 19/08/2025._
@@ -10,7 +46,7 @@ _This version was released on 19/08/2025._
 
 ### What's new
 
-- The **settings menu has been revamped**, with larger buttons and more connected sessions.
+- The **settings menu has been revamped**, with larger buttons and more connected sections.
 - The sessions list has been moved to its own settings section, and you can now **log out of all other sessions** in one tap.
 - Clerotri (finally) includes support for **in-app changelogs**! The setting for this has been in place for a while, but until now these weren't implemented.
 - Clerotri now supports **two new languages**:
@@ -31,7 +67,7 @@ _This version was released on 19/08/2025._
 
 ### Experimental features
 
-_These features can be access by enabling "Show experimental features" in Settings → Features._
+_These features can be accessed by enabling "Show experimental features" in Settings → Features._
 
 - Clerotri now has experimental support for **bot settings**! Create new bots, control access to them and invite them to new servers.
   - More options will be added in future updates.

@@ -1,0 +1,5 @@
+- Better message rendering (channels start at the bottom)
+- Styling and design improvements
+- Support for a new language (French)
+- Clerotri is now on Bluesky: https://bsky.app/profile/clerotri.upryzing.app
+- Full changelog: https://github.com/upryzing/clerotri/blob/main/CHANGELOG.md#v0130
