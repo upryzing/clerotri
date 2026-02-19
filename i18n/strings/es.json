@@ -17,7 +17,7 @@
             "header_bots": "Descubrir los bots",
             "tabs": {
                 "servers": "Servidores",
-                "bots": "Bots"
+                "bots": "Maquinas"
             },
             "count_servers_one": "{{count}} servidor",
             "count_servers_many": "{{count}} servidores",
@@ -293,7 +293,34 @@
             }
         },
         "analytics": {
-            "title": "Administrar analíticas"
+            "title": "Administrar analíticas",
+            "body": "Por defecto, Clerotri no recolecta ningún dato . tu opcionalmente puedes permitir el seguimiento de datos para ayudar a mejor la aplicación.",
+            "tiers": {
+                "basic": "Basic@",
+                "full": "Lleno , completo , todo"
+            },
+            "copied_data_toast": "Ejemplo de datos copiados",
+            "enable_basic": "Habilitar Analítica básica",
+            "switch_to_basic": "Cambiar a basico",
+            "enable_full": "Habilitar análisis completo",
+            "switch_to_full": "Cambiar a completo",
+            "active": "Activ@",
+            "disable_analytics": "Deshabilitar analíticas",
+            "analytics_disabled": "Analíticas desactivadas",
+            "continue_without_analytics": "Continuar sin analíticas",
+            "values": {
+                "model": "Modelo de tu dispositivo",
+                "os": "Tu Sistema Operativo y esta versión",
+                "clerotriVersion": "La versión de Clerotri que estas usando",
+                "inBasic": "Todo en básico",
+                "inBasic_body": "Modelo, versión del sistema operativo, versión de Clerotri",
+                "settings": "Tus configuraciones de Clerotri",
+                "settings_body_one": "{{Cuenta}}entrar",
+                "settings_body_many": "{{Cuentas}}entrar",
+                "settings_body_other": "",
+                "instance": "Tus instancias URL"
+            },
+            "privacy_info": "Información de privacidad"
         }
     }
 }
