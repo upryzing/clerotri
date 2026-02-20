@@ -70,7 +70,9 @@
                         "hoist_body": "Zeigen Sie diese Rolle über anderen in der Mitgliederliste an."
                     },
                     "options_header": "Optionen",
-                    "delete": "Rolle löschen"
+                    "delete": "Rolle löschen",
+                    "permissions_list_header": "Berechtigungen für <2>{{role}}</2>",
+                    "permissions_list_body": "Diese Berechtigungen gelten für den gesamten Server. Einige von ihnen können für bestimmte Kanäle überschrieben werden."
                 },
                 "emoji": {
                     "title": "Emoji",
@@ -80,7 +82,10 @@
                 },
                 "members": {
                     "title": "Mitglieder",
-                    "loading": "Mitglieder werden abgerufen…"
+                    "loading": "Mitglieder werden abgerufen…",
+                    "nickname": "Spitzname",
+                    "nickname_placeholder": "Setze einen Spitznamen…",
+                    "timeout_user": "Zeitüberschreitung {{name}}"
                 },
                 "invites": {
                     "title": "Einladungen",
@@ -133,7 +138,8 @@
                 "refetchOnReconnect": "Nachrichten werden abgerufen, sobald eine Verbindung besteht",
                 "notifications": {
                     "enabled": "Schalte bitte Benachrichtigungen ein",
-                    "notifyOnSelfPing": "Erhalte eine Benachrichtigung, wenn du dich selbst anpingst"
+                    "notifyOnSelfPing": "Erhalte eine Benachrichtigung, wenn du dich selbst anpingst",
+                    "enabledInApp": "In-App-Benachrichtigungen aktivieren"
                 },
                 "showChangelogs": "Änderungsprotokolle nach der Aktualisierung von Clerotri anzeigen",
                 "language": "Wähle deine Sprache aus",
@@ -240,7 +246,7 @@
                 "title": "Aussehen"
             },
             "functionality": {
-                "title": "Features"
+                "title": "Funktionen"
             },
             "groups": {
                 "advanced": "Fortgeschritten",
@@ -257,14 +263,40 @@
             "other": {
                 "debug_info": "Kopiere Debug-Informationen",
                 "view_issues": "Offene Probleme anzeigen",
-                "logout": "Ausloggen"
+                "logout": "Ausloggen",
+                "changelog": "Änderungsprotokoll anzeigen",
+                "donate": "Spenden",
+                "translate": "Übersetze Clerotri"
             },
             "profile": {
-                "title": "Profil"
+                "title": "Profil",
+                "display_name": "Anzeigenamen"
             },
             "licenses": {
                 "loading": "Lizenzdaten werden geladen…",
                 "title": "Open Source Lizenzen"
+            },
+            "bots": {
+                "new_bot": "Neuen Bot erstellen",
+                "aup_notice": "Alle Bots müssen der <2>Richtlinie zur akzeptablen Nutzung/2> folgen.",
+                "public": "Öffentlich",
+                "public_body_stoat": "Wenn dies aktiviert ist, kann dieser Bot von anderen Benutzern zu Gruppen und Servern eingeladen werden.",
+                "public_body_upryzing": "Wenn dies aktiviert ist, kann dieser Bot von anderen Benutzern zu Gruppen und Bereichen eingeladen werden.",
+                "copy_invite_link": "Einladungslink kopieren",
+                "invite_bot": "Bot einladen"
+            },
+            "sessions": {
+                "title": "Sitzungen",
+                "loading": "Sitzungen laden…",
+                "current_session": "Diese Sitzung",
+                "other_sessions": "Andere Sitzungen",
+                "current_session_not_found": "Die Informationen dieser Sitzung sind nicht verfügbar.",
+                "remove_other_sessions_body": "Diese Sitzung bleibt angemeldet."
+            },
+            "toasts": {
+                "experimental": "Diese Einstellung ist experimentell und kann jederzeit entfernt oder geändert werden.",
+                "developer": "Diese Einstellung ist für Entwickler gedacht.",
+                "deprecated": "Diese Einstellung wird in einer zukünftigen Version entfernt."
             }
         },
         "discover": {
@@ -295,6 +327,30 @@
         "profile": {
             "roles": {
                 "copied_role_id_toast": "Rollen-ID kopiert"
+            },
+            "bot_owner": "Bot-Besitzer",
+            "flags": {
+                "banned": "Dieser Benutzer wurde gebannt",
+                "deleted": "Dieser Benutzer hat sein Konto gelöscht",
+                "suspended": "Dieser Benutzer wurde vorübergehend gesperrt"
+            },
+            "friend_requests": {
+                "accept": "Freundschaftsanfrage annehmen",
+                "cancel": "Freundschaftsanfrage abbrechen",
+                "reject": "Freundschaftsanfrage ablehnen",
+                "send": "Freundschaftsanfrage senden"
+            },
+            "menu": {
+                "back": "Zurück zum Profil",
+                "block_user": "Benutzer blockieren",
+                "report_user": "Benutzer melden"
+            },
+            "message_user": "Nachricht",
+            "tabs": {
+                "profile": "Profil",
+                "mutual_servers": "Gegenseitige Server",
+                "mutual_friends": "Gemeinsame Freunde",
+                "mutual_groups": "Gegenseitige Gruppen"
             }
         },
         "permissions": {
@@ -337,7 +393,9 @@
             "SendEmbeds": "Embeds senden",
             "SendEmbeds_body_server": "Ermöglicht Mitgliedern mit dieser Rolle, eingebettete Links und benutzerdefinierte Texte zu senden.",
             "SendMessage": "Nachrichten senden",
-            "SendMessage_body_server": "Ermöglicht Mitgliedern mit dieser Rolle, Nachrichten in Textkanälen zu senden."
+            "SendMessage_body_server": "Ermöglicht Mitgliedern mit dieser Rolle, Nachrichten in Textkanälen zu senden.",
+            "UploadFiles": "Dateien hochladen",
+            "ViewChannel": "Kanäle anzeigen"
         },
         "channel_list": {
             "direct_messages_header": "Persönliche Nachrichten"
@@ -395,6 +453,65 @@
         },
         "custom_badges": {
             "clerotri_dev": "Clerotri-Entwickler"
+        },
+        "invites": {
+            "join_server": "Server beitreten"
+        },
+        "sheets": {
+            "channel": {
+                "mark_as_read": "Als gelesen markieren",
+                "copy_link": "Kanallink kopieren",
+                "delete": "Kanal löschen",
+                "create_invite": "Einladung erstellen"
+            },
+            "report": {
+                "bridged_message_notice": "Diese Nachricht wurde möglicherweise von einer anderen Plattform gesendet. Wenn ja, empfehlen wir, dies auch dort zu melden.",
+                "destination_notice_stoat": "Dieser Bericht wird an das Moderationsteam von Stoat gesendet, nicht an die Moderatoren dieses Servers.",
+                "destination_notice_upryzing": "Dieser Bericht wird an das Moderationsteam von Upryzing gesendet, nicht an die Moderatoren dieses Bereichs.",
+                "destination_notice_generic": "Dieser Bericht wird an das Moderationsteam der Plattform gesendet, nicht an die Moderatoren dieses Servers.",
+                "next_steps": {
+                    "header": "Nächste Schritte",
+                    "block_message_author": "Autor blockieren",
+                    "block_user": "Benutzer sperren",
+                    "leave_server": "Server verlassen",
+                    "user_blocked": "Nutzer gesperrt",
+                    "message_author_blocked": "Autor gesperrt"
+                },
+                "reasons": {
+                    "Harassment_body_message": "Diese Nachricht belästigt mich oder jemand anderen",
+                    "Harassment_body_server": "Dieser Server belästigt mich oder jemand anderen",
+                    "Illegal": "Illegale Inhalte",
+                    "Illegal_body_message": "Diese Nachricht verstößt gegen ein oder mehrere Gesetze",
+                    "Illegal_body_server": "Dieser Server verstößt gegen ein oder mehrere Gesetze",
+                    "IllegalGoods": "Illegale Waren",
+                    "IllegalGoods_body_message": "Diese Nachricht verkauft illegale Waren oder andere Dienstleistungen",
+                    "UnsolicitedSpam_body_user": "Dieser Benutzer sendet unerwünschte Werbung oder Spam",
+                    "UnsolicitedSpam_body_server": "Dieser Server enthält unerwünschte Werbung oder Spam",
+                    "UnsolicitedSpam_body_message": "Diese Nachricht enthält unerwünschte Werbung oder Spam",
+                    "UnsolicitedSpam": "Unerwünschter Spam",
+                    "Underage_body_user": "Dieser Benutzer ist zu jung, um die Plattform zu nutzen",
+                    "Underage": "Minderjährige",
+                    "SpamAbuse_body_user": "Dieser Benutzer spammt oder missbraucht die Plattform",
+                    "SpamAbuse_body_server": "Dieser Server spammt oder missbraucht die Plattform",
+                    "SpamAbuse_body_message": "Diese Nachricht ist Spam oder Missbrauch der Plattform",
+                    "SpamAbuse": "Spam oder Plattformmissbrauch",
+                    "NoneSpecified_body": "Etwas anderes, das hier nicht aufgeführt ist",
+                    "Raid_body_message": "Diese Nachricht ist Teil eines Raid- oder Spam-Angriffs",
+                    "Malware_body_server": "Dieser Server enthält Malware oder gefährliche Links",
+                    "Malware_body_message": "Diese Nachricht enthält Malware oder gefährliche Links",
+                    "Malware": "Schadsoftware",
+                    "InappropriateProfile_body_user": "Das Profil dieses Benutzers ist für ein allgemeines Publikum ungeeignet"
+                },
+                "success_header": "Bericht gesendet",
+                "report_user": "Nutzer melden",
+                "report_message": "Nachricht melden",
+                "reason_selector_server": "Warum meldest du diesen Server?",
+                "reason_selector_user": "Warum meldest du diesen Benutzer?"
+            }
+        },
+        "themes": {
+            "Solarized": "Solarisiert",
+            "Dark": "Dunkel"
         }
     }
 }
