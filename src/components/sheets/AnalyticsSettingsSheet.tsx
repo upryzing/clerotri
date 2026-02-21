@@ -37,8 +37,6 @@ const LevelBoxEntry = ({
   dataType: string;
   value: string;
 }) => {
-  const {currentTheme} = useContext(ThemeContext);
-
   const {t} = useTranslation();
 
   const iconFromType = useCallback((type: string) => {
@@ -74,7 +72,9 @@ const LevelBoxEntry = ({
         <Text style={{fontWeight: 'bold'}}>
           {t(`app.analytics.values.${dataType}`)}
         </Text>
-        <Text colour={currentTheme.foregroundSecondary}>{value}</Text>
+        <Text useNewText colour={'foregroundSecondary'}>
+          {value}
+        </Text>
       </View>
     </View>
   );
@@ -230,10 +230,9 @@ const LevelBoxes = observer(
           style={levelBoxStyles.disableAnalyticsButton}
           backgroundColor={currentTheme.backgroundSecondary}>
           <Text
+            useNewText
             colour={
-              analyticsLevel === 'none'
-                ? currentTheme.foregroundSecondary
-                : currentTheme.foregroundPrimary
+              analyticsLevel === 'none' ? 'foregroundSecondary' : undefined
             }>
             {t(
               `app.analytics.${!analyticsLevel ? 'continue_without_analytics' : analyticsLevel === 'none' ? 'analytics_disabled' : 'disable_analytics'}`,

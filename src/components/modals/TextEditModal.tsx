@@ -1,28 +1,19 @@
-import {useContext, useState} from 'react';
+import {useState} from 'react';
 import {View} from 'react-native';
+import {StyleSheet} from 'react-native-unistyles';
 import {useTranslation} from 'react-i18next';
 
 import {app} from '@clerotri/Generic';
 import {Button, Input, Text} from '@clerotri/components/common/atoms';
-import {commonValues, ThemeContext} from '@clerotri/lib/themes';
+import {commonValues} from '@clerotri/lib/themes';
 import {TextEditingModalProps} from '@clerotri/lib/types';
 
 export const TextEditModal = ({object}: {object: TextEditingModalProps}) => {
-  const {currentTheme} = useContext(ThemeContext);
-
   const {t} = useTranslation();
 
   const [string, setString] = useState(object.initialString);
   return (
-    <View
-      style={{
-        width: '80%',
-        borderRadius: commonValues.sizes.medium,
-        padding: 20,
-        backgroundColor: currentTheme.backgroundPrimary,
-        justifyContent: 'center',
-        alignSelf: 'center',
-      }}>
+    <View style={localStyles.container}>
       <Text type={'h1'}>{t(`app.modals.edit_text.${object.id}_header`)}</Text>
       <View
         style={{
@@ -59,3 +50,14 @@ export const TextEditModal = ({object}: {object: TextEditingModalProps}) => {
     </View>
   );
 };
+
+const localStyles = StyleSheet.create(currentTheme => ({
+  container: {
+    width: '80%',
+    borderRadius: commonValues.sizes.medium,
+    padding: 20,
+    backgroundColor: currentTheme.backgroundPrimary,
+    justifyContent: 'center',
+    alignSelf: 'center',
+  },
+}));
