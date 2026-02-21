@@ -205,6 +205,7 @@ export const MessageBox = observer((props: MessageBoxProps) => {
         <Input
           skipRegularStyles
           multiline
+          numberOfLines={10}
           placeholderTextColor={currentTheme.foregroundSecondary}
           style={{
             ...localStyles.messageBox,
