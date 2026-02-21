@@ -1,8 +1,10 @@
 /* eslint-disable no-bitwise */
-import {useContext} from 'react';
-import {ScrollView, TouchableOpacity, View, type ViewProps} from 'react-native';
+import {TouchableOpacity, View, type ViewProps} from 'react-native';
+import {StyleSheet} from 'react-native-unistyles';
 import {useTranslation} from 'react-i18next';
 import {observer} from 'mobx-react-lite';
+
+import {ScrollView} from 'react-native-gesture-handler';
 
 import type {User} from 'revolt.js';
 
@@ -12,30 +14,14 @@ import {
   MaterialIcon,
 } from '@clerotri/components/common/icons';
 import {BADGES, USER_IDS} from '@clerotri/lib/consts';
-import {commonValues, ThemeContext} from '@clerotri/lib/themes';
+import {commonValues} from '@clerotri/lib/themes';
 import {openUrl, showToast} from '@clerotri/lib/utils';
 
 const BadgeWrapper = ({style, ...props}: ViewProps) => {
-  return (
-    <View
-      style={[
-        {
-          height: 32,
-          width: 32,
-          alignItems: 'center',
-          justifyContent: 'center',
-          marginRight: commonValues.sizes.medium,
-        },
-        style,
-      ]}
-      {...props}
-    />
-  );
+  return <View style={[localStyles.badge, style]} {...props} />;
 };
 
 export const BadgeView = observer(({user}: {user: User}) => {
-  const {currentTheme} = useContext(ThemeContext);
-
   const {t} = useTranslation();
 
   if (!user.badges) {
@@ -56,16 +42,8 @@ export const BadgeView = observer(({user}: {user: User}) => {
           style={{marginInlineStart: commonValues.sizes.small}}
         />
       </View>
-      <ScrollView
-        style={{
-          flexDirection: 'row',
-          backgroundColor: currentTheme.backgroundPrimary,
-          padding: commonValues.sizes.medium,
-          borderRadius: commonValues.sizes.medium,
-        }}
-        contentContainerStyle={{alignItems: 'center'}}
-        horizontal>
-        <>
+      <View style={localStyles.badgeListContainer}>
+        <ScrollView contentContainerStyle={localStyles.badgeList} horizontal>
           {
             // @ts-expect-error this is fine
             Object.keys(BADGES).map((b: keyof typeof BADGES) => {
@@ -83,7 +61,7 @@ export const BadgeView = observer(({user}: {user: User}) => {
                         )
                       }
                       onLongPress={() =>
-                        b === 'Supporter'
+                        b === 'ActiveSupporter' || b === 'Supporter'
                           ? openUrl(
                               'https://wiki.revolt.chat/notes/project/financial-support/',
                             )
@@ -123,6 +101,14 @@ export const BadgeView = observer(({user}: {user: User}) => {
                                 customColor={'#80c95b'}
                               />
                             );
+                          case 'ActiveSupporter':
+                            return (
+                              <MaterialCommunityIcon
+                                name="cash-sync"
+                                size={28}
+                                customColor={'#d3dd4c'}
+                              />
+                            );
                           case 'ResponsibleDisclosure':
                             return (
                               <MaterialCommunityIcon
@@ -156,8 +142,9 @@ export const BadgeView = observer(({user}: {user: User}) => {
                           default:
                             return (
                               <Text
+                                useNewText
+                                colour={'foregroundSecondary'}
                                 style={{
-                                  color: currentTheme.foregroundSecondary,
                                   fontSize: 8,
                                 }}>
                                 [{b}]
@@ -208,8 +195,26 @@ export const BadgeView = observer(({user}: {user: User}) => {
               </TouchableOpacity>
             </BadgeWrapper>
           ) : null}
-        </>
-      </ScrollView>
+        </ScrollView>
+      </View>
     </View>
   );
 });
+
+const localStyles = StyleSheet.create(currentTheme => ({
+  badgeListContainer: {
+    backgroundColor: currentTheme.backgroundPrimary,
+    borderRadius: commonValues.sizes.medium,
+  },
+  badgeList: {
+    padding: commonValues.sizes.medium,
+    alignItems: 'center',
+    gap: commonValues.sizes.medium,
+  },
+  badge: {
+    height: 32,
+    width: 32,
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
+}));

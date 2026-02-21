@@ -42,6 +42,7 @@
             "privacy_info": "Privacy information"
         },
         "badges": {
+            "ActiveSupporter": "Active Supporter",
             "Developer": "Stoat Developer",
             "EarlyAdopter": "Early Adopter",
             "Founder": "Founder",

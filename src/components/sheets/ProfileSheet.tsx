@@ -160,8 +160,8 @@ const ProfileTabs = ({setSection}: {setSection: (t: string) => void}) => {
   const {t} = useTranslation();
 
   return (
-    <>
-      <View style={localStyles.profileTabsContainer}>
+    <View style={localStyles.profileTabsContainer}>
+      <View style={localStyles.profileTabsRow}>
         <Button
           style={localStyles.profileTab}
           onPress={() => setSection('Profile')}>
@@ -173,7 +173,7 @@ const ProfileTabs = ({setSection}: {setSection: (t: string) => void}) => {
           <Text>{t('app.profile.tabs.mutual_friends')}</Text>
         </Button>
       </View>
-      <View style={localStyles.profileTabsContainer}>
+      <View style={localStyles.profileTabsRow}>
         {/* TODO: uncomment when this has been added 
         <Button
           style={localStyles.profileTab}
@@ -186,7 +186,7 @@ const ProfileTabs = ({setSection}: {setSection: (t: string) => void}) => {
           <Text>{t('app.profile.tabs.mutual_servers')}</Text>
         </Button>
       </View>
-    </>
+    </View>
   );
 };
 
@@ -224,7 +224,7 @@ export const ProfileSheet = observer(
         }
         const p = await user.fetchProfile();
         const rawMutuals =
-          user.relationship !== 'User'
+          user._id !== client.user?._id
             ? await user.fetchMutual()
             : {users: [] as string[], servers: [] as string[]};
 
@@ -271,8 +271,9 @@ export const ProfileSheet = observer(
                 color={'foregroundSecondary'}
               />
               <Text
+                useNewText
+                colour={'foregroundSecondary'}
                 style={{
-                  color: currentTheme.foregroundSecondary,
                   fontSize: 16,
                   marginLeft: 5,
                 }}>
@@ -367,12 +368,16 @@ export const ProfileSheet = observer(
                       server: server?._id,
                       user: user._id,
                     })?.avatar?._id !== undefined ? (
-                      <View style={{alignSelf: 'center', marginEnd: 4}}>
-                        <Avatar size={24} user={user} />
+                      <View
+                        style={{
+                          alignSelf: 'center',
+                          marginEnd: commonValues.sizes.medium,
+                        }}>
+                        <Avatar size={32} user={user} />
                       </View>
                     ) : null}
                     <View style={{flexDirection: 'column'}}>
-                      <Username user={user} size={16} noBadge />
+                      <Username user={user} size={18} noBadge />
                       <Username
                         user={user}
                         size={16}
@@ -389,8 +394,12 @@ export const ProfileSheet = observer(
             {user.flags ? (
               /* eslint-disable no-bitwise */
               <Text
-                style={{marginBlockEnd: commonValues.sizes.large}}
-                colour={currentTheme.error}>
+                useNewText
+                style={{
+                  fontWeight: 'bold',
+                  marginBlockEnd: commonValues.sizes.medium,
+                }}
+                colour={'error'}>
                 {t(
                   `app.profile.flags.${
                     user.flags & 1
@@ -406,12 +415,12 @@ export const ProfileSheet = observer(
               </Text>
             ) : /* eslint-enable no-bitwise */
             null}
-            {user.relationship === 'User' ? (
-              <>
+            {client.user?._id !== user._id && (
+              <View style={localStyles.buttonsAndTabsContainer}>
                 <RelationshipButtons user={user} />
                 <ProfileTabs setSection={setSection} />
-              </>
-            ) : null}
+              </View>
+            )}
             {section === 'Profile' ? (
               <ScrollView>
                 {user.bot ? (
@@ -435,7 +444,7 @@ export const ProfileSheet = observer(
                         </View>
                       </Button>
                     ) : (
-                      <Text style={{color: currentTheme.foregroundSecondary}}>
+                      <Text useNewText colour={'foregroundSecondary'}>
                         Unloaded user
                       </Text>
                     )}
@@ -495,10 +504,15 @@ export const ProfileSheet = observer(
 );
 
 const localStyles = StyleSheet.create(currentTheme => ({
+  buttonsAndTabsContainer: {
+    marginBlock: commonValues.sizes.small,
+  },
   profileTabsContainer: {
+    gap: commonValues.sizes.small,
+  },
+  profileTabsRow: {
     flexDirection: 'row',
     gap: commonValues.sizes.small,
-    marginBlockEnd: commonValues.sizes.small,
   },
   profileTab: {
     padding: commonValues.sizes.medium,
