@@ -175,7 +175,7 @@ const NewMessageView = observer(
             maintainVisibleContentPosition
             onStartReached={() => {
               console.log('owo');
-              fetchMoreMessages(messages[0]._id);
+              messages.length && fetchMoreMessages(messages[0]._id);
             }}
             onEndReached={() => {
               console.log('hii');
