@@ -35,6 +35,142 @@ import {commonValues, ThemeContext} from '@clerotri/lib/themes';
 import {useBackHandler} from '@clerotri/lib/ui';
 import {parseRevoltNodes} from '@clerotri/lib/utils';
 
+const ProfileMenu = observer(
+  ({
+    user,
+    setShowMenu,
+  }: {
+    user: User;
+    setShowMenu: (state: boolean) => void;
+  }) => {
+    const {currentTheme} = useContext(ThemeContext);
+
+    const {t} = useTranslation();
+
+    return (
+      <>
+        <Pressable
+          style={{
+            flexDirection: 'row',
+            alignItems: 'center',
+            marginBottom: commonValues.sizes.large,
+          }}
+          onPress={() => {
+            setShowMenu(false);
+          }}>
+          <MaterialIcon
+            name="arrow-back"
+            size={20}
+            color={'foregroundSecondary'}
+          />
+          <Text
+            useNewText
+            colour={'foregroundSecondary'}
+            style={{
+              fontSize: 16,
+              marginLeft: 5,
+            }}>
+            {t('app.profile.menu.back')}
+          </Text>
+        </Pressable>
+        {settings.get('ui.showDeveloperFeatures') ? (
+          <CopyIDButton itemID={user._id} type={'detatched'} />
+        ) : null}
+        {user.relationship !== 'User' ? (
+          <>
+            <NewContextButton
+              type={
+                'detatched' /* set to 'start' when the block button exists*/
+              }
+              icon={{
+                pack: 'regular',
+                name: 'flag',
+                colour: 'error',
+              }}
+              textString={'app.profile.menu.report_user'}
+              textColour={currentTheme.error}
+              onPress={() => {
+                app.openReportMenu({object: user, type: 'User'});
+                setShowMenu(false);
+                app.openProfile(null);
+              }}
+            />
+            {/* TODO: add block confirm modal then uncomment this {user.relationship !== 'Blocked' ? (
+                  <NewContextButton
+                    type={'end'}
+                    icon={{pack: 'regular', name: 'block', colour: currentTheme.error}}
+                    textString={'app.profile.menu.block_user'}
+                    textColour={currentTheme.error}
+                    onPress={() => {
+                      app.openReportMenu({object: user, type: 'User'});
+                      setShowMenu(false);
+                      app.openProfile(null);
+                    }} />
+                ) : null} */}
+          </>
+        ) : null}
+      </>
+    );
+  },
+);
+
+const ProfileUsernames = observer(
+  ({user, server}: {user: User; server: Server | null}) => {
+    const {currentTheme} = useContext(ThemeContext);
+
+    return (
+      <View
+        style={{
+          marginBlock: commonValues.sizes.medium,
+        }}>
+        <Username user={user} server={server ?? undefined} size={24} />
+        {!server ? (
+          <Username
+            user={user}
+            server={server ?? undefined}
+            size={16}
+            color={currentTheme.foregroundSecondary}
+            skipDisplayName
+          />
+        ) : (
+          <View
+            style={{
+              flexDirection: 'row',
+            }}>
+            {client.members.getKey({
+              server: server?._id,
+              user: user._id,
+            })?.avatar?._id !== user.avatar?._id &&
+            client.members.getKey({
+              server: server?._id,
+              user: user._id,
+            })?.avatar?._id !== undefined ? (
+              <View
+                style={{
+                  alignSelf: 'center',
+                  marginEnd: commonValues.sizes.medium,
+                }}>
+                <Avatar size={32} user={user} />
+              </View>
+            ) : null}
+            <View style={{flexDirection: 'column'}}>
+              <Username user={user} size={18} noBadge />
+              <Username
+                user={user}
+                size={16}
+                color={currentTheme.foregroundSecondary}
+                noBadge
+                skipDisplayName
+              />
+            </View>
+          </View>
+        )}
+        {user.status?.text ? <Text>{user.status?.text}</Text> : null}
+      </View>
+    );
+  },
+);
+
 const RelationshipButtons = ({user}: {user: User}) => {
   const {currentTheme} = useContext(ThemeContext);
 
@@ -156,7 +292,13 @@ const RelationshipButtons = ({user}: {user: User}) => {
   );
 };
 
-const ProfileTabs = ({setSection}: {setSection: (t: string) => void}) => {
+const ProfileTabs = ({
+  setSection,
+  isBot,
+}: {
+  setSection: (t: string) => void;
+  isBot: boolean;
+}) => {
   const {t} = useTranslation();
 
   return (
@@ -167,11 +309,13 @@ const ProfileTabs = ({setSection}: {setSection: (t: string) => void}) => {
           onPress={() => setSection('Profile')}>
           <Text>{t('app.profile.tabs.profile')}</Text>
         </Button>
-        <Button
-          style={localStyles.profileTab}
-          onPress={() => setSection('Mutual Friends')}>
-          <Text>{t('app.profile.tabs.mutual_friends')}</Text>
-        </Button>
+        {!isBot && (
+          <Button
+            style={localStyles.profileTab}
+            onPress={() => setSection('Mutual Friends')}>
+            <Text>{t('app.profile.tabs.mutual_friends')}</Text>
+          </Button>
+        )}
       </View>
       <View style={localStyles.profileTabsRow}>
         {/* TODO: uncomment when this has been added 
@@ -189,6 +333,31 @@ const ProfileTabs = ({setSection}: {setSection: (t: string) => void}) => {
     </View>
   );
 };
+
+const BotOwnerInfo = observer(({user}: {user: User}) => {
+  const {t} = useTranslation();
+
+  return user.bot ? (
+    <>
+      <Text type={'profile'}>{t('app.profile.bot_owner')}</Text>
+      {user.bot!.owner && client.users.get(user.bot!.owner) ? (
+        <Button
+          style={localStyles.botOwnerButton}
+          onPress={() => {
+            app.openProfile(client.users.get(user.bot!.owner));
+          }}>
+          <View style={{maxWidth: '90%'}}>
+            <MiniProfile user={client.users.get(user.bot!.owner)} />
+          </View>
+        </Button>
+      ) : (
+        <Text useNewText colour={'foregroundSecondary'}>
+          Unloaded user
+        </Text>
+      )}
+    </>
+  ) : null;
+});
 
 export const ProfileSheet = observer(
   ({user, server}: {user: User | null; server: Server | null}) => {
@@ -255,68 +424,7 @@ export const ProfileSheet = observer(
         {!user ? (
           <></>
         ) : showMenu ? (
-          <>
-            <Pressable
-              style={{
-                flexDirection: 'row',
-                alignItems: 'center',
-                marginBottom: commonValues.sizes.large,
-              }}
-              onPress={() => {
-                setShowMenu(false);
-              }}>
-              <MaterialIcon
-                name="arrow-back"
-                size={20}
-                color={'foregroundSecondary'}
-              />
-              <Text
-                useNewText
-                colour={'foregroundSecondary'}
-                style={{
-                  fontSize: 16,
-                  marginLeft: 5,
-                }}>
-                {t('app.profile.menu.back')}
-              </Text>
-            </Pressable>
-            {settings.get('ui.showDeveloperFeatures') ? (
-              <CopyIDButton itemID={user._id} type={'detatched'} />
-            ) : null}
-            {user.relationship !== 'User' ? (
-              <>
-                <NewContextButton
-                  type={
-                    'detatched' /* set to 'start' when the block button exists*/
-                  }
-                  icon={{
-                    pack: 'regular',
-                    name: 'flag',
-                    colour: 'error',
-                  }}
-                  textString={'app.profile.menu.report_user'}
-                  textColour={currentTheme.error}
-                  onPress={() => {
-                    app.openReportMenu({object: user, type: 'User'});
-                    setShowMenu(false);
-                    app.openProfile(null);
-                  }}
-                />
-                {/* TODO: add block confirm modal then uncomment this {user.relationship !== 'Blocked' ? (
-                  <NewContextButton
-                    type={'end'}
-                    icon={{pack: 'regular', name: 'block', colour: currentTheme.error}}
-                    textString={'app.profile.menu.block_user'}
-                    textColour={currentTheme.error}
-                    onPress={() => {
-                      app.openReportMenu({object: user, type: 'User'});
-                      setShowMenu(false);
-                      app.openProfile(null);
-                    }} />
-                ) : null} */}
-              </>
-            ) : null}
-          </>
+          <ProfileMenu user={user} setShowMenu={setShowMenu} />
         ) : (
           <>
             <View
@@ -339,58 +447,7 @@ export const ProfileSheet = observer(
                 </TouchableOpacity>
               </View>
             </View>
-            <View
-              style={{
-                flexDirection: 'row',
-                marginBlock: commonValues.sizes.medium,
-              }}>
-              <View>
-                <Username user={user} server={server ?? undefined} size={24} />
-                {!server ? (
-                  <Username
-                    user={user}
-                    server={server ?? undefined}
-                    size={16}
-                    color={currentTheme.foregroundSecondary}
-                    skipDisplayName
-                  />
-                ) : null}
-                {server ? (
-                  <View
-                    style={{
-                      flexDirection: 'row',
-                    }}>
-                    {client.members.getKey({
-                      server: server?._id,
-                      user: user._id,
-                    })?.avatar?._id !== user.avatar?._id &&
-                    client.members.getKey({
-                      server: server?._id,
-                      user: user._id,
-                    })?.avatar?._id !== undefined ? (
-                      <View
-                        style={{
-                          alignSelf: 'center',
-                          marginEnd: commonValues.sizes.medium,
-                        }}>
-                        <Avatar size={32} user={user} />
-                      </View>
-                    ) : null}
-                    <View style={{flexDirection: 'column'}}>
-                      <Username user={user} size={18} noBadge />
-                      <Username
-                        user={user}
-                        size={16}
-                        color={currentTheme.foregroundSecondary}
-                        noBadge
-                        skipDisplayName
-                      />
-                    </View>
-                  </View>
-                ) : null}
-                {user.status?.text ? <Text>{user.status?.text}</Text> : null}
-              </View>
-            </View>
+            <ProfileUsernames user={user} server={server} />
             {user.flags ? (
               /* eslint-disable no-bitwise */
               <Text
@@ -418,38 +475,12 @@ export const ProfileSheet = observer(
             {client.user?._id !== user._id && (
               <View style={localStyles.buttonsAndTabsContainer}>
                 <RelationshipButtons user={user} />
-                <ProfileTabs setSection={setSection} />
+                <ProfileTabs setSection={setSection} isBot={!!user.bot} />
               </View>
             )}
             {section === 'Profile' ? (
               <ScrollView>
-                {user.bot ? (
-                  <>
-                    <Text type={'profile'}>{t('app.profile.bot_owner')}</Text>
-                    {user.bot.owner && client.users.get(user.bot.owner) ? (
-                      <Button
-                        style={{
-                          marginHorizontal: 0,
-                          justifyContent: 'flex-start',
-                          alignItems: 'flex-start',
-                          backgroundColor: currentTheme.backgroundPrimary,
-                        }}
-                        onPress={() => {
-                          app.openProfile(client.users.get(user.bot!.owner));
-                        }}>
-                        <View style={{maxWidth: '90%'}}>
-                          <MiniProfile
-                            user={client.users.get(user.bot.owner)}
-                          />
-                        </View>
-                      </Button>
-                    ) : (
-                      <Text useNewText colour={'foregroundSecondary'}>
-                        Unloaded user
-                      </Text>
-                    )}
-                  </>
-                ) : null}
+                {user.bot && <BotOwnerInfo user={user} />}
                 {server && <RoleView user={user} server={server} />}
                 {user.badges && <BadgeView user={user} />}
                 <Text type={'profile'}>{t('app.profile.bio')}</Text>
@@ -469,11 +500,13 @@ export const ProfileSheet = observer(
                     <NewContextButton
                       key={srv!._id}
                       type={
-                        index === 0
-                          ? 'start'
-                          : index === mutual.servers.length - 1
-                            ? 'end'
-                            : undefined
+                        mutual.servers.length === 1
+                          ? 'detatched'
+                          : index === 0
+                            ? 'start'
+                            : index === mutual.servers.length - 1
+                              ? 'end'
+                              : undefined
                       }
                       onPress={() => {
                         app.openServer(srv);
@@ -518,6 +551,14 @@ const localStyles = StyleSheet.create(currentTheme => ({
     padding: commonValues.sizes.medium,
     margin: 0,
     flex: 1,
+    backgroundColor: currentTheme.backgroundPrimary,
+  },
+  botOwnerButton: {
+    margin: 0,
+    marginBlockStart: commonValues.sizes.small,
+    marginBlockEnd: commonValues.sizes.medium,
+    justifyContent: 'flex-start',
+    alignItems: 'flex-start',
     backgroundColor: currentTheme.backgroundPrimary,
   },
 }));
