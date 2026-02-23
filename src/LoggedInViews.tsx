@@ -14,7 +14,7 @@ import {settings} from '@clerotri/lib/settings';
 import {ChannelContext, ServerContext} from '@clerotri/lib/state';
 import {storage} from '@clerotri/lib/storage';
 import {CVChannel} from '@clerotri/lib/types';
-import {checkLastVersion, openLastChannel, sleep} from '@clerotri/lib/utils';
+import {checkLastVersion, openLastChannel} from '@clerotri/lib/utils';
 
 export function LoggedInViews({
   channelNotificationSettings,
@@ -54,10 +54,7 @@ export function LoggedInViews({
       if (lastVersion) {
         if (settings.get('app.showChangelogs')) {
           console.log(`[APP] Opening changelog...`);
-          // don't ask why but the sheet doesn't appear without this
-          sleep(50).then(() => {
-            app.openChangelog(true);
-          });
+          app.openChangelog(true, true);
         }
       }
     }

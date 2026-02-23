@@ -52,6 +52,14 @@
             "Supporter": "Donator",
             "Translator": "Translator"
         },
+        "changelog": {
+            "header": "Changelog for v{{version}}",
+            "header_newly_updated": "Clerotri has been updated to v{{version}}",
+            "released_on": "Released on {{date}}",
+            "donate": "Donate",
+            "see_full_changelog": "See the full changelog",
+            "dismiss": "Dismiss"
+        },
         "channel_list": {
             "direct_messages_header": "Direct Messages"
         },

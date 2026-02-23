@@ -209,9 +209,9 @@ export const app = {
       `[FUNCTIONS] Tried to run uninitialised function openAnalyticsMenu (args: ${state}, ${blockClosing})`,
     );
   },
-  openChangelog: (state: boolean) => {
+  openChangelog: (state: boolean, isNewlyUpdated?: boolean) => {
     console.log(
-      `[FUNCTIONS] Tried to run uninitialised function openChangelog (args: ${state})`,
+      `[FUNCTIONS] Tried to run uninitialised function openChangelog (args: ${state}, ${isNewlyUpdated})`,
     );
   },
   openModActionModal: (member: MemberWithModAction | null) => {

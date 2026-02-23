@@ -10,7 +10,7 @@
 - [ ] Update `versionName` and `versionCode` in `android/app/build.gradle`
 - [ ] Update the `version` field in the `package.json` file
 - [ ] Create a new file in `fastlane/metadata/android/en-US/changelogs/` - named `xyz.txt`, with `xyz` being the new `versionCode` - and note the biggest changes in the release, with a link to the full `CHANGELOG.md` entry - **this cannot exceed 500 characters**
-- [ ] Update `changelogParagraphs` in `src/components/sheets/ChangelogSheet.tsx` with a short summary of the changes
+- [ ] Update `changelogParagraphs` in `src/components/sheets/ChangelogSheet.tsx` with a short summary of the changes, and update `releaseDate` to reflect the update's release date
 - [ ] Write out a full changelog entry for `CHANGELOG.md` - use the previous entries as a guide for formatting
   - You can use `git log v[LASTVERSION]...main --format="%s (%h)"` to get a clean list of commits since the last release - this can help make sure you don't miss anything
 - [ ] Stage and commit these changes in a commit titled `release: x.y.z` (with `x.y.z` being the new version) - do **not** push the commit yet

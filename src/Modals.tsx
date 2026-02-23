@@ -154,10 +154,6 @@ const BottomSheets = observer(() => {
     openOrCloseSheet(!!m, 'messageMenu');
   });
 
-  setFunction('openChangelog', (show: boolean) => {
-    openOrCloseSheet(show, 'changelog');
-  });
-
   return (
     <BottomSheet sheetRef={sheetRef} onChange={handleSheetIndexChange}>
       {currentSheet === 'statusMenu' ? (
@@ -178,8 +174,6 @@ const BottomSheets = observer(() => {
         <MemberListSheet context={memberListContext} />
       ) : currentSheet === 'messageMenu' ? (
         <MessageMenuSheet message={messageMenuMessage} />
-      ) : currentSheet === 'changelog' ? (
-        <ChangelogSheet />
       ) : null}
     </BottomSheet>
   );
@@ -421,27 +415,48 @@ export const PreLoginModals = observer(() => {
     useState(false);
   const [analyticsSettingsBlockClosing, setAnalyticsSettingsBlockClosing] =
     useState(false);
+  const [changelogVisibility, setChangelogVisibility] = useState(false);
+  const [changelogIsNewlyUpdated, setChangelogIsNewlyUpdated] = useState(false);
 
   setFunction('openAnalyticsMenu', (o: boolean, blockClosing?: boolean) => {
     setAnalyticsSettingsBlockClosing(blockClosing || false);
     setAnalyticsSettingsVisibility(o);
   });
 
+  setFunction('openChangelog', (show: boolean, isNewlyUpdated?: boolean) => {
+    setChangelogIsNewlyUpdated(isNewlyUpdated || false);
+    setChangelogVisibility(show);
+  });
+
   return (
-    <Modal
-      visible={analyticsSettingsVisibility}
-      transparent={true}
-      animationType="fade"
-      statusBarTranslucent
-      navigationBarTranslucent
-      onRequestClose={() =>
-        app.handleAnalyticsSettingsVisibility(setAnalyticsSettingsVisibility)
-      }>
-      <AnalyticsSettingsSheet
-        blockClosing={analyticsSettingsBlockClosing}
-        setState={() => setAnalyticsSettingsVisibility(false)}
-      />
-    </Modal>
+    <>
+      <Modal
+        visible={analyticsSettingsVisibility}
+        transparent={true}
+        animationType="fade"
+        statusBarTranslucent
+        navigationBarTranslucent
+        onRequestClose={() =>
+          app.handleAnalyticsSettingsVisibility(setAnalyticsSettingsVisibility)
+        }>
+        <AnalyticsSettingsSheet
+          blockClosing={analyticsSettingsBlockClosing}
+          setState={() => setAnalyticsSettingsVisibility(false)}
+        />
+      </Modal>
+      <Modal
+        visible={changelogVisibility}
+        transparent={true}
+        animationType="slide"
+        statusBarTranslucent
+        navigationBarTranslucent
+        onRequestClose={() => setChangelogVisibility(false)}>
+        <ChangelogSheet
+          setState={() => setChangelogVisibility(false)}
+          isNewlyUpdated={changelogIsNewlyUpdated}
+        />
+      </Modal>
+    </>
   );
 });
 
