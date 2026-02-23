@@ -2086,8 +2086,7 @@ export const CONTRIBUTORS_LIST = `${GITHUB_REPO}/graphs/contributors`;
 
 export const OPEN_ISSUES = `${GITHUB_REPO}/issues`;
 
-export const DONATIONS_INFO =
-  'https://rexogamer.github.io/donate?utm_source=clerotri';
+export const DONATIONS_INFO = 'https://rexowo.dev/donate?utm_source=clerotri';
 
 export const WEBLATE = 'https://translate.upryzing.app/projects/clerotri';
 
