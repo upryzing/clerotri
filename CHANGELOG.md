@@ -1,5 +1,25 @@
 # Clerotri's changelog
 
+## v0.13.1
+
+_This version was released on 23/02/2026._
+
+### What's new
+
+- The **in-app changelog** has received various improvements:
+  - various design tweaks have been made,
+  - you can now see the update's release date and
+  - there is now an easily accessible close button.
+- The **profile sheet** has received various design improvements.
+- The Active Supporter badge is now supported.
+
+### Bug fixes
+
+- The channel view will no longer show an error message in empty channels.
+- The message box will no longer become unusably tall when writing or editing long messages.
+- The in app changelog should now correctly show after updating the app.
+- The "Send Friend Request" button should no longer appear on your own profile or the profiles of bots.
+
 ## v0.13.0
 
 _This version was released on 15/02/2026._

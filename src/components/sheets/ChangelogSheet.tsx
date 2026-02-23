@@ -12,10 +12,11 @@ import {APP_VERSION} from '@clerotri/lib/metadata';
 import {commonValues, ThemeContext} from '@clerotri/lib/themes';
 import {openUrl} from '@clerotri/lib/utils';
 
-const releaseDate = 'foo/bar/2026';
+const releaseDate = '23/02/2026';
 
 const changelogParagraphs = [
-  'This release includes **better message rendering**, a bunch of styling and design improvements and a new language - French!',
+  'This release includes **improvements to the in-app changelog**, some tweaks to the **profile sheet** and a few bug fixes.',
+  'In case you missed it, v0.13.0 included **better message rendering**, a bunch of styling and design improvements and a new language (French).',
   `Also note that **Clerotri is now on Bluesky!** Get updates and support at [**@clerotri.upryzing.app**](${BLUESKY_PROFILE}).`,
 ];
 
