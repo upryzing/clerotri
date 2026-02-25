@@ -85,7 +85,11 @@
                     "loading": "Mitglieder werden abgerufen…",
                     "nickname": "Spitzname",
                     "nickname_placeholder": "Setze einen Spitznamen…",
-                    "timeout_user": "Zeitüberschreitung {{name}}"
+                    "timeout_user": "Zeitüberschreitung {{name}}",
+                    "select_mode": {
+                        "title_one": "{{count}} ausgewähltes Mitglied",
+                        "title_other": "{{count}} ausgewählte Mitglieder"
+                    }
                 },
                 "invites": {
                     "title": "Einladungen",
@@ -236,7 +240,8 @@
             "settings": {
                 "saved": "Gespeichert!",
                 "saved_body": "Im Moment musst Du die App schließen und erneut öffnen, damit deine Änderungen wirksam werden. Wir wissen, dass das nicht ideal ist – wir werden das zu einem späteren Zeitpunkt beheben."
-            }
+            },
+            "settings_button": "Login Einstellungen"
         },
         "settings_menu": {
             "account": {
@@ -270,7 +275,9 @@
             },
             "profile": {
                 "title": "Profil",
-                "display_name": "Anzeigenamen"
+                "display_name": "Anzeigenamen",
+                "status": "Status",
+                "status_body": "Lege Deinen Statustyp und -text fest"
             },
             "licenses": {
                 "loading": "Lizenzdaten werden geladen…",
@@ -283,7 +290,10 @@
                 "public_body_stoat": "Wenn dies aktiviert ist, kann dieser Bot von anderen Benutzern zu Gruppen und Servern eingeladen werden.",
                 "public_body_upryzing": "Wenn dies aktiviert ist, kann dieser Bot von anderen Benutzern zu Gruppen und Bereichen eingeladen werden.",
                 "copy_invite_link": "Einladungslink kopieren",
-                "invite_bot": "Bot einladen"
+                "invite_bot": "Bot einladen",
+                "no_bots": "Du hast keine Bots",
+                "new_bot_body": "Du kannst bis zu {{limit}} Bots erstellen.",
+                "title": ""
             },
             "sessions": {
                 "title": "Sitzungen",
@@ -291,12 +301,18 @@
                 "current_session": "Diese Sitzung",
                 "other_sessions": "Andere Sitzungen",
                 "current_session_not_found": "Die Informationen dieser Sitzung sind nicht verfügbar.",
-                "remove_other_sessions_body": "Diese Sitzung bleibt angemeldet."
+                "remove_other_sessions_body": "Diese Sitzung bleibt angemeldet.",
+                "current_session_not_found_with_hint": "Die Informationen dieser Sitzung sind nicht verfügbar. Du musst Dich abmelden und wieder anmelden.",
+                "no_other_sessions": "Du hast keine anderen Sitzungen.",
+                "remove_other_sessions": "Melde Dich von Deinen anderen Sitzungen ab"
             },
             "toasts": {
                 "experimental": "Diese Einstellung ist experimentell und kann jederzeit entfernt oder geändert werden.",
                 "developer": "Diese Einstellung ist für Entwickler gedacht.",
                 "deprecated": "Diese Einstellung wird in einer zukünftigen Version entfernt."
+            },
+            "analytics": {
+                "title": "Analytik"
             }
         },
         "discover": {
@@ -332,7 +348,8 @@
             "flags": {
                 "banned": "Dieser Benutzer wurde gebannt",
                 "deleted": "Dieser Benutzer hat sein Konto gelöscht",
-                "suspended": "Dieser Benutzer wurde vorübergehend gesperrt"
+                "suspended": "Dieser Benutzer wurde vorübergehend gesperrt",
+                "unknown": "Unbekannte Flagge {{flag}}"
             },
             "friend_requests": {
                 "accept": "Freundschaftsanfrage annehmen",
@@ -395,7 +412,8 @@
             "SendMessage": "Nachrichten senden",
             "SendMessage_body_server": "Ermöglicht Mitgliedern mit dieser Rolle, Nachrichten in Textkanälen zu senden.",
             "UploadFiles": "Dateien hochladen",
-            "ViewChannel": "Kanäle anzeigen"
+            "ViewChannel": "Kanäle anzeigen",
+            "TimeoutMembers": "Timeout Mitglieder"
         },
         "channel_list": {
             "direct_messages_header": "Persönliche Nachrichten"
@@ -446,16 +464,20 @@
             "EarlyAdopter": "Frühanwender",
             "Founder": "Gründer",
             "Paw": "Pfote des Einsatzes",
-            "PlatformModeration": "Platform Moderator",
+            "PlatformModeration": "Plattform-Moderator",
             "ResponsibleDisclosure": "Verantwortungsvoll ein Sicherheitsproblem offengelegt",
             "Supporter": "Spender",
-            "Translator": "Übersetzer"
+            "Translator": "Übersetzer",
+            "ActiveSupporter": "Aktiver Unterstützer"
         },
         "custom_badges": {
             "clerotri_dev": "Clerotri-Entwickler"
         },
         "invites": {
-            "join_server": "Server beitreten"
+            "join_server": "Server beitreten",
+            "member_count_one": "{{count}} Mitglied",
+            "member_count_other": "{{count}} Mitglieder",
+            "go_to_server": "Gehe zum Server"
         },
         "sheets": {
             "channel": {
@@ -512,6 +534,13 @@
         "themes": {
             "Solarized": "Solarisiert",
             "Dark": "Dunkel"
+        },
+        "changelog": {
+            "header": "Änderungsprotokoll für v {{version}}",
+            "header_newly_updated": "Clerotri wurde auf v {{version}} aktualisiert",
+            "released_on": "Veröffentlicht am {{date}}",
+            "donate": "Spenden",
+            "see_full_changelog": "Siehe das vollständige Änderungsprotokoll"
         }
     }
 }
