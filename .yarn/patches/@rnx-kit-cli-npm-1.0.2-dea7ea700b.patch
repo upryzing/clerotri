@@ -1,5 +1,5 @@
 diff --git a/lib/bundle/hermes.js b/lib/bundle/hermes.js
-index c1de4fc01d797050b4885a25e565d60dd8c4087d..6ba3e8cce7cad3952a51ea164e9b3ce83c8d30b7 100644
+index eeaf82d963796cd7fef059e9731229c3d584e383..08eeb89853fabc8c80cf63490a6338a050621092 100644
 --- a/lib/bundle/hermes.js
 +++ b/lib/bundle/hermes.js
 @@ -58,6 +58,8 @@ function findHermesBinary({ reactNativePath }) {
