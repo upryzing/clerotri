@@ -18,7 +18,7 @@
             "create_channel": "Kanal erstellen",
             "copy_invite": "Einladung kopieren",
             "ban": "Bannen",
-            "kick": "Kick"
+            "kick": "Kicken"
         },
         "servers": {
             "settings": {
@@ -59,7 +59,8 @@
                     "colour": "Farbe",
                     "permissions": "Erlaubnis",
                     "errors": {
-                        "empty_role_name": "Du musst der Rolle einen Namen geben!"
+                        "empty_role_name": "Du musst der Rolle einen Namen geben!",
+                        "empty_rank": "Rollen dürfen nicht leer sein!"
                     },
                     "name": "Name",
                     "name_placeholder": "Bestimme einen Namen für die Rolle…",
@@ -72,7 +73,9 @@
                     "options_header": "Optionen",
                     "delete": "Rolle löschen",
                     "permissions_list_header": "Berechtigungen für <2>{{role}}</2>",
-                    "permissions_list_body": "Diese Berechtigungen gelten für den gesamten Server. Einige von ihnen können für bestimmte Kanäle überschrieben werden."
+                    "permissions_list_body": "Diese Berechtigungen gelten für den gesamten Server. Einige von ihnen können für bestimmte Kanäle überschrieben werden.",
+                    "rank_placeholder": "Weise der Rolle den Rang zu…",
+                    "permissions_body": "Bearbeite die Berechtigungen dieser Rolle"
                 },
                 "emoji": {
                     "title": "Emoji",
@@ -89,7 +92,12 @@
                     "select_mode": {
                         "title_one": "{{count}} ausgewähltes Mitglied",
                         "title_other": "{{count}} ausgewählte Mitglieder"
-                    }
+                    },
+                    "kick_user": "Kicken {{name}}",
+                    "kick_user_body": "Du kannst mit einer Einladung wieder beitreten.",
+                    "ban_user": "Verbot {{name}}",
+                    "ban_user_body": "Du kannst nicht wieder beitreten, solange du nicht entsperrt wurdest.",
+                    "timeout_user_body": "Du kannst erst wieder Nachrichten oder Reaktionen senden, wenn Deine Auszeit abgelaufen ist."
                 },
                 "invites": {
                     "title": "Einladungen",
@@ -277,7 +285,10 @@
                 "title": "Profil",
                 "display_name": "Anzeigenamen",
                 "status": "Status",
-                "status_body": "Lege Deinen Statustyp und -text fest"
+                "status_body": "Lege Deinen Statustyp und -text fest",
+                "expand_bio": "Bio erweitern",
+                "loading_bio": "Bio wird geladen…",
+                "collapse_bio": "Biografie einklappen"
             },
             "licenses": {
                 "loading": "Lizenzdaten werden geladen…",
@@ -293,7 +304,9 @@
                 "invite_bot": "Bot einladen",
                 "no_bots": "Du hast keine Bots",
                 "new_bot_body": "Du kannst bis zu {{limit}} Bots erstellen.",
-                "title": ""
+                "title": "Roboter",
+                "loading": "Bots werden geladen…",
+                "token": "Zeichen"
             },
             "sessions": {
                 "title": "Sitzungen",
@@ -368,7 +381,10 @@
                 "mutual_servers": "Gegenseitige Server",
                 "mutual_friends": "Gemeinsame Freunde",
                 "mutual_groups": "Gegenseitige Gruppen"
-            }
+            },
+            "badges": "Abzeichen",
+            "bio": "Biografie",
+            "roles_header": "Rollen"
         },
         "permissions": {
             "AssignRoles": "Rollen zuweisen",
@@ -413,7 +429,10 @@
             "SendMessage_body_server": "Ermöglicht Mitgliedern mit dieser Rolle, Nachrichten in Textkanälen zu senden.",
             "UploadFiles": "Dateien hochladen",
             "ViewChannel": "Kanäle anzeigen",
-            "TimeoutMembers": "Timeout Mitglieder"
+            "TimeoutMembers": "Timeout Mitglieder",
+            "ViewChannel_body_server": "Ermöglicht Mitgliedern mit dieser Rolle, Kanäle anzuzeigen.",
+            "TimeoutMembers_body_server": "Ermöglicht es Mitgliedern mit dieser Rolle, andere Mitglieder vorübergehend von der Interaktion mit dem Server auszuschließen.",
+            "UploadFiles_body_server": "Ermöglicht Mitgliedern mit dieser Rolle, Dateien in Textkanälen hochzuladen."
         },
         "channel_list": {
             "direct_messages_header": "Persönliche Nachrichten"
@@ -497,7 +516,11 @@
                     "block_user": "Benutzer sperren",
                     "leave_server": "Server verlassen",
                     "user_blocked": "Nutzer gesperrt",
-                    "message_author_blocked": "Autor gesperrt"
+                    "message_author_blocked": "Autor gesperrt",
+                    "block_message_author_body": "Du kannst den Verfasser dieser Nachricht auch blockieren.",
+                    "block_user_body": "Du kannst diesen Benutzer auch blockieren.",
+                    "leave_server_body": "Du kannst diesen Server auch verlassen. Andere Mitglieder werden nicht benachrichtigt.",
+                    "done": "Erledigt"
                 },
                 "reasons": {
                     "Harassment_body_message": "Diese Nachricht belästigt mich oder jemand anderen",
@@ -522,25 +545,68 @@
                     "Malware_body_server": "Dieser Server enthält Malware oder gefährliche Links",
                     "Malware_body_message": "Diese Nachricht enthält Malware oder gefährliche Links",
                     "Malware": "Schadsoftware",
-                    "InappropriateProfile_body_user": "Das Profil dieses Benutzers ist für ein allgemeines Publikum ungeeignet"
+                    "InappropriateProfile_body_user": "Das Profil dieses Benutzers ist für ein allgemeines Publikum ungeeignet",
+                    "IllegalGoods_body_server": "Dieser Server verkauft illegale Waren oder Dienstleistungen",
+                    "IllegalHacking": "Illegales Hacken",
+                    "IllegalHacking_body_message": "Diese Nachricht enthält oder fördert illegales Hacken oder Knacken",
+                    "IllegalHacking_body_server": "Dieser Server enthält oder fördert illegales Hacken oder Knacken",
+                    "IllegalPornography": "Illegale Pornografie",
+                    "IllegalPornography_body_message": "Diese Nachricht enthält Rache oder Minderjährige Pornografie",
+                    "IllegalPornography_body_server": "Dieser Server enthält Rache- oder Minderjährigenpornografie",
+                    "Impersonation": "Identitätswechsel",
+                    "Impersonation_body_user": "Dieser Benutzer gibt sich als ich oder jemand anderes aus",
+                    "InappropriateProfile": "Unangemessenes Profil",
+                    "NoneSpecified": "Andere",
+                    "PromotesHarm": "Fördert Schaden",
+                    "PromotesHarm_body_message": "Diese Nachricht fördert Schaden oder Missbrauch",
+                    "PromotesHarm_body_server": "Dieser Server fördert Schaden oder Missbrauch",
+                    "BanEvasion": "Umgehung des Verbots",
+                    "BanEvasion_body_user": "Dieser Nutzer umgeht eine Sperre",
+                    "ExtremeViolence": "Extreme Gewalt",
+                    "ExtremeViolence_body_message": "Diese Nachricht enthält extreme Gewalt, Blutvergießen oder Tierquälerei",
+                    "ExtremeViolence_body_server": "Dieser Server enthält extreme Gewalt, Blutvergießen oder Tierquälerei",
+                    "Harassment": "Belästigung",
+                    "IllegalExtortion": "Illegale Erpressung",
+                    "IllegalExtortion_body_message": "Diese Nachricht ist eine Erpressung oder Nötigung von mir oder jemand anderem",
+                    "IllegalExtortion_body_server": "Dieser Server erpresst mich oder jemand anderen",
+                    "Raid": "Überfälle",
+                    "Raid_body_server": "Dieser Server fördert Überfälle oder Spam-Angriffe",
+                    "ScamsFraud": "Betrug oder Abzocke",
+                    "ScamsFraud_body_message": "Diese Nachricht wirbt für Betrug oder Täuschung",
+                    "ScamsFraud_body_server": "Dieser Server fördert Betrug oder Täuschung"
                 },
                 "success_header": "Bericht gesendet",
                 "report_user": "Nutzer melden",
                 "report_message": "Nachricht melden",
                 "reason_selector_server": "Warum meldest du diesen Server?",
-                "reason_selector_user": "Warum meldest du diesen Benutzer?"
+                "reason_selector_user": "Warum meldest du diesen Benutzer?",
+                "success_body_generic": "Dein Bericht wurde zur Überprüfung an das Moderationsteam der Plattform gesendet. Vielen Dank, dass Du mithilfst, die Plattform sicher zu halten.",
+                "additional_context_placeholder": "Weitere Kontextinformationen hinzufügen (optional)",
+                "additional_context_placeholder_recommended": "Mehr Kontext hinzufügen (empfohlen)",
+                "reason_selector_message": "Warum meldst Du diese Nachricht?",
+                "reason_selector_body": "Du kannst nach der Auswahl eines Grundes weitere Kontextinformationen hinzufügen.",
+                "additional_context_body": "Hier kannst Du Deinem Bericht mehr Kontext hinzufügen.",
+                "success_body_stoat": "Dein Bericht wurde zur Überprüfung an das Stoat-Team weitergeleitet. Vielen Dank, dass Du dazu beigetragen haben, Stoat sicher zu halten.",
+                "success_body_upryzing": "Dein Bericht wurde zur Überprüfung an das Upryzing-Team weitergeleitet. Vielen Dank, dass Du dazu beiträgst, Upryzing sicher zu halten.",
+                "report_server": "Server melden"
             }
         },
         "themes": {
             "Solarized": "Solarisiert",
-            "Dark": "Dunkel"
+            "Dark": "Dunkel",
+            "Light": "Hell",
+            "Rose Pine": "Rosé Kiefer",
+            "Rose Pine Moon": "Rosé Kiefer Mond",
+            "Rose Pine Dawn": "Rosé Kiefer Morgendämmerung",
+            "AMOLED": "AMOLED"
         },
         "changelog": {
             "header": "Änderungsprotokoll für v {{version}}",
             "header_newly_updated": "Clerotri wurde auf v {{version}} aktualisiert",
             "released_on": "Veröffentlicht am {{date}}",
             "donate": "Spenden",
-            "see_full_changelog": "Siehe das vollständige Änderungsprotokoll"
+            "see_full_changelog": "Siehe das vollständige Änderungsprotokoll",
+            "dismiss": "Zurückweisen"
         }
     }
 }
