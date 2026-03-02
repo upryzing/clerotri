@@ -249,7 +249,8 @@
             "settings": {
                 "saved": "Захована!",
                 "saved_body": "Пакуль што вам патрэбна закрыць і нанова адкрыць праграму, каб ужыць змены. Мы ведаем, што гэта не ідэальна - мы выпрамім гэта пазней."
-            }
+            },
+            "settings_button": "Налады ўваходу"
         },
         "settings_menu": {
             "account": {
@@ -585,7 +586,8 @@
             "PlatformModeration": "Мадэратар",
             "ResponsibleDisclosure": "Адказна раскрылі праблему з бяспекай",
             "Supporter": "Дарыльшчык",
-            "Translator": "Перакладчык"
+            "Translator": "Перакладчык",
+            "ActiveSupporter": "Актыўны дарыльшчык"
         },
         "custom_badges": {
             "clerotri_dev": "Распрацоўшчыца Clerotri"
@@ -598,6 +600,21 @@
             "Rose Pine": "Руже Піне",
             "Rose Pine Moon": "Лунная Руже Піне",
             "Rose Pine Dawn": "Усходняя Руже Піне"
+        },
+        "changelog": {
+            "header": "Спіс змяненняў для версіі {{version}}",
+            "header_newly_updated": "Clerotri абнавілася да версіі {{version}}",
+            "released_on": "Выпушчана {{date}}",
+            "donate": "Ахвяраваць",
+            "see_full_changelog": "Праглядзець поўны спіс змяненняў",
+            "dismiss": "Адхіліць"
+        },
+        "invites": {
+            "member_count_one": "{{count}} удзельнік",
+            "member_count_few": "{{count}} удзельніка",
+            "member_count_many": "{{count}} удзельнікаў",
+            "join_server": "Далучыцца да сервера",
+            "go_to_server": "Перайсці да сервера"
         }
     }
 }
