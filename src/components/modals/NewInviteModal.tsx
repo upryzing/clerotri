@@ -1,12 +1,11 @@
 import {View} from 'react-native';
-import {StyleSheet} from 'react-native-unistyles';
 import {useTranslation} from 'react-i18next';
 import {observer} from 'mobx-react-lite';
 
 import {app} from '@clerotri/Generic';
 import {Button, Text} from '@clerotri/components/common/atoms';
+import {ModalContainer} from '@clerotri/components/modals/common';
 import {client} from '@clerotri/lib/client';
-import {commonValues} from '@clerotri/lib/themes';
 import Clipboard from '@react-native-clipboard/clipboard';
 
 export const NewInviteModal = observer(({code}: {code: string}) => {
@@ -17,7 +16,7 @@ export const NewInviteModal = observer(({code}: {code: string}) => {
   const fullInvite = `${link}${code}`;
 
   return (
-    <View style={localStyles.container}>
+    <ModalContainer>
       <Text type={'h1'}>{t('app.modals.new_invite.header')}</Text>
       <Text>{t('app.modals.new_invite.body')}</Text>
       <View
@@ -51,40 +50,6 @@ export const NewInviteModal = observer(({code}: {code: string}) => {
           <Text>{t('app.actions.close')}</Text>
         </Button>
       </View>
-    </View>
+    </ModalContainer>
   );
 });
-
-const localStyles = StyleSheet.create(currentTheme => ({
-  container: {
-    width: '80%',
-    borderRadius: commonValues.sizes.medium,
-    padding: 20,
-    backgroundColor: currentTheme.backgroundPrimary,
-    justifyContent: 'center',
-    alignSelf: 'center',
-  },
-  typeSelector: {
-    marginVertical: commonValues.sizes.small,
-    borderRadius: commonValues.sizes.medium,
-    minWidth: '100%',
-    backgroundColor: currentTheme.backgroundSecondary,
-    padding: commonValues.sizes.medium,
-  },
-  channelType: {
-    height: 40,
-    width: '100%',
-    alignItems: 'center',
-    flexDirection: 'row',
-    backgroundColor: currentTheme.backgroundPrimary,
-    borderRadius: commonValues.sizes.medium,
-    paddingInline: 10,
-    marginVertical: commonValues.sizes.small,
-  },
-  checkboxRow: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    justifyContent: 'space-between',
-    marginVertical: commonValues.sizes.small,
-  },
-}));

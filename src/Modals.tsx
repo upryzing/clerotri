@@ -1,5 +1,5 @@
 import {useCallback, useRef, useState} from 'react';
-import {Modal, StyleSheet, View} from 'react-native';
+import {Modal} from 'react-native';
 import {observer} from 'mobx-react-lite';
 
 import type BottomSheetCore from '@gorhom/bottom-sheet';
@@ -25,6 +25,7 @@ import {
   NewInviteModal,
   TextEditModal,
 } from '@clerotri/components/modals';
+import {FloatingModal} from './components/modals/common';
 import {
   AnalyticsSettingsSheet,
   BotInviteSheet,
@@ -214,61 +215,31 @@ const FloatingModals = observer(() => {
 
   return (
     <>
-      <Modal
+      <FloatingModal
         visible={!!deletableObject}
-        animationType="fade"
-        statusBarTranslucent
-        navigationBarTranslucent
-        backdropColor={'#00000020'}
         onRequestClose={() => setDeletableObject(null)}>
-        <View style={localStyles.modalContainer}>
-          <ConfirmDeletionModal target={deletableObject!} />
-        </View>
-      </Modal>
-      <Modal
+        <ConfirmDeletionModal target={deletableObject!} />
+      </FloatingModal>
+      <FloatingModal
         visible={!!editingText}
-        animationType="fade"
-        statusBarTranslucent
-        navigationBarTranslucent
-        backdropColor={'#00000020'}
         onRequestClose={() => setEditingText(null)}>
-        <View style={localStyles.modalContainer}>
-          <TextEditModal object={editingText!} />
-        </View>
-      </Modal>
-      <Modal
+        <TextEditModal object={editingText!} />
+      </FloatingModal>
+      <FloatingModal
         visible={!!createChannelObject}
-        animationType="fade"
-        statusBarTranslucent
-        navigationBarTranslucent
-        backdropColor={'#00000020'}
         onRequestClose={() => setCreateChannelObject(null)}>
-        <View style={localStyles.modalContainer}>
-          <CreateChannelModal object={createChannelObject!} />
-        </View>
-      </Modal>
-      <Modal
+        <CreateChannelModal object={createChannelObject!} />
+      </FloatingModal>
+      <FloatingModal
         visible={!!newInviteCode}
-        animationType="fade"
-        statusBarTranslucent
-        navigationBarTranslucent
-        backdropColor={'#00000020'}
         onRequestClose={() => setNewInviteCode(null)}>
-        <View style={localStyles.modalContainer}>
-          <NewInviteModal code={newInviteCode!} />
-        </View>
-      </Modal>
-      <Modal
+        <NewInviteModal code={newInviteCode!} />
+      </FloatingModal>
+      <FloatingModal
         visible={!!moderatedMember}
-        animationType="fade"
-        statusBarTranslucent
-        navigationBarTranslucent
-        backdropColor={'#00000020'}
         onRequestClose={() => setModeratedMember(null)}>
-        <View style={localStyles.modalContainer}>
-          <ConfirmModActionModal target={moderatedMember!} />
-        </View>
-      </Modal>
+        <ConfirmModActionModal target={moderatedMember!} />
+      </FloatingModal>
     </>
   );
 });
@@ -470,12 +441,4 @@ export const Modals = observer(() => {
       <OtherModals />
     </>
   );
-});
-
-const localStyles = StyleSheet.create({
-  modalContainer: {
-    flex: 1,
-    alignContent: 'center',
-    justifyContent: 'center',
-  },
 });

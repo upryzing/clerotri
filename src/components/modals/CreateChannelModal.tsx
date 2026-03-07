@@ -8,6 +8,7 @@ import {app} from '@clerotri/Generic';
 import {styles} from '@clerotri/Theme';
 import {Button, Checkbox, Input, Text} from '@clerotri/components/common/atoms';
 import {MaterialIcon} from '@clerotri/components/common/icons';
+import {ModalContainer} from '@clerotri/components/modals/common';
 import {commonValues} from '@clerotri/lib/themes';
 import {CreateChannelModalProps} from '@clerotri/lib/types';
 
@@ -20,7 +21,7 @@ export const CreateChannelModal = observer(
     const [nsfw, setNSFW] = useState(false);
 
     return (
-      <View style={localStyles.container}>
+      <ModalContainer>
         <Text type={'h1'}>{t('app.modals.create_channel.header')}</Text>
         <View
           style={{
@@ -85,20 +86,12 @@ export const CreateChannelModal = observer(
             <Text>{t('app.actions.cancel')}</Text>
           </Button>
         </View>
-      </View>
+      </ModalContainer>
     );
   },
 );
 
 const localStyles = StyleSheet.create(currentTheme => ({
-  container: {
-    width: '80%',
-    borderRadius: commonValues.sizes.medium,
-    padding: 20,
-    backgroundColor: currentTheme.backgroundPrimary,
-    justifyContent: 'center',
-    alignSelf: 'center',
-  },
   nameInput: {
     marginBlockEnd: commonValues.sizes.medium,
   },

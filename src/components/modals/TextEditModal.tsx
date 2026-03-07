@@ -1,10 +1,10 @@
 import {useState} from 'react';
 import {View} from 'react-native';
-import {StyleSheet} from 'react-native-unistyles';
 import {useTranslation} from 'react-i18next';
 
-import {app} from '@clerotri/Generic';
 import {Button, Input, Text} from '@clerotri/components/common/atoms';
+import {ModalContainer} from '@clerotri/components/modals/common';
+import {app} from '@clerotri/Generic';
 import {commonValues} from '@clerotri/lib/themes';
 import {TextEditingModalProps} from '@clerotri/lib/types';
 
@@ -13,7 +13,7 @@ export const TextEditModal = ({object}: {object: TextEditingModalProps}) => {
 
   const [string, setString] = useState(object.initialString);
   return (
-    <View style={localStyles.container}>
+    <ModalContainer>
       <Text type={'h1'}>{t(`app.modals.edit_text.${object.id}_header`)}</Text>
       <View
         style={{
@@ -47,17 +47,6 @@ export const TextEditModal = ({object}: {object: TextEditingModalProps}) => {
           <Text>{t('app.actions.cancel')}</Text>
         </Button>
       </View>
-    </View>
+    </ModalContainer>
   );
 };
-
-const localStyles = StyleSheet.create(currentTheme => ({
-  container: {
-    width: '80%',
-    borderRadius: commonValues.sizes.medium,
-    padding: 20,
-    backgroundColor: currentTheme.backgroundPrimary,
-    justifyContent: 'center',
-    alignSelf: 'center',
-  },
-}));

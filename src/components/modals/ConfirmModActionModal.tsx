@@ -1,13 +1,13 @@
 import {useContext, useState} from 'react';
 import {View} from 'react-native';
-import {StyleSheet} from 'react-native-unistyles';
 import {Trans, useTranslation} from 'react-i18next';
 import {observer} from 'mobx-react-lite';
 
 import {Button, Input, Text} from '@clerotri/components/common/atoms';
 import {GapView} from '@clerotri/components/layout';
+import {ModalContainer} from '@clerotri/components/modals/common';
 import {app} from '@clerotri/Generic';
-import {commonValues, ThemeContext} from '@clerotri/lib/themes';
+import {ThemeContext} from '@clerotri/lib/themes';
 import {MemberWithModAction} from '@clerotri/lib/types';
 
 export const ConfirmModActionModal = observer(
@@ -23,7 +23,7 @@ export const ConfirmModActionModal = observer(
       target.member.user?.username;
 
     return (
-      <View style={localStyles.container}>
+      <ModalContainer>
         <Text type={'h1'}>
           {t(`app.modals.confirm_mod_action.header_${target.action}`)}
         </Text>
@@ -74,18 +74,7 @@ export const ConfirmModActionModal = observer(
             <Text>{t('app.actions.cancel')}</Text>
           </Button>
         </View>
-      </View>
+      </ModalContainer>
     );
   },
 );
-
-const localStyles = StyleSheet.create(currentTheme => ({
-  container: {
-    width: '80%',
-    borderRadius: commonValues.sizes.medium,
-    padding: 20,
-    backgroundColor: currentTheme.backgroundPrimary,
-    justifyContent: 'center',
-    alignSelf: 'center',
-  },
-}));

@@ -1,15 +1,14 @@
 import {useContext} from 'react';
 import {View} from 'react-native';
-import {StyleSheet} from 'react-native-unistyles';
 
 import {Trans, useTranslation} from 'react-i18next';
 import {observer} from 'mobx-react-lite';
 
+import {Button, Text} from '@clerotri/components/common/atoms';
+import {ModalContainer} from '@clerotri/components/modals/common';
 import {app} from '@clerotri/Generic';
 import {ChannelContext} from '@clerotri/lib/state';
-import {commonValues} from '@clerotri/lib/themes';
 import {DeletableObject} from '@clerotri/lib/types';
-import {Button, Text} from '@clerotri/components/common/atoms';
 
 export const ConfirmDeletionModal = observer(
   ({target}: {target: DeletableObject}) => {
@@ -18,7 +17,7 @@ export const ConfirmDeletionModal = observer(
     const {t} = useTranslation();
     const name = target.type === 'Server' ? target.object.name : '';
     return (
-      <View style={localStyles.container}>
+      <ModalContainer>
         <Text type={'h1'}>
           {t(`app.modals.confirm_deletion.header_${target.type.toLowerCase()}`)}
         </Text>
@@ -95,18 +94,7 @@ export const ConfirmDeletionModal = observer(
             <Text>{t('app.actions.cancel')}</Text>
           </Button>
         </View>
-      </View>
+      </ModalContainer>
     );
   },
 );
-
-const localStyles = StyleSheet.create(currentTheme => ({
-  container: {
-    width: '80%',
-    borderRadius: commonValues.sizes.medium,
-    padding: 20,
-    backgroundColor: currentTheme.backgroundPrimary,
-    justifyContent: 'center',
-    alignSelf: 'center',
-  },
-}));
