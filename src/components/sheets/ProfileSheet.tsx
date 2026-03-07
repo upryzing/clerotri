@@ -526,7 +526,7 @@ export const ProfileSheet = observer(
                 <Text type={'profile'}>
                   {t('app.profile.tabs.mutual_friends')}
                 </Text>
-                <UserList users={mutual.users} />
+                <UserList users={mutual.users ?? []} />
               </ScrollView>
             ) : null}
           </>
