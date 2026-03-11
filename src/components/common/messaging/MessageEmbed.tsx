@@ -1,5 +1,5 @@
-import {useContext} from 'react';
-import {Dimensions, Pressable, View} from 'react-native';
+import {type RefObject, useLayoutEffect, useRef, useState} from 'react';
+import {Pressable, View} from 'react-native';
 import {StyleSheet} from 'react-native-unistyles';
 import {observer} from 'mobx-react-lite';
 
@@ -11,100 +11,116 @@ import {settings} from '@clerotri/lib/settings';
 import {client} from '@clerotri/lib/client';
 import {MarkdownView} from '../MarkdownView';
 import {Link, Text} from '../atoms';
-import {commonValues, ThemeContext} from '@clerotri/lib/themes';
+import {commonValues} from '@clerotri/lib/themes';
 
-export const MessageEmbed = observer((eRaw: API.Embed) => {
-  const {currentTheme} = useContext(ThemeContext);
+const calculateImageDimensions = (
+  containerRef: RefObject<View | null>,
+  image: {width: number; height: number},
+) => {
+  const {width} = containerRef.current?.getBoundingClientRect() ?? {
+    width: 0,
+  };
 
-  // @ts-expect-error This seems to be necessary even though it clashes with the API types
-  const e = eRaw.embed;
-  switch (e.type) {
+  let finalImageWidth = image.width;
+  let finalImageHeight = image.width;
+
+  if (image.width > width) {
+    let sizeFactor = width / image.width;
+    console.log(sizeFactor, width, image.width, image.width * sizeFactor);
+    finalImageWidth = image.width * sizeFactor;
+    finalImageHeight = image.height * sizeFactor;
+  }
+
+  return {width: finalImageWidth, height: finalImageHeight};
+};
+
+const EmbedImage = ({embed}: {embed: API.Embed}) => {
+  const containerRef = useRef<View>(null);
+
+  const [imageDimensions, setImageDimensions] = useState<{
+    width: number;
+    height: number;
+  }>({width: 0, height: 0});
+
+  useLayoutEffect(() => {
+    // this component won't run at all if there isn't an embed image so this is just for the sake of TS
+    if (embed.type !== 'Website' && embed.type !== 'Image') return;
+
+    const dimensions = calculateImageDimensions(
+      containerRef,
+      embed.type === 'Image' ? embed : embed.image || {width: 0, height: 0},
+    );
+
+    setImageDimensions(dimensions);
+  }, [embed]);
+
+  if (embed.type !== 'Website' && embed.type !== 'Image') return null;
+
+  if (embed.type !== 'Image' && !embed.image) return null;
+
+  return (
+    <Pressable
+      ref={containerRef}
+      onPress={() => app.openImage(embed.type === 'Image' ? embed.url : embed.image?.url)}>
+      <Image
+        source={{uri: client.proxyFile(embed.type === 'Image' ? embed.url : embed.image?.url || '')}}
+        style={[
+          {
+            marginBlockStart: commonValues.sizes.medium,
+            borderRadius: commonValues.sizes.small,
+          },
+          imageDimensions,
+        ]}
+      />
+    </Pressable>
+  );
+};
+
+export const MessageEmbed = observer(({embed}: {embed: API.Embed}) => {
+  switch (embed.type) {
     case 'Text':
     case 'Website':
       return (
         <View
           style={[
             localStyles.container,
-            e.color && {borderStartColor: e.color},
+            // @ts-expect-error I think the U-less spelling was used at one point? it doesn't hurt to check for it
+            embed.color && {borderStartColor: embed.color},
+            embed.colour && {borderStartColor: embed.colour},
           ]}>
-          {e.type === 'Website' && e.site_name ? (
+          {embed.type === 'Website' && embed.site_name ? (
             <Text
-              colour={currentTheme.foregroundSecondary}
+              useNewText
+              colour={'foregroundSecondary'}
               style={{fontSize: 12, marginBlockEnd: commonValues.sizes.xs}}>
-              {e.site_name}
+              {embed.site_name}
             </Text>
           ) : null}
-          {e.title && e.url ? (
-            <Link
-              link={e.url}
-              label={e.title}
-              // style={{
-              //   textDecorationLine: 'none',
-              //   fontSize: 14,
-              //   fontWeight: 'bold',
-              //   marginBlockEnd: commonValues.sizes.small,
-              // }}
-            />
+          {embed.title && embed.url ? (
+            <Link link={embed.url} label={embed.title} />
           ) : (
             <Text
-              colour={currentTheme.foregroundSecondary}
+              useNewText
+              colour={'foregroundSecondary'}
               style={{
                 fontSize: 14,
                 fontWeight: 'bold',
-                marginBlockEnd: commonValues.sizes.small,
               }}>
-              {e.title}
+              {embed.title}
             </Text>
           )}
-          {e.description ? <MarkdownView>{e.description}</MarkdownView> : null}
-          {(() => {
-            if (e.type === 'Website' && e.image) {
-              let width = e.image.width;
-              let height = e.image.height;
-              if (width > Dimensions.get('screen').width - 82) {
-                let sizeFactor = (Dimensions.get('screen').width - 82) / width;
-                width = width * sizeFactor;
-                height = height * sizeFactor;
-              }
-              return (
-                <Pressable onPress={() => app.openImage(e.image?.url)}>
-                  <Image
-                    source={{uri: client.proxyFile(e.image.url)}}
-                    style={{
-                      width: width,
-                      height: height,
-                      marginBlock: commonValues.sizes.small,
-                      borderRadius: commonValues.sizes.small,
-                    }}
-                  />
-                </Pressable>
-              );
-            }
-          })()}
+          {embed.description ? (
+            <View style={{marginBlockStart: commonValues.sizes.medium}}>
+              <MarkdownView>{embed.description}</MarkdownView>
+            </View>
+          ) : null}
+          {embed.type === 'Website' && embed.image ? (
+            <EmbedImage embed={embed} />
+          ) : null}
         </View>
       );
     case 'Image':
-      // if (e.image?.size === "Large") {}
-      let width = e.width;
-      let height = e.height;
-      if (width > Dimensions.get('screen').width - 75) {
-        let sizeFactor = (Dimensions.get('screen').width - 75) / width;
-        width = width * sizeFactor;
-        height = height * sizeFactor;
-      }
-      return (
-        <Pressable onPress={() => app.openImage(client.proxyFile(e.url))}>
-          <Image
-            source={{uri: client.proxyFile(e.url)}}
-            style={{
-              width: width,
-              height: height,
-              marginBottom: commonValues.sizes.small,
-              borderRadius: 3,
-            }}
-          />
-        </Pressable>
-      );
+      return <EmbedImage embed={embed} /> 
     case 'Video':
       return (
         <Text style={{fontSize: 8, marginLeft: 3}}>
@@ -113,12 +129,18 @@ export const MessageEmbed = observer((eRaw: API.Embed) => {
       );
     case 'None':
     default:
-      console.log(`[MESSAGEEMBED] Unknown embed type: ${JSON.stringify(e)}`);
+      console.log(
+        `[MESSAGEEMBED] Unknown embed type: ${JSON.stringify(embed)}`,
+      );
       return (settings.get('ui.showDeveloperFeatures') as boolean) ? (
         <Text>
-          embed - type: {e.type === 'None' ? 'none' : (e.type ?? 'how')}, other
-          info:
-          {JSON.stringify(e)}
+          embed - type:{' '}
+          {embed.type === 'None'
+            ? 'none'
+            : // @ts-expect-error I'm not sure if something changed but I swear the type could've been None
+              (embed.type ?? 'how')}
+          , other info:
+          {JSON.stringify(embed)}
         </Text>
       ) : (
         <></>
