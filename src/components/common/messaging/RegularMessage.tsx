@@ -10,7 +10,12 @@ import {decodeTime} from 'ulid';
 import {app} from '@clerotri/Generic';
 import {settings} from '@clerotri/lib/settings';
 import {client} from '@clerotri/lib/client';
-import {Avatar, Text, Username} from '@clerotri/components/common/atoms';
+import {
+  Avatar,
+  GeneralAvatar,
+  Text,
+  Username,
+} from '@clerotri/components/common/atoms';
 import {MarkdownView} from '@clerotri/components/common/MarkdownView';
 import {InviteEmbed} from '@clerotri/components/common/messaging/InviteEmbed';
 import {MessageEmbed} from '@clerotri/components/common/messaging/MessageEmbed';
@@ -160,6 +165,13 @@ export const RegularMessage = observer((props: MessageProps) => {
                 : {})}
             />
           </Pressable>
+        ) : props.message.webhook?.avatar ? (
+          <GeneralAvatar
+            key={`message-${props.message._id}-webhook-avatar`}
+            attachment={props.message.webhook.avatar}
+            directory={'/avatars/'}
+            size={35}
+          />
         ) : null}
         <View
           key={`message-${props.message._id}-inner`}
@@ -178,20 +190,29 @@ export const RegularMessage = observer((props: MessageProps) => {
               (edited)
             </Text>
           ) : null}
-          {props.message.author && !props.grouped ? (
+          {!props.grouped ? (
             <View
               key={`message-${props.message._id}-info-row`}
               style={{flexDirection: 'row'}}>
-              <Pressable
-                key={`message-${props.message._id}-username-pressable`}
-                onPress={props.onUsernamePress}>
-                <Username
-                  key={`message-${props.message._id}-username`}
-                  user={props.message.author}
-                  server={props.message.channel?.server}
-                  masquerade={props.message.masquerade?.name}
-                />
-              </Pressable>
+              {props.message.author ? (
+                <Pressable
+                  key={`message-${props.message._id}-username-pressable`}
+                  onPress={props.onUsernamePress}>
+                  <Username
+                    key={`message-${props.message._id}-username`}
+                    user={props.message.author}
+                    server={props.message.channel?.server}
+                    masquerade={props.message.masquerade?.name}
+                  />
+                </Pressable>
+              ) : null}
+              {props.message.webhook ? (
+                <Text
+                  key={`message-${props.message._id}-webhook-name`}
+                  style={{fontWeight: 'bold'}}>
+                  {props.message.webhook.name}
+                </Text>
+              ) : null}
               <Text
                 key={`message-${props.message._id}-timestamp`}
                 style={localStyles.timestamp}>
