@@ -95,11 +95,9 @@ export const RegularMessage = observer((props: MessageProps) => {
                 />
                 <Text style={localStyles.timestamp}>
                   {' '}
-                  {formatRelative(
-                    decodeTime(props.message.nonce!),
-                    new Date(),
-                    {locale: locale},
-                  )}
+                  {formatRelative(decodeTime(props.message._id), new Date(), {
+                    locale: locale,
+                  })}
                 </Text>
               </View>
             ) : null}

@@ -25,7 +25,7 @@ type NewTextProps = CommonTextProps & {
   colour?: ThemeColour;
 };
 
-export const LegacyText = ({style, ...props}: LegacyTextProps) => {
+const LegacyText = ({style, ...props}: LegacyTextProps) => {
   const styleArray: StyleProp<TextStyle> = [localStyles.base];
 
   if (props.type) {
@@ -93,6 +93,6 @@ export const Text = ({
 }:
   | (NewTextProps & {useNewText: true})
   | (LegacyTextProps & {useNewText?: false})) => {
-  // @ts-expect-error this is going away soon enoughso meh
+  // @ts-expect-error this is going away soon enough so meh
   return useNewText ? <NewText {...props} /> : <LegacyText {...props} />;
 };
