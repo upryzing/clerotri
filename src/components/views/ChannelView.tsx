@@ -25,7 +25,6 @@ import {FriendsPage} from '@clerotri/components/pages/FriendsPage';
 import {HomePage} from '@clerotri/components/pages/HomePage';
 import {VoiceChannel} from '@clerotri/components/pages/VoiceChannel';
 import {ChannelContext} from '@clerotri/lib/state';
-import {ThemeContext} from '@clerotri/lib/themes';
 import {SpecialChannel} from '@clerotri/lib/types';
 import {DiscoverPage} from '@clerotri/pages/discover/DiscoverPage';
 
@@ -36,14 +35,12 @@ function MessageViewErrorMessage({
   error: any;
   resetErrorBoundary: Function;
 }) {
-  const {currentTheme} = useContext(ThemeContext);
-
   const errorMessage = `${error}`;
 
   console.error(`[MESSAGEVIEW] Uncaught error: ${errorMessage}`);
   return (
     <>
-      <Text colour={currentTheme.error}>
+      <Text useNewText colour={'error'}>
         Error rendering messages: {errorMessage}
       </Text>
       <Button

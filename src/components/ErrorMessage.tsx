@@ -1,11 +1,10 @@
-import {useContext} from 'react';
 import {View} from 'react-native';
 import {StyleSheet} from 'react-native-unistyles';
 
 import Clipboard from '@react-native-clipboard/clipboard';
 
 import {Button, Text} from '@clerotri/components/common/atoms';
-import {commonValues, ThemeContext} from '@clerotri/lib/themes';
+import {commonValues} from '@clerotri/lib/themes';
 
 export function ErrorMessage({
   error,
@@ -14,8 +13,6 @@ export function ErrorMessage({
   error: any;
   resetErrorBoundary: Function;
 }) {
-  const {currentTheme} = useContext(ThemeContext);
-
   const errorMessage = `${error}`;
 
   console.error(`[APP] Uncaught error: ${errorMessage}`);
@@ -30,7 +27,7 @@ export function ErrorMessage({
           following error:
         </Text>
         <View style={localStyles.errorMessageBox}>
-          <Text font={'JetBrains Mono'} colour={currentTheme.error}>
+          <Text useNewText font={'JetBrains Mono'} colour={'error'}>
             {errorMessage}
           </Text>
         </View>

@@ -1,4 +1,4 @@
-import {useContext, useEffect, useState} from 'react';
+import {useEffect, useState} from 'react';
 import {ImageBackground, Pressable, View} from 'react-native';
 import {StyleSheet} from 'react-native-unistyles';
 import {useTranslation} from 'react-i18next';
@@ -9,12 +9,10 @@ import type {API, ClientboundNotification, User} from 'revolt.js';
 import {client} from '@clerotri/lib/client';
 import {Avatar, Text} from '@clerotri/components/common/atoms';
 import {MaterialIcon} from '@clerotri/components/common/icons';
-import {commonValues, ThemeContext} from '@clerotri/lib/themes';
+import {commonValues} from '@clerotri/lib/themes';
 import {MarkdownView} from '@clerotri/components/common/MarkdownView';
 
 const ProfileCardInner = observer(({user}: {user: User}) => {
-  const {currentTheme} = useContext(ThemeContext);
-
   return (
     <>
       <Avatar user={user} size={80} status />
@@ -23,16 +21,13 @@ const ProfileCardInner = observer(({user}: {user: User}) => {
           {user.display_name ?? user.username}
         </Text>
         <Text
+          useNewText
           style={{fontSize: 16, fontWeight: 'bold'}}
-          colour={
-            user.display_name
-              ? currentTheme.foregroundSecondary
-              : currentTheme.foregroundPrimary
-          }>
+          colour={user.display_name ? 'foregroundSecondary' : undefined}>
           @{user.username}#{user.discriminator}
         </Text>
         {user.status?.text && (
-          <Text colour={currentTheme.foregroundSecondary} numberOfLines={1}>
+          <Text useNewText colour={'foregroundSecondary'} numberOfLines={1}>
             {user.status?.text}
           </Text>
         )}
@@ -69,8 +64,6 @@ const ProfileCard = observer(({user}: {user: User}) => {
 });
 
 export const ExpandableProfile = observer(({user}: {user: User}) => {
-  const {currentTheme} = useContext(ThemeContext);
-
   const {t} = useTranslation();
 
   const [expanded, setExpanded] = useState(false);
@@ -133,8 +126,9 @@ export const ExpandableProfile = observer(({user}: {user: User}) => {
           color={'foregroundSecondary'}
         />
         <Text
+          useNewText
           style={{alignContent: 'center', fontSize: 16, fontWeight: 'bold'}}
-          colour={currentTheme.foregroundSecondary}>
+          colour={'foregroundSecondary'}>
           {t(
             `app.settings_menu.profile.${profile ? (expanded ? 'collapse' : 'expand') : 'loading'}_bio`,
           )}

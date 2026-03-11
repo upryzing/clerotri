@@ -1,13 +1,18 @@
-import {useContext} from 'react';
 import {View} from 'react-native';
+import {StyleSheet} from 'react-native-unistyles';
 import {observer} from 'mobx-react-lite';
+
+import {formatRelative} from 'date-fns/formatRelative';
+import {enGB, enUS} from 'date-fns/locale';
+import {decodeTime} from 'ulid';
 
 import type {Message} from 'revolt.js';
 
 import {Text} from '@clerotri/components/common/atoms';
 import {MaterialIcon} from '@clerotri/components/common/icons';
 import {MarkdownView} from '@clerotri/components/common/MarkdownView';
-import {commonValues, ThemeContext} from '@clerotri/lib/themes';
+import {settings} from '@clerotri/lib/settings';
+import {commonValues} from '@clerotri/lib/themes';
 
 type Response = {
   response: string;
@@ -16,7 +21,7 @@ type Response = {
 
 export const PlatformModerationMessage = observer(
   ({message}: {message: Message}) => {
-    const {currentTheme} = useContext(ThemeContext);
+    const locale = settings.get('ui.messaging.use24H') ? enGB : enUS;
 
     const REPORT_ID_REGEX = /[A-Z0-9]{6}/;
     const REPORT_TARGET_REGEX = /(@)?[^,]*/;
@@ -171,19 +176,13 @@ export const PlatformModerationMessage = observer(
     }
 
     return (
-      <View
-        style={{
-          backgroundColor: currentTheme.backgroundSecondary,
-          padding: commonValues.sizes.medium,
-          borderRadius: commonValues.sizes.medium,
-          marginVertical: commonValues.sizes.xs,
-        }}>
+      <View style={localStyles.container}>
         <Text type={'h1'}>
           {isReport ? 'Report update' : isStrike ? 'Strike' : 'Alert'}
         </Text>
         {isReport ? (
           <>
-            <Text colour={currentTheme.foregroundSecondary}>
+            <Text useNewText colour={'foregroundSecondary'}>
               {reportID !== 'UNKNOWN'
                 ? `Report ${reportID}`
                 : 'Unknown report ID'}
@@ -227,7 +226,25 @@ export const PlatformModerationMessage = observer(
         ) : (
           <MarkdownView>{message.content}</MarkdownView>
         )}
+        <Text
+          useNewText
+          colour={'foregroundSecondary'}
+          style={{marginBlockStart: commonValues.sizes.small}}>
+          {formatRelative(decodeTime(message._id), new Date(), {
+            locale: locale,
+          })}
+        </Text>
       </View>
     );
   },
 );
+
+const localStyles = StyleSheet.create(currentTheme => ({
+  container: {
+    backgroundColor: currentTheme.backgroundSecondary,
+    padding: commonValues.sizes.medium,
+    borderRadius: commonValues.sizes.medium,
+    marginBlock: commonValues.sizes.xs,
+    marginInline: commonValues.sizes.medium,
+  },
+}));

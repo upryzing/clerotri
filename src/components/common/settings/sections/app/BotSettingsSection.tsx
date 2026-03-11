@@ -1,10 +1,4 @@
-import {
-  type Dispatch,
-  type SetStateAction,
-  useContext,
-  useEffect,
-  useState,
-} from 'react';
+import {type Dispatch, type SetStateAction, useEffect, useState} from 'react';
 import {Pressable, View} from 'react-native';
 import {Trans, useTranslation} from 'react-i18next';
 import {observer} from 'mobx-react-lite';
@@ -30,8 +24,9 @@ import {
   PressableSettingsEntry,
   SettingsEntry,
 } from '@clerotri/components/common/settings/atoms';
+import {LineSeparator} from '@clerotri/components/layout';
 import {OFFICIAL_INSTANCE_API_URLS} from '@clerotri/lib/consts';
-import {commonValues, ThemeContext} from '@clerotri/lib/themes';
+import {commonValues} from '@clerotri/lib/themes';
 import type {SettingsSection} from '@clerotri/lib/types';
 
 type GroupedBotObject = {
@@ -40,8 +35,6 @@ type GroupedBotObject = {
 };
 
 const BotSettings = observer(({bot}: {bot: GroupedBotObject}) => {
-  const {currentTheme} = useContext(ThemeContext);
-
   const {t} = useTranslation();
 
   const [showToken, setShowToken] = useState(false);
@@ -89,7 +82,7 @@ const BotSettings = observer(({bot}: {bot: GroupedBotObject}) => {
           </View>
         </Pressable>
       </SettingsEntry>
-      <SettingsEntry style={{backgroundColor: currentTheme.backgroundPrimary}}>
+      <SettingsEntry style={{backgroundColor: 'transparent'}}>
         <View style={{flex: 1}}>
           <Text style={{fontWeight: 'bold'}}>
             {t('app.settings_menu.bots.public')}
@@ -134,8 +127,6 @@ const BotListEntry = observer(
     bot: GroupedBotObject;
     onPress: (b: GroupedBotObject) => void;
   }) => {
-    const {currentTheme} = useContext(ThemeContext);
-
     return (
       <PressableSettingsEntry onPress={() => onPress(bot)}>
         <MaterialIcon
@@ -152,11 +143,13 @@ const BotListEntry = observer(
           }}>
           <Text style={{fontWeight: 'bold'}}>
             {bot.user.username}
-            <Text colour={currentTheme.foregroundSecondary}>
+            <Text useNewText colour={'foregroundSecondary'}>
               #{bot.user.discriminator}
             </Text>
           </Text>
-          <Text colour={currentTheme.foregroundSecondary}>{bot.bot._id}</Text>
+          <Text useNewText colour={'foregroundSecondary'}>
+            {bot.bot._id}
+          </Text>
         </View>
         <View
           style={{
@@ -191,8 +184,6 @@ export const BotList = observer(
     setCurrentBot: Function;
     rerender: Dispatch<SetStateAction<number>>;
   }) => {
-    const {currentTheme} = useContext(ThemeContext);
-
     const {t} = useTranslation();
 
     return (
@@ -245,15 +236,7 @@ export const BotList = observer(
                   </Link>
                   .
                 </Trans>
-                <View
-                  style={{
-                    marginBlock: commonValues.sizes.medium,
-                    marginInline: commonValues.sizes.medium,
-                    height: commonValues.sizes.xs,
-                    borderRadius: commonValues.sizes.medium,
-                    backgroundColor: currentTheme.backgroundTertiary,
-                  }}
-                />
+                <LineSeparator style={{margin: commonValues.sizes.medium}} />
                 {bots.map(b => (
                   <BotListEntry
                     key={`bot-${b.bot._id}`}
