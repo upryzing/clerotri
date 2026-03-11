@@ -1,4 +1,5 @@
 import {
+  createContext,
   type Dispatch,
   type SetStateAction,
   useContext,
@@ -32,26 +33,52 @@ import {client} from '@clerotri/lib/client';
 import {commonValues, ThemeContext} from '@clerotri/lib/themes';
 import type {SettingsSection} from '@clerotri/lib/types';
 
+export const SelectionContext = createContext<{
+  selectionMode: boolean;
+  setSelectionMode: Dispatch<SetStateAction<boolean>>;
+}>({selectionMode: false, setSelectionMode: () => {}});
+
+const SelectedMembersContext = createContext<{
+  selectedMembers: Member[];
+  setSelectedMembers: Dispatch<SetStateAction<Member[]>>;
+}>({selectedMembers: [], setSelectedMembers: () => {}});
+
 const MemberListEntry = observer(
-  ({
-    item,
-    handleTap,
-    handleSelect,
-    selectMode,
-    selected,
-  }: {
-    item: Member;
-    handleTap: () => void;
-    handleSelect: () => void;
-    selectMode: boolean;
-    selected: boolean;
-  }) => {
+  ({item, setMember}: {item: Member; setMember: () => void}) => {
+    const {selectionMode, setSelectionMode} = useContext(SelectionContext);
+
+    const {selectedMembers, setSelectedMembers} = useContext(
+      SelectedMembersContext,
+    );
+
+    const selectMember = () => {
+      const isPresent = selectedMembers.find(m => m._id.user === item._id.user);
+
+      if (!isPresent) {
+        console.log('not present');
+        setSelectedMembers([...selectedMembers, item]);
+        console.log(selectedMembers);
+      } else {
+        console.log('present');
+        setSelectedMembers(
+          selectedMembers.filter(m => m._id.user !== item._id.user),
+        );
+      }
+    };
+
     return (
       <PressableSettingsEntry
         style={{flexDirection: 'column'}}
         key={`member-settings-entry-${item._id.user}`}
-        onPress={() => handleTap()}
-        onLongPress={() => handleSelect()}>
+        onPress={() => {
+          selectionMode ? selectMember() : setMember();
+        }}
+        onLongPress={() => {
+          if (settings.get('ui.settings.showExperimental')) {
+            setSelectionMode(true);
+            selectMember();
+          }
+        }}>
         <View style={{flexDirection: 'row', alignItems: 'center'}}>
           <View style={{flex: 1, flexDirection: 'column'}}>
             <Text
@@ -71,8 +98,8 @@ const MemberListEntry = observer(
           <View style={styles.iconContainer}>
             <MaterialIcon
               name={
-                selectMode
-                  ? selected
+                selectionMode
+                  ? selectedMembers.find(m => m._id.user === item._id.user)
                     ? 'radio-button-on'
                     : 'radio-button-off'
                   : 'arrow-forward'
@@ -87,20 +114,12 @@ const MemberListEntry = observer(
 );
 
 const MemberList = observer(
-  ({
-    server,
-    section,
-    setSection,
-    setMember,
-  }: {
-    server: Server;
-    section: SettingsSection;
-    setSection: Dispatch<SetStateAction<SettingsSection>>;
-    setMember: Function;
-  }) => {
+  ({server, setMember}: {server: Server; setMember: Function}) => {
     const insets = useSafeAreaInsets();
 
     const {t} = useTranslation();
+
+    const {selectionMode, setSelectionMode} = useContext(SelectionContext);
 
     const [reload, triggerReload] = useState(0);
     const [members, setMembers] = useState(null as Member[] | null);
@@ -157,42 +176,20 @@ const MemberList = observer(
       return () => cleanupListeners();
     }, [server._id]);
 
-    const selectMember = (member: Member) => {
-      const isPresent = selectedMembers.find(
-        m => m._id.user === member._id.user,
-      );
-
-      if (!isPresent) {
-        console.log('not present');
-        setSelectedMembers([...selectedMembers, member]);
-      } else {
-        console.log('present');
-        setSelectedMembers(
-          selectedMembers.filter(m => m._id.user !== member._id.user),
-        );
+    useEffect(() => {
+      console.log('?');
+      if (!selectionMode) {
+        setSelectedMembers([]);
       }
-    };
+    }, [selectionMode]);
 
     const renderItem = ({item}: {item: Member}) => {
       return (
         <MemberListEntry
           item={item}
-          handleTap={() => {
-            if (!section?.subsection) {
-              setMember(item);
-            } else {
-              selectMember(item);
-            }
+          setMember={() => {
+            setMember(item);
           }}
-          handleSelect={() => {
-            if (settings.get('ui.settings.showExperimental')) {
-              !section?.subsection &&
-                setSection({section: 'members', subsection: 'selectMode'});
-              selectMember(item);
-            }
-          }}
-          selectMode={section?.subsection === 'selectMode'}
-          selected={!!selectedMembers.find(m => m._id.user === item._id.user)}
         />
       );
     };
@@ -202,7 +199,8 @@ const MemberList = observer(
     };
 
     return (
-      <>
+      <SelectedMembersContext.Provider
+        value={{selectedMembers, setSelectedMembers}}>
         <View
           style={{
             flexDirection: 'row',
@@ -211,7 +209,7 @@ const MemberList = observer(
             marginVertical: commonValues.sizes.medium,
           }}>
           <Text type={'h1'}>
-            {section?.subsection
+            {selectionMode
               ? t('app.servers.settings.members.select_mode.title', {
                   count: selectedMembers.length,
                 })
@@ -220,12 +218,7 @@ const MemberList = observer(
           {settings.get('ui.settings.showExperimental') && (
             <Pressable
               onPress={() => {
-                const isCurrentlyActive = section?.subsection === 'selectMode';
-                setSection({
-                  section: 'members',
-                  subsection: isCurrentlyActive ? undefined : 'selectMode',
-                });
-                isCurrentlyActive && setSelectedMembers([]);
+                setSelectionMode(currentStatus => !currentStatus);
               }}
               style={{
                 width: 30,
@@ -236,9 +229,7 @@ const MemberList = observer(
               <View style={styles.iconContainer}>
                 <MaterialCommunityIcon
                   name={
-                    section?.subsection === 'selectMode'
-                      ? 'close'
-                      : 'checkbox-multiple-blank-outline'
+                    selectionMode ? 'close' : 'checkbox-multiple-blank-outline'
                   }
                   size={24}
                 />
@@ -261,7 +252,7 @@ const MemberList = observer(
         ) : (
           <Text>{t('app.servers.settings.members.loading')}</Text>
         )}
-      </>
+      </SelectedMembersContext.Provider>
     );
   },
 );
@@ -424,11 +415,17 @@ export const MemberSettingsSection = observer(
       }
     };
 
+    const {selectionMode, setSelectionMode} = useContext(SelectionContext);
+
     return (
       <>
         <BackButton
           callback={() => {
-            section!.subsection ? handleBackInSubsection() : setSection(null);
+            selectionMode
+              ? setSelectionMode(false)
+              : section!.subsection
+                ? handleBackInSubsection()
+                : setSection(null);
           }}
           margin
         />
@@ -439,12 +436,7 @@ export const MemberSettingsSection = observer(
             onKickOrBan={onKickOrBan}
           />
         ) : (
-          <MemberList
-            server={server}
-            section={section}
-            setSection={setSection}
-            setMember={setSectionAndMember}
-          />
+          <MemberList server={server} setMember={setSectionAndMember} />
         )}
       </>
     );

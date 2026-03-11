@@ -24,6 +24,7 @@ import {
   OverviewSettingsSection,
   EmojiSettingsSection,
 } from '../common/settings/sections/server';
+import {SelectionContext} from '../common/settings/sections/server/MemberSettingsSection';
 import {GapView} from '../layout';
 
 export const ServerSettingsSheet = observer(
@@ -34,7 +35,6 @@ export const ServerSettingsSheet = observer(
 
     const {t} = useTranslation();
 
-    // const [renderCount, rerender] = useState(0);
     const [section, setSection] = useState<SettingsSection>(null);
 
     const iconURL = useMemo(() => server.generateIconURL(), [server]);
@@ -46,9 +46,18 @@ export const ServerSettingsSheet = observer(
       return i;
     }, [server.name]);
 
+    // member list selection mode state. this is only here because it's needed for back handling in the function below.
+    // (whether it's on Android or React Native, the inability to use BackHandlers in Modals is infuriating!!!)
+
+    const [selectionMode, setSelectionMode] = useState(false);
+
     setFunction(
       'handleServerSettingsVisibility',
       (setVisibility: (state: null) => void) => {
+        if (selectionMode) {
+          setSelectionMode(false);
+          return;
+        }
         if (section) {
           if (section.subsection) {
             setSection(
@@ -79,11 +88,13 @@ export const ServerSettingsSheet = observer(
           <BackButton callback={() => setSection(null)} margin />
         ) : null}
         {section?.section === 'members' ? (
-          <MemberSettingsSection
-            server={server}
-            section={section}
-            setSection={setSection}
-          />
+          <SelectionContext.Provider value={{selectionMode, setSelectionMode}}>
+            <MemberSettingsSection
+              server={server}
+              section={section}
+              setSection={setSection}
+            />
+          </SelectionContext.Provider>
         ) : (
           <ScrollView
             style={{flex: 1}}
