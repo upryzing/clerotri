@@ -61,9 +61,15 @@ const EmbedImage = ({embed}: {embed: API.Embed}) => {
   return (
     <Pressable
       ref={containerRef}
-      onPress={() => app.openImage(embed.type === 'Image' ? embed.url : embed.image?.url)}>
+      onPress={() =>
+        app.openImage(embed.type === 'Image' ? embed.url : embed.image?.url)
+      }>
       <Image
-        source={{uri: client.proxyFile(embed.type === 'Image' ? embed.url : embed.image?.url || '')}}
+        source={{
+          uri: client.proxyFile(
+            embed.type === 'Image' ? embed.url : embed.image?.url || '',
+          ),
+        }}
         style={[
           {
             marginBlockStart: commonValues.sizes.medium,
@@ -120,7 +126,7 @@ export const MessageEmbed = observer(({embed}: {embed: API.Embed}) => {
         </View>
       );
     case 'Image':
-      return <EmbedImage embed={embed} /> 
+      return <EmbedImage embed={embed} />;
     case 'Video':
       return (
         <Text style={{fontSize: 8, marginLeft: 3}}>
