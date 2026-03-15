@@ -1,5 +1,6 @@
 import {View} from 'react-native';
 import {StyleSheet} from 'react-native-unistyles';
+import {useMMKVBoolean} from 'react-native-mmkv';
 import {observer} from 'mobx-react-lite';
 
 import {settings} from '@clerotri/lib/settings';
@@ -8,6 +9,11 @@ import {commonValues} from '@clerotri/lib/themes';
 import {MessageProps} from '@clerotri/lib/types';
 
 export const BlockedMessage = observer((props: MessageProps) => {
+  const [shouldHide = settings.getDefault('ui.messaging.hideBlockedMessages')] =
+    useMMKVBoolean('ui.messaging.hideBlockedMessages');
+
+  if (shouldHide) return null;
+
   return props.grouped ? null : (
     <View
       key={`message-${props.message._id}-blocked`}

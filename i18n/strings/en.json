@@ -405,6 +405,7 @@
                     "experimentalScrolling_remark": "You can only scroll backwards.",
                     "fontSize": "Font size",
                     "fontSize_remark": "This will apply to messages and certain parts of the app.",
+                    "hideBlockedMessages": "Fully hide messages from blocked users",
                     "messageSpacing": "Message spacing",
                     "sendAttachments": "Enable attachment sending",
                     "showMasqAvatar": "Show masqueraded avatar in corner",

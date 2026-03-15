@@ -117,6 +117,12 @@ export const settingsList = [
     type: 'boolean',
   },
   {
+    key: 'ui.messaging.hideBlockedMessages',
+    category: 'functionality',
+    default: false,
+    type: 'boolean',
+  },
+  {
     key: 'ui.messaging.doubleTapToReply',
     category: 'functionality',
     default: true,
