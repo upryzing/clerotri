@@ -24,7 +24,7 @@ import {
   OverviewSettingsSection,
   EmojiSettingsSection,
 } from '../common/settings/sections/server';
-import {SelectionContext} from '../common/settings/sections/server/MemberSettingsSection';
+import {SelectionContext} from '../common/settings/sections/server/member';
 import {GapView} from '../layout';
 
 export const ServerSettingsSheet = observer(
@@ -61,10 +61,12 @@ export const ServerSettingsSheet = observer(
         if (section) {
           if (section.subsection) {
             setSection(
-              section?.subsection.match('-permissions')
+              section?.subsection.match(/-(permissions|roles)/)
                 ? {
                     section: section.section,
-                    subsection: section.subsection.replace('-permissions', ''),
+                    subsection: section.subsection
+                      .replace('-permissions', '')
+                      .replace('-roles', ''),
                   }
                 : {section: section.section},
             );

@@ -349,12 +349,19 @@
                     "loading": "Fetching members…",
                     "nickname": "Nickname",
                     "nickname_placeholder": "Set a nickname…",
+                    "manage_roles": "Manage roles",
+                    "manage_roles_body_one": "{{name}} has {{count}} role.",
+                    "manage_roles_body_other": "{{name}} has {{count}} roles.",
                     "timeout_user": "Timeout {{name}}",
                     "timeout_user_body": "They won't be able to send messages or reactions until their timeout ends.",
                     "kick_user": "Kick {{name}}",
                     "kick_user_body": "They can rejoin with an invite.",
                     "ban_user": "Ban {{name}}",
                     "ban_user_body": "They won't be able to rejoin unless you unban them.",
+                    "roles": {
+                        "header": "<0>{{name}}</0>'s roles"
+
+                    },
                     "select_mode": {
                         "title_one": "{{count}} member selected",
                         "title_other": "{{count}} members selected"
