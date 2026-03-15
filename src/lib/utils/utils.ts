@@ -282,3 +282,29 @@ export function unicodeEmojiURL(emoji: string, pack: EmojiPacks = 'mutant') {
   )}.svg?rev=${REVISION}`;
 }
 // </from>
+
+// adapted from https://stackoverflow.com/a/19746771
+// (original version posted by user2782196, modified by community; see post 'Timeline' for change history)
+// retrieved 2026-03-15; licensed under the CC BY-SA 4.0
+
+/**
+ * Check if two arrays have equal values
+ * @param array The first array
+ * @param array2 The second array
+ * @returns `true` if they match, `false` if they don't
+ */
+export const arraysAreEqual = (
+  array: Array<unknown>,
+  array2: Array<unknown>,
+) => {
+  const array2Sorted = array2.slice().sort();
+  return (
+    array.length === array2.length &&
+    array
+      .slice()
+      .sort()
+      .every(function (value, index) {
+        return value === array2Sorted[index];
+      })
+  );
+};
