@@ -7,8 +7,8 @@ import {Button, Input, Text} from '@clerotri/components/common/atoms';
 import {GapView} from '@clerotri/components/layout';
 import {ModalContainer} from '@clerotri/components/modals/common';
 import {app} from '@clerotri/Generic';
-import {ThemeContext} from '@clerotri/lib/themes';
-import {MemberWithModAction} from '@clerotri/lib/types';
+import {commonValues, ThemeContext} from '@clerotri/lib/themes';
+import type {MemberWithModAction} from '@clerotri/lib/types';
 
 export const ConfirmModActionModal = observer(
   ({target}: {target: MemberWithModAction}) => {
@@ -33,9 +33,10 @@ export const ConfirmModActionModal = observer(
           Are you sure you want to{' '}
           <Text style={{fontWeight: 'bold'}}>ACTION</Text>{' '}
           <Text
+            useNewText
+            customColour={target.member.roleColour ?? undefined}
             style={{
               fontWeight: 'bold',
-              color: target.member.roleColour ?? currentTheme.foregroundPrimary,
             }}>
             {
               // @ts-expect-error this is an i18next placeholder
@@ -44,7 +45,7 @@ export const ConfirmModActionModal = observer(
           </Text>
           ?
         </Trans>
-        <GapView size={4} />
+        <GapView size={6} />
         <Text type={'h2'}>
           {t(`app.modals.confirm_mod_action.reason_${target.action}`)}
         </Text>
@@ -58,13 +59,14 @@ export const ConfirmModActionModal = observer(
           style={{
             flexDirection: 'column',
             justifyContent: 'center',
-            marginTop: 10,
+            marginBlockStart: commonValues.sizes.large,
           }}>
           <Button
             onPress={() => target.callback(reason)}
-            backgroundColor={currentTheme.error}
             style={{marginHorizontal: 0}}>
-            <Text>{t(`app.actions.${target.action}`)}</Text>
+            <Text useNewText colour={'error'} style={{fontWeight: 'bold'}}>
+              {t(`app.actions.${target.action}`)}
+            </Text>
           </Button>
           <Button
             onPress={() => {

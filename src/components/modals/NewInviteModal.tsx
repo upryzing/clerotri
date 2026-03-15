@@ -2,11 +2,13 @@ import {View} from 'react-native';
 import {useTranslation} from 'react-i18next';
 import {observer} from 'mobx-react-lite';
 
+import Clipboard from '@react-native-clipboard/clipboard';
+
 import {app} from '@clerotri/Generic';
 import {Button, Text} from '@clerotri/components/common/atoms';
 import {ModalContainer} from '@clerotri/components/modals/common';
 import {client} from '@clerotri/lib/client';
-import Clipboard from '@react-native-clipboard/clipboard';
+import {commonValues} from '@clerotri/lib/themes';
 
 export const NewInviteModal = observer(({code}: {code: string}) => {
   const {t} = useTranslation();
@@ -26,7 +28,7 @@ export const NewInviteModal = observer(({code}: {code: string}) => {
         }}>
         <Text
           font={'JetBrains Mono'}
-          style={{marginBlock: 10, textAlign: 'center'}}>
+          style={{marginBlock: commonValues.sizes.xl, textAlign: 'center'}}>
           {link}
           {'\n'}
           <Text
@@ -39,7 +41,7 @@ export const NewInviteModal = observer(({code}: {code: string}) => {
           onPress={() => {
             Clipboard.setString(fullInvite);
           }}
-          style={{marginHorizontal: 0}}>
+          style={{marginHorizontal: 0, marginBlockStart: 0}}>
           <Text>{t('app.actions.copy_invite')}</Text>
         </Button>
         <Button

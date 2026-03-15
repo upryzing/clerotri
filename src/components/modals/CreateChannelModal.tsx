@@ -1,4 +1,4 @@
-import {useState} from 'react';
+import {Fragment, useState} from 'react';
 import {Pressable, View} from 'react-native';
 import {StyleSheet} from 'react-native-unistyles';
 import {useTranslation} from 'react-i18next';
@@ -8,9 +8,10 @@ import {app} from '@clerotri/Generic';
 import {styles} from '@clerotri/Theme';
 import {Button, Checkbox, Input, Text} from '@clerotri/components/common/atoms';
 import {MaterialIcon} from '@clerotri/components/common/icons';
+import {LineSeparator} from '@clerotri/components/layout';
 import {ModalContainer} from '@clerotri/components/modals/common';
 import {commonValues} from '@clerotri/lib/themes';
-import {CreateChannelModalProps} from '@clerotri/lib/types';
+import type {CreateChannelModalProps} from '@clerotri/lib/types';
 
 export const CreateChannelModal = observer(
   ({object}: {object: CreateChannelModalProps}) => {
@@ -19,6 +20,8 @@ export const CreateChannelModal = observer(
     const [name, setName] = useState('');
     const [type, setType] = useState('Text' as 'Text' | 'Voice');
     const [nsfw, setNSFW] = useState(false);
+
+    const ChannelTypes = ['Text', 'Voice'] as const;
 
     return (
       <ModalContainer>
@@ -40,22 +43,24 @@ export const CreateChannelModal = observer(
           />
           <Text type={'h2'}>{t('app.modals.create_channel.type_header')}</Text>
           <View style={localStyles.typeSelector}>
-            {(['Text', 'Voice'] as const).map(ct => (
-              <Pressable
-                key={`channel-type-${ct}`}
-                style={localStyles.channelType}
-                onPress={() => {
-                  setType(ct);
-                }}>
-                <Text style={{flex: 1}}>{ct}</Text>
-                <View style={{...styles.iconContainer, marginRight: 0}}>
-                  <MaterialIcon
-                    name={`radio-button-${type === ct ? 'on' : 'off'}`}
-                    size={28}
-                    color={'accentColor'}
-                  />
-                </View>
-              </Pressable>
+            {ChannelTypes.map((ct, i) => (
+              <Fragment key={`channel-type-${ct}`}>
+                <Pressable
+                  style={localStyles.channelType}
+                  onPress={() => {
+                    setType(ct);
+                  }}>
+                  <Text style={{flex: 1}}>{ct}</Text>
+                  <View style={{...styles.iconContainer, marginRight: 0}}>
+                    <MaterialIcon
+                      name={`radio-button-${type === ct ? 'on' : 'off'}`}
+                      size={28}
+                      color={'accentColor'}
+                    />
+                  </View>
+                </Pressable>
+                {i !== ChannelTypes.length - 1 && <LineSeparator />}
+              </Fragment>
             ))}
           </View>
           <View style={localStyles.checkboxRow}>
@@ -75,7 +80,7 @@ export const CreateChannelModal = observer(
                 object.callback(c._id);
               });
             }}
-            style={{marginHorizontal: 0}}>
+            style={{marginHorizontal: 0, marginBlockStart: 0}}>
             <Text>{t('app.actions.create_channel')}</Text>
           </Button>
           <Button
@@ -96,26 +101,22 @@ const localStyles = StyleSheet.create(currentTheme => ({
     marginBlockEnd: commonValues.sizes.medium,
   },
   typeSelector: {
-    marginVertical: commonValues.sizes.small,
     borderRadius: commonValues.sizes.medium,
     minWidth: '100%',
     backgroundColor: currentTheme.backgroundSecondary,
-    padding: commonValues.sizes.medium,
-    gap: commonValues.sizes.medium,
+    paddingInline: commonValues.sizes.large,
+    paddingBlock: commonValues.sizes.xs,
   },
   channelType: {
-    height: 40,
     width: '100%',
     alignItems: 'center',
     flexDirection: 'row',
-    backgroundColor: currentTheme.backgroundPrimary,
-    borderRadius: commonValues.sizes.medium,
-    paddingInline: 10,
+    paddingBlock: commonValues.sizes.medium,
   },
   checkboxRow: {
     flexDirection: 'row',
     alignItems: 'center',
     justifyContent: 'space-between',
-    marginVertical: commonValues.sizes.small,
+    marginVertical: commonValues.sizes.large,
   },
 }));

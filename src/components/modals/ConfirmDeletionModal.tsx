@@ -5,10 +5,12 @@ import {Trans, useTranslation} from 'react-i18next';
 import {observer} from 'mobx-react-lite';
 
 import {Button, Text} from '@clerotri/components/common/atoms';
+import {GapView} from '@clerotri/components/layout';
 import {ModalContainer} from '@clerotri/components/modals/common';
 import {app} from '@clerotri/Generic';
 import {ChannelContext} from '@clerotri/lib/state';
-import {DeletableObject} from '@clerotri/lib/types';
+import {commonValues} from '@clerotri/lib/themes';
+import type {DeletableObject} from '@clerotri/lib/types';
 
 export const ConfirmDeletionModal = observer(
   ({target}: {target: DeletableObject}) => {
@@ -43,6 +45,7 @@ export const ConfirmDeletionModal = observer(
             ?
           </Trans>
         )}
+        <GapView size={6} />
         <Text style={{fontWeight: 'bold'}}>
           {t('app.modals.confirm_deletion.warning')}
         </Text>
@@ -50,7 +53,7 @@ export const ConfirmDeletionModal = observer(
           style={{
             flexDirection: 'column',
             justifyContent: 'center',
-            marginTop: 10,
+            marginBlockStart: commonValues.sizes.large,
           }}>
           <Button
             onPress={() => {

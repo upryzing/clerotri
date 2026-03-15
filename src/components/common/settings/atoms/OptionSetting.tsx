@@ -85,6 +85,7 @@ export const OptionSetting = ({sRaw}: {sRaw: Setting}) => {
   );
 };
 
+// TODO: separate select menu component (for (e.g.) the channel creation modal)
 const localStyles = StyleSheet.create(currentTheme => ({
   optionsContainer: {
     borderRadius: commonValues.sizes.medium,
