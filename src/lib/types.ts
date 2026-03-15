@@ -84,6 +84,12 @@ export type MemberWithModAction = {
   callback: (s: string) => void;
 };
 
+export type UserWithBlockAction = {
+  user: User;
+  unblock?: boolean;
+  callback: () => void;
+};
+
 export type ThemeColour = keyof Omit<
   Theme,
   'generalBorderWidth' | 'contentType'

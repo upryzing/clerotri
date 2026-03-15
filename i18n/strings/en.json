@@ -3,6 +3,7 @@
         "actions": {
             "back": "Back",
             "ban": "Ban",
+            "block": "Block",
             "cancel": "Cancel",
             "close": "Close",
             "confirm": "Confirm",
@@ -10,7 +11,8 @@
             "copy_invite": "Copy invite",
             "delete": "Delete",
             "kick": "Kick",
-            "save": "Save"
+            "save": "Save",
+            "unblock": "Unblock"
         },
         "analytics": {
             "title": "Manage analytics",
@@ -148,6 +150,14 @@
             "reply_not_loaded": "Message not loaded"
         },
         "modals": {
+            "confirm_block": {
+                "header": "Block this user?",
+                "header_unblock": "Unblock this user?",
+                "body": "Are you sure you want to <2>block</2> <4>{{name}}</4>?",
+                "body_unblock": "Are you user you want to <2>unblock</2> <4>{{name}}</4>?",
+                "notice": "They won't be able to message you or send you friend requests. You won't see their messages in channels and servers.",
+                "notice_unblock": "They will be able to message you and send you friend requests. You will see their messages in channels and servers."
+            },
             "confirm_deletion": {
                 "header_channel": "Delete channel?",
                 "header_role": "Delete role?",
@@ -268,7 +278,8 @@
             "menu": {
                 "back": "Return to Profile",
                 "block_user": "Block User",
-                "report_user": "Report User"
+                "report_user": "Report User",
+                "unblock_user": "Unblock User"
             },
             "message_user": "Message",
             "tabs": {

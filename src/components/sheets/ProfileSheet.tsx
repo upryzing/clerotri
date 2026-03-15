@@ -78,10 +78,43 @@ const ProfileMenu = observer(
         ) : null}
         {user.relationship !== 'User' ? (
           <>
+            {user.relationship !== 'Blocked' ? (
+              <NewContextButton
+                type={'start'}
+                icon={{pack: 'regular', name: 'block', colour: 'error'}}
+                textString={'app.profile.menu.block_user'}
+                textColour={currentTheme.error}
+                onPress={() => {
+                  app.openBlockConfirmationModal({
+                    user: user,
+                    callback: () => {
+                      app.openBlockConfirmationModal(null);
+                      setShowMenu(false);
+                      app.openProfile(null);
+                      user.blockUser();
+                    },
+                  });
+                }}
+              />
+            ) : (
+              <NewContextButton
+                type={'start'}
+                icon={{pack: 'regular', name: 'person-remove'}}
+                textString={'app.profile.menu.unblock_user'}
+                onPress={() => {
+                  app.openBlockConfirmationModal({
+                    user: user,
+                    unblock: true,
+                    callback: () => {
+                      app.openBlockConfirmationModal(null);
+                      user.unblockUser();
+                    },
+                  });
+                }}
+              />
+            )}
             <NewContextButton
-              type={
-                'detatched' /* set to 'start' when the block button exists*/
-              }
+              type={'end' /* set to 'start' when the block button exists*/}
               icon={{
                 pack: 'regular',
                 name: 'flag',
@@ -95,18 +128,6 @@ const ProfileMenu = observer(
                 app.openProfile(null);
               }}
             />
-            {/* TODO: add block confirm modal then uncomment this {user.relationship !== 'Blocked' ? (
-                  <NewContextButton
-                    type={'end'}
-                    icon={{pack: 'regular', name: 'block', colour: currentTheme.error}}
-                    textString={'app.profile.menu.block_user'}
-                    textColour={currentTheme.error}
-                    onPress={() => {
-                      app.openReportMenu({object: user, type: 'User'});
-                      setShowMenu(false);
-                      app.openProfile(null);
-                    }} />
-                ) : null} */}
           </>
         ) : null}
       </>

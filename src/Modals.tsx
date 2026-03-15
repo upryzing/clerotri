@@ -15,10 +15,12 @@ import type {
   ReportedObject,
   SettingsSection,
   TextEditingModalProps,
+  UserWithBlockAction,
 } from '@clerotri/lib/types';
 import {BottomSheet} from '@clerotri/components/common/BottomSheet';
 import {ImageViewer} from '@clerotri/components/ImageViewer';
 import {
+  ConfirmBlockModal,
   ConfirmDeletionModal,
   ConfirmModActionModal,
   CreateChannelModal,
@@ -193,6 +195,9 @@ const FloatingModals = observer(() => {
   const [newInviteCode, setNewInviteCode] = useState(null as string | null);
   const [moderatedMember, setModeratedMember] =
     useState<MemberWithModAction | null>(null);
+  const [blockingUser, setBlockingUser] = useState<UserWithBlockAction | null>(
+    null,
+  );
 
   setFunction('openDeletionConfirmationModal', (o: DeletableObject | null) => {
     setDeletableObject(o);
@@ -212,6 +217,12 @@ const FloatingModals = observer(() => {
   setFunction('openModActionModal', (member: MemberWithModAction | null) => {
     setModeratedMember(member);
   });
+  setFunction(
+    'openBlockConfirmationModal',
+    (user: UserWithBlockAction | null) => {
+      setBlockingUser(user);
+    },
+  );
 
   return (
     <>
@@ -239,6 +250,11 @@ const FloatingModals = observer(() => {
         visible={!!moderatedMember}
         onRequestClose={() => setModeratedMember(null)}>
         <ConfirmModActionModal target={moderatedMember!} />
+      </FloatingModal>
+      <FloatingModal
+        visible={!!blockingUser}
+        onRequestClose={() => setModeratedMember(null)}>
+        <ConfirmBlockModal target={blockingUser!} />
       </FloatingModal>
     </>
   );

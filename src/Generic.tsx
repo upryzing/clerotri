@@ -10,6 +10,7 @@ import type {
   ReportedObject,
   SettingsSection,
   TextEditingModalProps,
+  UserWithBlockAction,
 } from '@clerotri/lib/types';
 
 export const app = {
@@ -217,6 +218,11 @@ export const app = {
   openModActionModal: (member: MemberWithModAction | null) => {
     console.log(
       `[FUNCTIONS] Tried to run uninitialised function openModActionModal (args: ${member})`,
+    );
+  },
+  openBlockConfirmationModal: (user: UserWithBlockAction | null) => {
+    console.log(
+      `[FUNCTIONS] Tried to run uninitialised function openBlockConfirmationModal (args: ${user})`,
     );
   },
 };
