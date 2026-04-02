@@ -45,10 +45,17 @@ export const OFFICIAL_INSTANCE_SIGNUP_URL =
 
 // server invite paths for the official instance
 const INVITE_PATHS = [
+  // old links from Revite
   'app.revolt.chat/invite',
   'nightly.revolt.chat/invite',
   'local.revolt.chat/invite',
+
+  // newer Stoat links
   'old.stoat.chat/invite',
+  'stoat.chat/invite',
+  'local.stoat.chat/invite',
+
+  // short links
   'rvlt.gg',
   'stt.gg',
 ];
