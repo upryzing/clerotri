@@ -35,7 +35,12 @@ export const AppInfoSection = () => {
       <View style={{alignItems: 'center'}}>
         <AppIcon height={250} width={250} />
       </View>
-      <View style={{alignItems: 'center', marginVertical: 16}}>
+      <View
+        style={{
+          alignItems: 'center',
+          marginBlockStart: commonValues.sizes.xl,
+          marginBlockEnd: commonValues.sizes.medium,
+        }}>
         <View style={[localStyles.versionBox, GradientStyle]}>
           <Text type={'h1'}>
             Clerotri{' '}
@@ -52,6 +57,8 @@ export const AppInfoSection = () => {
             style={{fontFamily: 'JetBrains Mono'}}
           />
         </Text>
+      </View>
+      <View style={{alignItems: 'center'}}>
         <Text>
           Powered by{' '}
           <Link link={'https://reactnative.dev'} label={'React Native'} /> v
@@ -77,7 +84,12 @@ export const AppInfoSection = () => {
           />
         </Text>
       </View>
-      <View style={{flexDirection: 'row', marginBottom: 16, gap: 24}}>
+      <View
+        style={{
+          flexDirection: 'row',
+          marginBlock: commonValues.sizes.xl,
+          gap: 24,
+        }}>
         <Pressable onPress={() => openUrl(GITHUB_REPO)}>
           <MaterialCommunityIcon name={'github'} size={60} />
         </Pressable>
@@ -108,7 +120,7 @@ const localStyles = StyleSheet.create(currentTheme => ({
     borderRadius: commonValues.sizes.medium,
     paddingInline: commonValues.sizes.medium,
     paddingBlockStart: commonValues.sizes.small,
-    marginBlockEnd: commonValues.sizes.small,
+    marginBlockEnd: commonValues.sizes.medium,
   },
   resetButton: {
     backgroundColor: currentTheme.backgroundSecondary,
