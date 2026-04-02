@@ -1,11 +1,11 @@
 import type {ColorValue, TextProps, TouchableOpacityProps} from 'react-native';
 
-import type {MaterialDesignIconsIconName} from '@react-native-vector-icons/material-design-icons';
-import type {MaterialIconsIconName} from '@react-native-vector-icons/material-icons';
+import type {MaterialDesignIconsIconName} from '@react-native-vector-icons/material-design-icons/static';
+import type {MaterialIconsIconName} from '@react-native-vector-icons/material-icons/static';
 
 import type {Channel, Member, Message, Server, User} from 'revolt.js';
 
-import {Theme} from '@clerotri/lib/themes';
+import type {Theme} from '@clerotri/lib/themes';
 
 type StringSetting = {
   default: string;

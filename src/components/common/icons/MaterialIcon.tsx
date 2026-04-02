@@ -1,6 +1,6 @@
 import {withUnistyles} from 'react-native-unistyles';
 
-import MaterialIconCore from '@react-native-vector-icons/material-icons';
+import MaterialIconCore from '@react-native-vector-icons/material-icons/static';
 
 import type {MaterialIconProps} from '@clerotri/lib/types';
 
