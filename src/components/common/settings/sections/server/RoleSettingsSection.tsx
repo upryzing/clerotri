@@ -40,7 +40,38 @@ const RoleSettingsRoleList = observer(
 
     return (
       <>
-        <Text type={'h1'}>{t('app.servers.settings.roles.title')}</Text>
+        <View
+          style={{
+            flexDirection: 'row',
+            alignItems: 'center',
+            marginVertical: commonValues.sizes.medium,
+          }}>
+          <View style={{flex: 1}}>
+            <Text type={'h1'}>{t('app.servers.settings.roles.title')}</Text>
+          </View>
+          {server.havePermission('ManageRole') ? (
+            <Pressable
+              onPress={() => {
+                app.openTextEditModal({
+                  initialString: '',
+                  id: 'new_role',
+                  callback: name => {
+                    server.createRole(name);
+                  },
+                });
+              }}
+              style={{
+                width: 30,
+                height: 20,
+                alignItems: 'center',
+                justifyContent: 'center',
+              }}>
+              <View style={styles.iconContainer}>
+                <MaterialIcon name={'add'} size={20} />
+              </View>
+            </Pressable>
+          ) : null}
+        </View>
         {server.orderedRoles.map(r => (
           <PressableSettingsEntry
             key={`role-settings-entry-${r.id}`}
