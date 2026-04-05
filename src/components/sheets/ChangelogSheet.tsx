@@ -7,17 +7,21 @@ import {Text} from '@clerotri/components/common/atoms';
 import {NewContextButton} from '@clerotri/components/common/buttons';
 import {MarkdownView} from '@clerotri/components/common/MarkdownView';
 import {generateDonateGradient} from '@clerotri/components/sheets/SettingsSheet';
-import {BLUESKY_PROFILE, CHANGELOG, DONATIONS_INFO} from '@clerotri/lib/consts';
+import {
+  BLUESKY_PROFILE,
+  CHANGELOG,
+  DONATIONS_INFO,
+  FEDI_PROFILE,
+} from '@clerotri/lib/consts';
 import {APP_VERSION} from '@clerotri/lib/metadata';
 import {commonValues, ThemeContext} from '@clerotri/lib/themes';
 import {openUrl} from '@clerotri/lib/utils';
 
-const releaseDate = '23/02/2026';
+const releaseDate = '05/04/2026';
 
 const changelogParagraphs = [
-  'This release includes **improvements to the in-app changelog**, some tweaks to the **profile sheet** and a few bug fixes.',
-  'In case you missed it, v0.13.0 included **better message rendering**, a bunch of styling and design improvements and a new language (French).',
-  `Also note that **Clerotri is now on Bluesky!** Get updates and support at [**@clerotri.upryzing.app**](${BLUESKY_PROFILE}).`,
+  'This release includes **new role management features**, the ability to **block and unblock users** and several bug fixes.',
+  `Follow Clerotri on [**Bluesky**](${BLUESKY_PROFILE}) and [**the Fediverse**](${FEDI_PROFILE}) for the latest updates!`,
 ];
 
 const ChangelogHeader = ({isNewlyUpdated}: {isNewlyUpdated: boolean}) => {

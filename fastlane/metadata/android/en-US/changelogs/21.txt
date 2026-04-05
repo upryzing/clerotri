@@ -1,0 +1,4 @@
+- Role management features 
+- User blocking and unblocking
+- Bug fixes
+- Full changelog: https://github.com/upryzing/clerotri/blob/main/CHANGELOG.md#v0140

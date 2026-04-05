@@ -1,5 +1,26 @@
 # Clerotri's changelog
 
+## v0.14.0
+
+_This version was released on 05/04/2026._
+
+### What's new
+
+- Some **new role settings** have been added, meaning you can now:
+  - **create new roles** from the roles list, and
+  - **manage the roles of individual members** by selecting the member from the member list.
+- You can now **block and unblock users** from the profile sheet.
+- You can now choose to fully hide messages from blocked users.
+- Various design and layout tweaks have been made for better consistency, particularly to modals.
+
+### Bug fixes
+
+- The app will no longer crash if you open the Mutual Friends section of the use profile sheet before the list of mutual friends has loaded.
+- Messages from webhooks now correctly display the webhook's name and avatar.
+- Images in embeds no longer escape the embeds background on larger screen sizes, and should fit better in them on most screen sizes.
+- Embed colours now apply correctly.
+- `stoat.chat/invite` links now produce invite embeds.
+
 ## v0.13.1
 
 _This version was released on 23/02/2026._
