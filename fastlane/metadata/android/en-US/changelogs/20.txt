@@ -2,4 +2,4 @@
 - Profile design tweaks
 - Bug fixes
 - Clerotri is now on Bluesky: https://bsky.app/profile/clerotri.upryzing.app
-- Full changelog: https://github.com/upryzing/clerotri/blob/main/CHANGELOG.md#v0130
+- Full changelog: https://github.com/upryzing/clerotri/blob/main/CHANGELOG.md#v0131
