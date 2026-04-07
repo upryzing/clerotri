@@ -37,7 +37,7 @@ Once you've opened the folder, run the following:
 yarn install
 
 # ...then copy the font files into the native folder:
-npx react-native-asset --android-assets
+npx react-native-asset
 ```
 
 #### Web

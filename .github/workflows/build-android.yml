@@ -23,7 +23,7 @@ jobs:
           distribution: 'microsoft'
           cache: 'gradle'
       - name: Install dependencies and prepare assets
-        run: yarn install && npx react-native-asset --android-assets
+        run: yarn install && npx react-native-asset
       - name: Prepare the JS bundle
         run: yarn android-release:bundle
       - name: Build the app
