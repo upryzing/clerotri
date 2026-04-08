@@ -193,8 +193,6 @@ const ProfileUsernames = observer(
 );
 
 const RelationshipButtons = ({user}: {user: User}) => {
-  const {currentTheme} = useContext(ThemeContext);
-
   const {t} = useTranslation();
 
   return (
@@ -208,8 +206,7 @@ const RelationshipButtons = ({user}: {user: User}) => {
         {!user.bot ? (
           user.relationship === 'Friend' ? (
             <Button
-              backgroundColor={currentTheme.backgroundPrimary}
-              style={{margin: 0}}
+              style={localStyles.relationshipButton}
               onPress={async () => {
                 const c = await user.openDM();
                 try {
@@ -233,10 +230,9 @@ const RelationshipButtons = ({user}: {user: User}) => {
               </View>
             </Button>
           ) : user.relationship === 'Incoming' ? (
-            <>
+            <View style={{gap: commonValues.sizes.small}}>
               <Button
-                backgroundColor={currentTheme.backgroundPrimary}
-                style={{margin: 0, marginBlockEnd: commonValues.sizes.small}}
+                style={localStyles.relationshipButton}
                 onPress={() => {
                   user.addFriend();
                 }}>
@@ -252,8 +248,7 @@ const RelationshipButtons = ({user}: {user: User}) => {
                 </View>
               </Button>
               <Button
-                backgroundColor={currentTheme.backgroundPrimary}
-                style={{margin: 0}}
+                style={localStyles.relationshipButton}
                 onPress={() => {
                   user.removeFriend();
                 }}>
@@ -268,11 +263,10 @@ const RelationshipButtons = ({user}: {user: User}) => {
                   <Text>{t('app.profile.friend_requests.reject')}</Text>
                 </View>
               </Button>
-            </>
+            </View>
           ) : user.relationship === 'Outgoing' ? (
             <Button
-              backgroundColor={currentTheme.backgroundPrimary}
-              style={{margin: 0}}
+              style={localStyles.relationshipButton}
               onPress={() => {
                 user.removeFriend();
               }}>
@@ -290,8 +284,7 @@ const RelationshipButtons = ({user}: {user: User}) => {
           ) : user.relationship !== 'Blocked' &&
             user.relationship !== 'BlockedOther' ? (
             <Button
-              backgroundColor={currentTheme.backgroundPrimary}
-              style={{margin: 0}}
+              style={localStyles.relationshipButton}
               onPress={() => {
                 user.addFriend();
               }}>
@@ -499,57 +492,59 @@ export const ProfileSheet = observer(
                 <ProfileTabs setSection={setSection} isBot={!!user.bot} />
               </View>
             )}
-            {section === 'Profile' ? (
-              <ScrollView>
-                {user.bot && <BotOwnerInfo user={user} />}
-                {server && <RoleView user={user} server={server} />}
-                {user.badges && <BadgeView user={user} />}
-                <Text type={'profile'}>{t('app.profile.bio')}</Text>
-                {profile.content ? (
-                  <MarkdownView>
-                    {parseRevoltNodes(profile.content)}
-                  </MarkdownView>
-                ) : null}
-              </ScrollView>
-            ) : section === 'Mutual Servers' ? (
-              <ScrollView>
-                <Text type={'profile'}>
-                  {t('app.profile.tabs.mutual_servers')}
-                </Text>
-                {mutual.servers?.map((srv, index) => {
-                  return (
-                    <NewContextButton
-                      key={srv!._id}
-                      type={
-                        mutual.servers.length === 1
-                          ? 'detatched'
-                          : index === 0
-                            ? 'start'
-                            : index === mutual.servers.length - 1
-                              ? 'end'
-                              : undefined
-                      }
-                      onPress={() => {
-                        app.openServer(srv);
-                        app.openProfile(null);
-                        app.openLeftMenu(true);
-                      }}>
-                      <GeneralAvatar attachment={srv!.icon} size={32} />
-                      <Text style={{fontWeight: 'bold', marginLeft: 6}}>
-                        {srv!.name}
-                      </Text>
-                    </NewContextButton>
-                  );
-                })}
-              </ScrollView>
-            ) : section === 'Mutual Friends' ? (
-              <ScrollView>
-                <Text type={'profile'}>
-                  {t('app.profile.tabs.mutual_friends')}
-                </Text>
-                <UserList users={mutual.users ?? []} />
-              </ScrollView>
-            ) : null}
+            <ScrollView>
+              {section === 'Profile' ? (
+                <>
+                  {user.bot && <BotOwnerInfo user={user} />}
+                  {server && <RoleView user={user} server={server} />}
+                  {user.badges && <BadgeView user={user} />}
+                  <Text type={'profile'}>{t('app.profile.bio')}</Text>
+                  {profile.content ? (
+                    <MarkdownView>
+                      {parseRevoltNodes(profile.content)}
+                    </MarkdownView>
+                  ) : null}
+                </>
+              ) : section === 'Mutual Servers' ? (
+                <>
+                  <Text type={'profile'}>
+                    {t('app.profile.tabs.mutual_servers')}
+                  </Text>
+                  {mutual.servers?.map((srv, index) => {
+                    return (
+                      <NewContextButton
+                        key={srv!._id}
+                        type={
+                          mutual.servers.length === 1
+                            ? 'detatched'
+                            : index === 0
+                              ? 'start'
+                              : index === mutual.servers.length - 1
+                                ? 'end'
+                                : undefined
+                        }
+                        onPress={() => {
+                          app.openServer(srv);
+                          app.openProfile(null);
+                          app.openLeftMenu(true);
+                        }}>
+                        <GeneralAvatar attachment={srv!.icon} size={32} />
+                        <Text style={{fontWeight: 'bold', marginLeft: 6}}>
+                          {srv!.name}
+                        </Text>
+                      </NewContextButton>
+                    );
+                  })}
+                </>
+              ) : section === 'Mutual Friends' ? (
+                <>
+                  <Text type={'profile'}>
+                    {t('app.profile.tabs.mutual_friends')}
+                  </Text>
+                  <UserList users={mutual.users ?? []} />
+                </>
+              ) : null}
+            </ScrollView>
           </>
         )}
       </View>
@@ -560,6 +555,10 @@ export const ProfileSheet = observer(
 const localStyles = StyleSheet.create(currentTheme => ({
   buttonsAndTabsContainer: {
     marginBlock: commonValues.sizes.small,
+  },
+  relationshipButton: {
+    backgroundColor: currentTheme.backgroundPrimary,
+    margin: 0,
   },
   profileTabsContainer: {
     gap: commonValues.sizes.small,
