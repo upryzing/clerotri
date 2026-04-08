@@ -1,5 +1,5 @@
-import {useContext} from 'react';
 import {Pressable, View} from 'react-native';
+import {StyleSheet} from 'react-native-unistyles';
 import {useTranslation} from 'react-i18next';
 import {observer} from 'mobx-react-lite';
 
@@ -9,7 +9,7 @@ import type {Server, User} from 'revolt.js';
 
 import {client} from '@clerotri/lib/client';
 import {Text} from '@clerotri/components/common/atoms/Text';
-import {commonValues, ThemeContext} from '@clerotri/lib/themes';
+import {commonValues} from '@clerotri/lib/themes';
 import {getColour, showToast} from '@clerotri/lib/utils';
 
 type RoleViewProps = {
@@ -18,8 +18,6 @@ type RoleViewProps = {
 };
 
 export const RoleView = observer(({server, user}: RoleViewProps) => {
-  const {currentTheme} = useContext(ThemeContext);
-
   const {t} = useTranslation();
 
   const handlePress = (id: string) => {
@@ -48,33 +46,15 @@ export const RoleView = observer(({server, user}: RoleViewProps) => {
       <Text type={'profile'}>{t('app.profile.roles_header')}</Text>
       <View
         key={`roleview-${server._id}-container`}
-        style={{
-          flexDirection: 'row',
-          flexWrap: 'wrap',
-          gap: commonValues.sizes.small,
-        }}>
+        style={localStyles.container}>
         {roles.map((r, i) => (
           <Pressable
             onPress={() => handlePress(memberObject.roles![i])}
             key={`roleview-${server._id}-${r.name}-${i}`}
-            style={{
-              flexDirection: 'row',
-              padding: commonValues.sizes.medium,
-              backgroundColor: currentTheme.backgroundPrimary,
-              borderRadius: commonValues.sizes.medium,
-            }}>
+            style={localStyles.roleButton}>
             <View
               key={`roleview-${server._id}-${r.name}-colour`}
-              style={{
-                borderRadius: 10000,
-                backgroundColor: r.colour
-                  ? getColour(r.colour, currentTheme)
-                  : currentTheme.foregroundSecondary,
-                height: 16,
-                width: 16,
-                margin: commonValues.sizes.xs,
-                marginRight: 6,
-              }}
+              style={localStyles.colourCircle(r.colour)}
             />
             <Text>{r.name}</Text>
           </Pressable>
@@ -83,3 +63,27 @@ export const RoleView = observer(({server, user}: RoleViewProps) => {
     </View>
   );
 });
+
+const localStyles = StyleSheet.create(currentTheme => ({
+  container: {
+    flexDirection: 'row',
+    flexWrap: 'wrap',
+    gap: commonValues.sizes.small,
+  },
+  roleButton: {
+    flexDirection: 'row',
+    padding: commonValues.sizes.medium,
+    backgroundColor: currentTheme.backgroundPrimary,
+    borderRadius: commonValues.sizes.medium,
+  },
+  colourCircle: (colour?: string | null) => ({
+    borderRadius: 10000,
+    backgroundColor: colour
+      ? getColour(colour, currentTheme)
+      : currentTheme.foregroundSecondary,
+    height: 16,
+    width: 16,
+    margin: commonValues.sizes.xs,
+    marginRight: 6,
+  }),
+}));
