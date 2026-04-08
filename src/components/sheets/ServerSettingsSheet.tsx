@@ -28,14 +28,24 @@ import {SelectionContext} from '../common/settings/sections/server/member';
 import {GapView} from '../layout';
 
 export const ServerSettingsSheet = observer(
-  ({server, setState}: {server: Server; setState: Function}) => {
+  ({
+    server,
+    initialSection,
+    setState,
+  }: {
+    server: Server;
+    initialSection: SettingsSection | null;
+    setState: Function;
+  }) => {
     const insets = useSafeAreaInsets();
 
     const {currentTheme} = useContext(ThemeContext);
 
     const {t} = useTranslation();
 
-    const [section, setSection] = useState<SettingsSection>(null);
+    const [section, setSection] = useState<SettingsSection>(
+      initialSection ?? null,
+    );
 
     const iconURL = useMemo(() => server.generateIconURL(), [server]);
     const initials = useMemo(() => {

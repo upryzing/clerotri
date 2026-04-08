@@ -95,9 +95,9 @@ export const app = {
       `[FUNCTIONS] Tried to run uninitialised function openSettings (args: ${o})`,
     );
   },
-  openServerSettings: (s: Server | null) => {
+  openServerSettings: (s: Server | null, initialSection?: SettingsSection) => {
     console.log(
-      `[FUNCTIONS] Tried to run uninitialised function openServerSettings (args: ${s})`,
+      `[FUNCTIONS] Tried to run uninitialised function openServerSettings (args: ${s}, ${initialSection})`,
     );
   },
   setMessageBoxInput: (t: string | null) => {

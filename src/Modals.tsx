@@ -1,4 +1,4 @@
-import {useCallback, useRef, useState} from 'react';
+import {useCallback, useEffect, useRef, useState} from 'react';
 import {Modal} from 'react-native';
 import {observer} from 'mobx-react-lite';
 
@@ -270,6 +270,8 @@ const OtherModals = observer(() => {
   const [serverSettingsServer, setServerSettingsServer] = useState(
     null as Server | null,
   );
+  const [initialServerSettingsSection, setInitialServerSettingsSection] =
+    useState<SettingsSection | null>(null);
   const [inviteServer, setInviteServer] = useState({
     inviteServer: null,
     inviteServerCode: '',
@@ -295,9 +297,13 @@ const OtherModals = observer(() => {
       setSettingsVisibility(o);
     }
   });
-  setFunction('openServerSettings', (s: Server | null) => {
-    setServerSettingsServer(s);
-  });
+  setFunction(
+    'openServerSettings',
+    (s: Server | null, initialSection?: SettingsSection) => {
+      setInitialServerSettingsSection(initialSection ?? null);
+      setServerSettingsServer(s);
+    },
+  );
   setFunction('openInvite', async (i: string) => {
     try {
       const community = await client.fetchInvite(i);
@@ -314,6 +320,19 @@ const OtherModals = observer(() => {
   setFunction('openBotInvite', async (id: string) => {
     setInviteBot(await client.bots.fetchPublic(id).catch(e => e));
   });
+
+  // clear intial settings sections when closing the sheets
+  useEffect(() => {
+    if (!settingsVisibility) {
+      setInitialSettingsSection(null);
+    }
+  }, [settingsVisibility]);
+
+  useEffect(() => {
+    if (!serverSettingsServer) {
+      setInitialServerSettingsSection(null);
+    }
+  }, [serverSettingsServer]);
 
   return (
     <>
@@ -389,6 +408,7 @@ const OtherModals = observer(() => {
         }>
         <ServerSettingsSheet
           server={serverSettingsServer!}
+          initialSection={initialServerSettingsSection}
           setState={() => setServerSettingsServer(null)}
         />
       </Modal>
