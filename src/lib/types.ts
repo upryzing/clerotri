@@ -113,10 +113,8 @@ export type ContextButtonProps = ButtonProps & {
   type?: 'start' | 'end' | 'detatched';
   icon?: IconType & {colour?: ThemeColour; customColour?: ColorValue};
   textString?: string;
-  // TODO: rename to textCustomColour after moving theme colours to ThemeColour
-  textColour?: ColorValue;
-  // TODO: rename to textColour after above
-  textThemeColour?: ThemeColour;
+  textCustomColour?: ColorValue;
+  textColour?: ThemeColour;
 };
 
 export type TextEditingModalProps = {
