@@ -128,7 +128,7 @@ export const MessageMenuSheet = observer(
                   colour: 'error',
                 }}
                 textString={'Delete'}
-                textThemeColour={'error'}
+                textColour={'error'}
                 onPress={() => {
                   app.openDeletionConfirmationModal({
                     type: 'Message',
@@ -151,7 +151,7 @@ export const MessageMenuSheet = observer(
                   colour: 'error',
                 }}
                 textString={'Report message'}
-                textThemeColour={'error'}
+                textColour={'error'}
                 onPress={() => {
                   app.openReportMenu({object: message, type: 'Message'});
                 }}

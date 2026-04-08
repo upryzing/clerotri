@@ -217,7 +217,7 @@ export const ServerSettingsSheet = observer(
                     menu={'server'}
                     type={'detatched'}
                     section={'delete_server'}
-                    textThemeColour={'error'}
+                    textColour={'error'}
                     icon={{
                       pack: 'regular',
                       name: 'delete',

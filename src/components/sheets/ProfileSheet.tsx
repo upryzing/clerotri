@@ -81,7 +81,7 @@ const ProfileMenu = observer(
                 type={'start'}
                 icon={{pack: 'regular', name: 'block', colour: 'error'}}
                 textString={'app.profile.menu.block_user'}
-                textThemeColour={'error'}
+                textColour={'error'}
                 onPress={() => {
                   app.openBlockConfirmationModal({
                     user: user,
@@ -119,7 +119,7 @@ const ProfileMenu = observer(
                 colour: 'error',
               }}
               textString={'app.profile.menu.report_user'}
-              textThemeColour={'error'}
+              textColour={'error'}
               onPress={() => {
                 app.openReportMenu({object: user, type: 'User'});
                 setShowMenu(false);
@@ -417,7 +417,7 @@ const ModActions = observer(({user, server}: {user: User; server: Server}) => {
           textString={t('app.profile.mod_actions.kick', {
             user: memberObject.nickname ?? user.display_name ?? user.username,
           })}
-          textThemeColour="error"
+          textColour="error"
           onPress={() => {
             app.openModActionModal({
               member: memberObject,
@@ -438,7 +438,7 @@ const ModActions = observer(({user, server}: {user: User; server: Server}) => {
           textString={t('app.profile.mod_actions.ban', {
             user: memberObject.nickname ?? user.display_name ?? user.username,
           })}
-          textThemeColour="error"
+          textColour="error"
           onPress={() => {
             app.openModActionModal({
               member: memberObject,

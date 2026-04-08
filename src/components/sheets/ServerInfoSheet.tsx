@@ -155,7 +155,7 @@ export const ServerInfoSheet = observer(({server}: {server: Server | null}) => {
                     colour: 'error',
                   }}
                   textString={'Report Server'}
-                  textThemeColour={'error'}
+                  textColour={'error'}
                   onPress={() => {
                     app.openReportMenu({object: server, type: 'Server'});
                   }}
@@ -169,7 +169,7 @@ export const ServerInfoSheet = observer(({server}: {server: Server | null}) => {
                     colour: 'error',
                   }}
                   textString={'Leave Server'}
-                  textThemeColour={'error'}
+                  textColour={'error'}
                   onPress={async () => {
                     app.openServer();
                     app.openServerContextMenu(null);

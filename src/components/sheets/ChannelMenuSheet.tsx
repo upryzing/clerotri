@@ -71,7 +71,7 @@ export const ChannelMenuSheet = observer(
                   colour: 'error',
                 }}
                 textString={'Delete channel'}
-                textThemeColour={'error'}
+                textColour={'error'}
                 onPress={() => {
                   app.openDeletionConfirmationModal({
                     type: 'Channel',
