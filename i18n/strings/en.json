@@ -275,7 +275,8 @@
             },
             "roles_header": "Roles",
             "roles": {
-                "copied_role_id_toast": "Copied role ID"
+                "copied_role_id_toast": "Copied role ID",
+                "edit": "Edit roles"
             },
             "menu": {
                 "back": "Return to Profile",

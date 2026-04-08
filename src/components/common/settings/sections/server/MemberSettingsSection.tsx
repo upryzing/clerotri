@@ -1,7 +1,13 @@
-import {type Dispatch, type SetStateAction, useContext, useState} from 'react';
+import {
+  type Dispatch,
+  type SetStateAction,
+  useContext,
+  useEffect,
+  useState,
+} from 'react';
 import {observer} from 'mobx-react-lite';
 
-import type {Member, Server} from 'revolt.js';
+import {Member, Server} from 'revolt.js';
 
 import {app} from '@clerotri/Generic';
 import {BackButton} from '@clerotri/components/common/atoms';
@@ -23,6 +29,22 @@ export const MemberSettingsSection = observer(
     setSection: Dispatch<SetStateAction<SettingsSection>>;
   }) => {
     const [currentMember, setCurrentMember] = useState<Member | null>(null);
+
+    // check once if the subsection is set when opening the settings section
+    useEffect(() => {
+      async function fetchMemberFromSubsection() {
+        if (section?.subsection) {
+          const member = await server.fetchMember(
+            section.subsection.replace('member-', '').replace('-roles', ''),
+          );
+          setCurrentMember(member);
+        }
+      }
+      fetchMemberFromSubsection();
+
+      // this only runs once and we don't want it to rerun when the dependencies change, so...
+      // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, []);
 
     const setSectionAndMember = (member: Member) => {
       setCurrentMember(member);

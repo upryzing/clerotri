@@ -7,8 +7,10 @@ import Clipboard from '@react-native-clipboard/clipboard';
 
 import type {Server, User} from 'revolt.js';
 
-import {client} from '@clerotri/lib/client';
 import {Text} from '@clerotri/components/common/atoms/Text';
+import {MaterialIcon} from '@clerotri/components/common/icons';
+import {app} from '@clerotri/Generic';
+import {client} from '@clerotri/lib/client';
 import {commonValues} from '@clerotri/lib/themes';
 import {getColour, showToast} from '@clerotri/lib/utils';
 
@@ -25,6 +27,13 @@ export const RoleView = observer(({server, user}: RoleViewProps) => {
     showToast(t('app.profile.roles.copied_role_id_toast'));
   };
 
+  const handleEditPress = () => {
+    app.openProfile(null);
+    app.openServerSettings(server, {
+      section: 'members',
+      subsection: `member-${user._id}-roles`,
+    });
+  };
   // don't bother doing anything if the server has no roles
   if (!server.roles) {
     return <></>;
@@ -59,6 +68,25 @@ export const RoleView = observer(({server, user}: RoleViewProps) => {
             <Text>{r.name}</Text>
           </Pressable>
         ))}
+        {server.owner === client.user?._id ||
+        (server.havePermission('ManageRole') && memberObject.inferior) ? (
+          <Pressable
+            onPress={() => handleEditPress()}
+            key={`roleview-${server._id}-edit-roles`}
+            style={[localStyles.roleButton, localStyles.editButton]}>
+            <MaterialIcon
+              name={'edit'}
+              size={18}
+              color={'foregroundSecondary'}
+            />
+            <Text
+              useNewText
+              colour={'foregroundSecondary'}
+              style={localStyles.editText}>
+              {t('app.profile.roles.edit')}
+            </Text>
+          </Pressable>
+        ) : null}
       </View>
     </View>
   );
@@ -84,6 +112,13 @@ const localStyles = StyleSheet.create(currentTheme => ({
     height: 16,
     width: 16,
     margin: commonValues.sizes.xs,
-    marginRight: 6,
+    marginEnd: commonValues.sizes.medium,
   }),
+  editButton: {
+    backgroundColor: 'transparent',
+    gap: commonValues.sizes.medium,
+  },
+  editText: {
+    fontWeight: 'bold',
+  },
 }));
