@@ -1,5 +1,6 @@
 import {useContext, useEffect, useState} from 'react';
 import {TouchableOpacity, View} from 'react-native';
+import {StyleSheet} from 'react-native-unistyles';
 import {observer} from 'mobx-react-lite';
 
 import type {Member, Server} from 'revolt.js';
@@ -9,7 +10,7 @@ import {settings} from '@clerotri/lib/settings';
 import {client} from '@clerotri/lib/client';
 import {SERVER_FLAGS, SPECIAL_SERVERS} from '@clerotri/lib/consts';
 import {ChannelContext} from '@clerotri/lib/state';
-import {commonValues, ThemeContext} from '@clerotri/lib/themes';
+import {commonValues} from '@clerotri/lib/themes';
 import {showToast} from '@clerotri/lib/utils';
 import {GeneralAvatar, Text} from '../common/atoms';
 import {
@@ -24,8 +25,6 @@ import {MarkdownView} from '../common/MarkdownView';
 import {Image} from '@clerotri/crossplat/Image';
 
 export const ServerInfoSheet = observer(({server}: {server: Server | null}) => {
-  const {currentTheme} = useContext(ThemeContext);
-
   const {currentChannel, setCurrentChannel} = useContext(ChannelContext);
 
   const [members, setMembers] = useState(null as Member[] | null);
@@ -125,13 +124,7 @@ export const ServerInfoSheet = observer(({server}: {server: Server | null}) => {
                   : 'Fetching member count...'}
             </Text>
             {server.description ? (
-              <View
-                style={{
-                  backgroundColor: currentTheme.background,
-                  padding: commonValues.sizes.xl,
-                  borderRadius: commonValues.sizes.medium,
-                  marginBlockEnd: commonValues.sizes.medium,
-                }}>
+              <View style={localStyles.descriptionContainer}>
                 <MarkdownView>{server.description}</MarkdownView>
               </View>
             ) : null}
@@ -162,7 +155,7 @@ export const ServerInfoSheet = observer(({server}: {server: Server | null}) => {
                     colour: 'error',
                   }}
                   textString={'Report Server'}
-                  textColour={currentTheme.error}
+                  textThemeColour={'error'}
                   onPress={() => {
                     app.openReportMenu({object: server, type: 'Server'});
                   }}
@@ -176,7 +169,7 @@ export const ServerInfoSheet = observer(({server}: {server: Server | null}) => {
                     colour: 'error',
                   }}
                   textString={'Leave Server'}
-                  textColour={currentTheme.error}
+                  textThemeColour={'error'}
                   onPress={async () => {
                     app.openServer();
                     app.openServerContextMenu(null);
@@ -197,3 +190,12 @@ export const ServerInfoSheet = observer(({server}: {server: Server | null}) => {
     </View>
   );
 });
+
+const localStyles = StyleSheet.create(currentTheme => ({
+  descriptionContainer: {
+    backgroundColor: currentTheme.background,
+    padding: commonValues.sizes.xl,
+    borderRadius: commonValues.sizes.medium,
+    marginBlockEnd: commonValues.sizes.medium,
+  },
+}));

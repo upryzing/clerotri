@@ -43,8 +43,6 @@ const ProfileMenu = observer(
     user: User;
     setShowMenu: (state: boolean) => void;
   }) => {
-    const {currentTheme} = useContext(ThemeContext);
-
     const {t} = useTranslation();
 
     return (
@@ -83,7 +81,7 @@ const ProfileMenu = observer(
                 type={'start'}
                 icon={{pack: 'regular', name: 'block', colour: 'error'}}
                 textString={'app.profile.menu.block_user'}
-                textColour={currentTheme.error}
+                textThemeColour={'error'}
                 onPress={() => {
                   app.openBlockConfirmationModal({
                     user: user,
@@ -121,7 +119,7 @@ const ProfileMenu = observer(
                 colour: 'error',
               }}
               textString={'app.profile.menu.report_user'}
-              textColour={currentTheme.error}
+              textThemeColour={'error'}
               onPress={() => {
                 app.openReportMenu({object: user, type: 'User'});
                 setShowMenu(false);

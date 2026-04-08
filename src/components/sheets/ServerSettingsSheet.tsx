@@ -1,4 +1,4 @@
-import {useContext, useMemo, useState} from 'react';
+import {useMemo, useState} from 'react';
 import {ScrollView, View} from 'react-native';
 import {StyleSheet} from 'react-native-unistyles';
 import {useTranslation} from 'react-i18next';
@@ -11,7 +11,7 @@ import type {Server} from 'revolt.js';
 import {app, setFunction} from '@clerotri/Generic';
 import {client} from '@clerotri/lib/client';
 import {Image} from '@clerotri/crossplat/Image';
-import {commonValues, ThemeContext} from '@clerotri/lib/themes';
+import {commonValues} from '@clerotri/lib/themes';
 import {SettingsSection} from '@clerotri/lib/types';
 import {BackButton, Text} from '@clerotri/components/common/atoms';
 import {SettingsButton} from '@clerotri/components/common/buttons';
@@ -38,8 +38,6 @@ export const ServerSettingsSheet = observer(
     setState: Function;
   }) => {
     const insets = useSafeAreaInsets();
-
-    const {currentTheme} = useContext(ThemeContext);
 
     const {t} = useTranslation();
 
@@ -219,7 +217,7 @@ export const ServerSettingsSheet = observer(
                     menu={'server'}
                     type={'detatched'}
                     section={'delete_server'}
-                    textColour={currentTheme.error}
+                    textThemeColour={'error'}
                     icon={{
                       pack: 'regular',
                       name: 'delete',

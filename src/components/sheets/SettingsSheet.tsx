@@ -343,7 +343,7 @@ export const SettingsSheet = observer(
                 menu={'app-other'}
                 type={'detatched'}
                 section={'logout'}
-                textColour={currentTheme.error}
+                textThemeColour={'error'}
                 icon={{
                   pack: 'regular',
                   name: 'logout',

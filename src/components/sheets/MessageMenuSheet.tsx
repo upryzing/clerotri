@@ -1,4 +1,3 @@
-import {useContext} from 'react';
 import {View} from 'react-native';
 import {observer} from 'mobx-react-lite';
 
@@ -13,12 +12,10 @@ import {
   NewContextButton,
 } from '@clerotri/components/common/buttons';
 import {ReplyMessage} from '@clerotri/components/common/messaging/ReplyMessage';
-import {commonValues, ThemeContext} from '@clerotri/lib/themes';
+import {commonValues} from '@clerotri/lib/themes';
 
 export const MessageMenuSheet = observer(
   ({message}: {message: Message | null}) => {
-    const {currentTheme} = useContext(ThemeContext);
-
     return (
       <View style={{paddingHorizontal: 16}}>
         {!message ? (
@@ -131,7 +128,7 @@ export const MessageMenuSheet = observer(
                   colour: 'error',
                 }}
                 textString={'Delete'}
-                textColour={currentTheme.error}
+                textThemeColour={'error'}
                 onPress={() => {
                   app.openDeletionConfirmationModal({
                     type: 'Message',
@@ -154,7 +151,7 @@ export const MessageMenuSheet = observer(
                   colour: 'error',
                 }}
                 textString={'Report message'}
-                textColour={currentTheme.error}
+                textThemeColour={'error'}
                 onPress={() => {
                   app.openReportMenu({object: message, type: 'Message'});
                 }}

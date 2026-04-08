@@ -1,4 +1,3 @@
-import {useContext} from 'react';
 import {View} from 'react-native';
 import {observer} from 'mobx-react-lite';
 
@@ -13,12 +12,10 @@ import {
   CopyIDButton,
   NewContextButton,
 } from '@clerotri/components/common/buttons';
-import {commonValues, ThemeContext} from '@clerotri/lib/themes';
+import {commonValues} from '@clerotri/lib/themes';
 
 export const ChannelMenuSheet = observer(
   ({channel}: {channel: Channel | null}) => {
-    const {currentTheme} = useContext(ThemeContext);
-
     return (
       <View style={{paddingHorizontal: 16}}>
         {!channel ? (
@@ -74,7 +71,7 @@ export const ChannelMenuSheet = observer(
                   colour: 'error',
                 }}
                 textString={'Delete channel'}
-                textColour={currentTheme.error}
+                textThemeColour={'error'}
                 onPress={() => {
                   app.openDeletionConfirmationModal({
                     type: 'Channel',
