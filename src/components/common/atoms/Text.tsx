@@ -9,7 +9,7 @@ import {StyleSheet} from 'react-native-unistyles';
 
 import {Text as NewText} from './NewText';
 import {commonValues} from '@clerotri/lib/themes';
-import {ThemeColour} from '@clerotri/lib/types';
+import type {ThemeColour} from '@clerotri/lib/types';
 
 type CommonTextProps = TextProps & {
   font?: 'JetBrains Mono' | 'Inter' | 'Open Sans';

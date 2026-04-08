@@ -16,6 +16,7 @@ export const NewContextButton = ({
   icon,
   textString,
   textColour,
+  textThemeColour,
   backgroundColor,
   style,
   ...props
@@ -51,7 +52,14 @@ export const NewContextButton = ({
           )}
         </View>
       )}
-      {textString && <Text colour={textColour}>{t(textString)}</Text>}
+      {textString &&
+        (textThemeColour ? (
+          <Text useNewText colour={textThemeColour}>
+            {t(textString)}
+          </Text>
+        ) : (
+          <Text colour={textColour}>{t(textString)}</Text>
+        ))}
       {props.children}
     </TouchableOpacity>
   );
