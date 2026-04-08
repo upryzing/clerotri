@@ -285,6 +285,12 @@
                 "unblock_user": "Unblock User"
             },
             "message_user": "Message",
+            "mod_actions_header": "Mod actions",
+            "mod_actions": {
+                "manage": "Member settings",
+                "kick": "Kick {{user}}",
+                "ban": "Ban {{user}}"
+            },
             "tabs": {
                 "profile": "Profile",
                 "mutual_servers": "Mutual Servers",

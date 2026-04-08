@@ -206,7 +206,7 @@ const RelationshipButtons = ({user}: {user: User}) => {
         {!user.bot ? (
           user.relationship === 'Friend' ? (
             <Button
-              style={localStyles.relationshipButton}
+              style={localStyles.button}
               onPress={async () => {
                 const c = await user.openDM();
                 try {
@@ -232,7 +232,7 @@ const RelationshipButtons = ({user}: {user: User}) => {
           ) : user.relationship === 'Incoming' ? (
             <View style={{gap: commonValues.sizes.small}}>
               <Button
-                style={localStyles.relationshipButton}
+                style={localStyles.button}
                 onPress={() => {
                   user.addFriend();
                 }}>
@@ -248,7 +248,7 @@ const RelationshipButtons = ({user}: {user: User}) => {
                 </View>
               </Button>
               <Button
-                style={localStyles.relationshipButton}
+                style={localStyles.button}
                 onPress={() => {
                   user.removeFriend();
                 }}>
@@ -266,7 +266,7 @@ const RelationshipButtons = ({user}: {user: User}) => {
             </View>
           ) : user.relationship === 'Outgoing' ? (
             <Button
-              style={localStyles.relationshipButton}
+              style={localStyles.button}
               onPress={() => {
                 user.removeFriend();
               }}>
@@ -284,7 +284,7 @@ const RelationshipButtons = ({user}: {user: User}) => {
           ) : user.relationship !== 'Blocked' &&
             user.relationship !== 'BlockedOther' ? (
             <Button
-              style={localStyles.relationshipButton}
+              style={localStyles.button}
               onPress={() => {
                 user.addFriend();
               }}>
@@ -347,6 +347,112 @@ const ProfileTabs = ({
     </View>
   );
 };
+
+const ModActions = observer(({user, server}: {user: User; server: Server}) => {
+  const {t} = useTranslation();
+
+  const memberObject = client.members.getKey({
+    server: server?._id,
+    user: user?._id,
+  });
+
+  if (!memberObject) {
+    return <></>;
+  }
+
+  const onKickOrBan = (action: 'kick' | 'ban', reason: string) => {
+    app.openProfile(null);
+    app.openModActionModal(null);
+    if (action === 'kick') {
+      memberObject.kick();
+    } else {
+      server.banUser(memberObject._id.user, {reason: reason});
+    }
+  };
+
+  const canEditRoles =
+    server.owner === client.user?._id ||
+    (server.havePermission('ManageRole') && memberObject?.inferior);
+  const canEditNickname =
+    server.owner === client.user?._id ||
+    (server.havePermission('ManageNicknames') && memberObject?.inferior);
+  const showManageButton = canEditRoles || canEditNickname;
+
+  if (!showManageButton && !memberObject.kickable && !memberObject.bannable) {
+    return <></>;
+  }
+
+  return (
+    <>
+      <Text type={'profile'}>{t('app.profile.mod_actions_header')}</Text>
+      {showManageButton && (
+        <NewContextButton
+          type={
+            memberObject.kickable || memberObject.bannable
+              ? 'start'
+              : 'detatched'
+          }
+          icon={{
+            pack: 'regular',
+            name: 'settings',
+          }}
+          textString={'app.profile.mod_actions.manage'}
+          onPress={() => {
+            app.openProfile(null);
+            app.openServerSettings(server, {
+              section: 'members',
+              subsection: `member-${user._id}`,
+            });
+          }}
+        />
+      )}
+      {memberObject.kickable && (
+        <NewContextButton
+          type={
+            showManageButton || memberObject.bannable ? undefined : 'detatched'
+          }
+          icon={{
+            pack: 'regular',
+            name: 'person-remove',
+            colour: 'error',
+          }}
+          textString={t('app.profile.mod_actions.kick', {
+            user: memberObject.nickname ?? user.display_name ?? user.username,
+          })}
+          textThemeColour="error"
+          onPress={() => {
+            app.openModActionModal({
+              member: memberObject,
+              action: 'kick',
+              callback: (reason: string) => onKickOrBan('kick', reason),
+            });
+          }}
+        />
+      )}
+      {memberObject.bannable && (
+        <NewContextButton
+          type={showManageButton || memberObject.kickable ? 'end' : 'detatched'}
+          icon={{
+            pack: 'community',
+            name: 'hammer',
+            colour: 'error',
+          }}
+          textString={t('app.profile.mod_actions.ban', {
+            user: memberObject.nickname ?? user.display_name ?? user.username,
+          })}
+          textThemeColour="error"
+          onPress={() => {
+            app.openModActionModal({
+              member: memberObject,
+              action: 'ban',
+              callback: (reason: string) => onKickOrBan('ban', reason),
+            });
+          }}
+        />
+      )}
+    </>
+  );
+});
 
 const BotOwnerInfo = observer(({user}: {user: User}) => {
   const {t} = useTranslation();
@@ -498,6 +604,7 @@ export const ProfileSheet = observer(
                   {user.bot && <BotOwnerInfo user={user} />}
                   {server && <RoleView user={user} server={server} />}
                   {user.badges && <BadgeView user={user} />}
+                  {server && <ModActions user={user} server={server} />}
                   <Text type={'profile'}>{t('app.profile.bio')}</Text>
                   {profile.content ? (
                     <MarkdownView>
@@ -556,7 +663,7 @@ const localStyles = StyleSheet.create(currentTheme => ({
   buttonsAndTabsContainer: {
     marginBlock: commonValues.sizes.small,
   },
-  relationshipButton: {
+  button: {
     backgroundColor: currentTheme.backgroundPrimary,
     margin: 0,
   },
@@ -572,6 +679,9 @@ const localStyles = StyleSheet.create(currentTheme => ({
     margin: 0,
     flex: 1,
     backgroundColor: currentTheme.backgroundPrimary,
+  },
+  modAction: {
+    gap: commonValues.sizes.medium,
   },
   botOwnerButton: {
     margin: 0,
