@@ -346,8 +346,33 @@ const RoleSettings = observer(
                     initialString: colour,
                     id: 'role_colour',
                     callback: c => {
-                      if (c.length < 10) {
-                        server.editRole(roleID, {colour: c});
+                      try {
+                        // trim any trailing spaces and, if needed, add a hashtag
+                        let filteredColour = c.trim();
+                        if (!filteredColour.startsWith('#')) {
+                          filteredColour = `#${filteredColour}`;
+                        }
+                        // adapted from https://regex101.com/r/2GAAVC/1
+                        const isValidHEXCode = filteredColour.match(
+                          /^#(?:[\da-f]{3}){1,2}$|^#(?:[\da-f]{4}){1,2}$/gim,
+                        );
+                        console.log(filteredColour, isValidHEXCode);
+                        if (isValidHEXCode) {
+                          server.editRole(roleID, {colour: filteredColour});
+                        } else {
+                          showToast(
+                            t(
+                              'app.servers.settings.roles.errors.role_colour_invalid_hex',
+                            ),
+                          );
+                        }
+                      } catch (error) {
+                        showToast(
+                          t(
+                            'app.servers.settings.roles.errors.role_colour_generic',
+                          ),
+                        );
+                        console.log(error);
                       }
                     },
                   });

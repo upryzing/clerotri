@@ -355,7 +355,9 @@
                     "open_colour_modal": "Enter colour manually",
                     "errors": {
                         "empty_rank": "Role ranks cannot be empty!",
-                        "empty_role_name": "Role names cannot be empty!"
+                        "empty_role_name": "Role names cannot be empty!",
+                        "role_colour_generic": "Failed to set new role colour",
+                        "role_colour_invalid_hex": "Invalid HEX code"
                     }
                 },
                 "emoji": {
