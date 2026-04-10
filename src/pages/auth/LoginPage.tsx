@@ -313,7 +313,7 @@ export const LoginPage = ({
               <Text>Log in</Text>
             </Button>
             {loginError ? (
-              <Text>{loginError.message ?? loginError}</Text>
+              <Text>{loginError.message ?? loginError.toString()}</Text>
             ) : null}
           </>
         ) : (
