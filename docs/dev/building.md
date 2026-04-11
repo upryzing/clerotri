@@ -77,15 +77,15 @@ yarn android-release
 
 #### CLI commands
 
-| Command        | Description                                         |
-| -------------- | --------------------------------------------------- |
-| `yarn start`   | Starts Metro (the JS dev server).                   |
-| `yarn web`     | Runs the web app.                                   |
-| `yarn android` | Runs the Android app.                               |
-| `yarn ios`     | Runs the iOS app (broken, requires a Mac).          |
-| `yarn format`  | Formats the code using Prettier.                    |
-| `yarn lint`    | Checks the code syntax using ESLint.                |
-| `yarn test`    | Runs the tests in the `__tests__` folder with Jest. |
+| Command        | Description                                           |
+| -------------- | ----------------------------------------------------- |
+| `yarn start`   | Starts Metro (the JS dev server).                     |
+| `yarn web`     | Runs the web app.                                     |
+| `yarn android` | Runs the Android app.                                 |
+| `yarn ios`     | Runs the iOS app (broken, requires a Mac).            |
+| `yarn format`  | Formats the code using Prettier.                      |
+| `yarn lint`    | Checks the code syntax using ESLint.                  |
+| `yarn test`    | Runs the tests in the `__tests__` folder with Vitest. |
 
 For more information, see a list of `react-native`'s commands [here](https://github.com/react-native-community/cli/blob/master/docs/commands.md). You can access them by running `yarn react-native`.
 

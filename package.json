@@ -15,7 +15,7 @@
     "android-release:full": "yarn android-release && yarn android-release:apkset",
     "ios": "react-native run-ios",
     "start": "react-native rnx-start",
-    "test": "jest",
+    "test": "vitest run -c config/vite.config.ts",
     "lint": "eslint .",
     "format": "prettier -w src/ docs/ i18n/*.ts scripts/ *.md",
     "license-list": "yarn licenses list --production --json --recursive > assets/data/licenses.json && node scripts/licenseListProcessor.mjs -silent",
@@ -99,8 +99,9 @@
     "react-native-svg-transformer": "^1.5.3",
     "react-test-renderer": "19.2.3",
     "typescript": "^5.9.3",
-    "vite": "^7.3.1",
-    "vite-plugin-react-native-web": "^2.7.1"
+    "vite": "^7.3.2",
+    "vite-plugin-react-native-web": "^2.7.1",
+    "vitest": "^4.1.4"
   },
   "engines": {
     "node": ">=22"

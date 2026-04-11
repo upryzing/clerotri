@@ -2,8 +2,9 @@
  * @format
  */
 
+// FIXME: is it possible to make this work with vitest?
 
-// FIXME: current progress: it seems to be react-native-vector-icons causing issues
+import {expect, test} from 'vitest';
 
 // import React from 'react';
 // import ReactTestRenderer from 'react-test-renderer';
@@ -15,7 +16,7 @@
 //   });
 // });
 
-it('is skipped', () => {
+test('is skipped', () => {
   console.warn('Skipping App.test.tsx for now - see file comments');
   expect(true).toBe(true);
 });

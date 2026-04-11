@@ -1,10 +1,10 @@
-import {expect, it} from '@jest/globals';
+import {expect, test} from 'vitest';
 
 import {themes} from '@clerotri/lib/themes';
 import {getColour} from '@clerotri/lib/utils/colourUtils';
 
 // TODO: add more gradient tests
-it('returns the right colour values', () => {
+test('returns the right colour values', () => {
   // test --var (expected value is from default dark mode)
   expect(getColour('var(--error)', themes.Dark)).toBe(themes.Dark.error);
   // test linear gradient (should return the first colour in the gradient)
