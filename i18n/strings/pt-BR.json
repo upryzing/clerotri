@@ -8,7 +8,11 @@
             "create_channel": "Criar canal",
             "delete": "Excluir",
             "save": "Salvar",
-            "copy_invite": "Copiar convite"
+            "copy_invite": "Copiar convite",
+            "ban": "banir",
+            "block": "Bloquear",
+            "kick": "Expulsar",
+            "unblock": "Desbloquear"
         },
         "discover": {
             "count_bots_one": "{{count}} robô",
@@ -53,11 +57,12 @@
                 "saved_body": "Por enquanto, você terá que fechar e reabrir o app para que as suas alterações se apliquem. Sabemos que não é o ideal - nós arrumaremos isso num momento posterior."
             },
             "token_info_label": "Como obter o meu token?",
-            "subheader": "Você tem uma conta?"
+            "subheader": "Você tem uma conta?",
+            "settings_button": "Configurações de login"
         },
         "home": {
-            "join_lounge": "Juntar-se ao Revolt Lounge",
-            "open_lounge": "Abrir o Revolt Lounge",
+            "join_lounge": "Junte-se ao Stoat Lounge",
+            "open_lounge": "Abra o Salão dos Stoat",
             "open_clerotri": "Abrir o servidor Clerotri",
             "open_settings": "Abrir configurações",
             "description": "Deslize a partir da esquerda da tela ou clique no ícone de três linhas para ver os seus servidores e mensagens!",
@@ -108,11 +113,30 @@
                 "session_name_placeholder": "Nome da sessão",
                 "role_colour_header": "Definir cor do cargo",
                 "new_bot_header": "Criar bot",
-                "new_bot_placeholder": "Nome de usuário"
+                "new_bot_placeholder": "Nome de usuário",
+                "new_role_header": "Criar cargo",
+                "new_role_placeholder": "Nome do cargo"
             },
             "new_invite": {
                 "header": "Convite criado",
                 "body": "Aqui está seu novo link de convite:"
+            },
+            "confirm_block": {
+                "header": "Bloquear este usuário?",
+                "header_unblock": "Desbloquear este usuário?",
+                "body": "Tem certeza de que deseja isso <2>bloquear</2> <4>{{name}}</4>?",
+                "body_unblock": "Você é o usuário que deseja <2>desbloquear</2> <4>{{name}}</4>?",
+                "notice": "Eles não poderão enviar mensagens para você nem pedidos de amizade. Você não verá as mensagens deles em canais e servidores.",
+                "notice_unblock": "Eles poderão enviar mensagens para você e pedidos de amizade. Você verá as mensagens deles em canais e servidores."
+            },
+            "confirm_mod_action": {
+                "header_kick": "Expulsar este usuário?",
+                "header_ban": "Banir este usuário?",
+                "body_kick": "Tem certeza de que deseja isso <2>Expulsar</2> <4>{{name}}</4>?",
+                "body_ban": "Você é o usuário que deseja <2>banir</2> <4>{{name}}</4>?",
+                "reason_kick": "Motivo da expulsão (opcional)",
+                "reason_ban": "Motivo do banimento (opcional)",
+                "reason_placeholder": "Especifique um motivo…"
             }
         },
         "servers": {
@@ -167,7 +191,9 @@
                     "open_colour_modal": "Inserir cor manualmente",
                     "errors": {
                         "empty_role_name": "Nomes de cargo não podem estar vazios!",
-                        "empty_rank": "Posições de cargo não podem ser vazias!"
+                        "empty_rank": "Posições de cargo não podem ser vazias!",
+                        "role_colour_generic": "Falha ao definir a nova cor da função",
+                        "role_colour_invalid_hex": "Código HEX inválido"
                     },
                     "permissions_list_body": "Essas permissões se aplicam ao servidor todo. Algumas podem ser sobrescritas para canais específicos.",
                     "permissions_list_header": "Permissões para <2>{{role}}</2>",
@@ -182,7 +208,27 @@
                 },
                 "members": {
                     "title": "Membros",
-                    "loading": "Buscando membros…"
+                    "loading": "Buscando membros…",
+                    "nickname": "Apelido",
+                    "nickname_placeholder": "Defina um apelido…",
+                    "manage_roles": "Gerenciar cargos",
+                    "manage_roles_body_one": "{{name}} tem {{count}} cargo.",
+                    "manage_roles_body_many": "{{name}} tem {{count}} cargos.",
+                    "manage_roles_body_other": "{{name}} tem {{count}} cargos.",
+                    "timeout_user": "Tempo limite {{name}}",
+                    "timeout_user_body": "Eles não poderão enviar mensagens ou reações até que o tempo limite termine.",
+                    "kick_user": "Expulsar {{name}}",
+                    "kick_user_body": "Eles podem entrar novamente com um convite.",
+                    "ban_user": "Banir {{name}}",
+                    "ban_user_body": "Eles não poderão voltar a entrar a menos que você os desbane.",
+                    "roles": {
+                        "header": "<0>{{name}}</0>'s cargos"
+                    },
+                    "select_mode": {
+                        "title_one": "{{count}} membro selecionado",
+                        "title_many": "{{count}} membros selecionados",
+                        "title_other": "{{count}} membros selecionados"
+                    }
                 },
                 "invites": {
                     "title": "Convites",
@@ -233,7 +279,8 @@
                     "useNewMessageView": "Usar a nova visualização de mensagem",
                     "sendAttachments": "Habilitar o envio de anexos",
                     "showNSFWContent": "Consentir para conteúdo +18",
-                    "showMasqAvatar": "Mostrar avatar mascarado no canto"
+                    "showMasqAvatar": "Mostrar avatar mascarado no canto",
+                    "hideBlockedMessages": "Ocultar completamente as mensagens de usuários bloqueados"
                 },
                 "settings": {
                     "showExperimental": "Mostrar recursos experimentais"
@@ -300,7 +347,8 @@
                 "title": "Sessões",
                 "loading": "Carregando sessões…",
                 "current_session": "Esta sessão",
-                "other_sessions": "Outras sessões"
+                "other_sessions": "Outras sessões",
+                "remove_other_sessions_body": "Esta sessão permanecerá conectada."
             },
             "bots": {
                 "invite_bot": "Convidar bot",
@@ -314,7 +362,8 @@
                 "public": "Público",
                 "public_body_revolt": "Se ativado, permite que o bot seja convidado a grupos e servidores de outros usuários.",
                 "public_body_upryzing": "Se ativado, este bot pode ser convidado a grupos e espaços de outros usuários.",
-                "copy_invite_link": "Copiar link de convite"
+                "copy_invite_link": "Copiar link de convite",
+                "public_body_stoat": "Se esta opção estiver ativada, este bot poderá ser convidado para grupos e servidores por outros usuários."
             }
         },
         "misc": {
@@ -327,12 +376,13 @@
             },
             "voice": {
                 "header": "Canais de voz ainda não são suportados no Clerotri!",
-                "body": "No meio-tempo, você pode se juntar a eles através do aplicativo da web ou através do Revolt Desktop."
+                "body": "Entretanto, você pode participar através do aplicativo web ou do Stoat Desktop."
             }
         },
         "profile": {
             "roles": {
-                "copied_role_id_toast": "ID do cargo copiado"
+                "copied_role_id_toast": "ID do cargo copiado",
+                "edit": "Editar cargos"
             },
             "bot_owner": "Dono do Bot",
             "bio": "Biografia",
@@ -351,7 +401,8 @@
             "menu": {
                 "back": "Retornar ao perfil",
                 "report_user": "Denunciar usuário",
-                "block_user": "Bloquear usuário"
+                "block_user": "Bloquear usuário",
+                "unblock_user": "Desbloquear usuário"
             },
             "tabs": {
                 "mutual_friends": "Amigos mútuos",
@@ -361,7 +412,13 @@
             },
             "badges": "Insígnias",
             "roles_header": "Cargos",
-            "message_user": "Mensagem"
+            "message_user": "Mensagem",
+            "mod_actions_header": "Ações do moderador",
+            "mod_actions": {
+                "manage": "Configurações de membro",
+                "kick": "Expulsar {{user}}",
+                "ban": "Banir {{user}}"
+            }
         },
         "permissions": {
             "ManageWebhooks": "Gerenciar Webhooks",
@@ -464,7 +521,7 @@
                     "SpamAbuse_body_server": "Este servidor está spamando ou abusando a plataforma",
                     "SpamAbuse_body_user": "Este usuário está spamando ou abusando a plataforma",
                     "Underage": "Menor de idade",
-                    "Underage_body_user": "Este usuário é muito jovem para usar o Revolt",
+                    "Underage_body_user": "Este usuário é muito jovem para usar a plataforma",
                     "UnsolicitedSpam": "Spam não-solicitado",
                     "UnsolicitedSpam_body_message": "Esta mensagem contém publicidade ou spam não-solicitados",
                     "UnsolicitedSpam_body_server": "Este servidor contém publicidade ou spam não-solicitados",
@@ -516,7 +573,9 @@
                 "success_body_revolt": "Sua denúncia foi enviada ao time do Revolt para avaliação. Obrigado por ajudar a manter o Revolt seguro.",
                 "reason_selector_body": "Você pode adicionar mais contexto após selecionar um motivo.",
                 "reason_selector_message": "Por que está denunciando esta mensagem?",
-                "success_body_upryzing": "Sua denúncia foi enviada ao time do Upryzing para avaliação. Obrigado por ajudar a manter o Upryzing seguro."
+                "success_body_upryzing": "Sua denúncia foi enviada ao time do Upryzing para avaliação. Obrigado por ajudar a manter o Upryzing seguro.",
+                "destination_notice_stoat": "Este relatório será enviado à equipe de moderação do Stoat, e não aos moderadores deste servidor.",
+                "success_body_stoat": "Seu relatório foi enviado à equipe da Stoat para análise. Agradecemos sua ajuda para manter a Stoat segura."
             }
         },
         "analytics": {
@@ -556,11 +615,36 @@
             "ResponsibleDisclosure": "Denunciou uma vulnerabilidade responsavelmente",
             "Supporter": "Doador",
             "Translator": "Tradutor",
-            "Developer": "Desenvolvedor do Revolt",
-            "PlatformModeration": "Moderador da Plataforma"
+            "Developer": "Desenvolvedor de Stoat",
+            "PlatformModeration": "Moderador da Plataforma",
+            "ActiveSupporter": "Apoiador ativo"
         },
         "custom_badges": {
             "clerotri_dev": "Desenvolvedor do Clerotri"
+        },
+        "changelog": {
+            "header": "Registro de alterações da {{version}}",
+            "header_newly_updated": "Clerotri foi atualizado para {{version}}",
+            "released_on": "Lançado em {{date}}",
+            "donate": "Doar",
+            "see_full_changelog": "Veja o registro de alterações completo",
+            "dismiss": "Liberar"
+        },
+        "invites": {
+            "member_count_one": "{{count}} membro",
+            "member_count_many": "{{count}} membros",
+            "member_count_other": "{{count}} membros",
+            "join_server": "Entre no servidor",
+            "go_to_server": "Acesse o servidor"
+        },
+        "themes": {
+            "Light": "Claro",
+            "Dark": "Escuro",
+            "Solarized": "Solarizado",
+            "AMOLED": "AMOLED",
+            "Rose Pine": "Pinheiro Rosé",
+            "Rose Pine Moon": "Lua Pinheiro Rosé",
+            "Rose Pine Dawn": "Aurora Pinheiro Rosé"
         }
     }
 }
