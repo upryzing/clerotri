@@ -10,7 +10,7 @@
         },
         "actions": {
             "back": "Zurück",
-            "close": "schließen",
+            "close": "Schließen",
             "cancel": "Abbrechen",
             "delete": "Löschen",
             "confirm": "Bestätigen",
@@ -18,7 +18,9 @@
             "create_channel": "Kanal erstellen",
             "copy_invite": "Einladung kopieren",
             "ban": "Bannen",
-            "kick": "Kicken"
+            "kick": "Rauswerfen",
+            "block": "Blockieren",
+            "unblock": "Entblocken"
         },
         "servers": {
             "settings": {
@@ -60,7 +62,9 @@
                     "permissions": "Erlaubnis",
                     "errors": {
                         "empty_role_name": "Du musst der Rolle einen Namen geben!",
-                        "empty_rank": "Rollen dürfen nicht leer sein!"
+                        "empty_rank": "Rollen dürfen nicht leer sein!",
+                        "role_colour_generic": "Setzen der Rollenfarbe ist fehlgeschlagen",
+                        "role_colour_invalid_hex": "Ungültiger HEX-Code"
                     },
                     "name": "Name",
                     "name_placeholder": "Bestimme einen Namen für die Rolle…",
@@ -97,7 +101,13 @@
                     "kick_user_body": "Du kannst mit einer Einladung wieder beitreten.",
                     "ban_user": "Verbot {{name}}",
                     "ban_user_body": "Du kannst nicht wieder beitreten, solange du nicht entsperrt wurdest.",
-                    "timeout_user_body": "Du kannst erst wieder Nachrichten oder Reaktionen senden, wenn Deine Auszeit abgelaufen ist."
+                    "timeout_user_body": "Du kannst erst wieder Nachrichten oder Reaktionen senden, wenn Deine Auszeit abgelaufen ist.",
+                    "manage_roles": "Rollen verwalten",
+                    "roles": {
+                        "header": "<0>{{name}}</0>s Rollen"
+                    },
+                    "manage_roles_body_one": "{{name}} hat {{count}} Rolle.",
+                    "manage_roles_body_other": "{{name}} hat {{count}} Rollen."
                 },
                 "invites": {
                     "title": "Einladungen",
@@ -134,7 +144,8 @@
                     "use24H": "Verwende den 24-Stunden-Zeitstempel",
                     "useNewMessageView": "Neue Nachrichtenansicht verwenden",
                     "doubleTapToReply": "Antworte einer Nachricht, indem du sie doppelt antippst",
-                    "doubleTapToReply_remark": "Dies wird nur in der neuen Nachrichtenansicht unterstützt."
+                    "doubleTapToReply_remark": "Dies wird nur in der neuen Nachrichtenansicht unterstützt.",
+                    "hideBlockedMessages": "Nachrichten von blockierten Nutzern vollständig verbergen"
                 },
                 "home": {
                     "holidays": "Feiertage auf der Startseite anzeigen"
@@ -198,7 +209,9 @@
                 "nickname_header": "Spitznamen festlegen",
                 "nickname_other_header": "Lege den Spitznamen des Mitglieds fest",
                 "new_bot_header": "Bot erstellen",
-                "new_bot_placeholder": "Benutzername"
+                "new_bot_placeholder": "Benutzername",
+                "new_role_header": "Rolle erstellen",
+                "new_role_placeholder": "Rollenname"
             },
             "new_invite": {
                 "header": "Einladung erstellt",
@@ -212,6 +225,14 @@
                 "body_kick": "Sind Sie sicher, dass Sie <4>{{name}}</4> <2>kicken</2> möchten?",
                 "body_ban": "Sind Sie der Benutzer, den Sie <2>sperren</2> möchten, <4>{{name}}</4>?",
                 "reason_kick": "Grund für den Rauswurf (optional)"
+            },
+            "confirm_block": {
+                "header": "Diesen Nutzer blockieren?",
+                "header_unblock": "Diesen Nutzer entblocken?",
+                "body": "Bist du dir sicher, dass du <4>{{name}}</4> <2>block</2> möchtest?",
+                "body_unblock": "Bist du dir sicher, dass du <4>{{name}}</4> <2>unblock</2> möchtest?",
+                "notice": "Die Person wird dir keine Nachrichten oder Freundschaftsanfragen senden können. Du wirst ihre Nachrichten nicht in Kanälen oder Servern sehen.",
+                "notice_unblock": "Die Person wird dir Nachrichten oder Freundschaftsanfragen senden können. Du wirst ihre Nachrichten in Kanälen oder Servern sehen."
             }
         },
         "misc": {
@@ -355,7 +376,8 @@
         },
         "profile": {
             "roles": {
-                "copied_role_id_toast": "Rollen-ID kopiert"
+                "copied_role_id_toast": "Rollen-ID kopiert",
+                "edit": "Rollen bearbeiten"
             },
             "bot_owner": "Bot-Besitzer",
             "flags": {
@@ -373,7 +395,8 @@
             "menu": {
                 "back": "Zurück zum Profil",
                 "block_user": "Benutzer blockieren",
-                "report_user": "Benutzer melden"
+                "report_user": "Benutzer melden",
+                "unblock_user": "Nutzer entblocken"
             },
             "message_user": "Nachricht",
             "tabs": {
@@ -384,7 +407,13 @@
             },
             "badges": "Abzeichen",
             "bio": "Biografie",
-            "roles_header": "Rollen"
+            "roles_header": "Rollen",
+            "mod_actions": {
+                "kick": "{{user}} rauswerfen",
+                "ban": "{{user}} bannen",
+                "manage": "Mitgliedereinstellungen"
+            },
+            "mod_actions_header": "Moderationsfunktionen"
         },
         "permissions": {
             "AssignRoles": "Rollen zuweisen",
@@ -440,31 +469,31 @@
         "analytics": {
             "values": {
                 "model": "Dein Gerätemodell",
-                "os": "Dein Betriebssytem und Version",
+                "os": "Dein Betriebssystem und Version",
                 "clerotriVersion": "Die Clerotri-Version die Du nutzt",
-                "inBasic": "Alles in grundlegend",
+                "inBasic": "Alles in Grundlegend",
                 "inBasic_body": "Gerätemodell, Betriebssystem-Version, Clerotri-Version",
                 "instance": "Die URL deiner Instanz",
                 "settings_body_one": "Einzelner {{count}} Eintrag",
                 "settings_body_other": "Mehrfache {{count}} Einträge",
-                "settings": "Define Einstellungen in Clerotri"
+                "settings": "Deine Clerotri-Einstellungen"
             },
-            "privacy_info": "Datenschutz und Privatsphäre",
-            "title": "Analyse-Tool-Einstellungen bearbeiten",
+            "privacy_info": "Datenschutz-Informationen",
+            "title": "Analysen verwalten",
             "tiers": {
                 "basic": "Grundlegende",
                 "full": "Umfassende"
             },
-            "disable_analytics": "Analyse-Tool ausschalten",
-            "analytics_disabled": "Analyse-Tool ausgeschaltet",
+            "disable_analytics": "Analysen ausschalten",
+            "analytics_disabled": "Analysen ausgeschaltet",
             "copied_data_toast": "Beispieldaten kopiert",
-            "enable_basic": "Grundlegende Erhebung einschalten",
-            "switch_to_basic": "Auf grundlegende wechseln",
-            "enable_full": "Umfassende Erhebung einschalten",
-            "switch_to_full": "Auf umfassende wechseln",
+            "enable_basic": "Grundlegende Analyse einschalten",
+            "switch_to_basic": "Auf Grundlegende wechseln",
+            "enable_full": "Umfassende Analysen einschalten",
+            "switch_to_full": "Auf umfassende Analysen wechseln",
             "active": "Aktiviert",
-            "continue_without_analytics": "Weiter ohne Erhebung",
-            "body": "Clerotri erhebt und sammelt standardmäßig keine personennezogenen Daten. Du kannst uns helfen, die App zu verbessern, indem Du uns erlaubst, folgenden Daten zu erheben."
+            "continue_without_analytics": "Weiter ohne Datenerhebung",
+            "body": "Clerotri erhebt keine personenbezogenen Daten. Du kannst uns helfen, die App zu verbessern, indem Du uns erlaubst, folgenden Daten zu erheben."
         },
         "friends_list": {
             "blocked": "Blockiert - {{count}}",
