@@ -284,7 +284,7 @@ export const LoginPage = ({
               <></>
             )}
             {loginError ? (
-              <Text>{loginError.message || loginError.toString()}</Text>
+              <Text>{loginError.message || JSON.stringify(loginError)}</Text>
             ) : null}
           </>
         ) : loginType === 'token' ? (
@@ -313,7 +313,7 @@ export const LoginPage = ({
               <Text>Log in</Text>
             </Button>
             {loginError ? (
-              <Text>{loginError.message ?? loginError.toString()}</Text>
+              <Text>{loginError.message ?? JSON.stringify(loginError)}</Text>
             ) : null}
           </>
         ) : (
