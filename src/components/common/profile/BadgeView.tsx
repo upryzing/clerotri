@@ -37,7 +37,7 @@ export const BadgeView = observer(({user}: {user: User}) => {
           size={18}
           color={'accentColor'}
           onPress={() =>
-            openUrl('https://support.revolt.chat/kb/account/badges')
+            openUrl('https://support.stoat.chat/kb/account/badges')
           }
           style={{marginInlineStart: commonValues.sizes.small}}
         />
