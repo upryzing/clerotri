@@ -30,6 +30,7 @@ import {
   AccountSettingsSection,
   BotSettingsSection,
   LicenseListSection,
+  PrivacySettingsSection,
   ProfileSettingsSection,
   SessionsSettingsSection,
 } from '@clerotri/components/common/settings/sections/app';
@@ -180,6 +181,8 @@ export const SettingsSheet = observer(
                     section={section}
                     setSection={setSection}
                   />
+                )  : section.section === 'privacy' ? (
+                  <PrivacySettingsSection />
                 ) : (
                   <AppInfoSection />
                 )}
@@ -258,6 +261,14 @@ export const SettingsSheet = observer(
                 icon={{pack: 'regular', name: 'translate'}}
                 onPress={() => {
                   setSection({section: 'i18n'});
+                }}
+              />
+              <SettingsButton
+                menu={'app'}
+                section={'privacy'}
+                icon={{pack: 'regular', name: 'privacy-tip'}}
+                onPress={() => {
+                  setSection({section: 'privacy'});
                 }}
               />
               <SettingsButton

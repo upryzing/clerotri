@@ -496,6 +496,9 @@
                 "view_issues": "View Open Issues",
                 "logout": "Log Out"
             },
+            "privacy": {
+                "title": "Privacy"
+            },
             "profile": {
                 "title": "Profile",
                 "loading_bio": "Loading bio…",
