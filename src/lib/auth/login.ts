@@ -123,7 +123,8 @@ export async function loginWithToken(
   setStatus('checkingCredentials');
   try {
     // check if this is *actually* the user's ID before doing anything
-    console.log(decodeTime(token));
+    const timestamp = decodeTime(token);
+    console.warn(`[LOGINWITHTOKEN] Invalid token: ${timestamp}`);
     setLoginError('That is a user ID, not a token.');
     setStatus('awaitingLogin');
   } catch {
