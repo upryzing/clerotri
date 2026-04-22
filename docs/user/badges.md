@@ -32,7 +32,7 @@ These badges are given to those who have donated various amounts of money to Cle
 
 If you want a donor badge, [**donate via Ko-fi or Liberapay**](https://rexowo.dev/donate?utm_source=clerotri_badge_docs). Feel free to ask in [the Clerotri server](https://stt.gg/clerotri) if you want to donate via another method.
 
-After donating, [email `clerotri@upryzing.app`](mailto:beartechtalks@gmail.com?subject=Donor+badge+request) with proof of your donation and your user ID. You can get your user ID by opening the settings menu and selecting "Copy Debug Info" - **you only need to include the `userID` field**.
+After donating, [email `clerotri@upryzing.app`](mailto:clerotri@upryzing.app?subject=Donor+badge+request) with proof of your donation and your user ID. You can get your user ID by opening the settings menu and selecting "Copy Debug Info" - **you only need to include the `userID` field**.
 
 The badge tier will be based on **the amount of money you've given so far**. Bear this in mind if you're donating via Liberapay - for example, if you pick the Medium tier, you will be able to claim the Silver badge if you fund it for a month and a half.
 
