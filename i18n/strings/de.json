@@ -261,7 +261,7 @@
             "forms": {
                 "email_placeholder": "E-Mail",
                 "password_placeholder": "Passwort",
-                "mfa_placeholder": "Ein-Mal Code",
+                "mfa_placeholder": "Einmalcode",
                 "session_token_placeholder": "Token"
             },
             "subheader": "Hast du ein Benutzerkonto?",
@@ -347,11 +347,14 @@
             },
             "analytics": {
                 "title": "Analytik"
+            },
+            "privacy": {
+                "title": "Datenschutz"
             }
         },
         "discover": {
-            "count_servers_one": "Einzelner {{count}} Server",
-            "count_servers_other": "Mehrfache {{count}} Server",
+            "count_servers_one": "{{count}} Server",
+            "count_servers_other": "{{count}} Server",
             "fetching_bots": "Lade Bots…",
             "fetching_servers": "Lade Server…",
             "header_bots": "Bots entdecken",
@@ -360,8 +363,8 @@
                 "bots": "Bot-Accounts",
                 "servers": "Server"
             },
-            "count_bots_one": "Einzelner {{count}} Bot",
-            "count_bots_other": "Mehrfache {{count}} Bots"
+            "count_bots_one": "{{count}} Bot",
+            "count_bots_other": "{{count}} Bots"
         },
         "messaging": {
             "reply_not_loaded": "Nachricht konnte nicht geladen werden",
@@ -474,26 +477,26 @@
                 "inBasic": "Alles in Grundlegend",
                 "inBasic_body": "Gerätemodell, Betriebssystem-Version, Clerotri-Version",
                 "instance": "Die URL deiner Instanz",
-                "settings_body_one": "Einzelner {{count}} Eintrag",
-                "settings_body_other": "Mehrfache {{count}} Einträge",
+                "settings_body_one": "{{count}} Eintrag",
+                "settings_body_other": "{{count}} Einträge",
                 "settings": "Deine Clerotri-Einstellungen"
             },
             "privacy_info": "Datenschutz-Informationen",
-            "title": "Analysen verwalten",
+            "title": "Telemetrie verwalten",
             "tiers": {
-                "basic": "Grundlegende",
-                "full": "Umfassende"
+                "basic": "Grundlegend",
+                "full": "Umfassend"
             },
-            "disable_analytics": "Analysen ausschalten",
-            "analytics_disabled": "Analysen ausgeschaltet",
+            "disable_analytics": "Telemetrie ausschalten",
+            "analytics_disabled": "Telemetrie ausgeschaltet",
             "copied_data_toast": "Beispieldaten kopiert",
-            "enable_basic": "Grundlegende Analyse einschalten",
-            "switch_to_basic": "Auf Grundlegende wechseln",
-            "enable_full": "Umfassende Analysen einschalten",
-            "switch_to_full": "Auf umfassende Analysen wechseln",
+            "enable_basic": "Grundlegende Telemetrie einschalten",
+            "switch_to_basic": "Auf grundlegende Telemetrie wechseln",
+            "enable_full": "Umfassende Telemetrie einschalten",
+            "switch_to_full": "Auf umfassende Telemetrie wechseln",
             "active": "Aktiviert",
             "continue_without_analytics": "Weiter ohne Datenerhebung",
-            "body": "Clerotri erhebt keine personenbezogenen Daten. Du kannst uns helfen, die App zu verbessern, indem Du uns erlaubst, folgenden Daten zu erheben."
+            "body": "Clerotri erhebt keine personenbezogenen Daten. Du kannst uns helfen, die App zu verbessern, indem du uns erlaubst, folgende Daten zu erheben."
         },
         "friends_list": {
             "blocked": "Blockiert - {{count}}",
@@ -513,7 +516,7 @@
             "Founder": "Gründer",
             "Paw": "Pfote des Einsatzes",
             "PlatformModeration": "Plattform-Moderator",
-            "ResponsibleDisclosure": "Verantwortungsvoll ein Sicherheitsproblem offengelegt",
+            "ResponsibleDisclosure": "Verantwortungsvoll ein Sicherheitsproblem gemeldet",
             "Supporter": "Spender",
             "Translator": "Übersetzer",
             "ActiveSupporter": "Aktiver Unterstützer"
@@ -630,8 +633,8 @@
             "AMOLED": "AMOLED"
         },
         "changelog": {
-            "header": "Änderungsprotokoll für v {{version}}",
-            "header_newly_updated": "Clerotri wurde auf v {{version}} aktualisiert",
+            "header": "Änderungsprotokoll für Version {{version}}",
+            "header_newly_updated": "Clerotri wurde auf Version {{version}} aktualisiert",
             "released_on": "Veröffentlicht am {{date}}",
             "donate": "Spenden",
             "see_full_changelog": "Siehe das vollständige Änderungsprotokoll",
