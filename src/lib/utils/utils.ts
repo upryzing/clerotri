@@ -313,7 +313,8 @@ export const arraysAreEqual = (
 
 // </from>
 
-type Version = `v${number}.${number}.${number}${`-${'alpha' | 'beta'}${number}` | ''}`
+type Version =
+  `v${number}.${number}.${number}${`-${'alpha' | 'beta'}${number}` | ''}`;
 
 /**
  * Check whether version A is newer than version B - for example, check if the last installed version is newer than a certain version before running a migration
@@ -321,15 +322,12 @@ type Version = `v${number}.${number}.${number}${`-${'alpha' | 'beta'}${number}` 
  * @param version2 The version you want to check it against, also formatted as `vX.Y.Z`
  * @returns `true` if version A is greater than version B, `false` if it isn't
  */
-export const isVersionNewerThan = (
-  version: Version,
-  version2: Version,
-) => {
+export const isVersionNewerThan = (version: Version, version2: Version) => {
   const split = version.replace('v', '').split('.');
   const split2 = version2.replace('v', '').split('.');
 
-  const float = `${split[0]}.${split[1] + split[2] + (split[3] ? split[3].replace(/-(alpha|beta)/, '') : '' )}`;
-  const float2 = `${split2[0]}.${split2[1] + split2[2] + (split2[3] ? split2[3].replace(/-(alpha|beta)/, '') : '' )}}`;
+  const float = `${split[0]}.${split[1] + split[2] + (split[3] ? split[3].replace(/-(alpha|beta)/, '') : '')}`;
+  const float2 = `${split2[0]}.${split2[1] + split2[2] + (split2[3] ? split2[3].replace(/-(alpha|beta)/, '') : '')}}`;
 
   return Number.parseFloat(float) > Number.parseFloat(float2);
 };

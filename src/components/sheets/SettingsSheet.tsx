@@ -181,7 +181,7 @@ export const SettingsSheet = observer(
                     section={section}
                     setSection={setSection}
                   />
-                )  : section.section === 'privacy' ? (
+                ) : section.section === 'privacy' ? (
                   <PrivacySettingsSection />
                 ) : (
                   <AppInfoSection />
