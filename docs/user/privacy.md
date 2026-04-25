@@ -1,14 +1,14 @@
 # Privacy information
 
-_This was last updated on 01/10/2025._
+_This was last updated on xx/04/2026._
 
 _For the purposes of this document, "we" and "us" refers to the core maintainers of Clerotri. As of the date of writing, this only includes me ([Rexogamer](https://rexowo.dev))._
 
-By default, Clerotri doesn't collect any data itself. You can optionally enable [analytics](#analytics) to help improve the app, but these are **strictly optional** and disabling them will **not affect app functionality**.
+By default, Clerotri doesn't collect any data itself. You can optionally enable [analytics](#analytics) to help improve the app, but these are **strictly optional** and disabling them will **not affect app functionality**. You can also choose to enable extra user badges.
 
 ## Regular data
 
-Your messages, attachments and other data you send via the app will - hopefully unsurprisingly - be sent to the Upryzing/Revolt instance you're using. By default, the app connects to [`stoat.chat`](https://stoat.chat).
+Your messages, attachments and other data you send via the app will - hopefully unsurprisingly - be sent to the Upryzing/Stoat/Revolt instance you're using. By default, the app connects to [`stoat.chat`](https://stoat.chat).
 
 As Clerotri is a third-party client, we don't store or control this data, so please refer to the privacy and data policies of the instance(s) you're using.
 
@@ -16,7 +16,7 @@ As Clerotri is a third-party client, we don't store or control this data, so ple
 
 Clerotri doesn't currently support account deletion, though this is planned for a future update.
 
-- If you're using `stoat.chat` (the default instance), see their account deletion guide [here](https://support.revolt.chat/kb/account/deleting-your-account), or their partial data deletion guide [here](https://support.revolt.chat/kb/account/partial-deletion-pii).
+- If you're using `stoat.chat` (the default instance), see their account deletion guide [here](https://support.stoat.chat/kb/account/deleting-your-account), or their partial data deletion guide [here](https://support.stoat.chat/kb/account/partial-deletion-pii). Note that the steps for Android refer to [the official Android app](https://github.com/stoatchat/for-android).
 - If you're using another instance, please contact the instance's operators for more information.
 
 ## Analytics
@@ -47,14 +47,30 @@ If you enable the full tier of analytics, Clerotri will collect:
 
 This lets us see what settings are being used and how, and which instances are being used - for example, if a setting is unused we can more safely drop it, and if a lot of users are using a specific instance we can consider extra support for it and any extra features or changes it may have.
 
-### Retention and access
+## Extra badges
 
-Analytics are stored for up to 365 days. General statistics (e.g. the amount of people using a specific setting or Android version) may be made public, while the specific data is only accessible to the core contributors as listed above.
+Extra badges - including donor badges - are also disabled by default. If you choose to enable them, the version of Clerotri you're using and your current instance's API URL will be sent to us to provide the correct list of users with extra badges.
 
-### Deletion
+You will be asked if you wish to enable them upon opening a user profile for the first time. You can also enable or disable them at any time by opening the settings menu and selecting "Privacy".
 
-As there's no way for us to tie multiple sets of data together, **analytics deletion is not possible**. On the other hand, however, the fact that we can't tie this data together means your privacy is enhanced - we can't identify who a specific set of analytics belongs to.
+The amount of data stored depends on your analytics settings:
 
-### Contact us
+- if analytics are disabled, the app version and the URL will be discarded after generating the list of users;
+- if you've enabled the basic tier of analytics, the app version will be stored; and
+- if you've enabled the full tier of analytics, the app version _and_ the URL will be stored.
+
+The total amount of requests for extra badge lists is also stored.
+
+Stored data is used for easier troubleshooting and analysis.
+
+## Retention and access
+
+Analytics and information about badge list requests are stored for up to 365 days. General statistics (e.g. the amount of people using a specific setting or Android version) may be made public, while the specific data is only accessible to the core contributors as listed above.
+
+## Deletion
+
+As there's no way for us to tie sets of data together, **data deletion is not possible**. However, the fact that we can't tie this data together means your privacy is enhanced - we can't identify who a specific set of analytics or badge list requests belongs to.
+
+## Contact us
 
 If you have any further questions or suggestions, feel free to [open an issue](https://github.com/upryzing/clerotri/issues/new) or ask in [Clerotri's Stoat server](https://rvlt.gg/clerotri)
