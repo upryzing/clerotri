@@ -364,6 +364,9 @@
                 "public_body_upryzing": "Se ativado, este bot pode ser convidado a grupos e espaços de outros usuários.",
                 "copy_invite_link": "Copiar link de convite",
                 "public_body_stoat": "Se esta opção estiver ativada, este bot poderá ser convidado para grupos e servidores por outros usuários."
+            },
+            "privacy": {
+                "title": "Privacidade"
             }
         },
         "misc": {
