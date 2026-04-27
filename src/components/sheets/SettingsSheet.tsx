@@ -3,6 +3,7 @@ import {type GradientValue, Platform, ScrollView, View} from 'react-native';
 import {StyleSheet} from 'react-native-unistyles';
 import {useTranslation} from 'react-i18next';
 import {observer} from 'mobx-react-lite';
+import {useMMKVBoolean} from 'react-native-mmkv';
 
 import Clipboard from '@react-native-clipboard/clipboard';
 import {
@@ -17,7 +18,7 @@ import {app, setFunction} from '@clerotri/Generic';
 import {client} from '@clerotri/lib/client';
 import {DONATIONS_INFO, OPEN_ISSUES, WEBLATE} from '@clerotri/lib/consts';
 import {APP_VERSION} from '@clerotri/lib/metadata';
-import {getSettingsObject} from '@clerotri/lib/settings';
+import {getSettingsObject, settings} from '@clerotri/lib/settings';
 import {getInstanceURL} from '@clerotri/lib/storage/utils';
 import {commonValues, type Theme, ThemeContext} from '@clerotri/lib/themes';
 import {SettingsSection} from '@clerotri/lib/types';
@@ -114,6 +115,10 @@ export const SettingsSheet = observer(
         }
       },
     );
+
+    const [
+      enableExperimentalFeatures = settings.getDefault('ui.settings.showExperimental'),
+    ] = useMMKVBoolean('ui.settings.showExperimental');
 
     const donateGradient = useMemo(
       () => generateDonateGradient(currentTheme),
@@ -226,7 +231,7 @@ export const SettingsSheet = observer(
                   setSection({section: 'sessions'});
                 }}
               />
-              {__DEV__ && (
+              {enableExperimentalFeatures && (
                 <SettingsButton
                   menu={'app'}
                   type={'end'}
