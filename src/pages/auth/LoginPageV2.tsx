@@ -110,9 +110,15 @@ const SignInPage = observer(() => {
 
   const [loggingIn, _setLoggingIn] = useState(false);
 
+  const [emailInput, setEmailInput] = useState('');
+  const [passwordInput, setPasswordInput] = useState('');
+  const [_mfaInput, _setMFAInput] = useState('');
+
   return (
     <View style={{alignItems: 'center'}}>
       <Input
+        value={emailInput}
+        onChangeText={v => setEmailInput(v)}
         isLoginInput
         skipRegularStyles
         placeholder={t('app.login.forms.email_placeholder')}
@@ -121,6 +127,8 @@ const SignInPage = observer(() => {
         disabled={loggingIn}
       />
       <Input
+        value={passwordInput}
+        onChangeText={v => setPasswordInput(v)}
         isLoginInput
         skipRegularStyles
         placeholder={t('app.login.forms.password_placeholder')}
