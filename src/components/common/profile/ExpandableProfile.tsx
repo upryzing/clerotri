@@ -72,13 +72,20 @@ export const ExpandableProfile = observer(({user}: {user: User}) => {
     null as {content?: string | null} | null,
   );
 
+  const [error, setError] = useState<unknown>(null);
+
   const [renderCount, setRenderCount] = useState(0);
 
   useEffect(() => {
     async function getProfile() {
-      const p = await user.fetchProfile();
+      try {
+        const p = await user.fetchProfile();
 
-      setProfile(p);
+        setProfile(p);
+      } catch (err) {
+        console.log(`[EXPANDABLEPROFILE] Failed to fetch bio: ${err}`);
+        setError(err);
+      }
     }
     getProfile();
   }, [user, renderCount]);
@@ -113,32 +120,51 @@ export const ExpandableProfile = observer(({user}: {user: User}) => {
   return (
     <View style={localStyles.container}>
       <ProfileCard user={user} />
-      <Pressable
-        onPress={() => (profile ? setExpanded(!expanded) : null)}
-        style={{
-          flexDirection: 'row',
-          alignItems: 'center',
-          padding: commonValues.sizes.medium,
-        }}>
-        <MaterialIcon
-          name={expanded ? 'expand-less' : 'expand-more'}
-          size={24}
-          color={'foregroundSecondary'}
-        />
-        <Text
-          useNewText
-          style={{alignContent: 'center', fontSize: 16, fontWeight: 'bold'}}
-          colour={'foregroundSecondary'}>
-          {t(
-            `app.settings_menu.profile.${profile ? (expanded ? 'collapse' : 'expand') : 'loading'}_bio`,
-          )}
-        </Text>
-      </Pressable>
-      {expanded && (
-        <View style={{padding: commonValues.sizes.medium}}>
-          <MarkdownView>{profile?.content}</MarkdownView>
-        </View>
-      )}
+      <View style={localStyles.bioSectionContainer}>
+        <Pressable
+          onPress={() => (error || profile ? setExpanded(!expanded) : null)}
+          style={{
+            flexDirection: 'row',
+            alignItems: 'center',
+          }}>
+          <MaterialIcon
+            name={error ? 'error' : expanded ? 'expand-less' : 'expand-more'}
+            size={24}
+            color={'foregroundSecondary'}
+          />
+          <Text
+            useNewText
+            style={{
+              alignContent: 'center',
+              paddingInlineStart: commonValues.sizes.small,
+              fontSize: 16,
+              fontWeight: 'bold',
+            }}
+            colour={'foregroundSecondary'}>
+            {t(
+              `app.settings_menu.profile.${profile ? (expanded ? 'collapse' : 'expand') : error ? 'failed_to_load' : 'loading'}_bio`,
+            )}
+          </Text>
+        </Pressable>
+        {expanded &&
+          (error ? (
+            <View>
+              <Text
+                useNewText
+                style={{
+                  fontWeight: 'bold',
+                }}
+                colour={'foregroundSecondary'}>
+                {t(`app.settings_menu.profile.error_details`)}
+              </Text>
+              <Text useNewText colour={'error'} font={'JetBrains Mono'}>
+                {JSON.stringify(error)}
+              </Text>
+            </View>
+          ) : (
+            <MarkdownView>{profile?.content}</MarkdownView>
+          ))}
+      </View>
     </View>
   );
 });
@@ -160,5 +186,9 @@ const localStyles = StyleSheet.create(currentTheme => ({
   },
   cardBackground: {
     backgroundColor: currentTheme.serverNameBackground,
+  },
+  bioSectionContainer: {
+    padding: commonValues.sizes.medium,
+    gap: commonValues.sizes.medium,
   },
 }));

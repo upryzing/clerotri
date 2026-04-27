@@ -504,6 +504,8 @@
                 "loading_bio": "Loading bio…",
                 "expand_bio": "Expand bio",
                 "collapse_bio": "Collapse bio",
+                "failed_to_load_bio": "Failed to load bio",
+                "error_details": "Error details",
                 "display_name": "Display name",
                 "status": "Status",
                 "status_body": "Set your status type and text"
