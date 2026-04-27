@@ -8,23 +8,30 @@ import {Button, Text} from '@clerotri/components/common/atoms';
 import {GapView} from '@clerotri/components/layout';
 import {ModalContainer} from '@clerotri/components/modals/common';
 import {app} from '@clerotri/Generic';
-import {ChannelContext} from '@clerotri/lib/state';
+import {client} from '@clerotri/lib/client';
+import {ChannelContext, ServerContext} from '@clerotri/lib/state';
 import {commonValues} from '@clerotri/lib/themes';
 import type {DeletableObject} from '@clerotri/lib/types';
 
 export const ConfirmDeletionModal = observer(
   ({target}: {target: DeletableObject}) => {
     const {currentChannel, setCurrentChannel} = useContext(ChannelContext);
+    const {setCurrentServer} = useContext(ServerContext);
 
     const {t} = useTranslation();
-    const name = target.type === 'Server' ? target.object.name : '';
+    const name =
+      target.type === 'Bot'
+        ? (target.object.user.display_name ?? target.object.user.username)
+        : target.type === 'Server'
+          ? target.object.name
+          : '';
     return (
       <ModalContainer>
         <Text type={'h1'}>
           {t(`app.modals.confirm_deletion.header_${target.type.toLowerCase()}`)}
         </Text>
-        {target.type === 'Server' ? (
-          <Trans t={t} i18nKey={'app.modals.confirm_deletion.body_server'}>
+        {target.type === 'Bot' || target.type === 'Server' ? (
+          <Trans t={t} i18nKey={'app.modals.confirm_deletion.body_bot'}>
             Are you sure you want to delete{' '}
             <Text style={{fontWeight: 'bold'}}>
               {
@@ -58,6 +65,12 @@ export const ConfirmDeletionModal = observer(
           <Button
             onPress={() => {
               switch (target.type) {
+                // TODO: make channel deletion functional
+                case 'Bot':
+                  app.handleSettingsVisibility(() => {});
+                  client.bots.delete(target.object.bot._id);
+                  app.openDeletionConfirmationModal(null);
+                  break;
                 case 'Role':
                   app.closeRoleSubsection();
                   target.object.server.deleteRole(target.object.role);
@@ -65,7 +78,7 @@ export const ConfirmDeletionModal = observer(
                   break;
                 case 'Server':
                   app.openServerContextMenu(null);
-                  app.openServer(undefined);
+                  setCurrentServer(null);
                   app.openServerSettings(null);
                   if (
                     typeof currentChannel !== 'string' &&

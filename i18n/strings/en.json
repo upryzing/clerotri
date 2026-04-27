@@ -159,10 +159,12 @@
                 "notice_unblock": "They will be able to message you and send you friend requests. You will see their messages in channels and servers."
             },
             "confirm_deletion": {
+                "header_bot": "Delete bot?",
                 "header_channel": "Delete channel?",
                 "header_role": "Delete role?",
                 "header_message": "Delete message?",
                 "header_server": "Delete server?",
+                "body_bot": "Are you sure you want to delete <2>{{name}}</2>?",
                 "body_channel": "Are you sure you want to delete <2>this channel</2>?",
                 "body_role": "Are you sure you want to delete <2>this role</2>?",
                 "body_message": "Are you sure you want to delete <2>this message</2>?",
@@ -467,7 +469,9 @@
                 "public_body_stoat": "If this is enabled, this bot can be invited to groups and servers by other users.",
                 "public_body_upryzing": "If this is enabled, this bot can be invited to groups and spaces by other users.",
                 "copy_invite_link": "Copy invite link",
-                "invite_bot": "Invite bot"
+                "invite_bot": "Invite bot",
+                "reset_token": "Reset token",
+                "delete_bot": "Delete bot"
             },
             "functionality": {
                 "title": "Features"

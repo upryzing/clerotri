@@ -5,8 +5,6 @@ import {observer} from 'mobx-react-lite';
 
 import Clipboard from '@react-native-clipboard/clipboard';
 
-import type {API, User} from 'revolt.js';
-
 import {app} from '@clerotri/Generic';
 import {client} from '@clerotri/lib/client';
 import {styles} from '@clerotri/Theme';
@@ -27,12 +25,7 @@ import {
 import {LineSeparator} from '@clerotri/components/layout';
 import {OFFICIAL_INSTANCE_API_URLS} from '@clerotri/lib/consts';
 import {commonValues} from '@clerotri/lib/themes';
-import type {SettingsSection} from '@clerotri/lib/types';
-
-type GroupedBotObject = {
-  user: User;
-  bot: API.Bot;
-};
+import type {GroupedBotObject, SettingsSection} from '@clerotri/lib/types';
 
 const BotSettings = observer(({bot}: {bot: GroupedBotObject}) => {
   const {t} = useTranslation();
@@ -114,6 +107,25 @@ const BotSettings = observer(({bot}: {bot: GroupedBotObject}) => {
         onPress={() => app.openBotInvite(bot.bot._id)}
         style={{margin: 0, marginBlock: commonValues.sizes.small}}>
         <Text>{t('app.settings_menu.bots.invite_bot')}</Text>
+      </Button>
+      <LineSeparator style={{margin: commonValues.sizes.medium}} />
+      {__DEV__ && (
+        <Button
+          onPress={() => console.log('reset token')}
+          style={{margin: 0, marginBlock: commonValues.sizes.small}}>
+          <Text useNewText colour={'error'}>
+            {t('app.settings_menu.bots.reset_token')}
+          </Text>
+        </Button>
+      )}
+      <Button
+        onPress={() =>
+          app.openDeletionConfirmationModal({type: 'Bot', object: bot})
+        }
+        style={{margin: 0, marginBlock: commonValues.sizes.small}}>
+        <Text useNewText colour={'error'}>
+          {t('app.settings_menu.bots.delete_bot')}
+        </Text>
       </Button>
     </>
   );

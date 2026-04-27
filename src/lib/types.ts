@@ -3,7 +3,7 @@ import type {ColorValue, TextProps, TouchableOpacityProps} from 'react-native';
 import type {MaterialDesignIconsIconName} from '@react-native-vector-icons/material-design-icons/static';
 import type {MaterialIconsIconName} from '@react-native-vector-icons/material-icons/static';
 
-import type {Channel, Member, Message, Server, User} from 'revolt.js';
+import type {API, Channel, Member, Message, Server, User} from 'revolt.js';
 
 import type {Theme} from '@clerotri/lib/themes';
 
@@ -42,6 +42,16 @@ export type ReplyingMessage = {
   message: Message;
 };
 
+export type GroupedBotObject = {
+  user: User;
+  bot: API.Bot;
+};
+
+interface TypedBot {
+  type: 'Bot';
+  object: GroupedBotObject;
+}
+
 interface TypedChannel {
   type: 'Channel';
   object: Channel;
@@ -73,6 +83,7 @@ interface TypedUser {
 export type ReportedObject = TypedMessage | TypedServer | TypedUser;
 
 export type DeletableObject =
+  | TypedBot
   | TypedChannel
   | TypedRole
   | TypedMessage
