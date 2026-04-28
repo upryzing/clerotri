@@ -60,12 +60,7 @@ export const MessageReactions = observer(({msg}: {msg: Message}) => {
 
   if (reactions.length > 0) {
     return (
-      <View
-        style={{
-          flexDirection: 'row',
-          marginVertical: commonValues.sizes.small,
-          flexWrap: 'wrap',
-        }}>
+      <View style={localStyles.container}>
         {reactions.map(r => {
           return (
             <Reaction
@@ -82,14 +77,18 @@ export const MessageReactions = observer(({msg}: {msg: Message}) => {
 });
 
 const localStyles = StyleSheet.create(currentTheme => ({
+  container: {
+    flexDirection: 'row',
+    marginBlock: commonValues.sizes.small + commonValues.sizes.xs,
+    flexWrap: 'wrap',
+    gap: commonValues.sizes.small,
+  },
   reaction: {
     padding: commonValues.sizes.small,
     borderRadius: commonValues.sizes.small,
     borderColor: currentTheme.backgroundTertiary,
     backgroundColor: currentTheme.backgroundSecondary,
     borderWidth: commonValues.sizes.xs,
-    marginEnd: commonValues.sizes.small,
-    marginVertical: commonValues.sizes.xs,
     flexDirection: 'row',
   },
   activeReaction: {

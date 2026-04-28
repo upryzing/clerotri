@@ -117,6 +117,6 @@ const localStyles = StyleSheet.create(currentTheme => ({
     flexDirection: 'row',
     alignItems: 'center',
     justifyContent: 'space-between',
-    marginVertical: commonValues.sizes.large,
+    marginBlock: commonValues.sizes.large,
   },
 }));

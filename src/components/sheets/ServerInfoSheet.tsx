@@ -113,7 +113,7 @@ export const ServerInfoSheet = observer(({server}: {server: Server | null}) => {
               useNewText
               colour={'foregroundSecondary'}
               style={{
-                marginVertical: commonValues.sizes.small,
+                marginBlock: commonValues.sizes.small,
               }}>
               {server._id === SPECIAL_SERVERS.lounge.id
                 ? 'Member count disabled for this server'

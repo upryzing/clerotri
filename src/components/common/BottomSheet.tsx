@@ -56,6 +56,6 @@ const localStyles = StyleSheet.create(currentTheme => ({
     backgroundColor: currentTheme.foregroundPrimary,
     width: '25%',
     padding: 3,
-    marginVertical: commonValues.sizes.medium,
+    marginBlock: commonValues.sizes.medium,
   },
 }));
