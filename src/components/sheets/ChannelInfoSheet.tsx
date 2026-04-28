@@ -36,7 +36,7 @@ export const ChannelInfoSheet = observer(
                 useNewText
                 colour={'foregroundSecondary'}
                 style={{
-                  marginVertical: commonValues.sizes.small,
+                  marginBlock: commonValues.sizes.small,
                 }}>
                 {channel.channel_type === 'Group'
                   ? `Group (${groupMembers.length} ${

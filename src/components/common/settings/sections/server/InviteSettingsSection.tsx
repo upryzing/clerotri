@@ -32,7 +32,7 @@ export const InviteSettingsSection = observer(({server}: {server: Server}) => {
         style={{
           flexDirection: 'row',
           alignItems: 'center',
-          marginVertical: commonValues.sizes.medium,
+          marginBlock: commonValues.sizes.medium,
         }}>
         <View style={{flex: 1}}>
           <Text type={'h1'}>{t('app.servers.settings.invites.title')}</Text>

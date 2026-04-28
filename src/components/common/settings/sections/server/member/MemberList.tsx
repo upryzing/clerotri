@@ -186,7 +186,7 @@ export const MemberList = observer(
             flexDirection: 'row',
             alignItems: 'center',
             justifyContent: 'space-between',
-            marginVertical: commonValues.sizes.medium,
+            marginBlock: commonValues.sizes.medium,
           }}>
           <Text type={'h1'}>
             {selectionMode
