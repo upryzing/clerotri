@@ -129,7 +129,10 @@ export const SessionsSettingsSection = observer(() => {
                   client.api.delete('/auth/session/all');
                 }}>
                 <View style={{flex: 1, flexDirection: 'column'}}>
-                  <Text useNewText colour={'error'} style={{fontWeight: 'bold'}}>
+                  <Text
+                    useNewText
+                    colour={'error'}
+                    style={{fontWeight: 'bold'}}>
                     {t('app.settings_menu.sessions.remove_other_sessions')}
                   </Text>
                   <Text useNewText colour={'error'}>
@@ -144,7 +147,11 @@ export const SessionsSettingsSection = observer(() => {
                     justifyContent: 'center',
                   }}>
                   <View style={styles.iconContainer}>
-                    <MaterialIcon name="arrow-forward" size={20} color={'error'} />
+                    <MaterialIcon
+                      name="arrow-forward"
+                      size={20}
+                      color={'error'}
+                    />
                   </View>
                 </View>
               </PressableSettingsEntry>

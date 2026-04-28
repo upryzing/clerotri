@@ -117,7 +117,9 @@ export const SettingsSheet = observer(
     );
 
     const [
-      enableExperimentalFeatures = settings.getDefault('ui.settings.showExperimental'),
+      enableExperimentalFeatures = settings.getDefault(
+        'ui.settings.showExperimental',
+      ),
     ] = useMMKVBoolean('ui.settings.showExperimental');
 
     const donateGradient = useMemo(
