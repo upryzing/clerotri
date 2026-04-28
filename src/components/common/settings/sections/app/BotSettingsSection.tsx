@@ -22,7 +22,7 @@ import {
   PressableSettingsEntry,
   SettingsEntry,
 } from '@clerotri/components/common/settings/atoms';
-import {LineSeparator} from '@clerotri/components/layout';
+import {GapView, LineSeparator} from '@clerotri/components/layout';
 import {OFFICIAL_INSTANCE_API_URLS} from '@clerotri/lib/consts';
 import {commonValues} from '@clerotri/lib/themes';
 import type {GroupedBotObject, SettingsSection} from '@clerotri/lib/types';
@@ -184,6 +184,50 @@ const MAX_BOT_COUNT = 5;
 
 const AUP_URL = 'https://stoat.chat/aup';
 
+const CreateBotButton = observer(
+  ({rerender}: {rerender: Dispatch<SetStateAction<number>>}) => {
+    const {t} = useTranslation();
+
+    return (
+      <PressableSettingsEntry
+        onPress={() => {
+          app.openTextEditModal({
+            initialString: '',
+            id: 'new_bot',
+            callback: async s => {
+              await client.api.post('/bots/create', {
+                name: s,
+              });
+              rerender(renders => renders + 1);
+            },
+          });
+        }}>
+        <View style={{flex: 1, flexDirection: 'column'}}>
+          <Text style={{fontWeight: 'bold'}}>
+            {t('app.settings_menu.bots.new_bot')}
+          </Text>
+          <Text>
+            {t('app.settings_menu.bots.new_bot_body', {
+              limit: MAX_BOT_COUNT,
+            })}
+          </Text>
+        </View>
+        <View
+          style={{
+            width: 30,
+            height: 20,
+            alignItems: 'center',
+            justifyContent: 'center',
+          }}>
+          <View style={styles.iconContainer}>
+            <MaterialIcon name="arrow-forward" size={20} />
+          </View>
+        </View>
+      </PressableSettingsEntry>
+    );
+  },
+);
+
 export const BotList = observer(
   ({
     bots,
@@ -205,41 +249,7 @@ export const BotList = observer(
             {bots.length ? (
               <>
                 {bots.length < MAX_BOT_COUNT && (
-                  <PressableSettingsEntry
-                    onPress={() => {
-                      app.openTextEditModal({
-                        initialString: '',
-                        id: 'new_bot',
-                        callback: async s => {
-                          await client.api.post('/bots/create', {
-                            name: s,
-                          });
-                          rerender(renders => renders + 1);
-                        },
-                      });
-                    }}>
-                    <View style={{flex: 1, flexDirection: 'column'}}>
-                      <Text style={{fontWeight: 'bold'}}>
-                        {t('app.settings_menu.bots.new_bot')}
-                      </Text>
-                      <Text>
-                        {t('app.settings_menu.bots.new_bot_body', {
-                          limit: MAX_BOT_COUNT,
-                        })}
-                      </Text>
-                    </View>
-                    <View
-                      style={{
-                        width: 30,
-                        height: 20,
-                        alignItems: 'center',
-                        justifyContent: 'center',
-                      }}>
-                      <View style={styles.iconContainer}>
-                        <MaterialIcon name="arrow-forward" size={20} />
-                      </View>
-                    </View>
-                  </PressableSettingsEntry>
+                  <CreateBotButton rerender={rerender} />
                 )}
                 <Trans t={t} i18nKey={'app.settings_menu.bots.aup_notice'}>
                   All bots must follow the{' '}
@@ -248,7 +258,11 @@ export const BotList = observer(
                   </Link>
                   .
                 </Trans>
-                <LineSeparator style={{margin: commonValues.sizes.medium}} />
+                <LineSeparator
+                  style={{
+                    margin: commonValues.sizes.medium,
+                  }}
+                />
                 {bots.map(b => (
                   <BotListEntry
                     key={`bot-${b.bot._id}`}
@@ -261,7 +275,11 @@ export const BotList = observer(
                 ))}
               </>
             ) : (
-              <Text>{t('app.settings_menu.bots.no_bots')}</Text>
+              <>
+                <Text>{t('app.settings_menu.bots.no_bots')}</Text>
+                <GapView size={2} />
+                <CreateBotButton rerender={rerender} />
+              </>
             )}
           </>
         ) : (

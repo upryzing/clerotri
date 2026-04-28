@@ -460,7 +460,7 @@
             "bots": {
                 "title": "Bots",
                 "loading": "Loading bots…",
-                "no_bots": "You have no bots",
+                "no_bots": "You have no bots.",
                 "new_bot": "Create new bot",
                 "new_bot_body": "You can create up to {{limit}} bots.",
                 "aup_notice": "All bots must follow the <2>Acceptable Use Policy</2>.",
