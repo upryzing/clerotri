@@ -48,7 +48,6 @@ const MemberListEntry = observer(
 
     return (
       <PressableSettingsEntry
-        style={{flexDirection: 'column'}}
         key={`member-settings-entry-${item._id.user}`}
         onPress={() => {
           selectionMode ? selectMember() : setMember();
@@ -59,34 +58,32 @@ const MemberListEntry = observer(
             selectMember();
           }
         }}>
-        <View style={{flexDirection: 'row', alignItems: 'center'}}>
-          <View style={{flex: 1, flexDirection: 'column'}}>
-            <Text
-              useNewText
-              key={`member-settings-entry-${item._id.user}-id`}
-              customColour={item.roleColour ?? undefined}
-              style={{fontWeight: 'bold'}}>
-              {item.nickname ?? item.user?.display_name ?? item.user?.username}
-            </Text>
-            <Text useNewText colour={'foregroundSecondary'}>
-              @{item.user?.username}#{item.user?.discriminator}
-            </Text>
-            <Text useNewText colour={'foregroundSecondary'}>
-              {item._id.user}
-            </Text>
-          </View>
-          <View style={styles.iconContainer}>
-            <MaterialIcon
-              name={
-                selectionMode
-                  ? selectedMembers.find(m => m._id.user === item._id.user)
-                    ? 'radio-button-on'
-                    : 'radio-button-off'
-                  : 'arrow-forward'
-              }
-              size={20}
-            />
-          </View>
+        <View style={{flex: 1, flexDirection: 'column'}}>
+          <Text
+            useNewText
+            key={`member-settings-entry-${item._id.user}-id`}
+            customColour={item.roleColour ?? undefined}
+            style={{fontWeight: 'bold'}}>
+            {item.nickname ?? item.user?.display_name ?? item.user?.username}
+          </Text>
+          <Text useNewText colour={'foregroundSecondary'}>
+            @{item.user?.username}#{item.user?.discriminator}
+          </Text>
+          <Text useNewText colour={'foregroundSecondary'}>
+            {item._id.user}
+          </Text>
+        </View>
+        <View style={styles.iconContainer}>
+          <MaterialIcon
+            name={
+              selectionMode
+                ? selectedMembers.find(m => m._id.user === item._id.user)
+                  ? 'radio-button-on'
+                  : 'radio-button-off'
+                : 'arrow-forward'
+            }
+            size={20}
+          />
         </View>
       </PressableSettingsEntry>
     );
