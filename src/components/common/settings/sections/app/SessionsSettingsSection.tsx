@@ -1,4 +1,4 @@
-import {useContext, useEffect, useState} from 'react';
+import {useEffect, useState} from 'react';
 import {Pressable, View} from 'react-native';
 import {useTranslation} from 'react-i18next';
 import {observer} from 'mobx-react-lite';
@@ -16,7 +16,7 @@ import {
 } from '@clerotri/components/common/settings/atoms';
 import {GapView, LineSeparator} from '@clerotri/components/layout';
 import {storage} from '@clerotri/lib/storage';
-import {commonValues, ThemeContext} from '@clerotri/lib/themes';
+import {commonValues} from '@clerotri/lib/themes';
 
 const SessionEntry = observer(
   ({
@@ -80,8 +80,6 @@ const SessionEntry = observer(
 );
 
 export const SessionsSettingsSection = observer(() => {
-  const {currentTheme} = useContext(ThemeContext);
-
   const {t} = useTranslation();
 
   const sessionID = storage.getString('sessionID');
@@ -127,15 +125,14 @@ export const SessionsSettingsSection = observer(() => {
           {sessions.filter(ses => ses._id !== sessionID).length ? (
             <>
               <PressableSettingsEntry
-                style={{backgroundColor: currentTheme.error}}
                 onPress={() => {
                   client.api.delete('/auth/session/all');
                 }}>
                 <View style={{flex: 1, flexDirection: 'column'}}>
-                  <Text style={{fontWeight: 'bold'}}>
+                  <Text useNewText colour={'error'} style={{fontWeight: 'bold'}}>
                     {t('app.settings_menu.sessions.remove_other_sessions')}
                   </Text>
-                  <Text>
+                  <Text useNewText colour={'error'}>
                     {t('app.settings_menu.sessions.remove_other_sessions_body')}
                   </Text>
                 </View>
@@ -147,7 +144,7 @@ export const SessionsSettingsSection = observer(() => {
                     justifyContent: 'center',
                   }}>
                   <View style={styles.iconContainer}>
-                    <MaterialIcon name="arrow-forward" size={20} />
+                    <MaterialIcon name="arrow-forward" size={20} color={'error'} />
                   </View>
                 </View>
               </PressableSettingsEntry>
