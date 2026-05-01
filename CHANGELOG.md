@@ -1,5 +1,42 @@
 # Clerotri's changelog
 
+## v0.14.1
+
+_This version was released on 01/05/2026._
+
+### Important notes
+
+- I'm planning to introduce extra user profile badges for Clerotri, starting with donor badges. **These would be fetched from Clerotri's servers.**
+- **This feature would be opt-in** - no extra data would be sent or fetched without your explicit consent.
+- As part of this, I've proposed [**some updates to the privacy information document**][privacy_info_pr] to explain what would be collected/stored if you enabled the feature, and to generally clarify and update a few things. I've also included a separate document, listing the different badges and explaining what they mean. Any feedback or suggestions are welcome!
+
+### What's new
+
+- You can now **kick and ban server members from their user profiles**.
+  - There are also links to the member settings menu and the role settings menu, letting you more quickly update their nickname and roles.
+- A **new section has been added to the settings menu** for **privacy-related settings**. This currently contains a link to the privacy policy, but more settings will be added soon.
+- The app now uses React Native 0.85.
+
+### Bug fixes
+
+- Logging in with session tokens works again.
+- Trying to set an invalid role colour should no longer crash the app
+- The app will no longer crash if you try and fail to log in with your email and password, then attempt to log in with a session token.
+- The bot settings menu is now visible if you've enabled experimental features.
+- The expandable profile card will now show an error message if the bio can't be fetched, instead of getting stuck on "Loading bio...".
+- Login errors should be slightly more descriptive.
+
+### Experimental features
+
+_These features can be accessed by enabling "Show experimental features" in Settings → Features._
+
+- The **bot settings** menu has received a few updates and fixes:
+  - you can now delete bots,
+  - the bot creation button is now visible if you haven't created any bots, and
+  - various layout/design tweaks have been made.
+
+[privacy_info_pr]: https://github.com/upryzing/clerotri/pull/64
+
 ## v0.14.0
 
 _This version was released on 05/04/2026._

@@ -17,10 +17,13 @@ import {APP_VERSION} from '@clerotri/lib/metadata';
 import {commonValues, ThemeContext} from '@clerotri/lib/themes';
 import {openUrl} from '@clerotri/lib/utils';
 
-const releaseDate = '05/04/2026';
+const PRIVACY_INFO_PR = 'https://github.com/upryzing/clerotri/pull/64';
+
+const releaseDate = '01/05/2026';
 
 const changelogParagraphs = [
-  'This release includes **new role management features**, the ability to **block and unblock users** and several bug fixes.',
+  'This release includes **easier access to mod tools**, improvements to **the bot settings menu** and several bug fixes.',
+  `Also note that there are some **proposed updates** to **the privacy information document**. [Review the changes and give your feedback!](${PRIVACY_INFO_PR})`,
   `Follow Clerotri on [**Bluesky**](${BLUESKY_PROFILE}) and [**the Fediverse**](${FEDI_PROFILE}) for the latest updates!`,
 ];
 

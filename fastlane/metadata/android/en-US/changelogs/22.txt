@@ -1,0 +1,5 @@
+- Easier access to mod tools
+- Improvements to the bot settings menu
+- Bug fixes
+- Give your feedback on proposed updates to the privacy information document: https://github.com/upryzing/clerotri/pull/64
+- Full changelog: https://github.com/upryzing/clerotri/blob/main/CHANGELOG.md#v0141
