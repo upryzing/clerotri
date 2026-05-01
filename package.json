@@ -27,7 +27,7 @@
     "knip": "knip"
   },
   "dependencies": {
-    "@gorhom/bottom-sheet": "^5.2.10",
+    "@gorhom/bottom-sheet": "^5.2.13",
     "@legendapp/list": "^2.0.19",
     "@notifee/react-native": "^9.1.8",
     "@react-native-clipboard/clipboard": "^1.16.3",
