@@ -89,7 +89,9 @@
                 "warning": "Isso não pode ser desfeito.",
                 "body_message": "Tem certeza que quer excluir <2>essa mensagem</2>?",
                 "header_channel": "Apagar canal?",
-                "body_channel": "Você tem certeza de que quer apagar <2>esse canal</2>?"
+                "body_channel": "Você tem certeza de que quer apagar <2>esse canal</2>?",
+                "header_bot": "Excluir bot?",
+                "body_bot": "Tem certeza de que deseja excluir <2>{{name}}</2>?"
             },
             "create_channel": {
                 "header": "Criar um canal novo",
@@ -329,7 +331,9 @@
                 "collapse_bio": "Colapsar bio",
                 "display_name": "Nome de exibição",
                 "status": "Status",
-                "status_body": "Coloque seu tipo de status e texto"
+                "status_body": "Coloque seu tipo de status e texto",
+                "failed_to_load_bio": "Falha ao carregar a biografia",
+                "error_details": "Detalhes do erro"
             },
             "toasts": {
                 "deprecated": "Essa opção será removida numa versão futura.",
@@ -354,7 +358,7 @@
                 "invite_bot": "Convidar bot",
                 "title": "Bots",
                 "loading": "Carregando bots…",
-                "no_bots": "Você não tem bots",
+                "no_bots": "Você não tem bots.",
                 "new_bot": "Criar novo bot",
                 "new_bot_body": "Você pode criar até {{limit}} bots.",
                 "aup_notice": "Todos os bots devem seguir a <2>Política de Uso Aceitável</2>.",
@@ -363,7 +367,9 @@
                 "public_body_revolt": "Se ativado, permite que o bot seja convidado a grupos e servidores de outros usuários.",
                 "public_body_upryzing": "Se ativado, este bot pode ser convidado a grupos e espaços de outros usuários.",
                 "copy_invite_link": "Copiar link de convite",
-                "public_body_stoat": "Se esta opção estiver ativada, este bot poderá ser convidado para grupos e servidores por outros usuários."
+                "public_body_stoat": "Se esta opção estiver ativada, este bot poderá ser convidado para grupos e servidores por outros usuários.",
+                "reset_token": "Redefinir token",
+                "delete_bot": "Excluir bot"
             },
             "privacy": {
                 "title": "Privacidade"
