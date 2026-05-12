@@ -18,7 +18,9 @@
             "create_channel": "Создать канал",
             "copy_invite": "Скопировать приглашение",
             "ban": "Забанить",
-            "kick": "Выгнать"
+            "kick": "Выгнать",
+            "block": "Заблокировать",
+            "unblock": "Разблокировать"
         },
         "modals": {
             "confirm_deletion": {
@@ -68,6 +70,10 @@
                 "reason_kick": "Причина изгнания (необязательно)",
                 "reason_ban": "Причина бана (необязательно)",
                 "reason_placeholder": "Выберите причину…"
+            },
+            "confirm_block": {
+                "header": "Заблокировать пользователя?",
+                "header_unblock": "Разблокировать пользователя?"
             }
         },
         "loading": {
@@ -249,7 +255,8 @@
             "settings": {
                 "saved": "Сохранено!",
                 "saved_body": "Пока что вы должны закрыть и заново открыть приложение для того, чтобы применить изменения. Мы знаем, что это не идеально - мы исправим это позже."
-            }
+            },
+            "settings_button": "Настройки входа"
         },
         "settings_menu": {
             "profile": {
@@ -598,6 +605,18 @@
             "Rose Pine": "Руже Пине",
             "Rose Pine Moon": "Лунная Руже Пине",
             "Rose Pine Dawn": "Рассветная Руже Пине"
+        },
+        "changelog": {
+            "header": "Изменения в v{{version}}",
+            "header_newly_updated": "Clerotri обновлён до v{{version}}",
+            "released_on": "Выпущено {{date}}",
+            "donate": "Поддержать",
+            "see_full_changelog": "Увидеть полный список изменений",
+            "dismiss": "Отклонить"
+        },
+        "invites": {
+            "go_to_server": "Перейти к серверу",
+            "join_server": "Присоединиться к серверу"
         }
     }
 }
