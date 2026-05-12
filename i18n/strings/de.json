@@ -185,7 +185,9 @@
                 "body_role": "Bist Du sicher, dass Du <2>diese Rolle</2> löschen möchten?",
                 "header_role": "Rolle löschen?",
                 "header_channel": "Kanal löschen?",
-                "body_channel": "Bist Du sicher, dass Du <2>diesen Kanal</2> löschen möchtest?"
+                "body_channel": "Bist Du sicher, dass Du <2>diesen Kanal</2> löschen möchtest?",
+                "header_bot": "Bot löschen?",
+                "body_bot": "Bist du dir sicher, dass du <2>{{name}}</2> löschen möchtest?"
             },
             "create_channel": {
                 "header": "Neuen Kanal erstellen",
@@ -309,7 +311,9 @@
                 "status_body": "Lege Deinen Statustyp und -text fest",
                 "expand_bio": "Bio erweitern",
                 "loading_bio": "Bio wird geladen…",
-                "collapse_bio": "Biografie einklappen"
+                "collapse_bio": "Biografie einklappen",
+                "failed_to_load_bio": "Laden der Biografie fehlgeschlagen",
+                "error_details": "Fehlerdetails"
             },
             "licenses": {
                 "loading": "Lizenzdaten werden geladen…",
@@ -323,11 +327,13 @@
                 "public_body_upryzing": "Wenn dies aktiviert ist, kann dieser Bot von anderen Benutzern zu Gruppen und Bereichen eingeladen werden.",
                 "copy_invite_link": "Einladungslink kopieren",
                 "invite_bot": "Bot einladen",
-                "no_bots": "Du hast keine Bots",
+                "no_bots": "Du hast keine Bots.",
                 "new_bot_body": "Du kannst bis zu {{limit}} Bots erstellen.",
                 "title": "Roboter",
                 "loading": "Bots werden geladen…",
-                "token": "Zeichen"
+                "token": "Zeichen",
+                "reset_token": "Token zurücksetzen",
+                "delete_bot": "Bot löschen"
             },
             "sessions": {
                 "title": "Sitzungen",
