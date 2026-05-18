@@ -33,7 +33,8 @@
                 "body_role": "Вы уверены, что хотите удалить <2>эту роль</2>?",
                 "header_channel": "Удалить канал?",
                 "body_channel": "Вы уверены, что хотите удалить <2>этот канал</2>?",
-                "header_bot": "Удалить бота?"
+                "header_bot": "Удалить бота?",
+                "body_bot": "Вы уверены, что хотите удалить <2>{{name}}</2>?"
             },
             "edit_text": {
                 "nickname_header": "Задать никнейм",
@@ -78,7 +79,9 @@
                 "header": "Заблокировать пользователя?",
                 "header_unblock": "Разблокировать пользователя?",
                 "notice": "Он не сможет вам писать или отправлять запросы дружбы. Вы не будете видеть его сообщения в каналах и на серверах.",
-                "notice_unblock": "Он сможет вам писать и отправлять запросы дружбы. Вы станете видеть его сообщения в каналах и на серверах."
+                "notice_unblock": "Он сможет вам писать и отправлять запросы дружбы. Вы станете видеть его сообщения в каналах и на серверах.",
+                "body": "Вы уверены, что хотите <2>заблокировать</2> <4>{{name}}</4>?",
+                "body_unblock": "Вы уверены, что хотите <2>разблокировать</2> <4>{{name}}</4>?"
             }
         },
         "loading": {
@@ -188,7 +191,8 @@
                     "errors": {
                         "empty_role_name": "Название роли не может быть пустым!",
                         "empty_rank": "Уровень роли не может быть пустым!",
-                        "role_colour_generic": "Не удалось выбрать новый цвет роли"
+                        "role_colour_generic": "Не удалось выбрать новый цвет роли",
+                        "role_colour_invalid_hex": "Неверный код HEX"
                     },
                     "name": "Название",
                     "name_placeholder": "Установите название для роли…",
@@ -229,7 +233,10 @@
                     "manage_roles": "Управление ролями",
                     "manage_roles_body_one": "У {{name}} {{count}} роль.",
                     "manage_roles_body_few": "У {{name}} {{count}} ролей.",
-                    "manage_roles_body_many": "У {{name}} {{count}} ролей."
+                    "manage_roles_body_many": "У {{name}} {{count}} ролей.",
+                    "roles": {
+                        "header": "Роли <0>{{name}}</0>"
+                    }
                 },
                 "invites": {
                     "loading": "Загрузка приглашений…",
@@ -278,7 +285,8 @@
                 "display_name": "Отображаемое имя",
                 "status": "Статус",
                 "status_body": "Задайте ваш статус и добавьте текст",
-                "error_details": "Детали ошибки"
+                "error_details": "Детали ошибки",
+                "failed_to_load_bio": "Не удалось загрузить описание"
             },
             "account": {
                 "title": "Аккаунт"
@@ -335,7 +343,8 @@
                 "copy_invite_link": "Скопировать ссылку-приглашение",
                 "invite_bot": "Пригласить бота",
                 "public_body_stoat": "Когда это включено, другие пользователи смогут приглашать этого бота в группы и на сервера.",
-                "delete_bot": "Удалить бота"
+                "delete_bot": "Удалить бота",
+                "reset_token": "Сбросить токен"
             },
             "sessions": {
                 "remove_other_sessions_body": "Эта сессия не будет завершена.",
@@ -349,7 +358,7 @@
                 "remove_other_sessions": "Выйти из остальных сессий"
             },
             "privacy": {
-                "title": "Приватность"
+                "title": "Конфиденциальность"
             }
         },
         "discover": {
@@ -400,7 +409,7 @@
             },
             "roles_header": "Роли",
             "menu": {
-                "block_user": "Заблокировать",
+                "block_user": "Заблокировать пользователя",
                 "report_user": "Пожаловаться",
                 "back": "Вернуться к профилю",
                 "unblock_user": "Разблокировать Пользователя"
@@ -616,7 +625,8 @@
             "Supporter": "Донатер",
             "Translator": "Переводчик",
             "ResponsibleDisclosure": "Ответственно раскрыли проблему безопасности",
-            "Developer": "Разработчик Stoat"
+            "Developer": "Разработчик Stoat",
+            "ActiveSupporter": "Активно поддерживающий"
         },
         "custom_badges": {
             "clerotri_dev": "Разработчица Clerotri"
@@ -632,15 +642,18 @@
         },
         "changelog": {
             "header": "Изменения в v{{version}}",
-            "header_newly_updated": "Clerotri обновлён до v{{version}}",
+            "header_newly_updated": "Clerotri обновлено до v{{version}}",
             "released_on": "Выпущено {{date}}",
             "donate": "Поддержать",
             "see_full_changelog": "Увидеть полный список изменений",
             "dismiss": "Отклонить"
         },
         "invites": {
-            "go_to_server": "Перейти к серверу",
-            "join_server": "Присоединиться к серверу"
+            "go_to_server": "Перейти на сервер",
+            "join_server": "Присоединиться к серверу",
+            "member_count_one": "{{count}} участник",
+            "member_count_few": "{{count}} участника",
+            "member_count_many": "{{count}} участников"
         }
     }
 }
