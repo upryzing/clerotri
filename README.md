@@ -16,8 +16,8 @@
   <a href="https://translate.upryzing.app/engage/clerotri/">
     <img src="https://translate.upryzing.app/widgets/clerotri/-/app/svg-badge.svg" alt="Translation status on Weblate" />
   </a>
-  <a href="https://lea.pet/@clerotri">
-    <img src="https://img.shields.io/badge/fedi-@clerotri@lea.pet-teal" alt="Fediverse badge from shields.io"/>
+  <a href="https://ap.upryzing.app/@clerotri">
+    <img src="https://img.shields.io/badge/fedi-@clerotri@ap.upryzing.app-teal" alt="Fediverse badge from shields.io"/>
   </a>
   <a href="https://bsky.app/profile/clerotri.upryzing.app">
     <img src="https://img.shields.io/badge/bluesky-@clerotri.upryzing.app-dodgerblue" alt="Fediverse badge from shields.io"/>

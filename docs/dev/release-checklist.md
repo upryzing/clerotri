@@ -24,5 +24,5 @@
 
 - [ ] Announce the new release in the Stoat server's #announcement channel...
 - [ ] ...and post a link to it in the #version channel
-- [ ] Post an announcement on [the fedi account](https://lea.pet/@clerotri)
+- [ ] Post an announcement on [the fedi account](https://ap.upryzing.app/@clerotri)
 - [ ] Post an announcement on [the Bluesky account](https://bsky.app/profile/clerotri.upryzing.app)
