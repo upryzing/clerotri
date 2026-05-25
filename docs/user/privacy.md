@@ -59,7 +59,7 @@ The amount of data stored depends on your analytics settings:
 - if you've enabled the basic tier of analytics, the app version will be stored; and
 - if you've enabled the full tier of analytics, the app version _and_ the URL will be stored.
 
-The total amount of requests for extra badge lists is also stored.
+The total number of requests for extra badge lists is also stored. (Note that this is global, not per-user.)
 
 Stored data is used for easier troubleshooting and analysis.
 
