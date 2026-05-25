@@ -30,7 +30,7 @@ These badges will only appear if you enable extra badges in the app, and are fet
 
 These badges are given to those who have donated various amounts of money to Clerotri's developers.
 
-If you want a donor badge, [**donate via Ko-fi or Liberapay**](https://rexowo.dev/donate?utm_source=clerotri_badge_docs). Feel free to ask in [the Clerotri server](https://stt.gg/clerotri) if you want to donate via another method.
+If you want a donor badge, [**donate via Ko-fi, Buy Me a Coffee or Liberapay**](https://rexowo.dev/donate?utm_source=clerotri_badge_docs). Feel free to ask in [the Clerotri server](https://stt.gg/clerotri) if you want to donate via another method.
 
 After donating, [email `clerotri@upryzing.app`](mailto:clerotri@upryzing.app?subject=Donor+badge+request) with proof of your donation and your user ID. You can get your user ID by opening the settings menu and selecting "Copy Debug Info" - **you only need to include the `userID` field**.
 
