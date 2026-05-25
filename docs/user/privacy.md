@@ -1,6 +1,6 @@
 # Privacy information
 
-_This was last updated on xx/04/2026._
+_This was last updated on 25/05/2026._
 
 _For the purposes of this document, "we" and "us" refers to the core maintainers of Clerotri. As of the date of writing, this only includes me ([Rexogamer](https://rexowo.dev))._
 
