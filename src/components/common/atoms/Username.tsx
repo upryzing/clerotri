@@ -58,7 +58,7 @@ const UsernameBadge = observer(
     const badgeSize = (size || 14) * 0.6;
 
     const bridgedMessage =
-      user._id === USER_IDS.automod && masquerade !== undefined;
+      USER_IDS.bridgeBots.includes(user._id) && masquerade !== undefined;
 
     return (
       <>

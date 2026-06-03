@@ -1,8 +1,18 @@
+// the following IDs apply to the official Stoat instance (stoat.chat)
+
 // notable user IDs (mostly used for badges)
 export const USER_IDS = {
   // bots/built-in users
-  automod: '01FHGJ3NPP7XANQQH8C2BE44ZY',
   platformModeration: '01FC17E1WTM2BGE4F3ARN3FDAF',
+
+  // bridge bots
+  bridgeBots: [
+    // CURRENT:
+    '01G1Y9M6G254VWBF41W3N5DQY5', // bolt
+
+    // FORMER:
+    '01FHGJ3NPP7XANQQH8C2BE44ZY', // automod
+  ],
 
   // devs/team members
   developers: ['01FC1HP5H22F0M34MFFM9DZ099', '01FEEFJCKY5C4DMMJYZ20ACWWC'],

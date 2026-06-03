@@ -390,7 +390,9 @@ const MessageDetails = observer(({msg}: {msg: Message}) => {
   const {currentTheme} = useContext(ThemeContext);
 
   const isLikelyBridged = useMemo(
-    () => msg.author?._id === USER_IDS.automod && msg.masquerade !== null,
+    () =>
+      USER_IDS.bridgeBots.includes(msg.author?._id || '') &&
+      msg.masquerade !== null,
     [msg.author?._id, msg.masquerade],
   );
 
