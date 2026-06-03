@@ -1,6 +1,6 @@
 import {useContext} from 'react';
 import {View} from 'react-native';
-import {StyleSheet} from 'react-native-unistyles';
+// import {StyleSheet} from 'react-native-unistyles';
 import {observer} from 'mobx-react-lite';
 
 import type {Server, User} from 'revolt.js';
@@ -11,6 +11,7 @@ import {Text} from './Text';
 import {USER_IDS} from '@clerotri/lib/consts';
 import {ThemeContext} from '@clerotri/lib/themes';
 import {getColour} from '@clerotri/lib/utils';
+import {MaterialCommunityIcon} from '../icons';
 
 type UsernameCoreProps = {
   user: User;
@@ -34,6 +35,7 @@ type UsernameProps = {
   masquerade?: string | null;
   color?: string;
   skipDisplayName?: boolean;
+  useNewStructure?: boolean;
 };
 
 const UsernameCore = observer(
@@ -55,7 +57,7 @@ const UsernameCore = observer(
 
 const UsernameBadge = observer(
   ({user, size, masquerade}: UsernameBadgeProps) => {
-    const badgeSize = (size || 14) * 0.6;
+    const badgeSize = size || 14;
 
     const bridgedMessage =
       USER_IDS.bridgeBots.includes(user._id) && masquerade !== undefined;
@@ -63,17 +65,33 @@ const UsernameBadge = observer(
     return (
       <>
         {bridgedMessage ? (
-          <Text style={localStyles.badge(badgeSize)}>BRIDGE</Text>
+          <MaterialCommunityIcon
+            name={'bridge'}
+            color={'accentColor'}
+            size={badgeSize * 1.4}
+          />
         ) : (
           <>
             {user?.bot ? (
-              <Text style={localStyles.badge(badgeSize)}>BOT</Text>
+              <MaterialCommunityIcon
+                name={'robot'}
+                color={'accentColor'}
+                size={badgeSize * 1.2}
+              />
             ) : null}
             {masquerade ? (
-              <Text style={localStyles.badge(badgeSize)}>MASQ.</Text>
+              <MaterialCommunityIcon
+                name={'domino-mask'}
+                color={'accentColor'}
+                size={badgeSize * 1.4}
+              />
             ) : null}
             {user?._id === USER_IDS.platformModeration ? (
-              <Text style={localStyles.badge(badgeSize)}>SYSTEM</Text>
+              <MaterialCommunityIcon
+                name={'shield-check'}
+                color={'accentColor'}
+                size={badgeSize * 1.2}
+              />
             ) : null}
           </>
         )}
@@ -91,6 +109,7 @@ export const Username = observer(
     masquerade,
     color,
     skipDisplayName,
+    useNewStructure,
   }: UsernameProps) => {
     const {currentTheme} = useContext(ThemeContext);
 
@@ -131,7 +150,20 @@ export const Username = observer(
     const usernameSize =
       size || (settings.get('ui.messaging.fontSize') as number) || 14;
 
-    return (
+    return useNewStructure ? (
+      <Text>
+        <UsernameCore
+          user={user}
+          size={usernameSize}
+          colour={roleColour}
+          name={masquerade ?? name}
+          skipDisplayName={skipDisplayName}
+        />
+        {!noBadge ? (
+          <UsernameBadge user={user} size={size} masquerade={masquerade} />
+        ) : null}
+      </Text>
+    ) : (
       <View style={{flexDirection: 'row'}}>
         <UsernameCore
           user={user}
@@ -148,15 +180,15 @@ export const Username = observer(
   },
 );
 
-const localStyles = StyleSheet.create(currentTheme => ({
-  badge: (badgeSize: number) => ({
-    color: currentTheme.accentColorForeground,
-    backgroundColor: currentTheme.accentColor,
-    marginInlineStart: badgeSize * 0.4,
-    paddingHorizontal: badgeSize * 0.4,
-    alignSelf: 'center' as const,
-    borderRadius: 2,
-    fontSize: badgeSize,
-    top: badgeSize * 0.1,
-  }),
-}));
+// const localStyles = StyleSheet.create(currentTheme => ({
+//   badge: (badgeSize: number) => ({
+//     color: currentTheme.accentColorForeground,
+//     backgroundColor: currentTheme.accentColor,
+//     marginInlineStart: badgeSize * 0.4,
+//     paddingHorizontal: badgeSize * 0.4,
+//     alignSelf: 'center' as const,
+//     borderRadius: 2,
+//     fontSize: badgeSize,
+//     top: badgeSize * 0.1,
+//   }),
+// }));
