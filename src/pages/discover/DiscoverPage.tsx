@@ -19,7 +19,9 @@ const parser = DOMParserFunction();
 const ItemDescription = ({description}: {description: string}) => {
   return (
     <View style={localStyles.description}>
-      <Text numberOfLines={5}>{description}</Text>
+      <Text useNewText numberOfLines={5}>
+        {description}
+      </Text>
     </View>
   );
 };
@@ -34,7 +36,7 @@ const ItemTags = ({itemID, tags}: {itemID: string; tags: string[]}) => {
           <View
             style={localStyles.tag}
             key={`discover-entry-${itemID}-tag-${tag}`}>
-            <Text>#{tag}</Text>
+            <Text useNewText>#{tag}</Text>
           </View>
         );
       })}
@@ -62,7 +64,9 @@ const BotEntry = ({bot}: {bot: any}) => {
           </View>
         ) : null}
         <View>
-          <Text type={'h1'}>{bot.username}</Text>
+          <Text useNewText type={'h1'}>
+            {bot.username}
+          </Text>
           <Text useNewText colour={'foregroundSecondary'}>
             {bot._id}
           </Text>
@@ -77,7 +81,7 @@ const BotEntry = ({bot}: {bot: any}) => {
         onPress={() => {
           app.openBotInvite(bot._id);
         }}>
-        <Text>Invite Bot</Text>
+        <Text useNewText>Invite Bot</Text>
       </Button>
     </View>
   );
@@ -103,7 +107,9 @@ const ServerEntry = ({server}: {server: any}) => {
           </View>
         ) : null}
         <View>
-          <Text type={'h1'}>{server.name}</Text>
+          <Text useNewText type={'h1'}>
+            {server.name}
+          </Text>
           <Text useNewText colour={'foregroundSecondary'}>
             {server._id}
           </Text>
@@ -125,7 +131,7 @@ const ServerEntry = ({server}: {server: any}) => {
             app.openInvite(server._id);
           }
         }}>
-        <Text>
+        <Text useNewText>
           {client.servers.get(server._id) ? 'Go to Server' : 'Join Server'}
         </Text>
       </Button>
@@ -192,7 +198,7 @@ export const DiscoverPage = () => {
               setTab('servers');
             }
           }}>
-          <Text>{t('app.discover.tabs.servers')}</Text>
+          <Text useNewText>{t('app.discover.tabs.servers')}</Text>
         </Button>
         <Button
           style={{flex: 1}}
@@ -202,7 +208,7 @@ export const DiscoverPage = () => {
               setTab('bots');
             }
           }}>
-          <Text>{t('app.discover.tabs.bots')}</Text>
+          <Text useNewText>{t('app.discover.tabs.bots')}</Text>
         </Button>
       </View>
       {data ? (
@@ -212,7 +218,7 @@ export const DiscoverPage = () => {
               paddingInline: commonValues.sizes.xl,
               paddingBlockEnd: commonValues.sizes.large,
             }}>
-            <Text style={{marginBottom: 0}} type={'h2'}>
+            <Text useNewText style={{marginBottom: 0}} type={'h2'}>
               {t(`app.discover.count_${tab}`, {
                 count: data[tab].length,
               })}
@@ -232,7 +238,7 @@ export const DiscoverPage = () => {
         </>
       ) : (
         <View style={styles.loadingScreen}>
-          <Text type={'h1'}>{t(`app.discover.fetching_${tab}`)}</Text>
+          <Text useNewText type={'h1'}>{t(`app.discover.fetching_${tab}`)}</Text>
         </View>
       )}
     </View>

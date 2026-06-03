@@ -1,8 +1,7 @@
-import {useContext, useState} from 'react';
+import {useState} from 'react';
 import {ScrollView, View} from 'react-native';
+import {StyleSheet} from 'react-native-unistyles';
 import {observer} from 'mobx-react-lite';
-
-import {useSafeAreaInsets} from 'react-native-safe-area-context';
 
 import type {API, Server} from 'revolt.js';
 
@@ -14,25 +13,14 @@ import {
   Text,
 } from '@clerotri/components/common/atoms';
 import {ServerList} from '@clerotri/components/navigation/ServerList';
-import {commonValues, ThemeContext} from '@clerotri/lib/themes';
+import {commonValues} from '@clerotri/lib/themes';
 
 export const BotInviteSheet = observer(
   ({setState, bot}: {setState: Function; bot: API.PublicBot}) => {
-    const insets = useSafeAreaInsets();
-
-    const {currentTheme} = useContext(ThemeContext);
-
     const [destination, setDestination] = useState(null as Server | null);
 
     return (
-      <View
-        style={{
-          flex: 1,
-          padding: commonValues.sizes.xl,
-          paddingBlockStart: commonValues.sizes.xl + insets.top,
-          paddingBlockEnd: commonValues.sizes.xl + insets.bottom,
-          backgroundColor: currentTheme.backgroundPrimary,
-        }}>
+      <View style={localStyles.container}>
         <BackButton callback={() => setState()} type={'close'} />
         <View
           style={{
@@ -89,3 +77,13 @@ export const BotInviteSheet = observer(
     );
   },
 );
+
+const localStyles = StyleSheet.create((currentTheme, rt) => ({
+  container: {
+    flex: 1,
+    padding: commonValues.sizes.xl,
+    paddingBlockStart: commonValues.sizes.xl + rt.insets.top,
+    paddingBlockEnd: commonValues.sizes.xl + rt.insets.bottom,
+    backgroundColor: currentTheme.backgroundPrimary,
+  },
+}));
