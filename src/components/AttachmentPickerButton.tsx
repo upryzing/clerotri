@@ -73,7 +73,7 @@ const localStyles = StyleSheet.create(currentTheme => ({
   attachmentsButton: {
     justifyContent: 'center',
     alignItems: 'center',
-    padding: 5,
+    padding: commonValues.sizes.small,
     borderRadius: commonValues.sizes.medium,
     marginStart: 0,
     marginEnd: commonValues.sizes.medium,

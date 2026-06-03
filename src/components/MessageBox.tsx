@@ -64,10 +64,8 @@ const ReplyingMessages = observer(
           <View key={m.message._id} style={localStyles.messageBoxBar}>
             <Pressable
               style={{
-                width: 30,
-                height: 20,
-                alignItems: 'center',
-                justifyContent: 'center',
+                marginInlineEnd: commonValues.sizes.medium,
+                paddingInline: commonValues.sizes.small,
               }}
               onPress={() =>
                 setReplyingMessages(
@@ -76,33 +74,40 @@ const ReplyingMessages = observer(
                   ),
                 )
               }>
-              <View style={styles.iconContainer}>
-                <MaterialCommunityIcon name="close-circle" size={16} />
+              <View style={[styles.iconContainer, {marginRight: 0}]}>
+                <MaterialCommunityIcon name="close-circle" size={24} />
               </View>
             </Pressable>
-            <Pressable
+            <View
               style={{
-                width: 45,
-                height: 20,
-                alignItems: 'center',
-                justifyContent: 'center',
-              }}
-              onPress={() => {
-                const replacing = [...replyingMessages];
-                replacing[i].mentions = !replacing[i].mentions;
-                setReplyingMessages(replacing);
+                flexDirection: 'row',
+                flex: 1,
+                justifyContent: 'space-between',
               }}>
-              <Text
-                useNewText
-                colour={m.mentions ? 'accentColor' : undefined}
+              <View style={{flexDirection: 'row', alignItems: 'center'}}>
+                <Text>Replying to </Text>
+                <Username user={m.message.author} server={channel.server} />
+              </View>
+              <Pressable
                 style={{
-                  fontWeight: 'bold',
+                  width: 45,
+                  height: 20,
+                }}
+                onPress={() => {
+                  const replacing = [...replyingMessages];
+                  replacing[i].mentions = !replacing[i].mentions;
+                  setReplyingMessages(replacing);
                 }}>
-                @{m.mentions ? 'ON' : 'OFF'}
-              </Text>
-            </Pressable>
-            <Text> Replying to </Text>
-            <Username user={m.message.author} server={channel.server} />
+                <Text
+                  useNewText
+                  colour={m.mentions ? 'accentColor' : undefined}
+                  style={{
+                    fontWeight: 'bold',
+                  }}>
+                  @{m.mentions ? 'ON' : 'OFF'}
+                </Text>
+              </Pressable>
+            </View>
           </View>
         ))
       : null;
@@ -177,17 +182,15 @@ export const MessageBox = observer((props: MessageBoxProps) => {
         <View key={'editing'} style={localStyles.messageBoxBar}>
           <Pressable
             style={{
-              width: 30,
-              height: 20,
-              alignItems: 'center',
-              justifyContent: 'center',
+              marginInlineEnd: commonValues.sizes.medium,
+              paddingInline: commonValues.sizes.small,
             }}
             onPress={() => {
               setEditingMessage(null);
               setCurrentText('');
             }}>
-            <View style={styles.iconContainer}>
-              <MaterialCommunityIcon name="close-circle" size={16} />
+            <View style={[styles.iconContainer, {marginRight: 0}]}>
+              <MaterialCommunityIcon name="close-circle" size={24} />
             </View>
           </Pressable>
           <Text>Editing message</Text>
@@ -467,7 +470,7 @@ const localStyles = StyleSheet.create((currentTheme, rt) => ({
     marginStart: commonValues.sizes.medium,
     justifyContent: 'center',
     alignItems: 'center',
-    padding: 5,
+    padding: commonValues.sizes.small,
     borderRadius: commonValues.sizes.medium,
     backgroundColor: currentTheme.accentColor,
   },
