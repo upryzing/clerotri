@@ -2160,11 +2160,11 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@rnx-kit/babel-preset-metro-react-native@npm:^4.0.0":
-  version: 4.0.0
-  resolution: "@rnx-kit/babel-preset-metro-react-native@npm:4.0.0"
+"@rnx-kit/babel-preset-metro-react-native@npm:3.0.0":
+  version: 3.0.0
+  resolution: "@rnx-kit/babel-preset-metro-react-native@npm:3.0.0"
   dependencies:
-    "@rnx-kit/console": "npm:^3.0.0"
+    "@rnx-kit/console": "npm:^2.0.0"
     babel-plugin-const-enum: "npm:^1.0.0"
   peerDependencies:
     "@babel/core": ^7.20.0
@@ -2174,7 +2174,7 @@ __metadata:
   peerDependenciesMeta:
     "@babel/plugin-transform-typescript":
       optional: true
-  checksum: 10c0/1e213b5a571fbcb2861d09516720662d16f922d7618cb9b09758233f5533e64c8a804d80ca6cdb9295af25451ab5f35b8f3627ec4c1c6138e66525a033261d2f
+  checksum: 10c0/f44af61ac443c1b97752190aca67b3d5deed86c0af9c70f64a35d8f99aa1c94a69aff49f59606287c3c464fa96f7405f2abf30eb9a282a8f56261137317a03d5
   languageName: node
   linkType: hard
 
@@ -2271,6 +2271,13 @@ __metadata:
     lodash.merge: "npm:^4.6.2"
     semver: "npm:^7.0.0"
   checksum: 10c0/a96b35188d9c209181e48f33597db08b4470dc8bf077cfc582e3bd36940862fdfd494a3b9fe1c2bbe100c2ec0ba61e6762080e3dc2cf4b52131c1a25a05a55b1
+  languageName: node
+  linkType: hard
+
+"@rnx-kit/console@npm:^2.0.0":
+  version: 2.0.0
+  resolution: "@rnx-kit/console@npm:2.0.0"
+  checksum: 10c0/325db427097afe731b55e5cb492ca7d6a03cb499e5d1c1fd6c16a2d992bcdf8a3d7a22eedb60a0555041a55e6a4dd2874648e9a231ea0e7dab509a32a1c5bdad
   languageName: node
   linkType: hard
 
@@ -9409,7 +9416,7 @@ __metadata:
     "@react-native/metro-config": "npm:^0.85.3"
     "@react-native/typescript-config": "npm:^0.85.3"
     "@rexovolt/react-native-markdown-display": "npm:^10.0.1"
-    "@rnx-kit/babel-preset-metro-react-native": "npm:^4.0.0"
+    "@rnx-kit/babel-preset-metro-react-native": "npm:3.0.0"
     "@rnx-kit/cli": "patch:@rnx-kit/cli@npm%3A2.0.1#~/.yarn/patches/@rnx-kit-cli-npm-2.0.1-5a5648cf06.patch"
     "@rnx-kit/metro-config": "npm:^2.2.4"
     "@rnx-kit/metro-resolver-symlinks": "npm:^0.3.0"
