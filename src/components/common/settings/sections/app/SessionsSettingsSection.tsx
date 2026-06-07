@@ -135,7 +135,7 @@ export const SessionsSettingsSection = observer(() => {
                     style={{fontWeight: 'bold'}}>
                     {t('app.settings_menu.sessions.remove_other_sessions')}
                   </Text>
-                  <Text useNewText colour={'error'}>
+                  <Text useNewText colour={'foregroundSecondary'}>
                     {t('app.settings_menu.sessions.remove_other_sessions_body')}
                   </Text>
                 </View>
@@ -147,11 +147,7 @@ export const SessionsSettingsSection = observer(() => {
                     justifyContent: 'center',
                   }}>
                   <View style={styles.iconContainer}>
-                    <MaterialIcon
-                      name="arrow-forward"
-                      size={20}
-                      color={'error'}
-                    />
+                    <MaterialIcon name="arrow-forward" size={20} />
                   </View>
                 </View>
               </PressableSettingsEntry>
