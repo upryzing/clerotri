@@ -63,111 +63,115 @@ const ProfileCard = observer(({user}: {user: User}) => {
   );
 });
 
-export const ExpandableProfile = observer(({user}: {user: User}) => {
-  const {t} = useTranslation();
+export const ExpandableProfile = observer(
+  ({user, botToken}: {user: User; botToken?: string}) => {
+    const {t} = useTranslation();
 
-  const [expanded, setExpanded] = useState(false);
+    const [expanded, setExpanded] = useState(false);
 
-  const [profile, setProfile] = useState(
-    null as {content?: string | null} | null,
-  );
+    const [profile, setProfile] = useState<API.UserProfile | null>(null);
 
-  const [error, setError] = useState<unknown>(null);
+    const [error, setError] = useState<unknown>(null);
 
-  const [renderCount, setRenderCount] = useState(0);
+    const [renderCount, setRenderCount] = useState(0);
 
-  useEffect(() => {
-    async function getProfile() {
+    useEffect(() => {
+      async function getProfile() {
+        try {
+          const p = await client.api.get(
+            `/users/${user._id as ''}/profile`,
+            undefined,
+            botToken ? {headers: {'X-Bot-Token': botToken}} : undefined,
+          );
+
+          setProfile(p);
+        } catch (err) {
+          console.log(`[EXPANDABLEPROFILE] Failed to fetch bio: ${err}`);
+          setError(err);
+        }
+      }
+      getProfile();
+    }, [user, renderCount, botToken]);
+
+    useEffect(() => {
+      function onNewPacket(p: ClientboundNotification) {
+        if (p.type === 'UserUpdate' && p.id === client.user?._id) {
+          setRenderCount(count => count + 1);
+        }
+      }
+
+      function setUpListeners() {
+        client.addListener('packet', onNewPacket);
+      }
+
+      function cleanupListeners() {
+        client.removeListener('packet', onNewPacket);
+      }
+
       try {
-        const p = await user.fetchProfile();
-
-        setProfile(p);
+        setUpListeners();
       } catch (err) {
-        console.log(`[EXPANDABLEPROFILE] Failed to fetch bio: ${err}`);
-        setError(err);
+        console.log(
+          `[NEWMESSAGEVIEW] Error setting up ExpandableProfile listener: ${err}`,
+        );
       }
-    }
-    getProfile();
-  }, [user, renderCount]);
 
-  useEffect(() => {
-    function onNewPacket(p: ClientboundNotification) {
-      if (p.type === 'UserUpdate' && p.id === client.user?._id) {
-        setRenderCount(count => count + 1);
-      }
-    }
+      // called when the preview is unmounted
+      return () => cleanupListeners();
+    }, []);
 
-    function setUpListeners() {
-      client.addListener('packet', onNewPacket);
-    }
-
-    function cleanupListeners() {
-      client.removeListener('packet', onNewPacket);
-    }
-
-    try {
-      setUpListeners();
-    } catch (err) {
-      console.log(
-        `[NEWMESSAGEVIEW] Error setting up ExpandableProfile listener: ${err}`,
-      );
-    }
-
-    // called when the preview is unmounted
-    return () => cleanupListeners();
-  }, []);
-
-  return (
-    <View style={localStyles.container}>
-      <ProfileCard user={user} />
-      <View style={localStyles.bioSectionContainer}>
-        <Pressable
-          onPress={() => (error || profile ? setExpanded(!expanded) : null)}
-          style={{
-            flexDirection: 'row',
-            alignItems: 'center',
-          }}>
-          <MaterialIcon
-            name={error ? 'error' : expanded ? 'expand-less' : 'expand-more'}
-            size={24}
-            color={'foregroundSecondary'}
-          />
-          <Text
-            useNewText
+    return (
+      <View style={localStyles.container}>
+        <ProfileCard user={user} />
+        <View style={localStyles.bioSectionContainer}>
+          <Pressable
+            onPress={() => (error || profile ? setExpanded(!expanded) : null)}
             style={{
-              alignContent: 'center',
-              paddingInlineStart: commonValues.sizes.small,
-              fontSize: 16,
-              fontWeight: 'bold',
-            }}
-            colour={'foregroundSecondary'}>
-            {t(
-              `app.settings_menu.profile.${profile ? (expanded ? 'collapse' : 'expand') : error ? 'failed_to_load' : 'loading'}_bio`,
-            )}
-          </Text>
-        </Pressable>
-        {expanded &&
-          (error ? (
-            <View>
-              <Text
-                useNewText
-                style={{
-                  fontWeight: 'bold',
-                }}
-                colour={'foregroundSecondary'}>
-                {t(`app.settings_menu.profile.error_details`)}
-              </Text>
-              <Text useNewText colour={'error'} font={'JetBrains Mono'}>
-                {JSON.stringify(error)}
-              </Text>
-            </View>
-          ) : (
-            <MarkdownView>{profile?.content}</MarkdownView>
-          ))}
+              flexDirection: 'row',
+              alignItems: 'center',
+            }}>
+            <MaterialIcon
+              name={error ? 'error' : expanded ? 'expand-less' : 'expand-more'}
+              size={24}
+              color={'foregroundSecondary'}
+            />
+            <Text
+              useNewText
+              style={{
+                alignContent: 'center',
+                paddingInlineStart: commonValues.sizes.small,
+                fontSize: 16,
+                fontWeight: 'bold',
+              }}
+              colour={'foregroundSecondary'}>
+              {t(
+                `app.settings_menu.profile.${profile ? (expanded ? 'collapse' : 'expand') : error ? 'failed_to_load' : 'loading'}_bio`,
+              )}
+            </Text>
+          </Pressable>
+          {expanded &&
+            (error ? (
+              <View>
+                <Text
+                  useNewText
+                  style={{
+                    fontWeight: 'bold',
+                  }}
+                  colour={'foregroundSecondary'}>
+                  {t(`app.settings_menu.profile.error_details`)}
+                </Text>
+                <Text useNewText colour={'error'} font={'JetBrains Mono'}>
+                  {JSON.stringify(error)}
+                </Text>
+              </View>
+            ) : (
+              <MarkdownView>{profile?.content}</MarkdownView>
+            ))}
+        </View>
       </View>
-    </View>
-  );
-});
+    );
+  },
+);
 
 const localStyles = StyleSheet.create(currentTheme => ({
   container: {

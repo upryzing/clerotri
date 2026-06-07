@@ -35,7 +35,7 @@ const BotSettings = observer(({bot}: {bot: GroupedBotObject}) => {
 
   return (
     <>
-      <ExpandableProfile user={bot.user} />
+      <ExpandableProfile user={bot.user} botToken={bot.bot.token} />
       <SettingsEntry style={{marginBlockStart: commonValues.sizes.medium}}>
         <View style={{flex: 1}}>
           <Text style={{fontWeight: 'bold'}}>
