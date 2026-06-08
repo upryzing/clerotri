@@ -3,7 +3,6 @@ export {DOMParserFunction, showToast} from './nativeUtils';
 export {
   arraysAreEqual,
   calculateGrouped,
-  checkLastVersion,
   fetchMessages,
   getReadableFileSize,
   openLastChannel,
@@ -12,3 +11,4 @@ export {
   sleep,
   unicodeEmojiURL,
 } from './utils';
+export {checkLastVersion, isVersionNewerThan} from './version';
