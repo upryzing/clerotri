@@ -1,5 +1,6 @@
-import {useContext, useEffect, useState} from 'react';
+import {useEffect, useState} from 'react';
 import {Platform, Pressable, SectionList, View} from 'react-native';
+import {StyleSheet} from 'react-native-unistyles';
 import {useTranslation} from 'react-i18next';
 
 import {useSafeAreaInsets} from 'react-native-safe-area-context';
@@ -8,7 +9,7 @@ import {styles} from '@clerotri/Theme';
 import {Link, Text} from '@clerotri/components/common/atoms';
 import {MaterialCommunityIcon} from '@clerotri/components/common/icons';
 import {openUrl} from '@clerotri/lib/utils';
-import {commonValues, ThemeContext} from '@clerotri/lib/themes';
+import {commonValues} from '@clerotri/lib/themes';
 
 import licenseList from '../../../../../../assets/data/licenses.json';
 
@@ -26,30 +27,20 @@ interface SectionListLicenses {
 }
 
 const PackageEntry = ({packageInfo}: {packageInfo: Package}) => {
-  const {currentTheme} = useContext(ThemeContext);
-
   return (
     <View
       key={`license-list-license-${packageInfo.name}`}
-      style={{
-        flexDirection: 'row',
-        alignItems: 'center',
-        justifyContent: 'space-between',
-        marginBottom: commonValues.sizes.medium,
-        borderRadius: commonValues.sizes.small,
-        padding: commonValues.sizes.medium,
-        backgroundColor: currentTheme.backgroundSecondary,
-      }}>
+      style={localStyles.packageEntry}>
       <View style={{flex: 1}}>
         <Text>
           <Text style={{fontWeight: 'bold'}}>{packageInfo.name}</Text>
-          <Text colour={currentTheme.foregroundSecondary}>
+          <Text useNewText colour={'foregroundSecondary'}>
             {' '}
             v{packageInfo.version}
           </Text>
         </Text>
         {packageInfo.vendorName ? (
-          <Text colour={currentTheme.foregroundSecondary}>
+          <Text useNewText colour={'foregroundSecondary'}>
             by{' '}
             {packageInfo.vendorUrl ? (
               <Link
@@ -80,8 +71,6 @@ const PackageEntry = ({packageInfo}: {packageInfo: Package}) => {
 export const LicenseListSection = () => {
   const insets = useSafeAreaInsets();
 
-  const {currentTheme} = useContext(ThemeContext);
-
   const {t} = useTranslation();
 
   const [data, setData] = useState<SectionListLicenses[] | null>(null);
@@ -92,7 +81,7 @@ export const LicenseListSection = () => {
 
   const renderHeader = ({section: {title}}: {section: {title: string}}) => {
     return (
-      <View style={{backgroundColor: currentTheme.backgroundPrimary}}>
+      <View style={localStyles.header}>
         <Text type={'h2'}>{title}</Text>
       </View>
     );
@@ -139,3 +128,18 @@ export const LicenseListSection = () => {
     </View>
   );
 };
+
+const localStyles = StyleSheet.create(currentTheme => ({
+  header: {
+    backgroundColor: currentTheme.backgroundPrimary,
+  },
+  packageEntry: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'space-between',
+    marginBottom: commonValues.sizes.medium,
+    borderRadius: commonValues.sizes.small,
+    padding: commonValues.sizes.medium,
+    backgroundColor: currentTheme.backgroundSecondary,
+  },
+}));

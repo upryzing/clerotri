@@ -1,5 +1,5 @@
-import {useContext, useMemo, useState} from 'react';
-import {Platform, SectionList, TouchableOpacity, View} from 'react-native';
+import {useMemo, useState} from 'react';
+import {SectionList, TouchableOpacity, View} from 'react-native';
 import {StyleSheet} from 'react-native-unistyles';
 import {useTranslation} from 'react-i18next';
 import {observer} from 'mobx-react-lite';
@@ -8,7 +8,7 @@ import type {User} from 'revolt.js';
 
 import {app} from '@clerotri/Generic';
 import {client} from '@clerotri/lib/client';
-import {commonValues, ThemeContext} from '@clerotri/lib/themes';
+import {commonValues} from '@clerotri/lib/themes';
 import {styles} from '@clerotri/Theme';
 import {MiniProfile} from '@clerotri/components/common/profile';
 import {ChannelHeader} from '@clerotri/components/navigation/ChannelHeader';
@@ -91,8 +91,6 @@ const UserButton = observer(({user}: {user: User}) => {
 
 // TODO: refresh when relationships update
 export const FriendsPage = observer(() => {
-  const {currentTheme} = useContext(ThemeContext);
-
   const {t} = useTranslation();
 
   const [displayState, setDisplayState] = useState({
@@ -131,7 +129,7 @@ export const FriendsPage = observer(() => {
     section: {title: string; data: User[]};
   }) => {
     return (
-      <View style={{backgroundColor: currentTheme.backgroundPrimary}}>
+      <View style={localStyles.sectionHeaderContainer}>
         <TouchableOpacity
           onPress={() =>
             setDisplayState({
@@ -140,7 +138,7 @@ export const FriendsPage = observer(() => {
               [title]: !displayState[title],
             })
           }>
-          <Text style={localStyles.friendsListHeader}>
+          <Text style={localStyles.sectionHeaderText}>
             {t(`app.friends_list.${title}`, {count: data.length})}
           </Text>
         </TouchableOpacity>
@@ -178,9 +176,7 @@ export const FriendsPage = observer(() => {
         keyExtractor={keyExtractor}
         sections={groups}
         style={{flex: 1}}
-        contentContainerStyle={{
-          paddingBottom: Platform.OS === 'web' ? 0 : commonValues.sizes.medium,
-        }}
+        contentContainerStyle={localStyles.listContainer}
         renderSectionHeader={renderHeader}
         renderSectionFooter={renderFooter}
         renderItem={renderItem}
@@ -190,12 +186,18 @@ export const FriendsPage = observer(() => {
   );
 });
 
-const localStyles = StyleSheet.create({
-  friendsListHeader: {
+const localStyles = StyleSheet.create((currentTheme, rt) => ({
+  listContainer: {
+    paddingBottom: rt.insets.bottom + commonValues.sizes.small,
+  },
+  sectionHeaderContainer: {
+    backgroundColor: currentTheme.backgroundPrimary,
+  },
+  sectionHeaderText: {
     fontWeight: 'bold',
     margin: 5,
     marginLeft: 10,
     marginTop: 10,
     textTransform: 'uppercase',
   },
-});
+}));

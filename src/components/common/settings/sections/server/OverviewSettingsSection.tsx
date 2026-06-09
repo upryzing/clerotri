@@ -48,10 +48,7 @@ export const OverviewSettingsSection = observer(
           {t('app.servers.settings.overview.description')}
         </Text>
         <View>
-          <Text
-            style={{
-              color: currentTheme.foregroundSecondary,
-            }}>
+          <Text useNewText colour={'foregroundSecondary'}>
             {t('app.servers.settings.overview.markdown_tip')}
           </Text>
           <Link
@@ -90,7 +87,7 @@ export const OverviewSettingsSection = observer(
         <Text type={'h2'}>
           {t('app.servers.settings.overview.system_messages')}
         </Text>
-        <Text colour={currentTheme.foregroundSecondary}>
+        <Text useNewText colour={'foregroundSecondary'}>
           {t('app.servers.settings.overview.system_messages_description')}
         </Text>
         {SYSTEM_MESSAGE_CHANNEL_TYPES.map(type => (
@@ -105,7 +102,7 @@ export const OverviewSettingsSection = observer(
                   `app.servers.settings.overview.system_message_channel_types.${type}`,
                 )}
               </Text>
-              <Text colour={currentTheme.foregroundSecondary}>
+              <Text useNewText colour={'foregroundSecondary'}>
                 {server.system_messages?.[type] ?? 'None'}
               </Text>
             </View>
