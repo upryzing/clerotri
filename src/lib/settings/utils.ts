@@ -49,7 +49,7 @@ export const settings = {
   clear: () => {
     try {
       for (const s of settingsList) {
-        storage.delete(s.key);
+        storage.remove(s.key);
         s.onChange && s.onChange(s.default);
       }
     } catch (err) {

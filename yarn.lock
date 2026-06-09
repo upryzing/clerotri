@@ -8724,13 +8724,14 @@ __metadata:
   languageName: node
   linkType: hard
 
-"react-native-mmkv@npm:^3.3.3":
-  version: 3.3.3
-  resolution: "react-native-mmkv@npm:3.3.3"
+"react-native-mmkv@npm:^4.3.1":
+  version: 4.3.1
+  resolution: "react-native-mmkv@npm:4.3.1"
   peerDependencies:
     react: "*"
     react-native: "*"
-  checksum: 10c0/efd7f725674d686ea126a213bd8c4270e8e4e8f306917a1b846a9f7ddf652ad057c7d509a9292d7bbf6a58603d4ab5a18e0c3b0d1b00447df45eeac81cbbd1e1
+    react-native-nitro-modules: "*"
+  checksum: 10c0/cfafff8e9837e9244c4544fcf26d8570f66539e97ade7ee9cfd2dc51328b6e793357a29a8336bf6f5a540f894780726ae404fef5059756b157ea3cee2fce6566
   languageName: node
   linkType: hard
 
@@ -9452,7 +9453,7 @@ __metadata:
     react-native-gesture-handler: "npm:^2.31.2"
     react-native-get-random-values: "npm:^2.0.0"
     react-native-keyboard-controller: "npm:^1.21.9"
-    react-native-mmkv: "npm:^3.3.3"
+    react-native-mmkv: "npm:^4.3.1"
     react-native-nitro-modules: "npm:0.35.5"
     react-native-reanimated: "npm:^4.4.0"
     react-native-reanimated-image-viewer: "npm:^1.0.2"
