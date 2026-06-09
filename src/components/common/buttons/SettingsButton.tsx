@@ -1,7 +1,4 @@
-import {useContext} from 'react';
-
 import {NewContextButton} from '@clerotri/components/common/buttons/NewContextButton';
-import {ThemeContext} from '@clerotri/lib/themes';
 import type {ContextButtonProps} from '@clerotri/lib/types';
 
 type SettingsButtonProps = ContextButtonProps & {
@@ -14,13 +11,9 @@ export const SettingsButton = ({
   section,
   ...props
 }: SettingsButtonProps) => {
-  const {currentTheme} = useContext(ThemeContext);
-
   return (
     <NewContextButton
-      backgroundColor={
-        props.backgroundColor ?? currentTheme.backgroundSecondary
-      }
+      backgroundColour={'backgroundSecondary'}
       textString={
         props.textString ??
         `app.${menu === 'server' ? 'servers.settings' : 'settings_menu'}.${section === 'delete_server' ? 'delete_server' : menu === 'app-other' ? `other.${section}` : `${section}.title`}`

@@ -120,9 +120,11 @@ export type IconType =
       pack: 'community';
     };
 
-export type ContextButtonProps = ButtonProps & {
+export type ContextButtonProps = TouchableOpacityProps & {
   type?: 'start' | 'end' | 'detatched';
   icon?: IconType & {colour?: ThemeColour; customColour?: ColorValue};
+  backgroundCustomColour?: ColorValue;
+  backgroundColour?: ThemeColour;
   textString?: string;
   textCustomColour?: ColorValue;
   textColour?: ThemeColour;

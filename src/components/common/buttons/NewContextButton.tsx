@@ -8,7 +8,7 @@ import {
   MaterialIcon,
 } from '@clerotri/components/common/icons';
 import {commonValues} from '@clerotri/lib/themes';
-import type {ContextButtonProps} from '@clerotri/lib/types';
+import type {ContextButtonProps, ThemeColour} from '@clerotri/lib/types';
 import {styles} from '@clerotri/Theme';
 
 export const NewContextButton = ({
@@ -17,7 +17,8 @@ export const NewContextButton = ({
   textString,
   textColour,
   textCustomColour,
-  backgroundColor,
+  backgroundColour,
+  backgroundCustomColour,
   style,
   ...props
 }: ContextButtonProps) => {
@@ -29,7 +30,11 @@ export const NewContextButton = ({
         localStyles.common,
         type && type !== 'end' && localStyles.start,
         type && type !== 'start' && localStyles.end,
-        backgroundColor && {backgroundColor},
+        localStyles.backgroundColour(
+          backgroundCustomColour
+            ? {type: 'custom', value: backgroundCustomColour}
+            : {type: 'theme', value: backgroundColour ?? 'backgroundPrimary'},
+        ),
         style,
       ]}
       {...props}>
@@ -58,7 +63,9 @@ export const NewContextButton = ({
             {t(textString)}
           </Text>
         ) : (
-          <Text colour={textCustomColour}>{t(textString)}</Text>
+          <Text useNewText customColour={textCustomColour}>
+            {t(textString)}
+          </Text>
         ))}
       {props.children}
     </TouchableOpacity>
@@ -85,4 +92,10 @@ const localStyles = StyleSheet.create(currentTheme => ({
     borderEndEndRadius: commonValues.sizes.medium,
     marginBlockEnd: commonValues.sizes.medium,
   },
+  backgroundColour: ({
+    type,
+    value,
+  }: {type: 'custom'; value: any} | {type: 'theme'; value: ThemeColour}) => ({
+    backgroundColor: type === 'custom' ? value : currentTheme[value],
+  }),
 }));
