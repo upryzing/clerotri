@@ -30,8 +30,11 @@ const localStyles = StyleSheet.create(currentTheme => ({
     backgroundColor: currentTheme.backgroundSecondary,
     alignItems: 'center',
     justifyContent: 'center',
+    borderWidth: commonValues.sizes.xs,
+    borderColor: currentTheme.backgroundTertiary,
   },
   active: {
     backgroundColor: currentTheme.accentColor,
+    borderWidth: 0,
   },
 }));
