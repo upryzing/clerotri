@@ -62,6 +62,7 @@ export const settingsList = [
     category: 'functionality',
     default: true,
     type: 'boolean',
+    experimental: true,
   },
   {
     key: 'app.reopenLastChannel',
