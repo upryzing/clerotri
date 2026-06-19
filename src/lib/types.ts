@@ -32,6 +32,14 @@ export type Setting = (StringSetting | BoolSetting) & {
   remark?: boolean;
 };
 
+type SettingsCategoryItem =
+  | string[]
+  | {type: 'settingsButton'; props: any}
+  | {type: 'button'; props: any}
+  | {type: 'divider'};
+
+export type SettingsCategory = Record<string, SettingsCategoryItem>;
+
 export type SettingsSection = {
   section: string;
   subsection?: string;

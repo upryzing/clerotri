@@ -3,7 +3,7 @@ import {languages} from '@clerotri-i18n/languages';
 import {app} from '@clerotri/Generic';
 import {checkNotificationPerms} from '@clerotri/lib/notifications/permissions';
 import {themes} from '@clerotri/lib/themes';
-import type {Setting} from '@clerotri/lib/types';
+import type {Setting, SettingsCategory} from '@clerotri/lib/types';
 
 export const settingsList = [
   {
@@ -59,20 +59,20 @@ export const settingsList = [
   },
   {
     key: 'app.refetchOnReconnect',
-    category: 'functionality',
+    category: 'MIGRATED',
     default: true,
     type: 'boolean',
     experimental: true,
   },
   {
     key: 'app.reopenLastChannel',
-    category: 'functionality',
+    category: 'MIGRATED',
     default: true,
     type: 'boolean',
   },
   {
     key: 'app.notifications.enabled',
-    category: 'functionality',
+    category: 'MIGRATED',
     default: false,
     type: 'boolean',
     experimental: true,
@@ -87,13 +87,13 @@ export const settingsList = [
   },
   {
     key: 'app.notifications.enabledInApp',
-    category: 'functionality',
+    category: 'MIGRATED',
     default: true,
     type: 'boolean',
   },
   {
     key: 'app.notifications.notifyOnSelfPing',
-    category: 'functionality',
+    category: 'MIGRATED',
     default: false,
     type: 'boolean',
     developer: true,
@@ -119,13 +119,13 @@ export const settingsList = [
   },
   {
     key: 'ui.messaging.hideBlockedMessages',
-    category: 'functionality',
+    category: 'MIGRATED',
     default: false,
     type: 'boolean',
   },
   {
     key: 'ui.messaging.doubleTapToReply',
-    category: 'functionality',
+    category: 'MIGRATED',
     default: true,
     type: 'boolean',
     experimental: true,
@@ -140,19 +140,19 @@ export const settingsList = [
   },
   {
     key: 'ui.messaging.showNSFWContent',
-    category: 'functionality',
+    category: 'MIGRATED',
     default: false,
     type: 'boolean',
   },
   {
     key: 'ui.messaging.sendAttachments',
-    category: 'functionality',
+    category: 'MIGRATED',
     default: true,
     type: 'boolean',
   },
   {
     key: 'ui.messaging.showReactions',
-    category: 'functionality',
+    category: 'MIGRATED',
     remark: true,
     default: false,
     type: 'boolean',
@@ -160,7 +160,7 @@ export const settingsList = [
   },
   {
     key: 'ui.messaging.experimentalScrolling',
-    category: 'functionality',
+    category: 'MIGRATED',
     remark: true,
     default: false,
     type: 'boolean',
@@ -169,7 +169,7 @@ export const settingsList = [
   },
   {
     key: 'ui.messaging.useNewMessageView',
-    category: 'functionality',
+    category: 'MIGRATED',
     default: true,
     type: 'boolean',
     experimental: true,
@@ -177,20 +177,56 @@ export const settingsList = [
   },
   {
     key: 'app.showChangelogs',
-    category: 'functionality',
+    category: 'MIGRATED',
     default: true,
     type: 'boolean',
   },
   {
     key: 'ui.settings.showExperimental',
-    category: 'functionality',
+    category: 'MIGRATED',
     default: false,
     type: 'boolean',
   },
   {
     key: 'ui.showDeveloperFeatures',
-    category: 'functionality',
+    category: 'MIGRATED',
     default: false,
     type: 'boolean',
   },
 ] as Setting[];
+
+// const category = {
+//   group: [''],
+//   item: {type: 'button', /*xyz props */},
+//   group2: [],
+//   item2: {type: 'divider'},
+//   /* something for text? */
+// }
+
+// start an item's name with `detatched` to hide the group label
+export const settingsCategories: Record<string, SettingsCategory> = {
+  appearance: {
+    theme: {type: 'settingsButton', props: {}},
+  },
+  functionality: {
+    notifications: [
+      'app.notifications.enabled',
+      'app.notifications.enabledInApp',
+      'app.notifications.notifyOnSelfPing',
+    ],
+    detatchedNSFW: ['ui.messaging.showNSFWContent'],
+    messaging: [
+      'ui.messaging.doubleTapToReply',
+      'ui.messaging.hideBlockedMessages',
+      'ui.messaging.showReactions',
+      'ui.messaging.sendAttachments',
+      'app.refetchOnReconnect',
+    ],
+    detatchedReopen: ['app.reopenLastChannel'],
+    detatchedChangelogs: ['app.showChangelogs'],
+    advanced: ['ui.settings.showExperimental', 'ui.showDeveloperFeatures'],
+    detatchedNMV: ['ui.messaging.useNewMessageView', 'ui.messaging.experimentalScrolling'],
+  },
+};
+
+export type CategoryName = keyof typeof settingsCategories;

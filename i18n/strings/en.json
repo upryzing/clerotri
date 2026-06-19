@@ -447,6 +447,13 @@
                 "showDeveloperFeatures": "Show developer tools"
             }
         },
+        "settings_categories": {
+            "functionality": {
+                "notifications": "Notifications",
+                "messaging": "Messaging",
+                "advanced": "Advanced settings"
+            }
+        },
         "settings_menu": {
             "account": {
                 "title": "Account"

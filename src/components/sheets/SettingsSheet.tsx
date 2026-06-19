@@ -25,7 +25,7 @@ import {SettingsSection} from '@clerotri/lib/types';
 import {openUrl} from '@clerotri/lib/utils';
 import {BackButton, Text} from '@clerotri/components/common/atoms';
 import {SettingsButton} from '@clerotri/components/common/buttons';
-import {SettingsCategory} from '@clerotri/components/common/settings';
+import {NewSettingsCategory, SettingsCategory} from '@clerotri/components/common/settings';
 import {
   AppInfoSection,
   AccountSettingsSection,
@@ -174,7 +174,7 @@ export const SettingsSheet = observer(
                 {section.section === 'appearance' ? (
                   <SettingsCategory category={'appearance'} />
                 ) : section.section === 'functionality' ? (
-                  <SettingsCategory category={'functionality'} />
+                  <NewSettingsCategory category={'functionality'} />
                 ) : section.section === 'i18n' ? (
                   <SettingsCategory category={'i18n'} />
                 ) : section.section === 'account' ? (
