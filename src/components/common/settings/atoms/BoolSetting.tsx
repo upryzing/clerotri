@@ -2,9 +2,10 @@ import {View} from 'react-native';
 import {useTranslation} from 'react-i18next';
 import {useMMKVBoolean} from 'react-native-mmkv';
 
+import {Checkbox, Text} from  '@clerotri/components/common/atoms';
+import {IndicatorIcons} from '@clerotri/components/common/settings/atoms/IndicatorIcons';
+import { commonValues } from '@clerotri/lib/themes';
 import {Setting} from '@clerotri/lib/types';
-import {Checkbox, Text} from '../../atoms';
-import {IndicatorIcons} from './IndicatorIcons';
 
 export const BoolSetting = ({sRaw}: {sRaw: Setting}) => {
   const {t} = useTranslation();
@@ -19,7 +20,7 @@ export const BoolSetting = ({sRaw}: {sRaw: Setting}) => {
         alignItems: 'center',
       }}>
       <IndicatorIcons s={sRaw} />
-      <View style={{flex: 1, flexDirection: 'column'}}>
+      <View style={{flex: 1, flexDirection: 'column', marginEnd: commonValues.sizes.small}}>
         <Text style={{fontWeight: 'bold'}}>
           {t(`app.settings.${sRaw.key}`)}
         </Text>
