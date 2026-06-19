@@ -225,7 +225,10 @@ export const settingsCategories: Record<string, SettingsCategory> = {
     detatchedReopen: ['app.reopenLastChannel'],
     detatchedChangelogs: ['app.showChangelogs'],
     advanced: ['ui.settings.showExperimental', 'ui.showDeveloperFeatures'],
-    detatchedNMV: ['ui.messaging.useNewMessageView', 'ui.messaging.experimentalScrolling'],
+    detatchedNMV: [
+      'ui.messaging.useNewMessageView',
+      'ui.messaging.experimentalScrolling',
+    ],
   },
 };
 

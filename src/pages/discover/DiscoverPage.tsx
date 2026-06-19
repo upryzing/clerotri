@@ -238,7 +238,9 @@ export const DiscoverPage = () => {
         </>
       ) : (
         <View style={styles.loadingScreen}>
-          <Text useNewText type={'h1'}>{t(`app.discover.fetching_${tab}`)}</Text>
+          <Text useNewText type={'h1'}>
+            {t(`app.discover.fetching_${tab}`)}
+          </Text>
         </View>
       )}
     </View>

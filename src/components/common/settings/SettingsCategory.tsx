@@ -72,7 +72,7 @@ export const SettingsCategory = observer(
 
 export const NewSettingsCategory = observer(
   ({category, skipMargin}: {category: CategoryName; skipMargin?: boolean}) => {
-        const {t} = useTranslation();
+    const {t} = useTranslation();
 
     const [
       showExperimental = settings.getDefault('ui.settings.showExperimental'),
@@ -101,8 +101,7 @@ export const NewSettingsCategory = observer(
                       style={{
                         margin: commonValues.sizes.large,
                         fontWeight: 'bold',
-                      }}
-                      >
+                      }}>
                       {t(`app.settings_categories.${category}.${itemName}`)}
                     </Text>
                   )}
