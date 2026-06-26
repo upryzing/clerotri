@@ -1,4 +1,4 @@
-import {useCallback, useContext, useRef, useState} from 'react';
+import {useCallback, useRef, useState} from 'react';
 import {
   type NativeSyntheticEvent,
   type NativeScrollEvent,
@@ -27,7 +27,7 @@ import {
 } from '@clerotri/components/common/icons';
 import {generateAnalyticsObject} from '@clerotri/lib/analytics';
 import {PRIVACY_INFO} from '@clerotri/lib/consts';
-import {commonValues, ThemeContext} from '@clerotri/lib/themes';
+import {commonValues} from '@clerotri/lib/themes';
 import {showToast} from '@clerotri/lib/utils';
 
 const LevelBoxEntry = ({
@@ -87,8 +87,6 @@ const TierButton = ({
   tier: 'basic' | 'full';
   closeOnSelection: boolean;
 }) => {
-  const {currentTheme} = useContext(ThemeContext);
-
   const {t} = useTranslation();
 
   const [analyticsLevel, setAnalyticsLevel] =
@@ -107,8 +105,7 @@ const TierButton = ({
         setAnalyticsLevel(tier);
         closeOnSelection && app.openAnalyticsMenu(false);
       }}
-      style={tierButtonStyles.tierButton}
-      backgroundColor={currentTheme.backgroundPrimary}>
+      style={tierButtonStyles.tierButton}>
       <Text style={tierButtonStyles.tierButtonLabel}>
         {t(
           `app.analytics.${!analyticsLevel || analyticsLevel === 'none' ? `enable_${tier}` : `switch_to_${tier}`}`,
@@ -121,8 +118,6 @@ const TierButton = ({
 const LevelBoxes = observer(
   ({closeOnSelection}: {closeOnSelection: boolean}) => {
     const {width} = useWindowDimensions();
-
-    const {currentTheme} = useContext(ThemeContext);
 
     const {t} = useTranslation();
 
@@ -227,8 +222,7 @@ const LevelBoxes = observer(
             setAnalyticsLevel('none');
             closeOnSelection && app.openAnalyticsMenu(false);
           }}
-          style={levelBoxStyles.disableAnalyticsButton}
-          backgroundColor={currentTheme.backgroundSecondary}>
+          style={levelBoxStyles.disableAnalyticsButton}>
           <Text
             useNewText
             colour={

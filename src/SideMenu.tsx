@@ -31,7 +31,7 @@ import {
   SideMenuContext,
 } from '@clerotri/lib/state';
 import {getInstanceURL} from '@clerotri/lib/storage/utils';
-import {commonValues, ThemeContext} from '@clerotri/lib/themes';
+import {commonValues} from '@clerotri/lib/themes';
 import {useBackHandler} from '@clerotri/lib/ui';
 
 // Unistyles doesn't seem to support experimental_backgroundImage, which is needed for the gradient,
@@ -72,8 +72,6 @@ const ServerListGradient = withUnistyles(
 const SideMenu = () => {
   const insets = useSafeAreaInsets();
 
-  const {currentTheme} = useContext(ThemeContext);
-
   const {setCurrentChannel} = useContext(ChannelContext);
   const {currentServer, setCurrentServer} = useContext(ServerContext);
 
@@ -102,7 +100,7 @@ const SideMenu = () => {
               key={`${client.user?._id}-avatar`}
               user={client.user}
               size={48}
-              backgroundColor={currentTheme.backgroundSecondary}
+              backgroundColor={'backgroundSecondary'}
               status
             />
           </Pressable>

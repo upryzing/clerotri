@@ -479,8 +479,6 @@ const BotOwnerInfo = observer(({user}: {user: User}) => {
 
 export const ProfileSheet = observer(
   ({user, server}: {user: User | null; server: Server | null}) => {
-    const {currentTheme} = useContext(ThemeContext);
-
     const {t} = useTranslation();
 
     const [section, setSection] = useState('Profile');
@@ -551,7 +549,7 @@ export const ProfileSheet = observer(
                 size={80}
                 user={user}
                 server={server ?? undefined}
-                backgroundColor={currentTheme.backgroundSecondary}
+                backgroundColor={'backgroundSecondary'}
                 status
                 pressable
               />

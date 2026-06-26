@@ -1,4 +1,4 @@
-import {useContext, useState} from 'react';
+import {useState} from 'react';
 import {Pressable, View} from 'react-native';
 import {StyleSheet} from 'react-native-unistyles';
 import {observer} from 'mobx-react-lite';
@@ -10,7 +10,7 @@ import {ChannelIcon} from '@clerotri/components/navigation/ChannelIcon';
 import {SpecialChannelIcon} from '@clerotri/components/navigation/SpecialChannelIcon';
 import {styles} from '@clerotri/Theme';
 import {Text} from '@clerotri/components/common/atoms/Text';
-import {commonValues, ThemeContext} from '@clerotri/lib/themes';
+import {commonValues} from '@clerotri/lib/themes';
 
 type ChannelButtonProps = {
   channel: Channel | 'Home' | 'Friends' | 'Saved Notes' | 'Debug';
@@ -30,14 +30,12 @@ export const ChannelButton = observer(
     selected,
     showUnread = true,
   }: ChannelButtonProps) => {
-    const {currentTheme} = useContext(ThemeContext);
-
     const [isBeingPressed, setIsBeingPressed] = useState(false);
 
-    const color =
+    const colour =
       selected || (showUnread && typeof channel !== 'string' && channel.unread)
-        ? currentTheme.foregroundPrimary
-        : currentTheme.foregroundTertiary;
+        ? 'foregroundPrimary'
+        : 'foregroundTertiary';
 
     const pings = typeof channel !== 'string' ? channel.mentions?.length : 0;
 
@@ -66,10 +64,10 @@ export const ChannelButton = observer(
               alignItems: 'center',
               maxWidth: '80%',
             }}>
-            <MiniProfile user={channel.recipient} color={color} />
+            <MiniProfile user={channel.recipient} colour={colour} />
           </View>
         ) : typeof channel !== 'string' && channel.channel_type === 'Group' ? (
-          <MiniProfile channel={channel} color={color} />
+          <MiniProfile channel={channel} colour={colour} />
         ) : (
           <>
             <View style={styles.iconContainer}>
@@ -79,7 +77,10 @@ export const ChannelButton = observer(
                 <SpecialChannelIcon channel={channel} />
               )}
             </View>
-            <Text style={{flex: 1, fontWeight: 'bold', color, fontSize: 15}}>
+            <Text
+              useNewText
+              colour={colour}
+              style={{flex: 1, fontWeight: 'bold', fontSize: 15}}>
               {typeof channel !== 'string'
                 ? (channel.name ?? `${channel}`)
                 : channel}

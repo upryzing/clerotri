@@ -1,5 +1,5 @@
 import {useContext} from 'react';
-import {View} from 'react-native';
+import {type ColorValue, View} from 'react-native';
 import {observer} from 'mobx-react-lite';
 
 import type {Server, User, Channel} from 'revolt.js';
@@ -8,17 +8,20 @@ import {Avatar} from '@clerotri/components/common/atoms/Avatar';
 import {Text} from '@clerotri/components/common/atoms/Text';
 import {Username} from '@clerotri/components/common/atoms/Username';
 import {ThemeContext} from '@clerotri/lib/themes';
+import type {ThemeColour} from '@clerotri/lib/types';
 
 type MiniProfileProps = {
   user?: User;
   scale?: number;
   channel?: Channel;
   server?: Server;
-  color?: string;
+  // color?: string;
+  colour?: ThemeColour;
+  customColour?: ColorValue;
 };
 
 export const MiniProfile = observer(
-  ({user, scale, channel, server, color}: MiniProfileProps) => {
+  ({user, scale, channel, server, colour, customColour}: MiniProfileProps) => {
     const {currentTheme} = useContext(ThemeContext);
 
     if (user) {
@@ -37,11 +40,17 @@ export const MiniProfile = observer(
             <Username
               user={user}
               server={server}
-              color={color || currentTheme.foregroundPrimary}
+              color={
+                customColour || colour
+                  ? currentTheme[colour!]
+                  : currentTheme.foregroundPrimary
+              }
               size={14 * (scale || 1)}
             />
             <Text
-              colour={color || currentTheme.foregroundPrimary}
+              useNewText
+              customColour={customColour}
+              colour={colour}
               style={{
                 marginTop: -3 * (scale || 1),
                 fontSize: 14 * (scale || 1),
@@ -61,7 +70,9 @@ export const MiniProfile = observer(
           <Avatar channel={channel} size={35 * (scale || 1)} />
           <View style={{marginLeft: 10 * (scale || 1)}}>
             <Text
-              colour={color || currentTheme.foregroundPrimary}
+              useNewText
+              customColour={customColour}
+              colour={colour}
               style={{
                 fontSize: 14 * (scale || 1),
                 fontWeight: 'bold',
@@ -69,7 +80,9 @@ export const MiniProfile = observer(
               {channel.name}
             </Text>
             <Text
-              colour={color || currentTheme.foregroundPrimary}
+              useNewText
+              customColour={customColour}
+              colour={colour}
               style={{
                 marginTop: -3 * (scale || 1),
                 fontSize: 14 * (scale || 1),

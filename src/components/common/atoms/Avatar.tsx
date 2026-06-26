@@ -1,14 +1,14 @@
-import {useContext} from 'react';
 import {Pressable, View} from 'react-native';
+import {StyleSheet} from 'react-native-unistyles';
 import {observer} from 'mobx-react-lite';
 
-import type {Server, User, Channel} from 'revolt.js';
+import type {API, Channel, Server, User} from 'revolt.js';
 
 import {Image} from '@clerotri/crossplat/Image';
 import {app} from '@clerotri/Generic';
 import {settings} from '@clerotri/lib/settings';
 import {client} from '@clerotri/lib/client';
-import {ThemeContext} from '@clerotri/lib/themes';
+import type {ThemeColour} from '@clerotri/lib/types';
 
 type AvatarProps = {
   channel?: Channel;
@@ -16,10 +16,12 @@ type AvatarProps = {
   server?: Server;
   status?: boolean;
   size?: number;
-  backgroundColor?: string;
+  backgroundColor?: ThemeColour;
   masquerade?: string;
   pressable?: boolean;
 };
+
+const statusScale = 2.7;
 
 export const Avatar = observer(
   ({
@@ -32,8 +34,6 @@ export const Avatar = observer(
     masquerade,
     pressable,
   }: AvatarProps) => {
-    const {currentTheme} = useContext(ThemeContext);
-
     let memberObject =
       server && user
         ? client.members.getKey({
@@ -41,12 +41,11 @@ export const Avatar = observer(
             user: user?._id,
           })
         : null;
-    let statusColor;
-    let statusScale = 2.7;
-    if (status) {
-      const s = user?.online ? user.status?.presence || 'Online' : 'Offline';
-      statusColor = currentTheme[`status${s}`];
-    }
+
+    const userStatus = user?.online
+      ? user.status?.presence || 'Online'
+      : 'Offline';
+
     let Container = pressable
       ? ({children}: {children: any}) => (
           <Pressable
@@ -80,29 +79,12 @@ export const Avatar = observer(
           />
           {status ? (
             <View
-              style={{
-                width: Math.round(size / statusScale),
-                height: Math.round(size / statusScale),
-                backgroundColor: statusColor,
-                borderRadius: 10000,
-                marginTop: -Math.round(size / statusScale),
-                left: size - Math.round(size / statusScale),
-                borderWidth: Math.round(size / 20),
-                borderColor: backgroundColor || currentTheme.backgroundPrimary,
-              }}
+              style={localStyles.status(size, userStatus, backgroundColor)}
             />
           ) : null}
           {masquerade && settings.get('ui.messaging.showMasqAvatar') ? (
             <Image
-              style={{
-                width: Math.round(size / statusScale),
-                height: Math.round(size / statusScale),
-                marginBottom: -Math.round(size / statusScale),
-                bottom: size,
-                borderRadius: 10000,
-                borderWidth: Math.round(size / 30),
-                borderColor: backgroundColor || currentTheme.backgroundPrimary,
-              }}
+              style={localStyles.masquerade(size, backgroundColor)}
               source={{
                 uri:
                   server &&
@@ -137,3 +119,29 @@ export const Avatar = observer(
     return <></>;
   },
 );
+
+const localStyles = StyleSheet.create(currentTheme => ({
+  status: (
+    size: number,
+    status: API.Presence | 'Offline',
+    backgroundColour?: ThemeColour,
+  ) => ({
+    width: Math.round(size / statusScale),
+    height: Math.round(size / statusScale),
+    backgroundColor: currentTheme[`status${status}`],
+    borderRadius: 10000,
+    marginTop: -Math.round(size / statusScale),
+    left: size - Math.round(size / statusScale),
+    borderWidth: Math.round(size / 20),
+    borderColor: currentTheme[backgroundColour ?? 'backgroundPrimary'],
+  }),
+  masquerade: (size: number, backgroundColour?: ThemeColour) => ({
+    width: Math.round(size / statusScale),
+    height: Math.round(size / statusScale),
+    marginBottom: -Math.round(size / statusScale),
+    bottom: size,
+    borderRadius: 10000,
+    borderWidth: Math.round(size / 30),
+    borderColor: currentTheme[backgroundColour ?? 'backgroundPrimary'],
+  }),
+}));
