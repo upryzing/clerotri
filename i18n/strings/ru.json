@@ -654,6 +654,12 @@
             "member_count_one": "{{count}} участник",
             "member_count_few": "{{count}} участника",
             "member_count_many": "{{count}} участников"
+        },
+        "settings_categories": {
+            "functionality": {
+                "notifications": "Уведомления",
+                "advanced": "Продвинутые настройки"
+            }
         }
     }
 }
