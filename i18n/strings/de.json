@@ -645,6 +645,13 @@
             "donate": "Spenden",
             "see_full_changelog": "Siehe das vollständige Änderungsprotokoll",
             "dismiss": "Zurückweisen"
+        },
+        "settings_categories": {
+            "functionality": {
+                "notifications": "Benachrichtigungen",
+                "advanced": "Erweiterte Einstellungen",
+                "messaging": "Schreiben"
+            }
         }
     }
 }
