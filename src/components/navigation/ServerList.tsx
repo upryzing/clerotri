@@ -1,4 +1,4 @@
-import {useContext} from 'react';
+import {useContext, useMemo} from 'react';
 import {TouchableOpacity, View} from 'react-native';
 import {StyleSheet} from 'react-native-unistyles';
 import {observer} from 'mobx-react-lite';
@@ -10,7 +10,7 @@ import {Text} from '@clerotri/components/common/atoms';
 import {MaterialCommunityIcon} from '@clerotri/components/common/icons';
 import {Image} from '@clerotri/crossplat/Image';
 import {client} from '@clerotri/lib/client';
-import {OrderedServersContext} from '@clerotri/lib/state';
+import {OrderedServersContext, ServerContext} from '@clerotri/lib/state';
 import {commonValues} from '@clerotri/lib/themes';
 import {LineSeparator} from '../layout';
 
@@ -20,12 +20,21 @@ const ServerListEntry = observer(
     onServerPress,
     onServerLongPress,
     showUnread,
+    isHorizontal,
   }: {
     server: Server;
     onServerPress: any;
     onServerLongPress?: any;
     showUnread?: boolean;
+    isHorizontal?: boolean;
   }) => {
+    const {currentServer} = useContext(ServerContext);
+
+    const isCurrentServer = useMemo(
+      () => server._id === currentServer?._id,
+      [currentServer?._id, server._id],
+    );
+
     const iconURL = server.generateIconURL();
     const pings = server.getMentions().length;
     let initials = '';
@@ -36,6 +45,9 @@ const ServerListEntry = observer(
 
     return (
       <View key={`${server._id}-indicator-container`}>
+        {!isHorizontal && isCurrentServer && (
+          <View style={localStyles.selectedServerIndicator} />
+        )}
         <TouchableOpacity
           onPress={() => {
             onServerPress(server);
@@ -44,7 +56,10 @@ const ServerListEntry = observer(
             onServerLongPress(server);
           }}
           key={server._id}
-          style={localStyles.serverButton}>
+          style={[
+            localStyles.serverButton,
+            isCurrentServer && localStyles.selectedServer,
+          ]}>
           {iconURL ? (
             <Image
               key={`${server._id}-icon`}
@@ -141,6 +156,7 @@ export const ServerList = observer(
             onServerPress={onServerPress}
             onServerLongPress={onServerLongPress}
             showUnread={showUnread}
+            isHorizontal={horizontal}
           />
         ))}
         {showDiscover ? (
@@ -171,6 +187,18 @@ const localStyles = StyleSheet.create(currentTheme => ({
     margin: commonValues.sizes.small,
     backgroundColor: currentTheme.backgroundPrimary,
     overflow: 'hidden',
+  },
+  selectedServer: {
+    borderRadius: 12,
+  },
+  selectedServerIndicator: {
+    backgroundColor: currentTheme.foregroundPrimary,
+    width: 4,
+    height: 40,
+    borderRadius: commonValues.sizes.large,
+    position: 'absolute',
+    top: 8,
+    left: -5,
   },
   serverIcon: {
     width: 48,
