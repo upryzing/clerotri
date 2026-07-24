@@ -25,11 +25,7 @@ import {
 import {commonValues, ThemeContext} from '@clerotri/lib/themes';
 
 type UserChannelListChannel =
-  | Channel
-  | 'Home'
-  | 'Friends'
-  | 'Saved Notes'
-  | 'Debug';
+  Channel | 'Home' | 'Friends' | 'Saved Notes' | 'Debug';
 
 type ServerChannelListProps = {
   currentServer: Server;

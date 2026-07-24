@@ -36,8 +36,7 @@ export function renderEmoji(content: string) {
   // get the emoji pack; default to system
   const rawEmojiPack = settings.get('ui.messaging.emojiPack');
   const emojiPack = (rawEmojiPack?.toString().toLowerCase() || 'system') as
-    | EmojiPacks
-    | 'system';
+    EmojiPacks | 'system';
 
   const elements = tokens.map((part, index) => {
     if (index % 2 === 1) {

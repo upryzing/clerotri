@@ -48,10 +48,7 @@ export function MainView() {
       }
     }
     const analyticsSetting = storage.getString('app.analyticsLevel') as
-      | 'basic'
-      | 'full'
-      | 'none'
-      | undefined;
+      'basic' | 'full' | 'none' | undefined;
 
     if (analyticsSetting) {
       analyticsSetting !== 'none' && sendAnalytics(analyticsSetting);

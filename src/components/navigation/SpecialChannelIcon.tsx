@@ -4,11 +4,7 @@ import {
 } from '@clerotri/components/common/icons';
 
 type SpecialCIChannel =
-  | 'Home'
-  | 'Friends'
-  | 'Saved Notes'
-  | 'Discover'
-  | 'Debug';
+  'Home' | 'Friends' | 'Saved Notes' | 'Discover' | 'Debug';
 
 export const SpecialChannelIcon = ({channel}: {channel: SpecialCIChannel}) => {
   const color = 'foregroundSecondary';

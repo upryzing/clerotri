@@ -91,11 +91,7 @@ interface TypedUser {
 export type ReportedObject = TypedMessage | TypedServer | TypedUser;
 
 export type DeletableObject =
-  | TypedBot
-  | TypedChannel
-  | TypedRole
-  | TypedMessage
-  | TypedServer;
+  TypedBot | TypedChannel | TypedRole | TypedMessage | TypedServer;
 
 export type MemberWithModAction = {
   member: Member;
