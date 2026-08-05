@@ -1,18 +1,22 @@
 import {useContext, useMemo} from 'react';
-import {TouchableOpacity, View} from 'react-native';
+import {Platform, Pressable, TouchableOpacity, View} from 'react-native';
 import {StyleSheet} from 'react-native-unistyles';
 import {observer} from 'mobx-react-lite';
+
+import {LegendList} from '@legendapp/list/react-native';
 
 import type {Server} from 'revolt.js';
 
 import {app} from '@clerotri/Generic';
-import {Text} from '@clerotri/components/common/atoms';
+import {Avatar, Text} from '@clerotri/components/common/atoms';
 import {MaterialCommunityIcon} from '@clerotri/components/common/icons';
 import {Image} from '@clerotri/crossplat/Image';
 import {client} from '@clerotri/lib/client';
+import {DEFAULT_API_URL} from '@clerotri/lib/consts';
 import {OrderedServersContext, ServerContext} from '@clerotri/lib/state';
 import {commonValues} from '@clerotri/lib/themes';
 import {LineSeparator} from '../layout';
+import {getInstanceURL} from '@clerotri/lib/storage/utils';
 
 const ServerListEntry = observer(
   ({
@@ -95,6 +99,67 @@ const ServerListEntry = observer(
   },
 );
 
+type ListEntry = 'user' | Server | 'discover';
+
+type EntriesArray = ListEntry[];
+
+const getListEntries = ({
+  servers,
+  filter,
+  orderedServerData,
+  includeExtras,
+}: {
+  servers: Server[];
+  filter?: any;
+  orderedServerData: string[];
+  includeExtras: boolean;
+}) => {
+  let entries: Server[] = [...servers];
+
+  if (filter) {
+    entries = entries.filter(filter);
+  }
+  if (orderedServerData.length > 0) {
+    entries.sort((server1, server2) => {
+      // get the positions of both servers in the synced list
+      const s1index = orderedServerData.indexOf(server1._id);
+      const s2index = orderedServerData.indexOf(server2._id);
+
+      // if they're both in the list, subtract server 2's position from server 1's
+      if (s1index > -1 && s2index > -1) {
+        return (
+          orderedServerData.indexOf(server1._id) -
+          orderedServerData.indexOf(server2._id)
+        );
+      }
+
+      // if server 1 isn't in the list and server 2 is, return 1 (server 2 then 1)
+      if (s1index === -1 && s2index > -1) {
+        return 1;
+      }
+
+      // if server 2 isn't in the list and server 1 is, return -1 (server 1 then 2)
+      if (s2index === -1 && s1index > -1) {
+        return -1;
+      }
+
+      // if both aren't in the list, convert the server IDs to timestamps then order them by when they were created
+      return server2.createdAt > server1.createdAt ? -1 : 1;
+    });
+  }
+
+  const finalArray: EntriesArray = [...entries];
+
+  if (includeExtras) {
+    finalArray.splice(0, 0, 'user');
+    if (getInstanceURL() === DEFAULT_API_URL) {
+      finalArray.push('discover');
+    }
+  }
+
+  return finalArray;
+};
+
 export const ServerList = observer(
   ({
     onServerPress,
@@ -112,74 +177,106 @@ export const ServerList = observer(
     horizontal?: boolean;
   }) => {
     const {orderedServers} = useContext(OrderedServersContext);
+    const {currentServer, setCurrentServer} = useContext(ServerContext);
 
-    let servers = [...client.servers.values()];
-    if (filter) {
-      servers = servers.filter(filter);
-    }
-    if (orderedServers.length > 0) {
-      servers.sort((server1, server2) => {
-        // get the positions of both servers in the synced list
-        const s1index = orderedServers.indexOf(server1._id);
-        const s2index = orderedServers.indexOf(server2._id);
+    const entries = useMemo(
+      () =>
+        getListEntries({
+          servers: [...client.servers.values()],
+          filter,
+          orderedServerData: orderedServers,
+          includeExtras: showDiscover,
+        }),
+      [filter, orderedServers, showDiscover],
+    );
 
-        // if they're both in the list, subtract server 2's position from server 1's
-        if (s1index > -1 && s2index > -1) {
-          return (
-            orderedServers.indexOf(server1._id) -
-            orderedServers.indexOf(server2._id)
-          );
-        }
-
-        // if server 1 isn't in the list and server 2 is, return 1 (server 2 then 1)
-        if (s1index === -1 && s2index > -1) {
-          return 1;
-        }
-
-        // if server 2 isn't in the list and server 1 is, return -1 (server 1 then 2)
-        if (s2index === -1 && s1index > -1) {
-          return -1;
-        }
-
-        // if both aren't in the list, convert the server IDs to timestamps then order them by when they were created
-        return server2.createdAt > server1.createdAt ? -1 : 1;
-      });
-    }
-    return (
-      <View
-        key={'server-list-container'}
-        style={horizontal && {flexDirection: 'row'}}>
-        {servers.map(s => (
-          <ServerListEntry
-            key={s._id}
-            server={s}
-            onServerPress={onServerPress}
-            onServerLongPress={onServerLongPress}
-            showUnread={showUnread}
-            isHorizontal={horizontal}
-          />
-        ))}
-        {showDiscover ? (
-          <>
-            <LineSeparator style={localStyles.separator} />
-            <TouchableOpacity
-              onPress={() => {
-                app.openChannel('discover');
-              }}
-              key={'serverlist-discover'}
-              style={localStyles.serverButton}>
-              <View style={{alignItems: 'center', marginVertical: '22.5%'}}>
-                <MaterialCommunityIcon name={'compass'} size={25} />
+    const renderItem = ({item}: {item: ListEntry}) => {
+      if (typeof item === 'string') {
+        switch (item) {
+          case 'user':
+            return (
+              <View>
+                <Pressable
+                  onPress={() => {
+                    currentServer
+                      ? setCurrentServer(null)
+                      : app.openStatusMenu(true);
+                  }}
+                  onLongPress={() => {
+                    app.openProfile(client.user);
+                  }}
+                  delayLongPress={750}
+                  key={client.user?._id}
+                  style={{margin: 4}}>
+                  <Avatar
+                    key={`${client.user?._id}-avatar`}
+                    user={client.user}
+                    size={48}
+                    backgroundColor={'backgroundSecondary'}
+                    status
+                  />
+                </Pressable>
+                <LineSeparator style={localStyles.separator} />
               </View>
-            </TouchableOpacity>
-          </>
-        ) : null}
-      </View>
+            );
+          case 'discover':
+            return (
+              <View>
+                <LineSeparator style={localStyles.separator} />
+                <TouchableOpacity
+                  onPress={() => {
+                    app.openChannel('discover');
+                  }}
+                  key={'serverlist-discover'}
+                  style={localStyles.serverButton}>
+                  <View style={{alignItems: 'center', marginVertical: '22.5%'}}>
+                    <MaterialCommunityIcon name={'compass'} size={25} />
+                  </View>
+                </TouchableOpacity>
+              </View>
+            );
+        }
+      }
+
+      return (
+        <ServerListEntry
+          key={item._id}
+          server={item}
+          onServerPress={onServerPress}
+          onServerLongPress={onServerLongPress}
+          showUnread={showUnread}
+          isHorizontal={horizontal}
+        />
+      );
+    };
+
+    const keyExtractor = (item: ListEntry) => {
+      return `member-${typeof item === 'string' ? item : item._id}`;
+    };
+
+    return (
+      <LegendList
+        key={'server-list'}
+        keyExtractor={keyExtractor}
+        data={entries}
+        contentContainerStyle={[
+          Platform.OS !== 'web' && showDiscover && localStyles.mainList,
+        ]}
+        renderItem={renderItem}
+        horizontal={horizontal}
+        showsVerticalScrollIndicator={false}
+        showsHorizontalScrollIndicator={false}
+        estimatedItemSize={48}
+      />
     );
   },
 );
 
-const localStyles = StyleSheet.create(currentTheme => ({
+const localStyles = StyleSheet.create((currentTheme, rt) => ({
+  mainList: {
+    paddingTop: rt.insets.top,
+    paddingInline: commonValues.sizes.small,
+  },
   serverButton: {
     borderRadius: 5000,
     width: 48,

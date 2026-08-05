@@ -242,9 +242,15 @@ export const ChannelSwitcherSheet = observer(() => {
                 justifyContent: 'center',
               }}>
               <ScrollView
-                style={{height: 56, marginBlockEnd: commonValues.sizes.medium}}
+                style={{
+                  height: 56,
+                  // evil hack to make the list show up. WHY
+                  marginInlineStart: -1,
+                  marginBlockEnd: commonValues.sizes.medium,
+                }}
                 showsHorizontalScrollIndicator={false}
                 horizontal={true}>
+                <View style={{width: 1}} />
                 <ServerList
                   horizontal
                   onServerPress={(s: Server) => handleServerPress(s)}

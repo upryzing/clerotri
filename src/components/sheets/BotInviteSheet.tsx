@@ -1,5 +1,5 @@
 import {useState} from 'react';
-import {ScrollView, View} from 'react-native';
+import {View} from 'react-native';
 import {StyleSheet} from 'react-native-unistyles';
 import {observer} from 'mobx-react-lite';
 
@@ -38,10 +38,7 @@ export const BotInviteSheet = observer(
               {bot.username}
             </Text>
           </View>
-          <View style={{height: 64, marginBlock: commonValues.sizes.medium}}>
-            <ScrollView
-              horizontal={true}
-              contentContainerStyle={{alignItems: 'center'}}>
+          <View style={{height: 64, marginBlock: commonValues.sizes.medium, flexDirection: 'row', alignItems: 'center'}}>
               <ServerList
                 onServerPress={(s: Server) => setDestination(s)}
                 filter={(s: Server) => s.havePermission('ManageServer')}
@@ -49,7 +46,6 @@ export const BotInviteSheet = observer(
                 showDiscover={false}
                 horizontal
               />
-            </ScrollView>
           </View>
           <Button
             style={{margin: 0}}

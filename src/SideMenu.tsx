@@ -1,21 +1,13 @@
 import {useContext, useState} from 'react';
-import {
-  type ColorValue,
-  Platform,
-  Pressable,
-  ScrollView,
-  useWindowDimensions,
-  View,
-} from 'react-native';
+import {type ColorValue, useWindowDimensions, View} from 'react-native';
 import {StyleSheet, withUnistyles} from 'react-native-unistyles';
 
 import {Drawer} from 'react-native-drawer-layout';
-import {useSafeAreaInsets} from 'react-native-safe-area-context';
 
 import type {Server} from 'revolt.js';
 
 import {app, setFunction} from './Generic';
-import {Avatar, Button} from './components/common/atoms';
+import {Button} from './components/common/atoms';
 import {
   MaterialCommunityIcon,
   MaterialIcon,
@@ -23,7 +15,6 @@ import {
 import {ChannelList} from './components/navigation/ChannelList';
 import {ServerList} from './components/navigation/ServerList';
 import {ChannelView} from './components/views/ChannelView';
-import {client} from '@clerotri/lib/client';
 import {DEFAULT_API_URL} from '@clerotri/lib/consts';
 import {
   ChannelContext,
@@ -31,7 +22,6 @@ import {
   SideMenuContext,
 } from '@clerotri/lib/state';
 import {getInstanceURL} from '@clerotri/lib/storage/utils';
-import {commonValues} from '@clerotri/lib/themes';
 import {useBackHandler} from '@clerotri/lib/ui';
 
 // Unistyles doesn't seem to support experimental_backgroundImage, which is needed for the gradient,
@@ -70,47 +60,19 @@ const ServerListGradient = withUnistyles(
 );
 
 const SideMenu = () => {
-  const insets = useSafeAreaInsets();
-
   const {setCurrentChannel} = useContext(ChannelContext);
-  const {currentServer, setCurrentServer} = useContext(ServerContext);
+  const {setCurrentServer} = useContext(ServerContext);
 
   return (
     <View style={localStyles.container}>
       <View style={localStyles.sideView}>
-        <ScrollView
-          key={'server-list'}
-          style={localStyles.serverList}
-          contentContainerStyle={
-            Platform.OS !== 'web' && {paddingTop: insets.top}
-          }
-          showsHorizontalScrollIndicator={false}
-          showsVerticalScrollIndicator={false}>
-          <Pressable
-            onPress={() => {
-              currentServer ? setCurrentServer(null) : app.openStatusMenu(true);
-            }}
-            onLongPress={() => {
-              app.openProfile(client.user);
-            }}
-            delayLongPress={750}
-            key={client.user?._id}
-            style={{margin: 4}}>
-            <Avatar
-              key={`${client.user?._id}-avatar`}
-              user={client.user}
-              size={48}
-              backgroundColor={'backgroundSecondary'}
-              status
-            />
-          </Pressable>
-          <View style={localStyles.separator} />
+        <View key={'server-list'} style={localStyles.serverList}>
           <ServerList
             onServerPress={(s: Server) => setCurrentServer(s)}
             onServerLongPress={(s: Server) => app.openServerContextMenu(s)}
             showDiscover={getInstanceURL() === DEFAULT_API_URL}
           />
-        </ScrollView>
+        </View>
         <ServerListGradient />
         <ChannelList />
       </View>
@@ -224,16 +186,9 @@ const localStyles = StyleSheet.create((currentTheme, rt) => ({
     width: '100%',
     position: 'absolute',
   },
+  // *why* can't this just use flex like everything else :sobbing;
   serverList: {
-    paddingInline: commonValues.sizes.small,
-    flexShrink: 1,
-    ...(Platform.OS === 'web' && {scrollbarWidth: 'none'}),
-  },
-  separator: {
-    margin: 6,
-    height: 2,
-    width: '80%',
-    backgroundColor: currentTheme.backgroundPrimary,
+    width: 64,
   },
   bottomBar: {
     height: 52,
