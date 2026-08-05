@@ -3032,12 +3032,12 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@types/react-dom@npm:^19.2.3":
-  version: 19.2.3
-  resolution: "@types/react-dom@npm:19.2.3"
+"@types/react-dom@npm:^19.2.4":
+  version: 19.2.4
+  resolution: "@types/react-dom@npm:19.2.4"
   peerDependencies:
     "@types/react": ^19.2.0
-  checksum: 10c0/b486ebe0f4e2fb35e2e108df1d8fc0927ca5d6002d5771e8a739de11239fe62d0e207c50886185253c99eb9dedfeeb956ea7429e5ba17f6693c7acb4c02f8cd1
+  checksum: 10c0/b7d854ce17bb51a3a067168268a90f0123d10dc490f63f1ff5409f07ac715febeb8f5b7b473404a9d437106571e0312fc2937a945634d590abfc9aa46a14b01b
   languageName: node
   linkType: hard
 
@@ -3060,12 +3060,12 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@types/react@npm:*, @types/react@npm:^19.2.17":
-  version: 19.2.17
-  resolution: "@types/react@npm:19.2.17"
+"@types/react@npm:*, @types/react@npm:^19.2.18":
+  version: 19.2.18
+  resolution: "@types/react@npm:19.2.18"
   dependencies:
     csstype: "npm:^3.2.2"
-  checksum: 10c0/bc2c4af96b3e480604424de70d5ebda90c5f4b485df471858c0bc2d7d70364b606ec3c4d8579f94f01aa0c6c0591f56bcf14cba5689f5eea4b74250ccdc3a232
+  checksum: 10c0/d04216172b4b4362b310017c210dfbe019fb4f4e7dffd0313e70b3acb3051d5c3e76e7e84e3cf4c6a3c824993ffadfe3949e589a6398a09d4200e7670e2962de
   languageName: node
   linkType: hard
 
@@ -8575,9 +8575,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"react-native-worklets@npm:^0.11.1":
-  version: 0.11.1
-  resolution: "react-native-worklets@npm:0.11.1"
+"react-native-worklets@npm:^0.11.3":
+  version: 0.11.3
+  resolution: "react-native-worklets@npm:0.11.3"
   dependencies:
     "@babel/generator": "npm:^7.27.1"
     "@babel/plugin-transform-arrow-functions": "npm:^7.27.1"
@@ -8598,7 +8598,7 @@ __metadata:
     "@react-native/metro-config": "*"
     react: "*"
     react-native: 0.83 - 0.86
-  checksum: 10c0/fc312cb0f1b7d7790b202a0db2cdb4ffb6e821bb302edcffe7073f2fc65329f30604ee7ab46efd9c6f3018d7560a412d8258a759c7cacfd0ace232fb01dfdc58
+  checksum: 10c0/74627598616e671f19475053037fdd2c40941b0b1e65cd538b41ec53229f7d2a35a182f88baf2e669b785c11ace11e2a9ec0c3cf50e1f9c283645af71a673c1a
   languageName: node
   linkType: hard
 
@@ -9133,8 +9133,8 @@ __metadata:
     "@types/babel__core": "npm:^7.20.5"
     "@types/eslint": "npm:^8.56.12"
     "@types/node": "npm:^24.13.3"
-    "@types/react": "npm:^19.2.17"
-    "@types/react-dom": "npm:^19.2.3"
+    "@types/react": "npm:^19.2.18"
+    "@types/react-dom": "npm:^19.2.4"
     "@types/react-native-web": "npm:^0.19.2"
     "@types/react-test-renderer": "npm:^19.1.0"
     "@vitejs/plugin-react": "npm:^5.2.0"
@@ -9170,7 +9170,7 @@ __metadata:
     react-native-svg-transformer: "npm:^1.5.3"
     react-native-unistyles: "npm:^3.3.0"
     react-native-web: "npm:^0.19.13"
-    react-native-worklets: "npm:^0.11.1"
+    react-native-worklets: "npm:^0.11.3"
     react-test-renderer: "npm:19.2.3"
     reanimated-color-picker: "npm:^5.1.2"
     revolt.js: "npm:@rexovolt/revolt.js@^6.8.0"
