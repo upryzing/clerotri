@@ -1196,15 +1196,19 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@legendapp/list@npm:^2.0.19":
-  version: 2.0.19
-  resolution: "@legendapp/list@npm:2.0.19"
+"@legendapp/list@npm:^3.3.3":
+  version: 3.3.3
+  resolution: "@legendapp/list@npm:3.3.3"
   dependencies:
     use-sync-external-store: "npm:^1.5.0"
   peerDependencies:
     react: "*"
-    react-native: "*"
-  checksum: 10c0/8201cd3ebf59bb885b8289e0e65df3134a3d59f9b7fce9b30884a50fab8b268ed601dec742bfa48beeb4fec45fdba8d69af56bf1e16e5afbdce0e1db7a1c56d8
+  peerDependenciesMeta:
+    react-dom:
+      optional: true
+    react-native:
+      optional: true
+  checksum: 10c0/eea197398d6f66c79619b6dac7a9f66c0fd09b12fb27ee01bb1442bbc8a23b015c1a8d4b1bd9659b1caab153526a506bfd674af7b667c534b0cabadb0d412d17
   languageName: node
   linkType: hard
 
@@ -9110,7 +9114,7 @@ __metadata:
     "@babel/core": "npm:^7.29.7"
     "@babel/runtime": "npm:^7.29.7"
     "@gorhom/bottom-sheet": "npm:^5.2.14"
-    "@legendapp/list": "npm:^2.0.19"
+    "@legendapp/list": "npm:^3.3.3"
     "@notifee/react-native": "npm:^9.1.8"
     "@react-native-clipboard/clipboard": "npm:^1.16.3"
     "@react-native-community/cli": "npm:^20.2.0"

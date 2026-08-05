@@ -4,7 +4,7 @@ import {Platform, View} from 'react-native';
 import {useTranslation} from 'react-i18next';
 import {observer} from 'mobx-react-lite';
 
-import {LegendList} from '@legendapp/list';
+import {LegendList} from '@legendapp/list/react-native';
 import {ErrorBoundary} from 'react-error-boundary';
 
 import {Channel, Message as RevoltMessage} from 'revolt.js';
@@ -161,16 +161,14 @@ const NewMessageView = observer(
             style={styles.messagesView}
             contentContainerStyle={{
               paddingBottom: Platform.OS === 'web' ? 0 : 20,
-              flexGrow: 1,
+              flexGrow: 1,                                                                                                                             
               justifyContent: 'flex-end',
               flexDirection: 'column',
             }}
             // ref={scrollViewRef}
             renderItem={renderItem}
             initialScrollIndex={messages.length - 1}
-            waitForInitialLayout
             alignItemsAtEnd
-            maintainScrollAtEnd
             maintainScrollAtEndThreshold={0.2}
             maintainVisibleContentPosition
             onStartReached={() => {

@@ -3,7 +3,7 @@ import {Platform, Pressable, View} from 'react-native';
 import {useTranslation} from 'react-i18next';
 import {observer} from 'mobx-react-lite';
 
-import {LegendList} from '@legendapp/list';
+import {LegendList} from '@legendapp/list/react-native';
 import {useSafeAreaInsets} from 'react-native-safe-area-context';
 
 import type {API, Member, Server} from 'revolt.js';
