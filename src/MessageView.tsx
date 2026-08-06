@@ -161,7 +161,7 @@ const NewMessageView = observer(
             style={styles.messagesView}
             contentContainerStyle={{
               paddingBottom: Platform.OS === 'web' ? 0 : 20,
-              flexGrow: 1,                                                                                                                             
+              flexGrow: 1,
               justifyContent: 'flex-end',
               flexDirection: 'column',
             }}
