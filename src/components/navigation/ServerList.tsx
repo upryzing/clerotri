@@ -61,7 +61,7 @@ const ServerListEntry = observer(
           }}
           key={server._id}
           style={[
-            localStyles.serverButton,
+            localStyles.serverButton(isHorizontal),
             isCurrentServer && localStyles.selectedServer,
           ]}>
           {iconURL ? (
@@ -81,7 +81,7 @@ const ServerListEntry = observer(
         {showUnread && pings > 0 ? (
           <View
             key={`${server._id}-mentions-indicator`}
-            style={localStyles.mentionsIndicator}>
+            style={localStyles.mentionsIndicator(isHorizontal)}>
             <Text
               key={`${server._id}-mentions-indicator-count`}
               style={localStyles.mentionsIndicatorText}>
@@ -91,7 +91,7 @@ const ServerListEntry = observer(
         ) : showUnread && server.isUnread() ? (
           <View
             key={`${server._id}-unreads-indicator`}
-            style={localStyles.unreadsIndicator}
+            style={localStyles.unreadsIndicator(isHorizontal)}
           />
         ) : null}
       </View>
@@ -99,56 +99,82 @@ const ServerListEntry = observer(
   },
 );
 
-type ListEntry = 'user' | Server | 'discover';
+type ListEntry = 'user' | Server | 'separator' | 'discover';
 
 type EntriesArray = ListEntry[];
+
+const orderServers = (
+  unorderedServers: Server[],
+  orderedServerData: string[],
+) => {
+  const servers = [...unorderedServers];
+
+  servers.sort((server1, server2) => {
+    // get the positions of both servers in the synced list
+    const s1index = orderedServerData.indexOf(server1._id);
+    const s2index = orderedServerData.indexOf(server2._id);
+
+    // if they're both in the list, subtract server 2's position from server 1's
+    if (s1index > -1 && s2index > -1) {
+      return (
+        orderedServerData.indexOf(server1._id) -
+        orderedServerData.indexOf(server2._id)
+      );
+    }
+
+    // if server 1 isn't in the list and server 2 is, return 1 (server 2 then 1)
+    if (s1index === -1 && s2index > -1) {
+      return 1;
+    }
+
+    // if server 2 isn't in the list and server 1 is, return -1 (server 1 then 2)
+    if (s2index === -1 && s1index > -1) {
+      return -1;
+    }
+
+    // if both aren't in the list, convert the server IDs to timestamps then order them by when they were created
+    return server2.createdAt > server1.createdAt ? -1 : 1;
+  });
+
+  return servers;
+};
 
 const getListEntries = ({
   servers,
   filter,
   orderedServerData,
   includeExtras,
+  separateUnread,
 }: {
   servers: Server[];
   filter?: any;
   orderedServerData: string[];
   includeExtras: boolean;
+  separateUnread: boolean;
 }) => {
   let entries: Server[] = [...servers];
+  let finalArray: EntriesArray = [...entries];
 
   if (filter) {
     entries = entries.filter(filter);
   }
-  if (orderedServerData.length > 0) {
-    entries.sort((server1, server2) => {
-      // get the positions of both servers in the synced list
-      const s1index = orderedServerData.indexOf(server1._id);
-      const s2index = orderedServerData.indexOf(server2._id);
 
-      // if they're both in the list, subtract server 2's position from server 1's
-      if (s1index > -1 && s2index > -1) {
-        return (
-          orderedServerData.indexOf(server1._id) -
-          orderedServerData.indexOf(server2._id)
-        );
-      }
+  if (separateUnread) {
+    let unreadServers: Server[] = [];
+    let readServers: Server[] = [];
 
-      // if server 1 isn't in the list and server 2 is, return 1 (server 2 then 1)
-      if (s1index === -1 && s2index > -1) {
-        return 1;
-      }
+    for (const server of entries) {
+      (server.isUnread() ? unreadServers : readServers).push(server);
+    }
 
-      // if server 2 isn't in the list and server 1 is, return -1 (server 1 then 2)
-      if (s2index === -1 && s1index > -1) {
-        return -1;
-      }
+    unreadServers = orderServers(unreadServers, orderedServerData);
+    readServers = orderServers(readServers, orderedServerData);
 
-      // if both aren't in the list, convert the server IDs to timestamps then order them by when they were created
-      return server2.createdAt > server1.createdAt ? -1 : 1;
-    });
+    finalArray = [...unreadServers, 'separator', ...readServers];
+  } else if (orderedServerData.length > 0) {
+    entries = orderServers(entries, orderedServerData);
+    finalArray = [...entries];
   }
-
-  const finalArray: EntriesArray = [...entries];
 
   if (includeExtras) {
     finalArray.splice(0, 0, 'user');
@@ -166,15 +192,19 @@ export const ServerList = observer(
     onServerLongPress,
     filter,
     showUnread = true,
-    showDiscover = true,
-    horizontal = false,
+    isMainList = false,
+    separateUnread = false,
+    horizontal,
+    channelSwitcher,
   }: {
     onServerPress: any;
     onServerLongPress?: any;
     filter?: any;
     showUnread?: boolean;
-    showDiscover?: boolean;
+    isMainList?: boolean;
+    separateUnread?: boolean;
     horizontal?: boolean;
+    channelSwitcher?: boolean;
   }) => {
     const {orderedServers} = useContext(OrderedServersContext);
     const {currentServer, setCurrentServer} = useContext(ServerContext);
@@ -185,9 +215,10 @@ export const ServerList = observer(
           servers: [...client.servers.values()],
           filter,
           orderedServerData: orderedServers,
-          includeExtras: showDiscover,
+          includeExtras: isMainList,
+          separateUnread,
         }),
-      [filter, orderedServers, showDiscover],
+      [filter, orderedServers, isMainList, separateUnread],
     );
 
     const renderItem = ({item}: {item: ListEntry}) => {
@@ -207,7 +238,7 @@ export const ServerList = observer(
                   }}
                   delayLongPress={750}
                   key={client.user?._id}
-                  style={{margin: 4}}>
+                  style={{margin: 4, marginBlockEnd: 8}}>
                   <Avatar
                     key={`${client.user?._id}-avatar`}
                     user={client.user}
@@ -216,24 +247,34 @@ export const ServerList = observer(
                     status
                   />
                 </Pressable>
-                <LineSeparator style={localStyles.separator} />
+                <LineSeparator style={localStyles.separator(horizontal)} />
               </View>
             );
           case 'discover':
             return (
               <View>
-                <LineSeparator style={localStyles.separator} />
+                <LineSeparator style={localStyles.separator(horizontal)} />
                 <TouchableOpacity
                   onPress={() => {
                     app.openChannel('discover');
                   }}
                   key={'serverlist-discover'}
-                  style={localStyles.serverButton}>
+                  style={[
+                    localStyles.serverButton(horizontal),
+                    {marginBlockStart: 8},
+                  ]}>
                   <View style={{alignItems: 'center', marginVertical: '22.5%'}}>
                     <MaterialCommunityIcon name={'compass'} size={25} />
                   </View>
                 </TouchableOpacity>
               </View>
+            );
+          case 'separator':
+            return (
+              <LineSeparator
+                vertical={horizontal}
+                style={localStyles.separator(horizontal, channelSwitcher)}
+              />
             );
         }
       }
@@ -260,7 +301,8 @@ export const ServerList = observer(
         keyExtractor={keyExtractor}
         data={entries}
         contentContainerStyle={[
-          Platform.OS !== 'web' && showDiscover && localStyles.mainList,
+          Platform.OS !== 'web' && isMainList && localStyles.mainList,
+          {gap: commonValues.sizes.medium},
         ]}
         renderItem={renderItem}
         horizontal={horizontal}
@@ -277,13 +319,21 @@ const localStyles = StyleSheet.create((currentTheme, rt) => ({
     paddingTop: rt.insets.top,
     paddingInline: commonValues.sizes.small,
   },
-  serverButton: {
+  serverButton: (horizontal?: boolean) => ({
     borderRadius: 5000,
     width: 48,
     height: 48,
-    margin: commonValues.sizes.small,
     backgroundColor: currentTheme.backgroundPrimary,
     overflow: 'hidden',
+    ...(horizontal
+      ? {marginBlock: commonValues.sizes.small}
+      : {marginInline: commonValues.sizes.small}),
+  }),
+  serverButtonVertical: {
+    marginInline: commonValues.sizes.small,
+  },
+  serverButtonHorizontal: {
+    marginBlock: commonValues.sizes.small,
   },
   selectedServer: {
     borderRadius: 12,
@@ -294,7 +344,7 @@ const localStyles = StyleSheet.create((currentTheme, rt) => ({
     height: 40,
     borderRadius: commonValues.sizes.large,
     position: 'absolute',
-    top: 8,
+    top: 4,
     left: -5,
   },
   serverIcon: {
@@ -306,23 +356,24 @@ const localStyles = StyleSheet.create((currentTheme, rt) => ({
     textAlign: 'center',
     marginTop: '30%',
   },
-  mentionsIndicator: {
+  mentionsIndicator: (horizontal?: boolean) => ({
     borderRadius: 10000,
     backgroundColor: currentTheme.error,
     height: 20,
     width: 20,
     marginBottom: -20,
-    left: 36,
+    ...(!horizontal && {top: -4}),
+    left: horizontal ? 32 : 36,
     position: 'absolute',
     justifyContent: 'center',
     alignItems: 'center',
-  },
+  }),
   mentionsIndicatorText: {
     color: '#FFFFFF',
     marginRight: 1,
     marginBottom: 2,
   },
-  unreadsIndicator: {
+  unreadsIndicator: (horizontal?: boolean) => ({
     borderRadius: 10000,
     borderWidth: 3,
     borderColor: currentTheme.background,
@@ -330,11 +381,16 @@ const localStyles = StyleSheet.create((currentTheme, rt) => ({
     height: 20,
     width: 20,
     marginBottom: -20,
+    ...(!horizontal && {top: -4}),
     left: 36,
     position: 'absolute',
-  },
-  separator: {
-    margin: 6,
-    backgroundColor: currentTheme.backgroundPrimary,
-  },
+  }),
+  separator: (horizontal?: boolean, channelSwitcher?: boolean) => ({
+    ...(horizontal
+      ? {marginBlock: 6, marginInline: 2, minHeight: 44}
+      : {marginInline: 6, marginBlock: 2, minWidth: 44}),
+    backgroundColor: channelSwitcher
+      ? currentTheme.backgroundPrimary
+      : currentTheme.backgroundPrimary,
+  }),
 }));

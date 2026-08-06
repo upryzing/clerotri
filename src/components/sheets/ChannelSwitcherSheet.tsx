@@ -240,29 +240,20 @@ export const ChannelSwitcherSheet = observer(() => {
                 flex: 1,
                 alignItems: 'center',
                 justifyContent: 'center',
+                height: 56,
+                marginBlockEnd: commonValues.sizes.medium,
               }}>
               <ScrollView
-                style={{
-                  height: 56,
-                  // evil hack to make the list show up. WHY
-                  marginInlineStart: -1,
-                  marginBlockEnd: commonValues.sizes.medium,
-                }}
                 showsHorizontalScrollIndicator={false}
                 horizontal={true}>
-                <View style={{width: 1}} />
-                <ServerList
-                  horizontal
-                  onServerPress={(s: Server) => handleServerPress(s)}
-                  filter={(s: Server) => s.isUnread()}
-                  showDiscover={false}
-                />
-                <ServerList
-                  horizontal
-                  onServerPress={(s: Server) => handleServerPress(s)}
-                  filter={(s: Server) => !s.isUnread()}
-                  showDiscover={false}
-                />
+                {isOpen && (
+                  <ServerList
+                    horizontal
+                    onServerPress={(s: Server) => handleServerPress(s)}
+                    separateUnread
+                    channelSwitcher
+                  />
+                )}
               </ScrollView>
             </View>
           )}

@@ -15,13 +15,11 @@ import {
 import {ChannelList} from './components/navigation/ChannelList';
 import {ServerList} from './components/navigation/ServerList';
 import {ChannelView} from './components/views/ChannelView';
-import {DEFAULT_API_URL} from '@clerotri/lib/consts';
 import {
   ChannelContext,
   ServerContext,
   SideMenuContext,
 } from '@clerotri/lib/state';
-import {getInstanceURL} from '@clerotri/lib/storage/utils';
 import {useBackHandler} from '@clerotri/lib/ui';
 
 // Unistyles doesn't seem to support experimental_backgroundImage, which is needed for the gradient,
@@ -70,7 +68,7 @@ const SideMenu = () => {
           <ServerList
             onServerPress={(s: Server) => setCurrentServer(s)}
             onServerLongPress={(s: Server) => app.openServerContextMenu(s)}
-            showDiscover={getInstanceURL() === DEFAULT_API_URL}
+            isMainList
           />
         </View>
         <ServerListGradient />
