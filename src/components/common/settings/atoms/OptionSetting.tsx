@@ -20,22 +20,24 @@ export const OptionSetting = ({sRaw}: {sRaw: Setting}) => {
 
   return (
     <View>
-      <IndicatorIcons s={sRaw} />
-      <Text
+      <View
         style={{
-          fontWeight: 'bold',
-          marginBottom: commonValues.sizes.medium,
+          flexDirection: 'row',
+          alignItems: 'center',
+          marginBlockEnd: commonValues.sizes.medium,
         }}>
-        {t(`app.settings.${sRaw.key}`)}
-      </Text>
-      {sRaw.remark ? (
-        <Text
-          useNewText
-          colour={'foregroundSecondary'}
-          style={{marginBottom: commonValues.sizes.medium}}>
-          {t(`app.settings.${sRaw.key}_remark`)}
-        </Text>
-      ) : null}
+        <IndicatorIcons s={sRaw} />
+        <View style={{flex: 1}}>
+          <Text useNewText style={{fontWeight: 'bold'}}>
+            {t(`app.settings.${sRaw.key}`)}
+          </Text>
+          {sRaw.remark ? (
+            <Text useNewText colour={'foregroundSecondary'}>
+              {t(`app.settings.${sRaw.key}_remark`)}
+            </Text>
+          ) : null}
+        </View>
+      </View>
       <View style={localStyles.optionsContainer}>
         {sRaw.options!.map((o, i) => (
           <Fragment key={o}>

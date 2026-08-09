@@ -2,9 +2,10 @@ import {View} from 'react-native';
 import {useTranslation} from 'react-i18next';
 import {useMMKVNumber} from 'react-native-mmkv';
 
+import {Input, Text} from '@clerotri/components/common/atoms';
+import {IndicatorIcons} from '@clerotri/components/common/settings/atoms/IndicatorIcons';
+import {commonValues} from '@clerotri/lib/themes';
 import {Setting} from '@clerotri/lib/types';
-import {Input, Text} from '../../atoms';
-import {IndicatorIcons} from './IndicatorIcons';
 
 export const NumberSetting = ({sRaw}: {sRaw: Setting}) => {
   const {t} = useTranslation();
@@ -12,25 +13,26 @@ export const NumberSetting = ({sRaw}: {sRaw: Setting}) => {
   const [value = sRaw.default, setValue] = useMMKVNumber(sRaw.key);
 
   return (
-    <View
-      key={`settings_${sRaw.key}`}
-      style={{
-        flexDirection: 'row',
-        alignItems: 'center',
-      }}>
-      <View>
+    <View key={`settings_${sRaw.key}`}>
+      <View
+        style={{
+          flexDirection: 'row',
+          alignItems: 'center',
+          marginBlockEnd: commonValues.sizes.medium,
+        }}>
         <IndicatorIcons s={sRaw} />
-        <Text style={{flex: 1, fontWeight: 'bold', marginBottom: 8}}>
-          {t(`app.settings.${sRaw.key}`)}
-        </Text>
-        {sRaw.remark ? (
-          <Text
-            useNewText
-            colour={'foregroundSecondary'}
-            style={{marginBottom: 8}}>
-            {t(`app.settings.${sRaw.key}_remark`)}
+        <View style={{flex: 1}}>
+          <Text useNewText style={{fontWeight: 'bold'}}>
+            {t(`app.settings.${sRaw.key}`)}
           </Text>
-        ) : null}
+          {sRaw.remark ? (
+            <Text useNewText colour={'foregroundSecondary'}>
+              {t(`app.settings.${sRaw.key}_remark`)}
+            </Text>
+          ) : null}
+        </View>
+      </View>
+      <View>
         <Input
           value={`${value}`}
           keyboardType={'decimal-pad'}
