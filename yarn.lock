@@ -1196,9 +1196,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@legendapp/list@npm:^3.3.3":
-  version: 3.3.3
-  resolution: "@legendapp/list@npm:3.3.3"
+"@legendapp/list@npm:^3.3.4":
+  version: 3.3.4
+  resolution: "@legendapp/list@npm:3.3.4"
   dependencies:
     use-sync-external-store: "npm:^1.5.0"
   peerDependencies:
@@ -1208,7 +1208,7 @@ __metadata:
       optional: true
     react-native:
       optional: true
-  checksum: 10c0/eea197398d6f66c79619b6dac7a9f66c0fd09b12fb27ee01bb1442bbc8a23b015c1a8d4b1bd9659b1caab153526a506bfd674af7b667c534b0cabadb0d412d17
+  checksum: 10c0/61f99eceb891ee8c39f9c142da50db86a833c697f83475988ca6038430511429b5aef1e5e7fc50b584a7cd834982253a72c68504041e4a8b25e04ada59893120
   languageName: node
   linkType: hard
 
@@ -1625,13 +1625,13 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@react-native-documents/picker@npm:^12.0.1":
-  version: 12.0.1
-  resolution: "@react-native-documents/picker@npm:12.0.1"
+"@react-native-documents/picker@npm:^12.0.2":
+  version: 12.0.2
+  resolution: "@react-native-documents/picker@npm:12.0.2"
   peerDependencies:
     react: "*"
     react-native: ">=0.79.0"
-  checksum: 10c0/1077f80fdb76fcad283997f56a7f2eb263ace2a73da788e4b29dc926a78149c04a6eea1d4aeddef75c9f176fbbc9206a1c64c10c2d0c85c86cca85be023f7c00
+  checksum: 10c0/4f81e001cbb2b61cf7fce27dd4e8b8954ba3a471daf5cba86738b1515977dbdfdf206c948c12c11684dc0f568e687b48b20abe4398ad3ed8a9fa2f8aff8be5c7
   languageName: node
   linkType: hard
 
@@ -8390,9 +8390,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"react-native-drawer-layout@npm:^4.2.9":
-  version: 4.2.9
-  resolution: "react-native-drawer-layout@npm:4.2.9"
+"react-native-drawer-layout@npm:^4.2.10":
+  version: 4.2.10
+  resolution: "react-native-drawer-layout@npm:4.2.10"
   dependencies:
     color: "npm:^4.2.3"
     use-latest-callback: "npm:^0.2.4"
@@ -8401,7 +8401,7 @@ __metadata:
     react-native: "*"
     react-native-gesture-handler: ">= 2.0.0"
     react-native-reanimated: ">= 2.0.0"
-  checksum: 10c0/366b701d69e2e8660c2f1a87f5bdf93ca93999f561e5ea6df06dd7793ca7de523244e65de6b8f7e4228b2e5ae2ab3f196a3ac6da1d20430cfbe294f4215c1576
+  checksum: 10c0/0ce6389d1b45ff0da860b9344caaa13a84a51b30cd3cdda8358e6a4315225365faf9a7ad6c238fe0965eff54b45ca23ae2975e69760925487e06201aa12e84b8
   languageName: node
   linkType: hard
 
@@ -8441,16 +8441,16 @@ __metadata:
   languageName: node
   linkType: hard
 
-"react-native-keyboard-controller@npm:^1.22.2":
-  version: 1.22.2
-  resolution: "react-native-keyboard-controller@npm:1.22.2"
+"react-native-keyboard-controller@npm:^1.22.3":
+  version: 1.22.3
+  resolution: "react-native-keyboard-controller@npm:1.22.3"
   dependencies:
     react-native-is-edge-to-edge: "npm:^1.2.1"
   peerDependencies:
     react: "*"
     react-native: "*"
     react-native-reanimated: ">=3.0.0"
-  checksum: 10c0/d28a2f4f17c34fe7b38e5d80cda22b88b11cd7400ad041d7a7270fc0ea9599773a7d4baa76ae415b7a1785655bab6082432005b4e6efb399995cd24e4721b666
+  checksum: 10c0/d3bf5a9378156feba2495ac1ba6d019c70cce9ddcb40e0043a15d5f7f2ceb05c044c88b7408d34b970f392fff261709719c57283768f5884f03a520c96adcd2f
   languageName: node
   linkType: hard
 
@@ -8501,13 +8501,13 @@ __metadata:
   languageName: node
   linkType: hard
 
-"react-native-safe-area-context@npm:^5.8.0":
-  version: 5.8.0
-  resolution: "react-native-safe-area-context@npm:5.8.0"
+"react-native-safe-area-context@npm:^5.8.1":
+  version: 5.8.1
+  resolution: "react-native-safe-area-context@npm:5.8.1"
   peerDependencies:
     react: "*"
     react-native: "*"
-  checksum: 10c0/86d1375ce17d549b541d157148d9d093f9e918de47d3b0a5cbc4cb6afe619aa52e99f07dc62ee0878eaa70e8da3411193b24cfee1b7b271ffd295d0fce83d128
+  checksum: 10c0/b04491f2dd97faf4a0afcb198ba803239676580a9523b23614346236149d0419abb8d0422574f4ce1782d606be6e5741b8e6841d807c48f69247a497a7a511aa
   languageName: node
   linkType: hard
 
@@ -9114,14 +9114,14 @@ __metadata:
     "@babel/core": "npm:^7.29.7"
     "@babel/runtime": "npm:^7.29.7"
     "@gorhom/bottom-sheet": "npm:^5.2.14"
-    "@legendapp/list": "npm:^3.3.3"
+    "@legendapp/list": "npm:^3.3.4"
     "@notifee/react-native": "npm:^9.1.8"
     "@react-native-clipboard/clipboard": "npm:^1.16.3"
     "@react-native-community/cli": "npm:^20.2.0"
     "@react-native-community/cli-platform-android": "npm:^20.2.0"
     "@react-native-community/cli-platform-ios": "npm:^20.2.0"
     "@react-native-community/hooks": "npm:^100.1.0"
-    "@react-native-documents/picker": "npm:^12.0.1"
+    "@react-native-documents/picker": "npm:^12.0.2"
     "@react-native-vector-icons/material-design-icons": "npm:^13.1.2"
     "@react-native-vector-icons/material-icons": "npm:^13.1.2"
     "@react-native/babel-preset": "npm:^0.85.3"
@@ -9161,15 +9161,15 @@ __metadata:
     react-i18next: "npm:^17.0.11"
     react-native: "npm:^0.85.3"
     react-native-device-info: "patch:react-native-device-info@npm%3A15.0.1#~/.yarn/patches/react-native-device-info-npm-15.0.1-5235e3560e.patch"
-    react-native-drawer-layout: "npm:^4.2.9"
+    react-native-drawer-layout: "npm:^4.2.10"
     react-native-gesture-handler: "npm:^2.32.0"
     react-native-get-random-values: "npm:^2.0.0"
-    react-native-keyboard-controller: "npm:^1.22.2"
+    react-native-keyboard-controller: "npm:^1.22.3"
     react-native-mmkv: "npm:^4.3.2"
     react-native-nitro-modules: "npm:0.36.1"
     react-native-reanimated: "npm:^4.5.3"
     react-native-reanimated-image-viewer: "npm:^1.0.2"
-    react-native-safe-area-context: "npm:^5.8.0"
+    react-native-safe-area-context: "npm:^5.8.1"
     react-native-svg: "npm:^15.15.5"
     react-native-svg-transformer: "npm:^1.5.3"
     react-native-unistyles: "npm:^3.3.0"
