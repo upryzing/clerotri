@@ -54,10 +54,10 @@ const ServerListEntry = observer(
         )}
         <TouchableOpacity
           onPress={() => {
-            onServerPress(server);
+            onServerPress && onServerPress(server);
           }}
           onLongPress={() => {
-            onServerLongPress(server);
+            onServerLongPress && onServerLongPress(server);
           }}
           key={server._id}
           style={[
