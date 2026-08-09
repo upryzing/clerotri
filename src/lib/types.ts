@@ -34,7 +34,21 @@ export type Setting = (StringSetting | BoolSetting) & {
 
 type SettingsCategoryItem =
   | string[]
-  | {type: 'settingsButton'; props: any}
+  | {
+      type: 'settingsButton';
+      props: {
+        title: string;
+        body?: string;
+        onPress: ({
+          setSection,
+          openLink,
+        }: {
+          setSection: (section: SettingsSection) => {};
+          openLink: (link: string) => {};
+        }) => void;
+        destructive?: boolean;
+      };
+    }
   | {type: 'button'; props: any}
   | {type: 'divider'};
 

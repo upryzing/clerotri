@@ -5,12 +5,15 @@ import {observer} from 'mobx-react-lite';
 import {useMMKVBoolean} from 'react-native-mmkv';
 
 import {Text} from '@clerotri/components/common/atoms';
+import {MaterialIcon} from '@clerotri/components/common/icons';
 import {
   BoolSetting,
   OptionSetting,
   NumberSetting,
   StringSetting,
-} from './atoms';
+  PressableSettingsEntry,
+} from '@clerotri/components/common/settings/atoms';
+import {LineSeparator} from '@clerotri/components/layout';
 import {
   type CategoryName,
   settings,
@@ -18,6 +21,7 @@ import {
   settingsList,
 } from '@clerotri/lib/settings';
 import {commonValues} from '@clerotri/lib/themes';
+import {styles} from '@clerotri/Theme';
 
 export const SettingsCategory = observer(
   ({category, skipMargin}: {category: string; skipMargin?: boolean}) => {
@@ -152,11 +156,37 @@ export const NewSettingsCategory = observer(
                 </View>
               );
             } else {
-              return (
-                <Text key={itemName} useNewText>
-                  {[itemName, itemData.type]}
-                </Text>
-              );
+              switch (itemData.type) {
+                case 'divider':
+                  return <LineSeparator style={localStyles.separator} />;
+                case 'settingsButton':
+                  return (
+                    <PressableSettingsEntry key={`${category}-${itemName}`}>
+                      <View style={{flex: 1, flexDirection: 'column'}}>
+                        <Text
+                          useNewText
+                          colour={
+                            itemData.props.destructive
+                              ? 'error'
+                              : 'foregroundPrimary'
+                          }
+                          style={{fontWeight: 'bold'}}>
+                          {itemData.props.title}
+                        </Text>
+                        <Text useNewText>{itemData.props.body}</Text>
+                      </View>
+                      <View style={styles.iconContainer}>
+                        <MaterialIcon name="arrow-forward" size={20} />
+                      </View>
+                    </PressableSettingsEntry>
+                  );
+                default:
+                  return (
+                    <Text key={itemName} useNewText>
+                      {[itemName, itemData.type]}
+                    </Text>
+                  );
+              }
             }
           },
         )}
@@ -175,5 +205,8 @@ const localStyles = StyleSheet.create(currentTheme => ({
     padding: commonValues.sizes.large,
     borderRadius: commonValues.sizes.medium,
     gap: commonValues.sizes.large,
+  },
+  separator: {
+    margin: commonValues.sizes.medium,
   },
 }));

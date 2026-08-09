@@ -175,7 +175,7 @@ export const SettingsSheet = observer(
                 showsVerticalScrollIndicator={false}
                 showsHorizontalScrollIndicator={false}>
                 {section.section === 'appearance' ? (
-                  <SettingsCategory category={'appearance'} />
+                  <NewSettingsCategory category={'appearance'} />
                 ) : section.section === 'functionality' ? (
                   <NewSettingsCategory category={'functionality'} />
                 ) : section.section === 'i18n' ? (

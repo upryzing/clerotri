@@ -21,7 +21,7 @@ export const settingsList = [
   },
   {
     key: 'ui.theme',
-    category: 'appearance',
+    category: 'MIGRATED',
     default: 'Dark',
     type: 'string',
     options: Object.keys(themes),
@@ -34,26 +34,26 @@ export const settingsList = [
   },
   {
     key: 'ui.messaging.showSelfInTypingIndicator',
-    category: 'appearance',
+    category: 'MIGRATED',
     default: false,
     type: 'boolean',
     developer: true,
   },
   {
     key: 'ui.messaging.statusInChatAvatars',
-    category: 'appearance',
+    category: 'MIGRATED',
     default: false,
     type: 'boolean',
   },
   {
     key: 'ui.messaging.use24H',
-    category: 'appearance',
+    category: 'MIGRATED',
     default: true,
     type: 'boolean',
   },
   {
     key: 'ui.messaging.showMasqAvatar',
-    category: 'appearance',
+    category: 'MIGRATED',
     default: true,
     type: 'boolean',
   },
@@ -100,20 +100,20 @@ export const settingsList = [
   },
   {
     key: 'ui.messaging.messageSpacing',
-    category: 'appearance',
+    category: 'MIGRATED',
     default: 10,
     type: 'number',
   },
   {
     key: 'ui.messaging.fontSize',
-    category: 'appearance',
+    category: 'MIGRATED',
     remark: true,
     default: 14,
     type: 'number',
   },
   {
     key: 'ui.home.holidays',
-    category: 'appearance',
+    category: 'MIGRATED',
     default: true,
     type: 'boolean',
   },
@@ -133,7 +133,7 @@ export const settingsList = [
   },
   {
     key: 'ui.messaging.emojiPack',
-    category: 'appearance',
+    category: 'MIGRATED',
     default: 'System',
     type: 'string',
     options: ['System', 'Mutant', 'Twemoji', 'Noto', 'Openmoji'],
@@ -206,7 +206,26 @@ export const settingsList = [
 // start an item's name with `detatched` to hide the group label
 export const settingsCategories: Record<string, SettingsCategory> = {
   appearance: {
-    theme: {type: 'settingsButton', props: {}},
+    detatchedTheme: ['ui.theme'], //{
+    // type: 'settingsButton',
+    // props: {
+    //   title: 'app.settings_categories.appearance.theme_button.title',
+    //   body: 'app.settings_categories.appearance.theme_button.body',
+    //   onPress: ({setSection}) => {
+    //     setSection({section: 'appearance', subsection: 'themes'});
+    //   },
+    // },
+    //},
+    messaging: [
+      'ui.messaging.messageSpacing',
+      'ui.messaging.use24H',
+      'ui.messaging.statusInChatAvatars',
+      'ui.messaging.showMasqAvatar',
+      'ui.messaging.showSelfInTypingIndicator',
+    ],
+    font: ['ui.messaging.fontSize'],
+    emoji: ['ui.messaging.emojiPack'],
+    detatchedHome: ['ui.home.holidays'],
   },
   functionality: {
     notifications: [
