@@ -166,8 +166,15 @@ export const DiscoverPage = () => {
 
       // code based on https://codeberg.org/Doru/Discoverolt/src/branch/pages/index.html
 
+      const dataElement = unparsedText.match(/<script id="__NEXT_DATA__" type="application\/json">.*<\/script>/gms)?.[0];
+
+      // TOdO: error message
+      if (!dataElement) {
+        return setData({});
+      }
+
       const element = parser
-        .parseFromString(unparsedText, 'text/html')
+        .parseFromString(dataElement, 'text/html')
         .getElementById('__NEXT_DATA__');
 
       if (!element || !element.childNodes[0]) {
