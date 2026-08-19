@@ -9,34 +9,17 @@ import {StyleSheet} from 'react-native-unistyles';
 import {commonValues} from '@clerotri/lib/themes';
 
 export function SettingsEntry(props: ViewProps) {
-  let newProps = {...props};
+  const {style, ...cleanProps} = props;
 
-  if (!newProps.style) {
-    newProps.style = {};
-  }
-  newProps.style = {
-    ...localStyles.settingsEntry,
-    // skip - no longer broken? @ts-expect-error the type error seems to be related to the various ways you can specify style props but it works so shhhh
-    ...newProps.style,
-  };
-
-  return <View {...newProps} />;
+  return <View style={[localStyles.settingsEntry, style]} {...cleanProps} />;
 }
 
 export function PressableSettingsEntry(props: PressableProps) {
-  let newProps = {...props};
+  const {style, ...cleanProps} = props;
 
-  if (!newProps.style) {
-    newProps.style = {};
-  }
-
-  newProps.style = {
-    ...localStyles.settingsEntry,
-    // skip - no longer broken? @ts-expect-error the type error seems to be related to the various ways you can specify style props but it works so shhhh
-    ...newProps.style,
-  };
-
-  return <Pressable {...newProps} />;
+  // @ts-expect-error Pressables can use functions as style props. not sure how to handle it
+  // at the moment but at least basic styles work
+  return <Pressable style={[localStyles.settingsEntry, style]} {...cleanProps} />;
 }
 
 const localStyles = StyleSheet.create(currentTheme => ({

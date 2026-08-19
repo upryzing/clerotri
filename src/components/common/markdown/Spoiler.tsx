@@ -28,7 +28,8 @@ const spoilerStyles = StyleSheet.create(currentTheme => ({
     backgroundColor: 'transparent',
   },
   hiddenSpoilerText: {
-    color: 'transparent',
+    // use a 0-opacity colour instead of 'transparent' because of https://github.com/react/react-native#53343
+    color: '#ffffff00',
   },
   revealedSpoilerText: {
     color: currentTheme.foregroundPrimary,
@@ -43,12 +44,12 @@ export const SpoilerWrapper = ({content}: {content: any}) => {
   return (
     <SpoilerContext.Provider value={revealed}>
       <Pressable
-        style={{
-          ...spoilerStyles.commonStyles,
-          ...(revealed
+        style={[
+          spoilerStyles.commonStyles,
+          revealed
             ? spoilerStyles.revealedSpoiler
-            : spoilerStyles.hiddenSpoiler),
-        }}
+            : spoilerStyles.hiddenSpoiler,
+        ]}
         onPress={() => setRevealed(!revealed)}>
         {content}
       </Pressable>
@@ -68,21 +69,28 @@ export const Spoiler = ({
   inheritedStyles: any;
 }) => {
   return (
-    <Text
+    <><Text
       accessibilityLabel={isRevealed ? node.content : 'Hidden spoiler'}
-      style={{
-        ...inheritedStyles,
-        ...styles,
-        ...spoilerStyles.commonTextStyles,
-        ...(isRevealed
+      style={[
+        inheritedStyles,
+        styles,
+        spoilerStyles.commonTextStyles,
+        isRevealed
           ? spoilerStyles.revealedSpoilerText
-          : spoilerStyles.hiddenSpoilerText),
-      }}>
+          : spoilerStyles.hiddenSpoilerText,
+      ]}>
       {
         /* FIXME: Rendering emoji reveals spoiler markdown
                   renderEmoji(node.content)*/
-        node.content
-      }
-    </Text>
+        node.content}
+    </Text><Text
+      style={[
+        spoilerStyles.hiddenSpoilerText,
+      ]}>
+        {
+          /* FIXME: Rendering emoji reveals spoiler markdown
+                    renderEmoji(node.content)*/
+          node.content}
+      </Text></>
   );
 };
