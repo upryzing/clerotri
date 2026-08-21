@@ -91,7 +91,9 @@ For more information, see a list of `react-native`'s commands [here](https://git
 
 Note that the app uses `rnx-bundle`, which has extra features (and will produce a smaller bundle) compared to the default bundle command.
 
-### Analytics server
+### Analytics/badges server
+
+<!-- add details on badges-->
 
 Before running the server, you'll need to set up the database.
 

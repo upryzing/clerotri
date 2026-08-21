@@ -47,7 +47,7 @@ app.post('/v1/submit', async (req, res, next) => {
     const id = ulid();
     const data = req.body;
 
-    console.log(`New request: ${id}, ${JSON.stringify(data)}`);
+    console.log(`New analytics request: ${id}, ${JSON.stringify(data)}`);
 
     // check if the tier is included/valid
     if (!data.tier || !TIERS.includes(data.tier)) {
@@ -106,6 +106,77 @@ app.post('/v1/submit', async (req, res, next) => {
     console.log(result);
 
     res.status(200).send({ message: 'Got it :3' });
+  } catch (err) {
+    next && next(err);
+  }
+});
+
+app.get('/v1/badges', async (req, res, next) => {
+  try {
+    const id = ulid();
+    const data = req.body;
+
+    console.log(`New badge request: ${id}, ${JSON.stringify(data)}`);
+
+    // check for instance URL; if tier is xyz save some basic data; check from JSON object and if there's a match return it
+
+    // // check if the tier is included/valid
+    // if (!data.tier || !TIERS.includes(data.tier)) {
+    //   return res.status(400).send({
+    //     message: `Tier ${
+    //       data.tier ? `${data.tier} is invalid` : 'was missing'
+    //     }`,
+    //   });
+    // }
+
+    // // we know the tier is okay, so check the values
+    // const { tier, ...values } = data;
+
+    // if (Object.keys(values).length === 0) {
+    //   return res.status(400).send({
+    //     message: "There aren't any properties other than the tier",
+    //   });
+    // }
+
+    // const propertySet = tier === 'basic' ? BASIC_PROPERTIES : FULL_PROPERTIES;
+
+    // const confirmedProperties: string[] = [];
+
+    // for (const value of Object.keys(values)) {
+    //   if (!propertySet.includes(value)) {
+    //     return res.status(400).send({
+    //       message: `${value} is not a known property for tier ${tier}`,
+    //     });
+    //   }
+
+    //   if (typeof values[value] !== 'string') {
+    //     return res.status(400).send({
+    //       message: `The value of ${value} (${values[value]}) is invalid`,
+    //     });
+    //   }
+
+    //   confirmedProperties.push(value);
+    // }
+
+    // // all the values are valid, so check if anything is missing
+    // if (confirmedProperties.length !== propertySet.length) {
+    //   return res.status(400).send({
+    //     message: 'One or more required properties are missing',
+    //   });
+    // }
+
+    // const result = await db.one(sql.analytics.add, [
+    //   id,
+    //   tier,
+    //   data.model,
+    //   data.os,
+    //   data.version,
+    //   ...(tier === 'full' ? [data.settings, data.instance] : [null, null]),
+    // ]);
+
+    // console.log(result);
+
+    // res.status(200).send({ message: 'Got it :3' });
   } catch (err) {
     next && next(err);
   }
