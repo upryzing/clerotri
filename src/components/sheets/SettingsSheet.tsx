@@ -179,7 +179,7 @@ export const SettingsSheet = observer(
                 ) : section.section === 'functionality' ? (
                   <NewSettingsCategory category={'functionality'} />
                 ) : section.section === 'i18n' ? (
-                  <SettingsCategory category={'i18n'} />
+                  <NewSettingsCategory category={'i18n'} />
                 ) : section.section === 'account' ? (
                   <AccountSettingsSection />
                 ) : section.section === 'profile' ? (

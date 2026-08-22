@@ -8,7 +8,7 @@ import type {Setting, SettingsCategory} from '@clerotri/lib/types';
 export const settingsList = [
   {
     key: 'app.language',
-    category: 'i18n',
+    category: 'MIGRATED',
     default: 'en',
     type: 'string',
     options: Object.keys(languages),
@@ -249,6 +249,9 @@ export const settingsCategories: Record<string, SettingsCategory> = {
       'ui.messaging.experimentalScrolling',
     ],
   },
+  i18n: {
+    detatchedi18n: ['app.language']
+  }
 };
 
 export type CategoryName = keyof typeof settingsCategories;
