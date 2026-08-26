@@ -448,10 +448,18 @@
             }
         },
         "settings_categories": {
+            "appearance": {
+                "emoji": "Emoji",
+                "font": "Font",
+                "messaging": "Messaging"
+            },
             "functionality": {
                 "notifications": "Notifications",
                 "messaging": "Messaging",
                 "advanced": "Advanced settings"
+            },
+            "privacy": {
+                "badges": "Extra badges" 
             }
         },
         "settings_menu": {
@@ -508,7 +516,11 @@
                 "logout": "Log Out"
             },
             "privacy": {
-                "title": "Privacy"
+                "title": "Privacy",
+                "info": {
+                    "title": "Privacy information",
+                    "body": "Find out more about about how Clerotri handles your data"
+                }
             },
             "profile": {
                 "title": "Profile",

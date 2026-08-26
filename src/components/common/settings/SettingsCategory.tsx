@@ -22,6 +22,7 @@ import {
 } from '@clerotri/lib/settings';
 import {commonValues} from '@clerotri/lib/themes';
 import {styles} from '@clerotri/Theme';
+import {openUrl} from '@clerotri/lib/utils';
 
 export const SettingsCategory = observer(
   ({category, skipMargin}: {category: string; skipMargin?: boolean}) => {
@@ -158,10 +159,19 @@ export const NewSettingsCategory = observer(
             } else {
               switch (itemData.type) {
                 case 'divider':
-                  return <LineSeparator style={localStyles.separator} />;
+                  return <LineSeparator key={`${category}-${itemName}`} style={localStyles.separator} />;
                 case 'settingsButton':
                   return (
-                    <PressableSettingsEntry key={`${category}-${itemName}`}>
+                    <PressableSettingsEntry
+                      key={`${category}-${itemName}`}
+                      style={{marginVertical: 0}}
+                      onPress={() =>
+                        itemData.props.onPress({
+                          // TODO: make section switching functional
+                          setSection: () => {},
+                          openLink: openUrl,
+                        })
+                      }>
                       <View style={{flex: 1, flexDirection: 'column'}}>
                         <Text
                           useNewText
@@ -171,9 +181,9 @@ export const NewSettingsCategory = observer(
                               : 'foregroundPrimary'
                           }
                           style={{fontWeight: 'bold'}}>
-                          {itemData.props.title}
+                          {t(itemData.props.title)}
                         </Text>
-                        <Text useNewText>{itemData.props.body}</Text>
+                        <Text useNewText>{t(itemData.props.body ?? '')}</Text>
                       </View>
                       <View style={styles.iconContainer}>
                         <MaterialIcon name="arrow-forward" size={20} />
@@ -207,6 +217,6 @@ const localStyles = StyleSheet.create(currentTheme => ({
     gap: commonValues.sizes.large,
   },
   separator: {
-    margin: commonValues.sizes.medium,
+    marginInline: commonValues.sizes.medium,
   },
 }));

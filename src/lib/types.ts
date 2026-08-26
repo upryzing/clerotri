@@ -43,8 +43,8 @@ type SettingsCategoryItem =
           setSection,
           openLink,
         }: {
-          setSection: (section: SettingsSection) => {};
-          openLink: (link: string) => {};
+          setSection: (section: SettingsSection) => void;
+          openLink: (link: string) => void;
         }) => void;
         destructive?: boolean;
       };

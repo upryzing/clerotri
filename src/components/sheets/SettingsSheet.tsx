@@ -31,7 +31,6 @@ import {
   AccountSettingsSection,
   BotSettingsSection,
   LicenseListSection,
-  PrivacySettingsSection,
   ProfileSettingsSection,
   SessionsSettingsSection,
 } from '@clerotri/components/common/settings/sections/app';
@@ -189,7 +188,7 @@ export const SettingsSheet = observer(
                     setSection={setSection}
                   />
                 ) : section.section === 'privacy' ? (
-                  <PrivacySettingsSection />
+                  <NewSettingsCategory category={'privacy'} />
                 ) : (
                   <AppInfoSection />
                 )}

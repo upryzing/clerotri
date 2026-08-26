@@ -2,6 +2,7 @@ import {setLanguage} from '@clerotri-i18n/setLanguage';
 import {languages} from '@clerotri-i18n/languages';
 import {app} from '@clerotri/Generic';
 import {checkNotificationPerms} from '@clerotri/lib/notifications/permissions';
+import {PRIVACY_INFO} from '@clerotri/lib/consts';
 import {themes} from '@clerotri/lib/themes';
 import type {Setting, SettingsCategory} from '@clerotri/lib/types';
 
@@ -250,8 +251,22 @@ export const settingsCategories: Record<string, SettingsCategory> = {
     ],
   },
   i18n: {
-    detatchedi18n: ['app.language']
-  }
+    detatchedi18n: ['app.language'],
+  },
+  privacy: {
+    badges: ['app.refetchOnReconnect'], //placeholder
+    divider: {type: 'divider'},
+    infoLink: {
+      type: 'settingsButton',
+      props: {
+        title: 'app.settings_menu.privacy.info.title',
+        body: 'app.settings_menu.privacy.info.body',
+        onPress: ({openLink}) => {
+          openLink(PRIVACY_INFO);
+        },
+      },
+    },
+  },
 };
 
 export type CategoryName = keyof typeof settingsCategories;
