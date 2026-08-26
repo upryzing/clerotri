@@ -166,7 +166,9 @@ export const DiscoverPage = () => {
 
       // code based on https://codeberg.org/Doru/Discoverolt/src/branch/pages/index.html
 
-      const dataElement = unparsedText.match(/<script id="__NEXT_DATA__" type="application\/json">.*<\/script>/gms)?.[0];
+      const dataElement = unparsedText.match(
+        /<script id="__NEXT_DATA__" type="application\/json">.*<\/script>/gms,
+      )?.[0];
 
       // TOdO: error message
       if (!dataElement) {

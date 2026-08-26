@@ -25,10 +25,7 @@ import {SettingsSection} from '@clerotri/lib/types';
 import {openUrl} from '@clerotri/lib/utils';
 import {BackButton, Text} from '@clerotri/components/common/atoms';
 import {SettingsButton} from '@clerotri/components/common/buttons';
-import {
-  NewSettingsCategory,
-  SettingsCategory,
-} from '@clerotri/components/common/settings';
+import {NewSettingsCategory} from '@clerotri/components/common/settings';
 import {
   AppInfoSection,
   AccountSettingsSection,

@@ -69,7 +69,7 @@ export const Spoiler = ({
   inheritedStyles: any;
 }) => {
   return (
-    <><Text
+    <Text
       accessibilityLabel={isRevealed ? node.content : 'Hidden spoiler'}
       style={[
         inheritedStyles,
@@ -82,15 +82,8 @@ export const Spoiler = ({
       {
         /* FIXME: Rendering emoji reveals spoiler markdown
                   renderEmoji(node.content)*/
-        node.content}
-    </Text><Text
-      style={[
-        spoilerStyles.hiddenSpoilerText,
-      ]}>
-        {
-          /* FIXME: Rendering emoji reveals spoiler markdown
-                    renderEmoji(node.content)*/
-          node.content}
-      </Text></>
+        node.content
+      }
+    </Text>
   );
 };

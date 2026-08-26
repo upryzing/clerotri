@@ -17,9 +17,11 @@ export function SettingsEntry(props: ViewProps) {
 export function PressableSettingsEntry(props: PressableProps) {
   const {style, ...cleanProps} = props;
 
-  // @ts-expect-error Pressables can use functions as style props. not sure how to handle it
-  // at the moment but at least basic styles work
-  return <Pressable style={[localStyles.settingsEntry, style]} {...cleanProps} />;
+  return (
+    // @ts-expect-error Pressables can use functions as style props. not sure how to handle it
+    // at the moment but at least basic styles work
+    <Pressable style={[localStyles.settingsEntry, style]} {...cleanProps} />
+  );
 }
 
 const localStyles = StyleSheet.create(currentTheme => ({
