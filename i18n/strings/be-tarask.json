@@ -653,6 +653,21 @@
             "member_count_many": "{{count}} удзельнікаў",
             "join_server": "Далучыцца да сэрвэра",
             "go_to_server": "Перайсьці на сэрвэр"
+        },
+        "settings_categories": {
+            "appearance": {
+                "emoji": "Эмодзі",
+                "font": "Шрыфт",
+                "messaging": "Паведамленьні"
+            },
+            "functionality": {
+                "notifications": "Апавяшчэньні",
+                "messaging": "Паведамленьні",
+                "advanced": "Пашыранае"
+            },
+            "privacy": {
+                "badges": "Дадатковыя значкі"
+            }
         }
     }
 }
