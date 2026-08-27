@@ -261,7 +261,7 @@
             },
             "instance_notice": "Вы далучайцеся да {{url}}.",
             "options": {
-                "login_regular": "Так, увайсці з маёю эл. поштаю ды паролем",
+                "login_regular": "Так, увайсці з маёй эл. поштай і паролем",
                 "login_regular_body": "Рэкамендавана большай колькасці карыстальнікаў.",
                 "login_session_token": "Так, увайсці з токенам сеанса",
                 "login_session_token_body": "Выкарыстоўвайце, калі ў вас праблемы са звычайным уваходам. Некаторыя функцыі могуць быць недаступныя.",
@@ -654,6 +654,18 @@
             "member_count_many": "{{count}} удзельнікаў",
             "join_server": "Далучыцца да сервера",
             "go_to_server": "Перайсці да сервера"
+        },
+        "settings_categories": {
+            "appearance": {
+                "emoji": "Эмодзі",
+                "font": "Шрыфт",
+                "messaging": "Паведамленні"
+            },
+            "functionality": {
+                "notifications": "Апавяшчэнні",
+                "messaging": "Паведамленні",
+                "advanced": "Пашыранае"
+            }
         }
     }
 }
