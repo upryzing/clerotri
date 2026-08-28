@@ -14,6 +14,7 @@ type AvatarProps = {
   channel?: Channel;
   user?: User | null;
   server?: Server;
+  webhook?: API.MessageWebhook & {id: string};
   status?: boolean;
   size?: number;
   backgroundColor?: ThemeColour;
@@ -28,6 +29,7 @@ export const Avatar = observer(
     channel,
     user,
     server,
+    webhook,
     status,
     size = 35,
     backgroundColor,
@@ -113,6 +115,28 @@ export const Avatar = observer(
               }}
             />
           ) : null}
+        </View>
+      );
+    }
+    if (webhook) {
+      const imageURL = masquerade
+        ? masquerade
+        : webhook.avatar
+          ? `${client.configuration?.features.autumn.url}/avatars/${webhook.avatar}`
+          : `${client.apiURL}/users/${webhook.id}/default_avatar`;
+
+      return (
+        <View>
+          <Image
+            source={{
+              uri: imageURL,
+            }}
+            style={{
+              width: size || 35,
+              height: size || 35,
+              borderRadius: 10000,
+            }}
+          />
         </View>
       );
     }

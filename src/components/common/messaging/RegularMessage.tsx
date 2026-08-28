@@ -10,12 +10,7 @@ import {decodeTime} from 'ulid';
 import {app} from '@clerotri/Generic';
 import {settings} from '@clerotri/lib/settings';
 import {client} from '@clerotri/lib/client';
-import {
-  Avatar,
-  GeneralAvatar,
-  Text,
-  Username,
-} from '@clerotri/components/common/atoms';
+import {Avatar, Text, Username} from '@clerotri/components/common/atoms';
 import {MarkdownView} from '@clerotri/components/common/MarkdownView';
 import {InviteEmbed} from '@clerotri/components/common/messaging/InviteEmbed';
 import {MessageEmbed} from '@clerotri/components/common/messaging/MessageEmbed';
@@ -165,11 +160,11 @@ export const RegularMessage = observer((props: MessageProps) => {
                 : {})}
             />
           </Pressable>
-        ) : props.message.webhook?.avatar ? (
-          <GeneralAvatar
+        ) : props.message.webhook ? (
+          <Avatar
             key={`message-${props.message._id}-webhook-avatar`}
-            attachment={props.message.webhook.avatar}
-            directory={'/avatars/'}
+            masquerade={props.message.generateMasqAvatarURL()}
+            webhook={{...props.message.webhook, id: props.message.author_id}}
             size={35}
           />
         ) : null}
