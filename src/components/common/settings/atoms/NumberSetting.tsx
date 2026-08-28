@@ -5,7 +5,7 @@ import {useMMKVNumber} from 'react-native-mmkv';
 import {Input, Text} from '@clerotri/components/common/atoms';
 import {IndicatorIcons} from '@clerotri/components/common/settings/atoms/IndicatorIcons';
 import {commonValues} from '@clerotri/lib/themes';
-import {Setting} from '@clerotri/lib/types';
+import type {Setting} from '@clerotri/lib/types';
 
 export const NumberSetting = ({sRaw}: {sRaw: Setting}) => {
   const {t} = useTranslation();

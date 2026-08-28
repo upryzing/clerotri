@@ -1,4 +1,4 @@
-import {Language} from '../src/lib/types';
+import type {Language} from '../src/lib/types';
 
 // string files
 import {default as ar} from './strings/ar.json';

@@ -12,7 +12,7 @@ import {
   RE_UNICODE_EMOJI,
   RevoltEmojiDictionary,
 } from '@clerotri/lib/consts';
-import {EmojiPacks} from '@clerotri/lib/types';
+import type {EmojiPacks} from '@clerotri/lib/types';
 
 const CustomEmoji = ({id}: {id: string}) => {
   const [error, setError] = useState(false);

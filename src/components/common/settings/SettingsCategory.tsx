@@ -159,7 +159,12 @@ export const NewSettingsCategory = observer(
             } else {
               switch (itemData.type) {
                 case 'divider':
-                  return <LineSeparator key={`${category}-${itemName}`} style={localStyles.separator} />;
+                  return (
+                    <LineSeparator
+                      key={`${category}-${itemName}`}
+                      style={localStyles.separator}
+                    />
+                  );
                 case 'settingsButton':
                   return (
                     <PressableSettingsEntry

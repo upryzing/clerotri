@@ -16,7 +16,7 @@ import {useSafeAreaInsets} from 'react-native-safe-area-context';
 import {Permission, type API, type Server} from 'revolt.js';
 
 import {app, setFunction} from '@clerotri/Generic';
-import {SettingsSection} from '@clerotri/lib/types';
+import type {SettingsSection} from '@clerotri/lib/types';
 import {styles} from '@clerotri/Theme';
 import {
   BackButton,

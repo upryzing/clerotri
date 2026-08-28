@@ -6,7 +6,7 @@ import {observer} from 'mobx-react-lite';
 import {settings} from '@clerotri/lib/settings';
 import {Text} from '@clerotri/components/common/atoms';
 import {commonValues} from '@clerotri/lib/themes';
-import {MessageProps} from '@clerotri/lib/types';
+import type {MessageProps} from '@clerotri/lib/types';
 
 export const BlockedMessage = observer((props: MessageProps) => {
   const [shouldHide = settings.getDefault('ui.messaging.hideBlockedMessages')] =

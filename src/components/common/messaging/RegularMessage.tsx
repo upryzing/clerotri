@@ -19,7 +19,7 @@ import {ReplyMessage} from '@clerotri/components/common/messaging/ReplyMessage';
 import {Image} from '@clerotri/crossplat/Image';
 import {RE_INVITE} from '@clerotri/lib/consts';
 import {commonValues} from '@clerotri/lib/themes';
-import {MessageProps} from '@clerotri/lib/types';
+import type {MessageProps} from '@clerotri/lib/types';
 import {
   getReadableFileSize,
   openUrl,

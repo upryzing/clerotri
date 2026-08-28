@@ -13,7 +13,7 @@ import {handleMessageNotification} from '@clerotri/lib/notifications';
 import {settings} from '@clerotri/lib/settings';
 import {ChannelContext, ServerContext} from '@clerotri/lib/state';
 import {storage} from '@clerotri/lib/storage';
-import {CVChannel} from '@clerotri/lib/types';
+import type {CVChannel} from '@clerotri/lib/types';
 import {checkLastVersion, openLastChannel} from '@clerotri/lib/utils';
 
 export function LoggedInViews({

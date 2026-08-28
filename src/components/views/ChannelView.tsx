@@ -25,7 +25,7 @@ import {FriendsPage} from '@clerotri/components/pages/FriendsPage';
 import {HomePage} from '@clerotri/components/pages/HomePage';
 import {VoiceChannel} from '@clerotri/components/pages/VoiceChannel';
 import {ChannelContext} from '@clerotri/lib/state';
-import {SpecialChannel} from '@clerotri/lib/types';
+import type {SpecialChannel} from '@clerotri/lib/types';
 import {DiscoverPage} from '@clerotri/pages/discover/DiscoverPage';
 
 function MessageViewErrorMessage({

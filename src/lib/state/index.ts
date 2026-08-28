@@ -2,7 +2,7 @@ import {createContext} from 'react';
 
 import type {Server} from 'revolt.js';
 
-import {CVChannel} from '@clerotri/lib/types';
+import type {CVChannel} from '@clerotri/lib/types';
 
 export const ChannelContext = createContext<{
   currentChannel: CVChannel;

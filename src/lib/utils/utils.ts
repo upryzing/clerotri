@@ -14,7 +14,7 @@ import {
   WIKI_URL,
 } from '@clerotri/lib/consts';
 import {storage} from '@clerotri/lib/storage';
-import {EmojiPacks} from '@clerotri/lib/types';
+import type {EmojiPacks} from '@clerotri/lib/types';
 
 /**
  * Sleep for the specified amount of milliseconds before continuing.

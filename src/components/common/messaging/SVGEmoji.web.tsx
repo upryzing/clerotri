@@ -3,7 +3,7 @@ import {StyleSheet} from 'react-native';
 
 import {Text} from '../atoms';
 import {RevoltEmojiDictionary} from '@clerotri/lib/consts';
-import {EmojiPacks} from '@clerotri/lib/types';
+import type {EmojiPacks} from '@clerotri/lib/types';
 import {unicodeEmojiURL} from '@clerotri/lib/utils';
 
 export const SVGEmoji = ({id, pack}: {id: string; pack: EmojiPacks}) => {

@@ -20,7 +20,7 @@ import {
   SettingsEntry,
 } from '@clerotri/components/common/settings/atoms';
 import {commonValues, ThemeContext} from '@clerotri/lib/themes';
-import {SettingsSection} from '@clerotri/lib/types';
+import type {SettingsSection} from '@clerotri/lib/types';
 
 const ChannelSettingsChannelList = observer(
   ({

@@ -25,7 +25,7 @@ import {
 import {USER_IDS} from '@clerotri/lib/consts';
 import {storage} from '@clerotri/lib/storage';
 import {commonValues, ThemeContext} from '@clerotri/lib/themes';
-import {ReplyingMessage} from '@clerotri/lib/types';
+import type {ReplyingMessage} from '@clerotri/lib/types';
 import {getReadableFileSize} from '@clerotri/lib/utils';
 
 let typing = false;

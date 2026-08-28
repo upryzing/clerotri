@@ -2,7 +2,7 @@ import {View} from 'react-native';
 import {useTranslation} from 'react-i18next';
 import {useMMKVString} from 'react-native-mmkv';
 
-import {Setting} from '@clerotri/lib/types';
+import type {Setting} from '@clerotri/lib/types';
 import {Input, Text} from '../../atoms';
 import {IndicatorIcons} from './IndicatorIcons';
 

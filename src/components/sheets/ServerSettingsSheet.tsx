@@ -12,7 +12,7 @@ import {app, setFunction} from '@clerotri/Generic';
 import {client} from '@clerotri/lib/client';
 import {Image} from '@clerotri/crossplat/Image';
 import {commonValues} from '@clerotri/lib/themes';
-import {SettingsSection} from '@clerotri/lib/types';
+import type {SettingsSection} from '@clerotri/lib/types';
 import {BackButton, Text} from '@clerotri/components/common/atoms';
 import {SettingsButton} from '@clerotri/components/common/buttons';
 import {

@@ -6,7 +6,7 @@ import {
   MaterialIcon,
 } from '@clerotri/components/common/icons';
 import {styles} from '@clerotri/Theme';
-import {Setting} from '@clerotri/lib/types';
+import type {Setting} from '@clerotri/lib/types';
 import {showToast} from '@clerotri/lib/utils';
 
 export const IndicatorIcons = ({s}: {s: Setting}) => {

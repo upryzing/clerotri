@@ -7,7 +7,7 @@ import {useMMKVString} from 'react-native-mmkv';
 import {languages} from '@clerotri-i18n/languages';
 import {styles} from '@clerotri/Theme';
 import {commonValues} from '@clerotri/lib/themes';
-import {Setting} from '@clerotri/lib/types';
+import type {Setting} from '@clerotri/lib/types';
 import {Text} from '@clerotri/components/common/atoms';
 import {MaterialIcon} from '@clerotri/components/common/icons';
 import {IndicatorIcons} from './IndicatorIcons';

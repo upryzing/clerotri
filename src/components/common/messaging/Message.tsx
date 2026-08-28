@@ -9,7 +9,7 @@ import {PlatformModerationMessage} from '@clerotri/components/common/messaging/P
 import {RegularMessage} from '@clerotri/components/common/messaging/RegularMessage';
 import {SystemMessage} from '@clerotri/components/common/messaging/SystemMessage';
 import {USER_IDS} from '@clerotri/lib/consts';
-import {MessageProps} from '@clerotri/lib/types';
+import type {MessageProps} from '@clerotri/lib/types';
 
 export const Message = observer((props: MessageProps) => {
   const [error, setError] = useState(null as any);
