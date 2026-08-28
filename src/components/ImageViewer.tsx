@@ -1,7 +1,7 @@
 import {Pressable, View} from 'react-native';
 import {StyleSheet} from 'react-native-unistyles';
 
-import {gestureHandlerRootHOC} from 'react-native-gesture-handler';
+import {GestureHandlerRootView} from 'react-native-gesture-handler';
 import ImageViewerCore from 'react-native-reanimated-image-viewer';
 
 import {client} from '@clerotri/lib/client';
@@ -11,13 +11,18 @@ import {GapView} from '@clerotri/components/layout';
 import {commonValues} from '@clerotri/lib/themes';
 import {getReadableFileSize, openUrl} from '@clerotri/lib/utils';
 
-export const ImageViewer = gestureHandlerRootHOC(
-  ({state, setState}: {state: any; setState: any}) => {
-    const imageUrl = state.i?.metadata
-      ? client.generateFileURL(state.i)!
-      : state.i;
+export const ImageViewer = ({state, setState}: {state: any; setState: any}) => {
+  const imageUrl = state.i?.metadata
+    ? client.generateFileURL(state.i)!
+    : state.i;
 
-    return (
+  return (
+    <GestureHandlerRootView
+      style={{
+        flex: 1,
+        // if the user can see the root view something might be broken, so make it red
+        backgroundColor: 'red',
+      }}>
       <View style={localStyles.container}>
         <View style={localStyles.topBar}>
           <Pressable
@@ -58,11 +63,9 @@ export const ImageViewer = gestureHandlerRootHOC(
           </Text>
         </View>
       </View>
-    );
-  },
-  // if the user can see the root view something might be broken, so make it red
-  {backgroundColor: 'red'},
-);
+    </GestureHandlerRootView>
+  );
+};
 
 const localStyles = StyleSheet.create((currentTheme, rt) => ({
   container: {
