@@ -18,7 +18,11 @@ import {app, setFunction} from '@clerotri/Generic';
 import {client} from '@clerotri/lib/client';
 import {DONATIONS_INFO, OPEN_ISSUES, WEBLATE} from '@clerotri/lib/consts';
 import {APP_VERSION} from '@clerotri/lib/metadata';
-import {getSettingsObject, settings} from '@clerotri/lib/settings';
+import {
+  getSettingsObject,
+  SettingsSectionContext,
+  settings,
+} from '@clerotri/lib/settings';
 import {getInstanceURL} from '@clerotri/lib/storage/utils';
 import {commonValues, type Theme, ThemeContext} from '@clerotri/lib/themes';
 import type {SettingsSection} from '@clerotri/lib/types';
@@ -127,255 +131,259 @@ export const SettingsSheet = observer(
     );
 
     return (
-      <View style={localStyles.container}>
-        {section?.section !== 'bots' && (
-          <BackButton
-            callback={() =>
-              section === null
-                ? setState()
-                : setSection(
-                    section.subsection
-                      ? {
-                          section: section.section,
-                          subsection: undefined,
-                        }
-                      : null,
-                  )
-            }
-            type={section === null ? 'close' : 'back'}
-            margin
-          />
-        )}
-        {section ? (
-          <>
-            {section?.section !== 'bots' && (
-              <Text type={'h1'}>
-                {t(`app.settings_menu.${section.section}.title`)}
-              </Text>
-            )}
-            {section.section === 'licenses' ? (
-              <LicenseListSection />
-            ) : (
-              <ScrollView
-                style={{
-                  flex: 1,
-                }}
-                contentContainerStyle={[
-                  {
-                    paddingBottom: commonValues.sizes.xl + insets.bottom,
-                  },
-                  FLEX_CONTAINER_SECTIONS.includes(section.section) && {
-                    flexGrow: 1,
-                  },
-                ]}
-                showsVerticalScrollIndicator={false}
-                showsHorizontalScrollIndicator={false}>
-                {section.section === 'appearance' ? (
-                  <NewSettingsCategory category={'appearance'} />
-                ) : section.section === 'functionality' ? (
-                  <NewSettingsCategory category={'functionality'} />
-                ) : section.section === 'i18n' ? (
-                  <NewSettingsCategory category={'i18n'} />
-                ) : section.section === 'account' ? (
-                  <AccountSettingsSection />
-                ) : section.section === 'profile' ? (
-                  <ProfileSettingsSection />
-                ) : section.section === 'sessions' ? (
-                  <SessionsSettingsSection />
-                ) : section.section === 'bots' ? (
-                  <BotSettingsSection
-                    section={section}
-                    setSection={setSection}
-                  />
-                ) : section.section === 'privacy' ? (
-                  <NewSettingsCategory category={'privacy'} />
-                ) : (
-                  <AppInfoSection />
-                )}
-              </ScrollView>
-            )}
-          </>
-        ) : (
-          <ScrollView
-            style={{flex: 1}}
-            contentContainerStyle={[
-              {
-                paddingBottom: commonValues.sizes.xl + insets.bottom,
-              },
-            ]}
-            showsVerticalScrollIndicator={false}
-            showsHorizontalScrollIndicator={false}>
+      <SettingsSectionContext.Provider value={{section, setSection}}>
+        <View style={localStyles.container}>
+          {section?.section !== 'bots' && (
+            <BackButton
+              callback={() =>
+                section === null
+                  ? setState()
+                  : setSection(
+                      section.subsection
+                        ? {
+                            section: section.section,
+                            subsection: undefined,
+                          }
+                        : null,
+                    )
+              }
+              type={section === null ? 'close' : 'back'}
+              margin
+            />
+          )}
+          {section ? (
             <>
-              <Text type={'h1'}>{t('app.settings_menu.groups.user')}</Text>
-              <SettingsButton
-                menu={'app'}
-                type={'start'}
-                section={'account'}
-                icon={{pack: 'regular', name: 'person'}}
-                onPress={() => {
-                  setSection({section: 'account'});
-                }}
-              />
-              <SettingsButton
-                menu={'app'}
-                section={'profile'}
-                icon={{pack: 'community', name: 'card-account-details'}}
-                onPress={() => {
-                  setSection({section: 'profile'});
-                }}
-              />
-              <SettingsButton
-                menu={'app'}
-                section={'sessions'}
-                icon={{pack: 'community', name: 'shield-check'}}
-                onPress={() => {
-                  setSection({section: 'sessions'});
-                }}
-              />
-              {enableExperimentalFeatures && (
+              {section?.section !== 'bots' && (
+                <Text type={'h1'}>
+                  {t(`app.settings_menu.${section.section}.title`)}
+                </Text>
+              )}
+              {section.section === 'licenses' ? (
+                <LicenseListSection />
+              ) : (
+                <ScrollView
+                  style={{
+                    flex: 1,
+                  }}
+                  contentContainerStyle={[
+                    {
+                      paddingBottom: commonValues.sizes.xl + insets.bottom,
+                    },
+                    FLEX_CONTAINER_SECTIONS.includes(section.section) && {
+                      flexGrow: 1,
+                    },
+                  ]}
+                  showsVerticalScrollIndicator={false}
+                  showsHorizontalScrollIndicator={false}>
+                  {section.section === 'appearance' ? (
+                    <NewSettingsCategory category={'appearance'} />
+                  ) : section.section === 'functionality' ? (
+                    <NewSettingsCategory category={'functionality'} />
+                  ) : section.section === 'i18n' ? (
+                    <NewSettingsCategory category={'i18n'} />
+                  ) : section.section === 'account' ? (
+                    <AccountSettingsSection />
+                  ) : section.section === 'profile' ? (
+                    <ProfileSettingsSection />
+                  ) : section.section === 'sessions' ? (
+                    <SessionsSettingsSection />
+                  ) : section.section === 'bots' ? (
+                    <BotSettingsSection
+                      section={section}
+                      setSection={setSection}
+                    />
+                  ) : section.section === 'privacy' ? (
+                    <NewSettingsCategory category={'privacy'} />
+                  ) : (
+                    <AppInfoSection />
+                  )}
+                </ScrollView>
+              )}
+            </>
+          ) : (
+            <ScrollView
+              style={{flex: 1}}
+              contentContainerStyle={[
+                {
+                  paddingBottom: commonValues.sizes.xl + insets.bottom,
+                },
+              ]}
+              showsVerticalScrollIndicator={false}
+              showsHorizontalScrollIndicator={false}>
+              <>
+                <Text type={'h1'}>{t('app.settings_menu.groups.user')}</Text>
+                <SettingsButton
+                  menu={'app'}
+                  type={'start'}
+                  section={'account'}
+                  icon={{pack: 'regular', name: 'person'}}
+                  onPress={() => {
+                    setSection({section: 'account'});
+                  }}
+                />
+                <SettingsButton
+                  menu={'app'}
+                  section={'profile'}
+                  icon={{pack: 'community', name: 'card-account-details'}}
+                  onPress={() => {
+                    setSection({section: 'profile'});
+                  }}
+                />
+                <SettingsButton
+                  menu={'app'}
+                  section={'sessions'}
+                  icon={{pack: 'community', name: 'shield-check'}}
+                  onPress={() => {
+                    setSection({section: 'sessions'});
+                  }}
+                />
+                {enableExperimentalFeatures && (
+                  <SettingsButton
+                    menu={'app'}
+                    type={'end'}
+                    section={'bots'}
+                    icon={{pack: 'community', name: 'robot'}}
+                    onPress={() => {
+                      setSection({section: 'bots'});
+                    }}
+                  />
+                )}
+                <Text type={'h1'}>{t('app.settings_menu.groups.app')}</Text>
+                <SettingsButton
+                  menu={'app'}
+                  type={'start'}
+                  section={'appearance'}
+                  icon={{pack: 'regular', name: 'palette'}}
+                  onPress={() => {
+                    setSection({section: 'appearance'});
+                  }}
+                />
+                <SettingsButton
+                  menu={'app'}
+                  section={'functionality'}
+                  icon={{pack: 'regular', name: 'build'}}
+                  onPress={() => {
+                    setSection({section: 'functionality'});
+                  }}
+                />
+                <SettingsButton
+                  menu={'app'}
+                  section={'i18n'}
+                  icon={{pack: 'regular', name: 'translate'}}
+                  onPress={() => {
+                    setSection({section: 'i18n'});
+                  }}
+                />
+                <SettingsButton
+                  menu={'app'}
+                  section={'privacy'}
+                  icon={{pack: 'regular', name: 'privacy-tip'}}
+                  onPress={() => {
+                    setSection({section: 'privacy'});
+                  }}
+                />
                 <SettingsButton
                   menu={'app'}
                   type={'end'}
-                  section={'bots'}
-                  icon={{pack: 'community', name: 'robot'}}
+                  section={'analytics'}
+                  icon={{pack: 'regular', name: 'analytics'}}
                   onPress={() => {
-                    setSection({section: 'bots'});
+                    app.openAnalyticsMenu(true);
                   }}
                 />
-              )}
-              <Text type={'h1'}>{t('app.settings_menu.groups.app')}</Text>
-              <SettingsButton
-                menu={'app'}
-                type={'start'}
-                section={'appearance'}
-                icon={{pack: 'regular', name: 'palette'}}
-                onPress={() => {
-                  setSection({section: 'appearance'});
-                }}
-              />
-              <SettingsButton
-                menu={'app'}
-                section={'functionality'}
-                icon={{pack: 'regular', name: 'build'}}
-                onPress={() => {
-                  setSection({section: 'functionality'});
-                }}
-              />
-              <SettingsButton
-                menu={'app'}
-                section={'i18n'}
-                icon={{pack: 'regular', name: 'translate'}}
-                onPress={() => {
-                  setSection({section: 'i18n'});
-                }}
-              />
-              <SettingsButton
-                menu={'app'}
-                section={'privacy'}
-                icon={{pack: 'regular', name: 'privacy-tip'}}
-                onPress={() => {
-                  setSection({section: 'privacy'});
-                }}
-              />
-              <SettingsButton
-                menu={'app'}
-                type={'end'}
-                section={'analytics'}
-                icon={{pack: 'regular', name: 'analytics'}}
-                onPress={() => {
-                  app.openAnalyticsMenu(true);
-                }}
-              />
-              <Text type={'h1'}>{t('app.settings_menu.groups.advanced')}</Text>
-              <SettingsButton
-                menu={'app-other'}
-                type={'detatched'}
-                section={'debug_info'}
-                icon={{pack: 'regular', name: 'bug-report'}}
-                onPress={() => {
-                  copyDebugInfo();
-                }}
-              />
-              <Text type={'h1'}>{t('app.settings_menu.groups.other')}</Text>
-              <SettingsButton
-                menu={'app'}
-                type={'start'}
-                section={'info'}
-                icon={{pack: 'regular', name: 'info'}}
-                onPress={() => {
-                  setSection({section: 'info'});
-                }}
-              />
-              <SettingsButton
-                menu={'app-other'}
-                section={'changelog'}
-                icon={{pack: 'community', name: 'newspaper'}}
-                onPress={() => {
-                  setState();
-                  app.openChangelog(true);
-                }}
-              />
-              <SettingsButton
-                menu={'app'}
-                type={'end'}
-                section={'licenses'}
-                icon={{pack: 'community', name: 'license'}}
-                onPress={() => {
-                  setSection({section: 'licenses'});
-                }}
-              />
-              <SettingsButton
-                menu={'app-other'}
-                type={'detatched'}
-                section={'donate'}
-                icon={{
-                  pack: 'community',
-                  name: 'heart',
-                  colour: 'accentColor',
-                }}
-                style={{experimental_backgroundImage: [donateGradient]}}
-                onPress={() => {
-                  openUrl(DONATIONS_INFO);
-                }}
-              />
-              <SettingsButton
-                menu={'app-other'}
-                type={'start'}
-                section={'translate'}
-                icon={{pack: 'community', name: 'translate-variant'}}
-                onPress={() => {
-                  openUrl(WEBLATE);
-                }}
-              />
-              <SettingsButton
-                menu={'app-other'}
-                type={'end'}
-                section={'view_issues'}
-                icon={{pack: 'community', name: 'github'}}
-                onPress={() => {
-                  openUrl(OPEN_ISSUES);
-                }}
-              />
-              <SettingsButton
-                menu={'app-other'}
-                type={'detatched'}
-                section={'logout'}
-                textColour={'error'}
-                icon={{
-                  pack: 'regular',
-                  name: 'logout',
-                  colour: 'error',
-                }}
-                style={{marginBlockEnd: 0}}
-                onPress={() => {
-                  setState();
-                  app.logOut();
-                }}
-              />
-            </>
-          </ScrollView>
-        )}
-      </View>
+                <Text type={'h1'}>
+                  {t('app.settings_menu.groups.advanced')}
+                </Text>
+                <SettingsButton
+                  menu={'app-other'}
+                  type={'detatched'}
+                  section={'debug_info'}
+                  icon={{pack: 'regular', name: 'bug-report'}}
+                  onPress={() => {
+                    copyDebugInfo();
+                  }}
+                />
+                <Text type={'h1'}>{t('app.settings_menu.groups.other')}</Text>
+                <SettingsButton
+                  menu={'app'}
+                  type={'start'}
+                  section={'info'}
+                  icon={{pack: 'regular', name: 'info'}}
+                  onPress={() => {
+                    setSection({section: 'info'});
+                  }}
+                />
+                <SettingsButton
+                  menu={'app-other'}
+                  section={'changelog'}
+                  icon={{pack: 'community', name: 'newspaper'}}
+                  onPress={() => {
+                    setState();
+                    app.openChangelog(true);
+                  }}
+                />
+                <SettingsButton
+                  menu={'app'}
+                  type={'end'}
+                  section={'licenses'}
+                  icon={{pack: 'community', name: 'license'}}
+                  onPress={() => {
+                    setSection({section: 'licenses'});
+                  }}
+                />
+                <SettingsButton
+                  menu={'app-other'}
+                  type={'detatched'}
+                  section={'donate'}
+                  icon={{
+                    pack: 'community',
+                    name: 'heart',
+                    colour: 'accentColor',
+                  }}
+                  style={{experimental_backgroundImage: [donateGradient]}}
+                  onPress={() => {
+                    openUrl(DONATIONS_INFO);
+                  }}
+                />
+                <SettingsButton
+                  menu={'app-other'}
+                  type={'start'}
+                  section={'translate'}
+                  icon={{pack: 'community', name: 'translate-variant'}}
+                  onPress={() => {
+                    openUrl(WEBLATE);
+                  }}
+                />
+                <SettingsButton
+                  menu={'app-other'}
+                  type={'end'}
+                  section={'view_issues'}
+                  icon={{pack: 'community', name: 'github'}}
+                  onPress={() => {
+                    openUrl(OPEN_ISSUES);
+                  }}
+                />
+                <SettingsButton
+                  menu={'app-other'}
+                  type={'detatched'}
+                  section={'logout'}
+                  textColour={'error'}
+                  icon={{
+                    pack: 'regular',
+                    name: 'logout',
+                    colour: 'error',
+                  }}
+                  style={{marginBlockEnd: 0}}
+                  onPress={() => {
+                    setState();
+                    app.logOut();
+                  }}
+                />
+              </>
+            </ScrollView>
+          )}
+        </View>
+      </SettingsSectionContext.Provider>
     );
   },
 );

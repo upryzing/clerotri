@@ -210,8 +210,8 @@ export const settingsCategories: Record<string, SettingsCategory> = {
     detatchedTheme: ['ui.theme'], //{
     // type: 'settingsButton',
     // props: {
-    //   title: 'app.settings_categories.appearance.theme_button.title',
-    //   body: 'app.settings_categories.appearance.theme_button.body',
+    //   title: 'app.settings_menu.appearance.theme.title',
+    //   body: 'app.settings_menu.appearance.theme.body',
     //   onPress: ({setSection}) => {
     //     setSection({section: 'appearance', subsection: 'themes'});
     //   },

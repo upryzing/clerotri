@@ -40,9 +40,11 @@ type SettingsCategoryItem =
         title: string;
         body?: string;
         onPress: ({
+          currentSection,
           setSection,
           openLink,
         }: {
+          currentSection: SettingsSection;
           setSection: (section: SettingsSection) => void;
           openLink: (link: string) => void;
         }) => void;

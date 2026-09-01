@@ -1,3 +1,4 @@
+import { useContext } from 'react';
 import {View} from 'react-native';
 import {StyleSheet} from 'react-native-unistyles';
 import {useTranslation} from 'react-i18next';
@@ -19,6 +20,7 @@ import {
   settings,
   settingsCategories,
   settingsList,
+  SettingsSectionContext,
 } from '@clerotri/lib/settings';
 import {commonValues} from '@clerotri/lib/themes';
 import {styles} from '@clerotri/Theme';
@@ -78,6 +80,8 @@ export const SettingsCategory = observer(
 export const NewSettingsCategory = observer(
   ({category, skipMargin}: {category: CategoryName; skipMargin?: boolean}) => {
     const {t} = useTranslation();
+
+    const {section, setSection} = useContext(SettingsSectionContext)
 
     const [
       showExperimental = settings.getDefault('ui.settings.showExperimental'),
@@ -172,8 +176,8 @@ export const NewSettingsCategory = observer(
                       style={{marginVertical: 0}}
                       onPress={() =>
                         itemData.props.onPress({
-                          // TODO: make section switching functional
-                          setSection: () => {},
+                          currentSection: section,
+                          setSection,
                           openLink: openUrl,
                         })
                       }>
