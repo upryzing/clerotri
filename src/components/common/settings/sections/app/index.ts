@@ -4,3 +4,4 @@ export {BotSettingsSection} from './BotSettingsSection';
 export {LicenseListSection} from './LicenseListSection';
 export {ProfileSettingsSection} from './ProfileSettingsSection';
 export {SessionsSettingsSection} from './SessionsSettingsSection';
+export {ThemesSettingsSection} from './ThemesSettingsSection';

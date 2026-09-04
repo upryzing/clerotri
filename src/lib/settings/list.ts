@@ -207,16 +207,17 @@ export const settingsList = [
 // start an item's name with `detatched` to hide the group label
 export const settingsCategories: Record<string, SettingsCategory> = {
   appearance: {
-    detatchedTheme: ['ui.theme'], //{
-    // type: 'settingsButton',
-    // props: {
-    //   title: 'app.settings_menu.appearance.theme.title',
-    //   body: 'app.settings_menu.appearance.theme.body',
-    //   onPress: ({setSection}) => {
-    //     setSection({section: 'appearance', subsection: 'themes'});
-    //   },
-    // },
-    //},
+    detatchedTheme: ['ui.theme'],
+    themes: {
+      type: 'settingsButton',
+      props: {
+        title: 'app.settings_menu.appearance.themes.title',
+        body: 'app.settings_menu.appearance.themes.body',
+        onPress: ({setSection}) => {
+          setSection({section: 'appearance', subsection: 'themes'});
+        },
+      },
+    },
     messaging: [
       'ui.messaging.messageSpacing',
       'ui.messaging.use24H',

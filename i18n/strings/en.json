@@ -470,7 +470,11 @@
                 "title": "Analytics"
             },
             "appearance": {
-                "title": "Appearance"
+                "title": "Appearance",
+                "themes": {
+                    "title": "App theme",
+                    "body": "Select a theme or make your own"
+                }
             },
             "bots": {
                 "title": "Bots",

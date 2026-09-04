@@ -1,4 +1,4 @@
-import { useContext } from 'react';
+import {useContext} from 'react';
 import {View} from 'react-native';
 import {StyleSheet} from 'react-native-unistyles';
 import {useTranslation} from 'react-i18next';
@@ -81,7 +81,7 @@ export const NewSettingsCategory = observer(
   ({category, skipMargin}: {category: CategoryName; skipMargin?: boolean}) => {
     const {t} = useTranslation();
 
-    const {section, setSection} = useContext(SettingsSectionContext)
+    const {section, setSection} = useContext(SettingsSectionContext);
 
     const [
       showExperimental = settings.getDefault('ui.settings.showExperimental'),

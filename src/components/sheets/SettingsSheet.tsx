@@ -37,6 +37,7 @@ import {
   LicenseListSection,
   ProfileSettingsSection,
   SessionsSettingsSection,
+  ThemesSettingsSection,
 } from '@clerotri/components/common/settings/sections/app';
 
 function copyDebugInfo() {
@@ -85,7 +86,7 @@ const VALID_SECTIONS = [
   'sessions',
 ];
 
-const FLEX_CONTAINER_SECTIONS = ['bots', 'info', 'sessions'];
+const FLEX_CONTAINER_SECTIONS = ['bots', 'info', 'sessions', 'themes'];
 
 export const SettingsSheet = observer(
   ({
@@ -155,7 +156,9 @@ export const SettingsSheet = observer(
             <>
               {section?.section !== 'bots' && (
                 <Text type={'h1'}>
-                  {t(`app.settings_menu.${section.section}.title`)}
+                  {t(
+                    `app.settings_menu.${section.section}${section.subsection === 'themes' ? '.themes' : ''}.title`,
+                  )}
                 </Text>
               )}
               {section.section === 'licenses' ? (
@@ -169,14 +172,22 @@ export const SettingsSheet = observer(
                     {
                       paddingBottom: commonValues.sizes.xl + insets.bottom,
                     },
-                    FLEX_CONTAINER_SECTIONS.includes(section.section) && {
+                    (FLEX_CONTAINER_SECTIONS.includes(section.section) ||
+                      (section.subsection &&
+                        FLEX_CONTAINER_SECTIONS.includes(
+                          section.subsection,
+                        ))) && {
                       flexGrow: 1,
                     },
                   ]}
                   showsVerticalScrollIndicator={false}
                   showsHorizontalScrollIndicator={false}>
                   {section.section === 'appearance' ? (
-                    <NewSettingsCategory category={'appearance'} />
+                    section.subsection === 'themes' ? (
+                      <ThemesSettingsSection />
+                    ) : (
+                      <NewSettingsCategory category={'appearance'} />
+                    )
                   ) : section.section === 'functionality' ? (
                     <NewSettingsCategory category={'functionality'} />
                   ) : section.section === 'i18n' ? (
