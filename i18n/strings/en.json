@@ -96,9 +96,9 @@
         },
         "invites": {
             "member_count_one": "{{count}} member",
-                        "member_count_other": "{{count}} members",
-                        "join_server": "Join server", 
-                        "go_to_server": "Go to server"
+            "member_count_other": "{{count}} members",
+            "join_server": "Join server",
+            "go_to_server": "Go to server"
         },
         "loading": {
             "generic": "Loading…",
@@ -154,7 +154,7 @@
                 "header": "Block this user?",
                 "header_unblock": "Unblock this user?",
                 "body": "Are you sure you want to <2>block</2> <4>{{name}}</4>?",
-                "body_unblock": "Are you user you want to <2>unblock</2> <4>{{name}}</4>?",
+                "body_unblock": "Are you sure you want to <2>unblock</2> <4>{{name}}</4>?",
                 "notice": "They won't be able to message you or send you friend requests. You won't see their messages in channels and servers.",
                 "notice_unblock": "They will be able to message you and send you friend requests. You will see their messages in channels and servers."
             },
@@ -384,7 +384,6 @@
                     "ban_user_body": "They won't be able to rejoin unless you unban them.",
                     "roles": {
                         "header": "<0>{{name}}</0>'s roles"
-
                     },
                     "select_mode": {
                         "title_one": "{{count}} member selected",
@@ -459,7 +458,7 @@
                 "advanced": "Advanced settings"
             },
             "privacy": {
-                "badges": "Extra badges" 
+                "badges": "Extra badges"
             }
         },
         "settings_menu": {
