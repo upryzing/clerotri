@@ -264,8 +264,11 @@
                 "hide": "(sembunyikan)"
             },
             "voice": {
-                "body": "Kamu bisa bergabung melalui web app atau Revolt Desktop untuk sementara.",
+                "body": "Sementara itu, Anda bisa bergabung dengan mereka melalui aplikasi web atau Stoat Desktop.",
                 "header": "Saluran suara belum didukung di Clerotri!"
+            },
+            "generic_errors": {
+                "rateLimited_toast": "Tenang dulu dan cobalah sebentar lagi."
             }
         },
         "discover": {
@@ -291,7 +294,8 @@
             "PlatformModeration": "Moderator Platform",
             "Supporter": "Donatur",
             "Translator": "Penerjemah",
-            "ResponsibleDisclosure": "Mengungkap masalah keamanan secara bertanggung jawab"
+            "ResponsibleDisclosure": "Mengungkap masalah keamanan secara bertanggung jawab",
+            "Paw": "Cakar Sisipan"
         },
         "analytics": {
             "values": {
@@ -510,6 +514,91 @@
                 "delete": "Hapus saluran",
                 "create_invite": "Buat undangan",
                 "mark_as_read": "Tandai sudah dibaca"
+            },
+            "report": {
+                "additional_context_body": "Anda dapat menambahkan lebih banyak konteks pada laporan Anda di sini.",
+                "additional_context_placeholder": "Tambahkan lebih banyak konteks (opsional)",
+                "additional_context_placeholder_recommended": "Tambahkan lebih banyak konteks (disarankan)",
+                "bridged_message_notice": "Pesan ini mungkin dikirim dari platform lain. Jika demikian, kami menyarankan untuk melaporkannya juga di sana.",
+                "destination_notice_generic": "Laporan ini akan dikirim ke tim moderasi platform, bukan moderator server ini.",
+                "destination_notice_stoat": "Laporan ini akan dikirim ke tim moderasi Stoat, bukan moderator server ini.",
+                "destination_notice_upryzing": "Laporan ini akan dikirim ke tim moderasi Upryzing, bukan moderator ruang ini.",
+                "next_steps": {
+                    "header": "Langkah selanjutnya",
+                    "block_message_author": "Blokir penulis",
+                    "block_user": "Blokir pengguna",
+                    "message_author_blocked": "Penulis diblokir",
+                    "user_blocked": "Pengguna diblokir",
+                    "block_message_author_body": "Anda juga dapat memblokir penulis pesan ini.",
+                    "block_user_body": "Anda juga dapat memblokir pengguna ini.",
+                    "leave_server": "Tinggalkan server",
+                    "leave_server_body": "Anda juga dapat meninggalkan server ini. Anggota lain tidak akan diberitahu.",
+                    "done": "Selesai"
+                },
+                "reason_selector_message": "Mengapa Anda melaporkan pesan ini?",
+                "reason_selector_server": "Mengapa Anda melaporkan server ini?",
+                "reason_selector_user": "Mengapa Anda melaporkan pengguna ini?",
+                "reason_selector_body": "Anda dapat menambahkan lebih banyak konteks setelah memilih alasan.",
+                "reasons": {
+                    "BanEvasion": "Penghindaran larangan",
+                    "ExtremeViolence": "Kekerasan ekstrem",
+                    "Harassment": "Pelecehan",
+                    "Illegal": "Konten ilegal",
+                    "IllegalExtortion": "Pemerasan ilegal",
+                    "IllegalGoods": "Barang ilegal",
+                    "IllegalHacking": "Peretasan ilegal",
+                    "IllegalPornography": "Pornografi ilegal",
+                    "Impersonation": "Peniruan",
+                    "InappropriateProfile": "Profil yang tidak pantas",
+                    "Malware": "Malware",
+                    "Raid": "Perampasan",
+                    "NoneSpecified": "Lainnya",
+                    "ScamsFraud": "Penipuan atau penggelapan",
+                    "SpamAbuse": "Spam atau penyalahgunaan platform",
+                    "UnsolicitedSpam": "Spam yang tidak diminta",
+                    "Underage": "Di bawah umur",
+                    "PromotesHarm": "Mempromosikan tindakan berbahaya",
+                    "BanEvasion_body_user": "Pengguna ini menghindari larangan",
+                    "ExtremeViolence_body_message": "Pesan ini berisi kekerasan ekstrem, adegan berdarah atau kekejaman terhadap hewan",
+                    "ExtremeViolence_body_server": "Server ini berisi kekerasan ekstrem, adegan berdarah atau kekejaman terhadap hewan",
+                    "Harassment_body_message": "Pesan ini melecehkan saya atau orang lain",
+                    "Harassment_body_server": "Server ini melecehkan saya atau orang lain",
+                    "Illegal_body_message": "Pesan ini melanggar satu atau lebih hukum",
+                    "Illegal_body_server": "Server ini melanggar satu atau lebih hukum",
+                    "IllegalExtortion_body_message": "Pesan ini memeras atau mengancam saya atau orang lain",
+                    "IllegalExtortion_body_server": "Server ini memeras atau mengancam saya atau orang lain",
+                    "IllegalGoods_body_message": "Pesan ini menjual barang ilegal atau layanan lainnya",
+                    "IllegalGoods_body_server": "Server ini menjual barang ilegal atau layanan lainnya",
+                    "IllegalHacking_body_message": "Pesan ini berisi atau mempromosikan peretasan atau pembobolan ilegal",
+                    "IllegalHacking_body_server": "Server ini berisi atau mempromosikan peretasan atau pembobolan ilegal",
+                    "IllegalPornography_body_message": "Pesan ini berisi balas dendam atau pornografi di bawah umur",
+                    "IllegalPornography_body_server": "Server ini berisi balas dendam atau pornografi di bawah umur",
+                    "Impersonation_body_user": "Pengguna ini meniru saya atau orang lain",
+                    "InappropriateProfile_body_user": "Profil pengguna ini tidak pantas untuk khalayak umum",
+                    "Malware_body_message": "Pesan ini berisi malware atau tautan berbahaya",
+                    "Malware_body_server": "Server ini berisi malware atau tautan berbahaya",
+                    "PromotesHarm_body_message": "Pesan ini mempromosikan tindakan berbahaya atau penyalahgunaan",
+                    "PromotesHarm_body_server": "Server ini mempromosikan tindakan berbahaya atau penyalahgunaan",
+                    "ScamsFraud_body_message": "Pesan ini mempromosikan penipuan atau penggelapan",
+                    "ScamsFraud_body_server": "Server ini mempromosikan penipuan atau penggelapan",
+                    "SpamAbuse_body_server": "Server ini mengirim spam atau menyalahgunakan platform",
+                    "SpamAbuse_body_user": "Pengguna ini mengirim spam atau menyalahgunakan platform",
+                    "SpamAbuse_body_message": "Pesan ini adalah spam atau penyalahgunaan platform",
+                    "UnsolicitedSpam_body_message": "Pesan ini berisi iklan yang tidak diminta atau spam",
+                    "UnsolicitedSpam_body_server": "Server ini berisi iklan yang tidak diminta atau spam",
+                    "UnsolicitedSpam_body_user": "Pengguna ini mengirimkan iklan yang tidak diminta atau spam",
+                    "Raid_body_message": "Pesan ini merupakan bagian dari serangan perampasan atau spam",
+                    "Raid_body_server": "Server ini mempromosikan serangan perampasan atau spam",
+                    "Underage_body_user": "Pengguna ini masih terlalu muda untuk menggunakan platform ini",
+                    "NoneSpecified_body": "Hal lain yang tidak tercantum di sini"
+                },
+                "report_message": "Laporkan pesan",
+                "report_server": "Laporkan server",
+                "report_user": "Laporkan pengguna",
+                "success_header": "Laporan terkirim",
+                "success_body_stoat": "Laporan Anda telah dikirim ke tim Stoat untuk ditinjau. Terima kasih telah membantu menjaga Stoat tetap aman.",
+                "success_body_upryzing": "Laporan Anda telah dikirim ke tim Upryzing untuk ditinjau. Terima kasih telah membantu menjaga Upryzing tetap aman.",
+                "success_body_generic": "Laporan Anda telah dikirim ke tim moderasi platform untuk ditinjau. Terima kasih telah membantu menjaga platform tetap aman."
             }
         },
         "permissions": {
@@ -559,6 +648,15 @@
             "ViewChannel_body_server": "Izinkan anggota dengan peran ini untuk melihat saluran.",
             "Connect": "Hubungkan",
             "InviteOthers": "Buat Undangan"
+        },
+        "themes": {
+            "Light": "Terang",
+            "Dark": "Gelap",
+            "Solarized": "Solarisasi",
+            "AMOLED": "AMOLED",
+            "Rose Pine": "Pinus Mawar",
+            "Rose Pine Moon": "Bulan Pinus Mawar",
+            "Rose Pine Dawn": "Fajar Pinus Mawar"
         }
     }
 }
