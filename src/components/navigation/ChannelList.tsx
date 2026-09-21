@@ -16,7 +16,10 @@ import {API, Channel, Server} from 'revolt.js';
 import {app} from '@clerotri/Generic';
 import {client} from '@clerotri/lib/client';
 import {ChannelButton, Text} from '../common/atoms';
-import {MaterialCommunityIcon} from '@clerotri/components/common/icons';
+import {
+  MaterialCommunityIcon,
+  MaterialIcon,
+} from '@clerotri/components/common/icons';
 import {
   ChannelContext,
   ServerContext,
@@ -39,43 +42,74 @@ const ServerChannelListCategory = observer(
 
     const [isVisible, setIsVisible] = useState(true);
 
+    // in some cases, channels in the category channel list either:
+    // - may not be visible to the user due to permissions or
+    // - may have been deleted and not removed from the list yet.
+
+    // the latter is a Stoat bug (see https://github.com/stoatchat/stoatchat/issues/173), but the former seems intentional to me.
+    // we need to fetch the channels anyway to render them, so check if any
+    // can actually be fetched - if not, and the category ID is `default`,
+    // hide the category entirely
+    const fetchableChannels: Channel[] = [];
+
+    for (const channel of category.channels) {
+      const fetchedChannel = client.channels.get(channel);
+      if (fetchedChannel) {
+        fetchableChannels.push(fetchedChannel);
+      }
+    }
+
+    if (category.id === 'default' && !fetchableChannels.length) return null;
+
     return (
-      <View key={category.id} style={{marginVertical: 8}}>
+      <View key={category.id}>
         <TouchableOpacity
           key={`${category.id}-title`}
           onPress={() => {
             setIsVisible(!isVisible);
+          }}
+          style={{
+            paddingInline: commonValues.sizes.xl,
+            paddingBlockEnd: commonValues.sizes.xs,
+            alignItems: 'center',
+            justifyContent: 'space-between',
+            flexDirection: 'row',
           }}>
           <Text
             style={{
-              marginLeft: commonValues.sizes.large,
-              marginBottom: commonValues.sizes.xs,
               fontWeight: 'bold',
             }}>
             {category.title?.toUpperCase()}
           </Text>
+          <MaterialIcon
+            name={isVisible ? 'expand-less' : 'expand-more'}
+            size={20}
+          />
         </TouchableOpacity>
-        {isVisible &&
-          category.channels.map((cid: string) => {
-            let c = client.channels.get(cid);
-            if (c) {
-              return (
-                <ChannelButton
-                  key={c._id}
-                  channel={c}
-                  onPress={() => {
-                    setCurrentChannel(c);
-                    setSideMenuOpen(false);
-                  }}
-                  onLongPress={() => app.openChannelContextMenu(c)}
-                  selected={
-                    typeof currentChannel !== 'string' &&
-                    currentChannel?._id === c._id
-                  }
-                />
-              );
-            }
+        <View
+          style={{
+            marginBlockStart: commonValues.sizes.small,
+            gap: commonValues.sizes.xs,
+          }}>
+          {fetchableChannels.map(c => {
+            /* TODO: setting for showing unread channels regardless */
+            return isVisible ? (
+              <ChannelButton
+                key={c._id}
+                channel={c}
+                onPress={() => {
+                  setCurrentChannel(c);
+                  setSideMenuOpen(false);
+                }}
+                onLongPress={() => app.openChannelContextMenu(c)}
+                selected={
+                  typeof currentChannel !== 'string' &&
+                  currentChannel?._id === c._id
+                }
+              />
+            ) : null;
           })}
+        </View>
       </View>
     );
   },
@@ -87,25 +121,22 @@ const ServerChannelList = observer((props: ServerChannelListProps) => {
   const {currentChannel, setCurrentChannel} = useContext(ChannelContext);
   const {setSideMenuOpen} = useContext(SideMenuContext);
 
-  const [processedChannels, setProcessedChannels] = useState([] as string[]);
-  const [res, setRes] = useState([] as React.JSX.Element[] | undefined);
+  const [uncategorisedChannets, setUncategorisedChannels] = useState(
+    [] as string[],
+  );
 
   useEffect(() => {
-    const categories = props.currentServer.categories?.map(c => {
-      const element = (
-        <ServerChannelListCategory key={`wrapper-${c.id}`} category={c} />
-      );
-      for (const cnl of c.channels) {
-        if (!processedChannels.includes(cnl)) {
-          const newProcessedChannels = processedChannels;
-          newProcessedChannels.push(cnl);
-          setProcessedChannels(newProcessedChannels);
+    let channels = [...props.currentServer.channel_ids];
+    if (props.currentServer.categories) {
+      for (const category of props.currentServer.categories) {
+        for (const channel of category.channels) {
+          channels = channels.filter(c => c !== channel);
         }
       }
-      return element;
-    });
-    setRes(categories);
-  }, [props, processedChannels]);
+    }
+
+    setUncategorisedChannels(channels);
+  }, [props.currentServer]);
 
   return (
     <>
@@ -116,7 +147,6 @@ const ServerChannelList = observer((props: ServerChannelListProps) => {
             width: '100%',
             height: 110,
             justifyContent: 'flex-end',
-            marginBottom: commonValues.sizes.medium,
           }}>
           <TouchableOpacity
             onPress={() => app.openServerContextMenu(props.currentServer)}
@@ -166,10 +196,14 @@ const ServerChannelList = observer((props: ServerChannelListProps) => {
           </View>
         </TouchableOpacity>
       )}
-
-      {props.currentServer.channels.map(c => {
-        if (c) {
-          if (!processedChannels.includes(c._id)) {
+      <View
+        style={{
+          gap: commonValues.sizes.xs,
+          marginBlockStart: commonValues.sizes.medium,
+        }}>
+        {uncategorisedChannets.map(cid => {
+          const c = client.channels.get(cid);
+          if (c) {
             return (
               <ChannelButton
                 key={c._id}
@@ -186,9 +220,22 @@ const ServerChannelList = observer((props: ServerChannelListProps) => {
               />
             );
           }
-        }
-      })}
-      {res}
+        })}
+      </View>
+      <View
+        style={{
+          gap: commonValues.sizes.medium,
+          marginBlockStart: commonValues.sizes.medium,
+        }}>
+        {props.currentServer.categories?.map(cat => {
+          return (
+            <ServerChannelListCategory
+              key={`category-${props.currentServer._id}-${cat.id}`}
+              category={cat}
+            />
+          );
+        })}
+      </View>
     </>
   );
 });

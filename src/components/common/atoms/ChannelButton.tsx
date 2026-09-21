@@ -106,6 +106,7 @@ const localStyles = StyleSheet.create(currentTheme => ({
     marginHorizontal: commonValues.sizes.medium,
     borderRadius: commonValues.sizes.medium,
     padding: commonValues.sizes.medium,
+    paddingInline: commonValues.sizes.small,
     flexDirection: 'row',
     alignItems: 'center',
   },
