@@ -358,7 +358,11 @@
                 "remove_other_sessions": "Выйти из остальных сессий"
             },
             "privacy": {
-                "title": "Конфиденциальность"
+                "title": "Конфиденциальность",
+                "info": {
+                    "title": "Информация о конфиденциальности",
+                    "body": "Узнайте больше о том, как Clerotri распоряжается вашими данными"
+                }
             }
         },
         "discover": {
@@ -658,7 +662,16 @@
         "settings_categories": {
             "functionality": {
                 "notifications": "Уведомления",
-                "advanced": "Продвинутые настройки"
+                "advanced": "Продвинутые настройки",
+                "messaging": "Сообщения"
+            },
+            "appearance": {
+                "emoji": "Эмодзи",
+                "font": "Шрифт",
+                "messaging": "Сообщения"
+            },
+            "privacy": {
+                "badges": "Дополнительные значки"
             }
         }
     }

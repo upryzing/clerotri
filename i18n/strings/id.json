@@ -1,12 +1,12 @@
 {
     "app": {
         "home": {
-            "join_lounge": "Bergabung ke Revolt Lounge",
-            "open_lounge": "Buka Revolt Lounge",
-            "join_clerotri": "Bergabung ke server Clerotri",
+            "join_lounge": "Bergabunglah dengan Ruang Santai Stoat",
+            "open_lounge": "Buka Ruang Santai Stoat",
+            "join_clerotri": "Bergabunglah dengan server Clerotri",
             "open_clerotri": "Buka server Clerotri",
             "open_settings": "Buka pengaturan",
-            "description": "Geser dari kiri layar atau ketuk ikon tiga baris untuk melihat server dan pesan kamu!"
+            "description": "Geser dari kiri layar atau ketuk ikon tiga garis untuk melihat server dan pesan Anda!"
         },
         "actions": {
             "delete": "Hapus",
@@ -15,19 +15,32 @@
             "back": "Kembali",
             "confirm": "Konfirmasi",
             "save": "Simpan",
-            "create_channel": "Buat saluran"
+            "create_channel": "Buat saluran",
+            "ban": "Larang",
+            "block": "Blokir",
+            "unblock": "Buka Blokir",
+            "copy_invite": "Salin undangan",
+            "kick": "Usir"
         },
         "loading": {
             "generic": "Memuat…",
-            "connecting": "Memuat akun…"
+            "connecting": "Sedang masuk…",
+            "unknown_state_body": "Tolong sampaikan kepada pengembang bahwa Anda melihat ini (nilai: {{state}})",
+            "unknown_state": "Waduh…"
         },
         "modals": {
             "confirm_deletion": {
                 "header_message": "Hapus pesan?",
                 "header_server": "Hapus server?",
-                "body_server": "Apa kamu yakin ingin menghapus <2>{{name}}</2>?",
-                "body_message": "Apa kamu yakin ingin menghapus <2>pesan ini</2>?",
-                "warning": "Tindakan ini tidak dapat dibatalkan."
+                "body_server": "Apakah Anda yakin ingin menghapus <2>{{name}}</2>?",
+                "body_message": "Apakah Anda yakin ingin menghapus <2>pesan ini</2>?",
+                "warning": "Hal ini tidak dapat dibatalkan.",
+                "header_bot": "Hapus bot?",
+                "header_channel": "Hapus saluran?",
+                "header_role": "Hapus peran?",
+                "body_bot": "Apakah Anda yakin ingin menghapus <2>{{name}}</2>?",
+                "body_channel": "Apakah Anda yakin ingin menghapus <2>saluran ini</2>?",
+                "body_role": "Apakah Anda yakin ingin menghapus <2>peran ini</2>?"
             },
             "create_channel": {
                 "header": "Buat saluran baru",
@@ -38,63 +51,187 @@
                 "type_voice": "Saluran suara",
                 "nsfw_header": "NSFW",
                 "nsfw_label": "Tandai saluran sebagai NSFW"
+            },
+            "confirm_block": {
+                "header": "Blokir pengguna ini?",
+                "header_unblock": "Buka blokir pengguna ini?",
+                "body": "Apakah Anda yakin ingin <2>memblokir</2> <4>{{name}}</4>?",
+                "body_unblock": "Apakah Anda yakin ingin <2>membuka blokir</2> <4>{{name}}</4>?",
+                "notice_unblock": "Mereka akan dapat mengirimi Anda pesan dan mengirimi Anda permintaan pertemanan. Anda akan melihat pesan mereka di saluran dan server.",
+                "notice": "Mereka tidak akan dapat mengirimi Anda pesan dan mengirimi Anda permintaan pertemanan. Anda tidak akan melihat pesan mereka di saluran dan server."
+            },
+            "confirm_mod_action": {
+                "header_kick": "Usir pengguna ini?",
+                "header_ban": "Larang pengguna ini?",
+                "body_kick": "Apakah Anda yakin ingin <2>mengusir</2> <4>{{name}}</4>?",
+                "body_ban": "Apakah Anda yakin ingin <2>melarang</2> <4>{{name}}</4>?",
+                "reason_kick": "Alasan pengusiran (opsional)",
+                "reason_ban": "Alasan pelarangan (opsional)",
+                "reason_placeholder": "Cantumkan alasannya…"
+            },
+            "edit_text": {
+                "display_name_header": "Tetapkan nama tampilan",
+                "display_name_placeholder": "Nama tampilan",
+                "new_bot_header": "Buat bot",
+                "new_bot_placeholder": "Nama pengguna",
+                "new_role_header": "Buat peran",
+                "new_role_placeholder": "Nama peran",
+                "nickname_placeholder": "Nama panggilan (biarkan kosong untuk mengatur ulang)",
+                "nickname_other_placeholder": "Nama panggilan (biarkan kosong untuk mengatur ulang)",
+                "role_colour_header": "Tetapkan warna peran",
+                "role_colour_placeholder": "Warna peran",
+                "session_name_header": "Tetapkan nama sesi",
+                "session_name_placeholder": "Nama sesi",
+                "nickname_header": "Tetapkan nama panggilan",
+                "nickname_other_header": "Tetapkan nama panggilan anggota"
+            },
+            "new_invite": {
+                "header": "Undangan dibuat",
+                "body": "Ini tautan undangan baru Anda:"
             }
         },
         "settings": {
             "app": {
-                "language": "Pilih bahasamu",
+                "language": "Pilih bahasa Anda",
                 "notifications": {
-                    "enabled": "Aktifkan notifikasi push",
-                    "notifyOnSelfPing": "Terima notifikasi ketika kamu mem-ping diri sendiri"
-                }
+                    "enabled": "Hidupkan notifikasi dorong",
+                    "notifyOnSelfPing": "Terima notifikasi saat Anda mengirim ping ke diri sendiri",
+                    "enabledInApp": "Hidupkan notifikasi dalam aplikasi"
+                },
+                "refetchOnReconnect": "Ambil kembali pesan saat menghubungkan kembali",
+                "reopenLastChannel": "Buka kembali saluran terakhir Anda saat membuka aplikasi",
+                "showChangelogs": "Tampilkan catatan perubahan setelah memperbarui Clerotri"
             },
             "ui": {
                 "theme": "Tema",
                 "messaging": {
-                    "doubleTapToReply_remark": "Fitur ini hanya tersedia pada tampilan pesan yang baru.",
-                    "doubleTapToReply": "Balas dengan mengetuk dua kali pada pesan",
-                    "sendAttachments": "Aktifkan pengiriman lampiran",
-                    "fontSize": "Ukuran teks"
-                }
+                    "doubleTapToReply_remark": "Ini hanya didukung di tampilan pesan baru.",
+                    "doubleTapToReply": "Balas pesan dengan mengetuknya dua kali",
+                    "sendAttachments": "Hidupkan pengiriman lampiran",
+                    "fontSize": "Ukuran font",
+                    "emojiPack": "Paket emoji",
+                    "experimentalScrolling": "Hidupkan pengguliran saluran untuk tampilan pesan lama",
+                    "useNewMessageView": "Gunakan tampilan pesan baru",
+                    "experimentalScrolling_remark": "Anda hanya bisa menggulir ke belakang.",
+                    "fontSize_remark": "Ini akan berlaku untuk pesan dan bagian tertentu dari aplikasi.",
+                    "hideBlockedMessages": "Sembunyikan sepenuhnya pesan dari pengguna yang diblokir",
+                    "showMasqAvatar": "Tampilkan avatar samaran di sudut",
+                    "showReactions": "Tampilkan tanggapan di bawah pesan",
+                    "showReactions_remark": "Anda bisa menambahkan tanggapan yang sudah ada, tetapi Anda belum bisa menambahkan yang baru.",
+                    "showSelfInTypingIndicator": "Tampilkan diri Anda di indikator pengetikan",
+                    "statusInChatAvatars": "Tampilkan status pengguna di avatar obrolan",
+                    "messageSpacing": "Jarak pesan",
+                    "use24H": "Gunakan stempel waktu 24-jam",
+                    "showNSFWContent": "Setujui konten 18+"
+                },
+                "home": {
+                    "holidays": "Tampilkan hari libur di halaman beranda"
+                },
+                "settings": {
+                    "showExperimental": "Tampilkan fitur eksperimental"
+                },
+                "showDeveloperFeatures": "Tampilkan alat pengembang"
             }
         },
         "servers": {
             "settings": {
                 "overview": {
-                    "title": "Ikhtisar",
+                    "title": "Ringkasan",
                     "description": "Deskripsi server",
-                    "description_placeholder": "Tambah deskripsi…",
-                    "set_description": "Atur deskripsi",
+                    "description_placeholder": "Tambahkan deskripsi…",
+                    "set_description": "Tetapkan deskripsi",
                     "name": "Nama server",
                     "system_messages": "Pesan sistem",
                     "errors": {
                         "empty_server_name": "Nama server tidak boleh kosong!"
                     },
-                    "markdown_tip": "Teks deskripsi server mendukung format Markdown.",
-                    "markdown_tip_link": "Ketahui selengkapnya."
+                    "markdown_tip": "Deskripsi server mendukung pemformatan Markdown.",
+                    "markdown_tip_link": "Pelajari lebih lanjut.",
+                    "system_message_channel_types": {
+                        "user_joined": "Pengguna bergabung",
+                        "user_left": "Pengguna pergi",
+                        "user_kicked": "Pengguna diusir",
+                        "user_banned": "Pengguna dilarang"
+                    },
+                    "system_messages_description": "Ketika anggota bergabung, pergi atau diusir atau dilarang, Anda bisa menerima pesan."
                 },
                 "general": "Umum",
                 "delete_server": "Hapus Server",
                 "channels": {
-                    "title": "Saluran"
+                    "title": "Saluran",
+                    "name": "Nama saluran",
+                    "name_placeholder": "Tetapkan nama saluran…",
+                    "permissions": "Izin saluran",
+                    "no_perms_set": "Tidak ditetapkan",
+                    "errors": {
+                        "empty_channel_name": "Nama saluran tidak boleh kosong!"
+                    }
                 },
                 "roles": {
                     "colour": "Warna",
                     "name": "Nama",
-                    "permissions": "Izin"
+                    "permissions": "Izin",
+                    "title": "Peran",
+                    "name_placeholder": "Tetapkan nama peran…",
+                    "options_header": "Pilihan",
+                    "options": {
+                        "hoist": "Angkat peran",
+                        "hoist_body": "Tampilkan peran ini di atas peran lainnya dalam daftar anggota."
+                    },
+                    "rank": "Peringkat",
+                    "rank_placeholder": "Tetapkan peringkat peran…",
+                    "set_colour": "Tetapkan warna peran",
+                    "delete": "Hapus Peran",
+                    "errors": {
+                        "empty_role_name": "Nama peran tidak boleh kosong!",
+                        "empty_rank": "Peringkat peran tidak boleh kosong!",
+                        "role_colour_generic": "Gagal menetapkan warna peran baru",
+                        "role_colour_invalid_hex": "Kode HEX tidak valid"
+                    },
+                    "permissions_body": "Edit izin peran ini",
+                    "permissions_list_header": "Izin untuk <2>{{role}}</2>",
+                    "permissions_list_body": "Izin ini berlaku di seluruh server. Beberapa di antaranya dapat diganti untuk saluran tertentu.",
+                    "open_colour_modal": "Masukkan warna secara manual"
                 },
                 "emoji": {
-                    "title": "Emoji"
+                    "title": "Emoji",
+                    "empty": "Tidak ada emoji",
+                    "added_by": "Ditambahkan oleh @{{name}}",
+                    "deleted_toast": "{{name}} dihapus"
                 },
                 "members": {
-                    "title": "Anggota"
+                    "title": "Anggota",
+                    "nickname": "Nama panggilan",
+                    "nickname_placeholder": "Tetapkan nama panggilan…",
+                    "manage_roles": "Kelola peran",
+                    "roles": {
+                        "header": "Peran <0>{{name}}</0>"
+                    },
+                    "timeout_user": "Batasi waktu {{name}}",
+                    "kick_user": "Usir {{name}}",
+                    "ban_user": "Larang {{name}}",
+                    "loading": "Mengambil daftar anggota…",
+                    "manage_roles_body_other": "{{name}} memiliki {{count}} peran.",
+                    "select_mode": {
+                        "title_other": "{{count}} anggota dipilih"
+                    },
+                    "timeout_user_body": "Mereka tidak akan bisa mengirim pesan atau tanggapan sampai batas waktu mereka berakhir.",
+                    "ban_user_body": "Mereka tidak akan bisa bergabung kembali kecuali Anda membatalkan larangan mereka.",
+                    "kick_user_body": "Mereka bisa bergabung kembali dengan undangan."
                 },
-                "user_management": "Manajemen Pengguna",
+                "user_management": "Pengelolaan Pengguna",
                 "invites": {
-                    "loading": "Memuat undangan…",
+                    "loading": "Mengambil undangan…",
                     "empty": "Tidak ada undangan",
                     "title": "Undangan"
-                }
+                },
+                "bans": {
+                    "title": "Larangan",
+                    "loading": "Mengambil larangan…",
+                    "empty": "Tidak ada larangan",
+                    "no_reason": "Tidak ada alasan yang diberikan"
+                },
+                "customisation": "Kustomisasi"
             }
         },
         "login": {
@@ -102,29 +239,424 @@
                 "mfa_placeholder": "Kode sekali pakai",
                 "session_token_placeholder": "Token",
                 "email_placeholder": "Email",
-                "password_placeholder": "Sandi"
+                "password_placeholder": "Kata Sandi"
             },
             "options": {
-                "login_regular": "Sudah, masuk dengan email dan sandiku",
-                "login_regular_body": "Disarankan untuk mayoritas pengguna.",
-                "signup_body": "Kamu akan diarahkan ke web app Revolt. Setelah mendaftar, kembali dan masuk ke akunmu.",
-                "signup": "Belum, daftarkan",
-                "login_session_token": "Sudah, masuk menggunakan token sesi",
-                "login_session_token_body": "Gunakan metode ini apabila kamu mengalami kendala dengan sistem masuk akun biasa. Sejumlah fungsi mungkin tidak tersedia."
+                "login_regular": "Ya, masuk dengan email dan kata sandi saya",
+                "login_regular_body": "Direkomendasikan untuk sebagian besar pengguna.",
+                "signup_body": "Anda akan diarahkan ke aplikasi web. Setelah Anda mendaftar, kembali ke sini dan masuk.",
+                "signup": "Tidak, daftarkan",
+                "login_session_token": "Ya, masuk dengan token sesi",
+                "login_session_token_body": "Gunakan ini jika Anda mengalami masalah dengan sistem masuk biasa. Beberapa fungsi mungkin tidak tersedia."
             },
-            "instance_notice": "Kamu sedang masuk akun di {{url}}.",
-            "token_info_label": "Bagaimana cara mendapatkan token?",
-            "subheader": "Apa kamu sudah memiliki akun?"
+            "instance_notice": "Anda sedang terhubung ke {{url}}.",
+            "token_info_label": "Bagaimana cara mendapatkan token saya?",
+            "subheader": "Apakah Anda sudah memiliki akun?",
+            "settings_button": "Pengaturan masuk",
+            "settings": {
+                "saved": "Tersimpan!",
+                "saved_body": "Untuk saat ini, Anda harus menutup dan membuka kembali aplikasi agar perubahan Anda dapat diterapkan. Kami tau ini tidak ideal - kami akan memperbaikinya di kemudian hari."
+            }
         },
         "misc": {
             "network_indicator": {
-                "body": "Koneksi hilang",
+                "body": "Koneksi terputus",
                 "hide": "(sembunyikan)"
             },
             "voice": {
-                "body": "Kamu bisa bergabung melalui web app atau Revolt Desktop untuk sementara.",
-                "header": "Saluran suara belum didukung Clerotri!"
+                "body": "Sementara itu, Anda bisa bergabung dengan mereka melalui aplikasi web atau Stoat Desktop.",
+                "header": "Saluran suara belum didukung di Clerotri!"
+            },
+            "generic_errors": {
+                "rateLimited_toast": "Tenang dulu dan cobalah sebentar lagi."
             }
+        },
+        "discover": {
+            "count_bots_other": "{{count}} bot",
+            "count_servers_other": "{{count}} server",
+            "header_bots": "Jelajahi Bot",
+            "header_servers": "Jelajahi Server",
+            "tabs": {
+                "bots": "Bot",
+                "servers": "Server"
+            },
+            "fetching_bots": "Memuat bot…",
+            "fetching_servers": "Memuat server…"
+        },
+        "custom_badges": {
+            "clerotri_dev": "Pengembang Clerotri"
+        },
+        "badges": {
+            "Founder": "Pendiri",
+            "Developer": "Pengembang Stoat",
+            "EarlyAdopter": "Pengadopsi Awal",
+            "ActiveSupporter": "Pendukung Aktif",
+            "PlatformModeration": "Moderator Platform",
+            "Supporter": "Donatur",
+            "Translator": "Penerjemah",
+            "ResponsibleDisclosure": "Mengungkap masalah keamanan secara bertanggung jawab",
+            "Paw": "Cakar Sisipan"
+        },
+        "analytics": {
+            "values": {
+                "settings_body_other": "{{count}} entri",
+                "model": "Model perangkat Anda",
+                "os": "OS Anda dan versinya",
+                "clerotriVersion": "Versi Clerotri yang Anda gunakan",
+                "settings": "Pengaturan Clerotri Anda",
+                "inBasic_body": "Model, versi OS, versi Clerotri",
+                "inBasic": "Semuanya dalam Dasar",
+                "instance": "URL instansi Anda"
+            },
+            "title": "Kelola analitik",
+            "switch_to_basic": "Beralih ke Dasar",
+            "switch_to_full": "Beralih ke Penuh",
+            "enable_basic": "Hidupkan analitik dasar",
+            "enable_full": "Hidupkan analitik penuh",
+            "tiers": {
+                "basic": "Dasar",
+                "full": "Penuh"
+            },
+            "disable_analytics": "Matikan analitik",
+            "analytics_disabled": "Analitik dimatikan",
+            "continue_without_analytics": "Lanjutkan tanpa analitik",
+            "copied_data_toast": "Contoh data yang disalin",
+            "privacy_info": "Informasi privasi",
+            "body": "Secara bawaan, Clerotri tidak mengumpulkan data apapun. Anda dapat memilih untuk mengizinkan kami mengumpulkan data berikut untuk membantu kami meningkatkan aplikasi.",
+            "active": "Hidup"
+        },
+        "changelog": {
+            "donate": "Donasi",
+            "header_newly_updated": "Clerotri telah diperbarui ke v{{version}}",
+            "header": "Catatan perubahan untuk v{{version}}",
+            "see_full_changelog": "Lihat catatan perubahan selengkapnya",
+            "dismiss": "Tutup",
+            "released_on": "Dirilis pada {{date}}"
+        },
+        "invites": {
+            "member_count_other": "{{count}} anggota",
+            "join_server": "Gabung ke server",
+            "go_to_server": "Pergi ke server"
+        },
+        "messaging": {
+            "message_box_channel": "Kirim pesan ke #{{name}}",
+            "message_box_group": "Kirim pesan ke {{name}}",
+            "message_box_dm": "Kirim pesan ke @{{name}}",
+            "message_box_saved_notes": "Simpan ke catatan Anda",
+            "no_messages": "Tidak ada pesan",
+            "message_box_no_perms": "Anda tidak memiliki izin untuk mengirim pesan di saluran ini.",
+            "reply_not_loaded": "Pesan tidak dimuat",
+            "no_messages_body": "Mulailah percakapan.",
+            "message_box_system": "Anda tidak dapat membalas pesan sistem."
+        },
+        "channel_list": {
+            "direct_messages_header": "Pesan Langsung"
+        },
+        "friends_list": {
+            "blocked": "Diblokir - {{count}}",
+            "blocked_empty": "Tidak ada pengguna yang diblokir",
+            "incoming": "Permintaan masuk - {{count}}",
+            "incoming_empty": "Tidak ada permintaan masuk",
+            "outgoing": "Permintaan keluar - {{count}}",
+            "outgoing_empty": "Tidak ada permintaan keluar",
+            "onlineFriends": "Teman daring - {{count}}",
+            "onlineFriends_empty": "Tidak ada teman daring",
+            "offlineFriends": "Teman luring - {{count}}",
+            "offlineFriends_empty": "Tidak ada teman luring"
+        },
+        "profile": {
+            "badges": "Lencana",
+            "friend_requests": {
+                "accept": "Terima Permintaan Pertemanan",
+                "cancel": "Batalkan Permintaan Pertemanan",
+                "reject": "Tolak Permintaan Pertemanan",
+                "send": "Kirim Permintaan Pertemanan"
+            },
+            "mod_actions": {
+                "kick": "Usir {{user}}",
+                "ban": "Larang {{user}}",
+                "manage": "Pengaturan anggota"
+            },
+            "tabs": {
+                "profile": "Profil",
+                "mutual_servers": "Server Bersama",
+                "mutual_friends": "Teman Bersama",
+                "mutual_groups": "Grup Bersama"
+            },
+            "roles_header": "Peran",
+            "menu": {
+                "block_user": "Blokir Pengguna",
+                "report_user": "Laporkan Pengguna",
+                "unblock_user": "Buka Blokir Pengguna",
+                "back": "Kembali ke Profil"
+            },
+            "roles": {
+                "copied_role_id_toast": "ID peran disalin",
+                "edit": "Edit peran"
+            },
+            "mod_actions_header": "Tindakan mod",
+            "bot_owner": "Pemilik Bot",
+            "bio": "Bio",
+            "flags": {
+                "banned": "Pengguna ini telah dilarang",
+                "suspended": "Pengguna ini telah ditangguhkan",
+                "deleted": "Pengguna ini telah menghapus akunnya",
+                "unknown": "Bendera tidak dikenal {{flag}}"
+            },
+            "message_user": "Pesan"
+        },
+        "settings_menu": {
+            "other": {
+                "donate": "Donasi",
+                "logout": "Keluar",
+                "changelog": "Lihat Catatan Perubahan",
+                "debug_info": "Salin Info Debug",
+                "view_issues": "Lihat Masalah Terbuka",
+                "translate": "Terjemahkan Clerotri"
+            },
+            "privacy": {
+                "title": "Privasi",
+                "info": {
+                    "title": "Informasi privasi",
+                    "body": "Ketahui lebih lanjut tentang cara Clerotri menangani data Anda"
+                }
+            },
+            "profile": {
+                "title": "Profil",
+                "loading_bio": "Memuat bio…",
+                "expand_bio": "Perluas bio",
+                "collapse_bio": "Ciutkan bio",
+                "status": "Status",
+                "failed_to_load_bio": "Gagal memuat bio",
+                "display_name": "Nama tampilan",
+                "error_details": "Rincian kesalahan",
+                "status_body": "Atur jenis status dan teks Anda"
+            },
+            "account": {
+                "title": "Akun"
+            },
+            "appearance": {
+                "title": "Penampilan"
+            },
+            "bots": {
+                "title": "Bot",
+                "token": "Token",
+                "loading": "Memuat bot…",
+                "public": "Publik",
+                "no_bots": "Anda tidak memiliki bot.",
+                "new_bot": "Buat bot baru",
+                "new_bot_body": "Anda dapat membuat hingga {{limit}} bot.",
+                "copy_invite_link": "Salin tautan undangan",
+                "invite_bot": "Undang bot",
+                "reset_token": "Atur ulang token",
+                "delete_bot": "Hapus bot",
+                "aup_notice": "Semua bot harus mengikuti <2>Kebijakan Penggunaan yang Dapat Diterima</2>.",
+                "public_body_stoat": "Jika ini dihidupkan, bot ini dapat diundang ke grup dan server oleh pengguna lain.",
+                "public_body_upryzing": "Jika ini dihidupkan, bot ini dapat diundang ke grup dan ruang oleh pengguna lain."
+            },
+            "groups": {
+                "app": "Aplikasi",
+                "user": "Pengguna",
+                "advanced": "Lanjutan",
+                "other": "Lainnya"
+            },
+            "i18n": {
+                "title": "Bahasa"
+            },
+            "info": {
+                "title": "Tentang Clerotri"
+            },
+            "functionality": {
+                "title": "Fitur"
+            },
+            "sessions": {
+                "title": "Sesi",
+                "loading": "Memuat sesi…",
+                "current_session": "Sesi ini",
+                "other_sessions": "Sesi lainnya",
+                "current_session_not_found_with_hint": "Informasi sesi ini saat ini tidak tersedia. Anda perlu keluar dan masuk kembali.",
+                "current_session_not_found": "Informasi sesi ini saat ini tidak tersedia.",
+                "no_other_sessions": "Anda tidak memiliki sesi lain.",
+                "remove_other_sessions": "Keluar dari sesi Anda yang lain",
+                "remove_other_sessions_body": "Sesi ini akan tetap masuk."
+            },
+            "licenses": {
+                "title": "Lisensi Sumber Terbuka",
+                "loading": "Memuat data lisensi…"
+            },
+            "analytics": {
+                "title": "Analitik"
+            },
+            "toasts": {
+                "experimental": "Pengaturan ini bersifat eksperimental dan dapat dihapus atau diubah kapan saja.",
+                "deprecated": "Pengaturan ini akan dihapus di versi mendatang.",
+                "developer": "Pengaturan ini ditujukan untuk pengembang."
+            }
+        },
+        "settings_categories": {
+            "appearance": {
+                "emoji": "Emoji",
+                "font": "Font",
+                "messaging": "Pesan"
+            },
+            "functionality": {
+                "notifications": "Notifikasi",
+                "messaging": "Pesan",
+                "advanced": "Pengaturan lanjutan"
+            },
+            "privacy": {
+                "badges": "Lencana ekstra"
+            }
+        },
+        "sheets": {
+            "channel": {
+                "copy_link": "Salin tautan saluran",
+                "delete": "Hapus saluran",
+                "create_invite": "Buat undangan",
+                "mark_as_read": "Tandai sudah dibaca"
+            },
+            "report": {
+                "additional_context_body": "Anda dapat menambahkan lebih banyak konteks pada laporan Anda di sini.",
+                "additional_context_placeholder": "Tambahkan lebih banyak konteks (opsional)",
+                "additional_context_placeholder_recommended": "Tambahkan lebih banyak konteks (disarankan)",
+                "bridged_message_notice": "Pesan ini mungkin dikirim dari platform lain. Jika demikian, kami menyarankan untuk melaporkannya juga di sana.",
+                "destination_notice_generic": "Laporan ini akan dikirim ke tim moderasi platform, bukan moderator server ini.",
+                "destination_notice_stoat": "Laporan ini akan dikirim ke tim moderasi Stoat, bukan moderator server ini.",
+                "destination_notice_upryzing": "Laporan ini akan dikirim ke tim moderasi Upryzing, bukan moderator ruang ini.",
+                "next_steps": {
+                    "header": "Langkah selanjutnya",
+                    "block_message_author": "Blokir penulis",
+                    "block_user": "Blokir pengguna",
+                    "message_author_blocked": "Penulis diblokir",
+                    "user_blocked": "Pengguna diblokir",
+                    "block_message_author_body": "Anda juga dapat memblokir penulis pesan ini.",
+                    "block_user_body": "Anda juga dapat memblokir pengguna ini.",
+                    "leave_server": "Tinggalkan server",
+                    "leave_server_body": "Anda juga dapat meninggalkan server ini. Anggota lain tidak akan diberitahu.",
+                    "done": "Selesai"
+                },
+                "reason_selector_message": "Mengapa Anda melaporkan pesan ini?",
+                "reason_selector_server": "Mengapa Anda melaporkan server ini?",
+                "reason_selector_user": "Mengapa Anda melaporkan pengguna ini?",
+                "reason_selector_body": "Anda dapat menambahkan lebih banyak konteks setelah memilih alasan.",
+                "reasons": {
+                    "BanEvasion": "Penghindaran larangan",
+                    "ExtremeViolence": "Kekerasan ekstrem",
+                    "Harassment": "Pelecehan",
+                    "Illegal": "Konten ilegal",
+                    "IllegalExtortion": "Pemerasan ilegal",
+                    "IllegalGoods": "Barang ilegal",
+                    "IllegalHacking": "Peretasan ilegal",
+                    "IllegalPornography": "Pornografi ilegal",
+                    "Impersonation": "Peniruan",
+                    "InappropriateProfile": "Profil yang tidak pantas",
+                    "Malware": "Malware",
+                    "Raid": "Perampasan",
+                    "NoneSpecified": "Lainnya",
+                    "ScamsFraud": "Penipuan atau penggelapan",
+                    "SpamAbuse": "Spam atau penyalahgunaan platform",
+                    "UnsolicitedSpam": "Spam yang tidak diminta",
+                    "Underage": "Di bawah umur",
+                    "PromotesHarm": "Mempromosikan tindakan berbahaya",
+                    "BanEvasion_body_user": "Pengguna ini menghindari larangan",
+                    "ExtremeViolence_body_message": "Pesan ini berisi kekerasan ekstrem, adegan berdarah atau kekejaman terhadap hewan",
+                    "ExtremeViolence_body_server": "Server ini berisi kekerasan ekstrem, adegan berdarah atau kekejaman terhadap hewan",
+                    "Harassment_body_message": "Pesan ini melecehkan saya atau orang lain",
+                    "Harassment_body_server": "Server ini melecehkan saya atau orang lain",
+                    "Illegal_body_message": "Pesan ini melanggar satu atau lebih hukum",
+                    "Illegal_body_server": "Server ini melanggar satu atau lebih hukum",
+                    "IllegalExtortion_body_message": "Pesan ini memeras atau mengancam saya atau orang lain",
+                    "IllegalExtortion_body_server": "Server ini memeras atau mengancam saya atau orang lain",
+                    "IllegalGoods_body_message": "Pesan ini menjual barang ilegal atau layanan lainnya",
+                    "IllegalGoods_body_server": "Server ini menjual barang ilegal atau layanan lainnya",
+                    "IllegalHacking_body_message": "Pesan ini berisi atau mempromosikan peretasan atau pembobolan ilegal",
+                    "IllegalHacking_body_server": "Server ini berisi atau mempromosikan peretasan atau pembobolan ilegal",
+                    "IllegalPornography_body_message": "Pesan ini berisi balas dendam atau pornografi di bawah umur",
+                    "IllegalPornography_body_server": "Server ini berisi balas dendam atau pornografi di bawah umur",
+                    "Impersonation_body_user": "Pengguna ini meniru saya atau orang lain",
+                    "InappropriateProfile_body_user": "Profil pengguna ini tidak pantas untuk khalayak umum",
+                    "Malware_body_message": "Pesan ini berisi malware atau tautan berbahaya",
+                    "Malware_body_server": "Server ini berisi malware atau tautan berbahaya",
+                    "PromotesHarm_body_message": "Pesan ini mempromosikan tindakan berbahaya atau penyalahgunaan",
+                    "PromotesHarm_body_server": "Server ini mempromosikan tindakan berbahaya atau penyalahgunaan",
+                    "ScamsFraud_body_message": "Pesan ini mempromosikan penipuan atau penggelapan",
+                    "ScamsFraud_body_server": "Server ini mempromosikan penipuan atau penggelapan",
+                    "SpamAbuse_body_server": "Server ini mengirim spam atau menyalahgunakan platform",
+                    "SpamAbuse_body_user": "Pengguna ini mengirim spam atau menyalahgunakan platform",
+                    "SpamAbuse_body_message": "Pesan ini adalah spam atau penyalahgunaan platform",
+                    "UnsolicitedSpam_body_message": "Pesan ini berisi iklan yang tidak diminta atau spam",
+                    "UnsolicitedSpam_body_server": "Server ini berisi iklan yang tidak diminta atau spam",
+                    "UnsolicitedSpam_body_user": "Pengguna ini mengirimkan iklan yang tidak diminta atau spam",
+                    "Raid_body_message": "Pesan ini merupakan bagian dari serangan perampasan atau spam",
+                    "Raid_body_server": "Server ini mempromosikan serangan perampasan atau spam",
+                    "Underage_body_user": "Pengguna ini masih terlalu muda untuk menggunakan platform ini",
+                    "NoneSpecified_body": "Hal lain yang tidak tercantum di sini"
+                },
+                "report_message": "Laporkan pesan",
+                "report_server": "Laporkan server",
+                "report_user": "Laporkan pengguna",
+                "success_header": "Laporan terkirim",
+                "success_body_stoat": "Laporan Anda telah dikirim ke tim Stoat untuk ditinjau. Terima kasih telah membantu menjaga Stoat tetap aman.",
+                "success_body_upryzing": "Laporan Anda telah dikirim ke tim Upryzing untuk ditinjau. Terima kasih telah membantu menjaga Upryzing tetap aman.",
+                "success_body_generic": "Laporan Anda telah dikirim ke tim moderasi platform untuk ditinjau. Terima kasih telah membantu menjaga platform tetap aman."
+            }
+        },
+        "permissions": {
+            "AssignRoles": "Tetapkan Peran",
+            "BanMembers": "Larang Anggota",
+            "KickMembers": "Usir Anggota",
+            "ChangeAvatar": "Ganti Avatar",
+            "ChangeNickname": "Ganti Nama Panggilan",
+            "ManageChannel": "Kelola Saluran",
+            "ManageCustomisation": "Kelola Kustomisasi",
+            "ManageMessages": "Kelola Pesan",
+            "ManageNicknames": "Kelola Nama Panggilan",
+            "ManagePermissions": "Kelola Izin",
+            "ManageRole": "Kelola Peran",
+            "ManageServer": "Kelola Server",
+            "ManageWebhooks": "Kelola Webhook",
+            "React": "Tanggapi",
+            "Masquerade": "Gunakan Penyamaran",
+            "SendEmbeds": "Kirim Sematan",
+            "SendMessage": "Kirim Pesan",
+            "TimeoutMembers": "Batasi Waktu Anggota",
+            "UploadFiles": "Unggah Berkas",
+            "ViewChannel": "Lihat Saluran",
+            "RemoveAvatars": "Hapus Avatar",
+            "AssignRoles_body_server": "Izinkan anggota dengan peran ini untuk menetapkan peran yang berada di bawah peringkat peran tertingginya kepada anggota lain.",
+            "BanMembers_body_server": "Izinkan anggota dengan peran ini untuk melarang dan membatalkan larangan anggota lain dari server. Anggota yang dilarang tidak dapat bergabung kembali kecuali pelarangannya dibatalkan.",
+            "ChangeAvatar_body_server": "Izinkan anggota dengan peran ini untuk mengganti avatar server mereka.",
+            "ChangeNickname_body_server": "Izinkan anggota dengan peran ini untuk mengganti nama panggilan mereka.",
+            "Connect_body_server": "Izinkan anggota dengan peran ini untuk terhubung ke saluran suara.",
+            "KickMembers_body_server": "Izinkan anggota dengan peran ini untuk mengusir anggota lain dari server. Anggota yang diusir dapat bergabung kembali dengan undangan.",
+            "InviteOthers_body_server": "Izinkan anggota dengan peran ini untuk membuat undangan server.",
+            "ManageChannel_body_server": "Izinkan anggota dengan peran ini untuk membuat, mengedit dan menghapus saluran.",
+            "ManageCustomisation_body_server": "Izinkan anggota dengan peran ini untuk membuat dan menghapus emoji.",
+            "ManageMessages_body_server": "Izinkan anggota dengan peran ini untuk menyematkan pesan dan menghapus pesan yang dikirim oleh pengguna lain.",
+            "ManageNicknames_body_server": "Izinkan anggota dengan peran ini untuk mengganti nama panggilan anggota lain.",
+            "ManagePermissions_body_server": "Izinkan anggota dengan peran ini untuk mengedit izin saluran dan peran dengan peringkat lebih rendah dari peran tertingginya.",
+            "ManageRole_body_server": "Izinkan anggota dengan peran ini untuk membuat, mengedit dan menghapus peran dengan peringkat lebih rendah dari peran tertingginya.",
+            "ManageServer_body_server": "Izinkan anggota dengan peran ini untuk mengubah informasi server, seperti nama, ikon, dan deskripsinya.",
+            "ManageWebhooks_body_server": "Izinkan anggota dengan peran ini untuk membuat, mengedit dan menghapus webhook.",
+            "Masquerade_body_server": "Izinkan anggota dengan peran ini untuk menggunakan nama dan avatar berbeda untuk setiap pesan.",
+            "React_body_server": "Izinkan anggota dengan peran ini untuk menanggapi pesan.",
+            "RemoveAvatars_body_server": "Izinkan anggota dengan peran ini untuk menghapus avatar server anggota lain.",
+            "SendEmbeds_body_server": "Izinkan anggota dengan peran ini untuk mengirim penyematan tautan dan penyematan teks khusus.",
+            "SendMessage_body_server": "Izinkan anggota dengan peran ini untuk mengirim pesan di saluran teks.",
+            "TimeoutMembers_body_server": "Izinkan anggota dengan peran ini untuk membatasi waktu anggota lain, mencegah mereka berinteraksi dengan server untuk sementara waktu.",
+            "UploadFiles_body_server": "Izinkan anggota dengan peran ini untuk mengunggah berkas di saluran teks.",
+            "ViewChannel_body_server": "Izinkan anggota dengan peran ini untuk melihat saluran.",
+            "Connect": "Hubungkan",
+            "InviteOthers": "Buat Undangan"
+        },
+        "themes": {
+            "Light": "Terang",
+            "Dark": "Gelap",
+            "Solarized": "Solarisasi",
+            "AMOLED": "AMOLED",
+            "Rose Pine": "Pinus Mawar",
+            "Rose Pine Moon": "Bulan Pinus Mawar",
+            "Rose Pine Dawn": "Fajar Pinus Mawar"
         }
     }
 }
