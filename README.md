@@ -75,5 +75,5 @@ If you're still experiencing issues, and there aren't any open issues for the bu
 
 Clerotri is licensed under the [GNU Affero General Public License v3.0](https://github.com/upryzing/clerotri/blob/main/LICENSE).
 
-[support-server]: https://rvlt.gg/clerotri
+[support-server]: https://stt.gg/clerotri
 [building]: ./docs/dev/building.md

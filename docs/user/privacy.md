@@ -1,6 +1,6 @@
 # Privacy information
 
-_This was last updated on 25/05/2026._
+_This was last updated on 25/09/2026._
 
 _For the purposes of this document, "we" and "us" refers to the core maintainers of Clerotri. As of the date of writing, this only includes me ([Rexogamer](https://rexowo.dev))._
 
@@ -73,4 +73,4 @@ As there's no way for us to tie sets of data together, **data deletion is not po
 
 ## Contact us
 
-If you have any further questions or suggestions, feel free to [open an issue](https://github.com/upryzing/clerotri/issues/new) or ask in [Clerotri's Stoat server](https://rvlt.gg/clerotri)
+If you have any further questions or suggestions, feel free to [open an issue](https://github.com/upryzing/clerotri/issues/new) or ask in [Clerotri's Stoat server](https://stt.gg/clerotri)
