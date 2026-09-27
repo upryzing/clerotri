@@ -436,7 +436,11 @@
                 "title": "Akun"
             },
             "appearance": {
-                "title": "Penampilan"
+                "title": "Penampilan",
+                "themes": {
+                    "title": "Tema aplikasi",
+                    "body": "Pilih tema atau buat tema sendiri"
+                }
             },
             "bots": {
                 "title": "Bot",
