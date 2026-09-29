@@ -138,6 +138,8 @@ const RoleSettings = observer(
           {roleID}
         </Text>
         <GapView size={8} />
+
+        {/* NAME */}
         <Text type={'h2'}>{t('app.servers.settings.roles.name')}</Text>
         <InputWithButtonV2
           inputProps={{
@@ -158,7 +160,9 @@ const RoleSettings = observer(
           cannotBeEmpty
           emptyError={t('app.servers.settings.roles.errors.empty_role_name')}
         />
-        <GapView size={4} />
+        <GapView size={8} />
+
+        {/* RANK (TODO: switch to new system) */}
         <Text type={'h2'}>{t('app.servers.settings.roles.rank')}</Text>
         <InputWithButtonV2
           inputProps={{
@@ -181,15 +185,13 @@ const RoleSettings = observer(
           cannotBeEmpty
           emptyError={t('app.servers.settings.roles.errors.empty_rank')}
         />
-        <GapView size={4} />
+        <GapView size={8} />
+
+        {/* OPTIONS */}
         <Text type={'h2'}>
           {t('app.servers.settings.roles.options_header')}
         </Text>
-        <View
-          style={{
-            flexDirection: 'row',
-            alignItems: 'center',
-          }}>
+        <View style={localStyles.optionsContainer}>
           <View style={{flex: 1, flexDirection: 'column'}}>
             <Text style={{fontWeight: 'bold'}}>
               {t('app.servers.settings.roles.options.hoist')}
@@ -214,7 +216,10 @@ const RoleSettings = observer(
           />
         </View>
         <GapView size={8} />
+
+        {/* PERMISSIONS */}
         <PressableSettingsEntry
+          style={{marginVertical: 0}}
           onPress={() => {
             setSection({section: 'roles', subsection: `${roleID}-permissions`});
           }}>
@@ -239,6 +244,8 @@ const RoleSettings = observer(
           </View>
         </PressableSettingsEntry>
         <GapView size={8} />
+
+        {/* COLOUR */}
         <Text type={'h2'}>{t('app.servers.settings.roles.colour')}</Text>
         <View style={localStyles.colourContainer}>
           <View style={{alignItems: 'center', flexDirection: 'row'}}>
@@ -275,17 +282,21 @@ const RoleSettings = observer(
           </View>
         </View>
         <GapView size={8} />
+
+        {/* DELETE */}
         <Button
-          style={{marginHorizontal: 0}}
-          backgroundColor={currentTheme.error}
+          style={{margin: 0}}
           onPress={() => {
             app.openDeletionConfirmationModal({
               type: 'Role',
               object: {role: roleID, server},
             });
           }}>
-          <Text>{t('app.servers.settings.roles.delete')}</Text>
+          <Text useNewText colour={'error'} style={{fontWeight: 'bold'}}>
+            {t('app.servers.settings.roles.delete')}
+          </Text>
         </Button>
+
         <Modal
           visible={showColourPicker}
           animationType="slide"
@@ -590,16 +601,25 @@ const RoleColourPicker = observer(
             alignContent: 'center',
             justifyContent: 'center',
           }}>
-          <Text
-            colour={colour}
+          <View
             style={{
-              alignSelf: 'center',
-              fontWeight: 'bold',
-              fontSize: 18,
+              flexDirection: 'row',
+              alignItems: 'center',
+              justifyContent: 'center',
+              gap: commonValues.sizes.medium,
             }}>
-            {role.name}
-          </Text>
-          <GapView size={8} />
+            <View style={localStyles.colourPreviewCircle(colour)} />
+            <Text
+              colour={colour}
+              style={{
+                alignSelf: 'center',
+                fontWeight: 'bold',
+                fontSize: 18,
+              }}>
+              {role.name}
+            </Text>
+          </View>
+          <GapView size={12} />
           <ColourPicker
             style={{alignSelf: 'center', width: '70%'}}
             value={initialColour}
@@ -614,7 +634,7 @@ const RoleColourPicker = observer(
             <GapView size={8} />
             <OpacitySlider />
           </ColourPicker>
-          <GapView size={8} />
+          <GapView size={12} />
           <Button
             onPress={() => {
               setShowColourPicker(false);
@@ -724,6 +744,13 @@ export const RoleSettingsSection = observer(
 );
 
 const localStyles = StyleSheet.create(currentTheme => ({
+  optionsContainer: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    padding: commonValues.sizes.medium,
+    backgroundColor: currentTheme.backgroundSecondary,
+    borderRadius: commonValues.sizes.medium,
+  },
   colourContainer: {
     alignItems: 'center',
     flexDirection: 'row',
@@ -737,6 +764,20 @@ const localStyles = StyleSheet.create(currentTheme => ({
     borderRadius: commonValues.sizes.medium,
     marginEnd: commonValues.sizes.medium,
     backgroundColor: roleColour ?? '#00000000',
+    ...(!roleColour && {
+      outlineColor: currentTheme.foregroundPrimary,
+      outlineWidth: commonValues.sizes.xs,
+      outlineStyle: 'dashed',
+      outlineOffset: -2,
+    }),
+  }),
+  colourPreviewCircle: (roleColour?: ColorValue) => ({
+    width: 24,
+    height: 24,
+    backgroundColor: roleColour,
+    borderRadius: 10000,
+    borderWidth: commonValues.sizes.small,
+    borderColor: currentTheme.backgroundSecondary,
   }),
   permissionDenied: {
     borderRadius: commonValues.sizes.medium,
