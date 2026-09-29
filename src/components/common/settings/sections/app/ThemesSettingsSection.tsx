@@ -87,7 +87,7 @@ export const ThemesSettingsSection = observer(() => {
             backgroundColor: themes[previewedTheme].background,
             borderRadius: commonValues.sizes.medium,
             borderWidth: commonValues.sizes.xs,
-            borderColor: themes[previewedTheme].backgroundTertiary
+            borderColor: themes[previewedTheme].backgroundTertiary,
           }}
         />
         <Text style={{fontWeight: 'bold', alignSelf: 'center', fontSize: 16}}>
