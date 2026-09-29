@@ -34,6 +34,10 @@ import {GapView} from '@clerotri/components/layout';
 import {commonValues, ThemeContext} from '@clerotri/lib/themes';
 import {showToast} from '@clerotri/lib/utils';
 
+type CombinedRoleObject = API.Role & {
+  id: string;
+};
+
 const RoleSettingsRoleList = observer(
   ({server, setSection}: {server: Server; setSection: Function}) => {
     const {t} = useTranslation();
@@ -119,18 +123,11 @@ const RoleSettings = observer(
     roleID: string;
     setSection: Function;
   }) => {
-    const insets = useSafeAreaInsets();
-
     const {currentTheme} = useContext(ThemeContext);
 
     const {t} = useTranslation();
 
-    const [colour, setColour] = useState('');
     const [showColourPicker, setShowColourPicker] = useState(false);
-
-    const onSelectColour = ({hex}: {hex: string}) => {
-      setColour(hex);
-    };
 
     return (
       <>
@@ -257,7 +254,6 @@ const RoleSettings = observer(
                 justifyContent: 'center',
               }}
               onPress={() => {
-                setColour(role.colour ?? '#00000000');
                 setShowColourPicker(true);
               }}>
               <View style={styles.iconContainer}>
@@ -296,99 +292,12 @@ const RoleSettings = observer(
           statusBarTranslucent
           navigationBarTranslucent
           onRequestClose={() => setShowColourPicker(false)}>
-          <View
-            style={{
-              flex: 1,
-              padding: commonValues.sizes.large,
-              paddingBlockStart: insets.top + commonValues.sizes.large,
-              backgroundColor: currentTheme.backgroundPrimary,
-            }}>
-            <BackButton
-              callback={() => {
-                setShowColourPicker(false);
-              }}
-            />
-            <View
-              style={{
-                flex: 1,
-                alignContent: 'center',
-                justifyContent: 'center',
-              }}>
-              <Text
-                colour={colour}
-                style={{
-                  alignSelf: 'center',
-                  fontWeight: 'bold',
-                  fontSize: 18,
-                }}>
-                {role.name}
-              </Text>
-              <GapView size={8} />
-              <ColourPicker
-                style={{alignSelf: 'center', width: '70%'}}
-                value={role.colour ?? '#00000000'}
-                onCompleteJS={onSelectColour}>
-                <HueCircular
-                  containerStyle={{
-                    backgroundColor: currentTheme.backgroundPrimary,
-                  }}
-                />
-                <GapView size={8} />
-                <Panel1 />
-                <GapView size={8} />
-                <OpacitySlider />
-              </ColourPicker>
-              <GapView size={8} />
-              <Button
-                onPress={() => {
-                  setShowColourPicker(false);
-                  app.openTextEditModal({
-                    initialString: colour,
-                    id: 'role_colour',
-                    callback: c => {
-                      try {
-                        // trim any trailing spaces and, if needed, add a hashtag
-                        let filteredColour = c.trim();
-                        if (!filteredColour.startsWith('#')) {
-                          filteredColour = `#${filteredColour}`;
-                        }
-                        // adapted from https://regex101.com/r/2GAAVC/1
-                        const isValidHEXCode = filteredColour.match(
-                          /^#(?:[\da-f]{3}){1,2}$|^#(?:[\da-f]{4}){1,2}$/gim,
-                        );
-                        console.log(filteredColour, isValidHEXCode);
-                        if (isValidHEXCode) {
-                          server.editRole(roleID, {colour: filteredColour});
-                        } else {
-                          showToast(
-                            t(
-                              'app.servers.settings.roles.errors.role_colour_invalid_hex',
-                            ),
-                          );
-                        }
-                      } catch (error) {
-                        showToast(
-                          t(
-                            'app.servers.settings.roles.errors.role_colour_generic',
-                          ),
-                        );
-                        console.log(error);
-                      }
-                    },
-                  });
-                }}>
-                <Text>{t('app.servers.settings.roles.open_colour_modal')}</Text>
-              </Button>
-              <GapView size={8} />
-              <Button
-                onPress={() => {
-                  setShowColourPicker(false);
-                  server.editRole(roleID, {colour: colour});
-                }}>
-                <Text>{t('app.servers.settings.roles.set_colour')}</Text>
-              </Button>
-            </View>
-          </View>
+          <RoleColourPicker
+            initialColour={role.colour ?? '#000000'}
+            server={server}
+            role={{...role, id: roleID}}
+            setShowColourPicker={setShowColourPicker}
+          />
         </Modal>
       </>
     );
@@ -634,6 +543,128 @@ const RolePermissionSettings = observer(
             />
           ))}
       </>
+    );
+  },
+);
+
+const RoleColourPicker = observer(
+  ({
+    initialColour,
+    server,
+    role,
+    setShowColourPicker,
+  }: {
+    initialColour: string;
+    server: Server;
+    role: CombinedRoleObject;
+    setShowColourPicker: (show: boolean) => void;
+  }) => {
+    const insets = useSafeAreaInsets();
+
+    const {currentTheme} = useContext(ThemeContext);
+
+    const {t} = useTranslation();
+
+    const [colour, setColour] = useState(initialColour);
+
+    const onSelectColour = ({hex}: {hex: string}) => {
+      setColour(hex);
+    };
+
+    return (
+      <View
+        style={{
+          flex: 1,
+          padding: commonValues.sizes.large,
+          paddingBlockStart: insets.top + commonValues.sizes.large,
+          backgroundColor: currentTheme.backgroundPrimary,
+        }}>
+        <BackButton
+          callback={() => {
+            setShowColourPicker(false);
+          }}
+        />
+        <View
+          style={{
+            flex: 1,
+            alignContent: 'center',
+            justifyContent: 'center',
+          }}>
+          <Text
+            colour={colour}
+            style={{
+              alignSelf: 'center',
+              fontWeight: 'bold',
+              fontSize: 18,
+            }}>
+            {role.name}
+          </Text>
+          <GapView size={8} />
+          <ColourPicker
+            style={{alignSelf: 'center', width: '70%'}}
+            value={initialColour}
+            onCompleteJS={onSelectColour}>
+            <HueCircular
+              containerStyle={{
+                backgroundColor: currentTheme.backgroundPrimary,
+              }}
+            />
+            <GapView size={8} />
+            <Panel1 />
+            <GapView size={8} />
+            <OpacitySlider />
+          </ColourPicker>
+          <GapView size={8} />
+          <Button
+            onPress={() => {
+              setShowColourPicker(false);
+              app.openTextEditModal({
+                initialString: colour,
+                id: 'role_colour',
+                callback: c => {
+                  try {
+                    // trim any trailing spaces and, if needed, add a hashtag
+                    let filteredColour = c.trim();
+                    if (!filteredColour.startsWith('#')) {
+                      filteredColour = `#${filteredColour}`;
+                    }
+                    // adapted from https://regex101.com/r/2GAAVC/1
+                    const isValidHEXCode = filteredColour.match(
+                      /^#(?:[\da-f]{3}){1,2}$|^#(?:[\da-f]{4}){1,2}$/gim,
+                    );
+                    console.log(filteredColour, isValidHEXCode);
+                    if (isValidHEXCode) {
+                      server.editRole(role.id, {colour: filteredColour});
+                    } else {
+                      showToast(
+                        t(
+                          'app.servers.settings.roles.errors.role_colour_invalid_hex',
+                        ),
+                      );
+                    }
+                  } catch (error) {
+                    showToast(
+                      t(
+                        'app.servers.settings.roles.errors.role_colour_generic',
+                      ),
+                    );
+                    console.log(error);
+                  }
+                },
+              });
+            }}>
+            <Text>{t('app.servers.settings.roles.open_colour_modal')}</Text>
+          </Button>
+          {/* <GapView size={8} /> */}
+          <Button
+            onPress={() => {
+              setShowColourPicker(false);
+              server.editRole(role.id, {colour: colour});
+            }}>
+            <Text>{t('app.servers.settings.roles.set_colour')}</Text>
+          </Button>
+        </View>
+      </View>
     );
   },
 );
