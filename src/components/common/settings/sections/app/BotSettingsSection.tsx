@@ -140,7 +140,7 @@ const BotListEntry = observer(
     onPress: (b: GroupedBotObject) => void;
   }) => {
     return (
-      <PressableSettingsEntry onPress={() => onPress(bot)}>
+      <PressableSettingsEntry style={{marginBlock: 0}} onPress={() => onPress(bot)}>
         <MaterialIcon
           name={bot.bot.public ? 'public' : 'lock'}
           size={20}
@@ -263,6 +263,7 @@ export const BotList = observer(
                     margin: commonValues.sizes.medium,
                   }}
                 />
+                <View style={{gap: commonValues.sizes.medium}}>
                 {bots.map(b => (
                   <BotListEntry
                     key={`bot-${b.bot._id}`}
@@ -273,6 +274,7 @@ export const BotList = observer(
                     }}
                   />
                 ))}
+                </View>
               </>
             ) : (
               <>
