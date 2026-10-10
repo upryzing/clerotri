@@ -8491,9 +8491,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"react-native-unistyles@npm:^3.5.2":
-  version: 3.5.2
-  resolution: "react-native-unistyles@npm:3.5.2"
+"react-native-unistyles@npm:3.4.0":
+  version: 3.4.0
+  resolution: "react-native-unistyles@npm:3.4.0"
   dependencies:
     "@babel/types": "npm:7.29.8"
   peerDependencies:
@@ -8508,7 +8508,7 @@ __metadata:
       optional: true
     react-native-reanimated:
       optional: true
-  checksum: 10c0/c88764e1297aa93141062605685a909e52903da134a8a735a3633682c4a85a321625c43c8297b884774caad290a299aaf630bfd825a4c12e30acaf3f8bb66766
+  checksum: 10c0/8fc8b827918450028738d59aea30ff574af3dad85819f356127f2f24310171165b7f8d5b71b78c942b5611b46ee07245bab01f47ade8e26757008030ba601c81
   languageName: node
   linkType: hard
 
@@ -9116,7 +9116,7 @@ __metadata:
     react-native-safe-area-context: "npm:^5.10.1"
     react-native-svg: "npm:^15.15.5"
     react-native-svg-transformer: "npm:^1.5.3"
-    react-native-unistyles: "npm:^3.5.2"
+    react-native-unistyles: "npm:3.4.0"
     react-native-web: "npm:^0.19.13"
     react-native-worklets: "npm:^0.13.0"
     react-test-renderer: "npm:19.2.3"
