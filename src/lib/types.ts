@@ -127,7 +127,16 @@ export type ThemeColour = keyof Omit<
 >;
 
 export type ButtonProps = TouchableOpacityProps & {
+  /**
+   * Background colour for the button
+   *
+   * @deprecated Use regular styles instead, especially for theme colours
+   */
   backgroundColor?: string;
+  /**
+   * Disable the built-in margin
+   * */
+  disableDeprecatedMargin?: boolean;
 };
 
 export type IconType =
