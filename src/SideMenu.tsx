@@ -104,8 +104,6 @@ const SideMenu = () => {
 export const SideMenuHandler = () => {
   const {height, width} = useWindowDimensions();
 
-  const localStyles = generateDrawerStyles(width);
-
   const [sideMenuOpen, setSideMenuOpen] = useState(false);
 
   setFunction('openLeftMenu', (o: boolean) => {
@@ -125,8 +123,8 @@ export const SideMenuHandler = () => {
   return (
     <SideMenuContext.Provider value={{sideMenuOpen, setSideMenuOpen}}>
       {height < width ? (
-        <View style={localStyles.wide}>
-          <View style={localStyles.wideInner}>
+        <View style={drawerStyles.wide}>
+          <View style={drawerStyles.wideInner}>
             <SideMenu />
           </View>
           <ChannelView />
@@ -140,8 +138,8 @@ export const SideMenuHandler = () => {
           onOpen={() => setSideMenuOpen(true)}
           onClose={() => setSideMenuOpen(false)}
           renderDrawerContent={() => <SideMenu />}
-          style={localStyles.drawer}
-          drawerStyle={localStyles.drawerInner}>
+          style={drawerStyles.drawer}
+          drawerStyle={drawerStyles.drawerInner}>
           <ChannelView />
         </Drawer>
       )}
@@ -149,26 +147,24 @@ export const SideMenuHandler = () => {
   );
 };
 
-const generateDrawerStyles = (width: number) => {
-  return StyleSheet.create({
-    drawer: {
-      flex: 1,
-    },
-    drawerInner: {
-      backgroundColor: '#00000000',
-      width: width - 50,
-    },
-    wide: {
-      flex: 1,
-      flexDirection: 'row',
-    },
-    wideInner: {
-      width: '20%',
-      maxWidth: 350,
-      flexDirection: 'column',
-    },
-  });
-};
+const drawerStyles = StyleSheet.create((_currentTheme, rt) => ({
+  drawer: {
+    flex: 1,
+  },
+  drawerInner: {
+    backgroundColor: '#00000000',
+    width: rt.screen.width - 50,
+  },
+  wide: {
+    flex: 1,
+    flexDirection: 'row',
+  },
+  wideInner: {
+    width: '20%',
+    maxWidth: 350,
+    flexDirection: 'column',
+  },
+}));
 
 const localStyles = StyleSheet.create((currentTheme, rt) => ({
   container: {
