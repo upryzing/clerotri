@@ -36,7 +36,7 @@ export const ChannelInfoSheet = observer(
                 useNewText
                 colour={'foregroundSecondary'}
                 style={{
-                  marginBlock: commonValues.sizes.small,
+                  marginBlockEnd: commonValues.sizes.medium,
                 }}>
                 {channel.channel_type === 'Group'
                   ? `Group (${groupMembers.length} ${
@@ -46,9 +46,7 @@ export const ChannelInfoSheet = observer(
               </Text>
               {channel.description ? (
                 <View style={localStyles.descriptionContainer}>
-                  <MarkdownView style={localStyles.description}>
-                    {channel.description}
-                  </MarkdownView>
+                  <MarkdownView>{channel.description}</MarkdownView>
                 </View>
               ) : null}
             </View>
@@ -64,10 +62,5 @@ const localStyles = StyleSheet.create(currentTheme => ({
     backgroundColor: currentTheme.background,
     padding: commonValues.sizes.medium,
     borderRadius: commonValues.sizes.medium,
-  },
-  description: {
-    color: currentTheme.foregroundSecondary,
-    fontSize: 16,
-    textAlign: 'center',
   },
 }));
