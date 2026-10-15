@@ -2,7 +2,8 @@ import {setLanguage} from '@clerotri-i18n/setLanguage';
 import {languages} from '@clerotri-i18n/languages';
 import {app} from '@clerotri/Generic';
 import {checkNotificationPerms} from '@clerotri/lib/notifications/permissions';
-import {PRIVACY_INFO} from '@clerotri/lib/consts';
+import {CLEROTRI_EMAIL, OPEN_ISSUES, PRIVACY_INFO, SPECIAL_SERVERS} from '@clerotri/lib/consts';
+import {APP_VERSION} from '@clerotri/lib/metadata';
 import {themes} from '@clerotri/lib/themes';
 import type {Setting, SettingsCategory} from '@clerotri/lib/types';
 
@@ -228,6 +229,38 @@ export const settingsCategories: Record<string, SettingsCategory> = {
     font: ['ui.messaging.fontSize'],
     emoji: ['ui.messaging.emojiPack'],
     detatchedHome: ['ui.home.holidays'],
+  },
+  feedback: {
+    serverLink: {
+      type: 'settingsButton',
+      props: {
+        title: 'app.settings_menu.feedback.server.title',
+        body: 'app.settings_menu.feedback.server.body',
+        onPress: ({openLink}) => {
+          openLink(`https://stt.gg/${SPECIAL_SERVERS.supportServer.invite}`);
+        },
+      },
+    },
+    emailLink: {
+      type: 'settingsButton',
+      props: {
+        title: 'app.settings_menu.feedback.email.title',
+        body: 'app.settings_menu.feedback.email.body',
+        onPress: ({openLink}) => {
+          openLink(`${CLEROTRI_EMAIL}?subject=[FEEDBACK]&body=\n\nApp version: v${APP_VERSION}`);
+        },
+      },
+    },
+    githubLink: {
+      type: 'settingsButton',
+      props: {
+        title: 'app.settings_menu.feedback.github.title',
+        body: 'app.settings_menu.feedback.github.body',
+        onPress: ({openLink}) => {
+          openLink(OPEN_ISSUES);
+        },
+      },
+    },
   },
   functionality: {
     notifications: [

@@ -78,6 +78,7 @@ const VALID_SECTIONS = [
   'account',
   'appearance',
   'bots',
+  'feedback',
   'functionality',
   'info',
   'i18n',
@@ -205,6 +206,8 @@ export const SettingsSheet = observer(
                     />
                   ) : section.section === 'privacy' ? (
                     <NewSettingsCategory category={'privacy'} />
+                  ) : section.section === 'feedback' ? (
+                    <NewSettingsCategory category={'feedback'} />
                   ) : (
                     <AppInfoSection />
                   )}
@@ -357,8 +360,16 @@ export const SettingsSheet = observer(
                   }}
                 />
                 <SettingsButton
-                  menu={'app-other'}
+                  menu={'app'}
                   type={'start'}
+                  section={'feedback'}
+                  icon={{pack: 'regular', name: 'feedback'}}
+                  onPress={() => {
+                    setSection({section: 'feedback'})
+                  }}
+                />
+                <SettingsButton
+                  menu={'app-other'}
                   section={'translate'}
                   icon={{pack: 'community', name: 'translate-variant'}}
                   onPress={() => {

@@ -2112,3 +2112,5 @@ export const CHANGELOG =
 
 export const PRIVACY_INFO =
   'https://github.com/upryzing/clerotri/blob/main/docs/user/privacy.md';
+
+export const CLEROTRI_EMAIL = 'mailto:clerotri@upryzing.app';

@@ -491,6 +491,21 @@
                 "reset_token": "Reset token",
                 "delete_bot": "Delete bot"
             },
+            "feedback": {
+                "title": "Feedback",
+                "email": {
+                    "title": "Email",
+                    "body": "Send an email to clerotri@upryzing.app"
+                },
+                "github": {
+                    "title": "GitHub",
+                    "body": "Open an issue on our GitHub repository"
+                },
+                "server": {
+                    "title": "Support server",
+                    "body": "Join Clerotri's support server on the official Stoat instance"
+                }
+            },
             "functionality": {
                 "title": "Features"
             },
