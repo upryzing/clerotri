@@ -1644,15 +1644,15 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@react-native-vector-icons/common@npm:^13.0.3":
-  version: 13.0.3
-  resolution: "@react-native-vector-icons/common@npm:13.0.3"
+"@react-native-vector-icons/common@npm:^13.0.4":
+  version: 13.0.4
+  resolution: "@react-native-vector-icons/common@npm:13.0.4"
   dependencies:
     find-up: "npm:^8.0.0"
     picocolors: "npm:^1.1.1"
     plist: "npm:^3.1.0"
   peerDependencies:
-    "@react-native-vector-icons/get-image": ^13.0.1
+    "@react-native-vector-icons/get-image": ^13.0.2
     "@react-native/assets-registry": "*"
     expo-font: "*"
     react: "*"
@@ -1666,39 +1666,39 @@ __metadata:
       optional: true
   bin:
     rnvi-update-plist: lib/commonjs/scripts/updatePlist.js
-  checksum: 10c0/fd25f59a64c6b6e294e94b3e5b739a388b014853a29b39bb027570d3cfe944f8eda60304b102697909355351163bb6b8a84a6b3c10c45951c1bd1fdcb90932c4
+  checksum: 10c0/34fd2982f263adbb34ba6895f52b2dc6a907ad6f7480a72d71cc9d9113301912e56da124729a7cb7307addf747aaf9ecd0a7301218fa1fd1fd1d5641fb6cff84
   languageName: node
   linkType: hard
 
-"@react-native-vector-icons/material-design-icons@npm:^13.1.4":
-  version: 13.1.4
-  resolution: "@react-native-vector-icons/material-design-icons@npm:13.1.4"
+"@react-native-vector-icons/material-design-icons@npm:^13.1.5":
+  version: 13.1.5
+  resolution: "@react-native-vector-icons/material-design-icons@npm:13.1.5"
   dependencies:
-    "@react-native-vector-icons/common": "npm:^13.0.3"
+    "@react-native-vector-icons/common": "npm:^13.0.4"
   peerDependencies:
-    "@expo/config-plugins": ">=10.0.0"
+    expo: "*"
     react: "*"
     react-native: "*"
   peerDependenciesMeta:
-    "@expo/config-plugins":
+    expo:
       optional: true
-  checksum: 10c0/4a6bd1ea9381e53e91314c08dbcfeb05f0ba8c0682bb4d02f29b8714955249b658dedbc548a58d7cdf11f1a45ee332b55b65b57f49bb3d4e4eb59863b9093cf0
+  checksum: 10c0/94f2903eb8b92157abac23e6a659d3b1d3df14fbc34826c87f0edf1ad27a6c4ab05cd67ab83cee2cf6d8b6ac0822055cbf4aa1903e33e95b3988badc8875e6dc
   languageName: node
   linkType: hard
 
-"@react-native-vector-icons/material-icons@npm:^13.1.4":
-  version: 13.1.4
-  resolution: "@react-native-vector-icons/material-icons@npm:13.1.4"
+"@react-native-vector-icons/material-icons@npm:^13.1.5":
+  version: 13.1.5
+  resolution: "@react-native-vector-icons/material-icons@npm:13.1.5"
   dependencies:
-    "@react-native-vector-icons/common": "npm:^13.0.3"
+    "@react-native-vector-icons/common": "npm:^13.0.4"
   peerDependencies:
-    "@expo/config-plugins": ">=10.0.0"
+    expo: "*"
     react: "*"
     react-native: "*"
   peerDependenciesMeta:
-    "@expo/config-plugins":
+    expo:
       optional: true
-  checksum: 10c0/4440b2579a06cd49a5a47d0ada5c0cc0d06303152843166afbe065c58d91a9627b8657cc540bb4df87987ce2258b47930127db4a870d4175d5c09852fcad0d64
+  checksum: 10c0/6618e3de9841e62637361192861541a20e97b8e4d1a7f5a2396e0b4b63c81cf238948d118f4beb5d209874538c5b672f2c2c8b89585b4637cde1108d57937cf1
   languageName: node
   linkType: hard
 
@@ -2986,12 +2986,12 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@types/node@npm:^24.19.1":
-  version: 24.19.1
-  resolution: "@types/node@npm:24.19.1"
+"@types/node@npm:^24.19.2":
+  version: 24.19.2
+  resolution: "@types/node@npm:24.19.2"
   dependencies:
     undici-types: "npm:>=7.24.0 <7.24.7"
-  checksum: 10c0/789822cc68a0e0b632fd0a9fa53411e33541f03c18dc19942ed38161c369bf0b013917b4c6c760688bd2d09d940c827a601add118dfa04fe35a285535b2a8596
+  checksum: 10c0/b51a7f8854007ad579dffdd0633d8addbfeb2c97cceb380f2eba0ed163638ec52e17565385a6cc04d54ac4ff99c70c64aee68a4ca45b6128c035e828794e29c5
   languageName: node
   linkType: hard
 
@@ -3206,25 +3206,25 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@vitest/expect@npm:4.1.11":
-  version: 4.1.11
-  resolution: "@vitest/expect@npm:4.1.11"
+"@vitest/expect@npm:4.1.12":
+  version: 4.1.12
+  resolution: "@vitest/expect@npm:4.1.12"
   dependencies:
     "@standard-schema/spec": "npm:^1.1.0"
     "@types/chai": "npm:^5.2.2"
-    "@vitest/spy": "npm:4.1.11"
-    "@vitest/utils": "npm:4.1.11"
+    "@vitest/spy": "npm:4.1.12"
+    "@vitest/utils": "npm:4.1.12"
     chai: "npm:^6.2.2"
     tinyrainbow: "npm:^3.1.0"
-  checksum: 10c0/0aa5e0973aca93a58cbdc3041c6bfed5897e976124965203b96a23b811f4ca403590c7eb15802c8d8366ec27a1db0682451e8a91c4d06617636de262baf86e4b
+  checksum: 10c0/386bbb6b7aadbfbfe8a5c7fc9d0a875a6da24a36edb3af519755e2d658359a0211bc4188a8dc38a1a34317c752624c4db58616752861323dcae475e3f1e6a975
   languageName: node
   linkType: hard
 
-"@vitest/mocker@npm:4.1.11":
-  version: 4.1.11
-  resolution: "@vitest/mocker@npm:4.1.11"
+"@vitest/mocker@npm:4.1.12":
+  version: 4.1.12
+  resolution: "@vitest/mocker@npm:4.1.12"
   dependencies:
-    "@vitest/spy": "npm:4.1.11"
+    "@vitest/spy": "npm:4.1.12"
     estree-walker: "npm:^3.0.3"
     magic-string: "npm:^0.30.21"
   peerDependencies:
@@ -3235,56 +3235,56 @@ __metadata:
       optional: true
     vite:
       optional: true
-  checksum: 10c0/3111ea34bd5046f6c70bbd67cf8b89608ee8c41cb27ab2bd61d42f4b68810e9ea16a9a757a71bc254c105f73b407d00ebb6bab1ab0f7f5cdcc9d7d16602a3933
+  checksum: 10c0/6fccf67d42830b7caadfdfc94b8e9f3166a4686edd5bdf9083773d981f906ea93f172c0207482568f91d4fd72a9843f0c6644687d2ba3b3ce7bc8b6e9541cfa1
   languageName: node
   linkType: hard
 
-"@vitest/pretty-format@npm:4.1.11":
-  version: 4.1.11
-  resolution: "@vitest/pretty-format@npm:4.1.11"
+"@vitest/pretty-format@npm:4.1.12":
+  version: 4.1.12
+  resolution: "@vitest/pretty-format@npm:4.1.12"
   dependencies:
     tinyrainbow: "npm:^3.1.0"
-  checksum: 10c0/ad32525c73807c0b72f38dc29bc51fd5a17879dc650f37995a9c5adbb8526e15f787691f76aa8768448ec7ed5bf5ba2b12329eac8fda1428b4d6b8c036390f71
+  checksum: 10c0/b3d3635a49e7f328afdb0a627a537ba66c16609e3082dc58adca4c32881007afdeff88975697a21c740eced31751369e1ad06e134f4194e573ac9a758d6016ea
   languageName: node
   linkType: hard
 
-"@vitest/runner@npm:4.1.11":
-  version: 4.1.11
-  resolution: "@vitest/runner@npm:4.1.11"
+"@vitest/runner@npm:4.1.12":
+  version: 4.1.12
+  resolution: "@vitest/runner@npm:4.1.12"
   dependencies:
-    "@vitest/utils": "npm:4.1.11"
+    "@vitest/utils": "npm:4.1.12"
     pathe: "npm:^2.0.3"
-  checksum: 10c0/3c782b055e9e688e1785f7c8937bd1669bad1b0e5758cb8b844f918f30a324b1d21e174d46c941ce80ebf37f2b89b55b6d619a675025914a1ece6377b95909e2
+  checksum: 10c0/d39b42c4e004017752ba2cadd0964c71e13dfa1536653e3a9129bf60abe684e39974ad75a3fc4ba9fd137a8e1a79e8efea80e0469c78e35019f61c8ebbdaf500
   languageName: node
   linkType: hard
 
-"@vitest/snapshot@npm:4.1.11":
-  version: 4.1.11
-  resolution: "@vitest/snapshot@npm:4.1.11"
+"@vitest/snapshot@npm:4.1.12":
+  version: 4.1.12
+  resolution: "@vitest/snapshot@npm:4.1.12"
   dependencies:
-    "@vitest/pretty-format": "npm:4.1.11"
-    "@vitest/utils": "npm:4.1.11"
+    "@vitest/pretty-format": "npm:4.1.12"
+    "@vitest/utils": "npm:4.1.12"
     magic-string: "npm:^0.30.21"
     pathe: "npm:^2.0.3"
-  checksum: 10c0/35d82a7c2a3e4b57529c30387d568d9106b6bf960189214e5d8cb1f5288cb042305c2e5c7b0b2f8cb56a2c814973de0310bc56d72deb79427bea272b6224190c
+  checksum: 10c0/c309ae2966b9cda46ca018540467872a91a5d641b150b82362c9ea4b21b493669ebcbf284729c1216f178c08af5a3884d3a434a01091a8edc90da77d207bb985
   languageName: node
   linkType: hard
 
-"@vitest/spy@npm:4.1.11":
-  version: 4.1.11
-  resolution: "@vitest/spy@npm:4.1.11"
-  checksum: 10c0/06c68247a8efd21006abe7532fee17f30ba83c8cda3e0b952ef89e278d58058f4b1de69b6bbaa2ed614c568bf4f5769fcc76be42802dedf2bcdd9c0aae601740
+"@vitest/spy@npm:4.1.12":
+  version: 4.1.12
+  resolution: "@vitest/spy@npm:4.1.12"
+  checksum: 10c0/4732cafd7015b4ae39616f09405e9d1e5907b6edfdcc6eeee3a70518d966453ac75b979585fa2453a70dcacee22ecfc92e4708ff4c1dcdca1cb927d3f25306ed
   languageName: node
   linkType: hard
 
-"@vitest/utils@npm:4.1.11":
-  version: 4.1.11
-  resolution: "@vitest/utils@npm:4.1.11"
+"@vitest/utils@npm:4.1.12":
+  version: 4.1.12
+  resolution: "@vitest/utils@npm:4.1.12"
   dependencies:
-    "@vitest/pretty-format": "npm:4.1.11"
+    "@vitest/pretty-format": "npm:4.1.12"
     convert-source-map: "npm:^2.0.0"
     tinyrainbow: "npm:^3.1.0"
-  checksum: 10c0/a2c1ddc64333458c3e031465c1ee0440a7660fd1b298c54ccbf865ef1e5cf3ebdd6c5c75a5ea235d8a672498b394e7121f992b096f021f45014ab25e9abd1b52
+  checksum: 10c0/b70518b3a046700e080537f3aecd1fca3a88733000df55b4bdb24751c0209bd45fddf80fb5e217862e1e7d6b3fb63da5113fe04a27a177a3c04c1c0231ecfe18
   languageName: node
   linkType: hard
 
@@ -5939,15 +5939,15 @@ __metadata:
   languageName: node
   linkType: hard
 
-"i18next@npm:^26.4.2":
-  version: 26.4.2
-  resolution: "i18next@npm:26.4.2"
+"i18next@npm:^26.4.5":
+  version: 26.4.5
+  resolution: "i18next@npm:26.4.5"
   peerDependencies:
     typescript: ^5 || ^6 || ^7
   peerDependenciesMeta:
     typescript:
       optional: true
-  checksum: 10c0/f2c9613e03e09e56a84aee939d8fbe3442a58622915e11f97e47f9ab358dfa65be783230b37a21483152711f786fccfe697d7f5ea9269c54f16179dc59960e4b
+  checksum: 10c0/e3c8fc1a53f0c52ee04b524c773fe1b21bf4d11919b0be76424d37783fce5cc51f32a1f7fc30e17d67e101c5ad955cfc4ce890eaed2bdb61e5da9f5a71d69faf
   languageName: node
   linkType: hard
 
@@ -8112,12 +8112,12 @@ __metadata:
   languageName: node
   linkType: hard
 
-"prettier@npm:^3.9.9":
-  version: 3.9.9
-  resolution: "prettier@npm:3.9.9"
+"prettier@npm:^3.9.10":
+  version: 3.9.10
+  resolution: "prettier@npm:3.9.10"
   bin:
     prettier: bin/prettier.cjs
-  checksum: 10c0/d50ea2537b2ff7dbd5088a214f4d936484e55c665cea2185b477a55b0770be55f3b156a71f63a9a639def6b334667bb327139dc85f2a1041c0a34752cdc74647
+  checksum: 10c0/0b3531593aa6fb36ac6baf629cb058bda472c59a6938774f931fe55283a07c62e6f56e621b043a82d8a3e21fc284c08c34f9e539fc70072635f79b7bae1a1067
   languageName: node
   linkType: hard
 
@@ -8283,9 +8283,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"react-i18next@npm:^17.0.16":
-  version: 17.0.16
-  resolution: "react-i18next@npm:17.0.16"
+"react-i18next@npm:^17.0.17":
+  version: 17.0.17
+  resolution: "react-i18next@npm:17.0.17"
   dependencies:
     "@babel/runtime": "npm:^7.29.7"
     html-parse-stringify: "npm:^4.0.1"
@@ -8301,7 +8301,7 @@ __metadata:
       optional: true
     typescript:
       optional: true
-  checksum: 10c0/4e5e1b6a79228532fb51140fbbb26d019fe48d0d600213b81ece5d66c4d3b99b94cf97c54cd6c49bb4af6ff8504baa8327397f9ddf264455ad3fa6ea114cffa2
+  checksum: 10c0/aa21d08b52fa7d47dd020b528c1e25ddafa3c3d04e7f8fbc79f8856c946dcb71d1d8466aaea7ab2845682b03193f0fbe1b09366064478c3aadda28c49eda6720
   languageName: node
   linkType: hard
 
@@ -8344,9 +8344,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"react-native-drawer-layout@npm:^4.2.11":
-  version: 4.2.11
-  resolution: "react-native-drawer-layout@npm:4.2.11"
+"react-native-drawer-layout@npm:^4.2.12":
+  version: 4.2.12
+  resolution: "react-native-drawer-layout@npm:4.2.12"
   dependencies:
     color: "npm:^4.2.3"
     use-latest-callback: "npm:^0.2.4"
@@ -8355,7 +8355,7 @@ __metadata:
     react-native: "*"
     react-native-gesture-handler: ">= 2.0.0"
     react-native-reanimated: ">= 2.0.0"
-  checksum: 10c0/c34a91288400ab4af3a0354b29ac21b2d05b4a4a5095b5bce24cd7f076fc4f760b863754caad3bb8fd173856b0bb1f927e2cb1e8913463d3b836551965cd2b17
+  checksum: 10c0/bb6a6e93082fa29fb08777956a1a8d4cfc5a75c91ff961efc8238310d573015983ba82634ea23204bb5ae2ad47f18b264a126d63cbc0678a2f4096c0668b4019
   languageName: node
   linkType: hard
 
@@ -8393,16 +8393,16 @@ __metadata:
   languageName: node
   linkType: hard
 
-"react-native-keyboard-controller@npm:^1.22.6":
-  version: 1.22.6
-  resolution: "react-native-keyboard-controller@npm:1.22.6"
+"react-native-keyboard-controller@npm:^1.22.7":
+  version: 1.22.7
+  resolution: "react-native-keyboard-controller@npm:1.22.7"
   dependencies:
     react-native-is-edge-to-edge: "npm:^1.2.1"
   peerDependencies:
     react: "*"
     react-native: "*"
     react-native-reanimated: ">=3.0.0"
-  checksum: 10c0/4293d6c6d6fbcb8cebff302cb33024708be8d325d8a0735fae130e14f42a2d7e17c26a95ffd9f2c71cea445610cf21ad4bb56d57e0b9295bd5db4c0b45e4c5cc
+  checksum: 10c0/7fe7e8935e59daaaf506ea7543f41fc97fb9862832512c410e9729516a55c1b1327cd2c712f4b81d5868cb7dd483ea8b1ea91cf4cceb22c4bfada6fb747c59ae
   languageName: node
   linkType: hard
 
@@ -9066,8 +9066,8 @@ __metadata:
     "@react-native-community/cli-platform-ios": "npm:^20.2.0"
     "@react-native-community/hooks": "npm:^100.1.0"
     "@react-native-documents/picker": "npm:^12.0.2"
-    "@react-native-vector-icons/material-design-icons": "npm:^13.1.4"
-    "@react-native-vector-icons/material-icons": "npm:^13.1.4"
+    "@react-native-vector-icons/material-design-icons": "npm:^13.1.5"
+    "@react-native-vector-icons/material-icons": "npm:^13.1.5"
     "@react-native/babel-preset": "npm:^0.86.3"
     "@react-native/eslint-config": "npm:^0.86.3"
     "@react-native/metro-config": "npm:^0.86.3"
@@ -9080,7 +9080,7 @@ __metadata:
     "@traptitech/markdown-it-spoiler": "patch:@traptitech/markdown-it-spoiler@npm%3A1.1.6#~/.yarn/patches/@traptitech-markdown-it-spoiler-npm-1.1.6-ee0dc02626.patch"
     "@types/babel__core": "npm:^7.20.5"
     "@types/eslint": "npm:^8.56.12"
-    "@types/node": "npm:^24.19.1"
+    "@types/node": "npm:^24.19.2"
     "@types/react": "npm:^19.2.18"
     "@types/react-dom": "npm:^19.2.5"
     "@types/react-native-web": "npm:^0.19.2"
@@ -9093,22 +9093,22 @@ __metadata:
     date-fns: "npm:^4.4.0"
     eslint: "npm:^8.57.1"
     eslint-plugin-de-morgan: "npm:^1.3.1"
-    i18next: "npm:^26.4.2"
+    i18next: "npm:^26.4.5"
     intl-pluralrules: "npm:^2.0.1"
     knip: "npm:^5.88.1"
     mobx: "npm:^6.16.1"
     mobx-react-lite: "npm:^4.1.1"
-    prettier: "npm:^3.9.9"
+    prettier: "npm:^3.9.10"
     react: "npm:19.2.3"
     react-dom: "npm:19.2.3"
     react-error-boundary: "npm:^6.1.6"
-    react-i18next: "npm:^17.0.16"
+    react-i18next: "npm:^17.0.17"
     react-native: "npm:^0.86.3"
     react-native-device-info: "patch:react-native-device-info@npm%3A15.0.2#~/.yarn/patches/react-native-device-info-npm-15.0.2-3917c98f43.patch"
-    react-native-drawer-layout: "npm:^4.2.11"
+    react-native-drawer-layout: "npm:^4.2.12"
     react-native-gesture-handler: "npm:^3.3.0"
     react-native-get-random-values: "npm:^2.0.0"
-    react-native-keyboard-controller: "npm:^1.22.6"
+    react-native-keyboard-controller: "npm:^1.22.7"
     react-native-mmkv: "npm:^4.3.2"
     react-native-nitro-modules: "npm:0.37.1"
     react-native-reanimated: "npm:^4.7.1"
@@ -9125,7 +9125,7 @@ __metadata:
     typescript: "npm:^5.9.3"
     vite: "npm:^7.3.7"
     vite-plugin-react-native-web: "npm:^2.7.1"
-    vitest: "npm:^4.1.11"
+    vitest: "npm:^4.1.12"
   languageName: unknown
   linkType: soft
 
@@ -10288,17 +10288,17 @@ __metadata:
   languageName: node
   linkType: hard
 
-"vitest@npm:^4.1.11":
-  version: 4.1.11
-  resolution: "vitest@npm:4.1.11"
+"vitest@npm:^4.1.12":
+  version: 4.1.12
+  resolution: "vitest@npm:4.1.12"
   dependencies:
-    "@vitest/expect": "npm:4.1.11"
-    "@vitest/mocker": "npm:4.1.11"
-    "@vitest/pretty-format": "npm:4.1.11"
-    "@vitest/runner": "npm:4.1.11"
-    "@vitest/snapshot": "npm:4.1.11"
-    "@vitest/spy": "npm:4.1.11"
-    "@vitest/utils": "npm:4.1.11"
+    "@vitest/expect": "npm:4.1.12"
+    "@vitest/mocker": "npm:4.1.12"
+    "@vitest/pretty-format": "npm:4.1.12"
+    "@vitest/runner": "npm:4.1.12"
+    "@vitest/snapshot": "npm:4.1.12"
+    "@vitest/spy": "npm:4.1.12"
+    "@vitest/utils": "npm:4.1.12"
     es-module-lexer: "npm:^2.0.0"
     expect-type: "npm:^1.3.0"
     magic-string: "npm:^0.30.21"
@@ -10316,12 +10316,12 @@ __metadata:
     "@edge-runtime/vm": "*"
     "@opentelemetry/api": ^1.9.0
     "@types/node": ^20.0.0 || ^22.0.0 || >=24.0.0
-    "@vitest/browser-playwright": 4.1.11
-    "@vitest/browser-preview": 4.1.11
-    "@vitest/browser-webdriverio": 4.1.11
-    "@vitest/coverage-istanbul": 4.1.11
-    "@vitest/coverage-v8": 4.1.11
-    "@vitest/ui": 4.1.11
+    "@vitest/browser-playwright": 4.1.12
+    "@vitest/browser-preview": 4.1.12
+    "@vitest/browser-webdriverio": ^4.1.11
+    "@vitest/coverage-istanbul": 4.1.12
+    "@vitest/coverage-v8": 4.1.12
+    "@vitest/ui": 4.1.12
     happy-dom: "*"
     jsdom: "*"
     vite: ^6.0.0 || ^7.0.0 || ^8.0.0
@@ -10352,7 +10352,7 @@ __metadata:
       optional: false
   bin:
     vitest: ./vitest.mjs
-  checksum: 10c0/3fa0948cf74adcccc8cbcdb4e6d30ada6933bdfb1816ff99200f3d3b689325b37dc483b22535b57b6d911f7a7b64eaa6a5f8da1606cfe7f2466f48000c21e296
+  checksum: 10c0/0e571967f9fa2192170203afcb439434b04fbcd914a4dde176544fc45768e76226a284f6fa9d9a4e9bc9fce593bfbe6ab50ee25b3ca50c278eb33562345e0aaf
   languageName: node
   linkType: hard
 
