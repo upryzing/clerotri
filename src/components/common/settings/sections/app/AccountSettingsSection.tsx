@@ -53,7 +53,9 @@ export const AccountSettingsSection = observer(() => {
             justifyContent: 'center',
           }}
           onPress={() => {
-            Clipboard.setString(`${client.user?.username}#${client.user?.discriminator}`);
+            Clipboard.setString(
+              `${client.user?.username}#${client.user?.discriminator}`,
+            );
           }}>
           <View style={styles.iconContainer}>
             <MaterialIcon name="content-copy" size={20} />

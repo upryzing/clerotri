@@ -2,7 +2,12 @@ import {setLanguage} from '@clerotri-i18n/setLanguage';
 import {languages} from '@clerotri-i18n/languages';
 import {app} from '@clerotri/Generic';
 import {checkNotificationPerms} from '@clerotri/lib/notifications/permissions';
-import {CLEROTRI_EMAIL, OPEN_ISSUES, PRIVACY_INFO, SPECIAL_SERVERS} from '@clerotri/lib/consts';
+import {
+  CLEROTRI_EMAIL,
+  OPEN_ISSUES,
+  PRIVACY_INFO,
+  SPECIAL_SERVERS,
+} from '@clerotri/lib/consts';
 import {APP_VERSION} from '@clerotri/lib/metadata';
 import {themes} from '@clerotri/lib/themes';
 import type {Setting, SettingsCategory} from '@clerotri/lib/types';
@@ -247,7 +252,9 @@ export const settingsCategories: Record<string, SettingsCategory> = {
         title: 'app.settings_menu.feedback.email.title',
         body: 'app.settings_menu.feedback.email.body',
         onPress: ({openLink}) => {
-          openLink(`${CLEROTRI_EMAIL}?subject=[FEEDBACK]&body=\n\nApp version: v${APP_VERSION}`);
+          openLink(
+            `${CLEROTRI_EMAIL}?subject=[FEEDBACK]&body=\n\nApp version: v${APP_VERSION}`,
+          );
         },
       },
     },

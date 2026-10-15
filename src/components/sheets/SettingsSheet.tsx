@@ -354,7 +354,7 @@ export const SettingsSheet = observer(
                   section={'feedback'}
                   icon={{pack: 'regular', name: 'feedback'}}
                   onPress={() => {
-                    setSection({section: 'feedback'})
+                    setSection({section: 'feedback'});
                   }}
                 />
                 <SettingsButton

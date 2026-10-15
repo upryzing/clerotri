@@ -10,8 +10,8 @@ import {APP_VERSION} from '@clerotri/lib/metadata';
 import {commonValues} from '@clerotri/lib/themes';
 import {openUrl} from '@clerotri/lib/utils';
 
-function generateEmailLink (error: string) {
- return `${CLEROTRI_EMAIL}?subject=[BUG] Error message&body=[Replace the bracketed text, then remove this line!]
+function generateEmailLink(error: string) {
+  return `${CLEROTRI_EMAIL}?subject=[BUG] Error message&body=[Replace the bracketed text, then remove this line!]
 
 Description: [describe the bug here]
 
@@ -23,7 +23,7 @@ Steps to reproduce:
 ----
 
 Error message: ${error}
-App version: v${APP_VERSION}`
+App version: v${APP_VERSION}`;
 }
 
 export function ErrorMessage({
