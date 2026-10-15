@@ -59,7 +59,7 @@ function copyDebugInfo() {
     },
   };
 
-  Clipboard.setString(JSON.stringify(obj));
+  Clipboard.setString(JSON.stringify(obj, null, 2));
 }
 
 export const generateDonateGradient = (currentTheme: Theme): GradientValue => {
