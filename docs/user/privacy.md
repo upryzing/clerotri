@@ -1,6 +1,6 @@
 # Privacy information
 
-_This was last updated on 25/09/2026._
+_This was last updated on 15/10/2026._
 
 _For the purposes of this document, "we" and "us" refers to the core maintainers of Clerotri. As of the date of writing, this only includes me ([Rexogamer](https://rexowo.dev))._
 
@@ -23,7 +23,12 @@ Clerotri doesn't currently support account deletion, though this is planned for 
 
 Analytics are disabled by default. If you choose to enable them, Clerotri will collect some basic data about your device and your usage of Clerotri.
 
-You will be asked if you wish to enable them upon launching the app for the first time, or (if you're updating from a version before v0.11.0) after updating the app. You can also enable, adjust or disable them at any time by opening the settings menu and selecting "Analytics".
+You will be asked if you wish to enable them upon launching the app for the first time, or (if you're updating from a version before v0.11.0) after updating the app. 
+
+You can also enable, adjust or disable them at any time from the settings menu:
+
+- on v0.15.0 or later, select "Privacy" and then select "Analytics";
+- on v0.14.1 or earlier, select "Analytics".
 
 Analytics are sent each time you open the app and are split into two tiers.
 

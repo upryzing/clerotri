@@ -290,31 +290,11 @@ export const SettingsSheet = observer(
                 />
                 <SettingsButton
                   menu={'app'}
+                  type={'end'}
                   section={'privacy'}
                   icon={{pack: 'regular', name: 'privacy-tip'}}
                   onPress={() => {
                     setSection({section: 'privacy'});
-                  }}
-                />
-                <SettingsButton
-                  menu={'app'}
-                  type={'end'}
-                  section={'analytics'}
-                  icon={{pack: 'regular', name: 'analytics'}}
-                  onPress={() => {
-                    app.openAnalyticsMenu(true);
-                  }}
-                />
-                <Text type={'h1'}>
-                  {t('app.settings_menu.groups.advanced')}
-                </Text>
-                <SettingsButton
-                  menu={'app-other'}
-                  type={'detatched'}
-                  section={'debug_info'}
-                  icon={{pack: 'regular', name: 'bug-report'}}
-                  onPress={() => {
-                    copyDebugInfo();
                   }}
                 />
                 <Text type={'h1'}>{t('app.settings_menu.groups.other')}</Text>
@@ -357,6 +337,15 @@ export const SettingsSheet = observer(
                   style={{experimental_backgroundImage: [donateGradient]}}
                   onPress={() => {
                     openUrl(DONATIONS_INFO);
+                  }}
+                />
+                <SettingsButton
+                  menu={'app-other'}
+                  type={'detatched'}
+                  section={'debug_info'}
+                  icon={{pack: 'regular', name: 'bug-report'}}
+                  onPress={() => {
+                    copyDebugInfo();
                   }}
                 />
                 <SettingsButton

@@ -465,9 +465,6 @@
             "account": {
                 "title": "Account"
             },
-            "analytics": {
-                "title": "Analytics"
-            },
             "appearance": {
                 "title": "Appearance",
                 "themes": {
@@ -510,7 +507,6 @@
                 "title": "Features"
             },
             "groups": {
-                "advanced": "Advanced",
                 "app": "App",
                 "other": "Other",
                 "user": "User"
@@ -535,6 +531,10 @@
             },
             "privacy": {
                 "title": "Privacy",
+                "analytics": {
+                    "title": "Analytics",
+                    "body": "Enable, adjust or disable Clerotri's analytics"
+                },
                 "info": {
                     "title": "Privacy information",
                     "body": "Find out more about how Clerotri handles your data"

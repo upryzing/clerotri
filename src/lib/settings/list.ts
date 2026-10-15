@@ -289,6 +289,16 @@ export const settingsCategories: Record<string, SettingsCategory> = {
   },
   privacy: {
     badges: ['app.refetchOnReconnect'], //placeholder
+    analytics: {
+      type: 'settingsButton',
+      props: {
+        title: 'app.settings_menu.privacy.analytics.title',
+        body: 'app.settings_menu.privacy.analytics.body',
+        onPress: () => {
+          app.openAnalyticsMenu(true);
+        },
+      },
+    },
     divider: {type: 'divider'},
     infoLink: {
       type: 'settingsButton',
