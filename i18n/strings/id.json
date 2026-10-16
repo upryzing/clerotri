@@ -419,6 +419,10 @@
                 "info": {
                     "title": "Informasi privasi",
                     "body": "Ketahui lebih lanjut tentang cara Clerotri menangani data Anda"
+                },
+                "analytics": {
+                    "title": "Analitik",
+                    "body": "Hidupkan, sesuaikan atau matikan analitik Clerotri"
                 }
             },
             "profile": {
@@ -495,6 +499,21 @@
                 "experimental": "Pengaturan ini bersifat eksperimental dan dapat dihapus atau diubah kapan saja.",
                 "deprecated": "Pengaturan ini akan dihapus di versi mendatang.",
                 "developer": "Pengaturan ini ditujukan untuk pengembang."
+            },
+            "feedback": {
+                "title": "Masukan",
+                "email": {
+                    "title": "Email",
+                    "body": "Kirim email ke clerotri@upryzing.app"
+                },
+                "github": {
+                    "title": "GitHub",
+                    "body": "Buat laporan masalah di repositori GitHub kami"
+                },
+                "server": {
+                    "title": "Server dukungan",
+                    "body": "Bergabunglah dengan server dukungan Clerotri di instansi Stoat resmi"
+                }
             }
         },
         "settings_categories": {
