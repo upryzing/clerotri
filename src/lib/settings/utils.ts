@@ -1,15 +1,9 @@
 import {settingsList} from '@clerotri/lib/settings/list';
 import {storage} from '@clerotri/lib/storage';
-import type {Setting} from '@clerotri/lib/types';
 
 export const settings = {
   _fetch: (k: string) => {
-    let s;
-    for (const setting of settingsList) {
-      if (setting.key === k) {
-        s = setting;
-      }
-    }
+    const s = settingsList[k];
     if (!s) {
       console.log(`[SETTINGS] Setting ${k} does not exist; func = _fetch`);
       return null;
@@ -32,7 +26,7 @@ export const settings = {
       : true;
 
     if (useValueIfDev && useValueIfExperimental) {
-      const value = getSettingValue(setting);
+      const value = getSettingValue(k, setting.type);
       return value !== undefined ? value : setting.default;
     }
 
@@ -48,9 +42,9 @@ export const settings = {
   },
   clear: () => {
     try {
-      for (const s of settingsList) {
-        storage.remove(s.key);
-        s.onChange && s.onChange(s.default);
+      for (const [key, setting] of Object.entries(settingsList)) {
+        storage.remove(key);
+        setting.onChange && setting.onChange(setting.default);
       }
     } catch (err) {
       console.log(`[SETTINGS] Error clearing settings: ${err}`);
@@ -58,25 +52,28 @@ export const settings = {
   },
 };
 
-const getSettingValue = (setting: Setting) => {
-  switch (setting.type) {
+const getSettingValue = (
+  key: string,
+  type: 'string' | 'number' | 'boolean',
+) => {
+  switch (type) {
     case 'string':
-      return storage.getString(setting.key);
+      return storage.getString(key);
     case 'number':
-      return storage.getNumber(setting.key);
+      return storage.getNumber(key);
     case 'boolean':
-      return storage.getBoolean(setting.key);
+      return storage.getBoolean(key);
   }
 };
 
 export const getSettingsObject = () => {
   const settingsObject: any = {};
 
-  settingsList.forEach(setting => {
-    const value = getSettingValue(setting);
+  Object.entries(settingsList).forEach(([key, setting]) => {
+    const value = getSettingValue(key, setting.type);
 
     if (value !== undefined) {
-      settingsObject[setting.key] = value;
+      settingsObject[key] = value;
     }
   });
 

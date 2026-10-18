@@ -1,7 +1,6 @@
 import {settingsList} from '@clerotri/lib/settings/list';
 import {DEFAULT_API_URL} from '@clerotri/lib/consts';
 import {storage} from '@clerotri/lib/storage';
-import type {Setting} from '@clerotri/lib/types';
 
 export function initialiseSettings() {
   const settingsVersion = storage.getNumber('settingsVersion');
@@ -18,33 +17,27 @@ export function initialiseSettings() {
       console.error(e);
     }
   } else {
-    settingsList.forEach(setting => {
+    Object.entries(settingsList).forEach(([key, setting]) => {
       let value: string | boolean | number | undefined;
       switch (setting.type) {
         case 'string':
-          value = storage.getString(setting.key);
+          value = storage.getString(key);
           break;
         case 'number':
-          value = storage.getNumber(setting.key);
+          value = storage.getNumber(key);
           break;
         case 'boolean':
-          value = storage.getBoolean(setting.key);
+          value = storage.getBoolean(key);
           break;
       }
-      value !== undefined && initialiseSetting(setting.key, value);
+      value !== undefined && initialiseSetting(key, value);
     });
   }
 }
 
 function initialiseSetting(key: string, value: string | boolean | number) {
-  let st: Setting | undefined;
-  for (const setting of settingsList) {
-    if (setting.key === key) {
-      st = setting;
-    }
-  }
-  if (st) {
-    st.onInitialize && st.onInitialize(value);
+  if (settingsList[key]) {
+    settingsList[key].onInitialize && settingsList[key].onInitialize(value);
   } else {
     console.warn(`[SETTINGS] Unknown setting in MMKV settings: ${key}`);
   }
