@@ -21,7 +21,6 @@ type BoolSetting = {
 
 export type Setting = (StringSetting | BoolSetting) & {
   key: string;
-  category: string;
   experimental?: boolean;
   developer?: boolean;
   deprecated?: boolean;

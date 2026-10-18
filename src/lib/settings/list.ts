@@ -15,20 +15,15 @@ import type {Setting, SettingsCategory} from '@clerotri/lib/types';
 export const settingsList = [
   {
     key: 'app.language',
-    category: 'MIGRATED',
     default: 'en',
     type: 'string',
     options: Object.keys(languages),
     onChange: (v: string) => {
       setLanguage(v);
     },
-    onInitialize: (v: string) => {
-      setLanguage(v);
-    },
   },
   {
     key: 'ui.theme',
-    category: 'MIGRATED',
     default: 'Dark',
     type: 'string',
     options: Object.keys(themes),
@@ -41,45 +36,38 @@ export const settingsList = [
   },
   {
     key: 'ui.messaging.showSelfInTypingIndicator',
-    category: 'MIGRATED',
     default: false,
     type: 'boolean',
     developer: true,
   },
   {
     key: 'ui.messaging.statusInChatAvatars',
-    category: 'MIGRATED',
     default: false,
     type: 'boolean',
   },
   {
     key: 'ui.messaging.use24H',
-    category: 'MIGRATED',
     default: true,
     type: 'boolean',
   },
   {
     key: 'ui.messaging.showMasqAvatar',
-    category: 'MIGRATED',
     default: true,
     type: 'boolean',
   },
   {
     key: 'app.refetchOnReconnect',
-    category: 'MIGRATED',
     default: true,
     type: 'boolean',
     experimental: true,
   },
   {
     key: 'app.reopenLastChannel',
-    category: 'MIGRATED',
     default: true,
     type: 'boolean',
   },
   {
     key: 'app.notifications.enabled',
-    category: 'MIGRATED',
     default: false,
     type: 'boolean',
     experimental: true,
@@ -94,45 +82,38 @@ export const settingsList = [
   },
   {
     key: 'app.notifications.enabledInApp',
-    category: 'MIGRATED',
     default: true,
     type: 'boolean',
   },
   {
     key: 'app.notifications.notifyOnSelfPing',
-    category: 'MIGRATED',
     default: false,
     type: 'boolean',
     developer: true,
   },
   {
     key: 'ui.messaging.messageSpacing',
-    category: 'MIGRATED',
     default: 10,
     type: 'number',
   },
   {
     key: 'ui.messaging.fontSize',
-    category: 'MIGRATED',
     remark: true,
     default: 14,
     type: 'number',
   },
   {
     key: 'ui.home.holidays',
-    category: 'MIGRATED',
     default: true,
     type: 'boolean',
   },
   {
     key: 'ui.messaging.hideBlockedMessages',
-    category: 'MIGRATED',
     default: false,
     type: 'boolean',
   },
   {
     key: 'ui.messaging.doubleTapToReply',
-    category: 'MIGRATED',
     default: true,
     type: 'boolean',
     experimental: true,
@@ -140,26 +121,22 @@ export const settingsList = [
   },
   {
     key: 'ui.messaging.emojiPack',
-    category: 'MIGRATED',
     default: 'System',
     type: 'string',
     options: ['System', 'Mutant', 'Twemoji', 'Noto', 'Openmoji'],
   },
   {
     key: 'ui.messaging.showNSFWContent',
-    category: 'MIGRATED',
     default: false,
     type: 'boolean',
   },
   {
     key: 'ui.messaging.sendAttachments',
-    category: 'MIGRATED',
     default: true,
     type: 'boolean',
   },
   {
     key: 'ui.messaging.showReactions',
-    category: 'MIGRATED',
     remark: true,
     default: false,
     type: 'boolean',
@@ -167,7 +144,6 @@ export const settingsList = [
   },
   {
     key: 'ui.messaging.experimentalScrolling',
-    category: 'MIGRATED',
     remark: true,
     default: false,
     type: 'boolean',
@@ -176,7 +152,6 @@ export const settingsList = [
   },
   {
     key: 'ui.messaging.useNewMessageView',
-    category: 'MIGRATED',
     default: true,
     type: 'boolean',
     experimental: true,
@@ -184,19 +159,16 @@ export const settingsList = [
   },
   {
     key: 'app.showChangelogs',
-    category: 'MIGRATED',
     default: true,
     type: 'boolean',
   },
   {
     key: 'ui.settings.showExperimental',
-    category: 'MIGRATED',
     default: false,
     type: 'boolean',
   },
   {
     key: 'ui.showDeveloperFeatures',
-    category: 'MIGRATED',
     default: false,
     type: 'boolean',
   },

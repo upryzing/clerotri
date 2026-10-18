@@ -1,1 +1,1 @@
-export {NewSettingsCategory, SettingsCategory} from './SettingsCategory';
+export {NewSettingsCategory} from './SettingsCategory';
