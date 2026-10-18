@@ -276,12 +276,12 @@ _This version was released on 25/03/2025._
 
 _This version was released on 17/02/2025._
 
-​### Important notes
+### Important notes
 
 - Clerotri is **now available via [Accrescent][accrescent]!** Once you've installed the Accrescent app, you can get Clerotri [here][accrescent_direct]. Note that Accrescent requires Android 10 or later. This is the recommended way to get the app, as it provides quick, automatic updates.
   - We plan on bringing Clerotri to F-Droid in some capacity in the future.
 
-​### What's new
+### What's new
 
 - Introducing a new **channel context menu**! You can now create invites, mark channels as read and delete them by long-pressing the channel in the channel list.
 - In-app notifications are now enabled by default, and can now be enabled or disabled separately from push notifications.
@@ -289,7 +289,7 @@ _This version was released on 17/02/2025._
 - Various colours have been updated to follow your selected theme.
 - Clerotri now uses React Native 0.77.
 
-​### Bug fixes
+### Bug fixes
 
 - Custom instances should now work properly again.
 
@@ -297,11 +297,11 @@ _This version was released on 17/02/2025._
 
 _This version was released on 27/01/2025._
 
-​### What's new
+### What's new
 
 - In-app notifications now look better, with proper alignment and shadows.
 
-​### Bug fixes
+### Bug fixes
 
 - Switching between themes will no longer cause the app to crash.
 - Messages should no longer duplicate/appear in the wrong channels.
@@ -315,14 +315,14 @@ _This version was released on 25/01/2025._
 
 Please note that the changelog for this version is incomplete. It's been over a year since v0.6.0, and [with over 500 commits][commits] I can't bring myself to sift through everything right now. I might at some point - alternatively, community contributions are more than welcome :3
 
-​### Important notes
+### Important notes
 
 - You might've noticed something different: **the app has a new name and icon!** RVMob is now known as **Clerotri**, inspired by the [_Clerodendrum trichotomum_][flower].
 - **Breaking change:** the app's bundle identifier has changed to `app.upryzing.clerotri`, meaning that **this update will install as a new app**, your settings **won't migrate** and **you'll need to log back in**. I sincerely apologise for the inconvenience, but I swear this will be the last time for the foreseeable future that you'll need to do anything major when updating.
 - **Breaking change:** the app now _actually_ requires Android 7. It was the listed minimum version for v0.6.0, but the minimum SDK was set to Android 5 - this has now been fixed. (This isn't really much of a breaking change, though - Android 5/6 were never _officially_ supported, and I doubt anyone was using RVMob on them... if it even worked :eye::eye:)
 - Clerotri is **now on the Fediverse!** I'll be posting updates and providing some amount of support at [`@clerotri@lea.pet`][fedi].
 
-​### What's new
+### What's new
 
 - As promised when I released v0.6.0: Clerotri now has **server settings!** Edit your server's info, revoke bans and invites, kick that one person who never seems to read the channel topic despite repeated warnings when it's literally _RIGHT THERE_- and much more.
 - Now for a fun surprise... **translations!** Yes, you read that correctly - **Clerotri now has support for other languages**. v0.7.0 includes support for a few languages, and more will be added in future updates.
@@ -336,15 +336,15 @@ Please note that the changelog for this version is incomplete. It's been over a 
 - Clerotri now uses React Native 0.76 and targets Android 14. Not quite as exciting as the rest of these, but it's nice to be up to date :3
   - (The app should be smaller and faster as a result, though.)
 
-​### Experimental/WIP features
+### Experimental/WIP features
 
 TBD
 
-​### Bug fixes
+### Bug fixes
 
 - Servers that aren't explicitly ordered in the synced server list will now correctly show at the bottom - in other words, you won't have to drag them about on the web app first.
 
-​### Known issues
+### Known issues
 
 TBD
 
