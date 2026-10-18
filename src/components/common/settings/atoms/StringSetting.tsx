@@ -6,40 +6,46 @@ import type {Setting} from '@clerotri/lib/types';
 import {Input, Text} from '../../atoms';
 import {IndicatorIcons} from './IndicatorIcons';
 
-export const StringSetting = ({sRaw}: {sRaw: Setting}) => {
+export const StringSetting = ({
+  settingKey,
+  setting,
+}: {
+  settingKey: string;
+  setting: Setting;
+}) => {
   const {t} = useTranslation();
 
-  const [value = sRaw.default, setValue] = useMMKVString(sRaw.key);
+  const [value = setting.default, setValue] = useMMKVString(settingKey);
 
   return (
     <View
-      key={`settings_${sRaw.key}`}
+      key={`settings_${settingKey}`}
       style={{
         flexDirection: 'row',
         alignItems: 'center',
       }}>
       <View>
-        <IndicatorIcons s={sRaw} />
+        <IndicatorIcons s={setting} />
         <Text style={{flex: 1, fontWeight: 'bold', marginBottom: 8}}>
-          {t(`app.settings.${sRaw.key}`)}
+          {t(`app.settings.${settingKey}`)}
         </Text>
-        {sRaw.remark ? (
+        {setting.remark ? (
           <Text
             useNewText
             colour={'foregroundSecondary'}
             style={{marginBottom: 8}}>
-            {t(`app.settings.${sRaw.key}_remark`)}
+            {t(`app.settings.${settingKey}_remark`)}
           </Text>
         ) : null}
         <Input
           value={value as string}
           onChangeText={async v => {
-            const shouldChange = sRaw.checkBeforeChanging
-              ? await sRaw.checkBeforeChanging(v)
+            const shouldChange = setting.checkBeforeChanging
+              ? await setting.checkBeforeChanging(v)
               : true;
             if (shouldChange) {
               setValue(v);
-              sRaw.onChange && sRaw.onChange(v);
+              setting.onChange && setting.onChange(v);
             }
           }}
         />

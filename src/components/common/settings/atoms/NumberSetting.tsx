@@ -7,27 +7,33 @@ import {IndicatorIcons} from '@clerotri/components/common/settings/atoms/Indicat
 import {commonValues} from '@clerotri/lib/themes';
 import type {Setting} from '@clerotri/lib/types';
 
-export const NumberSetting = ({sRaw}: {sRaw: Setting}) => {
+export const NumberSetting = ({
+  settingKey,
+  setting,
+}: {
+  settingKey: string;
+  setting: Setting;
+}) => {
   const {t} = useTranslation();
 
-  const [value = sRaw.default, setValue] = useMMKVNumber(sRaw.key);
+  const [value = setting.default, setValue] = useMMKVNumber(settingKey);
 
   return (
-    <View key={`settings_${sRaw.key}`}>
+    <View key={`settings_${settingKey}`}>
       <View
         style={{
           flexDirection: 'row',
           alignItems: 'center',
           marginBlockEnd: commonValues.sizes.medium,
         }}>
-        <IndicatorIcons s={sRaw} />
+        <IndicatorIcons s={setting} />
         <View style={{flex: 1}}>
           <Text useNewText style={{fontWeight: 'bold'}}>
-            {t(`app.settings.${sRaw.key}`)}
+            {t(`app.settings.${settingKey}`)}
           </Text>
-          {sRaw.remark ? (
+          {setting.remark ? (
             <Text useNewText colour={'foregroundSecondary'}>
-              {t(`app.settings.${sRaw.key}_remark`)}
+              {t(`app.settings.${settingKey}_remark`)}
             </Text>
           ) : null}
         </View>
@@ -37,13 +43,13 @@ export const NumberSetting = ({sRaw}: {sRaw: Setting}) => {
           value={`${value}`}
           keyboardType={'decimal-pad'}
           onChangeText={async v => {
-            const shouldChange = sRaw.checkBeforeChanging
-              ? await sRaw.checkBeforeChanging(v)
+            const shouldChange = setting.checkBeforeChanging
+              ? await setting.checkBeforeChanging(v)
               : true;
             if (shouldChange) {
               const newValue = Number.parseInt(v, 10);
               setValue(newValue);
-              sRaw.onChange && sRaw.onChange(newValue);
+              setting.onChange && setting.onChange(newValue);
             }
           }}
         />

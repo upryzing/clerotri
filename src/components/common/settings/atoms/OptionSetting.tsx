@@ -13,10 +13,16 @@ import {MaterialIcon} from '@clerotri/components/common/icons';
 import {IndicatorIcons} from './IndicatorIcons';
 import {LineSeparator} from '@clerotri/components/layout';
 
-export const OptionSetting = ({sRaw}: {sRaw: Setting}) => {
+export const OptionSetting = ({
+  settingKey,
+  setting,
+}: {
+  settingKey: string;
+  setting: Setting;
+}) => {
   const {t} = useTranslation();
 
-  const [value = sRaw.default, setValue] = useMMKVString(sRaw.key);
+  const [value = setting.default, setValue] = useMMKVString(settingKey);
 
   return (
     <View>
@@ -26,33 +32,33 @@ export const OptionSetting = ({sRaw}: {sRaw: Setting}) => {
           alignItems: 'center',
           marginBlockEnd: commonValues.sizes.medium,
         }}>
-        <IndicatorIcons s={sRaw} />
+        <IndicatorIcons s={setting} />
         <View style={{flex: 1}}>
           <Text useNewText style={{fontWeight: 'bold'}}>
-            {t(`app.settings.${sRaw.key}`)}
+            {t(`app.settings.${settingKey}`)}
           </Text>
-          {sRaw.remark ? (
+          {setting.remark ? (
             <Text useNewText colour={'foregroundSecondary'}>
-              {t(`app.settings.${sRaw.key}_remark`)}
+              {t(`app.settings.${settingKey}_remark`)}
             </Text>
           ) : null}
         </View>
       </View>
       <View style={localStyles.optionsContainer}>
-        {sRaw.options!.map((o, i) => (
+        {setting.options!.map((o, i) => (
           <Fragment key={o}>
             <TouchableOpacity
               style={[localStyles.option]}
               onPress={async () => {
-                const shouldChange = sRaw.checkBeforeChanging
-                  ? await sRaw.checkBeforeChanging(o)
+                const shouldChange = setting.checkBeforeChanging
+                  ? await setting.checkBeforeChanging(o)
                   : true;
                 if (shouldChange) {
                   setValue(o);
-                  sRaw.onChange && sRaw.onChange(o);
+                  setting.onChange && setting.onChange(o);
                 }
               }}>
-              {sRaw.key === 'app.language' ? (
+              {settingKey === 'app.language' ? (
                 <View style={{flex: 1, flexDirection: 'row'}}>
                   <Text style={{alignSelf: 'center', marginEnd: 8}}>
                     {languages[o].emoji}
@@ -68,7 +74,7 @@ export const OptionSetting = ({sRaw}: {sRaw: Setting}) => {
                 </View>
               ) : (
                 <Text style={{flex: 1}}>
-                  {sRaw.key === 'ui.theme' ? t(`app.themes.${o}`) : o}
+                  {settingKey === 'ui.theme' ? t(`app.themes.${o}`) : o}
                 </Text>
               )}
               <View style={{...styles.iconContainer, marginRight: 0}}>
@@ -79,7 +85,7 @@ export const OptionSetting = ({sRaw}: {sRaw: Setting}) => {
                 />
               </View>
             </TouchableOpacity>
-            {i !== sRaw.options!.length - 1 && <LineSeparator />}
+            {i !== setting.options!.length - 1 && <LineSeparator />}
           </Fragment>
         ))}
       </View>

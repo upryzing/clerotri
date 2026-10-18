@@ -19,6 +19,7 @@ import {
   type CategoryName,
   settings,
   settingsCategories,
+  settingsList,
   SettingsSectionContext,
 } from '@clerotri/lib/settings';
 import {commonValues} from '@clerotri/lib/themes';
@@ -64,8 +65,7 @@ export const NewSettingsCategory = observer(
                   )}
                   <View style={localStyles.groupInnerContainer}>
                     {itemData.map(settingKey => {
-                      // REPLACE WITH OBJECT !!!
-                      const setting = settings._fetch(settingKey);
+                      const setting = settingsList[settingKey];
                       if (!setting) return null;
 
                       if (
@@ -78,29 +78,33 @@ export const NewSettingsCategory = observer(
                       if (setting.type === 'boolean') {
                         return (
                           <BoolSetting
-                            key={`settings-${setting.key}-outer`}
-                            sRaw={setting}
+                            key={`settings-${settingKey}-outer`}
+                            settingKey={settingKey}
+                            setting={setting}
                           />
                         );
                       }
                       if (setting.type === 'number') {
                         return (
                           <NumberSetting
-                            key={`settings-${setting.key}-outer`}
-                            sRaw={setting}
+                            key={`settings-${settingKey}-outer`}
+                            settingKey={settingKey}
+                            setting={setting}
                           />
                         );
                       }
                       if (setting.type === 'string') {
                         return setting.options ? (
                           <OptionSetting
-                            key={`settings-${setting.key}-outer`}
-                            sRaw={setting}
+                            key={`settings-${settingKey}-outer`}
+                            settingKey={settingKey}
+                            setting={setting}
                           />
                         ) : (
                           <StringSetting
-                            key={`settings-${setting.key}-outer`}
-                            sRaw={setting}
+                            key={`settings-${settingKey}-outer`}
+                            settingKey={settingKey}
+                            setting={setting}
                           />
                         );
                       }

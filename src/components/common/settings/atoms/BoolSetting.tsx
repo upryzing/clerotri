@@ -7,19 +7,26 @@ import {IndicatorIcons} from '@clerotri/components/common/settings/atoms/Indicat
 import {commonValues} from '@clerotri/lib/themes';
 import type {Setting} from '@clerotri/lib/types';
 
-export const BoolSetting = ({sRaw}: {sRaw: Setting}) => {
+export const BoolSetting = ({
+  settingKey,
+  setting,
+}: {
+  settingKey: string;
+  setting: Setting;
+}) => {
   const {t} = useTranslation();
 
-  const [value = sRaw.default as boolean, setValue] = useMMKVBoolean(sRaw.key);
+  const [value = setting.default as boolean, setValue] =
+    useMMKVBoolean(settingKey);
 
   return (
     <View
-      key={`settings_${sRaw.key}`}
+      key={`settings_${settingKey}`}
       style={{
         flexDirection: 'row',
         alignItems: 'center',
       }}>
-      <IndicatorIcons s={sRaw} />
+      <IndicatorIcons s={setting} />
       <View
         style={{
           flex: 1,
@@ -27,25 +34,25 @@ export const BoolSetting = ({sRaw}: {sRaw: Setting}) => {
           marginEnd: commonValues.sizes.small,
         }}>
         <Text style={{fontWeight: 'bold'}}>
-          {t(`app.settings.${sRaw.key}`)}
+          {t(`app.settings.${settingKey}`)}
         </Text>
-        {sRaw.remark ? (
+        {setting.remark ? (
           <Text useNewText colour={'foregroundSecondary'}>
-            {t(`app.settings.${sRaw.key}_remark`)}
+            {t(`app.settings.${settingKey}_remark`)}
           </Text>
         ) : null}
       </View>
       <Checkbox
-        key={`checkbox-${sRaw.key}`}
+        key={`checkbox-${settingKey}`}
         value={value}
         callback={async () => {
           const newValue = !value;
-          const shouldChange = sRaw.checkBeforeChanging
-            ? await sRaw.checkBeforeChanging(newValue)
+          const shouldChange = setting.checkBeforeChanging
+            ? await setting.checkBeforeChanging(newValue)
             : true;
           if (shouldChange) {
             setValue(newValue);
-            sRaw.onChange && sRaw.onChange(newValue);
+            setting.onChange && setting.onChange(newValue);
           }
         }}
       />

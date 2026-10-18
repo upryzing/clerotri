@@ -14,7 +14,6 @@ import type {Setting, SettingsCategory} from '@clerotri/lib/types';
 
 export const settingsList: Record<string, Setting> = {
   'app.language': {
-    key: 'app.language',
     default: 'en',
     type: 'string',
     options: Object.keys(languages),
@@ -23,7 +22,6 @@ export const settingsList: Record<string, Setting> = {
     },
   },
   'ui.theme': {
-    key: 'ui.theme',
     default: 'Dark',
     type: 'string',
     options: Object.keys(themes),
@@ -35,39 +33,32 @@ export const settingsList: Record<string, Setting> = {
     },
   },
   'ui.messaging.showSelfInTypingIndicator': {
-    key: 'ui.messaging.showSelfInTypingIndicator',
     default: false,
     type: 'boolean',
     developer: true,
   },
   'ui.messaging.statusInChatAvatars': {
-    key: 'ui.messaging.statusInChatAvatars',
     default: false,
     type: 'boolean',
   },
   'ui.messaging.use24H': {
-    key: 'ui.messaging.use24H',
     default: true,
     type: 'boolean',
   },
   'ui.messaging.showMasqAvatar': {
-    key: 'ui.messaging.showMasqAvatar',
     default: true,
     type: 'boolean',
   },
   'app.refetchOnReconnect': {
-    key: 'app.refetchOnReconnect',
     default: true,
     type: 'boolean',
     experimental: true,
   },
   'app.reopenLastChannel': {
-    key: 'app.reopenLastChannel',
     default: true,
     type: 'boolean',
   },
   'app.notifications.enabled': {
-    key: 'app.notifications.enabled',
     default: false,
     type: 'boolean',
     experimental: true,
@@ -81,69 +72,57 @@ export const settingsList: Record<string, Setting> = {
     },
   },
   'app.notifications.enabledInApp': {
-    key: 'app.notifications.enabledInApp',
     default: true,
     type: 'boolean',
   },
   'app.notifications.notifyOnSelfPing': {
-    key: 'app.notifications.notifyOnSelfPing',
     default: false,
     type: 'boolean',
     developer: true,
   },
   'ui.messaging.messageSpacing': {
-    key: 'ui.messaging.messageSpacing',
     default: 10,
     type: 'number',
   },
   'ui.messaging.fontSize': {
-    key: 'ui.messaging.fontSize',
     remark: true,
     default: 14,
     type: 'number',
   },
   'ui.home.holidays': {
-    key: 'ui.home.holidays',
     default: true,
     type: 'boolean',
   },
   'ui.messaging.hideBlockedMessages': {
-    key: 'ui.messaging.hideBlockedMessages',
     default: false,
     type: 'boolean',
   },
   'ui.messaging.doubleTapToReply': {
-    key: 'ui.messaging.doubleTapToReply',
     default: true,
     type: 'boolean',
     experimental: true,
     remark: true,
   },
   'ui.messaging.emojiPack': {
-    key: 'ui.messaging.emojiPack',
     default: 'System',
     type: 'string',
     options: ['System', 'Mutant', 'Twemoji', 'Noto', 'Openmoji'],
   },
   'ui.messaging.showNSFWContent': {
-    key: 'ui.messaging.showNSFWContent',
     default: false,
     type: 'boolean',
   },
   'ui.messaging.sendAttachments': {
-    key: 'ui.messaging.sendAttachments',
     default: true,
     type: 'boolean',
   },
   'ui.messaging.showReactions': {
-    key: 'ui.messaging.showReactions',
     remark: true,
     default: false,
     type: 'boolean',
     experimental: true,
   },
   'ui.messaging.experimentalScrolling': {
-    key: 'ui.messaging.experimentalScrolling',
     remark: true,
     default: false,
     type: 'boolean',
@@ -151,24 +130,20 @@ export const settingsList: Record<string, Setting> = {
     deprecated: true,
   },
   'ui.messaging.useNewMessageView': {
-    key: 'ui.messaging.useNewMessageView',
     default: true,
     type: 'boolean',
     experimental: true,
     deprecated: true,
   },
   'app.showChangelogs': {
-    key: 'app.showChangelogs',
     default: true,
     type: 'boolean',
   },
   'ui.settings.showExperimental': {
-    key: 'ui.settings.showExperimental',
     default: false,
     type: 'boolean',
   },
   'ui.showDeveloperFeatures': {
-    key: 'ui.showDeveloperFeatures',
     default: false,
     type: 'boolean',
   },
