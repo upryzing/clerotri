@@ -13,7 +13,7 @@ import {
 } from '@clerotri/components/common/atoms';
 import {MaterialIcon} from '@clerotri/components/common/icons';
 import {PressableSettingsEntry} from '@clerotri/components/common/settings/atoms';
-import {SettingsCategory} from '@clerotri/components/common/settings';
+import {NewSettingsCategory} from '@clerotri/components/common/settings';
 import {LineSeparator} from '@clerotri/components/layout';
 import {LoadingScreen} from '@clerotri/components/views/LoadingScreen';
 import {DEFAULT_API_URL} from '@clerotri/lib/consts';
@@ -184,7 +184,7 @@ export const LoginSettingsPage = ({
         <InstanceSwitcher callback={() => setCurrentSection(null)} />
       ) : currentSection === 'languageSwitcher' ? (
         <ScrollView contentContainerStyle={{padding: commonValues.sizes.xl}}>
-          <SettingsCategory category={'i18n'} skipMargin />
+          <NewSettingsCategory category={'i18n'} skipMargin />
         </ScrollView>
       ) : (
         <View style={{paddingInline: commonValues.sizes.xl}}>
