@@ -1,4 +1,9 @@
 export {
+  useBoolSetting,
+  useNumberSetting,
+  useStringSetting,
+} from '@clerotri/lib/settings/hooks';
+export {
   type CategoryName,
   settingsCategories,
   settingsList,

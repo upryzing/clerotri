@@ -9,7 +9,7 @@ import type {Theme} from '@clerotri/lib/themes';
 
 type StringSetting = {
   default: string;
-  type: 'string' | 'number';
+  type: 'string';
   value?: string;
 };
 
@@ -19,7 +19,13 @@ type BoolSetting = {
   value?: boolean;
 };
 
-export type Setting = (StringSetting | BoolSetting) & {
+type NumberSetting = {
+  default: number;
+  type: 'number';
+  value?: number;
+};
+
+export type Setting = (StringSetting | BoolSetting | NumberSetting) & {
   experimental?: boolean;
   developer?: boolean;
   deprecated?: boolean;

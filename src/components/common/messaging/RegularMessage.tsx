@@ -1,6 +1,5 @@
 import {Dimensions, Pressable, TouchableOpacity, View} from 'react-native';
 import {StyleSheet} from 'react-native-unistyles';
-import {useMMKVNumber} from 'react-native-mmkv';
 import {observer} from 'mobx-react-lite';
 
 import {formatRelative} from 'date-fns/formatRelative';
@@ -8,7 +7,7 @@ import {enGB, enUS} from 'date-fns/locale';
 import {decodeTime} from 'ulid';
 
 import {app} from '@clerotri/Generic';
-import {settings} from '@clerotri/lib/settings';
+import {settings, useNumberSetting} from '@clerotri/lib/settings';
 import {client} from '@clerotri/lib/client';
 import {Avatar, Text, Username} from '@clerotri/components/common/atoms';
 import {MarkdownView} from '@clerotri/components/common/MarkdownView';
@@ -30,11 +29,7 @@ export const RegularMessage = observer((props: MessageProps) => {
   const locale = settings.get('ui.messaging.use24H') ? enGB : enUS;
   const mentionsUser = props.message.mention_ids?.includes(client.user?._id!);
 
-  const [
-    fontSize = settings.getDefault(
-      'ui.messaging.fontSize',
-    ) as unknown as number,
-  ] = useMMKVNumber('ui.messaging.fontSize');
+  const [fontSize] = useNumberSetting('ui.messaging.fontSize');
 
   // check for invite links, then take the code from each
   const rawInvites = Array.from(

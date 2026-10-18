@@ -3,7 +3,6 @@ import {type GradientValue, Platform, ScrollView, View} from 'react-native';
 import {StyleSheet} from 'react-native-unistyles';
 import {useTranslation} from 'react-i18next';
 import {observer} from 'mobx-react-lite';
-import {useMMKVBoolean} from 'react-native-mmkv';
 
 import Clipboard from '@react-native-clipboard/clipboard';
 import {
@@ -21,7 +20,7 @@ import {APP_VERSION} from '@clerotri/lib/metadata';
 import {
   getSettingsObject,
   SettingsSectionContext,
-  settings,
+  useBoolSetting,
 } from '@clerotri/lib/settings';
 import {getInstanceURL} from '@clerotri/lib/storage/utils';
 import {commonValues, type Theme, ThemeContext} from '@clerotri/lib/themes';
@@ -121,11 +120,9 @@ export const SettingsSheet = observer(
       },
     );
 
-    const [
-      enableExperimentalFeatures = settings.getDefault(
-        'ui.settings.showExperimental',
-      ),
-    ] = useMMKVBoolean('ui.settings.showExperimental');
+    const [enableExperimentalFeatures] = useBoolSetting(
+      'ui.settings.showExperimental',
+    );
 
     const donateGradient = useMemo(
       () => generateDonateGradient(currentTheme),
@@ -245,6 +242,7 @@ export const SettingsSheet = observer(
                 />
                 <SettingsButton
                   menu={'app'}
+                  type={enableExperimentalFeatures ? undefined : 'end'}
                   section={'sessions'}
                   icon={{pack: 'community', name: 'shield-check'}}
                   onPress={() => {
