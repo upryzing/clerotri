@@ -1634,13 +1634,13 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@react-native-documents/picker@npm:^12.0.2":
-  version: 12.0.2
-  resolution: "@react-native-documents/picker@npm:12.0.2"
+"@react-native-documents/picker@npm:^12.0.3":
+  version: 12.0.3
+  resolution: "@react-native-documents/picker@npm:12.0.3"
   peerDependencies:
     react: "*"
     react-native: ">=0.79.0"
-  checksum: 10c0/4f81e001cbb2b61cf7fce27dd4e8b8954ba3a471daf5cba86738b1515977dbdfdf206c948c12c11684dc0f568e687b48b20abe4398ad3ed8a9fa2f8aff8be5c7
+  checksum: 10c0/e166fe4d40232c7dcfbab40445cd116e563a0ac838b5d0462904cbf0e507f14042e204f4a219a65758b28b3e013e01b50c08a2ecd45e689ebd17bc1ef73f017c
   languageName: node
   linkType: hard
 
@@ -5939,15 +5939,15 @@ __metadata:
   languageName: node
   linkType: hard
 
-"i18next@npm:^26.4.5":
-  version: 26.4.5
-  resolution: "i18next@npm:26.4.5"
+"i18next@npm:^26.5.2":
+  version: 26.5.2
+  resolution: "i18next@npm:26.5.2"
   peerDependencies:
     typescript: ^5 || ^6 || ^7
   peerDependenciesMeta:
     typescript:
       optional: true
-  checksum: 10c0/e3c8fc1a53f0c52ee04b524c773fe1b21bf4d11919b0be76424d37783fce5cc51f32a1f7fc30e17d67e101c5ad955cfc4ce890eaed2bdb61e5da9f5a71d69faf
+  checksum: 10c0/b2edaba4af8f907d685bb133b8878cc1f03a7eaac3e76937da736b819d6d9500a82f516441b272994e9988c227bbcbbbc38fd185b4a2f67ab6bf9884ecf31167
   languageName: node
   linkType: hard
 
@@ -8283,9 +8283,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"react-i18next@npm:^17.0.17":
-  version: 17.0.17
-  resolution: "react-i18next@npm:17.0.17"
+"react-i18next@npm:^17.1.0":
+  version: 17.1.0
+  resolution: "react-i18next@npm:17.1.0"
   dependencies:
     "@babel/runtime": "npm:^7.29.7"
     html-parse-stringify: "npm:^4.0.1"
@@ -8301,7 +8301,7 @@ __metadata:
       optional: true
     typescript:
       optional: true
-  checksum: 10c0/aa21d08b52fa7d47dd020b528c1e25ddafa3c3d04e7f8fbc79f8856c946dcb71d1d8466aaea7ab2845682b03193f0fbe1b09366064478c3aadda28c49eda6720
+  checksum: 10c0/5ba9de18304f8fc20511de9f64f2a71594cb607c55b06692463867721f256770ae71489639bd96554bc556b5b310d495cff526ebbbaac091f9bae0ca8f547f24
   languageName: node
   linkType: hard
 
@@ -8359,16 +8359,16 @@ __metadata:
   languageName: node
   linkType: hard
 
-"react-native-gesture-handler@npm:^3.3.0":
-  version: 3.3.0
-  resolution: "react-native-gesture-handler@npm:3.3.0"
+"react-native-gesture-handler@npm:^3.4.0":
+  version: 3.4.0
+  resolution: "react-native-gesture-handler@npm:3.4.0"
   dependencies:
     "@types/react-test-renderer": "npm:^19.1.0"
     invariant: "npm:^2.2.4"
   peerDependencies:
     react: "*"
     react-native: "*"
-  checksum: 10c0/6a710722f59eca293e2ff30852cbaf8fb4705712068c9ebb4d1d9d737cda61f175b2b0b452c9fab322d9e14efae3b6d0ab7c884439125b7f5cfb57934f7a65f8
+  checksum: 10c0/49fac726e4716347dcbefa7573272d2ec75f8a48eb0721f4fbd71386c10b3f630c339c664a521684425cf03c1b96b7245dd3df93f5262e426bb7a3517e58e8ee
   languageName: node
   linkType: hard
 
@@ -8478,16 +8478,16 @@ __metadata:
   languageName: node
   linkType: hard
 
-"react-native-svg@npm:^15.15.5":
-  version: 15.15.5
-  resolution: "react-native-svg@npm:15.15.5"
+"react-native-svg@npm:^15.16.0":
+  version: 15.16.0
+  resolution: "react-native-svg@npm:15.16.0"
   dependencies:
     css-select: "npm:^5.1.0"
     css-tree: "npm:^1.1.3"
   peerDependencies:
     react: "*"
     react-native: "*"
-  checksum: 10c0/34b71b6c83d7235efbc4263abaffcbad780375f9e0fca95786e4f1a543a2b6d07e90c7df426f708e85be68331c412066cdc639f4a6ce82bed42bc728050d9402
+  checksum: 10c0/8196b9f9fae75643a58c61c3411a2121d65d33c9ddd447f9cf2cba8e7131e45b621e34950b3e1918788ee4137ee034e7ae59f960cb85e79561b180d9bfb31539
   languageName: node
   linkType: hard
 
@@ -9065,7 +9065,7 @@ __metadata:
     "@react-native-community/cli-platform-android": "npm:^20.2.0"
     "@react-native-community/cli-platform-ios": "npm:^20.2.0"
     "@react-native-community/hooks": "npm:^100.1.0"
-    "@react-native-documents/picker": "npm:^12.0.2"
+    "@react-native-documents/picker": "npm:^12.0.3"
     "@react-native-vector-icons/material-design-icons": "npm:^13.1.5"
     "@react-native-vector-icons/material-icons": "npm:^13.1.5"
     "@react-native/babel-preset": "npm:^0.86.3"
@@ -9093,7 +9093,7 @@ __metadata:
     date-fns: "npm:^4.4.0"
     eslint: "npm:^8.57.1"
     eslint-plugin-de-morgan: "npm:^1.3.1"
-    i18next: "npm:^26.4.5"
+    i18next: "npm:^26.5.2"
     intl-pluralrules: "npm:^2.0.1"
     knip: "npm:^5.88.1"
     mobx: "npm:^6.16.1"
@@ -9102,11 +9102,11 @@ __metadata:
     react: "npm:19.2.3"
     react-dom: "npm:19.2.3"
     react-error-boundary: "npm:^6.1.6"
-    react-i18next: "npm:^17.0.17"
+    react-i18next: "npm:^17.1.0"
     react-native: "npm:^0.86.3"
     react-native-device-info: "patch:react-native-device-info@npm%3A15.0.2#~/.yarn/patches/react-native-device-info-npm-15.0.2-3917c98f43.patch"
     react-native-drawer-layout: "npm:^4.2.12"
-    react-native-gesture-handler: "npm:^3.3.0"
+    react-native-gesture-handler: "npm:^3.4.0"
     react-native-get-random-values: "npm:^2.0.0"
     react-native-keyboard-controller: "npm:^1.22.7"
     react-native-mmkv: "npm:^4.3.2"
@@ -9114,7 +9114,7 @@ __metadata:
     react-native-reanimated: "npm:^4.7.1"
     react-native-reanimated-image-viewer: "npm:^1.0.2"
     react-native-safe-area-context: "npm:^5.10.1"
-    react-native-svg: "npm:^15.15.5"
+    react-native-svg: "npm:^15.16.0"
     react-native-svg-transformer: "npm:^1.5.3"
     react-native-unistyles: "npm:3.4.0"
     react-native-web: "npm:^0.19.13"
