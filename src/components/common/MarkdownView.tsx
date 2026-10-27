@@ -104,6 +104,9 @@ const defaultStyles = StyleSheet.create(currentTheme => ({
     paddingHorizontal: commonValues.sizes.xs,
     borderRadius: commonValues.sizes.small,
   },
+  code_inline_container_list: {
+    transform: [],
+  },
   fence: {
     fontFamily: 'JetBrains Mono',
     backgroundColor: currentTheme.backgroundSecondary,
@@ -235,7 +238,7 @@ const spoilerRule = {
     }
 
     return (
-      <Text key={node.key} style={{...inheritedStyles, ...styles.text}}>
+      <Text key={node.key} style={[inheritedStyles, styles.text]}>
         {renderEmoji(node.content)}
       </Text>
     );
@@ -261,11 +264,11 @@ const spoilerRule = {
     return (
       <View
         key={node.key}
-        style={{
-          ...styles.code_inline_container,
-          ...(isInList && {transform: []}),
-        }}>
-        <Text style={{...inheritedStyles, ...styles.code_inline}}>
+        style={[
+          styles.code_inline_container,
+          isInList && styles.code_inline_container_list,
+        ]}>
+        <Text style={[inheritedStyles, styles.code_inline]}>
           {node.content}
         </Text>
       </View>
