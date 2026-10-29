@@ -1,7 +1,28 @@
 import {StyleSheet, type UnistylesThemes} from 'react-native-unistyles';
 
 import {settings} from '@clerotri/lib/settings';
-import {themes} from '@clerotri/lib/themes';
+import {
+  getCustomThemeCollection,
+  getCustomThemeColours,
+  themes,
+} from '@clerotri/lib/themes';
+
+let finalThemes = {...themes};
+
+try {
+  const themeCollection = getCustomThemeCollection();
+
+  const entries = Object.entries(themeCollection);
+
+  if (entries.length) {
+    for (const [key, theme] of entries) {
+      const finalThemeColours = getCustomThemeColours(theme);
+      finalThemes[`custom-${key}`] = finalThemeColours;
+    }
+  }
+} catch {
+  finalThemes = themes;
+}
 
 StyleSheet.configure({
   settings: {
@@ -14,5 +35,5 @@ StyleSheet.configure({
         : 'Dark';
     },
   },
-  themes: themes,
+  themes: finalThemes,
 });

@@ -469,7 +469,10 @@
                 "title": "Appearance",
                 "themes": {
                     "title": "App theme",
-                    "body": "Select a theme or make your own"
+                    "body": "Select a theme or make your own",
+                    "built_in": "Built-in theme",
+                    "custom": "Custom theme",
+                    "no_name": "Could not load name"
                 }
             },
             "bots": {

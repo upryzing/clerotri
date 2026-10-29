@@ -75,6 +75,14 @@ export type Theme = {
   error: string;
 };
 
+export type CustomTheme = {
+  name: string;
+  base: keyof typeof themes;
+  data: Partial<Theme>;
+};
+
+export type CustomThemeCollection = Record<string, CustomTheme>;
+
 export const themes: Record<string, Theme> = {
   Light: {
     ...commonColours,

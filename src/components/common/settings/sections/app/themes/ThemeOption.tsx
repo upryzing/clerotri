@@ -1,16 +1,15 @@
 import {Pressable, View} from 'react-native';
-import {StyleSheet} from 'react-native-unistyles';
+import {ScopedTheme, StyleSheet} from 'react-native-unistyles';
 
-import {commonValues, type Theme} from '@clerotri/lib/themes';
+import {ActiveIndicator} from './ActiveIndicator';
+import {commonValues} from '@clerotri/lib/themes';
 
 export const ThemeOption = ({
   name,
-  data,
   currentThemeName,
   onPress,
 }: {
   name: string;
-  data: Theme;
   currentThemeName: string;
   onPress: () => void;
 }) => {
@@ -18,54 +17,40 @@ export const ThemeOption = ({
     <Pressable
       style={{alignItems: 'center', gap: commonValues.sizes.medium}}
       onPress={() => onPress()}>
-      <View
-        style={{
-          height: 80,
-          width: 60,
-          borderRadius: commonValues.sizes.medium,
-          backgroundColor: data.background,
-        }}>
-        <View
-          style={{
-            alignItems: 'center',
-            gap: commonValues.sizes.small,
-            padding: commonValues.sizes.medium,
-          }}>
-          <View
-            style={{
-              height: 10,
-              width: 44,
-              borderRadius: commonValues.sizes.small,
-              backgroundColor: data.foregroundPrimary,
-            }}
-          />
-          <View
-            style={{
-              height: 10,
-              width: 44,
-              borderRadius: commonValues.sizes.small,
-              backgroundColor: data.foregroundSecondary,
-            }}
-          />
+      <ScopedTheme name={name}>
+        <View style={localStyles.background}>
+          <View style={localStyles.linesContainer}>
+            <View
+              style={[localStyles.line, localStyles.lineForegroundPrimary]}
+            />
+            <View
+              style={[localStyles.line, localStyles.lineForegroundSecondary]}
+            />
+          </View>
         </View>
-      </View>
-      <View
-        style={[
-          localStyles.currentThemeIndicator,
-          currentThemeName === name && localStyles.currentThemeIndicatorActive,
-        ]}
-      />
+      </ScopedTheme>
+      <ActiveIndicator active={currentThemeName === name} />
     </Pressable>
   );
 };
 
 const localStyles = StyleSheet.create(currentTheme => ({
-  currentThemeIndicator: {
-    width: 40,
-    height: 6,
+  background: {
+    height: 80,
+    width: 60,
     borderRadius: commonValues.sizes.medium,
+    backgroundColor: currentTheme.background,
   },
-  currentThemeIndicatorActive: {
+  linesContainer: {
+    alignItems: 'center',
+    gap: commonValues.sizes.small,
+    padding: commonValues.sizes.medium,
+  },
+  line: {height: 10, width: 44, borderRadius: commonValues.sizes.small},
+  lineForegroundPrimary: {
     backgroundColor: currentTheme.foregroundPrimary,
+  },
+  lineForegroundSecondary: {
+    backgroundColor: currentTheme.foregroundSecondary,
   },
 }));
