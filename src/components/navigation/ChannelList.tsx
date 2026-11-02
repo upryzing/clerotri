@@ -340,6 +340,7 @@ const UserChannelList = observer(() => {
         data={channels}
         contentContainerStyle={{
           paddingBottom: Platform.OS === 'web' ? 0 : commonValues.sizes.medium,
+          gap: commonValues.sizes.xs
         }}
         renderItem={renderItem}
         showsVerticalScrollIndicator={false}

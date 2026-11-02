@@ -79,12 +79,11 @@ function finalSort(users: User[]) {
 const UserButton = observer(({user}: {user: User}) => {
   return (
     <Button
-      style={{justifyContent: 'flex-start'}}
+      disableDeprecatedMargin
+      style={{justifyContent: 'flex-start', marginBottom: commonValues.sizes.medium,paddingBlock:commonValues.sizes.xl, paddingInline: commonValues.sizes.large}}
       key={user._id}
       onPress={() => app.openProfile(user)}>
-      <View style={{maxWidth: '90%'}}>
         <MiniProfile user={user} scale={1.15} />
-      </View>
     </Button>
   );
 });
@@ -152,10 +151,10 @@ export const FriendsPage = observer(() => {
     section: {title: string; data: User[]};
   }) => {
     if (data.length > 0) {
-      return <></>;
+      return null;
     }
     return (
-      <Text style={{marginInline: 10}}>
+      <Text>
         {t(`app.friends_list.${title}_empty`)}
       </Text>
     );
@@ -186,18 +185,17 @@ export const FriendsPage = observer(() => {
   );
 });
 
-const localStyles = StyleSheet.create((currentTheme, rt) => ({
+const localStyles = StyleSheet.create((_, rt) => ({
   listContainer: {
+    paddingInline: commonValues.sizes.large,
     paddingBottom: rt.insets.bottom + commonValues.sizes.small,
   },
   sectionHeaderContainer: {
-    backgroundColor: currentTheme.backgroundPrimary,
   },
   sectionHeaderText: {
     fontWeight: 'bold',
-    margin: 5,
-    marginLeft: 10,
-    marginTop: 10,
+    marginTop: commonValues.sizes.large,
+    marginBottom: commonValues.sizes.medium,
     textTransform: 'uppercase',
   },
 }));

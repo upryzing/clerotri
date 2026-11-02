@@ -101,6 +101,7 @@ export const Avatar = observer(
       );
     }
     if (channel) {
+      // TODO: return `null` if this is nothing - needs testing (outside MiniProfile)
       return (
         <View>
           {channel?.generateIconURL() ? (

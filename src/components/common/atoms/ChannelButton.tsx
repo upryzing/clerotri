@@ -62,7 +62,6 @@ export const ChannelButton = observer(
             style={{
               flexDirection: 'row',
               alignItems: 'center',
-              maxWidth: '80%',
             }}>
             <MiniProfile user={channel.recipient} colour={colour} />
           </View>
@@ -109,6 +108,7 @@ const localStyles = StyleSheet.create(currentTheme => ({
     paddingInline: commonValues.sizes.small,
     flexDirection: 'row',
     alignItems: 'center',
+    overflow: 'hidden',
   },
   channelButtonPressed: {
     backgroundColor: currentTheme.hover,
