@@ -443,7 +443,10 @@
                 "title": "Penampilan",
                 "themes": {
                     "title": "Tema aplikasi",
-                    "body": "Pilih tema atau buat tema sendiri"
+                    "body": "Pilih tema atau buat tema sendiri",
+                    "built_in": "Tema bawaan",
+                    "custom": "Tema khusus",
+                    "no_name": "Tidak dapat memuat nama"
                 }
             },
             "bots": {
