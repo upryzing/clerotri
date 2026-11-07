@@ -4,9 +4,12 @@ import {StyleSheet} from 'react-native-unistyles';
 import {useTranslation} from 'react-i18next';
 import {observer} from 'mobx-react-lite';
 
+import Clipboard from '@react-native-clipboard/clipboard';
+
 import type {API, Server, User} from 'revolt.js';
 
 import {app} from '@clerotri/Generic';
+import {styles} from '@clerotri/Theme';
 import {settings} from '@clerotri/lib/settings';
 import {client} from '@clerotri/lib/client';
 import {
@@ -216,9 +219,41 @@ const ProfileUsernames = observer(
           </View>
         )}
         {user.status?.text ? (
-          <Text style={{marginBlockStart: commonValues.sizes.medium}}>
-            {user.status?.text}
-          </Text>
+          <View style={localStyles.statusContainer}>
+            <Text>{user.status.text}</Text>
+            <View style={localStyles.statusActions}>
+              <Pressable
+                style={{
+                  width: 20,
+                  height: 20,
+                  alignItems: 'center',
+                  justifyContent: 'center',
+                }}
+                onPress={() => {
+                  Clipboard.setString(user.status?.text ?? '');
+                }}>
+                <View style={styles.iconContainer}>
+                  <MaterialIcon name="content-copy" size={20} />
+                </View>
+              </Pressable>
+              {user._id === client.user?._id && (
+                <Pressable
+                  style={{
+                    width: 20,
+                    height: 20,
+                    alignItems: 'center',
+                    justifyContent: 'center',
+                  }}
+                  onPress={() => {
+                    app.openStatusMenu(true);
+                  }}>
+                  <View style={styles.iconContainer}>
+                    <MaterialIcon name="edit" size={20} />
+                  </View>
+                </Pressable>
+              )}
+            </View>
+          </View>
         ) : null}
       </View>
     );
@@ -697,6 +732,18 @@ const localStyles = StyleSheet.create(currentTheme => ({
   button: {
     backgroundColor: currentTheme.backgroundPrimary,
     margin: 0,
+  },
+  statusContainer: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    backgroundColor: currentTheme.background,
+    marginBlockStart: commonValues.sizes.medium,
+    padding: commonValues.sizes.medium,
+    borderRadius: commonValues.sizes.medium,
+  },
+  statusActions: {
+    flexDirection: 'row',
+    gap: commonValues.sizes.medium,
   },
   profileTabsContainer: {
     gap: commonValues.sizes.small,
