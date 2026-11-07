@@ -32,7 +32,7 @@ export const ChannelIcon = ({
     />
   ) : channel.channel_type === 'DirectMessage' ? (
     <MaterialCommunityIcon name="at" size={24} color={color} />
-  ) : channel.channel_type === 'VoiceChannel' ? (
+  ) : channel.voice ? (
     <MaterialIcon name="volume-up" size={24} color={color} />
   ) : (
     <MaterialIcon name="tag" size={24} color={color} />

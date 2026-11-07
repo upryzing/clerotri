@@ -97,6 +97,7 @@ export const SystemMessage = observer(
         case 'channel_ownership_changed':
           userID = message.system.from;
           break;
+        case 'call_started':
         case 'channel_description_changed':
         case 'channel_icon_changed':
         case 'channel_renamed':
@@ -165,7 +166,18 @@ export const SystemMessage = observer(
               <Text> pinned a message</Text>
             ) : message.system.type === 'message_unpinned' ? (
               <Text> unpinned a message</Text>
-            ) : null}
+            ) : message.system.type === 'call_started' ? (
+              <Text> started a call</Text>
+            ) : (
+              <Text>
+                 <Text style={{fontWeight: 'bold'}}> caused system message</Text>
+                 {/* if a new type has been added and needs handling, this directive  will itself throw an error;
+                     otherwise, an unrecgonised system message type has been sent. therefore:
+                     @ts-expect-error */
+                 message.system.type ?? `${message.system}`
+                 }
+               </Text>
+            )}
           </>
         )}
       </View>

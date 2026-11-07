@@ -5219,7 +5219,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"eventemitter3@npm:^5.0.1":
+"eventemitter3@npm:^5.0.4":
   version: 5.0.4
   resolution: "eventemitter3@npm:5.0.4"
   checksum: 10c0/575b8cac8d709e1473da46f8f15ef311b57ff7609445a7c71af5cd42598583eee6f098fa7a593e30f27e94b8865642baa0689e8fa97c016f742abdb3b1bf6d9a
@@ -6550,6 +6550,13 @@ __metadata:
   version: 1.0.1
   resolution: "json-stable-stringify-without-jsonify@npm:1.0.1"
   checksum: 10c0/cb168b61fd4de83e58d09aaa6425ef71001bae30d260e2c57e7d09a5fd82223e2f22a042dedaab8db23b7d9ae46854b08bb1f91675a8be11c5cffebef5fb66a5
+  languageName: node
+  linkType: hard
+
+"json-with-bigint@npm:^3.4.4":
+  version: 3.5.12
+  resolution: "json-with-bigint@npm:3.5.12"
+  checksum: 10c0/3c205a445ee946bbe2409fb3e1840617eb0bac9086934ed55fefbd584c8d5bfd288bdc9a44acc8e5ca4d1ccf83b5c2ebd63add5ef4b5ca656ef4f968bf832e79
   languageName: node
   linkType: hard
 
@@ -8860,25 +8867,18 @@ __metadata:
   languageName: node
   linkType: hard
 
-"revolt-api@npm:0.8.8":
-  version: 0.8.8
-  resolution: "revolt-api@npm:0.8.8"
-  checksum: 10c0/853b970a1811a2281cc3c2598270917acd1f14482a406a8ef2e4ecc86e0c0970abfb21b0502705ae7d388765ec6e3cc8fa63366a305897cad3de14c1b6519ab6
-  languageName: node
-  linkType: hard
-
-"revolt.js@npm:@rexovolt/revolt.js@^6.8.0":
-  version: 6.8.0
-  resolution: "@rexovolt/revolt.js@npm:6.8.0"
+"revolt.js@npm:@rexovolt/revolt.js@^6.9.0":
+  version: 6.9.0
+  resolution: "@rexovolt/revolt.js@npm:6.9.0"
   dependencies:
     "@insertish/exponential-backoff": "npm:3.1.0-patch.2"
-    eventemitter3: "npm:^5.0.1"
+    eventemitter3: "npm:^5.0.4"
     lodash.defaultsdeep: "npm:^4.6.1"
     lodash.isequal: "npm:^4.5.0"
     mobx: "npm:^6.13.7"
-    revolt-api: "npm:0.8.8"
+    stoat-api: "npm:^0.14.3"
     ulid: "npm:^2.4.0"
-  checksum: 10c0/6ed857a69c8691d4bf0ca9b90079df3928e8d6a7d2dc470ce67a93e2742687408c8ed0618ff84cd447fbdecb97b22271d821c3fe5d3208859f36d030c30e1f27
+  checksum: 10c0/3e4ded2112f57a00721eb708c8800d4a4c3879e2aa51f3edabd9f999b8be634e2b2f486fe1560bb14135562e00e4a450eeef04a64b0bf46894ef7f84dd9f722b
   languageName: node
   linkType: hard
 
@@ -9120,7 +9120,7 @@ __metadata:
     react-native-worklets: "npm:^0.13.1"
     react-test-renderer: "npm:19.2.3"
     reanimated-color-picker: "npm:^5.1.3"
-    revolt.js: "npm:@rexovolt/revolt.js@^6.8.0"
+    revolt.js: "npm:@rexovolt/revolt.js@^6.9.0"
     typescript: "npm:^5.9.3"
     vite: "npm:^7.3.7"
     vite-plugin-react-native-web: "npm:^2.7.1"
@@ -9531,6 +9531,15 @@ __metadata:
   version: 4.1.0
   resolution: "std-env@npm:4.1.0"
   checksum: 10c0/2e14b6b490db34cb969a48d9cf7c35bca4a47653914aac2814221baae7b867a5b15940d133625c391621971f98cd2266a5dc7036669960e883f1081db2a56558
+  languageName: node
+  linkType: hard
+
+"stoat-api@npm:^0.14.3":
+  version: 0.14.3
+  resolution: "stoat-api@npm:0.14.3"
+  dependencies:
+    json-with-bigint: "npm:^3.4.4"
+  checksum: 10c0/ef4556e31be4e5a16d030edb7a03c4b4497c0eae322896a30cdf6d8b8314f01550e47ecf6f825c4bfd533373e04fe328f7c8d54b4b16892ed6fdb3cc395c7de9
   languageName: node
   linkType: hard
 

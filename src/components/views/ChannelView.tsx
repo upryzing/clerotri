@@ -94,7 +94,7 @@ const RegularChannelView = observer(({channel}: {channel: Channel}) => {
               ? 'Saved Notes'
               : (channel.name ?? '')
         }>
-        {channel.channel_type !== 'VoiceChannel' ? (
+        {channel.voice ? (
           <View style={{marginStart: 16}}>
             <TouchableOpacity
               onPress={() => app.openPinnedMessagesMenu(channel)}>
@@ -120,7 +120,7 @@ const RegularChannelView = observer(({channel}: {channel: Channel}) => {
           </View>
         ) : null}
       </ChannelHeader>
-      {channel?.channel_type === 'VoiceChannel' ? (
+      {channel?.voice ? (
         <VoiceChannel />
       ) : !channel?.nsfw || showNSFW ? (
         <ErrorBoundary FallbackComponent={MessageViewErrorMessage}>
