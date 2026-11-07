@@ -80,10 +80,15 @@ const UserButton = observer(({user}: {user: User}) => {
   return (
     <Button
       disableDeprecatedMargin
-      style={{justifyContent: 'flex-start', marginBottom: commonValues.sizes.medium,paddingBlock:commonValues.sizes.xl, paddingInline: commonValues.sizes.large}}
+      style={{
+        justifyContent: 'flex-start',
+        marginBottom: commonValues.sizes.medium,
+        paddingBlock: commonValues.sizes.xl,
+        paddingInline: commonValues.sizes.large,
+      }}
       key={user._id}
       onPress={() => app.openProfile(user)}>
-        <MiniProfile user={user} scale={1.15} />
+      <MiniProfile user={user} scale={1.15} />
     </Button>
   );
 });
@@ -153,11 +158,7 @@ export const FriendsPage = observer(() => {
     if (data.length > 0) {
       return null;
     }
-    return (
-      <Text>
-        {t(`app.friends_list.${title}_empty`)}
-      </Text>
-    );
+    return <Text>{t(`app.friends_list.${title}_empty`)}</Text>;
   };
 
   const keyExtractor = (item: User) => {
@@ -190,8 +191,7 @@ const localStyles = StyleSheet.create((_, rt) => ({
     paddingInline: commonValues.sizes.large,
     paddingBottom: rt.insets.bottom + commonValues.sizes.small,
   },
-  sectionHeaderContainer: {
-  },
+  sectionHeaderContainer: {},
   sectionHeaderText: {
     fontWeight: 'bold',
     marginTop: commonValues.sizes.large,

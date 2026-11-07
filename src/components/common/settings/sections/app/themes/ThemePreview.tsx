@@ -32,13 +32,18 @@ export const ThemePreview = ({previewedTheme}: {previewedTheme: string}) => {
         </View>
         <ScopedTheme reset>
           <View style={{alignItems: 'center'}}>
-            <Text useNewText style={{fontWeight: 'bold', fontSize: 16, textAlign: 'center'}}>
+            <Text
+              useNewText
+              style={{fontWeight: 'bold', fontSize: 16, textAlign: 'center'}}>
               {isCustomTheme
                 ? (customTheme?.name ??
                   t('app.settings_menu.appearance.themes.no_name'))
                 : t(`app.themes.${previewedTheme}`)}
             </Text>
-            <Text useNewText colour={'foregroundSecondary'} style={{textAlign: 'center'}}>
+            <Text
+              useNewText
+              colour={'foregroundSecondary'}
+              style={{textAlign: 'center'}}>
               {t(
                 `app.settings_menu.appearance.themes.${isCustomTheme ? 'custom' : 'built_in'}`,
               )}
