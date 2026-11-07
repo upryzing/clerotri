@@ -37,25 +37,29 @@ export const ProfileSettingsSection = observer(() => {
                 ? 'foregroundPrimary'
                 : 'foregroundSecondary'
             }>
-            {client.user?.display_name ?? 'No display name set'}
+            {client.user?.display_name ??
+              t('app.settings_menu.profile.no_display_name')}
           </Text>
         </View>
-        <Pressable
-          style={{
-            width: 30,
-            height: 20,
-            alignItems: 'center',
-            justifyContent: 'center',
-          }}
-          onPress={() => {
-            Clipboard.setString(
-              client.user?.display_name ?? 'No display name set',
-            );
-          }}>
-          <View style={styles.iconContainer}>
-            <MaterialIcon name="content-copy" size={20} />
-          </View>
-        </Pressable>
+        {client.user?.display_name && (
+          <Pressable
+            style={{
+              width: 30,
+              height: 20,
+              alignItems: 'center',
+              justifyContent: 'center',
+            }}
+            onPress={() => {
+              Clipboard.setString(
+                client.user?.display_name ??
+                  t('app.settings_menu.profile.no_display_name'),
+              );
+            }}>
+            <View style={styles.iconContainer}>
+              <MaterialIcon name="content-copy" size={20} />
+            </View>
+          </Pressable>
+        )}
         <Pressable
           style={{
             width: 30,
@@ -69,6 +73,65 @@ export const ProfileSettingsSection = observer(() => {
               id: 'display_name',
               callback: newName => {
                 client.api.patch('/users/@me', {display_name: newName});
+              },
+            });
+          }}>
+          <View style={styles.iconContainer}>
+            <MaterialIcon name="edit" size={20} />
+          </View>
+        </Pressable>
+      </SettingsEntry>
+      <SettingsEntry
+        key={'pronouns-settings'}
+        style={{marginBlockStart: commonValues.sizes.medium}}>
+        <View style={{flex: 1}}>
+          <Text key={'display-name-label'} style={{fontWeight: 'bold'}}>
+            {t('app.settings_menu.profile.pronouns')}
+          </Text>
+          <Text
+            useNewText
+            key={'display-name'}
+            colour={
+              client.user?.pronouns
+                ? 'foregroundPrimary'
+                : 'foregroundSecondary'
+            }>
+            {client.user?.pronouns ??
+              t('app.settings_menu.profile.no_pronouns')}
+          </Text>
+        </View>
+        {client.user?.pronouns && (
+          <Pressable
+            style={{
+              width: 30,
+              height: 20,
+              alignItems: 'center',
+              justifyContent: 'center',
+            }}
+            onPress={() => {
+              Clipboard.setString(
+                client.user?.pronouns ??
+                  t('app.settings_menu.profile.no_pronouns'),
+              );
+            }}>
+            <View style={styles.iconContainer}>
+              <MaterialIcon name="content-copy" size={20} />
+            </View>
+          </Pressable>
+        )}
+        <Pressable
+          style={{
+            width: 30,
+            height: 20,
+            alignItems: 'center',
+            justifyContent: 'center',
+          }}
+          onPress={() => {
+            app.openTextEditModal({
+              initialString: client.user?.pronouns ?? '',
+              id: 'pronouns',
+              callback: newPronouns => {
+                client.api.patch('/users/@me', {pronouns: newPronouns});
               },
             });
           }}>

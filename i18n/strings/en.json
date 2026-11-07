@@ -201,6 +201,8 @@
                 "nickname_placeholder": "Nickname (leave blank to reset)",
                 "nickname_other_header": "Set member nickname",
                 "nickname_other_placeholder": "Nickname (leave blank to reset)",
+                "pronouns_header": "Set pronouns",
+                "pronouns_placeholder": "Pronouns",
                 "role_colour_header": "Set role colour",
                 "role_colour_placeholder": "Role colour",
                 "session_name_header": "Set session name",
@@ -551,6 +553,9 @@
                 "failed_to_load_bio": "Failed to load bio",
                 "error_details": "Error details",
                 "display_name": "Display name",
+                "no_display_name": "No display name set",
+                "pronouns": "Pronouns",
+                "no_pronouns": "No pronouns set",
                 "status": "Status",
                 "status_body": "Set your status type and text"
             },

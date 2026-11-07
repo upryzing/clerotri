@@ -1,4 +1,4 @@
-import {useContext, useEffect, useState} from 'react';
+import {useContext, useEffect, useMemo, useState} from 'react';
 import {Pressable, ScrollView, TouchableOpacity, View} from 'react-native';
 import {StyleSheet} from 'react-native-unistyles';
 import {useTranslation} from 'react-i18next';
@@ -137,33 +137,55 @@ const ProfileUsernames = observer(
   ({user, server}: {user: User; server: Server | null}) => {
     const {currentTheme} = useContext(ThemeContext);
 
+    const memberObject = server
+      ? client.members.getKey({
+          server: server?._id,
+          user: user._id,
+        })
+      : null;
+
+    const showSecondAvatar = useMemo(
+      () =>
+        memberObject?.avatar?._id !== user.avatar?._id &&
+        memberObject?.avatar?._id !== undefined,
+      [memberObject, user],
+    );
+
     return (
       <View
         style={{
-          marginBlock: commonValues.sizes.medium,
+          marginBlock: commonValues.sizes.large,
         }}>
-        <Username user={user} server={server ?? undefined} size={24} />
+        <Username
+          user={user}
+          server={server ?? undefined}
+          size={24}
+          useNewStructure
+        />
         {!server ? (
-          <Username
-            user={user}
-            server={server ?? undefined}
-            size={16}
-            color={currentTheme.foregroundSecondary}
-            skipDisplayName
-          />
+          <View style={{flexDirection: 'row'}}>
+            <Username
+              user={user}
+              server={server ?? undefined}
+              size={16}
+              color={currentTheme.foregroundSecondary}
+              skipDisplayName
+              useNewStructure
+            />
+            {user.pronouns && (
+              <Text useNewText colour={'foregroundSecondary'}>
+                {' '}
+                • {user.pronouns}
+              </Text>
+            )}
+          </View>
         ) : (
           <View
             style={{
               flexDirection: 'row',
+              marginBlockStart: showSecondAvatar ? commonValues.sizes.small : 0,
             }}>
-            {client.members.getKey({
-              server: server?._id,
-              user: user._id,
-            })?.avatar?._id !== user.avatar?._id &&
-            client.members.getKey({
-              server: server?._id,
-              user: user._id,
-            })?.avatar?._id !== undefined ? (
+            {showSecondAvatar ? (
               <View
                 style={{
                   alignSelf: 'center',
@@ -173,18 +195,31 @@ const ProfileUsernames = observer(
               </View>
             ) : null}
             <View style={{flexDirection: 'column'}}>
-              <Username user={user} size={18} noBadge />
-              <Username
-                user={user}
-                size={16}
-                color={currentTheme.foregroundSecondary}
-                noBadge
-                skipDisplayName
-              />
+              <Username useNewStructure user={user} size={18} noBadge />
+              <View style={{flexDirection: 'row'}}>
+                <Username
+                  user={user}
+                  size={16}
+                  color={currentTheme.foregroundSecondary}
+                  noBadge
+                  skipDisplayName
+                  useNewStructure
+                />
+                {user.pronouns && (
+                  <Text useNewText colour={'foregroundSecondary'}>
+                    {' '}
+                    • {user.pronouns}
+                  </Text>
+                )}
+              </View>
             </View>
           </View>
         )}
-        {user.status?.text ? <Text>{user.status?.text}</Text> : null}
+        {user.status?.text ? (
+          <Text style={{marginBlockStart: commonValues.sizes.medium}}>
+            {user.status?.text}
+          </Text>
+        ) : null}
       </View>
     );
   },
