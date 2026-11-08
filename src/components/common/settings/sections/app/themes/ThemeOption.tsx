@@ -26,6 +26,7 @@ export const ThemeOption = ({
             <View
               style={[localStyles.line, localStyles.lineForegroundSecondary]}
             />
+            <View style={[localStyles.line, localStyles.lineAccent]} />
           </View>
         </View>
       </ScopedTheme>
@@ -45,12 +46,21 @@ const localStyles = StyleSheet.create(currentTheme => ({
     alignItems: 'center',
     gap: commonValues.sizes.small,
     padding: commonValues.sizes.medium,
+    flex: 1,
   },
-  line: {height: 10, width: 44, borderRadius: commonValues.sizes.small},
+  line: {
+    height: 10,
+    width: 44,
+    borderRadius: commonValues.sizes.small,
+  },
   lineForegroundPrimary: {
     backgroundColor: currentTheme.foregroundPrimary,
   },
   lineForegroundSecondary: {
     backgroundColor: currentTheme.foregroundSecondary,
+  },
+  lineAccent: {
+    backgroundColor: currentTheme.accentColor,
+    marginBlockStart: 'auto',
   },
 }));

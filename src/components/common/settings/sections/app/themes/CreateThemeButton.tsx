@@ -1,12 +1,26 @@
 import {Pressable, View} from 'react-native';
 import {StyleSheet} from 'react-native-unistyles';
 
-import {MaterialIcon} from '@clerotri/components/common/icons';
-import {commonValues} from '@clerotri/lib/themes';
+import {ulid} from 'ulid';
 
-export const CreateThemeButton = ({onPress}: {onPress: () => void}) => {
+import {app} from '@clerotri/Generic';
+import {MaterialIcon} from '@clerotri/components/common/icons';
+import {commonValues, themes} from '@clerotri/lib/themes';
+import {useStringSetting} from '@clerotri/lib/settings';
+
+export const CreateThemeButton = () => {
+  const [currentTheme] = useStringSetting('ui.theme');
+
   return (
-    <Pressable style={{alignItems: 'center'}} onPress={() => onPress()}>
+    <Pressable
+      style={{alignItems: 'center'}}
+      onPress={() =>
+        app.openThemeEditor({
+          themeID: ulid(),
+          initialColours: themes[currentTheme],
+          isNew: true,
+        })
+      }>
       <View style={localStyles.background}>
         <MaterialIcon name={'add'} size={40} color={'foregroundSecondary'} />
       </View>

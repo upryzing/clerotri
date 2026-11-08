@@ -32,7 +32,7 @@ export const ThemesSettingsSection = observer(() => {
           horizontal
           contentContainerStyle={{gap: commonValues.sizes.medium}}
           showsHorizontalScrollIndicator={false}>
-          <CreateThemeButton onPress={() => {}} />
+          <CreateThemeButton />
           {Object.entries(customThemes).map(([id]) => {
             return (
               <ThemeOption

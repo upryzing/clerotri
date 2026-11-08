@@ -10,6 +10,7 @@ import type {
   ReportedObject,
   SettingsSection,
   TextEditingModalProps,
+  ThemeEditorProps,
   UserWithBlockAction,
 } from '@clerotri/lib/types';
 
@@ -223,6 +224,11 @@ export const app = {
   openBlockConfirmationModal: (user: UserWithBlockAction | null) => {
     console.log(
       `[FUNCTIONS] Tried to run uninitialised function openBlockConfirmationModal (args: ${user})`,
+    );
+  },
+  openThemeEditor: (props: ThemeEditorProps | null) => {
+    console.log(
+      `[FUNCTIONS] Tried to run uninitialised function openThemeEditor (args: ${props})`,
     );
   },
 };

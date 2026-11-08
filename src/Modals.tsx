@@ -15,6 +15,7 @@ import type {
   ReportedObject,
   SettingsSection,
   TextEditingModalProps,
+  ThemeEditorProps,
   UserWithBlockAction,
 } from '@clerotri/lib/types';
 import {BottomSheet} from '@clerotri/components/common/BottomSheet';
@@ -45,6 +46,7 @@ import {
   ServerSettingsSheet,
   SettingsSheet,
   StatusSheet,
+  ThemeEditorSheet,
 } from '@clerotri/components/sheets';
 import {useBackHandler} from '@react-native-community/hooks';
 import {sleep} from './lib/utils';
@@ -280,6 +282,9 @@ const OtherModals = observer(() => {
     inviteServerCode: string;
   });
   const [inviteBot, setInviteBot] = useState(null as API.PublicBot | null);
+  const [themeEditorData, setThemeEditorData] = useState(
+    null as ThemeEditorProps | null,
+  );
 
   setFunction('openDirectMessage', (dm: Channel) => {
     app.openProfile(null);
@@ -319,6 +324,9 @@ const OtherModals = observer(() => {
   });
   setFunction('openBotInvite', async (id: string) => {
     setInviteBot(await client.bots.fetchPublic(id).catch(e => e));
+  });
+  setFunction('openThemeEditor', (props: ThemeEditorProps | null) => {
+    setThemeEditorData(props);
   });
 
   // clear intial settings sections when closing the sheets
@@ -395,6 +403,20 @@ const OtherModals = observer(() => {
             setInviteBot(null);
           }}
           bot={inviteBot!}
+        />
+      </Modal>
+      <Modal
+        visible={!!themeEditorData}
+        transparent={true}
+        animationType="slide"
+        statusBarTranslucent
+        navigationBarTranslucent
+        onRequestClose={() => setThemeEditorData(null)}>
+        <ThemeEditorSheet
+          setState={() => {
+            setThemeEditorData(null);
+          }}
+          data={themeEditorData!}
         />
       </Modal>
       <Modal

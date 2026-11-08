@@ -125,10 +125,15 @@ export type UserWithBlockAction = {
   callback: () => void;
 };
 
-export type ThemeColour = keyof Omit<
-  Theme,
-  'generalBorderWidth' | 'contentType'
->;
+export type ThemeEditorProps = {
+  themeID: string;
+  initialColours: ThemeColoursObject;
+  isNew?: boolean;
+};
+
+type ThemeColoursObject = Omit<Theme, 'generalBorderWidth' | 'contentType'>;
+
+export type ThemeColour = keyof ThemeColoursObject;
 
 export type ButtonProps = TouchableOpacityProps & {
   /**

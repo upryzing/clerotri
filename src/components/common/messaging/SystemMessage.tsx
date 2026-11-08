@@ -170,13 +170,14 @@ export const SystemMessage = observer(
               <Text> started a call</Text>
             ) : (
               <Text>
-                 <Text style={{fontWeight: 'bold'}}> caused system message</Text>
-                 {/* if a new type has been added and needs handling, this directive  will itself throw an error;
+                <Text style={{fontWeight: 'bold'}}> caused system message</Text>
+                {
+                  /* if a new type has been added and needs handling, this directive  will itself throw an error;
                      otherwise, an unrecgonised system message type has been sent. therefore:
                      @ts-expect-error */
-                 message.system.type ?? `${message.system}`
-                 }
-               </Text>
+                  message.system.type ?? `${message.system}`
+                }
+              </Text>
             )}
           </>
         )}
