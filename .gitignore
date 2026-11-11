@@ -87,4 +87,4 @@ assets/data/licenses.json
 src/lib/metadata.ts
 
 # Analytics server config
-external/analytics_server/.env
+external/analytics-server/.env
