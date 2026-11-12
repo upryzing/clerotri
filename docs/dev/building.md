@@ -143,7 +143,17 @@ cp .env.example .env
 nano .env
 ```
 
-Once you've filled out the `.env` file, install the dependencies:
+...and the same with `data/donors.example.json` (the list of donors for the badge list endpoint):
+
+```sh
+# copy the file...
+cp data/donors.example.json data/donors.json
+
+# ...then edit it as needed (again, choose whatever text editor works for you):
+nano data/donors.json
+```
+
+Once you've sorted out those two files, install the dependencies:
 
 ```sh
 deno install

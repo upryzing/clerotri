@@ -52,6 +52,10 @@ export default {
     create: sql('analytics/create.sql'),
     add: sql('analytics/add.sql'),
   },
+  badgeAnalytics: {
+    create: sql('badge-analytics/create.sql'),
+    add: sql('badge-analytics/add.sql'),
+  },
 };
 
 ///////////////////////////////////////////////////////////////////

@@ -7,8 +7,16 @@ import pg from 'pg-promise';
 import { ulid } from 'ulid';
 
 import sql from './sql/index.ts';
+import { knownInstances } from './data/knownInstances.ts';
 
 dotenv.config();
+
+import untypedDonorList from './data/donors.json' with { type: 'json' };
+
+const donorList = untypedDonorList as Record<
+  string,
+  BadgeListEntry
+>;
 
 const app = new App();
 const port = Number.parseInt(process.env.PORT ?? '3000', 10);
@@ -29,7 +37,12 @@ const init = () => {
   db.none(sql.analytics.create)
     .then(() => {})
     .catch((error) => {
-      console.error(`failed to initialize db: ${error}`);
+      console.error(`failed to initialize analytics db: ${error}`);
+    });
+  db.none(sql.badgeAnalytics.create)
+    .then(() => {})
+    .catch((error) => {
+      console.error(`failed to initialize badge analytics db: ${error}`);
     });
 };
 
@@ -111,7 +124,15 @@ app.post('/v1/submit', async (req, res, next) => {
   }
 });
 
-app.get('/v1/badges', async (req, res, next) => {
+type BadgeListEntry = {
+  bronze?: string[];
+  silver?: string[];
+  gold?: string[];
+  platinum?: string[];
+  diamond?: string[];
+};
+
+app.post('/v1/donors', async (req, res, next) => {
   try {
     const id = ulid();
     const data = req.body;
@@ -120,63 +141,58 @@ app.get('/v1/badges', async (req, res, next) => {
 
     // check for instance URL; if tier is xyz save some basic data; check from JSON object and if there's a match return it
 
-    // // check if the tier is included/valid
-    // if (!data.tier || !TIERS.includes(data.tier)) {
-    //   return res.status(400).send({
-    //     message: `Tier ${
-    //       data.tier ? `${data.tier} is invalid` : 'was missing'
-    //     }`,
-    //   });
-    // }
+    // check if the instance is included
+    if (!data.instance) {
+      return res.status(400).send({
+        message: 'No instance specified',
+      });
+    }
 
-    // // we know the tier is okay, so check the values
-    // const { tier, ...values } = data;
+    let analyticsTier = data.analyticsTier ?? 'none';
 
-    // if (Object.keys(values).length === 0) {
-    //   return res.status(400).send({
-    //     message: "There aren't any properties other than the tier",
-    //   });
-    // }
+    if (
+      analyticsTier !== 'none' && analyticsTier !== 'basic' &&
+      analyticsTier !== 'full'
+    ) {
+      analyticsTier = 'none';
+    }
 
-    // const propertySet = tier === 'basic' ? BASIC_PROPERTIES : FULL_PROPERTIES;
+    try {
+      await db.one(sql.badgeAnalytics.add, [
+        id,
+        analyticsTier,
+        ...(analyticsTier !== 'none'
+          ? [data.version, analyticsTier === 'full' ? data.instance : null]
+          : [null, null]),
+      ]);
+    } catch {
+      console.warn(`failed to save analytics for badge request ${ulid}`);
+    }
 
-    // const confirmedProperties: string[] = [];
+    // unlikely: literal match
+    if (donorList[data.instance]) {
+      return res.status(200).send(donorList[data.instance]);
+    }
 
-    // for (const value of Object.keys(values)) {
-    //   if (!propertySet.includes(value)) {
-    //     return res.status(400).send({
-    //       message: `${value} is not a known property for tier ${tier}`,
-    //     });
-    //   }
+    // no luck; try the list of known instances
+    for (const instance of knownInstances) {
+      // try the direct URLs...
+      for (const url of instance.direct) {
+        if (data.instance === url) {
+          return res.status(200).send(donorList[instance.name]);
+        }
+      }
 
-    //   if (typeof values[value] !== 'string') {
-    //     return res.status(400).send({
-    //       message: `The value of ${value} (${values[value]}) is invalid`,
-    //     });
-    //   }
+      // ...and then the matchess:
+      for (const match of instance.match) {
+        if (data.instance.match(match)) {
+          return res.status(200).send(donorList[instance.name]);
+        }
+      }
+    }
 
-    //   confirmedProperties.push(value);
-    // }
-
-    // // all the values are valid, so check if anything is missing
-    // if (confirmedProperties.length !== propertySet.length) {
-    //   return res.status(400).send({
-    //     message: 'One or more required properties are missing',
-    //   });
-    // }
-
-    // const result = await db.one(sql.analytics.add, [
-    //   id,
-    //   tier,
-    //   data.model,
-    //   data.os,
-    //   data.version,
-    //   ...(tier === 'full' ? [data.settings, data.instance] : [null, null]),
-    // ]);
-
-    // console.log(result);
-
-    // res.status(200).send({ message: 'Got it :3' });
+    // still nothing, so send an empty response
+    return res.status(204).send({});
   } catch (err) {
     next && next(err);
   }

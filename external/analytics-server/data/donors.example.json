@@ -1,0 +1,11 @@
+{
+  "foo.chat": {
+    "bronze": ["a user ID here"],
+    "silver": ["maybe there's", "two here"],
+    "gold": ["and another one here"],
+    "platinum": [],
+    "diamond": [
+      "you can leave an array empty if nobody has the badge, as above"
+    ]
+  }
+}
