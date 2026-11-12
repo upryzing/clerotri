@@ -121,7 +121,7 @@ const ServerChannelList = observer((props: ServerChannelListProps) => {
   const {currentChannel, setCurrentChannel} = useContext(ChannelContext);
   const {setSideMenuOpen} = useContext(SideMenuContext);
 
-  const [uncategorisedChannets, setUncategorisedChannels] = useState(
+  const [uncategorisedChannels, setUncategorisedChannels] = useState(
     [] as string[],
   );
 
@@ -196,36 +196,38 @@ const ServerChannelList = observer((props: ServerChannelListProps) => {
           </View>
         </TouchableOpacity>
       )}
-      <View
-        style={{
-          gap: commonValues.sizes.xs,
-          marginBlockStart: commonValues.sizes.medium,
-        }}>
-        {uncategorisedChannets.map(cid => {
-          const c = client.channels.get(cid);
-          if (c) {
-            return (
-              <ChannelButton
-                key={c._id}
-                channel={c}
-                onPress={() => {
-                  setCurrentChannel(c);
-                  setSideMenuOpen(false);
-                }}
-                onLongPress={() => app.openChannelContextMenu(c)}
-                selected={
-                  typeof currentChannel !== 'string' &&
-                  currentChannel?._id === c._id
-                }
-              />
-            );
-          }
-        })}
-      </View>
+      {uncategorisedChannels.length ? (
+        <View
+          style={{
+            gap: commonValues.sizes.xs,
+            marginBlockStart: commonValues.sizes.medium,
+          }}>
+          {uncategorisedChannels.map(cid => {
+            const c = client.channels.get(cid);
+            if (c) {
+              return (
+                <ChannelButton
+                  key={c._id}
+                  channel={c}
+                  onPress={() => {
+                    setCurrentChannel(c);
+                    setSideMenuOpen(false);
+                  }}
+                  onLongPress={() => app.openChannelContextMenu(c)}
+                  selected={
+                    typeof currentChannel !== 'string' &&
+                    currentChannel?._id === c._id
+                  }
+                />
+              );
+            }
+          })}
+        </View>
+      ) : null}
       <View
         style={{
           gap: commonValues.sizes.medium,
-          marginBlockStart: commonValues.sizes.medium,
+          marginBlock: commonValues.sizes.medium,
         }}>
         {props.currentServer.categories?.map(cat => {
           return (
