@@ -22,9 +22,13 @@ import {
   MaterialCommunityIcon,
   MaterialIcon,
 } from '@clerotri/components/common/icons';
+import {client} from '@clerotri/lib/client';
 import {
   BADGES,
+  BADGES_INFO,
   DONOR_BADGES_INFO,
+  OFFICIAL_INSTANCE_API_URLS,
+  OFFICIAL_INSTANCE_DONATIONS_URL,
   PRIVACY_INFO,
   USER_IDS,
 } from '@clerotri/lib/consts';
@@ -170,9 +174,7 @@ export const BadgeView = observer(({user}: {user: User}) => {
           name={'help'}
           size={18}
           color={'accentColor'}
-          onPress={() =>
-            openUrl('https://support.stoat.chat/kb/account/badges')
-          }
+          onPress={() => openUrl(BADGES_INFO)}
           style={{marginInlineStart: commonValues.sizes.small}}
         />
       </View>
@@ -198,12 +200,13 @@ export const BadgeView = observer(({user}: {user: User}) => {
                         )
                       }
                       onLongPress={() =>
-                        b === 'ActiveSupporter' || b === 'Supporter'
-                          ? openUrl(
-                              'https://wiki.revolt.chat/notes/project/financial-support/',
-                            )
+                        b === 'ActiveSupporter' ||
+                        (b === 'Supporter' &&
+                          client.apiURL === OFFICIAL_INSTANCE_API_URLS.stoat)
+                          ? openUrl(OFFICIAL_INSTANCE_DONATIONS_URL)
                           : null
-                      }>
+                      }
+                      delayLongPress={500}>
                       {(() => {
                         switch (b) {
                           case 'Founder':
@@ -313,7 +316,8 @@ export const BadgeView = observer(({user}: {user: User}) => {
                 onPress={() =>
                   showToast(t(`app.custom_badges.clerotri_donor.${donorTier}`))
                 }
-                onLongPress={() => openUrl(DONOR_BADGES_INFO)}>
+                onLongPress={() => openUrl(DONOR_BADGES_INFO)}
+                delayLongPress={500}>
                 <MaterialCommunityIcon
                   name="flower-pollen"
                   size={28}

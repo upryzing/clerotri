@@ -53,6 +53,9 @@ export const DEFAULT_MESSAGE_LOAD_COUNT = 50;
 export const OFFICIAL_INSTANCE_SIGNUP_URL =
   'https://old.stoat.chat/login/create';
 
+// donations URL for the official instance
+export const OFFICIAL_INSTANCE_DONATIONS_URL = 'https://ko-fi.com/stoatchat';
+
 // server invite paths for the official instance
 const INVITE_PATHS = [
   // old links from Revite
