@@ -186,6 +186,16 @@ export type Language = {
   emoji: string;
 };
 
+export type DonorTiers = 'bronze' | 'silver' | 'gold' | 'platinum' | 'diamond';
+
+export type DonorList = {
+  bronze: string[];
+  silver: string[];
+  gold: string[];
+  platinum: string[];
+  diamond: string[];
+};
+
 export type MessageProps = {
   message: Message;
   grouped: boolean;

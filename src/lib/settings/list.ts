@@ -147,6 +147,11 @@ export const settingsList: Record<string, Setting> = {
     default: false,
     type: 'boolean',
   },
+  'ui.profile.extraBadges': {
+    default: false,
+    type: 'boolean',
+    remark: true,
+  },
 };
 
 // const category = {
@@ -242,7 +247,7 @@ export const settingsCategories: Record<string, SettingsCategory> = {
     detatchedi18n: ['app.language'],
   },
   privacy: {
-    badges: ['app.refetchOnReconnect'], //placeholder
+    badges: ['ui.profile.extraBadges'],
     analytics: {
       type: 'settingsButton',
       props: {

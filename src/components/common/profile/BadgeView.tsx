@@ -1,32 +1,166 @@
 /* eslint-disable no-bitwise */
-import {TouchableOpacity, View, type ViewProps} from 'react-native';
+import {useState} from 'react';
+import {
+  type TextProps,
+  TouchableOpacity,
+  View,
+  type ViewProps,
+} from 'react-native';
 import {StyleSheet} from 'react-native-unistyles';
-import {useTranslation} from 'react-i18next';
+import {Trans, useTranslation} from 'react-i18next';
+import {useMMKVBoolean, useMMKVObject} from 'react-native-mmkv';
 import {observer} from 'mobx-react-lite';
 
 import {ScrollView} from 'react-native-gesture-handler';
 
 import type {User} from 'revolt.js';
 
+import {Button} from '@clerotri/components/common/atoms/Button';
+import {Link} from '@clerotri/components/common/atoms/Link';
 import {Text} from '@clerotri/components/common/atoms/Text';
 import {
   MaterialCommunityIcon,
   MaterialIcon,
 } from '@clerotri/components/common/icons';
-import {BADGES, USER_IDS} from '@clerotri/lib/consts';
+import {
+  BADGES,
+  DONOR_BADGES_INFO,
+  PRIVACY_INFO,
+  USER_IDS,
+} from '@clerotri/lib/consts';
+import {APP_VERSION} from '@clerotri/lib/metadata';
+import {storage} from '@clerotri/lib/storage';
+import {getInstanceURL} from '@clerotri/lib/storage/utils';
 import {commonValues} from '@clerotri/lib/themes';
+import type {DonorList, DonorTiers} from '@clerotri/lib/types';
 import {openUrl, showToast} from '@clerotri/lib/utils';
+
+const donorBadgeColours = {
+  bronze: '#c08a54',
+  silver: '#b2b3c9',
+  gold: '#e6c612',
+  platinum: '#9bd6f8',
+  diamond: '#38bcf0',
+};
+
+const getDonorTier = (list: DonorList, id: string) => {
+  for (const tier of Object.keys(list) as DonorTiers[]) {
+    if (list[tier].includes(id)) {
+      return tier;
+    }
+  }
+
+  return;
+};
 
 const BadgeWrapper = ({style, ...props}: ViewProps) => {
   return <View style={[localStyles.badge, style]} {...props} />;
 };
 
+const TextWrapper = ({children}: TextProps) => {
+  return (
+    <Text useNewText colour={'foregroundSecondary'}>
+      {children}
+    </Text>
+  );
+};
+
+const ExtraBadgesNotice = () => {
+  const {t} = useTranslation();
+
+  const [messageState, setMessageState] = useState('undecided');
+
+  const instanceURL = getInstanceURL();
+
+  return (
+    <View
+      style={{
+        marginBlockStart: commonValues.sizes.medium,
+        marginBlockEnd: commonValues.sizes.large,
+        marginInline: commonValues.sizes.large,
+        gap: commonValues.sizes.xs,
+      }}>
+      {messageState !== 'undecided' ? (
+        <>
+          <Text style={{fontWeight: 'bold'}}>
+            {t(`app.profile.extra_badges.${messageState}.title`)}
+          </Text>
+          <Text useNewText colour={'foregroundSecondary'}>
+            {t(`app.profile.extra_badges.${messageState}.body`)}
+          </Text>
+        </>
+      ) : (
+        <>
+          <Text style={{fontWeight: 'bold'}}>
+            {t('app.profile.extra_badges.enable.title')}
+          </Text>
+          <Trans
+            t={t}
+            i18nKey={'app.profile.extra_badges.enable.body'}
+            tOptions={{url: instanceURL, version: `v${APP_VERSION}`}}
+            parent={TextWrapper}>
+            Your instance's URL ({{instanceURL}}) and the version of Clerotri
+            you're using (v{{APP_VERSION}}) will be sent to Clerotri. They won't
+            be stored unless you've enabled analytics.{' '}
+            <Link link={PRIVACY_INFO} label={''}>
+              Learn more
+            </Link>
+          </Trans>
+          <View
+            style={{
+              flexDirection: 'row',
+              marginBlockStart: commonValues.sizes.medium,
+              gap: commonValues.sizes.medium,
+            }}>
+            <Button
+              onPress={() => {
+                storage.set('ui.profile.extraBadges', true);
+                setMessageState('enabled');
+              }}
+              style={[
+                localStyles.extraBadgesButton,
+                localStyles.enableExtraBadgesButton,
+              ]}>
+              <Text
+                useNewText
+                style={{fontWeight: 'bold'}}
+                colour={'accentColorForeground'}>
+                {t('app.profile.extra_badges.enable.accept')}
+              </Text>
+            </Button>
+            <Button
+              onPress={() => {
+                storage.set('ui.profile.extraBadges', false);
+                setMessageState('disabled');
+              }}
+              style={localStyles.extraBadgesButton}>
+              <Text style={{fontWeight: 'bold'}}>
+                {t('app.profile.extra_badges.enable.decline')}
+              </Text>
+            </Button>
+          </View>
+        </>
+      )}
+    </View>
+  );
+};
+
 export const BadgeView = observer(({user}: {user: User}) => {
   const {t} = useTranslation();
 
-  if (!user.badges) {
+  const [extraBadgesEnabled] = useMMKVBoolean('ui.profile.extraBadges');
+
+  const [showConsentPrompt] = useState(extraBadgesEnabled === undefined);
+
+  const [donorList] = useMMKVObject('donorList');
+
+  if (!user.badges && extraBadgesEnabled === false) {
     return <></>;
   }
+
+  const donorTier = donorList
+    ? getDonorTier(donorList as DonorList, user._id)
+    : undefined;
 
   return (
     <View style={{marginBlockEnd: commonValues.sizes.medium}}>
@@ -43,7 +177,10 @@ export const BadgeView = observer(({user}: {user: User}) => {
         />
       </View>
       <View style={localStyles.badgeListContainer}>
-        <ScrollView contentContainerStyle={localStyles.badgeList} horizontal>
+        <ScrollView
+          style={localStyles.badgeListScrollView}
+          contentContainerStyle={localStyles.badgeList}
+          horizontal>
           {
             // @ts-expect-error this is fine
             Object.keys(BADGES).map((b: keyof typeof BADGES) => {
@@ -170,6 +307,21 @@ export const BadgeView = observer(({user}: {user: User}) => {
               </TouchableOpacity>
             </BadgeWrapper>
           ) : null}
+          {extraBadgesEnabled && donorTier ? (
+            <BadgeWrapper key={'clerotri-donor'}>
+              <TouchableOpacity
+                onPress={() =>
+                  showToast(t(`app.custom_badges.clerotri_donor.${donorTier}`))
+                }
+                onLongPress={() => openUrl(DONOR_BADGES_INFO)}>
+                <MaterialCommunityIcon
+                  name="flower-pollen"
+                  size={28}
+                  customColor={donorBadgeColours[donorTier]}
+                />
+              </TouchableOpacity>
+            </BadgeWrapper>
+          ) : null}
           {user._id === USER_IDS.teamMembers.lea ? (
             <BadgeWrapper key={'lea-paw'}>
               <TouchableOpacity onPress={() => showToast("Lea's Paw")}>
@@ -196,6 +348,7 @@ export const BadgeView = observer(({user}: {user: User}) => {
             </BadgeWrapper>
           ) : null}
         </ScrollView>
+        {showConsentPrompt && <ExtraBadgesNotice />}
       </View>
     </View>
   );
@@ -203,6 +356,10 @@ export const BadgeView = observer(({user}: {user: User}) => {
 
 const localStyles = StyleSheet.create(currentTheme => ({
   badgeListContainer: {
+    backgroundColor: currentTheme.background,
+    borderRadius: commonValues.sizes.medium,
+  },
+  badgeListScrollView: {
     backgroundColor: currentTheme.backgroundPrimary,
     borderRadius: commonValues.sizes.medium,
   },
@@ -216,5 +373,12 @@ const localStyles = StyleSheet.create(currentTheme => ({
     width: 32,
     alignItems: 'center',
     justifyContent: 'center',
+  },
+  extraBadgesButton: {
+    margin: 0,
+    flex: 1,
+  },
+  enableExtraBadgesButton: {
+    backgroundColor: currentTheme.accentColor,
   },
 }));

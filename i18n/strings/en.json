@@ -66,7 +66,14 @@
             "direct_messages_header": "Direct Messages"
         },
         "custom_badges": {
-            "clerotri_dev": "Clerotri Developer"
+            "clerotri_dev": "Clerotri Developer",
+            "clerotri_donor": {
+                "bronze": "Clerotri Donor (Bronze)",
+                "silver": "Clerotri Donor (Silver)",
+                "gold": "Clerotri Donor (Gold)",
+                "platinum": "Clerotri Donor (Platinum)",
+                "diamond": "Clerotri Donor (Diamond)"
+            }
         },
         "discover": {
             "count_bots_one": "{{count}} bot",
@@ -263,6 +270,22 @@
         },
         "profile": {
             "badges": "Badges",
+            "extra_badges": {
+                "enable": {
+                    "title": "Enable extra Clerotri badges?",
+                    "body": "Your instance's URL ({{url}}) and the version of Clerotri you're using ({{version}}) will be sent to Clerotri. They won't be stored unless you've enabled analytics. <6>Learn more</6>",
+                    "accept": "Enable badges",
+                    "decline": "No thanks"
+                },
+                "enabled": {
+                    "title": "Got it!",
+                    "body": "Extra badges will be fetched after re-opening the app."
+                },
+                "disabled": {
+                    "title": "Got it.",
+                    "body": "You can enable extra badges at any time by opening the settings menu and selecting \"Privacy\"."
+                }
+            },
             "bot_owner": "Bot Owner",
             "bio": "Bio",
             "flags": {
@@ -445,7 +468,11 @@
                 "settings": {
                     "showExperimental": "Show experimental features"
                 },
-                "showDeveloperFeatures": "Show developer tools"
+                "showDeveloperFeatures": "Show developer tools",
+                "profile": {
+                    "extraBadges": "Enable extra Clerotri badges",
+                    "extraBadges_remark": "Some data will be sent to Clerotri - see the privacy information document for more details."
+                }
             }
         },
         "settings_categories": {

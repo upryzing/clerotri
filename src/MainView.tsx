@@ -13,7 +13,13 @@ import {OrderedServersContext} from '@clerotri/lib/state';
 import {storage} from '@clerotri/lib/storage';
 import {LoginViews} from '@clerotri/pages/LoginViews';
 import {generateAnalyticsObject} from '@clerotri/lib/analytics';
-import {ANALYTICS_ENDPOINT} from '@clerotri/lib/consts';
+import {
+  ANALYTICS_ENDPOINT,
+  DONOR_LIST_CACHE_DURATION,
+  DONOR_LIST_ENDPOINT,
+} from '@clerotri/lib/consts';
+import {APP_VERSION} from '@clerotri/lib/metadata';
+import {getInstanceURL} from '@clerotri/lib/storage/utils';
 
 export function MainView() {
   const [status, setStatus] = useState('loggedOut');
@@ -54,6 +60,46 @@ export function MainView() {
       analyticsSetting !== 'none' && sendAnalytics(analyticsSetting);
     } else {
       app.openAnalyticsMenu(true, true);
+    }
+  }, []);
+
+  useEffect(() => {
+    async function fetchDonorList() {
+      try {
+        const instance = getInstanceURL();
+
+        const analyticsSetting = storage.getString('app.analyticsLevel') as
+          'basic' | 'full' | 'none' | undefined;
+
+        const data = {
+          instance: instance,
+          version: `v${APP_VERSION}`,
+          analyticsTier: analyticsSetting ?? 'none',
+        };
+        console.log(`[DONORLIST] fetch`);
+
+        const fetchedList = await fetch(DONOR_LIST_ENDPOINT, {
+          method: 'POST',
+          body: JSON.stringify(data),
+        });
+
+        const listData = await fetchedList.json();
+        console.log(listData);
+
+        storage.set('donorList', JSON.stringify(listData));
+        storage.set('donorListTimestamp', new Date().getTime());
+      } catch (err) {
+        console.log(`[DONORLIST] Error fetching donors: ${err}`);
+      }
+    }
+    const extraBadgesEnabled = storage.getBoolean('ui.profile.extraBadges');
+
+    if (extraBadgesEnabled) {
+      const lastFetched = storage.getNumber('donorListTimestamp');
+      const now = new Date().getTime();
+      if (!lastFetched || now - lastFetched >= DONOR_LIST_CACHE_DURATION) {
+        fetchDonorList();
+      }
     }
   }, []);
 

@@ -2089,8 +2089,14 @@ export const RevoltEmojiDictionary: Record<string, string> = {
 };
 // </from>
 
+// The minimum amount of time to wait before refetching the donor list
+export const DONOR_LIST_CACHE_DURATION = 10800000; // 3 hours
+
 // Analytics server URL
 export const ANALYTICS_ENDPOINT = 'https://clerotri.upryzing.app/v1/submit';
+
+// Donor list URL
+export const DONOR_LIST_ENDPOINT = 'https://clerotri.upryzing.app/v1/donors';
 
 // Links used in the settings menu
 export const FEDI_PROFILE = 'https://ap.upryzing.app/@clerotri';
@@ -2112,5 +2118,10 @@ export const CHANGELOG =
 
 export const PRIVACY_INFO =
   'https://github.com/upryzing/clerotri/blob/main/docs/user/privacy.md';
+
+export const BADGES_INFO =
+  'https://github.com/upryzing/clerotri/blob/main/docs/user/badges.md';
+
+export const DONOR_BADGES_INFO = `${BADGES_INFO}#donor-badges`;
 
 export const CLEROTRI_EMAIL = 'mailto:clerotri@upryzing.app';
