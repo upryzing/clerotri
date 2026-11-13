@@ -508,6 +508,7 @@ const RolePermissionSelector = observer(
 const NON_SERVER_PERMISSIONS = [
   'ReadMessageHistory',
   'Video',
+  'Listen',
   'Speak',
   'MuteMembers',
   'DeafenMembers',
@@ -750,6 +751,7 @@ const localStyles = StyleSheet.create(currentTheme => ({
     padding: commonValues.sizes.medium,
     backgroundColor: currentTheme.backgroundSecondary,
     borderRadius: commonValues.sizes.medium,
+    gap: commonValues.sizes.medium,
   },
   colourContainer: {
     alignItems: 'center',
