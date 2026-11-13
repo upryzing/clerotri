@@ -20,6 +20,8 @@ export const ThemesSettingsSection = observer(() => {
   const [currentThemeName = settings.getDefault('ui.theme') as string] =
     useMMKVString('ui.theme');
 
+  const [_storedThemes] = useMMKVString('customThemes');
+
   const [previewedTheme, setPreviewedTheme] = useState(currentThemeName);
 
   const customThemes = getCustomThemeCollection();

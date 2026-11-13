@@ -1,28 +1,9 @@
 import {StyleSheet, type UnistylesThemes} from 'react-native-unistyles';
 
 import {settings} from '@clerotri/lib/settings';
-import {
-  getCustomThemeCollection,
-  getCustomThemeColours,
-  themes,
-} from '@clerotri/lib/themes';
+import {getUnistylesThemes, themes} from '@clerotri/lib/themes';
 
-let finalThemes = {...themes};
-
-try {
-  const themeCollection = getCustomThemeCollection();
-
-  const entries = Object.entries(themeCollection);
-
-  if (entries.length) {
-    for (const [key, theme] of entries) {
-      const finalThemeColours = getCustomThemeColours(theme);
-      finalThemes[`custom-${key}`] = finalThemeColours;
-    }
-  }
-} catch {
-  finalThemes = themes;
-}
+const finalThemes = getUnistylesThemes();
 
 StyleSheet.configure({
   settings: {

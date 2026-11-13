@@ -127,7 +127,8 @@ export type UserWithBlockAction = {
 
 export type ThemeEditorProps = {
   themeID: string;
-  initialColours: ThemeColoursObject;
+  baseTheme: string;
+  initialColours?: ThemeColoursObject;
   isNew?: boolean;
 };
 

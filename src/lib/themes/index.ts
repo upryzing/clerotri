@@ -10,4 +10,5 @@ export {
   getCustomTheme,
   getCustomThemeCollection,
   getCustomThemeColours,
+  getUnistylesThemes,
 } from './utils';

@@ -15,13 +15,37 @@ export const getCustomTheme = (key: string) => {
 };
 
 export const getCustomThemeCollection = () => {
-  const customThemes =
-    storage.getString('customThemes') ??
-    '{"ulid": {"name": "Dark-Magenta", "base": "Dark", "data": {"accentColor": "magenta"}}}'; //'{}';
+  const customThemes = storage.getString('customThemes') ?? '{}';
   const parsedThemesObject = JSON.parse(customThemes) as CustomThemeCollection;
   return parsedThemesObject;
 };
 
+export const setCustomThemeCollection = (id: string, data: CustomTheme) => {
+  const customThemes = getCustomThemeCollection();
+  customThemes[id] = data;
+  storage.set('customThemes', JSON.stringify(customThemes));
+  return;
+};
+
 export const getCustomThemeColours = (theme: CustomTheme) => {
   return {...themes[theme.base], ...theme.data} as Theme;
+};
+
+export const getUnistylesThemes = () => {
+  let returnedThemes = {...themes};
+  try {
+    const themeCollection = getCustomThemeCollection();
+
+    const entries = Object.entries(themeCollection);
+
+    if (entries.length) {
+      for (const [key, theme] of entries) {
+        const finalThemeColours = getCustomThemeColours(theme);
+        returnedThemes[`custom-${key}`] = finalThemeColours;
+      }
+    }
+  } catch {
+    returnedThemes = themes;
+  }
+  return returnedThemes;
 };

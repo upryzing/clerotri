@@ -5,7 +5,11 @@ import {ulid} from 'ulid';
 
 import {app} from '@clerotri/Generic';
 import {MaterialIcon} from '@clerotri/components/common/icons';
-import {commonValues, themes} from '@clerotri/lib/themes';
+import {
+  commonValues,
+  getCustomThemeCollection,
+  themes,
+} from '@clerotri/lib/themes';
 import {useStringSetting} from '@clerotri/lib/settings';
 
 export const CreateThemeButton = () => {
@@ -14,13 +18,17 @@ export const CreateThemeButton = () => {
   return (
     <Pressable
       style={{alignItems: 'center'}}
-      onPress={() =>
+      onPress={() => {
+        const isCustom = !Object.keys(themes).includes(currentTheme);
+
         app.openThemeEditor({
           themeID: ulid(),
-          initialColours: themes[currentTheme],
+          baseTheme: isCustom
+            ? getCustomThemeCollection()[currentTheme].base
+            : currentTheme,
           isNew: true,
-        })
-      }>
+        });
+      }}>
       <View style={localStyles.background}>
         <MaterialIcon name={'add'} size={40} color={'foregroundSecondary'} />
       </View>
