@@ -3,6 +3,7 @@ import {ScrollView, View} from 'react-native';
 import {observer} from 'mobx-react-lite';
 import {useMMKVString} from 'react-native-mmkv';
 
+import {setFunction} from '@clerotri/Generic';
 import {
   CreateThemeButton,
   ThemeOption,
@@ -25,6 +26,10 @@ export const ThemesSettingsSection = observer(() => {
   const [previewedTheme, setPreviewedTheme] = useState(currentThemeName);
 
   const customThemes = getCustomThemeCollection();
+
+  setFunction('setPreviewedTheme', (theme: string) => {
+    setPreviewedTheme(theme);
+  });
 
   return (
     <>

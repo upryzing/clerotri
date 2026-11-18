@@ -231,6 +231,11 @@ export const app = {
       `[FUNCTIONS] Tried to run uninitialised function openThemeEditor (args: ${props})`,
     );
   },
+  setPreviewedTheme: (theme: string) => {
+    console.log(
+      `[FUNCTIONS] Tried to run uninitialised function setPreviewedTheme (args: ${theme})`,
+    );
+  },
 };
 
 export function setFunction(name: keyof typeof app, func: any) {

@@ -103,6 +103,14 @@ interface TypedServer {
   object: Server;
 }
 
+interface TypedTheme {
+  type: 'Theme';
+  object: {
+    id: string;
+    baseTheme: string;
+  };
+}
+
 interface TypedUser {
   type: 'User';
   object: User;
@@ -111,7 +119,7 @@ interface TypedUser {
 export type ReportedObject = TypedMessage | TypedServer | TypedUser;
 
 export type DeletableObject =
-  TypedBot | TypedChannel | TypedRole | TypedMessage | TypedServer;
+  TypedBot | TypedChannel | TypedMessage | TypedRole | TypedServer | TypedTheme;
 
 export type MemberWithModAction = {
   member: Member;
@@ -128,7 +136,7 @@ export type UserWithBlockAction = {
 export type ThemeEditorProps = {
   themeID: string;
   baseTheme: string;
-  initialColours?: ThemeColoursObject;
+  initialColours?: Partial<ThemeColoursObject>;
   isNew?: boolean;
 };
 

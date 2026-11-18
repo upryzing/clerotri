@@ -8,6 +8,7 @@ import {
 import {Pressable, View} from 'react-native';
 import {StyleSheet, UnistylesRuntime} from 'react-native-unistyles';
 import {observer} from 'mobx-react-lite';
+import {useTranslation} from 'react-i18next';
 
 import {KeyboardAwareScrollView} from 'react-native-keyboard-controller';
 
@@ -17,8 +18,9 @@ import {LineSeparator} from '@clerotri/components/layout';
 import {commonValues, themes} from '@clerotri/lib/themes';
 import type {ThemeColour, ThemeEditorProps} from '@clerotri/lib/types';
 import {
+  getCustomTheme,
   getUnistylesThemes,
-  setCustomThemeCollection,
+  setCustomThemeCollectionEntry,
 } from '@clerotri/lib/themes/utils';
 
 type NewColourValue = {
@@ -48,6 +50,8 @@ const ColourEntry = ({
   colour: ThemeColour;
   initialValue: string;
 }) => {
+  const {t} = useTranslation();
+
   const {changedColours, setChangedColours} = useContext(ChangedColoursContext);
   const {setNewValues} = useContext(NewValuesContext);
   const {invalidColours, setInvalidColours} = useContext(InvalidColoursContext);
@@ -63,7 +67,7 @@ const ColourEntry = ({
         </Text>
         {invalid && (
           <Text useNewText colour={'error'}>
-            Invalid value
+            {t('app.settings_menu.appearance.themes.editor.invalid_colour_value')}
           </Text>
         )}
       </View>
@@ -130,7 +134,7 @@ const ColourEntry = ({
                 }
               }
             }}
-            placeholder={'Enter a HEX code...'}
+            placeholder={t('app.settings_menu.appearance.themes.editor.colour_placeholder')}
             style={{
               padding: commonValues.sizes.large,
               flexGrow: 1,
@@ -146,6 +150,7 @@ const ColourEntry = ({
                 setChangedColours(current => current.filter(c => c !== colour));
                 setNewValues(current => current.filter(c => c.id !== colour));
                 setInvalidColours(current => current.filter(c => c !== colour));
+                setInvalid(false);
               }}
               style={localStyles.colourContainerButton}>
               <MaterialIcon name={'undo'} size={20} />
@@ -159,7 +164,11 @@ const ColourEntry = ({
 
 export const ThemeEditorSheet = observer(
   ({setState, data}: {setState: Function; data: ThemeEditorProps}) => {
-    const [name, setName] = useState(data.isNew ? '' : 'theme');
+    const {t} = useTranslation();
+
+    const existingThemeData = getCustomTheme(data.themeID);
+
+    const [name, setName] = useState(existingThemeData?.name ?? '');
 
     const [changedColours, setChangedColours] = useState<ThemeColour[]>([]);
     const [newValues, setNewValues] = useState<NewColourValue[]>([]);
@@ -181,7 +190,11 @@ export const ThemeEditorSheet = observer(
                   marginBlockEnd: 10,
                 }}>
                 <BackButton callback={() => setState()} type={'close'} />
-                {changedColours.length && name ? (
+                {(
+                  data.isNew
+                    ? changedColours.length && name
+                    : name !== existingThemeData?.name || changedColours.length
+                ) ? (
                   <Pressable
                     onPress={() => {
                       const newThemeColoursObject = {...data.initialColours};
@@ -195,7 +208,7 @@ export const ThemeEditorSheet = observer(
                         data: newThemeColoursObject,
                       };
 
-                      setCustomThemeCollection(data.themeID, finalObject);
+                      setCustomThemeCollectionEntry(data.themeID, finalObject);
 
                       if (data.isNew) {
                         StyleSheet.configure({
@@ -237,23 +250,24 @@ export const ThemeEditorSheet = observer(
                 contentContainerStyle={localStyles.innerContainer}
                 showsVerticalScrollIndicator={false}>
                 <Text type={'h1'}>
-                  {data.isNew ? 'Create' : 'Edit'} theme{' '}
-                  {`${changedColours.length} ${invalidColours.length} ${newValues.length}`}
+                  {t(`app.settings_menu.appearance.themes.editor.${data.isNew ? 'create' : 'edit'}_theme`)}
+                  {/*{' '}
+                  {`${changedColours.length} ${invalidColours.length} ${newValues.length}`}*/}
                 </Text>
                 <Text
                   useNewText
                   colour={'foregroundSecondary'}
                   style={{marginBlockEnd: commonValues.sizes.medium}}>
-                  Based on Dark
+                  {t('app.settings_menu.appearance.themes.editor.based_on', {theme: data.baseTheme})}
                 </Text>
 
                 <Text useNewText type={'h2'}>
-                  Theme name
+                  {t('app.settings_menu.appearance.themes.editor.name')}
                 </Text>
                 <Input
                   value={name}
                   onChangeText={v => setName(v)}
-                  placeholder={'Enter a theme name...'}
+                  placeholder={t('app.settings_menu.appearance.themes.editor.name_placeholder')}
                 />
 
                 <LineSeparator

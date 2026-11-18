@@ -20,9 +20,20 @@ export const getCustomThemeCollection = () => {
   return parsedThemesObject;
 };
 
-export const setCustomThemeCollection = (id: string, data: CustomTheme) => {
+export const setCustomThemeCollectionEntry = (
+  id: string,
+  data: CustomTheme,
+) => {
   const customThemes = getCustomThemeCollection();
   customThemes[id] = data;
+  storage.set('customThemes', JSON.stringify(customThemes));
+  return;
+};
+
+export const removeCustomThemeCollectionEntry = (id: string) => {
+  const customThemes = getCustomThemeCollection();
+  delete customThemes[id];
+  console.log(customThemes);
   storage.set('customThemes', JSON.stringify(customThemes));
   return;
 };

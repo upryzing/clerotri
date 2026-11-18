@@ -168,14 +168,16 @@
             "confirm_deletion": {
                 "header_bot": "Delete bot?",
                 "header_channel": "Delete channel?",
-                "header_role": "Delete role?",
                 "header_message": "Delete message?",
+                "header_role": "Delete role?",
                 "header_server": "Delete server?",
+                "header_theme": "Delete theme?",
                 "body_bot": "Are you sure you want to delete <2>{{name}}</2>?",
                 "body_channel": "Are you sure you want to delete <2>this channel</2>?",
-                "body_role": "Are you sure you want to delete <2>this role</2>?",
                 "body_message": "Are you sure you want to delete <2>this message</2>?",
+                "body_role": "Are you sure you want to delete <2>this role</2>?",
                 "body_server": "Are you sure you want to delete <2>{{name}}</2>?",
+                "body_theme": "Are you sure you want to delete <2>this theme</2>?",
                 "warning": "This cannot be undone."
             },
             "confirm_mod_action": {
@@ -507,7 +509,16 @@
                     "body": "Select a theme or make your own",
                     "built_in": "Built-in theme",
                     "custom": "Custom theme",
-                    "no_name": "Could not load name"
+                    "no_name": "Could not load name",
+                    "editor": {
+                        "create_theme": "Create theme",
+                        "edit_theme": "Create theme",
+                        "based_on": "Based on {{theme}}",
+                        "name": "Theme name",
+                        "name_placeholder": "Enter a name for your theme…",
+                        "invalid_colour_value": "Invalid value",
+                        "colour_placeholder": "Enter a HEX code…"
+                    }
                 }
             },
             "bots": {
