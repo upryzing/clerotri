@@ -28,7 +28,7 @@
   },
   "dependencies": {
     "@gorhom/bottom-sheet": "^5.2.14",
-    "@legendapp/list": "^3.7.2",
+    "@legendapp/list": "^3.7.3",
     "@notifee/react-native": "^9.1.8",
     "@react-native-clipboard/clipboard": "^1.16.3",
     "@react-native-community/hooks": "^100.1.0",
@@ -39,7 +39,7 @@
     "@traptitech/markdown-it-spoiler": "patch:@traptitech/markdown-it-spoiler@npm%3A1.1.6#~/.yarn/patches/@traptitech-markdown-it-spoiler-npm-1.1.6-ee0dc02626.patch",
     "@xmldom/xmldom": "^0.9.12",
     "date-fns": "^4.4.0",
-    "i18next": "^27.1.3",
+    "i18next": "^27.1.5",
     "intl-pluralrules": "^2.0.1",
     "mobx": "^6.16.1",
     "mobx-react-lite": "^4.1.1",
@@ -55,7 +55,7 @@
     "react-native-keyboard-controller": "^1.23.1",
     "react-native-mmkv": "^4.3.2",
     "react-native-nitro-modules": "0.37.1",
-    "react-native-reanimated": "^4.7.1",
+    "react-native-reanimated": "^4.7.2",
     "react-native-reanimated-image-viewer": "^1.0.2",
     "react-native-safe-area-context": "^5.11.1",
     "react-native-svg": "^15.16.1",
@@ -76,7 +76,7 @@
     "@react-native/metro-config": "^0.86.3",
     "@react-native/typescript-config": "^0.86.3",
     "@rnx-kit/babel-preset-metro-react-native": "^4.0.2",
-    "@rnx-kit/cli": "^2.0.7",
+    "@rnx-kit/cli": "^2.0.8",
     "@rnx-kit/metro-config": "^2.2.6",
     "@rnx-kit/metro-resolver-symlinks": "^0.3.2",
     "@types/babel__core": "^7.20.5",
@@ -99,7 +99,7 @@
     "typescript": "^5.9.3",
     "vite": "^7.3.8",
     "vite-plugin-react-native-web": "^2.7.1",
-    "vitest": "^5.1.0"
+    "vitest": "^5.1.1"
   },
   "engines": {
     "node": ">=22"
