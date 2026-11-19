@@ -1,5 +1,69 @@
 # Clerotri's changelog
 
+## v0.15.0
+
+_This version was released on 19/11/2026._
+
+### Important notes
+
+- As [announced below](#v0141), the privacy information document **has been updated** for the new badge system. Feel free to [**read the updated version**][privacy_info] - let me know if you have any feedback!
+- I now accept donations via **[Buy Me a Coffee][bmac]!** (As a reminder, you can also donate to me via [Ko-fi][kofi] or [Liberapay][liberapay].) Donations help me spend more time working on Clerotri. Thank you so much for your continued support <3
+- Since the last release, Clerotri's **Fediverse account has moved!** You can now get updates and some support at [`@clerotri@ap.upryzing.app`][fedi_2026]. Unfortunately, automatic migration didn't fully work, so you'll need to refollow the new account.
+
+### What's new
+
+- The **theme switcher** has been completely redesigned, with a carousel of options and a preview of how the theme will look, as well as support for...
+- **custom themes!!!** You can now create, edit and delete themes - whether you want to tweak a few colours of one of the built-in themes, or create something completely different, I hope you enjoy this new feature :3
+  - The ability to import/export themes (as well as settings!) will also be added in the future.
+- As previously promised, Clerotri now has **donor badges!**
+  - Various tiers are available depending on how much you donate.
+  - These are **opt-in** - no extra data is sent or fetched without your explicit consent.
+  - You can find out more about these (and other!) badges in [the new badges guide][badges_info]; for information about what data is sent and how it's handled. see [the privacy information document][privacy_info]
+- Clerotri now supports **pronouns!** You can set them in the Profile settings section - pronouns are visible in user profiles, and (optionally) above messages.
+- A few changes related to **roles** have been made:
+  - **role icons** now (optionally) display above messages,
+  - you can choose whether **role colours** are displayed _in_ usernames, _next to_ them or not at all, and
+  - the role settings menu has received some design tweaks,
+- The **settings menu** has received some improvements:
+  - **settings categories have been redesigned**, with subgrouping and clearer organisation,
+  - there's **a new "Feedback" section**, to help you quickly report issues and suggest ideas, and
+  - the list of settings sections has been reorganised to make various elements easier to find.
+    - As part of this, analytics settings can now be found in the Privacy section.
+- Various areas have received design improvements, including:
+  - the channel list (including indicators for collapsed/expanded categories),
+  - statuses in profiles (with new copy/edit buttons),
+  - the friends list, and
+  - the reply/edit boxes.
+- The server you're currently viewing now has an indicator in the server list.
+- The indicators next to usernames for bots, bridged messages, messages with masquerades and platform moderation messages now use icons instead of boxes with text.
+- Unchecked checkboxes now have a border to help distinguish them from the background.
+- Messages bridged by [Bolt][bolt] should now be marked as bridged.
+- The error message screen (which you hopefully won't see very often!) now has links to report the error via email and on Clerotri's GitHub repository.
+- The app now uses React Native 0.86.
+- Various other design and layout tweaks have been made for better consistency and readability.
+
+### Bug fixes
+
+- Certain features (like reporting content and logging out) should now be fully functional again.
+  - To be clear, any reports you've sent using the last few versions _should_ have gone through, but you'll now correctly see the success screen and further actions.
+- The app will no longer crash if you set the font size to a value below 3.
+- Discover is no longer painfully slow to load.
+- Bios of bots in the bot settings menu will no longer fail to load if the bot isn't in any servers with you.
+- Messages sent by webhooks which don't have an avatar set will now use the default avatar.
+- Spoilers are no longer completely broken.
+- Copying your username in the account settings menu now also includes your discriminator.
+
+### Experimental features
+
+_These features can be accessed by enabling "Show experimental features" in Settings → Features._
+
+- The (currently non-functional) refetch messages option is now marked as experimental.
+
+[bmac]: https://buymeacoffee.com/rexogamer
+[fedi_2026]: https://ap.upryzing.app/@clerotri
+[badges_info]: https://github.com/upryzing/clerotri/blob/main/docs/user/badges.md
+[bolt]: https://williamhorning.dev/bolt/
+
 ## v0.14.1
 
 _This version was released on 01/05/2026._

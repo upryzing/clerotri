@@ -11,19 +11,18 @@ import {
   BLUESKY_PROFILE,
   CHANGELOG,
   DONATIONS_INFO,
+  PRIVACY_INFO,
   FEDI_PROFILE,
 } from '@clerotri/lib/consts';
 import {APP_VERSION} from '@clerotri/lib/metadata';
 import {commonValues, ThemeContext} from '@clerotri/lib/themes';
 import {openUrl} from '@clerotri/lib/utils';
 
-const PRIVACY_INFO_PR = 'https://github.com/upryzing/clerotri/pull/64';
-
-const releaseDate = '01/05/2026';
+const releaseDate = '19/11/2026';
 
 const changelogParagraphs = [
-  'This release includes **easier access to mod tools**, improvements to **the bot settings menu** and several bug fixes.',
-  `Also note that there are some **proposed updates** to **the privacy information document**. [Review the changes and give your feedback!](${PRIVACY_INFO_PR})`,
+  'This release includes **a new theme switcher** with support for **custom themes**, special **donor badges**, a pile of features and improvements, and several bug fixes. Check out the full changelog for more details!',
+  `Also note that **the privacy information document has been updated**. [Feel free to take a look!](${PRIVACY_INFO})`,
   `Follow Clerotri on [**Bluesky**](${BLUESKY_PROFILE}) and [**the Fediverse**](${FEDI_PROFILE}) for the latest updates!`,
 ];
 

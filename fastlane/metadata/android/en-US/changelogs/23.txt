@@ -1,0 +1,5 @@
+- Custom themes + a new theme switcher
+- Donor badges 
+- Pronouns
+- View the updated privacy information document: https://github.com/upryzing/clerotri/blob/main/docs/user/privacy.md
+- Full changelog: https://github.com/upryzing/clerotri/blob/main/CHANGELOG.md#v0150
