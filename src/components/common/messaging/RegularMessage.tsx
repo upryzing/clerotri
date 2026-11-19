@@ -239,7 +239,7 @@ export const RegularMessage = observer((props: MessageProps) => {
               style={[
                 localStyles.editIndicator,
                 {
-                  fontSize: fontSize - 2,
+                  fontSize: Math.max(1, fontSize - 2),
                   right: 48,
                   marginBottom: -16,
                 },
@@ -294,7 +294,7 @@ export const RegularMessage = observer((props: MessageProps) => {
                   style={[
                     localStyles.editIndicator,
                     {
-                      fontSize: fontSize - 2,
+                      fontSize: Math.max(1, fontSize - 2),
                       top: 2,
                       left: 2,
                     },
@@ -426,7 +426,7 @@ const localStyles = StyleSheet.create(currentTheme => ({
     alignSelf: 'center',
   },
   timestamp: {
-    fontSize: (settings.get('ui.messaging.fontSize') as number) - 2,
+    fontSize: Math.max((settings.get('ui.messaging.fontSize') as number) - 2),
     color: currentTheme.foregroundTertiary,
     position: 'relative',
     top: 2,
