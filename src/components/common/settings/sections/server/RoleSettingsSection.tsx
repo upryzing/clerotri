@@ -1,17 +1,11 @@
 /* eslint-disable no-bitwise */
-import {useContext, useState} from 'react';
-import {type ColorValue, Modal, Pressable, View} from 'react-native';
+import {useContext} from 'react';
+import {type ColorValue, Pressable, View} from 'react-native';
 import {StyleSheet} from 'react-native-unistyles';
 import {Trans, useTranslation} from 'react-i18next';
 import {observer} from 'mobx-react-lite';
 
 import Clipboard from '@react-native-clipboard/clipboard';
-import ColourPicker, {
-  HueCircular,
-  OpacitySlider,
-  Panel1,
-} from 'reanimated-color-picker';
-import {useSafeAreaInsets} from 'react-native-safe-area-context';
 
 import {Permission, type API, type Server} from 'revolt.js';
 
@@ -33,10 +27,6 @@ import {
 import {GapView} from '@clerotri/components/layout';
 import {commonValues, ThemeContext} from '@clerotri/lib/themes';
 import {showToast} from '@clerotri/lib/utils';
-
-type CombinedRoleObject = API.Role & {
-  id: string;
-};
 
 const RoleSettingsRoleList = observer(
   ({server, setSection}: {server: Server; setSection: Function}) => {
@@ -126,8 +116,6 @@ const RoleSettings = observer(
     const {currentTheme} = useContext(ThemeContext);
 
     const {t} = useTranslation();
-
-    const [showColourPicker, setShowColourPicker] = useState(false);
 
     return (
       <>
@@ -250,7 +238,9 @@ const RoleSettings = observer(
         <View style={localStyles.colourContainer}>
           <View style={{alignItems: 'center', flexDirection: 'row'}}>
             <View style={localStyles.colourPreview(role.colour)} />
-            <Text>{role.colour ?? 'No colour'}</Text>
+            <Text>
+              {role.colour ?? t('app.servers.settings.roles.no_colour')}
+            </Text>
           </View>
           <View style={{alignItems: 'center', flexDirection: 'row'}}>
             <Pressable
@@ -261,7 +251,13 @@ const RoleSettings = observer(
                 justifyContent: 'center',
               }}
               onPress={() => {
-                setShowColourPicker(true);
+                app.openColourPicker({
+                  callback: c => {
+                    server.editRole(roleID, {colour: c});
+                  },
+                  displayedString: role.name,
+                  ...(role.colour && {initialColour: role.colour}),
+                });
               }}>
               <View style={styles.iconContainer}>
                 <MaterialIcon name={'edit'} size={20} />
@@ -274,7 +270,11 @@ const RoleSettings = observer(
                 alignItems: 'center',
                 justifyContent: 'center',
               }}
-              onPress={() => Clipboard.setString(role.colour ?? 'No colour')}>
+              onPress={() =>
+                Clipboard.setString(
+                  role.colour ?? t('app.servers.settings.roles.no_colour'),
+                )
+              }>
               <View style={styles.iconContainer}>
                 <MaterialIcon name={'content-copy'} size={20} />
               </View>
@@ -296,20 +296,6 @@ const RoleSettings = observer(
             {t('app.servers.settings.roles.delete')}
           </Text>
         </Button>
-
-        <Modal
-          visible={showColourPicker}
-          animationType="slide"
-          statusBarTranslucent
-          navigationBarTranslucent
-          onRequestClose={() => setShowColourPicker(false)}>
-          <RoleColourPicker
-            initialColour={role.colour ?? '#000000'}
-            server={server}
-            role={{...role, id: roleID}}
-            setShowColourPicker={setShowColourPicker}
-          />
-        </Modal>
       </>
     );
   },
@@ -559,137 +545,6 @@ const RolePermissionSettings = observer(
   },
 );
 
-const RoleColourPicker = observer(
-  ({
-    initialColour,
-    server,
-    role,
-    setShowColourPicker,
-  }: {
-    initialColour: string;
-    server: Server;
-    role: CombinedRoleObject;
-    setShowColourPicker: (show: boolean) => void;
-  }) => {
-    const insets = useSafeAreaInsets();
-
-    const {currentTheme} = useContext(ThemeContext);
-
-    const {t} = useTranslation();
-
-    const [colour, setColour] = useState(initialColour);
-
-    const onSelectColour = ({hex}: {hex: string}) => {
-      setColour(hex);
-    };
-
-    return (
-      <View
-        style={{
-          flex: 1,
-          padding: commonValues.sizes.large,
-          paddingBlockStart: insets.top + commonValues.sizes.large,
-          backgroundColor: currentTheme.backgroundPrimary,
-        }}>
-        <BackButton
-          callback={() => {
-            setShowColourPicker(false);
-          }}
-        />
-        <View
-          style={{
-            flex: 1,
-            alignContent: 'center',
-            justifyContent: 'center',
-          }}>
-          <View
-            style={{
-              flexDirection: 'row',
-              alignItems: 'center',
-              justifyContent: 'center',
-              gap: commonValues.sizes.medium,
-            }}>
-            <View style={localStyles.colourPreviewCircle(colour)} />
-            <Text
-              colour={colour}
-              style={{
-                alignSelf: 'center',
-                fontWeight: 'bold',
-                fontSize: 18,
-              }}>
-              {role.name}
-            </Text>
-          </View>
-          <GapView size={12} />
-          <ColourPicker
-            style={{alignSelf: 'center', width: '70%'}}
-            value={initialColour}
-            onCompleteJS={onSelectColour}>
-            <HueCircular
-              containerStyle={{
-                backgroundColor: currentTheme.backgroundPrimary,
-              }}
-            />
-            <GapView size={8} />
-            <Panel1 />
-            <GapView size={8} />
-            <OpacitySlider />
-          </ColourPicker>
-          <GapView size={12} />
-          <Button
-            onPress={() => {
-              setShowColourPicker(false);
-              app.openTextEditModal({
-                initialString: colour,
-                id: 'role_colour',
-                callback: c => {
-                  try {
-                    // trim any trailing spaces and, if needed, add a hashtag
-                    let filteredColour = c.trim();
-                    if (!filteredColour.startsWith('#')) {
-                      filteredColour = `#${filteredColour}`;
-                    }
-                    // adapted from https://regex101.com/r/2GAAVC/1
-                    const isValidHEXCode = filteredColour.match(
-                      /^#(?:[\da-f]{3}){1,2}$|^#(?:[\da-f]{4}){1,2}$/gim,
-                    );
-                    console.log(filteredColour, isValidHEXCode);
-                    if (isValidHEXCode) {
-                      server.editRole(role.id, {colour: filteredColour});
-                    } else {
-                      showToast(
-                        t(
-                          'app.servers.settings.roles.errors.role_colour_invalid_hex',
-                        ),
-                      );
-                    }
-                  } catch (error) {
-                    showToast(
-                      t(
-                        'app.servers.settings.roles.errors.role_colour_generic',
-                      ),
-                    );
-                    console.log(error);
-                  }
-                },
-              });
-            }}>
-            <Text>{t('app.servers.settings.roles.open_colour_modal')}</Text>
-          </Button>
-          {/* <GapView size={8} /> */}
-          <Button
-            onPress={() => {
-              setShowColourPicker(false);
-              server.editRole(role.id, {colour: colour});
-            }}>
-            <Text>{t('app.servers.settings.roles.set_colour')}</Text>
-          </Button>
-        </View>
-      </View>
-    );
-  },
-);
-
 export const RoleSettingsSection = observer(
   ({
     server,
@@ -772,14 +627,6 @@ const localStyles = StyleSheet.create(currentTheme => ({
       outlineStyle: 'dashed',
       outlineOffset: -2,
     }),
-  }),
-  colourPreviewCircle: (roleColour?: ColorValue) => ({
-    width: 24,
-    height: 24,
-    backgroundColor: roleColour,
-    borderRadius: 10000,
-    borderWidth: commonValues.sizes.small,
-    borderColor: currentTheme.backgroundSecondary,
   }),
   permissionDenied: {
     borderRadius: commonValues.sizes.medium,

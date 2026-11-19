@@ -74,7 +74,11 @@ export const OptionSetting = ({
                 </View>
               ) : (
                 <Text style={{flex: 1}}>
-                  {settingKey === 'ui.theme' ? t(`app.themes.${o}`) :settingKey === 'ui.messaging.roleColourDisplay' ? t(`app.settings_options.${settingKey}.${o}`) : o}
+                  {settingKey === 'ui.theme'
+                    ? t(`app.themes.${o}`)
+                    : settingKey === 'ui.messaging.roleColourDisplay'
+                      ? t(`app.settings_options.${settingKey}.${o}`)
+                      : o}
                 </Text>
               )}
               <View style={{...styles.iconContainer, marginRight: 0}}>

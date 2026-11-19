@@ -4,6 +4,7 @@ export {ChangelogSheet} from './ChangelogSheet';
 export {ChannelInfoSheet} from './ChannelInfoSheet';
 export {ChannelMenuSheet} from './ChannelMenuSheet';
 export {ChannelSwitcherSheet} from './ChannelSwitcherSheet';
+export {ColourPickerSheet} from './ColourPickerSheet';
 export {MemberListSheet} from './MemberListSheet';
 export {MessageMenuSheet} from './MessageMenuSheet';
 export {PinnedMessagesSheet} from './PinnedMessagesSheet';

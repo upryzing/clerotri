@@ -385,6 +385,7 @@
                     "permissions_list_header": "Permissions for <2>{{role}}</2>",
                     "permissions_list_body": "These permissions apply across the server. Some of them can be overridden for specific channels.",
                     "colour": "Colour",
+                    "no_colour": "No colour",
                     "delete": "Delete Role",
                     "set_colour": "Set role colour",
                     "open_colour_modal": "Enter colour manually",

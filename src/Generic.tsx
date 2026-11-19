@@ -2,6 +2,7 @@ import type {Channel, Message, Server, User} from 'revolt.js';
 
 import {LOADING_SCREEN_REMARKS} from '@clerotri/lib/consts';
 import type {
+  ColourPickerProps,
   CreateChannelModalProps,
   CVChannel,
   DeletableObject,
@@ -229,6 +230,11 @@ export const app = {
   openThemeEditor: (props: ThemeEditorProps | null) => {
     console.log(
       `[FUNCTIONS] Tried to run uninitialised function openThemeEditor (args: ${props})`,
+    );
+  },
+  openColourPicker: (props: ColourPickerProps | null) => {
+    console.log(
+      `[FUNCTIONS] Tried to run uninitialised function openColourPicker (args: ${props})`,
     );
   },
   setPreviewedTheme: (theme: string) => {

@@ -8,7 +8,12 @@ import {type Message} from 'revolt.js';
 import {decodeTime} from 'ulid';
 
 import {app} from '@clerotri/Generic';
-import {settings, useBoolSetting, useNumberSetting, useStringSetting} from '@clerotri/lib/settings';
+import {
+  settings,
+  useBoolSetting,
+  useNumberSetting,
+  useStringSetting,
+} from '@clerotri/lib/settings';
 import {client} from '@clerotri/lib/client';
 import {Avatar, Text, Username} from '@clerotri/components/common/atoms';
 import {MarkdownView} from '@clerotri/components/common/MarkdownView';
@@ -94,9 +99,13 @@ export const RegularMessage = observer((props: MessageProps) => {
   const mentionsUser = props.message.mention_ids?.includes(client.user?._id!);
 
   const [fontSize] = useNumberSetting('ui.messaging.fontSize');
-  const [roleColourDisplay] = useStringSetting('ui.messaging.roleColourDisplay');
+  const [roleColourDisplay] = useStringSetting(
+    'ui.messaging.roleColourDisplay',
+  );
   const [showRoleIcons] = useBoolSetting('ui.messaging.showRoleIcons');
-  const [showInlinePronouns] = useBoolSetting('ui.messaging.showInlinePronouns');
+  const [showInlinePronouns] = useBoolSetting(
+    'ui.messaging.showInlinePronouns',
+  );
 
   // check for invite links, then take the code from each
   const rawInvites = Array.from(
@@ -267,9 +276,7 @@ export const RegularMessage = observer((props: MessageProps) => {
                       skipRoleColour={roleColourDisplay !== 'username'}
                     />
                   </Pressable>
-                  {showRoleIcons && (
-                    <RoleIcon message={props.message} />
-                  )}
+                  {showRoleIcons && <RoleIcon message={props.message} />}
                 </View>
               ) : null}
               {props.message.webhook ? (
@@ -283,7 +290,9 @@ export const RegularMessage = observer((props: MessageProps) => {
                 key={`message-${props.message._id}-timestamp`}
                 style={localStyles.timestamp}>
                 {' '}
-                {props.message.author?.pronouns && showInlinePronouns && `${props.message.author.pronouns} • `}
+                {props.message.author?.pronouns &&
+                  showInlinePronouns &&
+                  `${props.message.author.pronouns} • `}
                 {formatRelative(props.message.createdAt, new Date(), {
                   locale: locale,
                 })}

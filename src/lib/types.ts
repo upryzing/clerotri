@@ -140,6 +140,13 @@ export type ThemeEditorProps = {
   isNew?: boolean;
 };
 
+export type ColourPickerProps = {
+  initialColour?: string;
+  callback: (colour: string) => void;
+  displayedString?: string;
+  hideManualEditor?: boolean;
+};
+
 type ThemeColoursObject = Omit<Theme, 'generalBorderWidth' | 'contentType'>;
 
 export type ThemeColour = keyof ThemeColoursObject;

@@ -9,6 +9,7 @@ import type {API, Channel, Message, Server, User} from 'revolt.js';
 import {app, setFunction} from '@clerotri/Generic';
 import {client} from '@clerotri/lib/client';
 import type {
+  ColourPickerProps,
   CreateChannelModalProps,
   DeletableObject,
   MemberWithModAction,
@@ -36,6 +37,7 @@ import {
   ChannelInfoSheet,
   ChannelMenuSheet,
   ChannelSwitcherSheet,
+  ColourPickerSheet,
   MemberListSheet,
   MessageMenuSheet,
   PinnedMessagesSheet,
@@ -285,6 +287,9 @@ const OtherModals = observer(() => {
   const [themeEditorData, setThemeEditorData] = useState(
     null as ThemeEditorProps | null,
   );
+  const [colourPickerData, setColourPickerData] = useState(
+    null as ColourPickerProps | null,
+  );
 
   setFunction('openDirectMessage', (dm: Channel) => {
     app.openProfile(null);
@@ -327,6 +332,9 @@ const OtherModals = observer(() => {
   });
   setFunction('openThemeEditor', (props: ThemeEditorProps | null) => {
     setThemeEditorData(props);
+  });
+  setFunction('openColourPicker', (props: ColourPickerProps | null) => {
+    setColourPickerData(props);
   });
 
   // clear intial settings sections when closing the sheets
@@ -417,6 +425,20 @@ const OtherModals = observer(() => {
             setThemeEditorData(null);
           }}
           data={themeEditorData!}
+        />
+      </Modal>
+      <Modal
+        visible={!!colourPickerData}
+        transparent={true}
+        animationType="slide"
+        statusBarTranslucent
+        navigationBarTranslucent
+        onRequestClose={() => setColourPickerData(null)}>
+        <ColourPickerSheet
+          setState={() => {
+            setColourPickerData(null);
+          }}
+          data={colourPickerData!}
         />
       </Modal>
       <Modal

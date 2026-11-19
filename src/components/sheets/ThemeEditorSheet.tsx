@@ -12,6 +12,7 @@ import {useTranslation} from 'react-i18next';
 
 import {KeyboardAwareScrollView} from 'react-native-keyboard-controller';
 
+import {app} from '@clerotri/Generic';
 import {BackButton, Input, Text} from '@clerotri/components/common/atoms';
 import {MaterialIcon} from '@clerotri/components/common/icons';
 import {LineSeparator} from '@clerotri/components/layout';
@@ -144,7 +145,25 @@ const ColourEntry = ({
               flexGrow: 1,
             }}
           />
-          <Pressable style={localStyles.colourContainerButton}>
+          <Pressable
+            onPress={() => {
+              app.openColourPicker({
+                initialColour: value,
+                callback: c => {
+                  setValue(c);
+                  setChangedColours(current => [...current, colour]);
+                  setNewValues(current => {
+                    const filteredCurrent = current.filter(
+                      colourValue => colourValue.id !== colour,
+                    );
+                    return [...filteredCurrent, {id: colour, newValue: c}];
+                  });
+                },
+                displayedString: colour,
+                hideManualEditor: true,
+              });
+            }}
+            style={localStyles.colourContainerButton}>
             <MaterialIcon name={'colorize'} size={20} />
           </Pressable>
           {value !== initialValue && (
