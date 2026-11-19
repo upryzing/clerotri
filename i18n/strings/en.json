@@ -463,11 +463,15 @@
                     "fontSize_remark": "This will apply to messages and certain parts of the app.",
                     "hideBlockedMessages": "Fully hide messages from blocked users",
                     "messageSpacing": "Message spacing",
+                    "roleColourDisplay": "Role colours",
                     "sendAttachments": "Enable attachment sending",
+                    "showInlinePronouns": "Show pronouns above messages",
+                    "showInlinePronouns_rmark": "They will always be visible in the user's profile.",
                     "showMasqAvatar": "Show masqueraded avatar in corner",
                     "showNSFWContent": "Consent to 18+ content",
                     "showReactions": "Show reactions under messages",
                     "showReactions_remark": "You can add to existing reactions, but you can't add new ones yet.",
+                    "showRoleIcons": "Show role icons",
                     "showSelfInTypingIndicator": "Show yourself in the typing indicator",
                     "statusInChatAvatars": "Show user status in chat avatars",
                     "use24H": "Use 24-hour timestamps",
@@ -496,6 +500,17 @@
             },
             "privacy": {
                 "badges": "Extra badges"
+            }
+        },
+        "settings_options": {
+            "ui": {
+                "messaging": {
+                    "roleColourDisplay": {
+                        "username": "Show role colours in usernames",
+                        "separate": "Show role colours next to usernames",
+                        "none": "Don't show role colours"
+                    }
+                }
             }
         },
         "settings_menu": {

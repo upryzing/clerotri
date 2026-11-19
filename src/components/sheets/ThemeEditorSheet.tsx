@@ -67,7 +67,9 @@ const ColourEntry = ({
         </Text>
         {invalid && (
           <Text useNewText colour={'error'}>
-            {t('app.settings_menu.appearance.themes.editor.invalid_colour_value')}
+            {t(
+              'app.settings_menu.appearance.themes.editor.invalid_colour_value',
+            )}
           </Text>
         )}
       </View>
@@ -134,7 +136,9 @@ const ColourEntry = ({
                 }
               }
             }}
-            placeholder={t('app.settings_menu.appearance.themes.editor.colour_placeholder')}
+            placeholder={t(
+              'app.settings_menu.appearance.themes.editor.colour_placeholder',
+            )}
             style={{
               padding: commonValues.sizes.large,
               flexGrow: 1,
@@ -250,7 +254,9 @@ export const ThemeEditorSheet = observer(
                 contentContainerStyle={localStyles.innerContainer}
                 showsVerticalScrollIndicator={false}>
                 <Text type={'h1'}>
-                  {t(`app.settings_menu.appearance.themes.editor.${data.isNew ? 'create' : 'edit'}_theme`)}
+                  {t(
+                    `app.settings_menu.appearance.themes.editor.${data.isNew ? 'create' : 'edit'}_theme`,
+                  )}
                   {/*{' '}
                   {`${changedColours.length} ${invalidColours.length} ${newValues.length}`}*/}
                 </Text>
@@ -258,7 +264,9 @@ export const ThemeEditorSheet = observer(
                   useNewText
                   colour={'foregroundSecondary'}
                   style={{marginBlockEnd: commonValues.sizes.medium}}>
-                  {t('app.settings_menu.appearance.themes.editor.based_on', {theme: data.baseTheme})}
+                  {t('app.settings_menu.appearance.themes.editor.based_on', {
+                    theme: data.baseTheme,
+                  })}
                 </Text>
 
                 <Text useNewText type={'h2'}>
@@ -267,7 +275,9 @@ export const ThemeEditorSheet = observer(
                 <Input
                   value={name}
                   onChangeText={v => setName(v)}
-                  placeholder={t('app.settings_menu.appearance.themes.editor.name_placeholder')}
+                  placeholder={t(
+                    'app.settings_menu.appearance.themes.editor.name_placeholder',
+                  )}
                 />
 
                 <LineSeparator

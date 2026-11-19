@@ -1,13 +1,14 @@
 import {Dimensions, Pressable, TouchableOpacity, View} from 'react-native';
-import {StyleSheet} from 'react-native-unistyles';
+import {StyleSheet, useUnistyles} from 'react-native-unistyles';
 import {observer} from 'mobx-react-lite';
 
 import {formatRelative} from 'date-fns/formatRelative';
 import {enGB, enUS} from 'date-fns/locale';
+import {type Message} from 'revolt.js';
 import {decodeTime} from 'ulid';
 
 import {app} from '@clerotri/Generic';
-import {settings, useNumberSetting} from '@clerotri/lib/settings';
+import {settings, useBoolSetting, useNumberSetting, useStringSetting} from '@clerotri/lib/settings';
 import {client} from '@clerotri/lib/client';
 import {Avatar, Text, Username} from '@clerotri/components/common/atoms';
 import {MarkdownView} from '@clerotri/components/common/MarkdownView';
@@ -20,16 +21,82 @@ import {RE_INVITE} from '@clerotri/lib/consts';
 import {commonValues} from '@clerotri/lib/themes';
 import type {MessageProps} from '@clerotri/lib/types';
 import {
+  getColour,
   getReadableFileSize,
   openUrl,
   parseRevoltNodes,
+  showToast,
 } from '@clerotri/lib/utils';
+
+const RoleColourIndicator = ({message}: {message: Message}) => {
+  const {theme} = useUnistyles();
+
+  const memberObject =
+    message.author && message.channel?.server
+      ? client.members.getKey({
+          server: message.channel.server._id,
+          user: message.author?._id,
+        })
+      : undefined;
+
+  // the first check is unlikely to trigger but still
+  if (!memberObject || !memberObject.roleColour) return null;
+
+  const roleColour = getColour(memberObject.roleColour, theme);
+
+  return (
+    <Pressable
+      key={`message-${message._id}-separate-role-colour-pressable`}
+      onPress={() =>
+        showToast(`${memberObject.orderedRoles[0][1].name} (${roleColour})`)
+      }
+      style={localStyles.roleColourIndicator(
+        getColour(memberObject.roleColour, theme),
+      )}
+    />
+  );
+};
+
+const RoleIcon = ({message}: {message: Message}) => {
+  const memberObject =
+    message.author && message.channel?.server
+      ? client.members.getKey({
+          server: message.channel.server._id,
+          user: message.author?._id,
+        })
+      : undefined;
+
+  // unlikely but still
+  if (!memberObject) return null;
+
+  const iconRoles = memberObject?.orderedRoles.filter(role => role[1].icon);
+  if (!iconRoles.length) return null;
+
+  const role = iconRoles[iconRoles.length - 1][1];
+
+  return (
+    <Pressable
+      key={`message-${message._id}-role-icon-pressable`}
+      onPress={() => showToast(role.name)}
+      style={localStyles.roleIcon}>
+      <Image
+        source={{
+          uri: `${client.configuration?.features.autumn.url}/icons/${iconRoles[iconRoles.length - 1][1].icon._id}`,
+        }}
+        style={{width: 16, height: 16}}
+      />
+    </Pressable>
+  );
+};
 
 export const RegularMessage = observer((props: MessageProps) => {
   const locale = settings.get('ui.messaging.use24H') ? enGB : enUS;
   const mentionsUser = props.message.mention_ids?.includes(client.user?._id!);
 
   const [fontSize] = useNumberSetting('ui.messaging.fontSize');
+  const [roleColourDisplay] = useStringSetting('ui.messaging.roleColourDisplay');
+  const [showRoleIcons] = useBoolSetting('ui.messaging.showRoleIcons');
+  const [showInlinePronouns] = useBoolSetting('ui.messaging.showInlinePronouns');
 
   // check for invite links, then take the code from each
   const rawInvites = Array.from(
@@ -183,18 +250,27 @@ export const RegularMessage = observer((props: MessageProps) => {
           {!props.grouped ? (
             <View
               key={`message-${props.message._id}-info-row`}
-              style={{flexDirection: 'row'}}>
+              style={{flexDirection: 'row', alignItems: 'center'}}>
               {props.message.author ? (
-                <Pressable
-                  key={`message-${props.message._id}-username-pressable`}
-                  onPress={props.onUsernamePress}>
-                  <Username
-                    key={`message-${props.message._id}-username`}
-                    user={props.message.author}
-                    server={props.message.channel?.server}
-                    masquerade={props.message.masquerade?.name}
-                  />
-                </Pressable>
+                <View style={{flexDirection: 'row'}}>
+                  {roleColourDisplay === 'separate' && (
+                    <RoleColourIndicator message={props.message} />
+                  )}
+                  <Pressable
+                    key={`message-${props.message._id}-username-pressable`}
+                    onPress={props.onUsernamePress}>
+                    <Username
+                      key={`message-${props.message._id}-username`}
+                      user={props.message.author}
+                      server={props.message.channel?.server}
+                      masquerade={props.message.masquerade?.name}
+                      skipRoleColour={roleColourDisplay !== 'username'}
+                    />
+                  </Pressable>
+                  {showRoleIcons && (
+                    <RoleIcon message={props.message} />
+                  )}
+                </View>
               ) : null}
               {props.message.webhook ? (
                 <Text
@@ -207,6 +283,7 @@ export const RegularMessage = observer((props: MessageProps) => {
                 key={`message-${props.message._id}-timestamp`}
                 style={localStyles.timestamp}>
                 {' '}
+                {props.message.author?.pronouns && showInlinePronouns && `${props.message.author.pronouns} • `}
                 {formatRelative(props.message.createdAt, new Date(), {
                   locale: locale,
                 })}
@@ -331,6 +408,22 @@ const localStyles = StyleSheet.create(currentTheme => ({
   messageInner: {
     flex: 1,
     paddingLeft: 10,
+  },
+  roleColourIndicator: (colour: string) => ({
+    borderRadius: 10000,
+    backgroundColor: colour,
+    borderWidth: commonValues.sizes.xs,
+    borderColor: currentTheme.backgroundSecondary,
+    width: 12,
+    height: 12,
+    marginInlineEnd: commonValues.sizes.small,
+    alignSelf: 'center',
+  }),
+  roleIcon: {
+    width: 16,
+    height: 16,
+    marginInlineStart: commonValues.sizes.small,
+    alignSelf: 'center',
   },
   timestamp: {
     fontSize: (settings.get('ui.messaging.fontSize') as number) - 2,

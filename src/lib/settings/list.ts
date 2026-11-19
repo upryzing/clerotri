@@ -122,6 +122,19 @@ export const settingsList: Record<string, Setting> = {
     type: 'boolean',
     experimental: true,
   },
+  'ui.messaging.roleColourDisplay': {
+    default: 'username',
+    type: 'string',
+    options: ['username', 'separate', 'none'],
+  },
+  'ui.messaging.showRoleIcons': {
+    default: true,
+    type: 'boolean',
+  },
+  'ui.messaging.showInlinePronouns': {
+    default: true,
+    type: 'boolean',
+  },
   'ui.messaging.experimentalScrolling': {
     remark: true,
     default: false,
@@ -179,6 +192,9 @@ export const settingsCategories: Record<string, SettingsCategory> = {
     messaging: [
       'ui.messaging.messageSpacing',
       'ui.messaging.use24H',
+      'ui.messaging.roleColourDisplay',
+      'ui.messaging.showRoleIcons',
+      'ui.messaging.showInlinePronouns',
       'ui.messaging.statusInChatAvatars',
       'ui.messaging.showMasqAvatar',
       'ui.messaging.showSelfInTypingIndicator',

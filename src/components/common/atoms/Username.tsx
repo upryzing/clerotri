@@ -35,6 +35,7 @@ type UsernameProps = {
   masquerade?: string | null;
   color?: string;
   skipDisplayName?: boolean;
+  skipRoleColour?: boolean;
   useNewStructure?: boolean;
 };
 
@@ -109,6 +110,7 @@ export const Username = observer(
     masquerade,
     color,
     skipDisplayName,
+    skipRoleColour,
     useNewStructure,
   }: UsernameProps) => {
     const {currentTheme} = useContext(ThemeContext);
@@ -137,14 +139,11 @@ export const Username = observer(
           ? (user.display_name ?? user.username)
           : user.username;
 
-    if (server && memberObject?.roles && memberObject?.roles?.length > 0) {
-      let srv = client.servers.get(memberObject._id.server);
-      if (srv?.roles) {
-        roleColour = getColour(
-          memberObject.roleColour ?? currentTheme.foregroundPrimary,
-          currentTheme,
-        );
-      }
+    if (!skipRoleColour && server && memberObject?.roleColour) {
+      roleColour = getColour(
+        memberObject.roleColour ?? currentTheme.foregroundPrimary,
+        currentTheme,
+      );
     }
 
     const usernameSize =
