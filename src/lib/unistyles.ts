@@ -5,6 +5,7 @@ import {getUnistylesThemes, themes} from '@clerotri/lib/themes';
 
 const finalThemes = getUnistylesThemes();
 
+console.log(Object.keys(finalThemes));
 StyleSheet.configure({
   settings: {
     initialTheme: () => {

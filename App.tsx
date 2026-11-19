@@ -14,13 +14,32 @@ import {setFunction} from '@clerotri/Generic';
 import {MainView} from '@clerotri/MainView';
 import {ErrorMessage} from '@clerotri/components/ErrorMessage';
 import {initialiseSettings} from '@clerotri/lib/storage/utils';
-import {themes, type Theme, ThemeContext} from '@clerotri/lib/themes';
+import {
+  getCustomTheme,
+  themes,
+  type Theme,
+  ThemeContext,
+} from '@clerotri/lib/themes';
 
 export const App = () => {
   const [theme, setTheme] = useState<Theme>(themes.Dark);
 
   setFunction('setTheme', (themeName: string) => {
-    const newTheme = themes[themeName] ?? themes.Dark;
+    const isCustom = themeName.startsWith('custom-');
+    let newTheme: Theme;
+
+    if (isCustom) {
+      const customThemeData = getCustomTheme(themeName.replace('custom-', ''));
+      newTheme = customThemeData
+        ? {
+            ...(themes[customThemeData.base] ?? themes.Dark),
+            ...customThemeData.data,
+          }
+        : themes.Dark;
+    } else {
+      newTheme = themes[themeName] ?? themes.Dark;
+    }
+
     setTheme(newTheme);
     // don't trigger this in dev to help catch bits that need updating
     !__DEV__ && UnistylesRuntime.setTheme(themeName);
@@ -48,7 +67,7 @@ export const App = () => {
 };
 
 const localStyles = StyleSheet.create(currentTheme => ({
-    outer: {
-      backgroundColor: currentTheme.background,
-    },
+  outer: {
+    backgroundColor: currentTheme.background,
+  },
 }));

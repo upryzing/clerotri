@@ -13,6 +13,7 @@ import {ChannelContext, ServerContext} from '@clerotri/lib/state';
 import {commonValues} from '@clerotri/lib/themes';
 import {removeCustomThemeCollectionEntry} from '@clerotri/lib/themes/utils';
 import type {DeletableObject} from '@clerotri/lib/types';
+import {storage} from '@clerotri/lib/storage';
 
 export const ConfirmDeletionModal = observer(
   ({target}: {target: DeletableObject}) => {
@@ -97,6 +98,7 @@ export const ConfirmDeletionModal = observer(
                 case 'Theme':
                   app.setPreviewedTheme(target.object.baseTheme);
                   app.setTheme(target.object.baseTheme);
+                  storage.set('ui.theme', target.object.baseTheme);
                   removeCustomThemeCollectionEntry(target.object.id);
                   app.openDeletionConfirmationModal(null);
                   break;

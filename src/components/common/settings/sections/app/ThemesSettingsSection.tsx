@@ -3,14 +3,14 @@ import {ScrollView, View} from 'react-native';
 import {observer} from 'mobx-react-lite';
 import {useMMKVString} from 'react-native-mmkv';
 
-import {setFunction} from '@clerotri/Generic';
+import {app, setFunction} from '@clerotri/Generic';
 import {
   CreateThemeButton,
   ThemeOption,
   ThemePreview,
 } from '@clerotri/components/common/settings/sections/app/themes';
 import {LineSeparator} from '@clerotri/components/layout';
-import {settings} from '@clerotri/lib/settings';
+import {useStringSetting} from '@clerotri/lib/settings';
 import {
   commonValues,
   getCustomThemeCollection,
@@ -18,8 +18,8 @@ import {
 } from '@clerotri/lib/themes';
 
 export const ThemesSettingsSection = observer(() => {
-  const [currentThemeName = settings.getDefault('ui.theme') as string] =
-    useMMKVString('ui.theme');
+  const [currentThemeName, setCurrentThemeName] = useStringSetting('ui.theme');
+  console.log(currentThemeName);
 
   const [_storedThemes] = useMMKVString('customThemes');
 
@@ -46,7 +46,11 @@ export const ThemesSettingsSection = observer(() => {
                 key={`theme-option-custom-${id}`}
                 name={`custom-${id}`}
                 currentThemeName={previewedTheme}
-                onPress={() => setPreviewedTheme(`custom-${id}`)}
+                onPress={() => {
+                  app.setTheme(`custom-${id}`);
+                  setCurrentThemeName(`custom-${id}`);
+                  setPreviewedTheme(`custom-${id}`);
+                }}
               />
             );
           })}
@@ -57,7 +61,11 @@ export const ThemesSettingsSection = observer(() => {
                 key={`theme-option-${name}`}
                 name={name}
                 currentThemeName={previewedTheme}
-                onPress={() => setPreviewedTheme(name)}
+                onPress={() => {
+                  app.setTheme(name);
+                  setCurrentThemeName(name);
+                  setPreviewedTheme(name);
+                }}
               />
             );
           })}
