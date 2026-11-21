@@ -707,10 +707,17 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@babel/runtime@npm:^7.18.6, @babel/runtime@npm:^7.25.0, @babel/runtime@npm:^7.29.14":
+"@babel/runtime@npm:^7.18.6, @babel/runtime@npm:^7.25.0":
   version: 7.29.14
   resolution: "@babel/runtime@npm:7.29.14"
   checksum: 10c0/dd809ac74c2154a549c9a9fbe73a3da84927c987d1291a1f1618f9263fa372a0de0d575c2616b3b420586a9974114c81ee47953c5d25074da66b58bf9d33d870
+  languageName: node
+  linkType: hard
+
+"@babel/runtime@npm:^7.29.15":
+  version: 7.29.15
+  resolution: "@babel/runtime@npm:7.29.15"
+  checksum: 10c0/dd0aeddff9aa61c64431229ef243a5c08d662708c27cc6d5a3e0d90062caa243d1a72fa494f30568e87de21b4d4667092ede858e4eebc63c9c457a02ae4a0274
   languageName: node
   linkType: hard
 
@@ -5738,15 +5745,15 @@ __metadata:
   languageName: node
   linkType: hard
 
-"i18next@npm:^27.1.5":
-  version: 27.1.5
-  resolution: "i18next@npm:27.1.5"
+"i18next@npm:^27.2.3":
+  version: 27.2.3
+  resolution: "i18next@npm:27.2.3"
   peerDependencies:
     typescript: ^5 || ^6 || ^7
   peerDependenciesMeta:
     typescript:
       optional: true
-  checksum: 10c0/e345e01bcde5ae268a3a6ae1f3f0ef1e1402230160877111430c8e7a1e0e586388af25fcf21142e1a2e7c9b97c85517b994afadc1832ecf12a16dbf62dd0d9a4
+  checksum: 10c0/11d73c284c8902a5bee8d9f015a2b5f35e59e9f2bfa4880432642c7652bedcbf8b475182a8dbb1b2379d060e651c08eb31e1ce9bd0f425c926844b32fc39058d
   languageName: node
   linkType: hard
 
@@ -7922,9 +7929,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"react-i18next@npm:^18.0.2":
-  version: 18.0.2
-  resolution: "react-i18next@npm:18.0.2"
+"react-i18next@npm:^18.0.3":
+  version: 18.0.3
+  resolution: "react-i18next@npm:18.0.3"
   dependencies:
     html-parse-stringify: "npm:^4.0.1"
   peerDependencies:
@@ -7937,7 +7944,7 @@ __metadata:
       optional: true
     typescript:
       optional: true
-  checksum: 10c0/e6d3baf95c04a8fcde07d742d03ab02862488147128a7a4f9036b8909863e3be1803025d4fb5158f6467c3c48fcf525f27a82d1dbed04110f1da6a332da244ec
+  checksum: 10c0/69814ea0554b1aff2ef4fb105e965d9e81cfec069394bd0925004f0efbb746e498eb65988a741f9fff628ab0a9ca0c39969607837ed4370d640a51a84c34ce93
   languageName: node
   linkType: hard
 
@@ -8615,7 +8622,7 @@ __metadata:
   resolution: "rvmob@workspace:."
   dependencies:
     "@babel/core": "npm:^7.29.13"
-    "@babel/runtime": "npm:^7.29.14"
+    "@babel/runtime": "npm:^7.29.15"
     "@gorhom/bottom-sheet": "npm:^5.2.14"
     "@legendapp/list": "npm:^3.7.3"
     "@notifee/react-native": "npm:^9.1.8"
@@ -8652,7 +8659,7 @@ __metadata:
     date-fns: "npm:^4.4.0"
     eslint: "npm:^9.39.5"
     eslint-plugin-de-morgan: "npm:^1.3.1"
-    i18next: "npm:^27.1.5"
+    i18next: "npm:^27.2.3"
     intl-pluralrules: "npm:^2.0.1"
     knip: "npm:^5.88.1"
     mobx: "npm:^6.16.1"
@@ -8661,7 +8668,7 @@ __metadata:
     react: "npm:19.2.3"
     react-dom: "npm:19.2.3"
     react-error-boundary: "npm:^6.1.6"
-    react-i18next: "npm:^18.0.2"
+    react-i18next: "npm:^18.0.3"
     react-native: "npm:^0.86.3"
     react-native-device-info: "patch:react-native-device-info@npm%3A15.0.2#~/.yarn/patches/react-native-device-info-npm-15.0.2-3917c98f43.patch"
     react-native-drawer-layout: "npm:^4.2.13"
