@@ -8069,6 +8069,16 @@ __metadata:
   languageName: node
   linkType: hard
 
+"react-native-nitro-modules@patch:react-native-nitro-modules@npm%3A0.37.1#~/.yarn/patches/react-native-nitro-modules-npm-0.37.1-d46109edee.patch":
+  version: 0.37.1
+  resolution: "react-native-nitro-modules@patch:react-native-nitro-modules@npm%3A0.37.1#~/.yarn/patches/react-native-nitro-modules-npm-0.37.1-d46109edee.patch::version=0.37.1&hash=c69429"
+  peerDependencies:
+    react: "*"
+    react-native: "*"
+  checksum: 10c0/83829aa7071d6da1c4defd1a2f6592756f6102dbb29f55a4726b005f596ae9b9ed6da58e41f64c45b31d8cd976a3c4e61f108863bc729ee1e819ff12d53c6f5d
+  languageName: node
+  linkType: hard
+
 "react-native-reanimated-image-viewer@npm:^1.0.2":
   version: 1.0.2
   resolution: "react-native-reanimated-image-viewer@npm:1.0.2"
@@ -8081,7 +8091,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"react-native-reanimated@npm:^4.7.2":
+"react-native-reanimated@npm:4.7.2":
   version: 4.7.2
   resolution: "react-native-reanimated@npm:4.7.2"
   dependencies:
@@ -8092,6 +8102,20 @@ __metadata:
     react-native: 0.86 - 0.88
     react-native-worklets: 0.13.x
   checksum: 10c0/4129ddbbbddbd12d0e0f77a7c39e887c58e6d4dc0f4f573280199a62ef3e5f7ea65332f2ed6b84d63b0e154fcc8a62bb01f0a1b0b03b7635dcef2cc669ecab53
+  languageName: node
+  linkType: hard
+
+"react-native-reanimated@patch:react-native-reanimated@npm%3A4.7.2#~/.yarn/patches/react-native-reanimated-npm-4.7.2-b6434f6690.patch":
+  version: 4.7.2
+  resolution: "react-native-reanimated@patch:react-native-reanimated@npm%3A4.7.2#~/.yarn/patches/react-native-reanimated-npm-4.7.2-b6434f6690.patch::version=4.7.2&hash=43a9f0"
+  dependencies:
+    react-native-is-edge-to-edge: "npm:^1.3.1"
+    semver: "npm:^7.7.3"
+  peerDependencies:
+    react: "*"
+    react-native: 0.86 - 0.88
+    react-native-worklets: 0.13.x
+  checksum: 10c0/7b3b5a1853eff27a7a861d6fe21ad4227d30d79a9df74d8cffdc8de1b0fac1d990c92cd2ea0f73a7ca21bc46eb41206a5a75963b7a51c9e48b2c8c70d6f4d435
   languageName: node
   linkType: hard
 
@@ -8173,7 +8197,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"react-native-worklets@npm:^0.13.1":
+"react-native-worklets@npm:0.13.1":
   version: 0.13.1
   resolution: "react-native-worklets@npm:0.13.1"
   dependencies:
@@ -8199,6 +8223,35 @@ __metadata:
     react: "*"
     react-native: 0.86 - 0.88
   checksum: 10c0/914888189aacba41035e9f5fb605cc02c91f17199eb1d83b3b0d5b94152f1d8a4e47fbdfe4c044c495b7e951a1b8c9262e660dd7c47bc0f021c539c5438d3c55
+  languageName: node
+  linkType: hard
+
+"react-native-worklets@patch:react-native-worklets@npm%3A0.13.1#~/.yarn/patches/react-native-worklets-npm-0.13.1-3a63e554a7.patch":
+  version: 0.13.1
+  resolution: "react-native-worklets@patch:react-native-worklets@npm%3A0.13.1#~/.yarn/patches/react-native-worklets-npm-0.13.1-3a63e554a7.patch::version=0.13.1&hash=c5d369"
+  dependencies:
+    "@babel/generator": "npm:^7.27.1"
+    "@babel/plugin-transform-arrow-functions": "npm:^7.27.1"
+    "@babel/plugin-transform-class-properties": "npm:^7.28.6"
+    "@babel/plugin-transform-classes": "npm:^7.28.6"
+    "@babel/plugin-transform-nullish-coalescing-operator": "npm:^7.28.6"
+    "@babel/plugin-transform-optional-chaining": "npm:^7.28.6"
+    "@babel/plugin-transform-shorthand-properties": "npm:^7.27.1"
+    "@babel/plugin-transform-template-literals": "npm:^7.27.1"
+    "@babel/plugin-transform-unicode-regex": "npm:^7.27.1"
+    "@babel/preset-typescript": "npm:^7.28.5"
+    "@babel/traverse": "npm:^7.27.1"
+    "@babel/types": "npm:^7.27.1"
+    "@jridgewell/remapping": "npm:^2.3.5"
+    convert-source-map: "npm:^2.0.0"
+    semver: "npm:^7.7.4"
+    whatwg-fetch: "npm:^3.6.20"
+  peerDependencies:
+    "@babel/core": "*"
+    "@react-native/metro-config": "*"
+    react: "*"
+    react-native: 0.86 - 0.88
+  checksum: 10c0/f265a41b87bd0fa1c4b481e1b601cfdd8f14deff37de2d1736c0f4c504f6d7b8367f9703282cf76cd5db8f99e59716b77c20a524a4776ecc3923c84733114bf7
   languageName: node
   linkType: hard
 
@@ -8676,15 +8729,15 @@ __metadata:
     react-native-get-random-values: "npm:^2.1.0"
     react-native-keyboard-controller: "npm:^1.23.1"
     react-native-mmkv: "npm:^4.3.2"
-    react-native-nitro-modules: "npm:0.37.1"
-    react-native-reanimated: "npm:^4.7.2"
+    react-native-nitro-modules: "patch:react-native-nitro-modules@npm%3A0.37.1#~/.yarn/patches/react-native-nitro-modules-npm-0.37.1-d46109edee.patch"
+    react-native-reanimated: "patch:react-native-reanimated@npm%3A4.7.2#~/.yarn/patches/react-native-reanimated-npm-4.7.2-b6434f6690.patch"
     react-native-reanimated-image-viewer: "npm:^1.0.2"
     react-native-safe-area-context: "npm:^5.11.1"
     react-native-svg: "npm:^15.16.1"
     react-native-svg-transformer: "npm:^1.5.3"
     react-native-unistyles: "npm:3.8.2"
     react-native-web: "npm:^0.19.13"
-    react-native-worklets: "npm:^0.13.1"
+    react-native-worklets: "patch:react-native-worklets@npm%3A0.13.1#~/.yarn/patches/react-native-worklets-npm-0.13.1-3a63e554a7.patch"
     react-test-renderer: "npm:19.2.3"
     reanimated-color-picker: "npm:^5.1.4"
     revolt.js: "npm:@rexovolt/revolt.js@^6.9.0"
