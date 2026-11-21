@@ -40,7 +40,9 @@
                 "header_role": "Hapus peran?",
                 "body_bot": "Apakah Anda yakin ingin menghapus <2>{{name}}</2>?",
                 "body_channel": "Apakah Anda yakin ingin menghapus <2>saluran ini</2>?",
-                "body_role": "Apakah Anda yakin ingin menghapus <2>peran ini</2>?"
+                "body_role": "Apakah Anda yakin ingin menghapus <2>peran ini</2>?",
+                "header_theme": "Hapus tema?",
+                "body_theme": "Apakah Anda yakin ingin menghapus <2>tema ini</2>?"
             },
             "create_channel": {
                 "header": "Buat saluran baru",
@@ -83,7 +85,9 @@
                 "session_name_header": "Tetapkan nama sesi",
                 "session_name_placeholder": "Nama sesi",
                 "nickname_header": "Tetapkan nama panggilan",
-                "nickname_other_header": "Tetapkan nama panggilan anggota"
+                "nickname_other_header": "Tetapkan nama panggilan anggota",
+                "pronouns_placeholder": "Kata ganti",
+                "pronouns_header": "Tetapkan kata ganti"
             },
             "new_invite": {
                 "header": "Undangan dibuat",
@@ -122,7 +126,11 @@
                     "statusInChatAvatars": "Tampilkan status pengguna di avatar obrolan",
                     "messageSpacing": "Jarak pesan",
                     "use24H": "Gunakan stempel waktu 24-jam",
-                    "showNSFWContent": "Setujui konten 18+"
+                    "showNSFWContent": "Setujui konten 18+",
+                    "roleColourDisplay": "Warna peran",
+                    "showInlinePronouns": "Tampilkan kata ganti di atas pesan",
+                    "showInlinePronouns_rmark": "Mereka akan selalu terlihat di profil pengguna.",
+                    "showRoleIcons": "Tampilkan ikon peran"
                 },
                 "home": {
                     "holidays": "Tampilkan hari libur di halaman beranda"
@@ -130,7 +138,11 @@
                 "settings": {
                     "showExperimental": "Tampilkan fitur eksperimental"
                 },
-                "showDeveloperFeatures": "Tampilkan alat pengembang"
+                "showDeveloperFeatures": "Tampilkan alat pengembang",
+                "profile": {
+                    "extraBadges": "Hidupkan lencana Clerotri ekstra",
+                    "extraBadges_remark": "Beberapa data akan dikirimkan ke Clerotri - lihat dokumen informasi privasi untuk rincian lebih lanjut."
+                }
             }
         },
         "servers": {
@@ -191,7 +203,8 @@
                     "permissions_body": "Edit izin peran ini",
                     "permissions_list_header": "Izin untuk <2>{{role}}</2>",
                     "permissions_list_body": "Izin ini berlaku di seluruh server. Beberapa di antaranya dapat diganti untuk saluran tertentu.",
-                    "open_colour_modal": "Masukkan warna secara manual"
+                    "open_colour_modal": "Masukkan warna secara manual",
+                    "no_colour": "Tidak ada warna"
                 },
                 "emoji": {
                     "title": "Emoji",
@@ -284,7 +297,14 @@
             "fetching_servers": "Memuat server…"
         },
         "custom_badges": {
-            "clerotri_dev": "Pengembang Clerotri"
+            "clerotri_dev": "Pengembang Clerotri",
+            "clerotri_donor": {
+                "bronze": "Donatur Clerotri (Perunggu)",
+                "silver": "Donatur Clerotri (Perak)",
+                "gold": "Donatur Clerotri (Emas)",
+                "platinum": "Donatur Clerotri (Platinum)",
+                "diamond": "Donatur Clerotri (Berlian)"
+            }
         },
         "badges": {
             "Founder": "Pendiri",
@@ -403,7 +423,23 @@
                 "deleted": "Pengguna ini telah menghapus akunnya",
                 "unknown": "Bendera tidak dikenal {{flag}}"
             },
-            "message_user": "Pesan"
+            "message_user": "Pesan",
+            "extra_badges": {
+                "enabled": {
+                    "title": "Paham!",
+                    "body": "Lencana ekstra akan diambil setelah membuka kembali aplikasi."
+                },
+                "disabled": {
+                    "title": "Paham.",
+                    "body": "Anda dapat menghidupkan lencana ekstra kapan saja dengan membuka menu pengaturan dan memilih \"Privasi\"."
+                },
+                "enable": {
+                    "title": "Hidupkan lencana Clerotri ekstra?",
+                    "accept": "Hidupkan lencana",
+                    "body": "URL instansi Anda ({{url}}) dan versi Clerotri yang Anda gunakan ({{version}}) akan dikirimkan ke Clerotri. Data tersebut tidak akan disimpan kecuali Anda telah menghidupkan analitik. <6>Pelajari lebih lanjut</6>",
+                    "decline": "Tidak, terima kasih"
+                }
+            }
         },
         "settings_menu": {
             "other": {
@@ -434,7 +470,10 @@
                 "failed_to_load_bio": "Gagal memuat bio",
                 "display_name": "Nama tampilan",
                 "error_details": "Rincian kesalahan",
-                "status_body": "Atur jenis status dan teks Anda"
+                "status_body": "Atur jenis status dan teks Anda",
+                "pronouns": "Kata ganti",
+                "no_display_name": "Tidak ada nama tampilan yang ditetapkan",
+                "no_pronouns": "Tidak ada kata ganti yang ditetapkan"
             },
             "account": {
                 "title": "Akun"
@@ -446,7 +485,16 @@
                     "body": "Pilih tema atau buat tema sendiri",
                     "built_in": "Tema bawaan",
                     "custom": "Tema khusus",
-                    "no_name": "Tidak dapat memuat nama"
+                    "no_name": "Tidak dapat memuat nama",
+                    "editor": {
+                        "create_theme": "Buat tema",
+                        "edit_theme": "Buat tema",
+                        "name": "Nama tema",
+                        "name_placeholder": "Masukkan nama untuk tema Anda…",
+                        "invalid_colour_value": "Nilai tidak valid",
+                        "colour_placeholder": "Masukkan kode HEX…",
+                        "based_on": "Berbasis {{theme}}"
+                    }
                 }
             },
             "bots": {
@@ -673,7 +721,13 @@
             "UploadFiles_body_server": "Izinkan anggota dengan peran ini untuk mengunggah berkas di saluran teks.",
             "ViewChannel_body_server": "Izinkan anggota dengan peran ini untuk melihat saluran.",
             "Connect": "Hubungkan",
-            "InviteOthers": "Buat Undangan"
+            "InviteOthers": "Buat Undangan",
+            "BypassSlowmode": "Lewati Mode Lambat",
+            "BypassSlowmode_body_server": "Izinkan anggota dengan peran ini untuk mengirim pesan tanpa terpengaruh oleh mode lambat.",
+            "MentionEveryone": "Sebut @everyone / semua orang",
+            "MentionEveryone_body_server": "Izinkan anggota dengan peran ini untuk menyebut @everyone / semua orang.",
+            "MentionRoles": "Sebut Peran",
+            "MentionRoles_body_server": "Izinkan anggota dengan peran ini untuk menyebut peran."
         },
         "themes": {
             "Light": "Terang",
@@ -683,6 +737,17 @@
             "Rose Pine": "Pinus Mawar",
             "Rose Pine Moon": "Bulan Pinus Mawar",
             "Rose Pine Dawn": "Fajar Pinus Mawar"
+        },
+        "settings_options": {
+            "ui": {
+                "messaging": {
+                    "roleColourDisplay": {
+                        "username": "Tampilkan warna peran dalam nama pengguna",
+                        "separate": "Tampilkan warna peran di samping nama pengguna",
+                        "none": "Jangan tampilkan warna peran"
+                    }
+                }
+            }
         }
     }
 }
