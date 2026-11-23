@@ -8001,7 +8001,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"react-native-gesture-handler@npm:^3.5.0":
+"react-native-gesture-handler@npm:3.5.0":
   version: 3.5.0
   resolution: "react-native-gesture-handler@npm:3.5.0"
   dependencies:
@@ -8011,6 +8011,19 @@ __metadata:
     react: "*"
     react-native: "*"
   checksum: 10c0/9202071bfcbb3d7152547db471fa21f0a46692613194d3fd78c4516b0431578612edeb1bd1b6c9f92daa2a3aa51ea8d0b36d9df60f14cefb7bd48330c81e5a58
+  languageName: node
+  linkType: hard
+
+"react-native-gesture-handler@patch:react-native-gesture-handler@npm%3A3.5.0#~/.yarn/patches/react-native-gesture-handler-npm-3.5.0-3a30d7e922.patch":
+  version: 3.5.0
+  resolution: "react-native-gesture-handler@patch:react-native-gesture-handler@npm%3A3.5.0#~/.yarn/patches/react-native-gesture-handler-npm-3.5.0-3a30d7e922.patch::version=3.5.0&hash=a7a6b2"
+  dependencies:
+    "@types/react-test-renderer": "npm:^19.1.0"
+    invariant: "npm:^2.2.4"
+  peerDependencies:
+    react: "*"
+    react-native: "*"
+  checksum: 10c0/1909bc24d9135cffa6c6dc4ffe4e1c49ff507b0cd9635c7451ec9c30cecb255a38b67cdea97a59ff49de3e2b9131c45da77efbbcdf86b26c618c3a65da6dd780
   languageName: node
   linkType: hard
 
@@ -8725,7 +8738,7 @@ __metadata:
     react-native: "npm:^0.86.3"
     react-native-device-info: "patch:react-native-device-info@npm%3A15.0.2#~/.yarn/patches/react-native-device-info-npm-15.0.2-3917c98f43.patch"
     react-native-drawer-layout: "npm:^4.2.13"
-    react-native-gesture-handler: "npm:^3.5.0"
+    react-native-gesture-handler: "patch:react-native-gesture-handler@npm%3A3.5.0#~/.yarn/patches/react-native-gesture-handler-npm-3.5.0-3a30d7e922.patch"
     react-native-get-random-values: "npm:^2.1.0"
     react-native-keyboard-controller: "npm:^1.23.1"
     react-native-mmkv: "npm:^4.3.2"
