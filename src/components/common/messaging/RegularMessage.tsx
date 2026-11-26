@@ -165,7 +165,6 @@ export const RegularMessage = observer((props: MessageProps) => {
                   masquerade={props.message.masquerade?.name}
                 />
                 <Text style={localStyles.timestamp}>
-                  {' '}
                   {formatRelative(decodeTime(props.message._id), new Date(), {
                     locale: locale,
                   })}
@@ -289,7 +288,6 @@ export const RegularMessage = observer((props: MessageProps) => {
               <Text
                 key={`message-${props.message._id}-timestamp`}
                 style={localStyles.timestamp}>
-                {' '}
                 {props.message.author?.pronouns &&
                   showInlinePronouns &&
                   `${props.message.author.pronouns} • `}
@@ -304,11 +302,8 @@ export const RegularMessage = observer((props: MessageProps) => {
                     localStyles.editIndicator,
                     {
                       fontSize: Math.max(1, fontSize - 2),
-                      top: 2,
-                      left: 2,
                     },
                   ]}>
-                  {' '}
                   (edited)
                 </Text>
               )}
@@ -438,8 +433,8 @@ const localStyles = StyleSheet.create(currentTheme => ({
     fontSize: Math.max((settings.get('ui.messaging.fontSize') as number) - 2),
     color: currentTheme.foregroundTertiary,
     position: 'relative',
-    top: 2,
-    left: 2,
+    marginInlineStart: commonValues.sizes.small,
+    marginInlineEnd: commonValues.sizes.xs,
   },
   repliedMessagePreviews: {
     paddingTop: commonValues.sizes.small,
