@@ -12,13 +12,13 @@ type FullTextProps = TextProps & {
 };
 
 export const Text = ({style, ...props}: FullTextProps) => {
-  localStyles.useVariants({type: props.type, font: props.font});
+  const styles = localStyles.useVariants({type: props.type, font: props.font});
 
   return (
     <NativeText
       style={[
-        localStyles.text,
-        localStyles.textColour(
+        styles.text,
+        styles.textColour(
           props.customColour
             ? {type: 'custom', value: props.customColour}
             : {type: 'theme', value: props.colour ?? 'foregroundPrimary'},

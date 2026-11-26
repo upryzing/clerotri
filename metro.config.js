@@ -1,5 +1,7 @@
 const {getDefaultConfig, mergeConfig} = require('@react-native/metro-config');
 
+const {withUnistylesConfig} = require('react-native-unistyles/metro') 
+
 const {makeMetroConfig} = require('@rnx-kit/metro-config');
 
 const defaultConfig = getDefaultConfig(__dirname);
@@ -22,4 +24,4 @@ const config = {
   },
 };
 
-module.exports = makeMetroConfig(mergeConfig(defaultConfig, config));
+module.exports = makeMetroConfig(withUnistylesConfig(mergeConfig(defaultConfig, config)));

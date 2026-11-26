@@ -9,14 +9,14 @@ const webAlias = {
 };
 
 const commonPlugins = [
-  [
-    'react-native-unistyles/plugin',
-    {
-      root: 'src',
-      autoProcessImports: ['@clerotri/components'],
-      autoProcessPaths: ['node_modules/@rexovolt/react-native-markdown-display'],
-    },
-  ],
+  // [
+  //   'react-native-unistyles/plugin',
+  //   {
+  //     root: 'src',
+  //     autoProcessImports: ['@clerotri/components'],
+  //     autoProcessPaths: ['node_modules/@rexovolt/react-native-markdown-display'],
+  //   },
+  // ],
   'react-native-worklets/plugin',
 ];
 
