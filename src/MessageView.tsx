@@ -1,5 +1,4 @@
-import {useEffect, useRef, useState} from 'react';
-import type {Dispatch, SetStateAction} from 'react';
+import {useEffect, useEffectEvent, useRef, useState} from 'react';
 import {Platform, View} from 'react-native';
 import {useTranslation} from 'react-i18next';
 import {observer} from 'mobx-react-lite';
@@ -193,45 +192,6 @@ const NewMessageView = observer(
   },
 );
 
-function handleNewMessage(
-  channel: Channel,
-  handledMessages: string[],
-  setMessages: Dispatch<SetStateAction<RevoltMessage[]>>,
-  setError: (error: any) => void,
-  msg: RevoltMessage,
-) {
-  console.log(`[NEWMESSAGEVIEW] Handling new message ${msg._id}`);
-
-  if (msg.channel !== channel || handledMessages.includes(msg._id)) {
-    return;
-  }
-
-  // set this before anything happens that might change it
-  try {
-    handledMessages.push(msg._id);
-    console.log(
-      `[NEWMESSAGEVIEW] New message ${msg._id} is in current channel; pushing it to the message list...`,
-    );
-    setMessages(oldMessages => [...oldMessages, msg]);
-  } catch (err) {
-    console.log(
-      `[NEWMESSAGEVIEW] Error pushing new message (${msg._id}): ${err}`,
-    );
-    setError(err);
-  }
-}
-
-function handleMessageDeletion(
-  channel: Channel,
-  setMessages: Dispatch<SetStateAction<RevoltMessage[]>>,
-  id: string,
-  msg?: RevoltMessage,
-) {
-  if (msg?.channel?._id === channel._id) {
-    setMessages(oldMessages => oldMessages.filter(m => m._id !== id));
-  }
-}
-
 export const MessageView = observer(({channel}: {channel: Channel}) => {
   const handledMessages = useRef<string[]>([]);
 
@@ -282,22 +242,36 @@ export const MessageView = observer(({channel}: {channel: Channel}) => {
     return () => cleanupMessages();
   }, [channel]);
 
+  const onNewMessage = useEffectEvent((msg: RevoltMessage) => {
+    console.log(`[NEWMESSAGEVIEW] Handling new message ${msg._id}`);
+
+    if (msg.channel !== channel || handledMessages.current.includes(msg._id)) {
+      return;
+    }
+
+    // set this before anything happens that might change it
+    try {
+      handledMessages.current.push(msg._id);
+      console.log(
+        `[NEWMESSAGEVIEW] New message ${msg._id} is in current channel; pushing it to the message list...`,
+      );
+      setMessages(oldMessages => [...oldMessages, msg]);
+    } catch (err) {
+      console.log(
+        `[NEWMESSAGEVIEW] Error pushing new message (${msg._id}): ${err}`,
+      );
+      setError(err);
+    }
+  });
+
+  const onMessageDeletion = useEffectEvent((id: string, msg: RevoltMessage) => {
+    if (msg?.channel?._id === channel._id) {
+      setMessages(oldMessages => oldMessages.filter(m => m._id !== id));
+    }
+  });
+
   useEffect(() => {
     console.log(`[NEWMESSAGEVIEW] Setting up listeners for ${channel._id}...`);
-
-    function onNewMessage(msg: RevoltMessage) {
-      handleNewMessage(
-        channel,
-        handledMessages.current,
-        setMessages,
-        setError,
-        msg,
-      );
-    }
-
-    function onMessageDeletion(id: string, msg?: RevoltMessage) {
-      handleMessageDeletion(channel, setMessages, id, msg);
-    }
 
     function setUpListeners() {
       client.addListener('message', onNewMessage);
